@@ -1,1 +1,20 @@
-[] 
+[
+  {
+    "ts": "2025-10-05T15:41:58.670Z",
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:41:47.954Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:41:58.666Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "remove-unused"
+  }
+]
