@@ -1,28 +1,31 @@
 {
-  "name": "odavl-doctor",
+  "name": "odavl",
   "displayName": "ODAVL Doctor",
+  "publisher": "monawlo",
   "description": "Live monitoring panel for ODAVL autonomous code quality cycles",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:odavl.doctor"
-  ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "odavl.doctor",
-        "title": "Open ODAVL Doctor Panel"
+        "title": "ODAVL: Doctor Mode"
       }
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Monawlo812/odavl"
+  },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
   },

@@ -16,6 +16,6 @@ export default [
     }
   },
   {
-    ignores: ["dist/**","node_modules/**","reports/**","*.mjs","apps/vscode-ext/out/**"]
+    ignores: ["dist/**","node_modules/**","reports/**","*.mjs","apps/vscode-ext/out/**","apps/vscode-ext/dist/**","apps/cli/dist/**"]
   }
 ];
