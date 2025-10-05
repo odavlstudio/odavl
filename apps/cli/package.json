@@ -1,0 +1,38 @@
+{
+  "name": "@odavl/cli",
+  "version": "0.1.0",
+  "description": "ODAVL – Self-Healing Code Infrastructure CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "odavl": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "prepublishOnly": "pnpm run build"
+  },
+  "author": "Mohammad Nawlo",
+  "license": "MIT",
+  "keywords": [
+    "self-healing",
+    "automation",
+    "lint",
+    "devops",
+    "ai"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Monawlo812/odavl"
+  }
+}
