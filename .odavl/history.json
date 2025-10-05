@@ -73,5 +73,45 @@
       "types": 0
     },
     "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T16:06:40.629Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:06:33.951Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:06:40.623Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
   }
 ]
