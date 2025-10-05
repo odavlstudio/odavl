@@ -16,5 +16,62 @@
       "types": 0
     },
     "decision": "remove-unused"
+  },
+  {
+    "ts": "2025-10-05T15:55:19.949Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:13.521Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:19.946Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T15:55:41.225Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:34.117Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:41.219Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T15:56:04.749Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:56.448Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:56:04.747Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
   }
 ]

@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": "esm-hygiene",
+    "runs": 3,
+    "success": 3,
+    "trust": 1
+  }
+]
