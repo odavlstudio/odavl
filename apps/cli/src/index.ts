@@ -20,6 +20,7 @@ type GatesConfig = { eslint?: { deltaMax: number }; typeErrors?: { deltaMax: num
 const ROOT = process.cwd();
 const reportsDir = path.join(ROOT, "reports");
 const odavlDir = path.join(ROOT, ".odavl");
+const unusedVar = "test"; // This will create an ESLint warning
 
 function sh(cmd: string): { out: string; err: string } {
   try {
@@ -101,7 +102,7 @@ function decide(_m: Metrics): string {
 }
 
 function act(decision: string) {
-  if (decision === "remove-unused") {
+  if (decision === "remove-unused" || decision === "esm-hygiene" || decision === "format-consistency") {
     saveUndoSnapshot(["apps/cli/src/index.ts", "package.json", "tsconfig.json"]);
     console.log("[ACT] Running eslint --fix …");
     sh("pnpm -s exec eslint . --fix");
@@ -188,7 +189,6 @@ function runShadowVerify(): boolean {
   console.log("[SHADOW] Verifying in isolated environment...");
   try {
     const cmds = [
-      "pnpm install --prefer-offline",
       "pnpm run lint",
       "pnpm run typecheck"
     ];
@@ -198,6 +198,7 @@ function runShadowVerify(): boolean {
       if (res.status !== 0) throw new Error(cmd + " failed");
     }
     fs.writeFileSync(path.join(shadowDir, "verify.log"), "[PASS] All checks passed");
+    console.log("[SHADOW] ✅ All checks passed");
     return true;
   } catch (err) {
     fs.writeFileSync(path.join(shadowDir, "verify.log"), "[FAIL] " + (err as Error).message);

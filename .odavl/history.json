@@ -113,5 +113,106 @@
         "mustPass": true
       }
     }
+  },
+  {
+    "ts": "2025-10-05T16:20:21.499Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:20:07.403Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:20:13.856Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-05T16:21:15.528Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:21:07.695Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:21:14.003Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-05T16:22:25.516Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:22:08.550Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:22:18.853Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
   }
 ]
