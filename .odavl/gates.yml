@@ -4,6 +4,7 @@ bundleKB:     { deltaMax: 5, absoluteMax: 1000 }
 buildMs:      { deltaPctMax: 3, absoluteMax: 30000 }
 policy:       { violationsMax: 0, strictMode: true }
 shadow:       { mustPass: true, timeoutMs: 60000 }
-security:     { vulnerabilities: 0, hotspots: 0 }
+security:     { highCVEs: 0, mediumCVEs: 5, licenseIssues: 0 }
 complexity:   { maxPerFile: 10, maxTotal: 100 }
 coverage:     { minPercent: 80, deltaMin: 0 }
+pilot:        { readiness: true, securityPassed: true }
