@@ -14,7 +14,9 @@
     "odavl:observe": "tsx apps/cli/src/index.ts observe",
     "odavl:decide": "tsx apps/cli/src/index.ts decide",
     "odavl:act": "tsx apps/cli/src/index.ts act",
-    "odavl:verify": "tsx apps/cli/src/index.ts verify"
+    "odavl:verify": "tsx apps/cli/src/index.ts verify",
+    "ext:compile": "cd apps/vscode-ext && npm run compile",
+    "ext:watch": "cd apps/vscode-ext && npm run watch"
   },
   "devDependencies": {
     "@eslint/js": "9.11.0",

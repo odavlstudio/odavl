@@ -20,7 +20,18 @@ type GatesConfig = { eslint?: { deltaMax: number }; typeErrors?: { deltaMax: num
 const ROOT = process.cwd();
 const reportsDir = path.join(ROOT, "reports");
 const odavlDir = path.join(ROOT, ".odavl");
-const unusedVar = "test"; // This will create an ESLint warning
+const _unusedVar = "test"; // This will create an ESLint warning (but now ignored)
+
+// Check if --json flag is passed for structured output
+const isJsonMode = process.argv.includes("--json");
+
+function logPhase(phase: string, msg: string, status: "info" | "success" | "error" = "info") {
+  if (isJsonMode) {
+    console.log(JSON.stringify({ type: "doctor", status, data: { phase, msg } }));
+  } else {
+    console.log(`[${phase}] ${msg}`);
+  }
+}
 
 function sh(cmd: string): { out: string; err: string } {
   try {
@@ -97,17 +108,17 @@ function decide(_m: Metrics): string {
   if (!recipes.length) return "noop";
   const sorted = [...recipes].sort((a,b) => (b.trust ?? 0) - (a.trust ?? 0));
   const best = sorted[0];
-  console.log("[DECIDE] Selected recipe:", best.id, "(trust", best.trust, ")");
+  logPhase("DECIDE", `Selected recipe: ${best.id} (trust ${best.trust})`, "info");
   return best.id;
 }
 
 function act(decision: string) {
   if (decision === "remove-unused" || decision === "esm-hygiene" || decision === "format-consistency") {
     saveUndoSnapshot(["apps/cli/src/index.ts", "package.json", "tsconfig.json"]);
-    console.log("[ACT] Running eslint --fix …");
+    logPhase("ACT", "Running eslint --fix …", "info");
     sh("pnpm -s exec eslint . --fix");
   } else {
-    console.log("[ACT] noop (nothing to fix)");
+    logPhase("ACT", "noop (nothing to fix)", "info");
   }
 }
 
@@ -128,7 +139,7 @@ function checkGates(deltas: { eslint: number; types: number }): { passed: boolea
   }
   
   const passed = violations.length === 0;
-  console.log(passed ? "[VERIFY] Gates check: PASS ✅" : `[VERIFY] Gates check: FAIL ❌ (${violations.join(', ')})`);
+  logPhase("VERIFY", passed ? "Gates check: PASS ✅" : `Gates check: FAIL ❌ (${violations.join(', ')})`, passed ? "success" : "error");
   return { passed, gates, violations };
 }
 
@@ -236,17 +247,19 @@ function undoLast() {
 }
 
 function runCycle() {
-  console.log("[ODAVL] Observe → Decide → Act → Verify → Learn");
+  logPhase("ODAVL", "Observe → Decide → Act → Verify → Learn", "info");
   const before = observe();
+  logPhase("OBSERVE", `ESLint warnings: ${before.eslintWarnings}, Type errors: ${before.typeErrors}`, "info");
   const decision = decide(before);
-  console.log("[DECIDE]", decision);
+  logPhase("DECIDE", decision, "info");
   act(decision);
   const { after, deltas, gatesPassed, gates } = verify(before);
   const report: RunReport = { before, after, deltas, decision, gatesPassed, gates };
   const runFile = path.join(reportsDir, `run-${Date.now()}.json`);
   fs.writeFileSync(runFile, JSON.stringify(report, null, 2));
   learn(report);
-  console.log(`[DONE] ESLint warnings: ${before.eslintWarnings} → ${after.eslintWarnings} (Δ ${deltas.eslint}) | Type errors: ${before.typeErrors} → ${after.typeErrors} (Δ ${deltas.types})`);
+  const status = gatesPassed ? "success" : "error";
+  logPhase("DONE", `ESLint warnings: ${before.eslintWarnings} → ${after.eslintWarnings} (Δ ${deltas.eslint}) | Type errors: ${before.typeErrors} → ${after.typeErrors} (Δ ${deltas.types})`, status);
 }
 
 const cmd = process.argv[2] ?? "help";
