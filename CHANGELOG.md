@@ -1,5 +1,46 @@
 # ODAVL Changelog
 
+## v0.1.0 (Enterprise Launch) - 2025-10-05
+
+### 🚀 Enterprise Readiness & Launch (Wave 10)
+
+**Enterprise Packaging**
+- Release automation with PowerShell build script (`tools/release.ps1`)
+- GitHub Actions workflow for automated releases (`release.yml`)
+- Production-ready artifact generation with checksums and manifests
+- Multi-format distribution: CLI package, VS Code extension, Docker container
+
+**Security & Pilot Readiness (Wave 9)**
+- Comprehensive CVE scanning with npm audit integration (`tools/security-scan.ps1`)
+- License compliance checking with GPL/AGPL conflict detection
+- Zero-tolerance security gates blocking high-severity vulnerabilities
+- Complete pilot deployment guide with emergency procedures
+
+**Governance Tightening (Wave 8)**
+- Advanced policy enforcement with configurable risk management limits
+- Policy compliance validation script (`tools/policy-guard.ps1`)
+- Infrastructure file exceptions for realistic governance enforcement
+- Stricter quality gates with security and compliance requirements
+
+**Golden Repo Stabilization (Wave 7)**
+- Comprehensive quality validation script (`tools/golden.ps1`)
+- GitHub Actions CI/CD pipeline with Node 18/20 matrix testing
+- Automated build verification and artifact upload
+- Golden repo status maintenance with stability metrics
+
+### 📦 Enterprise Distribution
+
+**Installation Options**
+- npm global install: `npm install -g @odavl/cli@latest`
+- VS Code extension: Direct VSIX installation
+- Docker container: `docker run odavl/cli:latest`
+
+**Enterprise Features**
+- 24/7 support with 4-hour critical response
+- Compliance reporting and audit logging
+- Custom integration APIs for enterprise toolchains
+- Dedicated customer success management
+
 ## v0.1.0 (Initial MVP) - 2025-10-05
 
 ### 🎉 Initial Release

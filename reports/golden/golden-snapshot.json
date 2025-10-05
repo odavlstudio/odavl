@@ -1,21 +1,21 @@
 {
-  "timestamp": "2025-10-05T19:27:14.655Z",
   "build": {
     "success": true,
     "errors": 0
   },
-  "lint": {
+  "typecheck": {
     "errors": 0
   },
+  "timestamp": "2025-10-05T19:36:27.112Z",
   "packages": {
-    "vscode": {
+    "cli": {
       "built": true
     },
-    "cli": {
+    "vscode": {
       "built": true
     }
   },
-  "typecheck": {
+  "lint": {
     "errors": 0
   }
 }
