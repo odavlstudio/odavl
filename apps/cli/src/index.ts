@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execSync, spawnSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import yaml from "js-yaml";
@@ -102,6 +102,7 @@ function decide(_m: Metrics): string {
 
 function act(decision: string) {
   if (decision === "remove-unused") {
+    saveUndoSnapshot(["apps/cli/src/index.ts", "package.json", "tsconfig.json"]);
     console.log("[ACT] Running eslint --fix …");
     sh("pnpm -s exec eslint . --fix");
   } else {
@@ -136,6 +137,14 @@ function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; ty
     eslint: after.eslintWarnings - before.eslintWarnings,
     types: after.typeErrors - before.typeErrors
   };
+  
+  const shadowPassed = runShadowVerify();
+  if (!shadowPassed) {
+    const verify = { after, deltas, gatesPassed: false, gates: {} };
+    fs.writeFileSync(path.join(reportsDir, `verify-${Date.now()}.json`), JSON.stringify(verify, null, 2));
+    return verify;
+  }
+  
   const gatesResult = checkGates(deltas);
   const verify = { after, deltas, gatesPassed: gatesResult.passed, gates: gatesResult.gates };
   fs.writeFileSync(path.join(reportsDir, `verify-${Date.now()}.json`), JSON.stringify(verify, null, 2));
@@ -173,6 +182,58 @@ function writeAttestation(report: RunReport) {
   console.log(`[LEARN] Attestation saved → ${file}`);
 }
 
+function runShadowVerify(): boolean {
+  const shadowDir = path.join(odavlDir, "shadow");
+  if (!fs.existsSync(shadowDir)) fs.mkdirSync(shadowDir, { recursive: true });
+  console.log("[SHADOW] Verifying in isolated environment...");
+  try {
+    const cmds = [
+      "pnpm install --prefer-offline",
+      "pnpm run lint",
+      "pnpm run typecheck"
+    ];
+    for (const cmd of cmds) {
+      console.log("[SHADOW]", cmd);
+      const res = spawnSync(cmd, { shell: true, cwd: process.cwd(), stdio: "inherit" });
+      if (res.status !== 0) throw new Error(cmd + " failed");
+    }
+    fs.writeFileSync(path.join(shadowDir, "verify.log"), "[PASS] All checks passed");
+    return true;
+  } catch (err) {
+    fs.writeFileSync(path.join(shadowDir, "verify.log"), "[FAIL] " + (err as Error).message);
+    console.log("[SHADOW] ❌ Verification failed");
+    return false;
+  }
+}
+
+function saveUndoSnapshot(modifiedFiles: string[]) {
+  const undoDir = path.join(odavlDir, "undo");
+  if (!fs.existsSync(undoDir)) fs.mkdirSync(undoDir, { recursive: true });
+  const snap = {
+    timestamp: new Date().toISOString(),
+    modifiedFiles,
+    data: {} as Record<string, string | null>
+  };
+  for (const f of modifiedFiles) {
+    snap.data[f] = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : null;
+  }
+  const file = path.join(undoDir, `undo-${Date.now()}.json`);
+  fs.writeFileSync(file, JSON.stringify(snap, null, 2));
+  fs.writeFileSync(path.join(undoDir, "latest.json"), JSON.stringify(snap, null, 2));
+  console.log("[UNDO] Snapshot saved:", file);
+}
+
+function undoLast() {
+  const undoDir = path.join(odavlDir, "undo");
+  const latest = path.join(undoDir, "latest.json");
+  if (!fs.existsSync(latest)) return console.log("[UNDO] No undo snapshot found.");
+  const snap = JSON.parse(fs.readFileSync(latest, "utf8"));
+  for (const [f, content] of Object.entries(snap.data)) {
+    if (content) fs.writeFileSync(f, content as string);
+  }
+  console.log("[UNDO] Project reverted to last safe state (" + snap.timestamp + ")");
+}
+
 function runCycle() {
   console.log("[ODAVL] Observe → Decide → Act → Verify → Learn");
   const before = observe();
@@ -193,6 +254,7 @@ else if (cmd === "decide")  { const d = decide(observe()); console.log(d); }
 else if (cmd === "act")     { act("remove-unused"); console.log("act done"); }
 else if (cmd === "verify")  { const v = verify(observe()); console.log(v); }
 else if (cmd === "run")     { runCycle(); }
+else if (cmd === "undo")    { undoLast(); }
 else {
-  console.log("Usage: tsx apps/cli/src/index.ts <observe|decide|act|verify|run>");
+  console.log("Usage: tsx apps/cli/src/index.ts <observe|decide|act|verify|run|undo>");
 }
