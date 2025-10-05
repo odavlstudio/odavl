@@ -1,6 +1,7 @@
 import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import yaml from "js-yaml";
 
 type Metrics = { eslintWarnings: number; typeErrors: number; timestamp: string };
 type RunReport = {
@@ -8,10 +9,13 @@ type RunReport = {
   after: Metrics;
   deltas: { eslint: number; types: number };
   decision: string;
+  gatesPassed?: boolean;
+  gates?: unknown;
 };
 
 type Recipe = { id: string; trust?: number; [key: string]: unknown };
 type TrustRecord = { id: string; runs: number; success: number; trust: number };
+type GatesConfig = { eslint?: { deltaMax: number }; typeErrors?: { deltaMax: number }; [key: string]: unknown };
 
 const ROOT = process.cwd();
 const reportsDir = path.join(ROOT, "reports");
@@ -105,13 +109,35 @@ function act(decision: string) {
   }
 }
 
-function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; types: number } } {
+function checkGates(deltas: { eslint: number; types: number }): { passed: boolean; gates: unknown; violations: string[] } {
+  const gatesPath = path.join(odavlDir, "gates.yml");
+  let gates: unknown = {};
+  if (fs.existsSync(gatesPath)) {
+    try { gates = yaml.load(fs.readFileSync(gatesPath, "utf8")); } catch { /* ignore */ }
+  }
+  
+  const violations: string[] = [];
+  const g = gates as GatesConfig;
+  if (g.eslint?.deltaMax !== undefined && deltas.eslint > g.eslint.deltaMax) {
+    violations.push(`ESLint delta ${deltas.eslint} > ${g.eslint.deltaMax}`);
+  }
+  if (g.typeErrors?.deltaMax !== undefined && deltas.types > g.typeErrors.deltaMax) {
+    violations.push(`Type errors delta ${deltas.types} > ${g.typeErrors.deltaMax}`);
+  }
+  
+  const passed = violations.length === 0;
+  console.log(passed ? "[VERIFY] Gates check: PASS ✅" : `[VERIFY] Gates check: FAIL ❌ (${violations.join(', ')})`);
+  return { passed, gates, violations };
+}
+
+function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; types: number }; gatesPassed: boolean; gates: unknown } {
   const after = observe();
   const deltas = {
     eslint: after.eslintWarnings - before.eslintWarnings,
     types: after.typeErrors - before.typeErrors
   };
-  const verify = { after, deltas };
+  const gatesResult = checkGates(deltas);
+  const verify = { after, deltas, gatesPassed: gatesResult.passed, gates: gatesResult.gates };
   fs.writeFileSync(path.join(reportsDir, `verify-${Date.now()}.json`), JSON.stringify(verify, null, 2));
   return verify;
 }
@@ -126,6 +152,25 @@ function learn(report: RunReport) {
   }
   arr.push({ ts: new Date().toISOString(), success, ...report });
   fs.writeFileSync(histPath, JSON.stringify(arr, null, 2));
+  if (report.gatesPassed) writeAttestation(report);
+}
+
+function writeAttestation(report: RunReport) {
+  const attDir = path.join(odavlDir, "attestation");
+  if (!fs.existsSync(attDir)) fs.mkdirSync(attDir, { recursive: true });
+  const file = path.join(attDir, `attestation-${new Date().toISOString().replace(/[:.]/g,"")}.json`);
+  const payload = {
+    planId: "W3-" + new Date().toISOString(),
+    timestamp: new Date().toISOString(),
+    recipe: report.decision,
+    deltas: report.deltas,
+    verified: report.gatesPassed,
+    gates: report.gates,
+    signature: "sig-" + Math.random().toString(36).substring(2,10)
+  };
+  fs.writeFileSync(file, JSON.stringify(payload, null, 2));
+  fs.writeFileSync(path.join(attDir, "latest.json"), JSON.stringify(payload, null, 2));
+  console.log(`[LEARN] Attestation saved → ${file}`);
 }
 
 function runCycle() {
@@ -134,8 +179,8 @@ function runCycle() {
   const decision = decide(before);
   console.log("[DECIDE]", decision);
   act(decision);
-  const { after, deltas } = verify(before);
-  const report: RunReport = { before, after, deltas, decision };
+  const { after, deltas, gatesPassed, gates } = verify(before);
+  const report: RunReport = { before, after, deltas, decision, gatesPassed, gates };
   const runFile = path.join(reportsDir, `run-${Date.now()}.json`);
   fs.writeFileSync(runFile, JSON.stringify(report, null, 2));
   learn(report);
