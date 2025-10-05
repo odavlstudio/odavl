@@ -7,8 +7,11 @@ type RunReport = {
   before: Metrics;
   after: Metrics;
   deltas: { eslint: number; types: number };
-  decision: "remove-unused" | "noop";
+  decision: string;
 };
+
+type Recipe = { id: string; trust?: number; [key: string]: unknown };
+type TrustRecord = { id: string; runs: number; success: number; trust: number };
 
 const ROOT = process.cwd();
 const reportsDir = path.join(ROOT, "reports");
@@ -18,9 +21,10 @@ function sh(cmd: string): { out: string; err: string } {
   try {
     const out = execSync(cmd, { stdio: ["ignore", "pipe", "pipe"] }).toString();
     return { out, err: "" };
-  } catch (e: any) {
-    const out = e?.stdout?.toString?.() ?? "";
-    const err = e?.stderr?.toString?.() ?? "";
+  } catch (e: unknown) {
+    const execError = e as { stdout?: Buffer; stderr?: Buffer };
+    const out = execError.stdout?.toString() ?? "";
+    const err = execError.stderr?.toString() ?? "";
     return { out, err };
   }
 }
@@ -28,6 +32,32 @@ function sh(cmd: string): { out: string; err: string } {
 function ensureDirs() {
   if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
   if (!fs.existsSync(odavlDir)) fs.mkdirSync(odavlDir, { recursive: true });
+}
+
+function loadRecipes(): Recipe[] {
+  const rDir = path.join(odavlDir, "recipes");
+  const list: Recipe[] = [];
+  if (fs.existsSync(rDir)) {
+    for (const f of fs.readdirSync(rDir)) {
+      const fp = path.join(rDir, f);
+      try { list.push(JSON.parse(fs.readFileSync(fp, "utf8"))); } catch { /* ignore */ }
+    }
+  }
+  return list;
+}
+
+function updateTrust(recipeId: string, success: boolean) {
+  const trustPath = path.join(odavlDir, "recipes-trust.json");
+  let arr: TrustRecord[] = [];
+  if (fs.existsSync(trustPath)) {
+    try { arr = JSON.parse(fs.readFileSync(trustPath, "utf8")); } catch { /* ignore */ }
+  }
+  let r = arr.find((x) => x.id === recipeId);
+  if (!r) { r = { id: recipeId, runs: 0, success: 0, trust: 0.8 }; arr.push(r); }
+  r.runs++;
+  if (success) r.success++;
+  r.trust = Math.max(0.1, Math.min(1, r.success / r.runs));
+  fs.writeFileSync(trustPath, JSON.stringify(arr, null, 2));
 }
 
 function observe(): Metrics {
@@ -44,7 +74,7 @@ function observe(): Metrics {
         }
       }
     }
-  } catch (_) {
+  } catch {
     // If parsing fails, fallback to 0 warnings
   }
 
@@ -57,11 +87,16 @@ function observe(): Metrics {
   return metrics;
 }
 
-function decide(m: Metrics): "remove-unused" | "noop" {
-  return m.eslintWarnings > 0 ? "remove-unused" : "noop";
+function decide(_m: Metrics): string {
+  const recipes = loadRecipes();
+  if (!recipes.length) return "noop";
+  const sorted = [...recipes].sort((a,b) => (b.trust ?? 0) - (a.trust ?? 0));
+  const best = sorted[0];
+  console.log("[DECIDE] Selected recipe:", best.id, "(trust", best.trust, ")");
+  return best.id;
 }
 
-function act(decision: "remove-unused" | "noop") {
+function act(decision: string) {
   if (decision === "remove-unused") {
     console.log("[ACT] Running eslint --fix …");
     sh("pnpm -s exec eslint . --fix");
@@ -82,12 +117,14 @@ function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; ty
 }
 
 function learn(report: RunReport) {
+  const success = report.deltas.eslint < 0 || report.deltas.types <= 0;
+  updateTrust(report.decision, success);
   const histPath = path.join(odavlDir, "history.json");
-  let arr: any[] = [];
+  let arr: unknown[] = [];
   if (fs.existsSync(histPath)) {
-    try { arr = JSON.parse(fs.readFileSync(histPath, "utf8")); } catch {}
+    try { arr = JSON.parse(fs.readFileSync(histPath, "utf8")); } catch { /* ignore */ }
   }
-  arr.push({ ts: new Date().toISOString(), ...report });
+  arr.push({ ts: new Date().toISOString(), success, ...report });
   fs.writeFileSync(histPath, JSON.stringify(arr, null, 2));
 }
 
