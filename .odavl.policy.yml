@@ -1,0 +1,35 @@
+odavl_version: "0.1.0"
+governance:
+  strictness_level: "high"
+  
+risk_management:
+  max_files_per_cycle: 5
+  max_lines_changed_per_file: 40
+  max_total_lines_changed: 150
+  protected_file_patterns:
+    - "**/security/**"
+    - "**/*.spec.*"
+    - "**/public-api/**"
+    - "**/package.json"
+    - "**/tsconfig.json"
+  
+safety_gates:
+  zero_tolerance:
+    - "type_errors"
+    - "syntax_errors" 
+    - "security_vulnerabilities"
+  warning_limits:
+    eslint_warnings: 0
+    complexity_score: 10
+    
+telemetry:
+  collect_metrics: true
+  anonymize_file_paths: true
+  redact_sensitive_data: true
+  retention_days: 30
+  
+attestation:
+  require_signature: true
+  cryptographic_proof: "sha256"
+  store_evidence: true
+  audit_trail: true

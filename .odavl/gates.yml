@@ -1,6 +1,9 @@
-eslint:       { deltaMax: 0 }
-typeErrors:   { deltaMax: 0 }
-bundleKB:     { deltaMax: 10 }
-buildMs:      { deltaPctMax: 5 }
-policy:       { violationsMax: 0 }
-shadow:       { mustPass: true }
+eslint:       { deltaMax: 0, absoluteMax: 0 }
+typeErrors:   { deltaMax: 0, absoluteMax: 0 }
+bundleKB:     { deltaMax: 5, absoluteMax: 1000 }
+buildMs:      { deltaPctMax: 3, absoluteMax: 30000 }
+policy:       { violationsMax: 0, strictMode: true }
+shadow:       { mustPass: true, timeoutMs: 60000 }
+security:     { vulnerabilities: 0, hotspots: 0 }
+complexity:   { maxPerFile: 10, maxTotal: 100 }
+coverage:     { minPercent: 80, deltaMin: 0 }
