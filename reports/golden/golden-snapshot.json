@@ -1,12 +1,4 @@
 {
-  "build": {
-    "success": true,
-    "errors": 0
-  },
-  "typecheck": {
-    "errors": 0
-  },
-  "timestamp": "2025-10-05T19:36:27.112Z",
   "packages": {
     "cli": {
       "built": true
@@ -15,7 +7,15 @@
       "built": true
     }
   },
+  "build": {
+    "success": true,
+    "errors": 0
+  },
   "lint": {
     "errors": 0
-  }
+  },
+  "typecheck": {
+    "errors": 0
+  },
+  "timestamp": "2025-10-05T19:43:21.835Z"
 }

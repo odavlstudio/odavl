@@ -12,9 +12,13 @@ try {
     foreach ($file in $changedFiles) {
         if ($file -match "(security|\.spec\.|public-api)") { $violations += "Protected path modified: $file" }
         $lines = @(git diff HEAD~1 -- $file | Select-String "^[\+\-]" | Where-Object { $_ -notmatch "^[\+\-][\+\-][\+\-]" })
-        $isInfrastructure = $file -match "(\.github|tools|\.yml|\.yaml|WAVE.*\.md|CHANGELOG\.md)$"
-        $limit = if ($isInfrastructure) { 70 } else { 40 }
-        if ($lines.Count -gt $limit) { $violations += "File ${file}: $($lines.Count) lines > $limit limit" }
+        $isInfrastructure = $file -match '(\.github|tools|\.yml|\.yaml|WAVE.*\.md|CHANGELOG\.md)$'
+        if ($isInfrastructure) {
+            $limit = 70
+        } else {
+            $limit = 40
+        }
+        if ($lines.Count -gt $limit) { $violations += "File $($file): $($lines.Count) lines > $limit limit" }
     }
     if ($violations.Count -eq 0) {
         Write-Host "✅ Policy compliance: PASS" -ForegroundColor Green

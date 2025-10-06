@@ -1,0 +1,42 @@
+Executing prepublish script 'npm run vscode:prepublish'...
+
+> odavl@0.1.1 vscode:prepublish
+> npm run build
+
+
+> odavl@0.1.1 build
+> tsc -p ./
+
+ WARNING  Neither a .vscodeignore file nor a "files" property in package.json was found. To ensure only necessary files are included in your extension, add a .vscodeignore file or specify the "files" property in package.json. More info: https://aka.ms/vscode-vscodeignore
+
+ INFO  Files included in the VSIX:
+odavl-0.1.1.vsix
+Ôö£ÔöÇ [Content_Types].xml 
+Ôö£ÔöÇ extension.vsixmanifest 
+ÔööÔöÇ extension/
+   Ôö£ÔöÇ LICENSE.txt [1.06 KB]
+   Ôö£ÔöÇ build.log [0.15 KB]
+   Ôö£ÔöÇ changelog.md [0.06 KB]
+   Ôö£ÔöÇ package.json [0.84 KB]
+   Ôö£ÔöÇ readme.md [0.8 KB]
+   Ôö£ÔöÇ tsconfig.json [0.27 KB]
+   Ôö£ÔöÇ assets/
+   Ôöé  ÔööÔöÇ icon.png [1.53 MB]
+   Ôö£ÔöÇ dist/
+   Ôöé  Ôö£ÔöÇ extension.js [6.86 KB]
+   Ôöé  ÔööÔöÇ extension.js.map [2.76 KB]
+   Ôö£ÔöÇ out/
+   Ôöé  Ôö£ÔöÇ extension.js [6.86 KB]
+   Ôöé  ÔööÔöÇ extension.js.map [2.76 KB]
+   Ôö£ÔöÇ reports/
+   Ôöé  ÔööÔöÇ publish-check-20251006-153719/
+   Ôöé     Ôö£ÔöÇ git.log 
+   Ôöé     Ôö£ÔöÇ node.log 
+   Ôöé     Ôö£ÔöÇ npm.log 
+   Ôöé     ÔööÔöÇ steps.log 
+   ÔööÔöÇ src/
+      ÔööÔöÇ extension.ts [6.44 KB]
+
+The file extension/assets/icon.png is large (1.53 MB)
+
+ DONE  Packaged: C:\Users\sabou\dev\odavl\apps\vscode-ext\odavl-0.1.1.vsix (18 files, 1.52 MB)

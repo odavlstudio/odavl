@@ -1,0 +1,49 @@
+name: Publish ODAVL Studio to Open VSX
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_target:
+        description: 'Publish to (openvsx, marketplace, or both)'
+        required: true
+        default: 'openvsx'
+        type: choice
+        options:
+        - openvsx
+        - marketplace
+        - both
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      working-directory: apps/vscode-ext
+      run: npm install
+      
+    - name: Build extension
+      working-directory: apps/vscode-ext
+      run: npm run build
+      
+    - name: Publish to Open VSX
+      if: inputs.publish_target == 'openvsx' || inputs.publish_target == 'both'
+      working-directory: apps/vscode-ext
+      run: npx ovsx publish -p $OPEN_VSX_TOKEN
+      env:
+        OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+        
+    - name: Publish to Marketplace
+      if: inputs.publish_target == 'marketplace' || inputs.publish_target == 'both'
+      working-directory: apps/vscode-ext
+      run: npx vsce publish -p $VSCE_TOKEN
+      env:
+        VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
