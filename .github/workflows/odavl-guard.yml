@@ -1,0 +1,92 @@
+name: ODAVL Governance Guard
+on:
+  pull_request:
+    branches: [main, develop]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+jobs:
+  governance-check:
+    runs-on: ubuntu-latest
+    name: Enforce ODAVL Constraints
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Check Diff Limits
+        run: node scripts/check-diff.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+
+      - name: Check i18n Integrity
+        run: node scripts/check-i18n.mjs
+        if: contains(github.event.pull_request.changed_files, 'odavl-website/messages/')
+
+      - name: Verify Protected Paths
+        run: |
+          if git diff --name-only origin/main...HEAD | grep -E "(security/|\.spec\.|public-api/)"; then
+            echo "❌ BLOCKED: Protected paths modified"
+            echo "Files in protected paths:"
+            git diff --name-only origin/main...HEAD | grep -E "(security/|\.spec\.|public-api/)" || true
+            exit 1
+          else
+            echo "✅ PASSED: No protected paths modified"
+          fi
+
+      - name: Check Branch Naming
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          if [[ ! "$BRANCH_NAME" =~ ^odavl/(core|web|hotfix)- ]]; then
+            echo "❌ BLOCKED: Invalid branch name: $BRANCH_NAME"
+            echo "Expected: odavl/(core|web|hotfix)-<task>-<date>"
+            exit 1
+          else
+            echo "✅ PASSED: Branch name follows convention: $BRANCH_NAME"
+          fi
+
+  build-verification:
+    runs-on: ubuntu-latest
+    name: Build & Quality Checks
+    needs: governance-check
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript Check
+        run: pnpm typecheck
+
+      - name: Lint Check
+        run: pnpm lint
+
+      - name: Build Verification
+        run: pnpm build
+        if: contains(github.event.pull_request.changed_files, 'odavl-website/')
+
+      - name: Final Status
+        run: |
+          echo "✅ All governance and quality checks passed!"
+          echo "✅ Ready for human LGTM review"
