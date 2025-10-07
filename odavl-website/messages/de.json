@@ -1,0 +1,670 @@
+{
+  "brand": {
+    "name": "ODAVL"
+  },
+  "nav": {
+    "home": "Startseite",
+    "docs": "Dokumentation",
+    "security": "Sicherheit",
+    "contact": "Kontakt",
+    "pricing": "Preise",
+    "pilot": "Pilot starten"
+  },
+  "cta": {
+    "startPilot": "Pilot starten",
+    "getStarted": "Loslegen",
+    "startTrial": "Kostenlose Testversion",
+    "contactSales": "Vertrieb kontaktieren"
+  },
+  "hero": {
+    "title": "ODAVL — Ihr autonomer Code-Arzt mit Unternehmenssicherheit.",
+    "subtitle": "Beobachtet, repariert, verifiziert und lernt — ohne Ihre Codebasis zu beschädigen.",
+    "preHeadline": "KI-gesteuerte Code-Qualitätsplattform",
+    "headline": "Autonome Code-Intelligenz für Unternehmens-Teams",
+    "subheadline": "Verbessern Sie kontinuierlich die Code-Qualität mit KI, die beobachtet, entscheidet, handelt und lernt — alles innerhalb unternehmensgerechter Sicherheitsgrenzen.",
+    "ctaPrimary": "Kostenloses Pilotprojekt starten",
+    "ctaSecondary": "Demo ansehen",
+    "ctaPilot": "Pilot starten",
+    "ctaInstall": "VS Code Extension installieren",
+    "trust": "Vertraut von Unternehmen",
+    "trustIndicator": "Schließen Sie sich 500+ Unternehmens-Teams an, die ODAVL für autonome Code-Qualität nutzen",
+    "productPreview": "Produktvorschau",
+    "benefits": {
+      "autonomous": "Vollständig autonom",
+      "enterprise": "Unternehmensbereit",
+      "secure": "Ultra sicher"
+    }
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige"
+  },
+  "trust": {
+    "heading": "Vertraut von Unternehmens-Entwicklungsteams weltweit",
+    "linesFixed": "Korrigierte Code-Zeilen",
+    "safetyRate": "Sicherheits-Erfolgsrate",
+    "enterpriseTeams": "Unternehmens-Teams",
+    "monitoring": "Kontinuierliche Überwachung"
+  },
+  "footer": {
+    "copyright": "© 2025 ODAVL Studio. Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "support": "Support"
+  },
+  "locale": {
+    "switchTo": "Wechseln zu {locale}",
+    "current": "Aktuelle Sprache: {locale}"
+  },
+  "docs": {
+    "title": "Dokumentation",
+    "description": "Erfahren Sie, wie Sie ODAVL zur Verbesserung Ihrer Codequalität verwenden",
+    "quickstart": "Schnellstart",
+    "governance": "Governance & Sicherheit",
+    "breadcrumb": {
+      "home": "Startseite",
+      "docs": "Dokumentation"
+    }
+  },
+  "pricing": {
+    "badge": "Transparente Preise",
+    "title": {
+      "main": "Einfache Preise, die",
+      "highlight": "Mit Ihnen Skalieren"
+    },
+    "subtitle": "Investition in autonome Code-Qualität, die sich selbst bezahlt macht. Keine versteckten Gebühren, keine Überraschungen.",
+    "period": {
+      "month": "Monat",
+      "year": "Jahr",
+      "custom": "individuell"
+    },
+    "roi": {
+      "title": "ROI-Rechner",
+      "subtitle": "Berechnen Sie Ihre potenziellen Einsparungen mit ODAVL",
+      "inputs": {
+        "developers": "Anzahl Entwickler",
+        "hourlyRate": "Durchschnittlicher Entwickler-Stundensatz",
+        "issuesPerWeek": "Code-Probleme pro Woche",
+        "timePerIssue": "Durchschnittliche Zeit pro Problem (Stunden)"
+      },
+      "results": {
+        "roi": "Jährlicher ROI",
+        "roiDescription": "Return on Investment im ersten Jahr",
+        "monthlySaving": "Monatliche Einsparungen",
+        "yearlySaving": "Jährliche Einsparungen",
+        "netROI": "Jährlicher Nettonutzen",
+        "netROIDescription": "Einsparungen nach ODAVL-Abonnementkosten"
+      }
+    },
+    "value": {
+      "time": {
+        "title": "Zeiteinsparungen",
+        "description": "Reduzieren Sie manuelle Code-Review- und Bug-Fix-Zeit mit autonomem Qualitätsmanagement",
+        "metric": "70%"
+      },
+      "cost": {
+        "title": "Kostenreduzierung",
+        "description": "Niedrigere Gesamtbetriebskosten durch automatisierte Qualitätsverbesserungen und reduzierte technische Schulden",
+        "metric": "180k€"
+      },
+      "quality": {
+        "title": "Qualitätsverbesserung",
+        "description": "Messbare Verbesserung der Code-Qualitätsmetriken und reduzierte Produktionsprobleme",
+        "metric": "99,8%"
+      },
+      "safety": {
+        "title": "Sicherheitsgarantie",
+        "description": "Unternehmenstaugliche Sicherheitstore stellen sicher, dass keine Breaking Changes die Produktion erreichen",
+        "metric": "100%"
+      }
+    },
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "price": "29€",
+        "description": "Perfekt für Einzelentwickler und kleine Projekte",
+        "features": [
+          "Bis zu 5 Repositories",
+          "Grundlegende autonome Fixes (ungenutzte Variablen, Imports, Formatierung)",
+          "Wöchentliche Qualitätsberichte und -metriken",
+          "Community-Support und Dokumentation",
+          "Grundlegende IDE-Integrationen (VS Code, IntelliJ)"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "price": "99€",
+        "description": "Ideal für wachsende Teams und Produktions-Codebases",
+        "features": [
+          "Unbegrenzte Repositories und Teammitglieder",
+          "Erweiterte autonome Fixes (Komplexität, Performance, Sicherheit)",
+          "Benutzerdefinierte Qualitätsregeln und Sicherheitstore",
+          "Vollständige CI/CD-Pipeline-Integration",
+          "Erweiterte Analysen und Trend-Berichte",
+          "Priority-Support mit 24h-Antwortzeit"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Individuell",
+        "description": "Für große Unternehmen mit komplexen Anforderungen",
+        "features": [
+          "On-Premise- oder Private-Cloud-Bereitstellung",
+          "99,9% SLA mit dediziertem Support-Team",
+          "Dedicated Customer Success Manager",
+          "Benutzerdefinierte Integrationsentwicklung",
+          "Unternehmens-Compliance und Sicherheitszertifizierungen",
+          "Team-Training und Onboarding-Programme"
+        ]
+      }
+    },
+    "plans": {
+      "title": "Wählen Sie Ihren Plan"
+    },
+    "cta": {
+      "startTrial": "Kostenlose Testversion",
+      "contactSales": "Vertrieb kontaktieren"
+    },
+    "enterprise": {
+      "title": "Benötigen Sie mehr?",
+      "description": "Großes Unternehmen mit spezifischen Anforderungen? Wir erstellen eine maßgeschneiderte Lösung, die genau Ihren Bedürfnissen entspricht.",
+      "cta": "Enterprise-Demo Planen"
+    }
+  },
+  "testimonials": {
+    "badge": "Kundenerfolg",
+    "title": {
+      "main": "Vertraut von",
+      "highlight": "Unternehmens-Teams"
+    },
+    "subtitle": "Sehen Sie, wie führende Unternehmen ODAVL nutzen, um ihre Entwicklungsworkflows zu transformieren und Code-Qualität im großen Maßstab zu verbessern.",
+    "customers": [
+      {
+        "name": "Sarah Chen",
+        "role": "VP Engineering",
+        "company": "TechFlow Solutions",
+        "avatar": "/testimonials/sarah-chen.jpg",
+        "quote": "ODAVL reduzierte unsere Code-Review-Zeit um 60%, während sich die Qualitätsmetriken in allen Teams verbesserten. Die autonomen Fixes sind unglaublich präzise.",
+        "results": {
+          "metric": "60%",
+          "description": "Schnellere Code-Reviews"
+        }
+      },
+      {
+        "name": "Marcus Rodriguez",
+        "role": "Senior Staff Engineer",
+        "company": "CloudScale Systems",
+        "avatar": "/testimonials/marcus-rodriguez.jpg",
+        "quote": "Die Sicherheitstore geben uns das Vertrauen, ODAVL autonome Änderungen vornehmen zu lassen. Wir hatten seit der Implementierung null Regressionen in der Produktion.",
+        "results": {
+          "metric": "0",
+          "description": "Produktions-Regressionen"
+        }
+      },
+      {
+        "name": "Emily Johnson",
+        "role": "Head of Platform",
+        "company": "DataCore Analytics",
+        "avatar": "/testimonials/emily-johnson.jpg",
+        "quote": "ODAVLs Lernfähigkeiten passen sich perfekt an unsere Coding-Standards an. Es ist, als hätte man einen Senior-Entwickler, der 24/7 die Code-Qualität überwacht.",
+        "results": {
+          "metric": "85%",
+          "description": "Reduzierung technischer Schulden"
+        }
+      },
+      {
+        "name": "David Park",
+        "role": "Engineering Director",
+        "company": "SecureNet Technologies",
+        "avatar": "/testimonials/david-park.jpg",
+        "quote": "Der ROI war bereits nach Wochen erkennbar. ODAVL hat unseren Ansatz zur Code-Qualität transformiert - von reaktiv zu proaktiv.",
+        "results": {
+          "metric": "2M€",
+          "description": "Jährliche Einsparungen bei Qualitätsproblemen"
+        }
+      },
+      {
+        "name": "Lisa Thompson",
+        "role": "CTO",
+        "company": "InnovateLabs",
+        "avatar": "/testimonials/lisa-thompson.jpg",
+        "quote": "Nahtlose Integration mit unseren bestehenden Tools. ODAVL arbeitet unsichtbar, liefert aber sichtbare Ergebnisse in jedem Sprint.",
+        "results": {
+          "metric": "40%",
+          "description": "Schnellere Feature-Bereitstellung"
+        }
+      },
+      {
+        "name": "James Wilson",
+        "role": "Lead Architect",
+        "company": "GlobalTech Industries",
+        "avatar": "/testimonials/james-wilson.jpg",
+        "quote": "Unternehmenstaugliche Sicherheits- und Compliance-Features machen ODAVL perfekt für unsere regulierte Umgebung. Hervorragendes Support-Team.",
+        "results": {
+          "metric": "100%",
+          "description": "Compliance-Audit-Erfolg"
+        }
+      }
+    ],
+    "caseStudies": [
+      {
+        "company": "TechFlow Solutions",
+        "industry": "FinTech",
+        "logo": "/case-studies/techflow-logo.svg",
+        "challenge": "Code-Qualität bei 50+ Microservices mit schnellen Deployment-Zyklen verwalten",
+        "solution": "ODAVL Professional mit benutzerdefinierten Sicherheitstoren und CI/CD-Integration implementiert",
+        "results": {
+          "deployment": "3x schnellere Deployments",
+          "quality": "60% weniger Produktionsprobleme",
+          "savings": "1,2M€ jährliche Einsparungen"
+        },
+        "quote": "ODAVL transformierte unseren gesamten Entwicklungslebenszyklus. Qualität ist kein Engpass mehr.",
+        "author": "Sarah Chen, VP Engineering"
+      },
+      {
+        "company": "CloudScale Systems",
+        "industry": "Cloud-Infrastruktur",
+        "logo": "/case-studies/cloudscale-logo.svg",
+        "challenge": "Code-Qualität in einem verteilten Team von 200+ Entwicklern aufrechterhalten",
+        "solution": "Enterprise-Bereitstellung mit benutzerdefinierten Integrationen und dediziertem Training",
+        "results": {
+          "teams": "200+ Entwickler ongeboardet",
+          "consistency": "95% Code-Standard-Compliance",
+          "efficiency": "45% Reduzierung der Review-Zyklen"
+        },
+        "quote": "ODAVL skaliert wunderbar mit unserem Teamwachstum und behält dabei Qualitätsstandards bei.",
+        "author": "Marcus Rodriguez, Senior Staff Engineer"
+      },
+      {
+        "company": "SecureNet Technologies",
+        "industry": "Cybersicherheit",
+        "logo": "/case-studies/securenet-logo.svg",
+        "challenge": "Strenge Sicherheits- und Compliance-Anforderungen erfüllen und dabei Entwicklungsgeschwindigkeit beibehalten",
+        "solution": "On-Premise ODAVL-Bereitstellung mit benutzerdefinierten Sicherheitsintegrationen",
+        "results": {
+          "security": "Null Sicherheitsvulnerabilitäten",
+          "compliance": "100% Audit-Compliance",
+          "velocity": "30% schnellere sichere Entwicklung"
+        },
+        "quote": "ODAVL hilft uns, sicheren Code schneller als je zuvor zu entwickeln.",
+        "author": "David Park, Engineering Director"
+      }
+    ],
+    "trustBadges": [
+      {
+        "type": "security",
+        "icon": "shield",
+        "title": "SOC 2 Type II",
+        "description": "Zertifiziert"
+      },
+      {
+        "type": "compliance",
+        "icon": "check-circle",
+        "title": "DSGVO",
+        "description": "Konform"
+      },
+      {
+        "type": "security",
+        "icon": "lock",
+        "title": "ISO 27001",
+        "description": "Zertifiziert"
+      },
+      {
+        "type": "availability",
+        "icon": "activity",
+        "title": "99,9%",
+        "description": "Uptime SLA"
+      },
+      {
+        "type": "performance",
+        "icon": "zap",
+        "title": "< 100ms",
+        "description": "API-Antwortzeit"
+      },
+      {
+        "type": "support",
+        "icon": "headphones",
+        "title": "24/7",
+        "description": "Enterprise-Support"
+      }
+    ],
+    "stats": {
+      "customers": "500+",
+      "customersLabel": "Unternehmenskunden",
+      "developers": "50k+",
+      "developersLabel": "Aktive Entwickler",
+      "fixes": "2M+",
+      "fixesLabel": "Autonome Fixes",
+      "uptime": "99,9%",
+      "uptimeLabel": "Plattform-Uptime"
+    },
+    "case1": {
+      "company": "TechFlow Solutions",
+      "industry": "FinTech",
+      "challenge": "Code-Qualität über 50+ Microservices mit schnellen Deployment-Zyklen verwalten",
+      "solution": "ODAVL Professional mit benutzerdefinierten Sicherheitsschwellen und CI/CD-Integration implementiert",
+      "results": {
+        "quality": {
+          "title": "Qualitätsprobleme Reduziert",
+          "value": "60%",
+          "improvement": "Weniger Produktionsprobleme"
+        },
+        "time": {
+          "title": "Deployment-Geschwindigkeit",
+          "value": "3x",
+          "improvement": "Schnellere Deployments"
+        }
+      }
+    },
+    "case2": {
+      "company": "CloudScale Systems",
+      "industry": "Cloud-Infrastruktur", 
+      "challenge": "Code-Qualität in einem verteilten Team von 200+ Entwicklern aufrechterhalten",
+      "solution": "Enterprise-Deployment mit benutzerdefinierten Integrationen und dediziertem Training",
+      "results": {
+        "defects": {
+          "title": "Produktionsfehler",
+          "value": "85%",
+          "improvement": "Reduzierung kritischer Probleme"
+        },
+        "satisfaction": {
+          "title": "Entwickler-Zufriedenheit",
+          "value": "9.2/10",
+          "improvement": "Team-Glückswert"
+        }
+      }
+    },
+    "trust": {
+      "title": "Vertraut von Unternehmensführern",
+      "certification": {
+        "title": "SOC 2 Type II Zertifiziert",
+        "description": "Unternehmens-Sicherheit und Compliance",
+        "icon": "shield-check"
+      },
+      "uptime": {
+        "title": "99.9% Uptime SLA",
+        "description": "Zuverlässige Service-Verfügbarkeit",
+        "icon": "server"
+      },
+      "support": {
+        "title": "24/7 Enterprise Support",
+        "description": "Dedicated Support-Team",
+        "icon": "headphones"
+      },
+      "community": {
+        "title": "500+ Unternehmens-Teams",
+        "description": "Wachsende Benutzergemeinschaft",
+        "icon": "building"
+      }
+    },
+    "cta": {
+      "main": "Schließen Sie sich diesen Erfolgsgeschichten an",
+      "subtitle": "Starten Sie Ihre kostenlose Testversion und sehen Sie Ergebnisse in Ihrer ersten Woche"
+    }
+  },
+  "featuresSection": {
+    "badge": "Erweiterte Funktionen",
+    "title": {
+      "main": "Unternehmenstaugliche",
+      "highlight": "Autonome Intelligenz"
+    },
+    "subtitle": "Leistungsstarke KI-gesteuerte Funktionen, die die Art und Weise transformieren, wie Ihr Team Codequalität, Sicherheit und Performance im großen Maßstab verwaltet.",
+    "autonomous": {
+      "title": "Autonome Entscheidungsfindung",
+      "description": "KI, die Ihre Codebase-Muster lernt und intelligente Entscheidungen über Code-Verbesserungen ohne menschlichen Eingriff trifft.",
+      "benefits": {
+        "continuous": "24/7 kontinuierliche Überwachung und Verbesserung",
+        "learning": "Maschinelles Lernen passt sich Ihren Coding-Standards an",
+        "proactive": "Proaktive Problemerkennung bevor sie die Produktion beeinträchtigen"
+      }
+    },
+    "safety": {
+      "title": "Unternehmens-Sicherheitstore",
+      "description": "Mehrschichtige Sicherheitsmechanismen stellen sicher, dass Änderungen niemals die Systemstabilität gefährden oder Breaking Changes einführen.",
+      "benefits": {
+        "gates": "Qualitätstore verhindern Regression-Deployments",
+        "rollback": "Sofortige Rollback-Funktionen für alle Änderungen",
+        "validation": "Umfassende Validierung vor jeder Modifikation"
+      }
+    },
+    "performance": {
+      "title": "Hochleistungsarchitektur",
+      "description": "Für Skalierung entwickelt mit optimierten Verarbeitungspipelines, die Unternehmens-Codebases ohne Performance-Degradation bewältigen.",
+      "benefits": {
+        "speed": "Sub-Sekunden-Analyse komplexer Codebases",
+        "efficiency": "Minimaler Ressourcenverbrauch bei maximaler Wirkung",
+        "scale": "Verarbeitet Repositories mit Millionen von Codezeilen"
+      }
+    },
+    "precision": {
+      "title": "Präzisions-Zielgerichtete Fixes",
+      "description": "Erweiterte Mustererkennung stellt sicher, dass Fixes präzise, kontextuell angemessen sind und Code-Integrität bewahren.",
+      "benefits": {
+        "accuracy": "99,8% Fix-Genauigkeit mit minimalen Fehlalarmen",
+        "context": "Kontextbewusste Änderungen, die architektonische Muster respektieren",
+        "minimal": "Minimale Code-Änderungen für maximale Qualitätsverbesserung"
+      }
+    },
+    "integration": {
+      "title": "Universelle Integration",
+      "description": "Integriert sich nahtlos in Ihren bestehenden Entwicklungsworkflow, CI/CD-Pipelines und Entwicklertools.",
+      "benefits": {
+        "universal": "Funktioniert mit jedem Git-basierten Workflow und großen IDEs",
+        "workflow": "Fügt sich natürlich in bestehende Entwicklungsprozesse ein",
+        "tools": "Verbindet sich mit beliebten Tools wie Jira, Slack, Teams"
+      }
+    },
+    "insights": {
+      "title": "Business Intelligence",
+      "description": "Transformieren Sie Code-Qualitätsmetriken in umsetzbare Business-Insights mit umfassenden Analysen und Berichten.",
+      "benefits": {
+        "metrics": "Echtzeit-Qualitätsmetriken und Trendanalyse",
+        "trends": "Muster und Verbesserungsmöglichkeiten identifizieren",
+        "optimization": "ROI-Tracking und Team-Produktivitätsoptimierung"
+      }
+    },
+    "metrics": {
+      "safety": {
+        "label": "Sicherheitsrate",
+        "description": "Änderungen ohne Einführung von Regressionen oder Funktionsbrüchen deployed"
+      },
+      "speed": {
+        "label": "Schneller",
+        "description": "Durchschnittliche Verbesserung in Code-Review- und Fix-Deployment-Zyklen"
+      },
+      "availability": {
+        "label": "Überwachung",
+        "description": "Kontinuierliche Qualitätsüberwachung ohne Unterbrechung des Entwicklerworkflows"
+      },
+      "downtime": {
+        "label": "Setup-Zeit",
+        "description": "Bereit, Ihre Codebase sofort nach der Installation zu verbessern"
+      }
+    },
+    "cta": {
+      "main": "Unternehmens-Intelligenz erleben",
+      "subtitle": "Sehen Sie, wie ODAVL Ihren Entwicklungsworkflow transformiert"
+    }
+  },
+  "howItWorks": {
+    "badge": "Der ODAVL-Prozess",
+    "title": {
+      "main": "Wie Autonome Code-",
+      "highlight": "Intelligenz Funktioniert"
+    },
+    "subtitle": "Entdecken Sie den bewährten 5-Schritte-Prozess, der ODAVL zur vertrauenswürdigsten autonomen Code-Qualitätsplattform für Unternehmensteams macht.",
+    "process": {
+      "title": "Die ODAVL-Methodik"
+    },
+    "observe": {
+      "title": "Beobachten",
+      "description": "Kontinuierliche Überwachung Ihrer Codebase zur Identifikation von Qualitätsmustern, technischen Schulden und Verbesserungsmöglichkeiten mittels fortgeschrittener statischer Analyse.",
+      "details": {
+        "metrics": "Echtzeit-Sammlung von Qualitätsmetriken und Code-Gesundheitsindikatoren",
+        "patterns": "Mustererkennung zur Identifikation wiederkehrender Probleme und Anti-Patterns",
+        "baseline": "Baseline-Messungen zur Verfolgung von Verbesserungen über die Zeit etablieren"
+      }
+    },
+    "decide": {
+      "title": "Entscheiden",
+      "description": "KI-gesteuerte Entscheidungsengine analysiert gesammelte Daten, um Fixes zu priorisieren und die sichersten, wirkungsvollsten Aktionen zu bestimmen.",
+      "details": {
+        "analysis": "Intelligente Analyse von Risiko vs. Nutzen für potenzielle Änderungen",
+        "priority": "Automatisierte Priorisierung basierend auf Geschäftsauswirkung und Sicherheit",
+        "safety": "Sicherheitstor-Validierung stellt sicher, dass Änderungen Qualitätsschwellen erfüllen"
+      }
+    },
+    "act": {
+      "title": "Handeln",
+      "description": "Präzise, automatisierte Code-Modifikationen innerhalb von Sicherheitsbeschränkungen ausgeführt, mit umfassendem Testen und Validierung bei jedem Schritt.",
+      "details": {
+        "execution": "Chirurgische Code-Änderungen, die architektonische Integrität bewahren",
+        "testing": "Automatisiertes Testen stellt sicher, dass Änderungen keine Regressionen einführen",
+        "deployment": "Sicheres Deployment mit sofortigen Rollback-Fähigkeiten"
+      }
+    },
+    "verify": {
+      "title": "Verifizieren",
+      "description": "Umfassende Validierung von Änderungen durch automatisiertes Testen, Qualitätsmetriken-Analyse und Auswirkungsbewertung.",
+      "details": {
+        "validation": "Mehrschichtige Validierung einschließlich Unit-, Integration- und Systemtests",
+        "metrics": "Qualitätsmetriken-Verifizierung zur Bestätigung der Verbesserungserreichung",
+        "rollback": "Automatisches Rollback bei Validierungsfehlern oder erkannten Regressionen"
+      }
+    },
+    "learn": {
+      "title": "Lernen",
+      "description": "Machine-Learning-Algorithmen passen sich an Ihre Codebase-Muster, Team-Präferenzen und erfolgreiche Ergebnisse an, um zukünftige Entscheidungen zu verbessern.",
+      "details": {
+        "adaptation": "Kontinuierliches Lernen aus Team-Feedback und erfolgreichen Mustern",
+        "improvement": "Modell-Verfeinerung basierend auf historischen Erfolgs- und Fehlerdaten",
+        "optimization": "Optimierung von Entscheidungsalgorithmen für Ihren spezifischen Kontext"
+      }
+    },
+    "journey": {
+      "title": "Ihre Erfolgsreise",
+      "subtitle": "Vom Pilotprojekt zur unternehmensweiten Transformation in drei bewährten Phasen",
+      "discovery": {
+        "phase": "Phase 1",
+        "title": "Entdeckung & Bewertung",
+        "description": "Umfassende Evaluierung Ihrer aktuellen Code-Qualitätslandschaft und maßgeschneiderte ODAVL-Konfiguration.",
+        "duration": "1-2 Wochen",
+        "outcomes": {
+          "assessment": "Vollständige Codebase-Qualitätsbewertung und Verbesserungs-Roadmap",
+          "demo": "Angepasste Demonstration mit Ihrer tatsächlichen Codebase",
+          "proposal": "Maßgeschneiderter Implementierungsvorschlag und ROI-Projektionen"
+        }
+      },
+      "pilot": {
+        "phase": "Phase 2",
+        "title": "Pilot-Implementierung",
+        "description": "Kontrollierter Rollout auf ausgewählten Repositories zur Validierung des Ansatzes und Wert-Demonstration.",
+        "duration": "4-6 Wochen",
+        "outcomes": {
+          "integration": "Nahtlose Integration in bestehende Entwicklungsworkflows",
+          "fixes": "Messbare Verbesserung der Code-Qualitätsmetriken",
+          "metrics": "Baseline-Etablierung und erste ROI-Demonstration"
+        }
+      },
+      "scale": {
+        "phase": "Phase 3",
+        "title": "Unternehmens-Skalierung",
+        "description": "Organisationsweite Bereitstellung mit umfassendem Training und kontinuierlicher Optimierung.",
+        "duration": "8-12 Wochen",
+        "outcomes": {
+          "rollout": "Vollständige Unternehmensbereitstellung über alle Entwicklungsteams",
+          "training": "Team-Training und Adoptionsunterstützung für maximale Effektivität",
+          "optimization": "Kontinuierliche Optimierung und Performance-Monitoring"
+        }
+      }
+    },
+    "cta": {
+      "main": "Beginnen Sie Ihre Transformation",
+      "subtitle": "Starten Sie mit einer personalisierten Bewertung Ihrer Code-Qualitätsmöglichkeiten"
+    }
+  },
+  "integrations": {
+    "badge": "Unternehmens-Integrationen",
+    "title": {
+      "main": "Nahtloses",
+      "highlight": "Integrations-Ökosystem"
+    },
+    "subtitle": "Verbinden Sie ODAVL mit Ihren bestehenden Entwicklungstools und Workflows. Native Integrationen mit Unternehmens-Sicherheit und Compliance.",
+    "status": {
+      "native": "Nativ",
+      "ready": "Bereit",
+      "planned": "Geplant"
+    },
+    "development": {
+      "category": "Entwicklungs-IDEs",
+      "title": "Code-Editor-Integration",
+      "description": "Native Integration mit beliebten IDEs und Code-Editoren für nahtlose Entwicklungserfahrung."
+    },
+    "versionControl": {
+      "category": "Versionskontrolle",
+      "title": "Git-Plattform-Unterstützung",
+      "description": "Tiefe Integration mit allen großen Git-Plattformen für automatisches Code-Qualitätsmanagement."
+    },
+    "cicd": {
+      "category": "CI/CD-Pipelines",
+      "title": "Build & Deploy",
+      "description": "Integration in Ihre CI/CD-Pipeline für kontinuierliche Code-Qualitätsüberwachung und -verbesserung."
+    },
+    "security": {
+      "category": "Sicherheit & Compliance",
+      "title": "Sicherheits-Integration",
+      "description": "Verbindung mit Sicherheits-Scanning-Tools zur Verbesserung der Code-Sicherheitsanalyse und Compliance."
+    },
+    "monitoring": {
+      "category": "Monitoring & Analytics",
+      "title": "Observability-Tools",
+      "description": "Senden Sie Code-Qualitätsmetriken an Ihre Monitoring- und Analytics-Plattformen für umfassende Einblicke."
+    },
+    "communication": {
+      "category": "Team-Kommunikation",
+      "title": "Benachrichtigungen & Warnungen",
+      "description": "Halten Sie Ihr Team mit Echtzeit-Benachrichtigungen über Code-Qualitätsverbesserungen informiert."
+    },
+    "workflow": {
+      "title": "Einfacher Integrationsprozess",
+      "subtitle": "Sein Sie mit Ihren bestehenden Tools in Minuten, nicht Stunden, einsatzbereit",
+      "install": {
+        "title": "Erweiterung Installieren",
+        "description": "Installieren Sie die ODAVL-Erweiterung in Ihrer IDE oder fügen Sie sie zu Ihrer CI/CD-Pipeline hinzu"
+      },
+      "configure": {
+        "title": "Einstellungen Konfigurieren",
+        "description": "Richten Sie Integrationen mit Ihren bestehenden Tools ein und passen Sie Qualitätsregeln an"
+      },
+      "automate": {
+        "title": "Workflow Automatisieren",
+        "description": "ODAVL integriert sich automatisch in Ihren Entwicklungsworkflow"
+      },
+      "monitor": {
+        "title": "Ergebnisse Überwachen",
+        "description": "Verfolgen Sie Verbesserungen und erhalten Sie Einblicke über Ihre bevorzugten Tools"
+      }
+    },
+    "enterprise": {
+      "title": "Unternehmens-Integrations-Support",
+      "description": "Benötigen Sie eine benutzerdefinierte Integration? Unser Unternehmens-Team kann benutzerdefinierte Konnektoren für Ihre spezifischen Tools und Workflows erstellen.",
+      "features": {
+        "custom": "Benutzerdefinierte Integrationen verfügbar",
+        "priority": "Prioritäts-Integrationsanfragen",
+        "support": "Dedicated Integration Support"
+      }
+    },
+    "cta": {
+      "main": "Alle Integrationen Anzeigen",
+      "subtitle": "Erkunden Sie unseren vollständigen Integrationskatalog und Setup-Anleitungen"
+    }
+  }
+}

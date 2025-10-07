@@ -5,9 +5,11 @@
  */
 
 import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const WEBSITE_PATH = 'odavl-website';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const WEBSITE_PATH = join(__dirname, '..', 'odavl-website');
 const MESSAGES_PATH = join(WEBSITE_PATH, 'messages');
 const PRIMARY_LOCALE = 'en';
 
