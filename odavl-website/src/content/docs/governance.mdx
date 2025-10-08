@@ -1,0 +1,57 @@
+# Governance & Safety
+
+ODAVL operates under strict governance principles to ensure safe, predictable automation.
+
+## Safety Gates
+
+Safety gates define quality thresholds that must never be violated:
+
+```yaml
+# .odavl/gates.yml
+eslint:
+  deltaMax: 5  # Allow max 5 new warnings
+typescript:
+  deltaMax: 0  # Zero tolerance for new errors
+```
+
+## Risk Policy
+
+The risk policy limits the scope of autonomous changes:
+
+```yaml
+# .odavl/policy.yml
+autonomy:
+  maxFilesTouched: 10
+  maxLinesChanged: 100
+  protectedPaths:
+    - "src/critical/**"
+    - "*.config.*"
+```
+
+## Decision Framework
+
+ODAVL uses a structured decision framework:
+
+1. **Observe**: Collect current metrics
+2. **Decide**: Determine optimal action
+3. **Act**: Execute approved changes
+4. **Verify**: Validate improvements
+5. **Learn**: Update decision models
+
+## Audit Trail
+
+Every action is logged for full traceability:
+
+- Decision rationale
+- Files modified
+- Metrics before/after
+- Verification results
+
+## Override Controls
+
+Human oversight mechanisms:
+
+- Manual approval gates
+- Emergency stop commands
+- Rollback capabilities
+- Audit review processes

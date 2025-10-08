@@ -20,14 +20,14 @@
     "title": "ODAVL — طبيبك المستقل للكود مع الأمان المؤسسي.",
     "subtitle": "يراقب ويصلح ويتحقق ويتعلم — دون كسر قاعدة الكود الخاصة بك.",
     "preHeadline": "منصة جودة الكود المدعومة بالذكاء الاصطناعي",
-    "headline": "ذكاء الكود المستقل لفرق المؤسسات",
+    "headline": "توقف عن إصلاح الأخطاء. ابدأ في منعها.",
     "subheadline": "حسن جودة الكود باستمرار مع ذكاء اصطناعي يراقب ويقرر ويتصرف ويتعلم — كل ذلك ضمن حدود الأمان على مستوى المؤسسة.",
-    "ctaPrimary": "ابدأ تجريبًا مجانيًا",
-    "ctaSecondary": "شاهد العرض التوضيحي",
+    "ctaPrimary": "ابدأ تجربة مجانية لمدة 30 يومًا",
+    "ctaSecondary": "شاهد النتائج المباشرة (دقيقتان)",
     "ctaPilot": "بدء التجريب",
     "ctaInstall": "تثبيت إضافة VS Code",
     "trust": "موثوق من قبل الفرق المؤسسية",
-    "trustIndicator": "انضم إلى أكثر من 500 فريق مؤسسي يستخدمون ODAVL لجودة الكود المستقلة",
+    "trustIndicator": "انضم إلى أكثر من **500** فريق مؤسسي يستخدمون ODAVL لجودة الكود المستقلة",
     "productPreview": "معاينة المنتج",
     "benefits": {
       "autonomous": "مستقل بالكامل",
@@ -131,39 +131,39 @@
         "name": "البادئ",
         "price": "$29",
         "description": "مثالي للمطورين الأفراد والمشاريع الصغيرة",
-        "features": [
-          "حتى 5 مستودعات",
-          "إصلاحات ذاتية أساسية (متغيرات غير مستخدمة، استيرادات، تنسيق)",
-          "تقارير ومقاييس جودة أسبوعية",
-          "دعم المجتمع والوثائق",
-          "تكاملات IDE أساسية (VS Code، IntelliJ)"
-        ]
+        "features": {
+          "repositories": "حتى 3 مستودعات",
+          "basicFixes": "إصلاحات أساسية وتنظيف",
+          "reports": "تقارير أسبوعية تلقائيًا",
+          "support": "دعم عبر البريد الإلكتروني",
+          "integrations": "تكاملات GitHub/GitLab"
+        }
       },
       "professional": {
         "name": "احترافي",
         "price": "$99",
         "description": "الأفضل للفرق النامية وقواعد أكواد الإنتاج",
-        "features": [
-          "مستودعات وأعضاء فريق غير محدودة",
-          "إصلاحات ذاتية متقدمة (التعقيد، الأداء، الأمان)",
-          "قواعد جودة مخصصة وبوابات أمان",
-          "تكامل كامل مع خط أنابيب CI/CD",
-          "تحليلات متقدمة وتقارير الاتجاه",
-          "دعم ذو أولوية مع وقت استجابة 24 ساعة"
-        ]
+        "features": {
+          "unlimited": "مستودعات غير محدودة",
+          "advancedFixes": "إصلاحات متقدمة وقواعد مخصّصة",
+          "customRules": "قواعد جودة مخصّصة",
+          "cicd": "تكامل CI/CD",
+          "analytics": "لوحة تحليلات",
+          "priority": "دعم أولوية"
+        }
       },
       "enterprise": {
         "name": "المؤسسات",
         "price": "مخصص",
         "description": "للمؤسسات الكبيرة ذات المتطلبات المعقدة",
-        "features": [
-          "نشر محلي أو سحابة خاصة",
-          "99.9% SLA مع فريق دعم مخصص",
-          "مدير نجاح عملاء مخصص",
-          "تطوير تكامل مخصص",
-          "شهادات امتثال وأمان المؤسسة",
-          "برامج تدريب الفريق والإعداد"
-        ]
+        "features": {
+          "onPremise": "داخل الشركة أو سحابة خاصة",
+          "sla": "اتفاقية مستوى خدمة وفريق نجاح مخصّص",
+          "dedicated": "امتثال وSSO",
+          "training": "تدريبات للفريق",
+          "compliance": "تكاملات مخصّصة",
+          "customization": "تكاملات مخصّصة"
+        }
       }
     },
     "plans": {
@@ -183,191 +183,68 @@
     "badge": "نجاح العملاء",
     "title": {
       "main": "موثوق من قبل",
-      "highlight": "الفرق المؤسسية"
+      "highlight": "فرق المؤسسات"
     },
-    "subtitle": "شاهد كيف تستخدم الشركات الرائدة ODAVL لتحويل سير عمل التطوير وتحسين جودة الكود على نطاق واسع.",
-    "customers": [
-      {
-        "name": "سارة تشين",
-        "role": "نائب رئيس الهندسة",
-        "company": "TechFlow Solutions",
-        "avatar": "/testimonials/sarah-chen.jpg",
-        "quote": "ODAVL قلل وقت مراجعة الكود بنسبة 60% مع تحسين مقاييس الجودة عبر جميع الفرق. الإصلاحات الذاتية دقيقة بشكل لا يصدق.",
-        "results": {
-          "metric": "60%",
-          "description": "مراجعات كود أسرع"
-        }
-      },
-      {
-        "name": "ماركوس رودريغيز",
-        "role": "كبير مهندسين",
-        "company": "CloudScale Systems",
-        "avatar": "/testimonials/marcus-rodriguez.jpg",
-        "quote": "بوابات الأمان تعطينا الثقة للسماح لـ ODAVL بإجراء تغييرات ذاتية. لم نر أي انتكاسات في الإنتاج منذ التنفيذ.",
-        "results": {
-          "metric": "0",
-          "description": "انتكاسات الإنتاج"
-        }
-      },
-      {
-        "name": "إميلي جونسون",
-        "role": "رئيس المنصة",
-        "company": "DataCore Analytics",
-        "avatar": "/testimonials/emily-johnson.jpg",
-        "quote": "قدرات تعلم ODAVL تتكيف بمثالية مع معايير البرمجة لدينا. إنه مثل وجود مطور كبير يراقب جودة الكود على مدار الساعة.",
-        "results": {
-          "metric": "85%",
-          "description": "تقليل الديون التقنية"
-        }
-      },
-      {
-        "name": "ديفيد بارك",
-        "role": "مدير الهندسة",
-        "company": "SecureNet Technologies",
-        "avatar": "/testimonials/david-park.jpg",
-        "quote": "العائد على الاستثمار كان واضحًا خلال أسابيع. ODAVL حول نهجنا لجودة الكود - من تفاعلي إلى استباقي.",
-        "results": {
-          "metric": "$2M",
-          "description": "وفورات سنوية على مشاكل الجودة"
-        }
-      },
-      {
-        "name": "ليزا طومسون",
-        "role": "المدير التقني",
-        "company": "InnovateLabs",
-        "avatar": "/testimonials/lisa-thompson.jpg",
-        "quote": "تكامل سلس مع أدواتنا الحالية. ODAVL يعمل بصمت لكنه يقدم نتائج مرئية في كل سبرينت.",
-        "results": {
-          "metric": "40%",
-          "description": "تسليم ميزات أسرع"
-        }
-      },
-      {
-        "name": "جيمس ويلسون",
-        "role": "كبير مهندسين معماريين",
-        "company": "GlobalTech Industries",
-        "avatar": "/testimonials/james-wilson.jpg",
-        "quote": "ميزات الأمان والامتثال على مستوى المؤسسة تجعل ODAVL مثاليًا لبيئتنا المنظمة. فريق دعم متميز.",
-        "results": {
-          "metric": "100%",
-          "description": "نجاح تدقيق الامتثال"
-        }
+    "subtitle": "اكتشف كيف تستخدم الشركات الرائدة ODAVL لتحويل سير عمل التطوير وتحسين جودة الكود على نطاق واسع.",
+    "testimonials": {
+      "title": "ما يقوله مستخدمونا"
+    },
+    "testimonial1": {
+      "quote": "حوّل ODAVL عملية جودة الكود لدينا بالكامل.",
+      "author": "سارة م.",
+      "role": "مطور رئيسي",
+      "company": "TechFlow (تجريبي)",
+      "results": {
+        "quality": "جودة الكود محسّنة",
+        "time": "وقت المراجعة موفّر"
       }
-    ],
-    "caseStudies": [
-      {
-        "company": "TechFlow Solutions",
-        "industry": "التكنولوجيا المالية",
-        "logo": "/case-studies/techflow-logo.svg",
-        "challenge": "إدارة جودة الكود عبر أكثر من 50 خدمة مصغرة مع دورات نشر سريعة",
-        "solution": "تنفيذ ODAVL Professional مع بوابات أمان مخصصة وتكامل CI/CD",
-        "results": {
-          "deployment": "نشر أسرع 3 مرات",
-          "quality": "60% أقل مشاكل إنتاج",
-          "savings": "$1.2M وفورات سنوية"
-        },
-        "quote": "ODAVL حول دورة حياة التطوير بأكملها. الجودة لم تعد عقدة.",
-        "author": "سارة تشين، نائب رئيس الهندسة"
-      },
-      {
-        "company": "CloudScale Systems",
-        "industry": "البنية التحتية السحابية",
-        "logo": "/case-studies/cloudscale-logo.svg",
-        "challenge": "الحفاظ على جودة الكود في فريق موزع من أكثر من 200 مطور",
-        "solution": "نشر المؤسسة مع تكاملات مخصصة وتدريب مخصص",
-        "results": {
-          "teams": "تم إعداد أكثر من 200 مطور",
-          "consistency": "95% امتثال معايير الكود",
-          "efficiency": "45% تقليل دورات المراجعة"
-        },
-        "quote": "ODAVL يتوسع بشكل جميل مع نمو فريقنا مع الحفاظ على معايير الجودة.",
-        "author": "ماركوس رودريغيز، كبير مهندسين"
-      },
-      {
-        "company": "SecureNet Technologies",
-        "industry": "الأمن السيبراني",
-        "logo": "/case-studies/securenet-logo.svg",
-        "challenge": "تلبية متطلبات الأمان والامتثال الصارمة مع الحفاظ على سرعة التطوير",
-        "solution": "نشر ODAVL محلي مع تكاملات أمان مخصصة",
-        "results": {
-          "security": "صفر ثغرات أمنية",
-          "compliance": "100% امتثال التدقيق",
-          "velocity": "30% تطوير آمن أسرع"
-        },
-        "quote": "ODAVL يساعدنا في بناء كود آمن أسرع من أي وقت مضى.",
-        "author": "ديفيد بارك، مدير الهندسة"
+    },
+    "testimonial2": {
+      "quote": "الإصلاحات المستقلة دقيقة وآمنة بشكل لا يصدق.",
+      "author": "ديفيد ر.",
+      "role": "مدير الهندسة", 
+      "company": "CloudScale (تجريبي)",
+      "results": {
+        "defects": "مشاكل الإنتاج مقللة",
+        "velocity": "سرعة التطوير"
       }
-    ],
-    "trustBadges": [
-      {
-        "type": "security",
-        "icon": "shield",
-        "title": "SOC 2 Type II",
-        "description": "معتمد"
-      },
-      {
-        "type": "compliance",
-        "icon": "check-circle",
-        "title": "GDPR",
-        "description": "متوافق"
-      },
-      {
-        "type": "security",
-        "icon": "lock",
-        "title": "ISO 27001",
-        "description": "معتمد"
-      },
-      {
-        "type": "availability",
-        "icon": "activity",
-        "title": "99.9%",
-        "description": "SLA وقت التشغيل"
-      },
-      {
-        "type": "performance",
-        "icon": "zap",
-        "title": "< 100ms",
-        "description": "استجابة API"
-      },
-      {
-        "type": "support",
-        "icon": "headphones",
-        "title": "24/7",
-        "description": "دعم المؤسسات"
+    },
+    "testimonial3": {
+      "quote": "أفضل استثمار قمنا به في إنتاجية المطورين.",
+      "author": "أليكس ل.",
+      "role": "كبير مسؤولي التقنية",
+      "company": "StartupCo (تجريبي)",
+      "results": {
+        "incidents": "الحوادث الحرجة انخفضت",
+        "deployment": "ثقة النشر"
       }
-    ],
-    "stats": {
-      "customers": "500+",
-      "customersLabel": "عملاء المؤسسات",
-      "developers": "50k+",
-      "developersLabel": "المطورون النشطون",
-      "fixes": "2M+",
-      "fixesLabel": "الإصلاحات الذاتية",
-      "uptime": "99.9%",
-      "uptimeLabel": "وقت تشغيل المنصة"
+    },
+    "caseStudies": {
+      "title": "قصص النجاح",
+      "subtitle": "نتائج واقعية من مشاركي برنامجنا التجريبي."
     },
     "case1": {
       "company": "TechFlow Solutions",
-      "industry": "التكنولوجيا المالية",
-      "challenge": "إدارة جودة الكود عبر أكثر من 50 خدمة صغيرة مع دورات نشر سريعة",
+      "industry": "التقنية المالية",
+      "challenge": "إدارة جودة الكود عبر 50+ خدمة مصغرة مع دورات نشر سريعة",
       "solution": "تنفيذ ODAVL Professional مع بوابات أمان مخصصة وتكامل CI/CD",
       "results": {
         "quality": {
-          "title": "تقليل مشاكل الجودة",
+          "title": "مشاكل الجودة مقللة",
           "value": "60%",
-          "improvement": "مشاكل إنتاج أقل"
+          "improvement": "مشاكل أقل في الإنتاج"
         },
         "time": {
           "title": "سرعة النشر",
           "value": "3x",
-          "improvement": "نشر أسرع"
+          "improvement": "عمليات نشر أسرع"
         }
       }
     },
     "case2": {
-      "company": "CloudScale Systems",
-      "industry": "البنية التحتية السحابية", 
-      "challenge": "الحفاظ على جودة الكود في فريق موزع من أكثر من 200 مطور",
+      "company": "CloudScale Systems", 
+      "industry": "البنية التحتية السحابية",
+      "challenge": "الحفاظ على جودة الكود في فريق موزع من 200+ مطور",
       "solution": "نشر مؤسسي مع تكاملات مخصصة وتدريب مخصص",
       "results": {
         "defects": {
@@ -376,33 +253,29 @@
           "improvement": "تقليل المشاكل الحرجة"
         },
         "satisfaction": {
-          "title": "رضا المطورين",
+          "title": "رضا المطور",
           "value": "9.2/10",
           "improvement": "نقاط سعادة الفريق"
         }
       }
     },
     "trust": {
-      "title": "موثوق من قادة المؤسسات",
+      "title": "لماذا تثق الفرق في ODAVL",
       "certification": {
-        "title": "معتمد SOC 2 Type II",
-        "description": "أمان والامتثال على مستوى المؤسسة",
-        "icon": "shield-check"
+        "title": "متوافق مع SOC 2",
+        "description": "معايير أمان المؤسسات مع مسارات تدقيق كاملة وضوابط الوصول."
       },
-      "uptime": {
-        "title": "99.9% SLA لوقت التشغيل",
-        "description": "توفر الخدمة الموثوق",
-        "icon": "server"
-      },
-      "support": {
-        "title": "دعم مؤسسي 24/7",
-        "description": "فريق دعم مخصص",
-        "icon": "headphones"
+      "enterprise": {
+        "title": "أمان على مستوى المؤسسات",
+        "description": "أتمتة محكومة مع ضوابط قابلة للتدقيق وأطر الامتثال."
       },
       "community": {
-        "title": "500+ فرق مؤسسية",
-        "description": "مجتمع متنامي من المستخدمين",
-        "icon": "building"
+        "title": "أساس مفتوح المصدر",
+        "description": "مبني على أدوات مفتوحة المصدر موثوقة مع منهجيات شفافة."
+      },
+      "growth": {
+        "title": "500+ فريق هندسة",
+        "description": "معتمد من خلال التجارب والاختبارات المؤسسية مع نتائج مثبتة."
       }
     },
     "cta": {

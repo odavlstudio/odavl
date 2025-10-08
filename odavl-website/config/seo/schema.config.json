@@ -1,0 +1,83 @@
+{
+  "organization": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ODAVL",
+    "legalName": "ODAVL Studio",
+    "url": "https://odavl.studio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://odavl.studio/logo.png",
+      "width": 400,
+      "height": 400
+    },
+    "description": "Enterprise-grade autonomous code quality platform that transforms codebases with intelligent quality improvements.",
+    "foundingDate": "2025",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "ODAVL Team"
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "Global"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "hello@odavl.studio",
+      "availableLanguage": ["English", "German", "Arabic"]
+    },
+    "sameAs": [
+      "https://github.com/odavlstudio"
+    ]
+  },
+  "softwareApplication": {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ODAVL",
+    "description": "Autonomous code quality platform with enterprise-grade safety controls",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "ODAVL Studio"
+    },
+    "downloadUrl": "https://github.com/odavlstudio/odavl",
+    "featureList": [
+      "Autonomous code quality improvements",
+      "Enterprise-grade safety controls", 
+      "TypeScript and ESLint integration",
+      "Continuous monitoring and learning"
+    ]
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ODAVL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ODAVL is an autonomous code quality platform that continuously monitors and improves your codebase with enterprise-grade safety controls."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "Is ODAVL free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer", 
+          "text": "Yes, ODAVL offers a free tier with essential features. Enterprise plans are available for advanced functionality and support."
+        }
+      }
+    ]
+  }
+}

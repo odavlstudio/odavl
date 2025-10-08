@@ -1,0 +1,32 @@
+{
+  "_comment": "ODAVL-WAVE-X4-INJECT: Enhanced security headers",
+  "_governance": "SECURITY-SAFE mode active",
+  "headers": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY", 
+    "X-XSS-Protection": "1; mode=block",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "Cross-Origin-Embedder-Policy": "require-corp",
+    "Cross-Origin-Opener-Policy": "same-origin",
+    "Cross-Origin-Resource-Policy": "same-site"
+  },
+  "securityLevels": {
+    "basic": {
+      "headers": ["X-Content-Type-Options", "X-Frame-Options", "X-XSS-Protection"]
+    },
+    "enhanced": {
+      "headers": [
+        "X-Content-Type-Options", "X-Frame-Options", "X-XSS-Protection", 
+        "Referrer-Policy", "Permissions-Policy", "Strict-Transport-Security",
+        "Cross-Origin-Embedder-Policy", "Cross-Origin-Opener-Policy", 
+        "Cross-Origin-Resource-Policy"
+      ]
+    }
+  },
+  "reportingEndpoints": {
+    "csp": "/api/security/csp-report",
+    "hsts": "/api/security/hsts-report"
+  }
+}

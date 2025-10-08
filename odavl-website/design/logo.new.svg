@@ -1,0 +1,75 @@
+<!--
+  ODAVL WAVE X-1 - Modern Pulse Logo
+  Animated SVG logo with pulse effect and modern gradient
+-->
+
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern Gradient Definition -->
+    <linearGradient id="odavlGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Pulse Gradient -->
+    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#06b6d4;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.1" />
+    </radialGradient>
+    
+    <!-- Drop Shadow Filter -->
+    <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer Pulse Ring -->
+  <circle cx="100" cy="100" r="90" fill="url(#pulseGradient)" opacity="0.3">
+    <animate attributeName="r" values="90;95;90" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Middle Ring -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="url(#odavlGradient)" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="70;72;70" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Core Logo Circle -->
+  <circle cx="100" cy="100" r="50" fill="url(#odavlGradient)" filter="url(#dropShadow)">
+    <animate attributeName="r" values="50;52;50" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- ODAVL Text/Symbol -->
+  <g transform="translate(100,100)">
+    <!-- Central "O" for ODAVL -->
+    <circle cx="0" cy="0" r="25" fill="none" stroke="white" stroke-width="3" opacity="0.9"/>
+    
+    <!-- Inner pulse dot -->
+    <circle cx="0" cy="0" r="8" fill="white" opacity="0.9">
+      <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.6;0.9" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Orbital elements representing continuous monitoring -->
+    <g>
+      <circle cx="18" cy="0" r="3" fill="white" opacity="0.7">
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <animateTransform attributeName="transform" type="rotate" values="0;360" dur="6s" repeatCount="indefinite"/>
+    </g>
+    
+    <g>
+      <circle cx="-18" cy="0" r="2" fill="white" opacity="0.5">
+        <animateTransform attributeName="transform" type="rotate" values="360;0" dur="10s" repeatCount="indefinite"/>
+      </circle>
+      <animateTransform attributeName="transform" type="rotate" values="360;0" dur="7s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  
+  <!-- Brand Text (Optional - can be toggled) -->
+  <text x="100" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="url(#odavlGradient)">
+    ODAVL
+  </text>
+</svg>

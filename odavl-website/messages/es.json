@@ -1,0 +1,218 @@
+{
+  "brand": {
+    "name": "ODAVL"
+  },
+  "nav": {
+    "home": "Inicio",
+    "docs": "Documentación",
+    "security": "Seguridad",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "pilot": "Iniciar Piloto"
+  },
+  "cta": {
+    "startPilot": "Iniciar Piloto",
+    "getStarted": "Comenzar",
+    "startTrial": "Prueba gratuita",
+    "contactSales": "Contactar ventas"
+  },
+  "pricing": {
+    "title": "Precios",
+    "subtitle": "Elige el plan perfecto para tus necesidades de calidad de código",
+    "popular": "Más Popular",
+    "period": {
+      "month": "mes",
+      "year": "año"
+    },
+    "tiers": {
+      "starter": {
+        "name": "Inicial",
+        "description": "Perfecto para desarrolladores individuales",
+        "features": {
+          "codeQuality": "Monitoreo básico de calidad de código",
+          "basicFixes": "Correcciones básicas automatizadas",
+          "reports": "Reportes de calidad semanales",
+          "support": "Soporte comunitario"
+        }
+      },
+      "pro": {
+        "name": "Profesional",
+        "description": "Ideal para equipos pequeños y medianos",
+        "features": {
+          "advancedFixes": "Correcciones autónomas avanzadas",
+          "customRules": "Reglas de calidad personalizadas",
+          "integrations": "Integraciones CI/CD",
+          "analytics": "Análisis avanzados",
+          "priority": "Soporte prioritario"
+        }
+      },
+      "enterprise": {
+        "name": "Empresarial",
+        "customPrice": "Personalizado",
+        "description": "Para organizaciones grandes",
+        "features": {
+          "unlimited": "Repositorios ilimitados",
+          "onPremise": "Despliegue local",
+          "sla": "Garantía SLA 99.9%",
+          "dedicated": "Equipo de soporte dedicado",
+          "training": "Capacitación del equipo incluida"
+        }
+      }
+    },
+    "cta": {
+      "getStarted": "Comenzar",
+      "startTrial": "Iniciar Prueba Gratuita",
+      "contactSales": "Contactar Ventas"
+    },
+    "guarantee": "Garantía de reembolso de 30 días. Sin preguntas.",
+    "features": {
+      "noSetup": "Sin tarifas de configuración",
+      "cancel": "Cancelar en cualquier momento",
+      "support": "Soporte 24/7"
+    }
+  },
+  "hero": {
+    "title": "ODAVL — Tu médico de código autónomo con seguridad empresarial.",
+    "subtitle": "Observa, corrige, verifica y aprende — sin romper tu base de código.",
+    "ctaPilot": "Iniciar Piloto",
+    "ctaInstall": "Instalar Extensión de VS Code",
+    "trust": "Confiado por Equipos Empresariales",
+    "productPreview": "Vista previa del producto"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior"
+  },
+  "footer": {
+    "copyright": "© 2025 ODAVL Studio. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "support": "Soporte"
+  },
+  "locale": {
+    "switchTo": "Cambiar a {locale}",
+    "current": "Idioma actual: {locale}"
+  },
+  "docs": {
+    "title": "Documentación",
+    "description": "Aprende cómo usar ODAVL para mejorar la calidad de tu código",
+    "quickstart": "Inicio Rápido",
+    "governance": "Gobernanza y Seguridad",
+    "breadcrumb": {
+      "home": "Inicio",
+      "docs": "Documentación"
+    }
+  },
+  "testimonials": {
+    "badge": "Éxito del Cliente",
+    "title": {
+      "main": "Confianza de",
+      "highlight": "Equipos Enterprise"
+    },
+    "subtitle": "Vea cómo las empresas líderes usan ODAVL para transformar sus flujos de trabajo de desarrollo y mejorar la calidad del código a escala.",
+    "testimonials": {
+      "title": "Lo que dicen nuestros usuarios"
+    },
+    "testimonial1": {
+      "quote": "ODAVL transformó completamente nuestro proceso de calidad de código.",
+      "author": "Sarah M.",
+      "role": "Lead Developer",
+      "company": "TechFlow (Piloto)",
+      "results": {
+        "quality": "Calidad de código mejorada",
+        "time": "Tiempo de revisión ahorrado"
+      }
+    },
+    "testimonial2": {
+      "quote": "Las correcciones autónomas son increíblemente precisas y seguras.",
+      "author": "David R.",
+      "role": "Engineering Manager", 
+      "company": "CloudScale (Piloto)",
+      "results": {
+        "defects": "Problemas de producción reducidos",
+        "velocity": "Velocidad de desarrollo"
+      }
+    },
+    "testimonial3": {
+      "quote": "La mejor inversión que hemos hecho en productividad de desarrolladores.",
+      "author": "Alex L.",
+      "role": "CTO",
+      "company": "StartupCo (Piloto)",
+      "results": {
+        "incidents": "Incidentes críticos reducidos",
+        "deployment": "Confianza en despliegue"
+      }
+    },
+    "caseStudies": {
+      "title": "Historias de éxito",
+      "subtitle": "Resultados del mundo real de nuestros participantes del programa piloto."
+    },
+    "case1": {
+      "company": "TechFlow Solutions",
+      "industry": "FinTech",
+      "challenge": "Gestionar la calidad del código en 50+ microservicios con ciclos de despliegue rápidos",
+      "solution": "Implementó ODAVL Professional con puertas de seguridad personalizadas e integración CI/CD",
+      "results": {
+        "quality": {
+          "title": "Problemas de calidad reducidos",
+          "value": "60%",
+          "improvement": "Menos problemas en producción"
+        },
+        "time": {
+          "title": "Velocidad de despliegue",
+          "value": "3x",
+          "improvement": "Despliegues más rápidos"
+        }
+      }
+    },
+    "case2": {
+      "company": "CloudScale Systems", 
+      "industry": "Infraestructura en la Nube",
+      "challenge": "Mantener la calidad del código en un equipo distribuido de 200+ desarrolladores",
+      "solution": "Despliegue empresarial con integraciones personalizadas y entrenamiento dedicado",
+      "results": {
+        "defects": {
+          "title": "Defectos de producción",
+          "value": "85%",
+          "improvement": "Reducción de problemas críticos"
+        },
+        "satisfaction": {
+          "title": "Satisfacción del desarrollador",
+          "value": "9.2/10",
+          "improvement": "Puntuación de felicidad del equipo"
+        }
+      }
+    },
+    "trust": {
+      "title": "Por qué los equipos confían en ODAVL",
+      "certification": {
+        "title": "Cumple con SOC 2",
+        "description": "Estándares de seguridad empresarial con rastros de auditoría completos y controles de acceso."
+      },
+      "enterprise": {
+        "title": "Seguridad de nivel empresarial",
+        "description": "Automatización gobernada con controles auditables y marcos de cumplimiento."
+      },
+      "community": {
+        "title": "Fundación de código abierto",
+        "description": "Construido sobre herramientas de código abierto confiables con metodologías transparentes."
+      },
+      "growth": {
+        "title": "500+ Equipos de ingeniería",
+        "description": "Adoptado a través de pilotos y pruebas empresariales con resultados comprobados."
+      }
+    },
+    "cta": {
+      "main": "Únete a estas historias de éxito",
+      "subtitle": "Comienza tu prueba gratuita y ve resultados en tu primera semana"
+    }
+  }
+}

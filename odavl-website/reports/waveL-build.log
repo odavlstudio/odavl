@@ -1,0 +1,28 @@
+
+> odavl-website@0.1.0 build
+> next build --turbopack
+
+ ÔÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\sabou\dev\odavl\pnpm-lock.yaml as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\sabou\dev\odavl\odavl-website\package-lock.json
+
+   Ôû▓ Next.js 15.5.4 (Turbopack)
+   - Experiments (use with caution):
+     ┬À webVitalsAttribution
+     ┬À optimizePackageImports
+
+   Creating an optimized production build ...
+ Ô£ô Finished writing to disk in 60ms
+ Ô£ô Compiled successfully in 3.5s
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./src/analytics/init.ts
+18:3  Error: React Hook "useEffect" is called in function "initAnalytics" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use".  react-hooks/rules-of-hooks
+38:75  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules

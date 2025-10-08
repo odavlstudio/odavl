@@ -1,0 +1,32 @@
+{
+  "name": "ODAVL Studio",
+  "short_name": "ODAVL",
+  "description": "Autonomous Code Quality Platform - Transform your codebase with intelligent, autonomous quality improvements backed by enterprise-grade safety controls.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f3460",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["development", "productivity", "utilities"],
+  "lang": "en",
+  "scope": "/",
+  "id": "odavl-studio"
+}

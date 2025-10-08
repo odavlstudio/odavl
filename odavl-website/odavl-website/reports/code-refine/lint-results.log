@@ -1,0 +1,17 @@
+
+> odavl-website@0.1.0 lint
+> eslint
+
+
+C:\Users\sabou\dev\odavl\odavl-website\config\evolution\evolve.recipes.ts
+  56:39  warning  '_metrics' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\odavl-website\design\hero.new.tsx
+  13:10  warning  'Badge' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\odavl-website\design\layout.new.tsx
+  7:10  warning  'motion' is defined but never used       @typescript-eslint/no-unused-vars
+  8:10  warning  'modernTheme' is defined but never used  @typescript-eslint/no-unused-vars
+
+Ô£û 4 problems (0 errors, 4 warnings)
+

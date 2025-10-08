@@ -146,9 +146,9 @@
         "features": {
           "unlimited": "Unbegrenzte Repositories",
           "advancedFixes": "Erweiterte Fixes & eigene Regeln",
-          "customRules": "Benutzerdefinierte Qualitätsregeln",
-          "cicd": "CI/CD-Integration",
-          "analytics": "Analyse-Dashboard",
+          "customRules": "CI/CD-Integration",
+          "cicd": "Analyse-Dashboard",
+          "analytics": "Priorisierter Support",
           "priority": "Priorisierter Support"
         }
       },
@@ -185,7 +185,6 @@
       "main": "Vertraut von",
       "highlight": "Unternehmens-Teams"
     },
-    "subtitle": "Sehen Sie, wie führende Unternehmen ODAVL nutzen, um ihre Entwicklungsworkflows zu transformieren und Code-Qualität im großen Maßstab zu verbessern.",
     "testimonials": {
       "title": "Was unsere Nutzer sagen"
     },
@@ -202,7 +201,7 @@
     "testimonial2": {
       "quote": "Die autonomen Fixes sind unglaublich präzise und sicher.",
       "author": "David R.",
-      "role": "Engineering Manager", 
+      "role": "Engineering Manager",
       "company": "CloudScale (Pilot)",
       "results": {
         "defects": "Produktionsprobleme reduziert",
@@ -210,27 +209,198 @@
       }
     },
     "testimonial3": {
-      "quote": "Die beste Investition, die wir in Entwicklerproduktivität gemacht haben.",
+      "quote": "Die beste Investition in Entwicklerproduktivität, die wir gemacht haben.",
       "author": "Alex L.",
       "role": "CTO",
       "company": "StartupCo (Pilot)",
       "results": {
-        "incidents": "Kritische Vorfälle gesunken",
+        "incidents": "Kritische Vorfälle reduziert",
         "deployment": "Deployment-Vertrauen"
+      }
+    },
+    "trust": {
+      "enterprise": {
+        "title": "Sicherheit und Compliance auf Enterprise-Niveau",
+        "description": "Wachsend auf 500+ Engineering-Teams"
+      },
+      "growth": {
+        "title": "Schnelle Adoption bei Tech-Unternehmen",
+        "description": "Vertraut von Entwicklungsteams weltweit"
       }
     },
     "caseStudies": {
       "title": "Erfolgsgeschichten",
-      "subtitle": "Echte Ergebnisse von unseren Pilotprogramm-Teilnehmern."
+      "subtitle": "Echte Ergebnisse unserer Pilot-Kunden"
+    },
+    "subtitle": "Sehen Sie, wie führende Unternehmen ODAVL nutzen, um ihre Entwicklungsworkflows zu transformieren und Code-Qualität im großen Maßstab zu verbessern.",
+    "customers": [
+      {
+        "name": "Sarah Chen",
+        "role": "VP Engineering",
+        "company": "TechFlow Solutions",
+        "avatar": "/testimonials/sarah-chen.jpg",
+        "quote": "ODAVL reduzierte unsere Code-Review-Zeit um 60%, während sich die Qualitätsmetriken in allen Teams verbesserten. Die autonomen Fixes sind unglaublich präzise.",
+        "results": {
+          "metric": "60%",
+          "description": "Schnellere Code-Reviews"
+        }
+      },
+      {
+        "name": "Marcus Rodriguez",
+        "role": "Senior Staff Engineer",
+        "company": "CloudScale Systems",
+        "avatar": "/testimonials/marcus-rodriguez.jpg",
+        "quote": "Die Sicherheitstore geben uns das Vertrauen, ODAVL autonome Änderungen vornehmen zu lassen. Wir hatten seit der Implementierung null Regressionen in der Produktion.",
+        "results": {
+          "metric": "0",
+          "description": "Produktions-Regressionen"
+        }
+      },
+      {
+        "name": "Emily Johnson",
+        "role": "Head of Platform",
+        "company": "DataCore Analytics",
+        "avatar": "/testimonials/emily-johnson.jpg",
+        "quote": "ODAVLs Lernfähigkeiten passen sich perfekt an unsere Coding-Standards an. Es ist, als hätte man einen Senior-Entwickler, der 24/7 die Code-Qualität überwacht.",
+        "results": {
+          "metric": "85%",
+          "description": "Reduzierung technischer Schulden"
+        }
+      },
+      {
+        "name": "David Park",
+        "role": "Engineering Director",
+        "company": "SecureNet Technologies",
+        "avatar": "/testimonials/david-park.jpg",
+        "quote": "Der ROI war bereits nach Wochen erkennbar. ODAVL hat unseren Ansatz zur Code-Qualität transformiert - von reaktiv zu proaktiv.",
+        "results": {
+          "metric": "2M€",
+          "description": "Jährliche Einsparungen bei Qualitätsproblemen"
+        }
+      },
+      {
+        "name": "Lisa Thompson",
+        "role": "CTO",
+        "company": "InnovateLabs",
+        "avatar": "/testimonials/lisa-thompson.jpg",
+        "quote": "Nahtlose Integration mit unseren bestehenden Tools. ODAVL arbeitet unsichtbar, liefert aber sichtbare Ergebnisse in jedem Sprint.",
+        "results": {
+          "metric": "40%",
+          "description": "Schnellere Feature-Bereitstellung"
+        }
+      },
+      {
+        "name": "James Wilson",
+        "role": "Lead Architect",
+        "company": "GlobalTech Industries",
+        "avatar": "/testimonials/james-wilson.jpg",
+        "quote": "Unternehmenstaugliche Sicherheits- und Compliance-Features machen ODAVL perfekt für unsere regulierte Umgebung. Hervorragendes Support-Team.",
+        "results": {
+          "metric": "100%",
+          "description": "Compliance-Audit-Erfolg"
+        }
+      }
+    ],
+    "caseStudies": [
+      {
+        "company": "TechFlow Solutions",
+        "industry": "FinTech",
+        "logo": "/case-studies/techflow-logo.svg",
+        "challenge": "Code-Qualität bei 50+ Microservices mit schnellen Deployment-Zyklen verwalten",
+        "solution": "ODAVL Professional mit benutzerdefinierten Sicherheitstoren und CI/CD-Integration implementiert",
+        "results": {
+          "deployment": "3x schnellere Deployments",
+          "quality": "60% weniger Produktionsprobleme",
+          "savings": "1,2M€ jährliche Einsparungen"
+        },
+        "quote": "ODAVL transformierte unseren gesamten Entwicklungslebenszyklus. Qualität ist kein Engpass mehr.",
+        "author": "Sarah Chen, VP Engineering"
+      },
+      {
+        "company": "CloudScale Systems",
+        "industry": "Cloud-Infrastruktur",
+        "logo": "/case-studies/cloudscale-logo.svg",
+        "challenge": "Code-Qualität in einem verteilten Team von 200+ Entwicklern aufrechterhalten",
+        "solution": "Enterprise-Bereitstellung mit benutzerdefinierten Integrationen und dediziertem Training",
+        "results": {
+          "teams": "200+ Entwickler ongeboardet",
+          "consistency": "95% Code-Standard-Compliance",
+          "efficiency": "45% Reduzierung der Review-Zyklen"
+        },
+        "quote": "ODAVL skaliert wunderbar mit unserem Teamwachstum und behält dabei Qualitätsstandards bei.",
+        "author": "Marcus Rodriguez, Senior Staff Engineer"
+      },
+      {
+        "company": "SecureNet Technologies",
+        "industry": "Cybersicherheit",
+        "logo": "/case-studies/securenet-logo.svg",
+        "challenge": "Strenge Sicherheits- und Compliance-Anforderungen erfüllen und dabei Entwicklungsgeschwindigkeit beibehalten",
+        "solution": "On-Premise ODAVL-Bereitstellung mit benutzerdefinierten Sicherheitsintegrationen",
+        "results": {
+          "security": "Null Sicherheitsvulnerabilitäten",
+          "compliance": "100% Audit-Compliance",
+          "velocity": "30% schnellere sichere Entwicklung"
+        },
+        "quote": "ODAVL hilft uns, sicheren Code schneller als je zuvor zu entwickeln.",
+        "author": "David Park, Engineering Director"
+      }
+    ],
+    "trustBadges": [
+      {
+        "type": "security",
+        "icon": "shield",
+        "title": "SOC 2 Type II",
+        "description": "Zertifiziert"
+      },
+      {
+        "type": "compliance",
+        "icon": "check-circle",
+        "title": "DSGVO",
+        "description": "Konform"
+      },
+      {
+        "type": "security",
+        "icon": "lock",
+        "title": "ISO 27001",
+        "description": "Zertifiziert"
+      },
+      {
+        "type": "availability",
+        "icon": "activity",
+        "title": "99,9%",
+        "description": "Uptime SLA"
+      },
+      {
+        "type": "performance",
+        "icon": "zap",
+        "title": "< 100ms",
+        "description": "API-Antwortzeit"
+      },
+      {
+        "type": "support",
+        "icon": "headphones",
+        "title": "24/7",
+        "description": "Enterprise-Support"
+      }
+    ],
+    "stats": {
+      "customers": "500+",
+      "customersLabel": "Unternehmenskunden",
+      "developers": "50k+",
+      "developersLabel": "Aktive Entwickler",
+      "fixes": "2M+",
+      "fixesLabel": "Autonome Fixes",
+      "uptime": "99,9%",
+      "uptimeLabel": "Plattform-Uptime"
     },
     "case1": {
       "company": "TechFlow Solutions",
       "industry": "FinTech",
       "challenge": "Code-Qualität über 50+ Microservices mit schnellen Deployment-Zyklen verwalten",
-      "solution": "ODAVL Professional mit benutzerdefinierten Sicherheitstoren und CI/CD-Integration implementiert",
+      "solution": "ODAVL Professional mit benutzerdefinierten Sicherheitsschwellen und CI/CD-Integration implementiert",
       "results": {
         "quality": {
-          "title": "Qualitätsprobleme reduziert",
+          "title": "Qualitätsprobleme Reduziert",
           "value": "60%",
           "improvement": "Weniger Produktionsprobleme"
         },
@@ -242,8 +412,8 @@
       }
     },
     "case2": {
-      "company": "CloudScale Systems", 
-      "industry": "Cloud-Infrastruktur",
+      "company": "CloudScale Systems",
+      "industry": "Cloud-Infrastruktur", 
       "challenge": "Code-Qualität in einem verteilten Team von 200+ Entwicklern aufrechterhalten",
       "solution": "Enterprise-Deployment mit benutzerdefinierten Integrationen und dediziertem Training",
       "results": {
@@ -253,29 +423,33 @@
           "improvement": "Reduzierung kritischer Probleme"
         },
         "satisfaction": {
-          "title": "Entwicklerzufriedenheit",
+          "title": "Entwickler-Zufriedenheit",
           "value": "9.2/10",
-          "improvement": "Team-Glücksbewertung"
+          "improvement": "Team-Glückswert"
         }
       }
     },
     "trust": {
-      "title": "Warum Teams ODAVL vertrauen",
+      "title": "Vertraut von Unternehmensführern",
       "certification": {
-        "title": "SOC 2 Konform",
-        "description": "Unternehmens-Sicherheitsstandards mit vollständigen Prüfpfaden und Zugangskontrollen."
+        "title": "SOC 2 Type II Zertifiziert",
+        "description": "Unternehmens-Sicherheit und Compliance",
+        "icon": "shield-check"
       },
-      "enterprise": {
-        "title": "Unternehmens-Sicherheit",
-        "description": "Geregelte Automatisierung mit prüfbaren Kontrollen und Compliance-Frameworks."
+      "uptime": {
+        "title": "99.9% Uptime SLA",
+        "description": "Zuverlässige Service-Verfügbarkeit",
+        "icon": "server"
+      },
+      "support": {
+        "title": "24/7 Enterprise Support",
+        "description": "Dedicated Support-Team",
+        "icon": "headphones"
       },
       "community": {
-        "title": "Open Source Fundament",
-        "description": "Basiert auf vertrauenswürdigen Open-Source-Tools mit transparenten Methoden."
-      },
-      "growth": {
-        "title": "500+ Engineering Teams",
-        "description": "Durch Pilotprojekte und Unternehmens-Testläufe mit bewiesenen Ergebnissen eingeführt."
+        "title": "500+ Unternehmens-Teams",
+        "description": "Wachsende Benutzergemeinschaft",
+        "icon": "building"
       }
     },
     "cta": {

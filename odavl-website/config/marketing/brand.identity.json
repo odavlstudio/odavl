@@ -1,0 +1,53 @@
+{
+  "_metadata": {
+    "description": "ODAVL-WAVE-X9-INJECT: Brand Identity System - Colors, Typography, Visual Guidelines",
+    "governance": "MARKETING-SAFE mode active"
+  },
+  "brand": {
+    "name": "ODAVL",
+    "tagline": "Autonomous Code Quality Intelligence",
+    "mission": "Democratize code quality through AI-powered autonomous improvements"
+  },
+  "colors": {
+    "primary": {
+      "main": "#3b82f6",
+      "deep": "#1e40af", 
+      "light": "#60a5fa",
+      "hsl": "221.2 83.2% 53.3%"
+    },
+    "accent": {
+      "cyan": "#06b6d4",
+      "pulse": "#22d3ee",
+      "hsl": "189 94% 43%"
+    },
+    "gradients": {
+      "hero": "radial-gradient(ellipse at top, #1e40af 0%, #1e3a8a 50%, #0f172a 100%)",
+      "text": "linear-gradient(135deg, #3b82f6, #06b6d4, #22d3ee)",
+      "card": "linear-gradient(145deg, rgba(30, 64, 175, 0.05), rgba(6, 182, 212, 0.05))"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "Inter, system-ui, sans-serif",
+      "mono": "JetBrains Mono, Consolas, monospace"
+    },
+    "scale": {
+      "xs": "0.75rem",
+      "sm": "0.875rem", 
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem"
+    }
+  },
+  "spacing": {
+    "container": "1200px",
+    "section": "6rem",
+    "element": "1.5rem"
+  },
+  "assets": {
+    "logo": "/design/logo.new.svg",
+    "favicon": "/favicon.ico"
+  }
+}

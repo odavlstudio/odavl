@@ -1,0 +1,39 @@
+import EnhancedHeroSection from '@/components/landing/EnhancedHeroSection';
+import TrustSection from '@/components/landing/TrustSection'; 
+import Footer from '@/components/Footer';
+import LazyContent from '@/components/LazyContent';
+import WebVitalsReporter from '@/components/WebVitalsReporter';
+import Link from 'next/link';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      <WebVitalsReporter />
+      
+      {/* Enhanced Hero Section */}
+      <EnhancedHeroSection />
+      
+      {/* Trust Section with Social Proof */}
+      <TrustSection />
+      
+      {/* Lazy-loaded content for better performance */}
+      <LazyContent />
+
+      {/* Temporary Developer Section - Will be removed in later waves */}
+      <section className="py-8 bg-slate-900/30 border-t border-white/10">
+        <div className="container mx-auto px-4 text-center">
+          <LocaleSwitcher />
+          <p className="text-xs text-white/50 mt-4">
+            Development: <Link href="/test" className="underline hover:text-white/70">/test</Link> • 
+            <Link href="/pricing" className="underline hover:text-white/70 ml-2">/pricing</Link> • 
+            <Link href="/docs" className="underline hover:text-white/70 ml-2">/docs</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+}

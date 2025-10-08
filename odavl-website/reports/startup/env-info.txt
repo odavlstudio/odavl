@@ -1,0 +1,8 @@
+Node.js version: v22.19.0
+pnpm version: 9.12.2
+npm version: 11.4.2
+✅ pnpm workspace detected (monorepo root).
+🔍 Workspace packages:
+packages:
+✅ next.config.ts found (Next.js project detected).
+✅ tsconfig.json found (TypeScript enabled).
