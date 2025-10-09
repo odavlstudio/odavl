@@ -16,6 +16,7 @@
     "odavl:decide": "tsx apps/cli/src/index.ts decide",
     "odavl:act": "tsx apps/cli/src/index.ts act",
     "odavl:verify": "tsx apps/cli/src/index.ts verify",
+    "odavl:dashboard": "tsx apps/cli/src/index.ts dashboard",
     "ext:compile": "cd apps/vscode-ext && npm run compile",
     "ext:watch": "cd apps/vscode-ext && npm run watch",
     "perf:cli": "tsx apps/cli/src/index.ts run",
