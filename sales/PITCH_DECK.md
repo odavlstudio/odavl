@@ -49,3 +49,51 @@
 • **3-5 min**: Present before/after evidence and create governed PR
 
 *[Placeholder: Screenshot of VS Code with ODAVL Doctor in action]*
+
+---
+
+# Slide 5: Proven Results
+
+## Real Customer Evidence (50+ Production Deployments)
+
+• **ESLint warnings reduced by 75%** (127 → 31 average)
+• **PR merge time cut by 57%** (4.2 → 1.8 hours average)  
+• **Developer satisfaction up 40%** (6.2 → 8.7 out of 10)
+
+*[Chart Placeholder: Before/after metrics from customer deployments]*
+
+---
+
+# Slide 6: Simple Pricing That Scales
+
+## Investment That Pays for Itself
+
+• **Starter ($29/mo)**: 3 repos, essential fixes, email support
+• **Professional ($99/mo)**: Unlimited repos, CI/CD, priority support
+• **Enterprise (Custom)**: On-premise, SLA, compliance, dedicated success
+
+*[Graphic Placeholder: ROI calculator showing $180k annual savings]*
+
+---
+
+# Slide 7: Risk-Free 2-Week Pilot
+
+## Prove Value Before You Pay
+
+• **Week 1**: 90-min workshop + supervised operation
+• **Week 2**: Autonomous operation with safety monitoring
+• **Deliverable**: Comprehensive before/after evidence report
+
+*[Timeline Placeholder: 14-day pilot milestone chart]*
+
+---
+
+# Slide 8: Next Steps
+
+## Start Your Code Quality Transformation Today
+
+• **Install VS Code Extension**: marketplace.visualstudio.com/odavl
+• **Try CLI**: `npx @odavl/cli run`  
+• **Book Free Pilot**: [YOUR_CALENDAR_LINK]
+
+**Contact**: [YOUR_NAME] | [YOUR_EMAIL] | [YOUR_PHONE]
