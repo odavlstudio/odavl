@@ -11,59 +11,20 @@ import { Button } from '@/components/ui/button';
 import { ModernContainer, ModernSection } from '@/components/ui/modern-layout';
 import { motion } from 'framer-motion';
 import { Check, Zap, Building2, Rocket } from 'lucide-react';
+import { pricingTiers } from '@/data/pricing';
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
 
-  const tiers = [
-    {
-      name: t('tiers.starter.name'),
-      price: '$29',
-      period: t('period.month'),
-      description: t('tiers.starter.description'),
-      icon: Zap,
-      features: [
-        t('tiers.starter.features.codeQuality'),
-        t('tiers.starter.features.basicFixes'),
-        t('tiers.starter.features.reports'),
-        t('tiers.starter.features.support')
-      ],
-      cta: t('cta.getStarted'),
-      popular: false
-    },
-    {
-      name: t('tiers.pro.name'),
-      price: '$99',
-      period: t('period.month'),
-      description: t('tiers.pro.description'),
-      icon: Building2,
-      features: [
-        t('tiers.pro.features.advancedFixes'),
-        t('tiers.pro.features.customRules'),
-        t('tiers.pro.features.integrations'),
-        t('tiers.pro.features.analytics'),
-        t('tiers.pro.features.priority')
-      ],
-      cta: t('cta.startTrial'),
-      popular: true
-    },
-    {
-      name: t('tiers.enterprise.name'),
-      price: t('tiers.enterprise.customPrice'),
-      period: '',
-      description: t('tiers.enterprise.description'),
-      icon: Rocket,
-      features: [
-        t('tiers.enterprise.features.unlimited'),
-        t('tiers.enterprise.features.onPremise'),
-        t('tiers.enterprise.features.sla'),
-        t('tiers.enterprise.features.dedicated'),
-        t('tiers.enterprise.features.training')
-      ],
-      cta: t('cta.contactSales'),
-      popular: false
-    }
-  ];
+  const iconMap = [Zap, Building2, Rocket];
+  const tiers = pricingTiers.map((tier, index) => ({
+    ...tier,
+    price: tier.priceDisplay,
+    period: tier.priceMonthly !== 'custom' && tier.priceMonthly > 0 ? t('period.month') : '',
+    description: t(`tiers.${tier.id}.description`),
+    icon: iconMap[index] || Rocket,
+    cta: tier.ctaLabel
+  }));
 
   return (
     <div className="min-h-screen pt-20">
