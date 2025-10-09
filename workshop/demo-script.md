@@ -1,182 +1,233 @@
 # ODAVL Workshop Demo Script
 
-**Purpose**: Step-by-step demonstration flow for 90-minute ODAVL workshop  
-**Context**: Live coding session with real repository improvements  
+## Preparation Checklist
+- [ ] Sample repository with ESLint warnings prepared
+- [ ] ODAVL Studio extension loaded in VS Code
+- [ ] Terminal ready with `pnpm` commands
+- [ ] Screen sharing and recording active
+- [ ] Backup scenarios prepared for failure cases
 
-## Pre-Demo Setup
+## Phase 1: Installation & Setup (10-25 minutes)
 
-### Environment Verification
+### Environment Validation
 ```bash
 # Verify Node.js version
-node --version  # Should be 18+
+node --version  # Should be v18+
+pnpm --version  # Should be latest
 
-# Install ODAVL CLI globally
-npm install -g @odavl/cli
-
-# Verify installation
-odavl --version
+# Clone sample repository (or use existing)
+git clone https://github.com/your-org/sample-ts-project
+cd sample-ts-project
 ```
 
-### Repository Preparation
+**Expected Output**: Version numbers displayed, repository cloned successfully
+
+**Fallback**: If Node.js missing, guide through installation or use pre-prepared environment
+
+### ODAVL Installation
 ```bash
-# Clone demo repository (placeholder - Mohammad to provide actual repo)
-git clone https://github.com/odavl-studio/demo-workshop-repo.git
-cd demo-workshop-repo
+# Install dependencies
+pnpm install
 
-# Or use participant's repository
-git checkout -b odavl-pilot-demo
+# Verify ODAVL CLI is available
+pnpm odavl:observe
 ```
+
+**Expected Output**: 
+```json
+{
+  "eslintWarnings": 5,
+  "typeErrors": 0,
+  "timestamp": "2025-10-09T..."
+}
+```
+
+**Fallback**: If installation fails, use pre-built environment or troubleshoot npm registry issues
 
 ### VS Code Extension Setup
-```bash
-# Install ODAVL extension from provided VSIX
-code --install-extension odavl-0.1.1.vsix
+1. Open VS Code in project directory: `code .`
+2. Install ODAVL extension: `./apps/vscode-ext/odavl.vsix`
+3. Activate Doctor mode: Ctrl+Shift+P → "ODAVL: Doctor Mode"
 
-# Verify installation
-code --list-extensions | grep odavl
+**Expected Output**: Doctor mode indicator in status bar, real-time cycle monitoring available
+
+## Phase 2: First ODAVL Cycle Demo (25-45 minutes)
+
+### Observe Phase
+```bash
+# Collect baseline metrics
+pnpm odavl:observe
 ```
 
-## Demo Flow
+**Narrative**: "ODAVL starts by observing the current state. It's collecting ESLint warnings and TypeScript errors to establish a baseline before making any changes."
 
-### Step 1: Observe Phase (5 minutes)
-**Objective**: Show ODAVL's diagnostic capabilities
+**Expected Output**: JSON metrics showing current issues
 
+### Decide Phase  
 ```bash
-# Run observation to collect baseline metrics
-odavl observe
-
-# Expected output example:
-# [OBSERVE] ESLint warnings: 12, Type errors: 3
+# Let ODAVL choose the optimal recipe
+pnpm odavl:decide
 ```
 
-**Talking Points**:
-- ODAVL analyzes code quality using standard tools (ESLint, TypeScript)
-- Metrics are captured with timestamps for trend tracking
-- No code changes made during observation - pure analysis
+**Narrative**: "The decide phase uses machine learning to select the safest, most effective recipe based on past success rates. Notice how it considers trust scores from previous runs."
 
-**Fallback**: If no issues found, use prepared sample repo with intentional issues
+**Expected Output**: Recipe selection (e.g., "remove-unused" or "esm-hygiene")
 
-### Step 2: Decide Phase (3 minutes)
-**Objective**: Demonstrate intelligent decision-making
-
+### Act Phase
 ```bash
-# Show decision logic
-odavl decide
-
-# Expected output example:
-# [DECIDE] Selected recipe: remove-unused (trust 0.9)
+# Execute the chosen recipe
+pnpm odavl:act
 ```
 
-**Talking Points**:
-- ODAVL maintains trust scores for different improvement recipes
-- Decisions based on current metrics and historical success rates
-- Conservative approach: only high-confidence improvements are selected
+**Narrative**: "Now ODAVL is making the actual changes. It's running ESLint --fix and other safe transformations. Notice how it creates an undo snapshot first."
 
-### Step 3: Act Phase (5 minutes)
-**Objective**: Show autonomous code improvements
+**Expected Output**: Files modified, undo snapshot created
 
-```bash
-# Execute improvements
-odavl act
-
-# Show what changed
-git diff --stat
-git diff
+### Verify Phase
+```bash  
+# Run verification with shadow testing
+pnpm odavl:verify
 ```
 
-**Talking Points**:
-- Changes are applied automatically but with strict safety limits
-- Git integration provides full audit trail
-- All changes reversible with built-in undo system
+**Narrative**: "This is where the safety magic happens. Shadow verification runs all tests in isolation to ensure nothing broke. Quality gates check that we improved without causing regressions."
 
-### Step 4: Verify Phase (7 minutes)
-**Objective**: Demonstrate safety validation
-
-```bash
-# Run verification
-odavl verify
-
-# Expected output example:
-# [VERIFY] Gates check: PASS ✅
-# [DONE] ESLint warnings: 12 → 8 (Δ -4) | Type errors: 3 → 0 (Δ -3)
+**Expected Output**: 
+```json
+{
+  "deltas": { "eslint": -3, "types": 0 },
+  "gatesPassed": true,
+  "shadowVerify": "PASS"
+}
 ```
 
-**Talking Points**:
-- Quality gates ensure changes meet improvement thresholds
-- Shadow verification runs tests in isolated environment
-- Cryptographic attestation for successful improvements
-
-### Step 5: Learn Phase (3 minutes)
-**Objective**: Show continuous improvement system
-
+### Complete Cycle
 ```bash
-# Check generated reports
-ls reports/
-cat reports/run-*.json
-
-# Show trust learning
-cat .odavl/recipes-trust.json
+# Run full autonomous cycle
+pnpm odavl:run
 ```
 
-**Talking Points**:
-- ODAVL learns from each run to improve future decisions
-- Trust scores automatically adjusted based on outcomes
-- Enterprise audit trail for compliance and debugging
+**Expected Output**: Complete before/after summary with metrics improvement
 
-### Step 6: VS Code Integration (5 minutes)
-**Objective**: Show developer experience improvements
+## Phase 3: Safety Mechanisms Demo (45-65 minutes)
 
+### Shadow Verification Deep Dive
 ```bash
-# Open VS Code with ODAVL extension
-code .
-
-# Run ODAVL Doctor mode
-# Press Ctrl+Shift+P → "ODAVL: Doctor Mode"
+# Show shadow testing logs
+cat .odavl/shadow/verify.log
 ```
 
-**Talking Points**:
-- Real-time ODAVL cycle monitoring in VS Code
-- Visual indicators for each phase of autonomous improvement
-- Integration with existing developer workflow
+**Narrative**: "Shadow verification is like having a second opinion. It runs your entire test suite in isolation to catch any breaking changes before they're committed."
 
-### Step 7: Undo Demonstration (3 minutes)
-**Objective**: Show safety and control
+### Undo System Demonstration
+```bash
+# Intentionally break something (demo only)
+echo "intentional syntax error;" >> src/index.ts
+
+# Run ODAVL - should detect failure
+pnmp odavl:run
+
+# Demonstrate automatic undo
+pnpm odavl:run undo
+```
+
+**Expected Output**: Automatic rollback to safe state, project restored
+
+### Evidence Collection
+```bash
+# Generate before/after report
+./scripts/pilot/collect-baseline.ps1
+# (make changes)
+./scripts/pilot/collect-after.ps1
+```
+
+**Expected Output**: Comprehensive report with metrics, CVE status, and improvement evidence
+
+## Phase 4: Live Repository Demo (65-80 minutes)
+
+### Repository Assessment
+**Script**: 
+1. "Now let's run this on your actual repository"
+2. "First, let's assess the current state and identify safe improvements"
+3. "We'll create a governed PR with ≤10 files and ≤40 lines changed"
 
 ```bash
-# Undo the last ODAVL changes
-odavl undo
+# Switch to participant repository
+cd /path/to/participant/repo
 
-# Verify restoration
+# Safety check - ensure branch protection
 git status
-git log --oneline -3
+git checkout -b odavl-pilot-demo
+
+# Collect baseline
+pnpm odavl:observe
 ```
 
-**Talking Points**:
-- One-command rollback of any ODAVL changes
-- Automatic snapshots before any modifications
-- Complete audit trail maintained
+### Supervised Execution
+```bash
+# Run supervised cycle with explanation
+pnpm odavl:run --verbose
+```
+
+**Expected Output**: Safe improvements applied, PR ready for review
+
+### PR Review Process
+**Script**:
+1. "Let's review what ODAVL changed"
+2. "Notice how it stays within governance constraints" 
+3. "The evidence shows clear improvement without risks"
+
+```bash
+# Show diff
+git diff main...odavl-pilot-demo
+
+# Push for PR
+git push -u origin odavl-pilot-demo
+```
 
 ## Troubleshooting & Fallbacks
 
-### No Issues Found
-- Use pre-prepared repository with intentional ESLint warnings
-- Create temporary unused variables for demonstration
-- Show how ODAVL handles "clean" codebases
+### Common Issues
+**No ESLint warnings found**: 
+- Use pre-prepared sample repository with known issues
+- Manually introduce safe warnings (unused imports)
 
-### Installation Issues
-- Have offline installer packages ready
-- Provide alternative demo using recorded session
-- Use participant's machine if presenter setup fails
+**TypeScript compilation fails**:
+- Ensure tsconfig.json is properly configured  
+- Use simpler TypeScript setup for demo
 
-### Network/Repository Issues
-- Have local clone of demo repository ready
-- Use USB drive with complete workshop materials
-- Provide step-by-step written instructions as backup
+**Permission/Access issues**:
+- Have backup repositories ready
+- Use local file system demos if network fails
+
+**Extension not loading**:
+- Reload VS Code window
+- Check extension installation logs
+- Fall back to CLI-only demo
+
+### Recovery Scripts
+```bash
+# Reset to clean state
+git reset --hard HEAD
+git clean -fd
+
+# Clear ODAVL state
+rm -rf .odavl reports/
+
+# Restart demo from beginning
+pnpm odavl:observe
+```
 
 ## Success Indicators
+- [ ] Participant can run ODAVL commands independently
+- [ ] At least one successful autonomous fix demonstrated
+- [ ] Safety mechanisms (undo, gates) validated
+- [ ] Evidence report generated with real metrics
+- [ ] PR created and reviewed successfully
+- [ ] Participant expresses confidence in proceeding
 
-- [ ] Complete ODAVL cycle executed successfully
-- [ ] Before/after metrics clearly demonstrated
-- [ ] Safety mechanisms (verify, undo) shown working
-- [ ] Participants ask technical implementation questions
-- [ ] At least one "aha moment" about autonomous approach
+## Post-Workshop Actions
+- [ ] Share generated evidence reports
+- [ ] Provide two-week pilot timeline  
+- [ ] Exchange support contact information
+- [ ] Schedule follow-up check-in meeting
+- [ ] Document any custom requirements or concerns
