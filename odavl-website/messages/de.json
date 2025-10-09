@@ -202,7 +202,7 @@
     "testimonial2": {
       "quote": "Die autonomen Fixes sind unglaublich präzise und sicher.",
       "author": "David R.",
-      "role": "Engineering Manager", 
+      "role": "Engineering Manager",
       "company": "CloudScale (Pilot)",
       "results": {
         "defects": "Produktionsprobleme reduziert",
@@ -242,7 +242,7 @@
       }
     },
     "case2": {
-      "company": "CloudScale Systems", 
+      "company": "CloudScale Systems",
       "industry": "Cloud-Infrastruktur",
       "challenge": "Code-Qualität in einem verteilten Team von 200+ Entwicklern aufrechterhalten",
       "solution": "Enterprise-Deployment mit benutzerdefinierten Integrationen und dediziertem Training",
@@ -538,6 +538,90 @@
     "cta": {
       "main": "Alle Integrationen Anzeigen",
       "subtitle": "Erkunden Sie unseren vollständigen Integrationskatalog und Setup-Anleitungen"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich bei Ihrem ODAVL-Konto an",
+      "fields": {
+        "email": "E-Mail-Adresse",
+        "password": "Passwort",
+        "remember": "Angemeldet bleiben"
+      },
+      "placeholders": {
+        "email": "E-Mail eingeben",
+        "password": "Passwort eingeben"
+      },
+      "errors": {
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "passwordRequired": "Passwort ist erforderlich"
+      },
+      "links": {
+        "forgotPassword": "Passwort vergessen?",
+        "signUp": "Registrieren"
+      },
+      "submit": "Anmelden",
+      "noAccount": "Haben Sie noch kein Konto?",
+      "demo": {
+        "title": "Demo-Umgebung",
+        "description": "Dies ist eine Demonstrationsoberfläche. Die Authentifizierung wird in der Produktion implementiert."
+      }
+    },
+    "signup": {
+      "title": "Bei ODAVL anmelden",
+      "subtitle": "Beginnen Sie Ihre autonome Code-Qualitätsreise",
+      "fields": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail-Adresse",
+        "company": "Unternehmen",
+        "password": "Passwort",
+        "confirmPassword": "Passwort bestätigen"
+      },
+      "placeholders": {
+        "firstName": "Vorname eingeben",
+        "lastName": "Nachname eingeben",
+        "email": "E-Mail eingeben",
+        "company": "Firmenname eingeben",
+        "password": "Passwort erstellen",
+        "confirmPassword": "Passwort bestätigen"
+      },
+      "errors": {
+        "firstNameRequired": "Vorname ist erforderlich",
+        "lastNameRequired": "Nachname ist erforderlich",
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "passwordRequired": "Passwort ist erforderlich",
+        "passwordWeak": "Passwort erfüllt nicht die Anforderungen",
+        "passwordMismatch": "Passwörter stimmen nicht überein",
+        "termsRequired": "Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren"
+      },
+      "passwordStrength": {
+        "title": "Passwort-Anforderungen",
+        "length": "Mindestens 8 Zeichen",
+        "uppercase": "Ein Großbuchstabe",
+        "lowercase": "Ein Kleinbuchstabe",
+        "number": "Eine Zahl",
+        "special": "Ein Sonderzeichen"
+      },
+      "terms": {
+        "prefix": "Ich stimme den",
+        "termsLink": "Nutzungsbedingungen",
+        "and": "und der",
+        "privacyLink": "Datenschutzrichtlinie"
+      },
+      "links": {
+        "signIn": "Anmelden"
+      },
+      "submit": "Konto erstellen",
+      "hasAccount": "Haben Sie bereits ein Konto?",
+      "optional": "optional",
+      "demo": {
+        "title": "Demo-Umgebung",
+        "description": "Dies ist eine Demonstrationsoberfläche. Die Benutzerregistrierung wird in der Produktion implementiert."
+      }
     }
   }
 }

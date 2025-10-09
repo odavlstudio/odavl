@@ -88,12 +88,18 @@ policy:
 apps/
   cli/           # @odavl/cli package
   vscode-ext/    # VS Code Doctor extension
+docs/            # 📚 Consolidated documentation hub
+  certifications/  # Phase 5 certifications & compliance
+  decisions/       # Architecture decisions & analysis
+  troubleshooting/ # Build validation & debugging
+  archive/         # Historical development insights
 .odavl/
   recipes/       # Recipe templates
   gates.yml      # Quality gates configuration
   attestation/   # Cryptographic proofs
   undo/          # Rollback snapshots
-reports/         # Metrics and run history
+reports/
+  runtime/       # Active utility scripts
 ```
 
 ## 🤝 Contributing

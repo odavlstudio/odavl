@@ -48,19 +48,28 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2 text-white/80 hover:text-white">
-          <Globe className="h-4 w-4" />
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="gap-2 text-white/80 hover:text-white focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-transparent"
+          aria-label="Switch language"
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
+          <Globe className="h-4 w-4" aria-hidden="true" />
           <span className="sr-only">Switch language</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" role="menu" aria-label="Language options">
         {locales.map((locale) => (
           <DropdownMenuItem
             key={locale.code}
             onClick={() => handleLocaleChange(locale.code)}
-            className={`gap-2 ${locale.rtl ? 'text-right' : ''}`}
+            className={`gap-2 ${locale.rtl ? 'text-right' : ''} focus:bg-accent focus:text-accent-foreground`}
+            role="menuitem"
+            aria-label={`Switch to ${locale.name}`}
           >
-            <span>{locale.flag}</span>
+            <span aria-hidden="true">{locale.flag}</span>
             <span>{locale.name}</span>
           </DropdownMenuItem>
         ))}

@@ -1,10 +1,7 @@
 import EnhancedHeroSection from '@/components/landing/EnhancedHeroSection';
 import TrustSection from '@/components/landing/TrustSection'; 
-import Footer from '@/components/Footer';
-import LazyContent from '@/components/LazyContent';
-import WebVitalsReporter from '@/components/WebVitalsReporter';
+import { Footer, LazyContent, WebVitalsReporter, LocaleSwitcher } from '@/components';
 import Link from 'next/link';
-import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export default function Home() {
   return (

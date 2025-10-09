@@ -102,10 +102,10 @@ const TechnicalMetric = ({
   >
     <div className="text-3xl font-bold text-electric-cyan mb-1">
       {value}
-      <span className="text-lg text-slate-400 ml-1">{unit}</span>
+      <span className="text-lg text-muted-accessible ml-1">{unit}</span>
     </div>
     <div className="text-sm font-medium text-white mb-2">{label}</div>
-    <div className="text-xs text-slate-400 leading-relaxed">{description}</div>
+    <div className="text-xs text-muted-accessible leading-relaxed">{description}</div>
   </motion.div>
 );
 
@@ -303,7 +303,7 @@ export default function FeaturesSection() {
             </motion.button>
           </div>
           
-          <p className="text-slate-400 text-sm mt-4">
+          <p className="text-muted-accessible text-sm mt-4">
             {t('cta.subtitle')}
           </p>
         </motion.div>

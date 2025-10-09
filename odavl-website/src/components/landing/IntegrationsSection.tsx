@@ -372,7 +372,7 @@ export default function IntegrationsSection() {
             </motion.button>
           </div>
           
-          <p className="text-slate-400 text-sm mt-4">
+          <p className="text-muted-accessible text-sm mt-4">
             {t('cta.subtitle')}
           </p>
         </motion.div>

@@ -57,7 +57,7 @@ const PricingCard = ({
       
       <div className="mb-6">
         <span className="text-4xl font-bold text-white">{price}</span>
-        <span className="text-slate-400 ml-2">/{period}</span>
+        <span className="text-muted-accessible ml-2">/{period}</span>
       </div>
     </div>
 
@@ -194,7 +194,7 @@ const ROICalculator = memo(function ROICalculator() {
               {roiPercentage}%
             </div>
             <div className="text-white font-semibold mb-1">{t('results.roi')}</div>
-            <div className="text-xs text-slate-400">{t('results.roiDescription')}</div>
+            <div className="text-xs text-muted-accessible">{t('results.roiDescription')}</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -202,14 +202,14 @@ const ROICalculator = memo(function ROICalculator() {
               <div className="text-xl font-bold text-white mb-1">
                 ${monthlySaving.toLocaleString()}
               </div>
-              <div className="text-xs text-slate-400">{t('results.monthlySaving')}</div>
+              <div className="text-xs text-muted-accessible">{t('results.monthlySaving')}</div>
             </div>
             
             <div className="text-center p-4 rounded-lg bg-white/5">
               <div className="text-xl font-bold text-white mb-1">
                 ${yearlySaving.toLocaleString()}
               </div>
-              <div className="text-xs text-slate-400">{t('results.yearlySaving')}</div>
+              <div className="text-xs text-muted-accessible">{t('results.yearlySaving')}</div>
             </div>
           </div>
 
@@ -218,7 +218,7 @@ const ROICalculator = memo(function ROICalculator() {
               ${netROI.toLocaleString()}
             </div>
             <div className="text-sm text-white font-medium">{t('results.netROI')}</div>
-            <div className="text-xs text-slate-400 mt-1">{t('results.netROIDescription')}</div>
+            <div className="text-xs text-muted-accessible mt-1">{t('results.netROIDescription')}</div>
           </div>
         </div>
       </div>

@@ -66,7 +66,7 @@ const TestimonialCard = ({
             <div className="text-2xl font-bold text-electric-cyan mb-1">
               {result.value}
             </div>
-            <div className="text-xs text-slate-400">
+            <div className="text-xs text-muted-accessible">
               {result.metric}
             </div>
           </div>
@@ -153,7 +153,7 @@ const CaseStudyCard = ({
                className="flex items-center justify-between p-3 rounded-lg bg-white/5">
             <div>
               <div className="text-sm font-medium text-white">{result.title}</div>
-              <div className="text-xs text-slate-400">{result.improvement}</div>
+              <div className="text-xs text-muted-accessible">{result.improvement}</div>
             </div>
             <div className="text-lg font-bold text-electric-cyan">
               {result.value}
@@ -438,7 +438,7 @@ export default function TestimonialsSection() {
                             blur-xl group-hover:scale-110 transition-transform duration-300" />
           </motion.button>
           
-          <p className="text-slate-400 text-sm mt-4">
+          <p className="text-muted-accessible text-sm mt-4">
             {t('cta.subtitle')}
           </p>
         </motion.div>

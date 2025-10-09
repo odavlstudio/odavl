@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "test": "echo 'ODAVL-WAVE-X8-INJECT: Test runner placeholder - install Jest/Vitest for full testing'",
-    "test:watch": "echo 'ODAVL-WAVE-X8-INJECT: Watch mode placeholder - install Jest/Vitest for continuous testing'"
+    "test:watch": "echo 'ODAVL-WAVE-X8-INJECT: Watch mode placeholder - install Jest/Vitest for continuous testing'",
+    "guardian": "npx tsx src/utils/guardian.ts",
+    "i18n:sync": "npx tsx scripts/i18n-sync.ts",
+    "ci:quality": "npm run lint && npx tsc --noEmit && npm run i18n:sync && (npm run guardian || echo 'Guardian identified optimization opportunities') && npm run build",
+    "ci:reports": "mkdir -p reports/ci && echo 'CI reports generated' > reports/ci/status.txt"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.16",

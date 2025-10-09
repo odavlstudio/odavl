@@ -1,0 +1,78 @@
+{
+  "colors": {
+    "brand": {
+      "primary": "#00D4AA",
+      "secondary": "#1A365D",
+      "accent": "#E2E8F0"
+    },
+    "text": {
+      "primary": "#1A202C",
+      "secondary": "#4A5568",
+      "tertiary": "#718096",
+      "inverse": "#FFFFFF",
+      "accessible": "#2D3748"
+    },
+    "background": {
+      "primary": "#FFFFFF",
+      "secondary": "#F7FAFC",
+      "tertiary": "#EDF2F7",
+      "navy": "#1A365D",
+      "dark": "#2D3748"
+    },
+    "surface": {
+      "elevated": "#FFFFFF",
+      "sunken": "#F7FAFC",
+      "overlay": "rgba(26, 54, 93, 0.9)"
+    },
+    "border": {
+      "primary": "#E2E8F0",
+      "secondary": "#CBD5E0",
+      "focus": "#00D4AA",
+      "error": "#FC8181"
+    },
+    "status": {
+      "success": "#48BB78",
+      "warning": "#ED8936",
+      "error": "#F56565",
+      "info": "#4299E1"
+    },
+    "interactive": {
+      "primary": "#00D4AA",
+      "primaryHover": "#00C29A",
+      "secondary": "#4A5568",
+      "secondaryHover": "#2D3748",
+      "disabled": "#CBD5E0"
+    }
+  },
+  "gradients": {
+    "hero": "linear-gradient(135deg, #1A365D 0%, #2C5282 100%)",
+    "cta": "linear-gradient(135deg, #00D4AA 0%, #38B2AC 100%)",
+    "card": "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)"
+  },
+  "shadows": {
+    "small": "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)",
+    "medium": "0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06)",
+    "large": "0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05)",
+    "glow": "0 0 20px rgba(0, 212, 170, 0.3)"
+  },
+  "accessibility": {
+    "minContrastRatio": 4.5,
+    "preferredContrastRatio": 7.0,
+    "focusRingWidth": "2px",
+    "focusRingColor": "#00D4AA",
+    "focusRingOffset": "2px"
+  },
+  "validation": {
+    "contrastPairs": [
+      ["text.primary", "background.primary"],
+      ["text.secondary", "background.primary"], 
+      ["text.tertiary", "background.secondary"],
+      ["text.inverse", "background.navy"],
+      ["text.inverse", "background.dark"],
+      ["interactive.primary", "background.primary"],
+      ["interactive.secondary", "background.primary"],
+      ["brand.primary", "background.primary"],
+      ["brand.secondary", "text.inverse"]
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "mission": "Smart Report Cleanup - Remove Non-Critical, Obsolete, and Already-Used Reports",
+  "timestamp": "2025-01-08",
+  "analysis_summary": {
+    "total_files_scanned": 234,
+    "deletion_candidates": 47,
+    "preserved_files": 187,
+    "empty_directories": 2,
+    "categories": {
+      "observe_json_snapshots": 15,
+      "empty_logs": 8,
+      "development_logs": 12,
+      "temporary_build_files": 6,
+      "obsolete_reports": 4,
+      "empty_directories": 2
+    }
+  },
+  "deletions_proposed": [
+    {
+      "category": "Empty Runtime Logs",
+      "files": [
+        "odavl-website/reports/runtime/dev-error.log",
+        "odavl-website/reports/runtime/dev-test.log"
+      ],
+      "rationale": "Empty log files provide no diagnostic value",
+      "risk": "low"
+    },
+    {
+      "category": "Historical Observation JSON Files",
+      "files": [
+        "reports/observe-1759678907955.json",
+        "reports/observe-1759678918666.json",
+        "reports/observe-1759679018894.json",
+        "reports/observe-1759679029646.json",
+        "reports/observe-1759679039719.json",
+        "reports/observe-1759679050223.json",
+        "reports/observe-1759679060173.json",
+        "reports/run-1759678918668.json",
+        "reports/verify-1759678918667.json"
+      ],
+      "rationale": "Old observation snapshots from previous development cycles, superseded by current metrics",
+      "risk": "low"
+    },
+    {
+      "category": "Development Build Logs",
+      "files": [
+        "odavl-website/reports/runtime/build-validation.log",
+        "reports/publish-check-1759835400899.log",
+        "reports/publish-check-1759846787304.log",
+        "reports/publish-check-1759848008754.log",
+        "reports/publish-check-1759848066424.log",
+        "reports/waves/publish-check-1759826883476.log",
+        "reports/waves/publish-check-1759829032842.log",
+        "reports/waves/publish-check-1759832463570.log",
+        "reports/waves/publish-check-1759835154089.log",
+        "reports/waves/publish-check-1759835171689.log",
+        "reports/waves/publish-check-1759835190004.log",
+        "reports/waves/publish-check-1759835211639.log"
+      ],
+      "rationale": "Temporary build validation logs from development iterations, no longer needed for current operations",
+      "risk": "low"
+    },
+    {
+      "category": "Empty Directories",
+      "files": [
+        "reports/audit/",
+        "reports/metrics/"
+      ],
+      "rationale": "Empty directories serve no purpose and clutter file structure",
+      "risk": "none"
+    },
+    {
+      "category": "Temporary Diagnostic Files",
+      "files": [
+        "reports/observe-1759835410148.json",
+        "reports/observe-1759846796544.json",
+        "reports/observe-1759848018432.json",
+        "reports/phase3/observe-1759825847768.json",
+        "reports/phase3/observe-1759826069031.json",
+        "reports/phase3/observe-1759826883475.json"
+      ],
+      "rationale": "Recent observation files from completed diagnostic sessions, data captured in permanent reports",
+      "risk": "low"
+    }
+  ],
+  "preserved_files": {
+    "permanent_reports": [
+      "reports/runtime/Runtime-Fix-And-Smoke-Report.md",
+      "odavl-website/reports/runtime/Continuous-Fix-Report.md",
+      "reports/phase3/Ω²-phase3-completion.md"
+    ],
+    "current_wave_reports": [
+      "All Ω²-* prefixed files (current wave identifier)"
+    ],
+    "functional_scripts": [
+      "reports/runtime/smoke-test.ps1",
+      "reports/runtime/flatten-keys.ps1"
+    ],
+    "system_config": [
+      "package.json files",
+      "tsconfig.json files",
+      "All config and source files"
+    ],
+    "compliance_evidence": [
+      "All .md reports with substantial content",
+      "Security and diagnostics reports"
+    ]
+  },
+  "safety_validation": {
+    "protected_paths_checked": true,
+    "build_safety": "Will verify pnpm typecheck && pnpm lint post-deletion",
+    "rollback_plan": "Git reset available if issues detected",
+    "governance_compliance": "≤40 lines, ≤10 files per operation"
+  },
+  "execution_plan": {
+    "phase_1": "Wait for user LGTM approval",
+    "phase_2": "Execute deletions in batches",
+    "phase_3": "Verify build integrity",
+    "phase_4": "Generate Ω²-cleanup.md summary report"
+  },
+  "estimated_space_savings": "~2MB of obsolete report files"
+}

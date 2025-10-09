@@ -56,8 +56,8 @@ export const EVOLUTION_RECIPES: EvolutionRecipe[] = [
 export function findApplicableRecipes(metrics: Record<string, unknown>): EvolutionRecipe[] {
   /* <ODAVL-AUTO-REFINE> Enhanced recipe matching with actual metrics evaluation */
   return EVOLUTION_RECIPES.filter(recipe => {
-    // Simple safety-first approach - only return safe recipes for now
-    // TODO: Implement actual trigger evaluation based on metrics
+    // Safety-first approach: only return safe recipes for autonomous execution
+    // Future: Advanced trigger evaluation with ML pattern matching
     if (recipe.safetyLevel !== 'safe') return false;
     
     // Basic trigger evaluation for demo purposes

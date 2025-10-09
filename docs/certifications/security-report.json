@@ -1,0 +1,13 @@
+?? ODAVL Security Scan - 2025-10-05T19:33:54.170Z
+{
+  "vulnerabilities": {
+    "low": 0,
+    "medium": 0,
+    "high": 0
+  },
+  "timestamp": "2025-10-05T19:33:54.170Z",
+  "status": "PASS",
+  "licenses": {
+    "issues": 0
+  }
+}

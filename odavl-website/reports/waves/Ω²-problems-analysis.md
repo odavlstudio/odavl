@@ -21,6 +21,9 @@
 #### Script Files (require() imports forbidden)
 
 ```text
+#### Script Files (require() imports forbidden)
+
+```text
 scripts/accessibility-check.js     - 2 errors (require imports)
 scripts/fix-testimonials.js        - 2 errors (require imports)  
 scripts/generate-assets.js         - 3 errors (require imports + 1 unused var)
@@ -37,7 +40,7 @@ scripts/performance-audit.js       - 3 errors (require imports)
 
 #### Root-Level Documentation
 
-```
+```text
 README.md                  - Missing trailing newline
 CHANGELOG.md              - Emphasis as headings, list spacing 
 apps/vscode-ext/README.md - Missing trailing newline
@@ -73,7 +76,7 @@ apps/vscode-ext/README.md - Missing trailing newline
 
 #### Duplicate/Legacy JSON Files
 
-```
+```text
 🗑️ REMOVE - Old observe/run/verify JSON files
 reports/observe-*.json        - 20+ files (timestamps 175967*)
 reports/run-*.json           - 10+ files  
@@ -82,7 +85,7 @@ reports/verify-*.json        - 10+ files
 
 #### Legacy Report Directories
 
-```
+```text
 🧹 CONSOLIDATE - Scattered report structures
 reports/audit/               - Migrate important content
 reports/diagnostics/         - Migrate important content  
@@ -98,7 +101,7 @@ reports/publish-check-*/    - Archive old checks
 
 #### Website Reports Duplication
 
-```
+```text
 🔄 DEDUPE - Similar structures in both locations
 /reports/                   - Root repo reports
 /odavl-website/reports/     - Website-specific reports
@@ -190,4 +193,4 @@ reports/publish-check-*/    - Archive old checks
 
 ---
 
-*Generated: October 8, 2025 | ODAVL Autonomous Agent | Problems Healing Mission*
+**Generated**: October 8, 2025 | ODAVL Autonomous Agent | Problems Healing Mission

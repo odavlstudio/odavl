@@ -87,7 +87,7 @@ export function EvolutionDashboard() {
               </div>
               <div className="flex justify-between text-sm">
                 <span>Pending</span>
-                <span className="text-blue-600">{metrics.suggestions.pending}</span>
+                <span className="text-secondary-accessible">{metrics.suggestions.pending}</span>
               </div>
             </div>
           </CardContent>

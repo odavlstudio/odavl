@@ -1,0 +1,94 @@
+{
+  "timestamp": "2025-10-09T00:00:00Z",
+  "phase": "baseline-capture",
+  "build": {
+    "framework": "Next.js 15.5.4",
+    "status": "success",
+    "errors": 0,
+    "warnings": 0,
+    "buildTime": "~30s"
+  },
+  "routes": {
+    "total": 17,
+    "static": 4,
+    "dynamic": 13,
+    "api": 2
+  },
+  "bundles": {
+    "mainRoute": {
+      "size": "7.65kB",
+      "firstLoadJS": "208kB",
+      "status": "LARGEST_BUNDLE"
+    },
+    "sharedChunks": {
+      "total": "102kB",
+      "chunks": [
+        { "name": "20a8cf09", "size": "54.2kB" },
+        { "name": "680", "size": "45.6kB" },
+        { "name": "other", "size": "2.13kB" }
+      ]
+    },
+    "middleware": "46.9kB"
+  },
+  "locales": {
+    "total": 10,
+    "supported": ["en", "de", "ar", "fr", "es", "it", "pt", "ru", "ja", "zh"],
+    "rtl": ["ar"],
+    "messageFiles": "verified"
+  },
+  "criticalIssues": {
+    "p1": [
+      {
+        "type": "BROKEN_NAVIGATION",
+        "description": "Missing login/auth pages - navbar links to non-existent routes",
+        "routes": ["/login", "/signup"],
+        "impact": "404 errors on primary CTAs across all locales",
+        "severity": "CRITICAL"
+      },
+      {
+        "type": "INCOMPLETE_USER_JOURNEY", 
+        "description": "Sign-up flow incomplete - no auth system integration",
+        "impact": "Cannot convert leads to authenticated users",
+        "severity": "CRITICAL"
+      }
+    ],
+    "p2": [
+      {
+        "type": "PERFORMANCE",
+        "description": "Main bundle 208kB exceeds 200kB target",
+        "measurement": "208kB",
+        "target": "200kB",
+        "severity": "MODERATE"
+      },
+      {
+        "type": "I18N_VERIFICATION_NEEDED",
+        "description": "Need to verify translation completeness",
+        "locales": 10,
+        "severity": "MODERATE"
+      }
+    ]
+  },
+  "testableRoutes": [
+    "/",
+    "/[locale]",
+    "/[locale]/contact", 
+    "/[locale]/demo",
+    "/[locale]/docs",
+    "/[locale]/pilot",
+    "/[locale]/pricing",
+    "/[locale]/security",
+    "/[locale]/test"
+  ],
+  "missingRoutes": [
+    "/[locale]/login",
+    "/[locale]/signup", 
+    "/[locale]/auth/*"
+  ],
+  "nextActions": [
+    "Comprehensive route testing across all locales",
+    "i18n completeness verification", 
+    "Performance benchmarking with Lighthouse",
+    "Cross-browser compatibility testing",
+    "Authentication page creation (critical)"
+  ]
+}

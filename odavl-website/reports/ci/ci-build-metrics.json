@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-10-09T22:57:30.000Z",
+  "branch": "odavl/web-forensic-phase3-20251009",
+  "commit": "phase3-ci-integration",
+  "buildStatus": "success",
+  "nextBuildCompleted": true,
+  "routes": {
+    "/": { "size": "208KB", "budget": "180KB", "status": "warning", "delta": "+28KB" },
+    "/pricing": { "size": "169KB", "budget": "160KB", "status": "warning", "delta": "+9KB" },
+    "/login": { "size": "170KB", "budget": "150KB", "status": "warning", "delta": "+20KB" },
+    "/signup": { "size": "170KB", "budget": "150KB", "status": "warning", "delta": "+20KB" },
+    "/docs": { "size": "140KB", "budget": "140KB", "status": "pass", "delta": "0KB" }
+  },
+  "qualityGates": {
+    "typescript": "PASS",
+    "eslint": "PASS", 
+    "i18n": "PASS",
+    "guardian": "ANALYZED",
+    "build": "SUCCESS"
+  }
+}

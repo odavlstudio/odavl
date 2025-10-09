@@ -4,13 +4,13 @@
 
 - **Date/Time**: October 6, 2025, 8:40 PM
 - **Branch**: main (normalized from odavl/github-link-20251006)
-- **Target Repository**: https://github.com/odavlstudio/odavl.git
+- **Target Repository**: <https://github.com/odavlstudio/odavl.git>
 - **Integration Status**: ⚠️ **PENDING** - Repository creation required
 
 ## Local Configuration ✅
 
 - **Git Identity**: ODAVL Studio <contact@odavl.com>
-- **Remote URL**: https://github.com/odavlstudio/odavl.git (configured)
+- **Remote URL**: <https://github.com/odavlstudio/odavl.git> (configured)
 - **Branch**: main (normalized)
 - **Last Commit**: b3156c2db7ddd7a71ef5f9ca63137c8ce797c09b
 
@@ -26,7 +26,8 @@
 
 **Repository Not Found**: The target GitHub repository `https://github.com/odavlstudio/odavl.git` does not exist.
 
-**Resolution Required**: 
+**Resolution Required**:
+
 1. Create the repository manually on GitHub
 2. Set repository visibility (public/private)
 3. Initialize with or without README
@@ -42,12 +43,14 @@
 ## Next Steps
 
 ### Manual Repository Creation
-1. **Visit**: https://github.com/orgs/odavlstudio/repositories/new
+
+1. **Visit**: <https://github.com/orgs/odavlstudio/repositories/new>
 2. **Repository Name**: odavl
 3. **Visibility**: Choose public or private
 4. **Initialize**: Do NOT initialize with README (local content exists)
 
 ### After Repository Creation
+
 ```bash
 git push -u origin main
 ```

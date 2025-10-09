@@ -539,5 +539,89 @@
       "main": "Join These Success Stories",
       "subtitle": "Start your free trial and see results in your first week"
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your ODAVL account",
+      "fields": {
+        "email": "Email Address",
+        "password": "Password",
+        "remember": "Remember me"
+      },
+      "placeholders": {
+        "email": "Enter your email",
+        "password": "Enter your password"
+      },
+      "errors": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordRequired": "Password is required"
+      },
+      "links": {
+        "forgotPassword": "Forgot password?",
+        "signUp": "Sign up"
+      },
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "demo": {
+        "title": "Demo Environment",
+        "description": "This is a demonstration interface. Authentication will be implemented in production."
+      }
+    },
+    "signup": {
+      "title": "Join ODAVL",
+      "subtitle": "Start your autonomous code quality journey",
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email Address",
+        "company": "Company",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "placeholders": {
+        "firstName": "Enter your first name",
+        "lastName": "Enter your last name",
+        "email": "Enter your email",
+        "company": "Enter your company name",
+        "password": "Create a password",
+        "confirmPassword": "Confirm your password"
+      },
+      "errors": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordRequired": "Password is required",
+        "passwordWeak": "Password does not meet requirements",
+        "passwordMismatch": "Passwords do not match",
+        "termsRequired": "You must accept the terms and conditions"
+      },
+      "passwordStrength": {
+        "title": "Password Requirements",
+        "length": "At least 8 characters",
+        "uppercase": "One uppercase letter",
+        "lowercase": "One lowercase letter",
+        "number": "One number",
+        "special": "One special character"
+      },
+      "terms": {
+        "prefix": "I agree to the",
+        "termsLink": "Terms of Service",
+        "and": "and",
+        "privacyLink": "Privacy Policy"
+      },
+      "links": {
+        "signIn": "Sign in"
+      },
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "optional": "optional",
+      "demo": {
+        "title": "Demo Environment",
+        "description": "This is a demonstration interface. User registration will be implemented in production."
+      }
+    }
   }
 }

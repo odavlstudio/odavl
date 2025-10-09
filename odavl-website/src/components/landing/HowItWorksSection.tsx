@@ -134,7 +134,7 @@ const CustomerJourneyStep = ({
 
     <div className="space-y-2">
       {outcomes.map((outcome, index) => (
-        <div key={`${title}-outcome-${index}`} className="flex items-center gap-2 text-xs text-slate-400">
+        <div key={`${title}-outcome-${index}`} className="flex items-center gap-2 text-xs text-muted-accessible">
           <CheckCircle2 className="w-3 h-3 text-electric-cyan/60" />
           <span>{outcome}</span>
         </div>
@@ -360,7 +360,7 @@ export default function HowItWorksSection() {
                             blur-xl group-hover:scale-110 transition-transform duration-300" />
           </motion.button>
           
-          <p className="text-slate-400 text-sm mt-4">
+          <p className="text-muted-accessible text-sm mt-4">
             {t('cta.subtitle')}
           </p>
         </motion.div>

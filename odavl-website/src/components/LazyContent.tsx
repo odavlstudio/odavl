@@ -52,7 +52,7 @@ const EnhancedPricingSection = dynamic(
   }
 );
 
-export default function LazyContent() {
+function LazyContent() {
   return (
     <>
       {/* Features Section with Technical Depth */}
@@ -87,3 +87,6 @@ export default function LazyContent() {
     </>
   );
 }
+
+export default LazyContent;
+export { LazyContent };
