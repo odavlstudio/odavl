@@ -18,6 +18,7 @@ export default function SafeIntlProvider({
     <NextIntlClientProvider 
       messages={messages}
       locale={locale}
+      timeZone="UTC"
       onError={(error: IntlError) => {
         if (error.code === IntlErrorCode.MISSING_MESSAGE) {
           if (process.env.NODE_ENV !== 'production') {
