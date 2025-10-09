@@ -4,12 +4,15 @@
 ODAVL (Observe-Decide-Act-Verify-Learn) is an autonomous code quality improvement system. It continuously monitors code quality metrics (ESLint warnings, TypeScript errors) and makes automated fixes within defined safety constraints.
 
 ## Architecture
-- **Monorepo**: Uses pnpm workspaces (`pnpm-workspace.yaml`) with apps under `apps/*`
+- **Monorepo**: Uses pnpm workspaces (`pnpm-workspace.yaml`) with 3 main components:
+  - `apps/cli/` - Core ODAVL CLI system
+  - `apps/vscode-ext/` - VS Code Doctor extension
+  - `odavl-website/` - Next.js marketing/docs site with i18n
 - **Main CLI**: Single TypeScript file at `apps/cli/src/index.ts` implementing the ODAVL cycle
 - **Reports System**: JSON reports stored in `reports/` (gitignored) track metrics over time
-- **Learning System**: `.odavl/history.json` maintains run history for pattern recognition
-- **Safety Gates**: `.odavl/gates.yml` defines quality thresholds that must not be violated
-- **Risk Policy**: `.odavl/policy.yml` limits autonomy scope (max files touched, lines changed)
+- **Learning System**: `.odavl/history.json` maintains run history with trust scoring
+- **Safety Gates**: `.odavl/gates.yml` defines strict quality thresholds (zero tolerance for type errors)
+- **Risk Policy**: `.odavl/policy.yml` limits autonomy scope (max 10 files, 40 lines per change)
 
 ## Key Workflows
 
@@ -20,13 +23,20 @@ pnpm odavl:run
 
 # Individual cycle steps
 pnpm odavl:observe    # Collect metrics
-pnpm odavl:decide     # Determine action
-pnpm odavl:act        # Execute fixes
-pnpm odavl:verify     # Validate results
+pnpm odavl:decide     # Determine action based on trust scores
+pnpm odavl:act        # Execute fixes (eslint --fix + custom recipes)
+pnpm odavl:verify     # Shadow verification + quality gates
 
-# Quality checks
+# Quality & Safety checks
 pnpm typecheck        # TypeScript validation
-pnpm lint            # ESLint with custom config
+pnpm lint            # ESLint with flat config
+.\tools\golden.ps1    # Full repo stability check (PowerShell)
+.\tools\policy-guard.ps1  # Governance compliance validation
+.\tools\security-scan.ps1 # CVE scanning and license compliance
+
+# VS Code extension development
+pnpm ext:compile     # Build VS Code Doctor extension
+pnpm ext:watch       # Watch mode for extension development
 ```
 
 ### Metrics Collection
@@ -71,8 +81,22 @@ Check `.odavl/gates.yml` and `.odavl/policy.yml` before making changes:
 - Limited file modification scope (`maxFilesTouched: 10`)
 - Protected paths cannot be modified autonomously
 
+## Enterprise Safety Features
+
+### Multi-Layer Verification
+- **Shadow Testing**: Changes tested in isolated environment before commit
+- **Cryptographic Attestation**: Successful improvements generate signed proofs
+- **Undo System**: Automatic snapshots enable instant rollback via `pnpm odavl:run undo`
+- **Trust Learning**: Recipe success rates tracked in `.odavl/recipes-trust.json`
+
+### VS Code Integration
+- Install ODAVL Doctor extension for real-time cycle monitoring
+- Command: "ODAVL: Doctor Mode" provides color-coded phase indicators
+- JSON mode available with `--json` flag for structured output
+
 ## Development Notes
 - Use `tsx` for TypeScript execution (not tsc compilation)
 - All metrics are timestamped for trend analysis
-- The system is designed for autonomous operation with human oversight
-- Reports directory is gitignored but preserves local run history
+- Reports stored in `reports/` with separate directories for runtime, golden snapshots
+- The system is designed for autonomous operation with enterprise-grade safety controls
+- Website includes comprehensive i18n (9 languages) and performance optimizations
