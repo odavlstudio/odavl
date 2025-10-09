@@ -2,8 +2,13 @@ import EnhancedHeroSection from '@/components/landing/EnhancedHeroSection';
 import TrustSection from '@/components/landing/TrustSection'; 
 import { Footer, LazyContent, WebVitalsReporter, LocaleSwitcher } from '@/components';
 import Link from 'next/link';
+import { getMessages } from 'next-intl/server';
 
-export default function Home() {
+type HomeProps = {
+  readonly params: Promise<{ readonly locale: string }>;
+};
+
+function HomeContent() {
   return (
     <div className="min-h-screen">
       <WebVitalsReporter />
@@ -33,4 +38,15 @@ export default function Home() {
       <Footer />
     </div>
   );
+}
+
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
+  const messages = await getMessages();
+  
+  if (!messages) {
+    console.warn('⚠️ Missing messages for locale', locale);
+  }
+  
+  return <HomeContent />;
 }

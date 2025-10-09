@@ -11,8 +11,7 @@ import securityHeaders from '../config/security/security.headers.json';
 
 const intlMiddleware = createMiddleware({
   locales: ['en', 'de', 'ar', 'fr', 'es', 'it', 'pt', 'ru', 'ja', 'zh'], // ODAVL-WAVE-X6-INJECT: 10 locales
-  defaultLocale: 'en',
-  localePrefix: 'as-needed'
+  defaultLocale: 'en'
 });
 
 // Static CSP for prerendered pages (no nonce needed)
@@ -118,5 +117,8 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: [
+    '/',
+    '/(en|de|ar|fr|es|it|pt|ru|ja|zh)/:path*'
+  ]
 };

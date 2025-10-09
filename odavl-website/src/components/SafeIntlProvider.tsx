@@ -4,9 +4,9 @@ import { NextIntlClientProvider, IntlError, IntlErrorCode } from 'next-intl';
 import { ReactNode } from 'react';
 
 type SafeIntlProviderProps = {
-  children: ReactNode;
-  messages: Record<string, unknown>;
-  locale: string;
+  readonly children: ReactNode;
+  readonly messages: Record<string, unknown>;
+  readonly locale: string;
 };
 
 export default function SafeIntlProvider({ 
@@ -14,9 +14,14 @@ export default function SafeIntlProvider({
   messages, 
   locale 
 }: SafeIntlProviderProps) {
+  // Add fallback message check
+  if (!messages) {
+    console.warn('⚠️ Missing messages for locale', locale);
+  }
+
   return (
     <NextIntlClientProvider 
-      messages={messages}
+      messages={messages || {}}
       locale={locale}
       timeZone="UTC"
       onError={(error: IntlError) => {
