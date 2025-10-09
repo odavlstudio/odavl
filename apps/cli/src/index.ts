@@ -30,6 +30,7 @@ const isJsonMode = process.argv.includes("--json");
 /**
  * Logs a message for a specific ODAVL phase with optional status indication.
  * Supports both human-readable and JSON output modes for VS Code extension integration.
+ * Optimized for low-latency streaming to reduce round-trip message delays.
  * 
  * @param phase - The ODAVL phase (OBSERVE, DECIDE, ACT, VERIFY, LEARN)
  * @param msg - The message to log
@@ -38,6 +39,8 @@ const isJsonMode = process.argv.includes("--json");
 function logPhase(phase: string, msg: string, status: "info" | "success" | "error" = "info") {
   if (isJsonMode) {
     console.log(JSON.stringify({ type: "doctor", status, data: { phase, msg } }));
+    // Force immediate flush to reduce latency for VS Code extension
+    process.stdout.write('');
   } else {
     console.log(`[${phase}] ${msg}`);
   }

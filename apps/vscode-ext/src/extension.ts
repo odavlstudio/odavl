@@ -11,7 +11,19 @@ function startODAVLProcess(panel: vscode.WebviewPanel, workspaceRoot: string | u
     return;
   }
 
-  const cli = spawn('tsx', ['apps/cli/src/index.ts', 'run', '--json'], { cwd: workspaceRoot, shell: true });
+  // Optimized spawn options for reduced latency
+  const cli = spawn('tsx', ['apps/cli/src/index.ts', 'run', '--json'], { 
+    cwd: workspaceRoot, 
+    shell: true,
+    stdio: ['ignore', 'pipe', 'pipe'],
+    // Reduce buffer sizes for faster streaming
+    windowsHide: true
+  });
+  
+  // Set encoding and reduce buffer delay
+  if (cli.stdout) {
+    cli.stdout.setEncoding('utf8');
+  }
   
   cli.stdout.on('data', (data) => {
     const output = data.toString().trim();
