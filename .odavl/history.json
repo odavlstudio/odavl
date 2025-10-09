@@ -296,5 +296,89 @@
     "decision": "esm-hygiene",
     "gatesPassed": false,
     "gates": {}
+  },
+  {
+    "ts": "2025-10-09T21:58:10.767Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:57:44.608Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:58:03.225Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-09T21:59:28.423Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:58:59.738Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:59:18.210Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
   }
 ]
