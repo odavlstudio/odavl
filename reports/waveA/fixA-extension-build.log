@@ -1,0 +1,10 @@
+
+> odavl@0.1.1 build C:\Users\sabou\dev\odavl\apps\vscode-ext
+> tsc -p ./
+
+../../node_modules/.pnpm/vite-node@2.1.9_@types+node@24.6.2/node_modules/vite-node/dist/index-z0R8hVRu.d.ts(88,14): error TS2304: Cannot find name 'WebSocket'.
+../../node_modules/.pnpm/vite@5.4.20_@types+node@24.6.2/node_modules/vite/dist/node/index.d.ts(5,41): error TS2307: Cannot find module 'rollup/parseAst' or its corresponding type declarations.
+  There are types at 'C:/Users/sabou/dev/odavl/node_modules/.pnpm/vite@5.4.20_@types+node@24.6.2/node_modules/rollup/dist/parseAst.d.ts', but this result could not be resolved under your current 'moduleResolution' setting. Consider updating to 'node16', 'nodenext', or 'bundler'.
+../../node_modules/.pnpm/vite@5.4.20_@types+node@24.6.2/node_modules/vite/types/customEvent.d.ts(27,14): error TS2304: Cannot find name 'WebSocket'.
+../../node_modules/.pnpm/vite@5.4.20_@types+node@24.6.2/node_modules/vite/types/importGlob.d.ts(38,11): error TS2304: Cannot find name 'Worker'.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 2.

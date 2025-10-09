@@ -5,32 +5,9 @@ import { ODTabs } from '@/components/ui/ODTabs'
 import { PricingTable } from '@/components/ui/PricingTable'
 import { FeatureGrid } from '@/components/ui/FeatureGrid'
 import { SectionTitle } from '@/components/ui/SectionTitle'
+import { pricingTiers } from '@/data/pricing'
 
 export default function ComponentsPage() {
-  const pricingTiers = [
-    {
-      name: "Free",
-      price: "$0",
-      description: "Perfect for individual developers",
-      features: ["Basic code quality monitoring", "10 fixes per month", "Community support"],
-      cta: "Get Started"
-    },
-    {
-      name: "Pro",
-      price: "$29",
-      description: "For professional teams",
-      features: ["Advanced quality metrics", "Unlimited fixes", "Priority support", "Custom rules"],
-      cta: "Start Trial",
-      popular: true
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      description: "For large organizations",
-      features: ["Enterprise security", "SSO integration", "Dedicated support", "Custom deployment"],
-      cta: "Contact Sales"
-    }
-  ]
 
   const features = [
     { icon: "🔍", title: "Observe", description: "Monitor code quality metrics continuously" },

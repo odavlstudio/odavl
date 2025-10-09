@@ -6,7 +6,6 @@ ODAVL (Observe-Decide-Act-Verify-Learn) implements a robust autonomous code qual
 
 ### Core Components
 
-```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   OBSERVE       │    │     DECIDE      │    │      ACT        │
 │  ┌───────────┐  │    │  ┌───────────┐  │    │  ┌───────────┐  │
@@ -31,17 +30,17 @@ ODAVL (Observe-Decide-Act-Verify-Learn) implements a robust autonomous code qual
 │  │ Testing   │  │    │  │ Learning  │  │    │  │ System    │  │
 │  └───────────┘  │    │  └───────────┘  │    │  └───────────┘  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-```
 
 ## 🔧 Technical Implementation
 
-### Monorepo Structure
-- **TypeScript**: Full type safety with ES2022 target
-- **pnpm Workspaces**: Efficient dependency management
-- **ESLint Flat Config**: Modern linting with custom rules
-- **VS Code Integration**: Real-time cycle monitoring
+Monorepo Structure
+**TypeScript**: Full type safety with ES2022 target
+**pnpm Workspaces**: Efficient dependency management
+ESLint Flat Config**: Modern linting with custom rules
+**VS Code Integration**: Real-time cycle monitoring
 
 ### Core CLI (`apps/cli/src/index.ts`)
+
 Single-file implementation with clear phase separation:
 
 ```typescript
@@ -58,6 +57,7 @@ async function runCycle() {
 ### Safety Mechanisms
 
 #### 1. Quality Gates (`.odavl/gates.yml`)
+
 ```yaml
 eslint:
   deltaMax: 0      # Must improve or maintain
@@ -68,20 +68,23 @@ policy:
 ```
 
 #### 2. Trust Learning System
-- Recipe success rates tracked over time
-- Cryptographic attestation of improvements
-- Automatic trust score adjustment
-- Recipe blacklisting for failed attempts
+
+Recipe success rates tracked over time
+Cryptographic attestation of improvements
+Automatic trust score adjustment
+Recipe blacklisting for failed attempts
 
 #### 3. Rollback Protection
-- Automatic snapshots before modifications
-- Git-based undo system with file checksums
-- Shadow verification in isolated environment
-- Multi-layer verification gates
+
+Automatic snapshots before modifications
+Git-based undo system with file checksums
+Shadow verification in isolated environment
+Multi-layer verification gates
 
 ## 📊 Data Flow
 
 ### Observation Phase
+
 ```typescript
 interface Observations {
   eslintWarnings: number;
@@ -91,6 +94,7 @@ interface Observations {
 ```
 
 ### Decision Phase
+
 ```typescript
 interface Decision {
   action: 'remove-unused' | 'noop';
@@ -100,6 +104,7 @@ interface Decision {
 ```
 
 ### Action Phase
+
 ```typescript
 interface ActionResults {
   filesModified: string[];
@@ -112,6 +117,7 @@ interface ActionResults {
 ## 🛡️ Enterprise Features
 
 ### Attestation System
+
 Every successful improvement generates cryptographic proof:
 
 ```json
@@ -126,12 +132,14 @@ Every successful improvement generates cryptographic proof:
 ```
 
 ### VS Code Extension Integration
+
 - Real-time cycle monitoring
 - Color-coded phase indicators
 - Detailed logging and progress tracking
 - One-click cycle execution
 
 ### Report Generation
+
 - JSON metrics stored in `reports/`
 - Historical trend analysis
 - Performance tracking
@@ -140,6 +148,7 @@ Every successful improvement generates cryptographic proof:
 ## 🔄 Cycle Execution
 
 ### Standard Flow
+
 1. **Observe**: Scan codebase for issues
 2. **Decide**: Select appropriate recipe based on trust scores
 3. **Act**: Execute fixes with scope limitations
@@ -147,6 +156,7 @@ Every successful improvement generates cryptographic proof:
 5. **Learn**: Update trust scores and generate attestation
 
 ### Safety Overrides
+
 - Pre-flight checks prevent dangerous operations
 - Shadow verification tests changes in isolation
 - Automatic rollback on gate failures
@@ -155,12 +165,14 @@ Every successful improvement generates cryptographic proof:
 ## 📈 Scalability Considerations
 
 ### Performance
+
 - Incremental analysis for large codebases
 - Parallel processing where safe
 - Efficient dependency resolution
 - Minimal overhead during observation
 
 ### Extensibility
+
 - Plugin architecture for custom recipes
 - Configurable quality gates
 - External tool integration

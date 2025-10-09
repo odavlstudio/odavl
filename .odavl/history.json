@@ -275,5 +275,26 @@
         "mustPass": true
       }
     }
+  },
+  {
+    "ts": "2025-10-09T21:51:36.767Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:51:09.709Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:51:28.919Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
   }
 ]

@@ -1,0 +1,35 @@
+{
+  "week": {
+    "start_date": "2025-10-06",
+    "end_date": "2025-10-12",
+    "year": 2025,
+    "number": 41
+  },
+  "quality": {
+    "snapshots_count": 0
+  },
+  "generation": {
+    "timestamp": "2025-10-09T19:49:38.160Z",
+    "total_events": 0
+  },
+  "sales": {
+    "pilots_started": 0,
+    "pilots_converted_pro": 0,
+    "pilots_converted_enterprise": 0
+  },
+  "nps": {
+    "detractors": 0,
+    "responses": 0,
+    "nps_score": 0,
+    "passives": 0,
+    "average_score": 0,
+    "promoters": 0
+  },
+  "plg": {
+    "first_doctor_runs": 0,
+    "first_pr_merges": 0,
+    "conversion_rate_pct": 0,
+    "activation_rate_pct": 0,
+    "extension_installs": 0
+  }
+}

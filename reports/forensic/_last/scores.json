@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "timestamp": "2025-10-09T20:45:31.930Z",
+    "version": "1.0.0",
+    "generator": "ODAVL Forensic Aggregator"
+  },
+  "metrics": {
+    "timestamp": "2025-10-09T20:45:31.930Z",
+    "typeErrors": 0,
+    "eslintErrors": 2,
+    "eslintWarnings": 0,
+    "prettierIssues": 2,
+    "securityIssues": 0,
+    "coveragePercent": 0,
+    "testsPassed": 0,
+    "testsFailed": 0
+  },
+  "scores": {
+    "typeSafety": 10,
+    "lintHygiene": 9.6,
+    "security": 10,
+    "testCoverage": 0,
+    "codeQuality": 10,
+    "odavlScore": 7.9
+  },
+  "weights": {
+    "typeSafety": 0.25,
+    "lintHygiene": 0.2,
+    "security": 0.2,
+    "testCoverage": 0.2,
+    "codeQuality": 0.15
+  }
+}

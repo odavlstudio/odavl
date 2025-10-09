@@ -9,11 +9,13 @@
 ## Stripe Account Setup
 
 ### 1. Create Stripe Account
+
 1. Sign up at [stripe.com](https://stripe.com)
 2. Complete account verification
 3. Enable Developer mode in Dashboard
 
 ### 2. Configure Products & Prices
+
 ```bash
 # Pro Plan (Monthly)
 - Product: "ODAVL Pro"
@@ -26,6 +28,7 @@
 ```
 
 ### 3. Get API Keys
+
 ```bash
 # Test Mode
 STRIPE_SECRET_KEY=sk_test_...
@@ -39,11 +42,13 @@ STRIPE_PUBLISHABLE_KEY=pk_live_...
 ## Webhook Configuration
 
 ### 1. Create Webhook Endpoint
+
 - URL: `https://yourdomain.com/api/stripe/webhook`
 - Events: `checkout.session.completed`, `customer.subscription.updated`
 - Copy signing secret to `STRIPE_WEBHOOK_SECRET`
 
 ### 2. Test Webhook
+
 ```bash
 stripe listen --forward-to localhost:3000/api/stripe/webhook
 ```

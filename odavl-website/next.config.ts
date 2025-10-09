@@ -6,6 +6,12 @@ import createMDX from '@next/mdx';
 
 const withNextIntl = createNextIntlPlugin();
 
+// Bundle analyzer for performance monitoring
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+  openAnalyzer: false,
+});
+
 const withMDX = createMDX({
   options: {
     remarkPlugins: [],
@@ -104,4 +110,4 @@ const nextConfig: NextConfig = {
   /* <ODAVL-WAVE-X2-INJECT-END> */
 };
 
-export default withNextIntl(withMDX(nextConfig));
+export default withBundleAnalyzer(withNextIntl(withMDX(nextConfig)));

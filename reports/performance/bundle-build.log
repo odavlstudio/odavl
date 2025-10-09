@@ -1,0 +1,69 @@
+=true : Die Benennung "=true" wurde nicht als 
+Name eines Cmdlet, einer Funktion, einer 
+Skriptdatei oder eines ausführbaren Programms 
+erkannt. Überprüfen Sie die Schreibweise des 
+Namens, oder ob der Pfad korrekt ist (sofern 
+enthalten), und wiederholen Sie den Vorgang.
+In Zeile:1 Zeichen:1
++ ='true'; pnpm build
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound:  
+   (=true:String) [], CommandNotFoundExceptio  
+  n
+    + FullyQualifiedErrorId : CommandNotFoundE 
+   xception
+ 
+
+> odavl-website@0.1.0 build C:\Users\sabou\dev\odavl\odavl-website
+> next build
+
+   Ôû▓ Next.js 15.5.4
+   - Experiments (use with caution):
+     ┬À webVitalsAttribution
+     ┬À optimizePackageImports
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 15.7s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/11) ...
+   Generating static pages (2/11) 
+   Generating static pages (5/11) 
+   Generating static pages (8/11) 
+ Ô£ô Generating static pages (11/11)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Ôöî ãÆ /                                    2.31 kB         157 kB
+Ôö£ Ôùï /_not-found                            998 B         103 kB
+Ôö£ ãÆ /[locale]                            7.65 kB         208 kB
+Ôö£ ãÆ /[locale]/contact                    2.21 kB         115 kB
+Ôö£ ãÆ /[locale]/demo                         163 B         106 kB
+Ôö£ ãÆ /[locale]/docs                         143 B         102 kB
+Ôö£ ãÆ /[locale]/docs/[slug]                 2.3 kB         153 kB
+Ôö£ ãÆ /[locale]/login                      3.35 kB         170 kB
+Ôö£ ãÆ /[locale]/pilot                      2.06 kB         115 kB
+Ôö£ ãÆ /[locale]/pricing                     3.1 kB         169 kB
+Ôö£ ãÆ /[locale]/security                     143 B         102 kB
+Ôö£ ãÆ /[locale]/signup                     4.22 kB         170 kB
+Ôö£ ãÆ /[locale]/terms/pricing                143 B         102 kB
+Ôö£ ãÆ /[locale]/test                        2.3 kB         154 kB
+Ôö£ ãÆ /[locale]/test/components            4.28 kB         155 kB
+Ôö£ ãÆ /api/lead                              143 B         102 kB
+Ôö£ ãÆ /api/stripe/create-session             143 B         102 kB
+Ôö£ ãÆ /api/vitals                            143 B         102 kB
+Ôö£ Ôùï /robots.txt                            143 B         102 kB
+Ôö£ Ôùï /sitemap.xml                           143 B         102 kB
+Ôöö Ôùï /tokens                              1.18 kB         103 kB
++ First Load JS shared by all             102 kB
+  Ôö£ chunks/20a8cf09-0f63cfa46ed27a6f.js  54.2 kB
+  Ôö£ chunks/680-bf67222e4907ff15.js       45.6 kB
+  Ôöö other shared chunks (total)          2.13 kB
+
+
+ãÆ Middleware                             46.9 kB
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+

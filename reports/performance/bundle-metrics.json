@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "timestamp": "2025-01-09T02:57:00Z",
+    "task": "Wave B Task 6 - Performance Profiling",
+    "analyzer": "@next/bundle-analyzer v15.5.4",
+    "nextjs_version": "15.5.4"
+  },
+  "bundle_sizes": {
+    "first_load_js_shared": "102 kB",
+    "largest_page": {
+      "route": "/[locale]",
+      "size": "7.65 kB",
+      "first_load": "208 kB"
+    },
+    "smallest_page": {
+      "route": "/[locale]/docs",
+      "size": "143 B", 
+      "first_load": "102 kB"
+    },
+    "middleware": "46.9 kB",
+    "main_chunks": {
+      "20a8cf09-chunk": "54.2 kB",
+      "680-chunk": "45.6 kB",
+      "other_shared": "2.13 kB"
+    }
+  },
+  "performance_budget": {
+    "target_first_load": "< 200 kB",
+    "actual_largest": "208 kB",
+    "status": "OVER_BUDGET",
+    "percentage": "104%"
+  },
+  "routes_analyzed": 21,
+  "static_routes": 4,
+  "dynamic_routes": 17,
+  "reports_generated": [
+    "client.html",
+    "edge.html", 
+    "nodejs.html"
+  ]
+}

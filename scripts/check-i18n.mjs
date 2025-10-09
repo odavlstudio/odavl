@@ -16,75 +16,80 @@ const PRIMARY_LOCALE = 'en';
 function main() {
   try {
     console.log('🌍 Checking i18n integrity...');
-    
+
     if (!existsSync(MESSAGES_PATH)) {
       console.log('✅ PASSED: No i18n files to check');
       return;
     }
-    
-    // Load primary locale (EN) as reference
+
     const primaryFile = join(MESSAGES_PATH, `${PRIMARY_LOCALE}.json`);
     if (!existsSync(primaryFile)) {
       console.log('❌ BLOCKED: Primary locale file missing');
       console.log(`   Expected: ${primaryFile}`);
       process.exit(1);
     }
-    
+
     const primaryKeys = extractKeys(JSON.parse(readFileSync(primaryFile, 'utf8')));
     console.log(`📋 Primary locale (${PRIMARY_LOCALE}): ${primaryKeys.size} keys`);
-    
-    // Check other locales
+
     const locales = ['de', 'ar', 'fr', 'es', 'it', 'pt', 'ru', 'ja', 'zh'];
-    let hasErrors = false;
-    
-    for (const locale of locales) {
-      const localeFile = join(MESSAGES_PATH, `${locale}.json`);
-      
-      if (!existsSync(localeFile)) {
-        console.log(`⚠️  WARNING: ${locale}.json not found`);
-        continue;
-      }
-      
-      const localeKeys = extractKeys(JSON.parse(readFileSync(localeFile, 'utf8')));
-      const missingKeys = [...primaryKeys].filter(key => !localeKeys.has(key));
-      const extraKeys = [...localeKeys].filter(key => !primaryKeys.has(key));
-      
-      if (missingKeys.length > 0 || extraKeys.length > 0) {
-        console.log(`❌ BLOCKED: i18n inconsistency in ${locale}.json`);
-        
-        if (missingKeys.length > 0) {
-          console.log(`   Missing keys (${missingKeys.length}):`);
-          missingKeys.slice(0, 5).forEach(key => console.log(`     - ${key}`));
-          if (missingKeys.length > 5) {
-            console.log(`     ... and ${missingKeys.length - 5} more`);
-          }
-        }
-        
-        if (extraKeys.length > 0) {
-          console.log(`   Extra keys (${extraKeys.length}):`);
-          extraKeys.slice(0, 5).forEach(key => console.log(`     + ${key}`));
-          if (extraKeys.length > 5) {
-            console.log(`     ... and ${extraKeys.length - 5} more`);
-          }
-        }
-        
-        hasErrors = true;
-      } else {
-        console.log(`✅ PASSED: ${locale}.json (${localeKeys.size} keys)`);
-      }
-    }
-    
+    const results = locales.map(locale =>
+      checkLocaleConsistency(locale, primaryKeys)
+    );
+    const hasErrors = results.some(result => result === false);
+
     if (hasErrors) {
       console.log('\n💡 TIP: Update translation files to match primary locale keys');
       process.exit(1);
     }
-    
+
     console.log('✅ PASSED: All i18n files are consistent');
-    
   } catch (error) {
     console.error('❌ ERROR: Failed to check i18n integrity');
     console.error(error.message);
     process.exit(1);
+  }
+}
+
+/**
+ * Checks a single locale file for consistency with the primary keys.
+ * Returns true if consistent, false otherwise.
+ */
+function checkLocaleConsistency(locale, primaryKeys) {
+  const localeFile = join(MESSAGES_PATH, `${locale}.json`);
+
+  if (!existsSync(localeFile)) {
+    console.log(`⚠️  WARNING: ${locale}.json not found`);
+    return true;
+  }
+
+  const localeKeys = extractKeys(JSON.parse(readFileSync(localeFile, 'utf8')));
+  const missingKeys = [...primaryKeys].filter(key => !localeKeys.has(key));
+  const extraKeys = [...localeKeys].filter(key => !primaryKeys.has(key));
+
+  if (missingKeys.length > 0 || extraKeys.length > 0) {
+    console.log(`❌ BLOCKED: i18n inconsistency in ${locale}.json`);
+
+    if (missingKeys.length > 0) {
+      console.log(`   Missing keys (${missingKeys.length}):`);
+      missingKeys.slice(0, 5).forEach(key => console.log(`     - ${key}`));
+      if (missingKeys.length > 5) {
+        console.log(`     ... and ${missingKeys.length - 5} more`);
+      }
+    }
+
+    if (extraKeys.length > 0) {
+      console.log(`   Extra keys (${extraKeys.length}):`);
+      extraKeys.slice(0, 5).forEach(key => console.log(`     + ${key}`));
+      if (extraKeys.length > 5) {
+        console.log(`     ... and ${extraKeys.length - 5} more`);
+      }
+    }
+
+    return false;
+  } else {
+    console.log(`✅ PASSED: ${locale}.json (${localeKeys.size} keys)`);
+    return true;
   }
 }
 

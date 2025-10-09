@@ -1,0 +1,167 @@
+{
+  "actions": [
+    {
+      "action": "review",
+      "module": "esbuild",
+      "resolves": [
+        {
+          "id": 1102341,
+          "path": ".>tsx>esbuild",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        },
+        {
+          "id": 1102341,
+          "path": ".>vitest>vite>esbuild",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    },
+    {
+      "action": "review",
+      "module": "@eslint/plugin-kit",
+      "resolves": [
+        {
+          "id": 1106734,
+          "path": ".>eslint>@eslint/plugin-kit",
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ]
+    }
+  ],
+  "advisories": {
+    "1102341": {
+      "findings": [
+        {
+          "version": "0.23.1",
+          "paths": [
+            ". > tsx@4.19.1 > esbuild@0.23.1",
+            "apps\\cli > tsup@8.5.0 > postcss-load-config@6.0.1 > tsx@4.19.1 > esbuild@0.23.1",
+            "odavl-website > tailwind-variants@3.1.1 > tailwindcss@3.4.18 > postcss-load-config@6.0.1 > tsx@4.19.1 > esbuild@0.23.1",
+            "odavl-website > tailwindcss@3.4.18 > postcss-load-config@6.0.1 > tsx@4.19.1 > esbuild@0.23.1",
+            "odavl-website > tailwindcss-animate@1.0.7 > tailwindcss@3.4.18 > postcss-load-config@6.0.1 > tsx@4.19.1 > esbuild@0.23.1"
+          ]
+        },
+        {
+          "version": "0.21.5",
+          "paths": [
+            ". > @vitest/coverage-v8@2.1.9 > vitest@2.1.9 > @vitest/mocker@2.1.9 > vite@5.4.20 > esbuild@0.21.5",
+            ". > @vitest/coverage-v8@2.1.9 > vitest@2.1.9 > vite@5.4.20 > esbuild@0.21.5",
+            ". > @vitest/coverage-v8@2.1.9 > vitest@2.1.9 > vite-node@2.1.9 > vite@5.4.20 > esbuild@0.21.5",
+            ". > vitest@2.1.9 > @vitest/mocker@2.1.9 > vite@5.4.20 > esbuild@0.21.5",
+            ". > vitest@2.1.9 > vite@5.4.20 > esbuild@0.21.5",
+            ". > vitest@2.1.9 > vite-node@2.1.9 > vite@5.4.20 > esbuild@0.21.5"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "- https://github.com/evanw/esbuild/security/advisories/GHSA-67mh-4wv8-2f99\n- https://github.com/evanw/esbuild/commit/de85afd65edec9ebc44a11e245fd9e9a2e99760d\n- https://github.com/advisories/GHSA-67mh-4wv8-2f99",
+      "created": "2025-02-10T17:48:07.000Z",
+      "id": 1102341,
+      "npm_advisory_id": null,
+      "overview": "### Summary\n\nesbuild allows any websites to send any request to the development server and read the response due to default CORS settings.\n\n### Details\n\nesbuild sets `Access-Control-Allow-Origin: *` header to all requests, including the SSE connection, which allows any websites to send any request to the development server and read the response.\n\nhttps://github.com/evanw/esbuild/blob/df815ac27b84f8b34374c9182a93c94718f8a630/pkg/api/serve_other.go#L121\nhttps://github.com/evanw/esbuild/blob/df815ac27b84f8b34374c9182a93c94718f8a630/pkg/api/serve_other.go#L363\n\n**Attack scenario**:\n\n1. The attacker serves a malicious web page (`http://malicious.example.com`).\n1. The user accesses the malicious web page.\n1. The attacker sends a `fetch('http://127.0.0.1:8000/main.js')` request by JS in that malicious web page. This request is normally blocked by same-origin policy, but that's not the case for the reasons above.\n1. The attacker gets the content of `http://127.0.0.1:8000/main.js`.\n\nIn this scenario, I assumed that the attacker knows the URL of the bundle output file name. But the attacker can also get that information by\n\n- Fetching `/index.html`: normally you have a script tag here\n- Fetching `/assets`: it's common to have a `assets` directory when you have JS files and CSS files in a different directory and the directory listing feature tells the attacker the list of files\n- Connecting `/esbuild` SSE endpoint: the SSE endpoint sends the URL path of the changed files when the file is changed (`new EventSource('/esbuild').addEventListener('change', e => console.log(e.type, e.data))`)\n- Fetching URLs in the known file: once the attacker knows one file, the attacker can know the URLs imported from that file\n\nThe scenario above fetches the compiled content, but if the victim has the source map option enabled, the attacker can also get the non-compiled content by fetching the source map file.\n\n### PoC\n\n1. Download [reproduction.zip](https://github.com/user-attachments/files/18561484/reproduction.zip)\n2. Extract it and move to that directory\n1. Run `npm i`\n1. Run `npm run watch`\n1. Run `fetch('http://127.0.0.1:8000/app.js').then(r => r.text()).then(content => console.log(content))` in a different website's dev tools.\n\n![image](https://github.com/user-attachments/assets/08fc2e4d-e1ec-44ca-b0ea-78a73c3c40e9)\n\n### Impact\n\nUsers using the serve feature may get the source code stolen by malicious websites.",
+      "reported_by": null,
+      "title": "esbuild enables any website to send any requests to the development server and read the response",
+      "metadata": null,
+      "cves": [],
+      "access": "public",
+      "severity": "moderate",
+      "module_name": "esbuild",
+      "vulnerable_versions": "<=0.24.2",
+      "github_advisory_id": "GHSA-67mh-4wv8-2f99",
+      "recommendation": "Upgrade to version 0.25.0 or later",
+      "patched_versions": ">=0.25.0",
+      "updated": "2025-02-10T17:48:08.000Z",
+      "cvss": {
+        "score": 5.3,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N"
+      },
+      "cwe": [
+        "CWE-346"
+      ],
+      "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99"
+    },
+    "1106734": {
+      "findings": [
+        {
+          "version": "0.2.8",
+          "paths": [
+            ". > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/type-utils@8.7.0 > @typescript-eslint/utils@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/utils@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/eslint-plugin@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            ". > typescript-eslint@8.7.0 > @typescript-eslint/utils@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/type-utils@8.7.0 > @typescript-eslint/utils@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > @typescript-eslint/eslint-plugin@8.7.0 > @typescript-eslint/utils@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > @typescript-eslint/eslint-plugin@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-import-resolver-typescript@3.10.1 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-import-resolver-typescript@3.10.1 > eslint-plugin-import@2.32.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-import-resolver-typescript@3.10.1 > eslint-plugin-import@2.32.0 > eslint-module-utils@2.12.1 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-import-resolver-typescript@3.10.1 > eslint-plugin-import@2.32.0 > eslint-module-utils@2.12.1 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-import-resolver-typescript@3.10.1 > eslint-plugin-import@2.32.0 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-import@2.32.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-import@2.32.0 > eslint-module-utils@2.12.1 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-import@2.32.0 > eslint-module-utils@2.12.1 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-import@2.32.0 > @typescript-eslint/parser@8.7.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-jsx-a11y@6.10.2 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-react@7.37.5 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8",
+            "odavl-website > eslint-config-next@15.5.4 > eslint-plugin-react-hooks@5.2.0 > eslint@9.11.0 > @eslint/plugin-kit@0.2.8"
+          ]
+        }
+      ],
+      "found_by": null,
+      "deleted": null,
+      "references": "- https://github.com/eslint/rewrite/security/advisories/GHSA-xffm-g5w8-qvg7\n- https://github.com/eslint/rewrite/commit/b283f64099ad6c6b5043387c091691d21b387805\n- https://github.com/advisories/GHSA-xffm-g5w8-qvg7",
+      "created": "2025-07-18T20:39:12.000Z",
+      "id": 1106734,
+      "npm_advisory_id": null,
+      "overview": "### Summary\n\nThe `ConfigCommentParser#parseJSONLikeConfig` API is vulnerable to a Regular Expression Denial of Service (ReDoS) attack in its only argument.\n\n### Details\n\nThe regular expression at [packages/plugin-kit/src/config-comment-parser.js:158](https://github.com/eslint/rewrite/blob/bd4bf23c59f0e4886df671cdebd5abaeb1e0d916/packages/plugin-kit/src/config-comment-parser.js#L158) is vulnerable to a quadratic runtime attack because the grouped expression is not anchored. This can be solved by prepending the regular expression with `[^-a-zA-Z0-9/]`.\n\n### PoC\n\n```javascript\nconst { ConfigCommentParser } = require(\"@eslint/plugin-kit\");\n\nconst str = `${\"A\".repeat(1000000)}?: 1 B: 2`;\n\nconsole.log(\"start\")\nvar parser = new ConfigCommentParser();\nconsole.log(parser.parseJSONLikeConfig(str));\nconsole.log(\"end\")\n\n// run `npm i @eslint/plugin-kit@0.3.3` and `node attack.js`\n// then the program will stuck forever with high CPU usage\n```\n\n### Impact\n\nThis is a Regular Expression Denial of Service attack which may lead to blocking execution and high CPU usage.",
+      "reported_by": null,
+      "title": "@eslint/plugin-kit is vulnerable to Regular Expression Denial of Service attacks through ConfigCommentParser",
+      "metadata": null,
+      "cves": [],
+      "access": "public",
+      "severity": "low",
+      "module_name": "@eslint/plugin-kit",
+      "vulnerable_versions": "<0.3.4",
+      "github_advisory_id": "GHSA-xffm-g5w8-qvg7",
+      "recommendation": "Upgrade to version 0.3.4 or later",
+      "patched_versions": ">=0.3.4",
+      "updated": "2025-07-28T17:34:45.000Z",
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "cwe": [
+        "CWE-1333"
+      ],
+      "url": "https://github.com/advisories/GHSA-xffm-g5w8-qvg7"
+    }
+  },
+  "muted": [],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 1256,
+    "devDependencies": 0,
+    "optionalDependencies": 0,
+    "totalDependencies": 1256
+  }
+}

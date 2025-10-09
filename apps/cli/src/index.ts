@@ -339,19 +339,56 @@ function undoLast() {
  * Creates comprehensive reports and maintains audit trails throughout the process.
  */
 function runCycle() {
+  const perfStart = performance.now();
   logPhase("ODAVL", "Observe → Decide → Act → Verify → Learn", "info");
+  
+  // OBSERVE phase with timing
+  const observeStart = performance.now();
   const before = observe();
-  logPhase("OBSERVE", `ESLint warnings: ${before.eslintWarnings}, Type errors: ${before.typeErrors}`, "info");
+  const observeTime = performance.now() - observeStart;
+  logPhase("OBSERVE", `ESLint warnings: ${before.eslintWarnings}, Type errors: ${before.typeErrors} (${observeTime.toFixed(1)}ms)`, "info");
+  
+  // DECIDE phase with timing
+  const decideStart = performance.now();
   const decision = decide(before);
-  logPhase("DECIDE", decision, "info");
+  const decideTime = performance.now() - decideStart;
+  logPhase("DECIDE", `${decision} (${decideTime.toFixed(1)}ms)`, "info");
+  
+  // ACT phase with timing
+  const actStart = performance.now();
   act(decision);
+  const actTime = performance.now() - actStart;
+  logPhase("ACT", `Completed (${actTime.toFixed(1)}ms)`, "info");
+  
+  // VERIFY phase with timing
+  const verifyStart = performance.now();
   const { after, deltas, gatesPassed, gates } = verify(before);
+  const verifyTime = performance.now() - verifyStart;
+  logPhase("VERIFY", `Gates ${gatesPassed ? "PASSED" : "FAILED"} (${verifyTime.toFixed(1)}ms)`, gatesPassed ? "success" : "error");
+  
+  // Performance metrics
+  const totalTime = performance.now() - perfStart;
+  const perfMetrics = {
+    totalTime: Math.round(totalTime),
+    phases: {
+      observe: Math.round(observeTime),
+      decide: Math.round(decideTime),
+      act: Math.round(actTime),
+      verify: Math.round(verifyTime)
+    },
+    timestamp: new Date().toISOString()
+  };
+  
+  // Save performance data
+  const perfFile = path.join(reportsDir, "performance", "cli.json");
+  fs.writeFileSync(perfFile, JSON.stringify(perfMetrics, null, 2));
+  
   const report: RunReport = { before, after, deltas, decision, gatesPassed, gates };
   const runFile = path.join(reportsDir, `run-${Date.now()}.json`);
   fs.writeFileSync(runFile, JSON.stringify(report, null, 2));
   learn(report);
   const status = gatesPassed ? "success" : "error";
-  logPhase("DONE", `ESLint warnings: ${before.eslintWarnings} → ${after.eslintWarnings} (Δ ${deltas.eslint}) | Type errors: ${before.typeErrors} → ${after.typeErrors} (Δ ${deltas.types})`, status);
+  logPhase("DONE", `ESLint warnings: ${before.eslintWarnings} → ${after.eslintWarnings} (Δ ${deltas.eslint}) | Type errors: ${before.typeErrors} → ${after.typeErrors} (Δ ${deltas.types}) | Total: ${totalTime.toFixed(1)}ms`, status);
 }
 
 const cmd = process.argv[2] ?? "help";
