@@ -76,7 +76,10 @@
   },
   "pricing": {
     "badge": "Transparent Pricing",
-    "title": "Simple Pricing That Scales With You",
+    "title": {
+      "main": "Simple Pricing That",
+      "highlight": "Scales With You"
+    },
     "subtitle": "Investment in autonomous code quality that pays for itself. No hidden fees, no surprises.",
     "period": {
       "month": "month",
@@ -124,14 +127,49 @@
       }
     },
     "tiers": {
+      "starter": {
+        "name": "Starter",
+        "price": "$0",
+        "description": "Perfect for individual developers and small projects",
+        "features": {
+          "repositories": "Up to 3 repositories",
+          "basicFixes": "Basic automated fixes",
+          "reports": "Essential quality reports",
+          "support": "Community support",
+          "integrations": "Core integrations"
+        }
+      },
+      "professional": {
+        "name": "Professional", 
+        "price": "$29",
+        "description": "Best for growing teams and production codebases",
+        "features": {
+          "unlimited": "Unlimited repositories",
+          "advancedFixes": "Advanced fixes & refactoring",
+          "customRules": "Custom quality rules",
+          "cicd": "CI/CD integrations",
+          "analytics": "Advanced analytics",
+          "priority": "Priority support"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "For large organizations with complex requirements",
+        "features": {
+          "onPremise": "On-premise deployment",
+          "sla": "Enterprise SLA",
+          "dedicated": "Dedicated support team",
+          "training": "Training & onboarding",
+          "compliance": "SOC 2 & compliance",
+          "customization": "Custom integrations"
+        }
+      },
       "free": {
         "description": "Perfect for individual developers and small projects"
       },
       "pro": {
         "description": "Best for growing teams and production codebases"
-      },
-      "enterprise": {
-        "description": "For large organizations with complex requirements"
       }
     },
     "popular": "Most Popular",
