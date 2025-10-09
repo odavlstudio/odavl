@@ -17,17 +17,34 @@
     "odavl:act": "tsx apps/cli/src/index.ts act",
     "odavl:verify": "tsx apps/cli/src/index.ts verify",
     "ext:compile": "cd apps/vscode-ext && npm run compile",
-    "ext:watch": "cd apps/vscode-ext && npm run watch"
+    "ext:watch": "cd apps/vscode-ext && npm run watch",
+    "forensic:all": "pnpm run forensic:setup && pnpm run test:coverage && node scripts/forensic/aggregate.mjs",
+    "forensic:setup": "powershell -Command \"New-Item -ItemType Directory -Force -Path reports/forensic/_last; eslint . -f json -o reports/forensic/_last/eslint.json; prettier --check . > reports/forensic/_last/prettier.txt 2>$null; tsc --noEmit --pretty false > reports/forensic/_last/tsc.txt 2>$null; Write-Host 'Forensic setup completed'\"",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@eslint/js": "9.11.0",
     "@types/node": "^24.6.2",
+    "@vitest/coverage-v8": "^2.1.1",
+    "audit-ci": "^7.1.0",
+    "depcheck": "^1.4.7",
     "eslint": "9.11.0",
+    "knip": "^5.32.0",
+    "license-checker": "^25.0.1",
+    "madge": "^8.0.0",
+    "prettier": "^3.3.3",
     "tsx": "4.19.1",
     "typescript": "5.6.3",
-    "typescript-eslint": "8.7.0"
+    "typescript-eslint": "8.7.0",
+    "vitest": "^2.1.1"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "@eslint/plugin-kit@<0.3.4": ">=0.3.4"
+    }
   }
 }
