@@ -1,109 +1,143 @@
 #!/usr/bin/env pwsh
-# ODAVL Pilot - After Evidence Collection (PowerShell)
-param([string]$OutputDir = "reports/phase5/evidence/after")
+# ODAVL Pilot - After Evidence Collection  
+# Collects metrics after ODAVL improvements and generates delta analysis
+
+param(
+    [Parameter(HelpMessage="Output directory for after reports")]
+    [string]$OutputDir = "reports/phase5/evidence/after",
+    [Parameter(HelpMessage="Baseline directory for comparison")]
+    [string]$BaselineDir = "reports/phase5/evidence/baseline", 
+    [Parameter(HelpMessage="Output JSON format for automation")]
+    [switch]$Json
+)
 
 $timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
-Write-Host "📊 ODAVL After Collection - $timestamp" -ForegroundColor Cyan
+$projectRoot = (Get-Location).Path
+
+Write-Host "📈 ODAVL After Evidence Collection - $timestamp" -ForegroundColor Cyan
 
 # Ensure output directory exists
-if (!(Test-Path $OutputDir)) {
+if (-not (Test-Path $OutputDir)) {
     New-Item -ItemType Directory -Path $OutputDir -Force | Out-Null
 }
 
-# Collect ESLint metrics (same logic as baseline)
-Write-Host "🔍 Collecting ESLint metrics..." -ForegroundColor Yellow
-try {
-    $eslintResult = & pnpm -s exec eslint . -f json 2>$null | ConvertFrom-Json -ErrorAction SilentlyContinue
-    $eslintWarnings = 0
-    if ($eslintResult -and $eslintResult.Count -gt 0) {
-        foreach ($file in $eslintResult) {
-            foreach ($msg in $file.messages) {
-                if ($msg.severity -eq 1) { $eslintWarnings++ }
-            }
-        }
+# Load baseline for comparison
+$baseline = $null
+if (Test-Path "$BaselineDir/baseline-complete.json") {
+    try {
+        $baseline = Get-Content "$BaselineDir/baseline-complete.json" -Raw | ConvertFrom-Json
+        Write-Host "📋 Loaded baseline from $BaselineDir" -ForegroundColor Gray
+    } catch {
+        Write-Host "⚠️ Could not load baseline data: $($_.Exception.Message)" -ForegroundColor Yellow
     }
-    $eslintData = @{ warnings = $eslintWarnings; timestamp = $timestamp }
-    $eslintData | ConvertTo-Json | Out-File "$OutputDir/eslint.json" -Encoding UTF8
-    Write-Host "✅ ESLint warnings: $eslintWarnings" -ForegroundColor Green
-} catch {
-    Write-Host "❌ ESLint collection failed: $_" -ForegroundColor Red
-    @{ warnings = -1; error = $_.Exception.Message; timestamp = $timestamp } | ConvertTo-Json | Out-File "$OutputDir/eslint.json" -Encoding UTF8
 }
 
-# Collect TypeScript errors (same logic as baseline)
-Write-Host "🔍 Collecting TypeScript metrics..." -ForegroundColor Yellow
-try {
-    $tscOutput = & pnpm -s exec tsc -p tsconfig.json --noEmit 2>&1
-    $typeErrors = ([regex]::Matches($tscOutput, "error TS\d+")).Count
-    $tscData = @{ errors = $typeErrors; timestamp = $timestamp }
-    $tscData | ConvertTo-Json | Out-File "$OutputDir/tsc.json" -Encoding UTF8
-    Write-Host "✅ TypeScript errors: $typeErrors" -ForegroundColor Green
-} catch {
-    Write-Host "❌ TypeScript collection failed: $_" -ForegroundColor Red
-    @{ errors = -1; error = $_.Exception.Message; timestamp = $timestamp } | ConvertTo-Json | Out-File "$OutputDir/tsc.json" -Encoding UTF8
-}
+# Collect current metrics (reuse baseline collection logic)
+Write-Host "🔍 Collecting current metrics..." -ForegroundColor Yellow
 
-# Collect security scan (same logic as baseline)
-Write-Host "🔍 Collecting security metrics..." -ForegroundColor Yellow
-try {
-    if (Test-Path "tools/security-scan.ps1") {
-        $securityResult = & "tools/security-scan.ps1" -Json | ConvertFrom-Json
-        $securityResult | ConvertTo-Json -Depth 3 | Out-File "$OutputDir/security.json" -Encoding UTF8
-        Write-Host "✅ Security scan completed" -ForegroundColor Green
-    } else {
-        Write-Host "⚠️ Security scan not available - creating stub" -ForegroundColor Yellow
-        @{ status = "TODO"; message = "Security scan not configured"; timestamp = $timestamp } | ConvertTo-Json | Out-File "$OutputDir/security.json" -Encoding UTF8
+# Run the baseline collection script to get current state
+$currentResults = & "$PSScriptRoot/collect-baseline.ps1" -OutputDir $OutputDir -Json | ConvertFrom-Json
+
+# Calculate deltas if baseline exists
+$deltas = @{}
+if ($baseline) {
+    $deltas = @{
+        eslintWarnings = ($currentResults.summary.eslintWarnings) - ($baseline.summary.eslintWarnings)
+        eslintErrors = ($currentResults.summary.eslintErrors) - ($baseline.summary.eslintErrors)  
+        typeErrors = ($currentResults.summary.typeErrors) - ($baseline.summary.typeErrors)
+        highCVEs = ($currentResults.summary.highCVEs) - ($baseline.summary.highCVEs)
     }
-} catch {
-    Write-Host "❌ Security scan failed: $_" -ForegroundColor Red
-    @{ status = "ERROR"; error = $_.Exception.Message; timestamp = $timestamp } | ConvertTo-Json | Out-File "$OutputDir/security.json" -Encoding UTF8
+} else {
+    Write-Host "⚠️ No baseline found - only current metrics available" -ForegroundColor Yellow
+    $deltas = @{ status = "no-baseline" }
 }
 
-# Calculate deltas by comparing with baseline
-$baselineDir = "reports/phase5/evidence/baseline"
-$deltaReport = @{ timestamp = $timestamp; deltas = @{} }
-
-if (Test-Path "$baselineDir/eslint.json") {
-    $baseEslint = (Get-Content "$baselineDir/eslint.json" | ConvertFrom-Json).warnings
-    $afterEslint = (Get-Content "$OutputDir/eslint.json" | ConvertFrom-Json).warnings
-    $deltaReport.deltas.eslint = @{ before = $baseEslint; after = $afterEslint; delta = ($afterEslint - $baseEslint) }
+# Enhanced results with comparison
+$results = @{
+    timestamp = $timestamp
+    current = $currentResults.summary
+    baseline = if ($baseline) { $baseline.summary } else { $null }
+    deltas = $deltas
+    improvements = @{
+        eslintWarningsReduced = if ($deltas.eslintWarnings) { $deltas.eslintWarnings -lt 0 } else { $false }
+        eslintErrorsReduced = if ($deltas.eslintErrors) { $deltas.eslintErrors -lt 0 } else { $false }
+        typeErrorsReduced = if ($deltas.typeErrors) { $deltas.typeErrors -le 0 } else { $false }
+        securityImproved = if ($deltas.highCVEs) { $deltas.highCVEs -le 0 } else { $false }
+    }
 }
 
-if (Test-Path "$baselineDir/tsc.json") {
-    $baseTs = (Get-Content "$baselineDir/tsc.json" | ConvertFrom-Json).errors
-    $afterTs = (Get-Content "$OutputDir/tsc.json" | ConvertFrom-Json).errors
-    $deltaReport.deltas.typescript = @{ before = $baseTs; after = $afterTs; delta = ($afterTs - $baseTs) }
-}
+# Save results
+$results | ConvertTo-Json -Depth 10 | Out-File "$OutputDir/after-complete.json" -Encoding UTF8
 
-# Generate summary with deltas
-$summaryMarkdown = @"
+# Generate comparison report
+$comparisonMd = @"
 # ODAVL After Evidence Report
 
-**Collection Time**: $timestamp  
-**Repository**: $(git remote get-url origin 2>$null)  
-**Commit**: $(git rev-parse --short HEAD 2>$null)  
+**Generated**: $timestamp  
+**Project**: $projectRoot
 
-## Improvement Summary
+## Current Metrics
 
-| Metric | Before | After | Delta | Status |
-|--------|--------|-------|-------|---------|
-| ESLint Warnings | $($deltaReport.deltas.eslint.before) | $($deltaReport.deltas.eslint.after) | $($deltaReport.deltas.eslint.delta) | $(if($deltaReport.deltas.eslint.delta -lt 0){"IMPROVED"}elseif($deltaReport.deltas.eslint.delta -eq 0){"STABLE"}else{"REGRESSED"}) |
-| TypeScript Errors | $($deltaReport.deltas.typescript.before) | $($deltaReport.deltas.typescript.after) | $($deltaReport.deltas.typescript.delta) | $(if($deltaReport.deltas.typescript.delta -lt 0){"IMPROVED"}elseif($deltaReport.deltas.typescript.delta -eq 0){"STABLE"}else{"REGRESSED"}) |
+### ESLint Analysis
+- **Warnings**: $($results.current.eslintWarnings)
+- **Errors**: $($results.current.eslintErrors)
 
-## ODAVL Impact
+### TypeScript Analysis
+- **Compilation Errors**: $($results.current.typeErrors)
 
-$(if($deltaReport.deltas.eslint.delta -lt 0 -or $deltaReport.deltas.typescript.delta -lt 0){"✅ **POSITIVE IMPACT**: ODAVL successfully improved code quality"}else{"⚠️ **NO CHANGE**: Code was already clean or no applicable improvements found"})
+### Security Analysis  
+- **Status**: $($results.current.securityStatus)
+- **High Severity CVEs**: $($results.current.highCVEs)
 
-## Evidence Files
-
-- ESLint: \`$OutputDir/eslint.json\`
-- TypeScript: \`$OutputDir/tsc.json\`
-- Security: \`$OutputDir/security.json\`
-- Deltas: \`$OutputDir/deltas.json\`
 "@
 
-$summaryMarkdown | Out-File "$OutputDir/summary.md" -Encoding UTF8
-$deltaReport | ConvertTo-Json -Depth 3 | Out-File "$OutputDir/deltas.json" -Encoding UTF8
+if ($baseline) {
+    $comparisonMd += @"
 
-Write-Host "📋 After collection complete - outputs in $OutputDir" -ForegroundColor Cyan
-Write-Host "🎯 Use delta report template to generate customer presentation" -ForegroundColor White
+## Comparison with Baseline
+
+### Changes (Delta)
+- **ESLint Warnings**: $($deltas.eslintWarnings) ($(if($deltas.eslintWarnings -lt 0){"✅ Improved"}elseif($deltas.eslintWarnings -eq 0){"➖ No change"}else{"❌ Increased"}))
+- **ESLint Errors**: $($deltas.eslintErrors) ($(if($deltas.eslintErrors -lt 0){"✅ Improved"}elseif($deltas.eslintErrors -eq 0){"➖ No change"}else{"❌ Increased"}))
+- **TypeScript Errors**: $($deltas.typeErrors) ($(if($deltas.typeErrors -lt 0){"✅ Improved"}elseif($deltas.typeErrors -eq 0){"➖ No change"}else{"❌ Increased"}))
+- **High CVEs**: $($deltas.highCVEs) ($(if($deltas.highCVEs -lt 0){"✅ Improved"}elseif($deltas.highCVEs -eq 0){"➖ No change"}else{"❌ Increased"}))
+
+### Overall Assessment
+$(if($results.improvements.eslintWarningsReduced -or $results.improvements.typeErrorsReduced){"✅ **SUCCESS**: Code quality improvements detected"}else{"⚠️ **REVIEW**: No significant improvements detected"})
+
+"@
+} else {
+    $comparisonMd += "`n## Baseline Comparison`n*No baseline data available for comparison*`n"
+}
+
+$comparisonMd += @"
+
+## Next Steps
+1. Review delta analysis for any unexpected changes
+2. Validate that improvements align with ODAVL goals  
+3. Generate final success story report
+4. Proceed with pilot expansion if results are positive
+
+---
+*Report generated by ODAVL Pilot Evidence Collection*
+"@
+
+$comparisonMd | Out-File "$OutputDir/comparison.md" -Encoding UTF8
+
+if ($Json) {
+    $results | ConvertTo-Json -Depth 5
+} else {
+    Write-Host ""
+    Write-Host "📊 After Collection Complete" -ForegroundColor Green
+    Write-Host "  📁 Reports saved to: $OutputDir"
+    if ($deltas.eslintWarnings -ne $null) {
+        Write-Host "  📋 ESLint Warnings: $($deltas.eslintWarnings) delta"
+        Write-Host "  🔧 TypeScript Errors: $($deltas.typeErrors) delta"  
+        Write-Host "  🔒 High CVEs: $($deltas.highCVEs) delta"
+        if ($results.improvements.eslintWarningsReduced -or $results.improvements.typeErrorsReduced) {
+            Write-Host "  ✅ Overall: Improvements detected!" -ForegroundColor Green
+        }
+    }
+}
+
+exit 0
