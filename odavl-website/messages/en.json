@@ -76,10 +76,7 @@
   },
   "pricing": {
     "badge": "Transparent Pricing",
-    "title": {
-      "main": "Simple Pricing That",
-      "highlight": "Scales With You"
-    },
+    "title": "Simple Pricing That Scales With You",
     "subtitle": "Investment in autonomous code quality that pays for itself. No hidden fees, no surprises.",
     "period": {
       "month": "month",
@@ -127,44 +124,22 @@
       }
     },
     "tiers": {
-      "starter": {
-        "name": "Starter",
-        "price": "$29",
-        "description": "Perfect for individual developers and small projects",
-        "features": {
-          "repositories": "Up to 3 repositories",
-          "basicFixes": "Essential fixes & hygiene",
-          "reports": "Weekly auto-reports",
-          "support": "Email support",
-          "integrations": "GitHub/GitLab integrations"
-        }
+      "free": {
+        "description": "Perfect for individual developers and small projects"
       },
-      "professional": {
-        "name": "Professional", 
-        "price": "$99",
-        "description": "Best for growing teams and production codebases",
-        "features": {
-          "unlimited": "Unlimited repositories",
-          "advancedFixes": "Advanced fixes & custom rules",
-          "customRules": "Custom quality rules",
-          "cicd": "CI/CD integration",
-          "analytics": "Analytics dashboard",
-          "priority": "Priority support"
-        }
+      "pro": {
+        "description": "Best for growing teams and production codebases"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "Custom",
-        "description": "For large organizations with complex requirements",
-        "features": {
-          "onPremise": "On-prem or private cloud",
-          "sla": "SLA & dedicated success",
-          "dedicated": "Compliance & SSO",
-          "training": "Team training",
-          "compliance": "Custom integrations",
-          "customization": "Custom integrations"
-        }
+        "description": "For large organizations with complex requirements"
       }
+    },
+    "popular": "Most Popular",
+    "guarantee": "30-day money-back guarantee. Cancel anytime.",
+    "features": {
+      "noSetup": "No setup required",
+      "cancel": "Cancel anytime", 
+      "support": "24/7 support"
     },
     "plans": {
       "title": "Choose Your Plan"
