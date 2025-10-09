@@ -37,7 +37,7 @@ export default function PricingPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent mb-6">
-              {t('title')}
+              {t('title.main')} <span className="text-cyan-400">{t('title.highlight')}</span>
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               {t('subtitle')}
