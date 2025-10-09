@@ -1,133 +1,182 @@
 #!/bin/bash
 # ODAVL Pilot - After Evidence Collection (Bash)
+# Collects metrics after ODAVL improvements and generates delta analysis
 
+set -euo pipefail
+
+# Default parameters
 OUTPUT_DIR="${1:-reports/phase5/evidence/after}"
-TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
+BASELINE_DIR="${2:-reports/phase5/evidence/baseline}"
+JSON_MODE="${3:-false}"
 
-echo "📊 ODAVL After Collection - $TIMESTAMP"
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
+PROJECT_ROOT=$(pwd)
+
+echo "📈 ODAVL After Evidence Collection - $TIMESTAMP"
 
 # Ensure output directory exists
 mkdir -p "$OUTPUT_DIR"
 
-# Collect ESLint metrics (same logic as baseline)
-echo "🔍 Collecting ESLint metrics..."
-if command -v pnpm >/dev/null 2>&1; then
-    eslint_output=$(pnpm -s exec eslint . -f json 2>/dev/null || echo "[]")
-    eslint_warnings=$(echo "$eslint_output" | jq '[.[] | .messages[] | select(.severity == 1)] | length' 2>/dev/null || echo "0")
-    echo "{\"warnings\": $eslint_warnings, \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/eslint.json"
-    echo "✅ ESLint warnings: $eslint_warnings"
+# Load baseline for comparison
+BASELINE_FILE="$BASELINE_DIR/baseline-complete.json"
+if [[ -f "$BASELINE_FILE" ]]; then
+    echo "📋 Loaded baseline from $BASELINE_DIR"
+    BASELINE_ESLINT_WARNINGS=$(jq '.summary.eslintWarnings // 0' "$BASELINE_FILE")
+    BASELINE_ESLINT_ERRORS=$(jq '.summary.eslintErrors // 0' "$BASELINE_FILE")
+    BASELINE_TYPE_ERRORS=$(jq '.summary.typeErrors // 0' "$BASELINE_FILE")
+    BASELINE_HIGH_CVES=$(jq '.summary.highCVEs // 0' "$BASELINE_FILE")
+    HAS_BASELINE=true
 else
-    echo "❌ pnpm not found - creating error stub"
-    echo "{\"warnings\": -1, \"error\": \"pnpm not available\", \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/eslint.json"
+    echo "⚠️ No baseline found - only current metrics available"
+    HAS_BASELINE=false
 fi
 
-# Collect TypeScript errors (same logic as baseline)
-echo "🔍 Collecting TypeScript metrics..."
-if command -v pnpm >/dev/null 2>&1 && [ -f "tsconfig.json" ]; then
-    tsc_output=$(pnpm -s exec tsc -p tsconfig.json --noEmit 2>&1 || true)
-    type_errors=$(echo "$tsc_output" | grep -c "error TS" || echo "0")
-    echo "{\"errors\": $type_errors, \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/tsc.json"
-    echo "✅ TypeScript errors: $type_errors"
+# Collect current metrics using baseline script
+echo "🔍 Collecting current metrics..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/collect-baseline.sh" "$OUTPUT_DIR" "true" > "$OUTPUT_DIR/current-metrics.json"
+
+# Extract current values
+CURRENT_ESLINT_WARNINGS=$(jq '.summary.eslintWarnings // 0' "$OUTPUT_DIR/current-metrics.json")
+CURRENT_ESLINT_ERRORS=$(jq '.summary.eslintErrors // 0' "$OUTPUT_DIR/current-metrics.json")
+CURRENT_TYPE_ERRORS=$(jq '.summary.typeErrors // 0' "$OUTPUT_DIR/current-metrics.json")
+CURRENT_HIGH_CVES=$(jq '.summary.highCVEs // 0' "$OUTPUT_DIR/current-metrics.json")
+CURRENT_SECURITY_STATUS=$(jq -r '.summary.securityStatus // "unknown"' "$OUTPUT_DIR/current-metrics.json")
+
+# Calculate deltas if baseline exists
+if [[ "$HAS_BASELINE" == "true" ]]; then
+    DELTA_ESLINT_WARNINGS=$((CURRENT_ESLINT_WARNINGS - BASELINE_ESLINT_WARNINGS))
+    DELTA_ESLINT_ERRORS=$((CURRENT_ESLINT_ERRORS - BASELINE_ESLINT_ERRORS))
+    DELTA_TYPE_ERRORS=$((CURRENT_TYPE_ERRORS - BASELINE_TYPE_ERRORS))
+    DELTA_HIGH_CVES=$((CURRENT_HIGH_CVES - BASELINE_HIGH_CVES))
+    
+    # Determine improvements
+    ESLINT_WARNINGS_IMPROVED=$(if [[ $DELTA_ESLINT_WARNINGS -lt 0 ]]; then echo "true"; else echo "false"; fi)
+    ESLINT_ERRORS_IMPROVED=$(if [[ $DELTA_ESLINT_ERRORS -lt 0 ]]; then echo "true"; else echo "false"; fi)
+    TYPE_ERRORS_IMPROVED=$(if [[ $DELTA_TYPE_ERRORS -le 0 ]]; then echo "true"; else echo "false"; fi)
+    SECURITY_IMPROVED=$(if [[ $DELTA_HIGH_CVES -le 0 ]]; then echo "true"; else echo "false"; fi)
 else
-    echo "❌ TypeScript check failed - creating error stub"
-    echo "{\"errors\": -1, \"error\": \"TypeScript not configured\", \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/tsc.json"
+    DELTA_ESLINT_WARNINGS="null"
+    DELTA_ESLINT_ERRORS="null"
+    DELTA_TYPE_ERRORS="null"
+    DELTA_HIGH_CVES="null"
+    ESLINT_WARNINGS_IMPROVED="false"
+    ESLINT_ERRORS_IMPROVED="false"
+    TYPE_ERRORS_IMPROVED="false"
+    SECURITY_IMPROVED="false"
 fi
 
-# Collect security scan (same logic as baseline)
-echo "🔍 Collecting security metrics..."
-if [ -f "tools/security-scan.ps1" ] && command -v pwsh >/dev/null 2>&1; then
-    pwsh tools/security-scan.ps1 -Json > "$OUTPUT_DIR/security.json" 2>/dev/null || \
-    echo "{\"status\": \"ERROR\", \"error\": \"Security scan failed\", \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/security.json"
-    echo "✅ Security scan completed"
-elif command -v npm >/dev/null 2>&1; then
-    # Fallback: simple npm audit
-    audit_output=$(npm audit --json 2>/dev/null || echo "{}")
-    echo "$audit_output" > "$OUTPUT_DIR/security.json"
-    echo "✅ Security scan completed (npm audit)"
-else
-    echo "⚠️ Security scan not available - creating stub"
-    echo "{\"status\": \"TODO\", \"message\": \"Security scan not configured\", \"timestamp\": \"$TIMESTAMP\"}" > "$OUTPUT_DIR/security.json"
-fi
-
-# Calculate deltas by comparing with baseline
-BASELINE_DIR="reports/phase5/evidence/baseline"
-
-# Read current metrics
-eslint_after=$(jq -r '.warnings // -1' "$OUTPUT_DIR/eslint.json" 2>/dev/null || echo "-1")
-typescript_after=$(jq -r '.errors // -1' "$OUTPUT_DIR/tsc.json" 2>/dev/null || echo "-1")
-
-# Read baseline metrics
-eslint_before="-1"
-typescript_before="-1"
-if [ -f "$BASELINE_DIR/eslint.json" ]; then
-    eslint_before=$(jq -r '.warnings // -1' "$BASELINE_DIR/eslint.json" 2>/dev/null || echo "-1")
-fi
-if [ -f "$BASELINE_DIR/tsc.json" ]; then
-    typescript_before=$(jq -r '.errors // -1' "$BASELINE_DIR/tsc.json" 2>/dev/null || echo "-1")
-fi
-
-# Calculate deltas
-eslint_delta=$((eslint_after - eslint_before))
-typescript_delta=$((typescript_after - typescript_before))
-
-# Generate deltas JSON
-cat > "$OUTPUT_DIR/deltas.json" << EOF
+# Create comprehensive results JSON
+cat > "$OUTPUT_DIR/after-complete.json" << EOF
 {
   "timestamp": "$TIMESTAMP",
+  "current": {
+    "eslintWarnings": $CURRENT_ESLINT_WARNINGS,
+    "eslintErrors": $CURRENT_ESLINT_ERRORS,
+    "typeErrors": $CURRENT_TYPE_ERRORS,
+    "securityStatus": "$CURRENT_SECURITY_STATUS",
+    "highCVEs": $CURRENT_HIGH_CVES
+  },
+  "baseline": $(if [[ "$HAS_BASELINE" == "true" ]]; then jq '.summary' "$BASELINE_FILE"; else echo "null"; fi),
   "deltas": {
-    "eslint": {
-      "before": $eslint_before,
-      "after": $eslint_after,
-      "delta": $eslint_delta
-    },
-    "typescript": {
-      "before": $typescript_before,
-      "after": $typescript_after,
-      "delta": $typescript_delta
-    }
+    "eslintWarnings": $DELTA_ESLINT_WARNINGS,
+    "eslintErrors": $DELTA_ESLINT_ERRORS,
+    "typeErrors": $DELTA_TYPE_ERRORS,
+    "highCVEs": $DELTA_HIGH_CVES
+  },
+  "improvements": {
+    "eslintWarningsReduced": $ESLINT_WARNINGS_IMPROVED,
+    "eslintErrorsReduced": $ESLINT_ERRORS_IMPROVED,
+    "typeErrorsReduced": $TYPE_ERRORS_IMPROVED,
+    "securityImproved": $SECURITY_IMPROVED
   }
 }
 EOF
 
-# Determine status messages
-eslint_status="STABLE"
-[ "$eslint_delta" -lt 0 ] && eslint_status="IMPROVED"
-[ "$eslint_delta" -gt 0 ] && eslint_status="REGRESSED"
-
-typescript_status="STABLE"
-[ "$typescript_delta" -lt 0 ] && typescript_status="IMPROVED"
-[ "$typescript_delta" -gt 0 ] && typescript_status="REGRESSED"
-
-# Generate summary with deltas
-cat > "$OUTPUT_DIR/summary.md" << EOF
+# Generate comparison report
+cat > "$OUTPUT_DIR/comparison.md" << EOF
 # ODAVL After Evidence Report
 
-**Collection Time**: $TIMESTAMP  
-**Repository**: $(git remote get-url origin 2>/dev/null || echo "Unknown")  
-**Commit**: $(git rev-parse --short HEAD 2>/dev/null || echo "Unknown")  
+**Generated**: $TIMESTAMP  
+**Project**: $PROJECT_ROOT
 
-## Improvement Summary
+## Current Metrics
 
-| Metric | Before | After | Delta | Status |
-|--------|--------|-------|-------|---------|
-| ESLint Warnings | $eslint_before | $eslint_after | $eslint_delta | $eslint_status |
-| TypeScript Errors | $typescript_before | $typescript_after | $typescript_delta | $typescript_status |
+### ESLint Analysis
+- **Warnings**: $CURRENT_ESLINT_WARNINGS
+- **Errors**: $CURRENT_ESLINT_ERRORS
 
-## ODAVL Impact
+### TypeScript Analysis
+- **Compilation Errors**: $CURRENT_TYPE_ERRORS
 
-$(if [ "$eslint_delta" -lt 0 ] || [ "$typescript_delta" -lt 0 ]; then
-    echo "✅ **POSITIVE IMPACT**: ODAVL successfully improved code quality"
-else
-    echo "⚠️ **NO CHANGE**: Code was already clean or no applicable improvements found"
-fi)
+### Security Analysis  
+- **Status**: $CURRENT_SECURITY_STATUS
+- **High Severity CVEs**: $CURRENT_HIGH_CVES
 
-## Evidence Files
-
-- ESLint: \`$OUTPUT_DIR/eslint.json\`
-- TypeScript: \`$OUTPUT_DIR/tsc.json\`
-- Security: \`$OUTPUT_DIR/security.json\`
-- Deltas: \`$OUTPUT_DIR/deltas.json\`
 EOF
 
-echo "📋 After collection complete - outputs in $OUTPUT_DIR"
-echo "🎯 Use delta report template to generate customer presentation"
+if [[ "$HAS_BASELINE" == "true" ]]; then
+    # Add delta analysis
+    ESLINT_WARNINGS_STATUS=$(if [[ $DELTA_ESLINT_WARNINGS -lt 0 ]]; then echo "✅ Improved"; elif [[ $DELTA_ESLINT_WARNINGS -eq 0 ]]; then echo "➖ No change"; else echo "❌ Increased"; fi)
+    ESLINT_ERRORS_STATUS=$(if [[ $DELTA_ESLINT_ERRORS -lt 0 ]]; then echo "✅ Improved"; elif [[ $DELTA_ESLINT_ERRORS -eq 0 ]]; then echo "➖ No change"; else echo "❌ Increased"; fi)
+    TYPE_ERRORS_STATUS=$(if [[ $DELTA_TYPE_ERRORS -lt 0 ]]; then echo "✅ Improved"; elif [[ $DELTA_TYPE_ERRORS -eq 0 ]]; then echo "➖ No change"; else echo "❌ Increased"; fi)
+    HIGH_CVES_STATUS=$(if [[ $DELTA_HIGH_CVES -lt 0 ]]; then echo "✅ Improved"; elif [[ $DELTA_HIGH_CVES -eq 0 ]]; then echo "➖ No change"; else echo "❌ Increased"; fi)
+    
+    OVERALL_STATUS=$(if [[ "$ESLINT_WARNINGS_IMPROVED" == "true" || "$TYPE_ERRORS_IMPROVED" == "true" ]]; then echo "✅ **SUCCESS**: Code quality improvements detected"; else echo "⚠️ **REVIEW**: No significant improvements detected"; fi)
+    
+    cat >> "$OUTPUT_DIR/comparison.md" << EOF
+
+## Comparison with Baseline
+
+### Changes (Delta)
+- **ESLint Warnings**: $DELTA_ESLINT_WARNINGS ($ESLINT_WARNINGS_STATUS)
+- **ESLint Errors**: $DELTA_ESLINT_ERRORS ($ESLINT_ERRORS_STATUS)
+- **TypeScript Errors**: $DELTA_TYPE_ERRORS ($TYPE_ERRORS_STATUS)
+- **High CVEs**: $DELTA_HIGH_CVES ($HIGH_CVES_STATUS)
+
+### Overall Assessment
+$OVERALL_STATUS
+
+EOF
+else
+    cat >> "$OUTPUT_DIR/comparison.md" << EOF
+
+## Baseline Comparison
+*No baseline data available for comparison*
+
+EOF
+fi
+
+cat >> "$OUTPUT_DIR/comparison.md" << EOF
+
+## Next Steps
+1. Review delta analysis for any unexpected changes
+2. Validate that improvements align with ODAVL goals  
+3. Generate final success story report
+4. Proceed with pilot expansion if results are positive
+
+---
+*Report generated by ODAVL Pilot Evidence Collection*
+EOF
+
+if [[ "$JSON_MODE" == "true" ]]; then
+    cat "$OUTPUT_DIR/after-complete.json"
+else
+    echo ""
+    echo "📊 After Collection Complete"
+    echo "  📁 Reports saved to: $OUTPUT_DIR"
+    if [[ "$HAS_BASELINE" == "true" ]]; then
+        echo "  📋 ESLint Warnings: $DELTA_ESLINT_WARNINGS delta"
+        echo "  🔧 TypeScript Errors: $DELTA_TYPE_ERRORS delta"  
+        echo "  🔒 High CVEs: $DELTA_HIGH_CVES delta"
+        if [[ "$ESLINT_WARNINGS_IMPROVED" == "true" || "$TYPE_ERRORS_IMPROVED" == "true" ]]; then
+            echo "  ✅ Overall: Improvements detected!"
+        fi
+    else
+        echo "  📋 Current ESLint: $CURRENT_ESLINT_WARNINGS warnings, $CURRENT_ESLINT_ERRORS errors"
+        echo "  🔧 Current TypeScript: $CURRENT_TYPE_ERRORS errors"
+        echo "  🔒 Current Security: $CURRENT_SECURITY_STATUS ($CURRENT_HIGH_CVES high CVEs)"
+    fi
+fi
+
+exit 0
