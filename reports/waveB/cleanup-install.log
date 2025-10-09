@@ -1,0 +1,30 @@
+Scope: all 4 workspace projects
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 304, reused 249, downloaded 0, added 0
+Progress: resolved 933, reused 819, downloaded 0, added 0
+ÔÇëWARNÔÇë 1 deprecated subdependencies found: source-map@0.8.0-beta.0
+Packages: -10
+----------
+Progress: resolved 991, reused 878, downloaded 0, added 0
+Progress: resolved 991, reused 878, downloaded 0, added 0, done
+
+dependencies:
++ js-yaml 4.1.0
+
+devDependencies:
++ @eslint/js 9.11.0
++ @types/node 24.6.2
+- @vitest/coverage-v8 2.1.9
+- audit-ci 7.1.0
+- depcheck 1.4.7
++ eslint 9.11.0
+- knip 5.64.2
+- license-checker 25.0.1
+- madge 8.0.0
++ prettier 3.6.2
++ tsx 4.19.1 (4.20.6 is available)
++ typescript 5.6.3
++ typescript-eslint 8.7.0
++ vitest 2.1.9
+
+Done in 5.1s

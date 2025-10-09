@@ -1,0 +1,254 @@
+[
+  {
+    "name": "odavl",
+    "version": "0.0.1",
+    "path": "C:\\Users\\sabou\\dev\\odavl",
+    "private": true,
+    "dependencies": {
+      "js-yaml": {
+        "from": "js-yaml",
+        "version": "4.1.0",
+        "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\js-yaml@4.1.0\\node_modules\\js-yaml"
+      }
+    },
+    "devDependencies": {
+      "@eslint/js": {
+        "from": "@eslint/js",
+        "version": "9.11.0",
+        "resolved": "https://registry.npmjs.org/@eslint/js/-/js-9.11.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+js@9.11.0\\node_modules\\@eslint\\js"
+      },
+      "@types/node": {
+        "from": "@types/node",
+        "version": "24.6.2",
+        "resolved": "https://registry.npmjs.org/@types/node/-/node-24.6.2.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@types+node@24.6.2\\node_modules\\@types\\node"
+      },
+      "@vitest/coverage-v8": {
+        "from": "@vitest/coverage-v8",
+        "version": "2.1.9",
+        "resolved": "https://registry.npmjs.org/@vitest/coverage-v8/-/coverage-v8-2.1.9.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@vitest+coverage-v8@2.1.9_vitest@2.1.9_@types+node@24.6.2_\\node_modules\\@vitest\\coverage-v8"
+      },
+      "audit-ci": {
+        "from": "audit-ci",
+        "version": "7.1.0",
+        "resolved": "https://registry.npmjs.org/audit-ci/-/audit-ci-7.1.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\audit-ci@7.1.0\\node_modules\\audit-ci"
+      },
+      "depcheck": {
+        "from": "depcheck",
+        "version": "1.4.7",
+        "resolved": "https://registry.npmjs.org/depcheck/-/depcheck-1.4.7.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\depcheck@1.4.7\\node_modules\\depcheck"
+      },
+      "eslint": {
+        "from": "eslint",
+        "version": "9.11.0",
+        "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.11.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint@9.11.0_jiti@2.6.1\\node_modules\\eslint"
+      },
+      "knip": {
+        "from": "knip",
+        "version": "5.64.2",
+        "resolved": "https://registry.npmjs.org/knip/-/knip-5.64.2.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\knip@5.64.2_@types+node@24.6.2_typescript@5.6.3\\node_modules\\knip"
+      },
+      "license-checker": {
+        "from": "license-checker",
+        "version": "25.0.1",
+        "resolved": "https://registry.npmjs.org/license-checker/-/license-checker-25.0.1.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\license-checker@25.0.1\\node_modules\\license-checker"
+      },
+      "madge": {
+        "from": "madge",
+        "version": "8.0.0",
+        "resolved": "https://registry.npmjs.org/madge/-/madge-8.0.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\madge@8.0.0_typescript@5.6.3\\node_modules\\madge"
+      },
+      "prettier": {
+        "from": "prettier",
+        "version": "3.6.2",
+        "resolved": "https://registry.npmjs.org/prettier/-/prettier-3.6.2.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\prettier@3.6.2\\node_modules\\prettier"
+      },
+      "tsx": {
+        "from": "tsx",
+        "version": "4.19.1",
+        "resolved": "https://registry.npmjs.org/tsx/-/tsx-4.19.1.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\tsx@4.19.1\\node_modules\\tsx"
+      },
+      "typescript": {
+        "from": "typescript",
+        "version": "5.6.3",
+        "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.6.3.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\typescript@5.6.3\\node_modules\\typescript"
+      },
+      "typescript-eslint": {
+        "from": "typescript-eslint",
+        "version": "8.7.0",
+        "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.7.0.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\typescript-eslint@8.7.0_eslint@9.11.0_jiti@2.6.1__typescript@5.6.3\\node_modules\\typescript-eslint"
+      },
+      "vitest": {
+        "from": "vitest",
+        "version": "2.1.9",
+        "resolved": "https://registry.npmjs.org/vitest/-/vitest-2.1.9.tgz",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\vitest@2.1.9_@types+node@24.6.2\\node_modules\\vitest"
+      }
+    },
+    "unsavedDependencies": {
+      "eslint-config-next": {
+        "from": "eslint-config-next",
+        "version": "link:node_modules/.pnpm/eslint-config-next@15.5.4_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3/node_modules/eslint-config-next",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-config-next@15.5.4_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3\\node_modules\\eslint-config-next"
+      },
+      "eslint-import-resolver-node": {
+        "from": "eslint-import-resolver-node",
+        "version": "link:node_modules/.pnpm/eslint-import-resolver-node@0.3.9/node_modules/eslint-import-resolver-node",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-import-resolver-node@0.3.9\\node_modules\\eslint-import-resolver-node"
+      },
+      "eslint-module-utils": {
+        "from": "eslint-module-utils",
+        "version": "link:node_modules/.pnpm/eslint-module-utils@2.12.1_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typescr_oma5wkxbqaptro5zl3xnc5rhwa/node_modules/eslint-module-utils",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-module-utils@2.12.1_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typescr_oma5wkxbqaptro5zl3xnc5rhwa\\node_modules\\eslint-module-utils"
+      },
+      "eslint-plugin-import": {
+        "from": "eslint-plugin-import",
+        "version": "link:node_modules/.pnpm/eslint-plugin-import@2.32.0_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typesc_zhnbe6zdgr65di2xudaaup65aq/node_modules/eslint-plugin-import",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-plugin-import@2.32.0_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typesc_zhnbe6zdgr65di2xudaaup65aq\\node_modules\\eslint-plugin-import"
+      },
+      "eslint-import-resolver-typescript": {
+        "from": "eslint-import-resolver-typescript",
+        "version": "link:node_modules/.pnpm/eslint-import-resolver-typescript@3.10.1_eslint-plugin-import@2.32.0_eslint@9.11.0_jiti@1.21.7_/node_modules/eslint-import-resolver-typescript",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-import-resolver-typescript@3.10.1_eslint-plugin-import@2.32.0_eslint@9.11.0_jiti@1.21.7_\\node_modules\\eslint-import-resolver-typescript"
+      },
+      "eslint-plugin-jsx-a11y": {
+        "from": "eslint-plugin-jsx-a11y",
+        "version": "link:node_modules/.pnpm/eslint-plugin-jsx-a11y@6.10.2_eslint@9.11.0_jiti@1.21.7_/node_modules/eslint-plugin-jsx-a11y",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-plugin-jsx-a11y@6.10.2_eslint@9.11.0_jiti@1.21.7_\\node_modules\\eslint-plugin-jsx-a11y"
+      },
+      "eslint-plugin-react": {
+        "from": "eslint-plugin-react",
+        "version": "link:node_modules/.pnpm/eslint-plugin-react@7.37.5_eslint@9.11.0_jiti@1.21.7_/node_modules/eslint-plugin-react",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-plugin-react@7.37.5_eslint@9.11.0_jiti@1.21.7_\\node_modules\\eslint-plugin-react"
+      },
+      "eslint-scope": {
+        "from": "eslint-scope",
+        "version": "link:node_modules/.pnpm/eslint-scope@8.4.0/node_modules/eslint-scope",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-scope@8.4.0\\node_modules\\eslint-scope"
+      },
+      "eslint-plugin-react-hooks": {
+        "from": "eslint-plugin-react-hooks",
+        "version": "link:node_modules/.pnpm/eslint-plugin-react-hooks@5.2.0_eslint@9.11.0_jiti@1.21.7_/node_modules/eslint-plugin-react-hooks",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-plugin-react-hooks@5.2.0_eslint@9.11.0_jiti@1.21.7_\\node_modules\\eslint-plugin-react-hooks"
+      },
+      "eslint-visitor-keys": {
+        "from": "eslint-visitor-keys",
+        "version": "link:node_modules/.pnpm/eslint-visitor-keys@4.2.1/node_modules/eslint-visitor-keys",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\eslint-visitor-keys@4.2.1\\node_modules\\eslint-visitor-keys"
+      },
+      "@eslint-community/eslint-utils": {
+        "from": "@eslint-community/eslint-utils",
+        "version": "link:node_modules/.pnpm/@eslint-community+eslint-utils@4.9.0_eslint@9.11.0_jiti@1.21.7_/node_modules/@eslint-community/eslint-utils",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint-community+eslint-utils@4.9.0_eslint@9.11.0_jiti@1.21.7_\\node_modules\\@eslint-community\\eslint-utils"
+      },
+      "@eslint-community/regexpp": {
+        "from": "@eslint-community/regexpp",
+        "version": "link:node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint-community+regexpp@4.12.1\\node_modules\\@eslint-community\\regexpp"
+      },
+      "@rushstack/eslint-patch": {
+        "from": "@rushstack/eslint-patch",
+        "version": "link:node_modules/.pnpm/@rushstack+eslint-patch@1.13.0/node_modules/@rushstack/eslint-patch",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@rushstack+eslint-patch@1.13.0\\node_modules\\@rushstack\\eslint-patch"
+      },
+      "@eslint/config-array": {
+        "from": "@eslint/config-array",
+        "version": "link:node_modules/.pnpm/@eslint+config-array@0.18.0/node_modules/@eslint/config-array",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+config-array@0.18.0\\node_modules\\@eslint\\config-array"
+      },
+      "@eslint/core": {
+        "from": "@eslint/core",
+        "version": "link:node_modules/.pnpm/@eslint+core@0.16.0/node_modules/@eslint/core",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+core@0.16.0\\node_modules\\@eslint\\core"
+      },
+      "@eslint/eslintrc": {
+        "from": "@eslint/eslintrc",
+        "version": "link:node_modules/.pnpm/@eslint+eslintrc@3.3.1/node_modules/@eslint/eslintrc",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+eslintrc@3.3.1\\node_modules\\@eslint\\eslintrc"
+      },
+      "@eslint/object-schema": {
+        "from": "@eslint/object-schema",
+        "version": "link:node_modules/.pnpm/@eslint+object-schema@2.1.6/node_modules/@eslint/object-schema",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+object-schema@2.1.6\\node_modules\\@eslint\\object-schema"
+      },
+      "@eslint/plugin-kit": {
+        "from": "@eslint/plugin-kit",
+        "version": "link:node_modules/.pnpm/@eslint+plugin-kit@0.4.0/node_modules/@eslint/plugin-kit",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@eslint+plugin-kit@0.4.0\\node_modules\\@eslint\\plugin-kit"
+      },
+      "@next/eslint-plugin-next": {
+        "from": "@next/eslint-plugin-next",
+        "version": "link:node_modules/.pnpm/@next+eslint-plugin-next@15.5.4/node_modules/@next/eslint-plugin-next",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@next+eslint-plugin-next@15.5.4\\node_modules\\@next\\eslint-plugin-next"
+      },
+      "@types/js-yaml": {
+        "from": "@types/js-yaml",
+        "version": "link:node_modules/.pnpm/@types+js-yaml@4.0.9/node_modules/@types/js-yaml",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@types+js-yaml@4.0.9\\node_modules\\@types\\js-yaml"
+      },
+      "@typescript-eslint/eslint-plugin": {
+        "from": "@typescript-eslint/eslint-plugin",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+eslint-plugin@8.7.0_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.2_6ufk574bmrdmzevglcxbuhkoda/node_modules/@typescript-eslint/eslint-plugin",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+eslint-plugin@8.7.0_@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.2_6ufk574bmrdmzevglcxbuhkoda\\node_modules\\@typescript-eslint\\eslint-plugin"
+      },
+      "@typescript-eslint/parser": {
+        "from": "@typescript-eslint/parser",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3/node_modules/@typescript-eslint/parser",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+parser@8.7.0_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3\\node_modules\\@typescript-eslint\\parser"
+      },
+      "@typescript-eslint/scope-manager": {
+        "from": "@typescript-eslint/scope-manager",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+scope-manager@8.7.0/node_modules/@typescript-eslint/scope-manager",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+scope-manager@8.7.0\\node_modules\\@typescript-eslint\\scope-manager"
+      },
+      "@typescript-eslint/project-service": {
+        "from": "@typescript-eslint/project-service",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+project-service@8.46.0_typescript@5.9.3/node_modules/@typescript-eslint/project-service",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+project-service@8.46.0_typescript@5.9.3\\node_modules\\@typescript-eslint\\project-service"
+      },
+      "@typescript-eslint/tsconfig-utils": {
+        "from": "@typescript-eslint/tsconfig-utils",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+tsconfig-utils@8.46.0_typescript@5.9.3/node_modules/@typescript-eslint/tsconfig-utils",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+tsconfig-utils@8.46.0_typescript@5.9.3\\node_modules\\@typescript-eslint\\tsconfig-utils"
+      },
+      "@typescript-eslint/type-utils": {
+        "from": "@typescript-eslint/type-utils",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+type-utils@8.7.0_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3/node_modules/@typescript-eslint/type-utils",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+type-utils@8.7.0_eslint@9.11.0_jiti@1.21.7__typescript@5.6.3\\node_modules\\@typescript-eslint\\type-utils"
+      },
+      "@typescript-eslint/types": {
+        "from": "@typescript-eslint/types",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+types@8.7.0/node_modules/@typescript-eslint/types",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+types@8.7.0\\node_modules\\@typescript-eslint\\types"
+      },
+      "@typescript-eslint/typescript-estree": {
+        "from": "@typescript-eslint/typescript-estree",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+typescript-estree@8.7.0_typescript@5.6.3/node_modules/@typescript-eslint/typescript-estree",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+typescript-estree@8.7.0_typescript@5.6.3\\node_modules\\@typescript-eslint\\typescript-estree"
+      },
+      "@typescript-eslint/utils": {
+        "from": "@typescript-eslint/utils",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+utils@8.7.0_eslint@9.11.0_jiti@2.6.1__typescript@5.6.3/node_modules/@typescript-eslint/utils",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+utils@8.7.0_eslint@9.11.0_jiti@2.6.1__typescript@5.6.3\\node_modules\\@typescript-eslint\\utils"
+      },
+      "@typescript-eslint/visitor-keys": {
+        "from": "@typescript-eslint/visitor-keys",
+        "version": "link:node_modules/.pnpm/@typescript-eslint+visitor-keys@8.7.0/node_modules/@typescript-eslint/visitor-keys",
+        "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@typescript-eslint+visitor-keys@8.7.0\\node_modules\\@typescript-eslint\\visitor-keys"
+      }
+    }
+  }
+]
