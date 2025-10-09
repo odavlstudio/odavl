@@ -27,6 +27,14 @@ const _unusedVar = "test"; // This will create an ESLint warning (but now ignore
 // Check if --json flag is passed for structured output
 const isJsonMode = process.argv.includes("--json");
 
+/**
+ * Logs a message for a specific ODAVL phase with optional status indication.
+ * Supports both human-readable and JSON output modes for VS Code extension integration.
+ * 
+ * @param phase - The ODAVL phase (OBSERVE, DECIDE, ACT, VERIFY, LEARN)
+ * @param msg - The message to log
+ * @param status - The message status level for color-coding
+ */
 function logPhase(phase: string, msg: string, status: "info" | "success" | "error" = "info") {
   if (isJsonMode) {
     console.log(JSON.stringify({ type: "doctor", status, data: { phase, msg } }));
@@ -35,6 +43,13 @@ function logPhase(phase: string, msg: string, status: "info" | "success" | "erro
   }
 }
 
+/**
+ * Executes a shell command safely without throwing exceptions.
+ * Returns both stdout and stderr for comprehensive error handling.
+ * 
+ * @param cmd - The shell command to execute
+ * @returns Object containing stdout and stderr as strings
+ */
 function sh(cmd: string): { out: string; err: string } {
   try {
     const out = execSync(cmd, { stdio: ["ignore", "pipe", "pipe"] }).toString();
@@ -47,11 +62,21 @@ function sh(cmd: string): { out: string; err: string } {
   }
 }
 
+/**
+ * Ensures required ODAVL directories exist, creating them if necessary.
+ * Creates both reports directory (for metrics) and .odavl directory (for configuration).
+ */
 function ensureDirs() {
   if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
   if (!fs.existsSync(odavlDir)) fs.mkdirSync(odavlDir, { recursive: true });
 }
 
+/**
+ * Loads available improvement recipes from the .odavl/recipes directory.
+ * Each recipe is a JSON file containing automation patterns with trust scores.
+ * 
+ * @returns Array of recipe objects with id, trust score, and configuration
+ */
 function loadRecipes(): Recipe[] {
   const rDir = path.join(odavlDir, "recipes");
   const list: Recipe[] = [];
@@ -64,6 +89,14 @@ function loadRecipes(): Recipe[] {
   return list;
 }
 
+/**
+ * Updates the trust score for a recipe based on execution success.
+ * Trust scores range from 0.1 to 1.0, calculated as success_rate with safeguards.
+ * Higher trust recipes are prioritized in the DECIDE phase.
+ * 
+ * @param recipeId - Unique identifier for the recipe
+ * @param success - Whether the recipe execution was successful
+ */
 function updateTrust(recipeId: string, success: boolean) {
   const trustPath = path.join(odavlDir, "recipes-trust.json");
   let arr: TrustRecord[] = [];
@@ -78,6 +111,12 @@ function updateTrust(recipeId: string, success: boolean) {
   fs.writeFileSync(trustPath, JSON.stringify(arr, null, 2));
 }
 
+/**
+ * OBSERVE phase: Collects current code quality metrics from ESLint and TypeScript.
+ * This is the first phase of the ODAVL cycle, establishing baseline measurements.
+ * 
+ * @returns Metrics object containing warning counts and timestamp
+ */
 function observe(): Metrics {
   ensureDirs();
   // ESLint JSON
@@ -105,6 +144,13 @@ function observe(): Metrics {
   return metrics;
 }
 
+/**
+ * DECIDE phase: Selects the most appropriate improvement action based on trust scores.
+ * Chooses the highest-trust recipe from available options. Returns "noop" if no recipes exist.
+ * 
+ * @param _m - Current metrics (unused in basic implementation, reserved for future ML)
+ * @returns String identifier of the selected recipe or "noop"
+ */
 function decide(_m: Metrics): string {
   const recipes = loadRecipes();
   if (!recipes.length) return "noop";
@@ -114,6 +160,12 @@ function decide(_m: Metrics): string {
   return best.id;
 }
 
+/**
+ * ACT phase: Executes the improvement action determined in DECIDE phase.
+ * Creates undo snapshots before making changes for safe rollback capability.
+ * 
+ * @param decision - The recipe identifier to execute
+ */
 function act(decision: string) {
   if (decision === "remove-unused" || decision === "esm-hygiene" || decision === "format-consistency") {
     saveUndoSnapshot(["apps/cli/src/index.ts", "package.json", "tsconfig.json"]);
@@ -124,6 +176,13 @@ function act(decision: string) {
   }
 }
 
+/**
+ * Validates changes against quality gates defined in .odavl/gates.yml.
+ * Quality gates prevent degradation by setting maximum allowed increases in warnings/errors.
+ * 
+ * @param deltas - The change in metrics (positive = increase, negative = improvement)
+ * @returns Object containing pass/fail status, gate configuration, and any violations
+ */
 function checkGates(deltas: { eslint: number; types: number }): { passed: boolean; gates: unknown; violations: string[] } {
   const gatesPath = path.join(odavlDir, "gates.yml");
   let gates: unknown = {};
@@ -145,6 +204,13 @@ function checkGates(deltas: { eslint: number; types: number }): { passed: boolea
   return { passed, gates, violations };
 }
 
+/**
+ * VERIFY phase: Measures the impact of actions and validates against quality gates.
+ * Runs shadow verification in isolated environment before applying quality gate checks.
+ * 
+ * @param before - The metrics collected before the ACT phase
+ * @returns Object containing after metrics, deltas, gate results, and gate configuration
+ */
 function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; types: number }; gatesPassed: boolean; gates: unknown } {
   const after = observe();
   const deltas = {
@@ -165,6 +231,13 @@ function verify(before: Metrics): { after: Metrics; deltas: { eslint: number; ty
   return verify;
 }
 
+/**
+ * LEARN phase: Updates recipe trust scores and maintains execution history.
+ * This creates a feedback loop that improves future decision-making over time.
+ * Generates cryptographic attestations for successful improvements.
+ * 
+ * @param report - Complete run report with metrics, deltas, and gate results
+ */
 function learn(report: RunReport) {
   const success = report.deltas.eslint < 0 || report.deltas.types <= 0;
   updateTrust(report.decision, success);
@@ -178,6 +251,12 @@ function learn(report: RunReport) {
   if (report.gatesPassed) writeAttestation(report);
 }
 
+/**
+ * Generates cryptographic attestation for successful ODAVL improvements.
+ * Creates tamper-evident proof of automated quality improvements for audit trails.
+ * 
+ * @param report - The run report containing verified improvement results
+ */
 function writeAttestation(report: RunReport) {
   const attDir = path.join(odavlDir, "attestation");
   if (!fs.existsSync(attDir)) fs.mkdirSync(attDir, { recursive: true });
@@ -196,6 +275,12 @@ function writeAttestation(report: RunReport) {
   console.log(`[LEARN] Attestation saved → ${file}`);
 }
 
+/**
+ * Performs shadow verification by running quality checks in an isolated environment.
+ * This provides an additional safety layer before applying quality gates.
+ * 
+ * @returns true if all shadow verification checks pass, false otherwise
+ */
 function runShadowVerify(): boolean {
   const shadowDir = path.join(odavlDir, "shadow");
   if (!fs.existsSync(shadowDir)) fs.mkdirSync(shadowDir, { recursive: true });
@@ -248,6 +333,11 @@ function undoLast() {
   console.log("[UNDO] Project reverted to last safe state (" + snap.timestamp + ")");
 }
 
+/**
+ * Executes the complete ODAVL cycle: Observe → Decide → Act → Verify → Learn.
+ * This is the main entry point for autonomous code quality improvement.
+ * Creates comprehensive reports and maintains audit trails throughout the process.
+ */
 function runCycle() {
   logPhase("ODAVL", "Observe → Decide → Act → Verify → Learn", "info");
   const before = observe();
