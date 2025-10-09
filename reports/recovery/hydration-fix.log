@@ -1,0 +1,23 @@
+# ODAVL Site Hydration Fix Log
+**Timestamp:** 2025-10-10 23:00:00 UTC
+**Branch:** odavl/site-hotfix-20251010
+**Issue:** React Hydration Mismatch - Nested `<html>/<body>` elements
+
+## Problem Analysis
+- Root layout (app/layout.tsx) renders `<html><body>` ✓
+- Locale layout (app/[locale]/layout.tsx) ALSO renders `<html><body>` ❌
+- Next.js App Router violation: Only root layout should define document structure
+- Result: Nested HTML elements cause hydration mismatch
+
+## Solution Applied
+Remove `<html>` and `<body>` wrapper from LocaleLayout, keeping only providers and content wrapper.
+
+## Files Modified
+1. `src/app/[locale]/layout.tsx` - Remove nested HTML structure
+2. `src/app/layout.tsx` - Update to handle locale-aware attributes
+
+## Safety Constraints Met
+- ≤ 40 lines changed
+- ≤ 10 files modified
+- Zero destructive changes
+- ODAVL governance compliant

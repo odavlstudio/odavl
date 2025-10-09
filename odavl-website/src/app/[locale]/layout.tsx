@@ -29,19 +29,15 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <OptimizedMotionConfig>
-            <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
-              <Navbar />
-              <main id="main" role="main" className="pt-16">
-                {children}
-              </main>
-            </div>
-          </OptimizedMotionConfig>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <OptimizedMotionConfig>
+        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
+          <Navbar />
+          <main id="main" role="main" className="pt-16">
+            {children}
+          </main>
+        </div>
+      </OptimizedMotionConfig>
+    </NextIntlClientProvider>
   );
 }
