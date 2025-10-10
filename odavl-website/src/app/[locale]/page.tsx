@@ -2,23 +2,16 @@ import EnhancedHeroSection from '@/components/landing/EnhancedHeroSection';
 import TrustSection from '@/components/landing/TrustSection'; 
 import { Footer, LazyContent, WebVitalsReporter, LocaleSwitcher } from '@/components';
 import Link from 'next/link';
-import { getMessages } from 'next-intl/server';
 
-type HomeProps = {
-  readonly params: Promise<{ readonly locale: string }>;
-};
+export default function Home() {
+  // Locale and i18n provider now handled at root layout level
 
-type HomeContentProps = {
-  readonly heroMessages: Record<string, string>;
-};
-
-function HomeContent({ heroMessages }: HomeContentProps) {
   return (
     <div className="min-h-screen">
       <WebVitalsReporter />
       
-      {/* Enhanced Hero Section with pre-loaded messages */}
-      <EnhancedHeroSection heroMessages={heroMessages} />
+      {/* Enhanced Hero Section - now uses standard translations */}
+      <EnhancedHeroSection />
       
       {/* Trust Section with Social Proof */}
       <TrustSection />
@@ -42,27 +35,4 @@ function HomeContent({ heroMessages }: HomeContentProps) {
       <Footer />
     </div>
   );
-}
-
-export default async function Home({ params }: HomeProps) {
-  const { locale } = await params;
-  const messages = await getMessages();
-  
-  if (!messages) {
-    console.warn('⚠️ Missing messages for locale', locale);
-    // Return fallback content for SSR safety
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
-        <div className="text-center text-white">
-          <h1 className="text-4xl font-bold mb-4">ODAVL</h1>
-          <p className="text-xl">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-  
-  // Pre-extract hero messages for SSR hydration
-  const heroMessages = messages.hero as Record<string, string> || {};
-  
-  return <HomeContent heroMessages={heroMessages} />;
 }

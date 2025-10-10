@@ -1,13 +1,11 @@
 /*
- * ODAVL WAVE X-1 - Modern Locale Layout
- * Next.js 15 locale-specific layout with internationalization
+ * ODAVL WAVE X-1 - Modern Locale Layout (SSR Fixed)
+ * Next.js 15 locale-specific layout - i18n provider moved to root
  */
 
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import OptimizedMotionConfig from '@/components/motion/MotionConfig';
-import SafeIntlProvider from '@/components/SafeIntlProvider';
 
 type LocaleLayoutProps = {
   readonly children: React.ReactNode;
@@ -26,18 +24,14 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
-
   return (
-    <SafeIntlProvider messages={messages} locale={locale}>
-      <OptimizedMotionConfig>
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
-          <Navbar />
-          <main id="main" role="main" className="pt-16">
-            {children}
-          </main>
-        </div>
-      </OptimizedMotionConfig>
-    </SafeIntlProvider>
+    <OptimizedMotionConfig>
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
+        <Navbar />
+        <main id="main" role="main" className="pt-16">
+          {children}
+        </main>
+      </div>
+    </OptimizedMotionConfig>
   );
 }

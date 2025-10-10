@@ -56,16 +56,8 @@ const EnterpriseLogoBadge: React.FC = () => (
   </motion.div>
 );
 
-const ValuePropositionBadges: React.FC<{ heroMessages?: Record<string, unknown> }> = ({ heroMessages }) => {
+const ValuePropositionBadges: React.FC = () => {
   const t = useTranslations('hero');
-  
-  const safeT = (key: string): string => {
-    try {
-      return t(key);
-    } catch {
-      return (heroMessages?.[key] as string) || key;
-    }
-  };
   
   const benefits = [
     { key: 'autonomous', icon: '🤖' },
@@ -94,24 +86,16 @@ const ValuePropositionBadges: React.FC<{ heroMessages?: Record<string, unknown> 
           transition={{ delay: 0.6 + index * 0.1 }}
         >
           <span className="text-lg">{benefit.icon}</span>
-          <span className="text-sm font-medium text-white">{safeT(`benefits.${benefit.key}`)}</span>
+          <span className="text-sm font-medium text-white">{t(`benefits.${benefit.key}`)}</span>
         </motion.div>
       ))}
     </motion.div>
   );
 };
 
-const CTAButtons: React.FC<{ heroMessages?: Record<string, unknown> }> = ({ heroMessages }) => {
+const CTAButtons: React.FC = () => {
   const t = useTranslations('hero');
   const locale = useLocale();
-  
-  const safeT = (key: string): string => {
-    try {
-      return t(key);
-    } catch {
-      return (heroMessages?.[key] as string) || key;
-    }
-  };
 
   return (
     <motion.div
@@ -137,7 +121,7 @@ const CTAButtons: React.FC<{ heroMessages?: Record<string, unknown> }> = ({ hero
             whileHover={{ x: '100%' }}
             transition={{ duration: 0.5 }}
           />
-          <span className="relative z-10 text-white">{safeT('ctaPrimary')}</span>
+          <span className="relative z-10 text-white">{t('ctaPrimary')}</span>
         </Link>
       </Button>
 
@@ -149,28 +133,15 @@ const CTAButtons: React.FC<{ heroMessages?: Record<string, unknown> }> = ({ hero
         asChild
       >
         <Link href={`/${locale}/demo`}>
-          {safeT('ctaSecondary')}
+          {t('ctaSecondary')}
         </Link>
       </Button>
     </motion.div>
   );
 };
 
-type EnhancedHeroSectionProps = {
-  readonly heroMessages?: Record<string, string>;
-};
-
-export const EnhancedHeroSection: React.FC<EnhancedHeroSectionProps> = ({ heroMessages }) => {
+export const EnhancedHeroSection: React.FC = () => {
   const t = useTranslations('hero');
-  
-  // Use pre-loaded messages as fallback during SSR
-  const safeT = (key: string): string => {
-    try {
-      return t(key);
-    } catch {
-      return (heroMessages?.[key] as string) || key;
-    }
-  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -227,7 +198,7 @@ export const EnhancedHeroSection: React.FC<EnhancedHeroSectionProps> = ({ heroMe
               transition={{ delay: 0.1 }}
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-white">{safeT('preHeadline')}</span>
+              <span className="text-sm font-medium text-white">{t('preHeadline')}</span>
             </motion.div>
 
             {/* Main headline */}
@@ -244,7 +215,7 @@ export const EnhancedHeroSection: React.FC<EnhancedHeroSectionProps> = ({ heroMe
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, ...modernTheme.motion.spring }}
             >
-              {safeT('headline')}
+              {t('headline')}
             </motion.h1>
             
             {/* Subheadline */}
@@ -254,14 +225,14 @@ export const EnhancedHeroSection: React.FC<EnhancedHeroSectionProps> = ({ heroMe
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, ...modernTheme.motion.spring }}
             >
-              {safeT('subheadline')}
+              {t('subheadline')}
             </motion.p>
 
             {/* Value proposition badges */}
-            <ValuePropositionBadges heroMessages={heroMessages} />
+            <ValuePropositionBadges />
             
             {/* CTA Buttons */}
-            <CTAButtons heroMessages={heroMessages} />
+            <CTAButtons />
 
             {/* Trust indicator */}
             <motion.p
@@ -270,7 +241,7 @@ export const EnhancedHeroSection: React.FC<EnhancedHeroSectionProps> = ({ heroMe
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              {renderBoldText(safeT('trustIndicator'))}
+              {renderBoldText(t('trustIndicator'))}
             </motion.p>
           </motion.div>
           
