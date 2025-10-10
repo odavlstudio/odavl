@@ -1,6 +1,66 @@
 import * as vscode from 'vscode';
 import { spawn } from 'child_process';
 
+class ODAVLItem extends vscode.TreeItem {
+  constructor(
+    public readonly label: string,
+    public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+    public readonly phase?: string,
+    public readonly status?: string
+  ) {
+    super(label, collapsibleState);
+    this.tooltip = `${this.label}`;
+    this.contextValue = phase || 'root';
+    
+    if (status) {
+      let iconName: string;
+      if (status === 'success') {
+        iconName = 'check';
+      } else if (status === 'error') {
+        iconName = 'error';
+      } else if (status === 'running') {
+        iconName = 'sync~spin';
+      } else {
+        iconName = 'circle-outline';
+      }
+      this.iconPath = new vscode.ThemeIcon(iconName);
+    }
+  }
+}
+
+type TreeChangeEvent = ODAVLItem | undefined | null | void;
+
+class ODAVLTreeDataProvider implements vscode.TreeDataProvider<ODAVLItem> {
+  private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
+  readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+
+  private cycleStatus: { [key: string]: string } = {};
+
+  refresh(): void {
+    this._onDidChangeTreeData.fire();
+  }
+
+  updatePhaseStatus(phase: string, status: string): void {
+    this.cycleStatus[phase] = status;
+    this.refresh();
+  }
+
+  getTreeItem(element: ODAVLItem): vscode.TreeItem {
+    return element;
+  }
+
+  getChildren(element?: ODAVLItem): Thenable<ODAVLItem[]> {
+    if (!element) {
+      // Root items - ODAVL cycle phases
+      const phases = ['Observe', 'Decide', 'Act', 'Verify', 'Learn'];
+      return Promise.resolve(phases.map(phase => 
+        new ODAVLItem(phase, vscode.TreeItemCollapsibleState.None, phase, this.cycleStatus[phase] || 'idle')
+      ));
+    }
+    return Promise.resolve([]);
+  }
+}
+
 function startODAVLProcess(panel: vscode.WebviewPanel, workspaceRoot: string | undefined) {
   if (!workspaceRoot) {
     panel.webview.postMessage({
@@ -68,7 +128,12 @@ function startODAVLProcess(panel: vscode.WebviewPanel, workspaceRoot: string | u
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('odavl.doctor', () => {
+  // Create tree data provider
+  const treeProvider = new ODAVLTreeDataProvider();
+  vscode.window.registerTreeDataProvider('odavlDoctor', treeProvider);
+
+  // Register commands
+  const doctorCommand = vscode.commands.registerCommand('odavl.doctor', () => {
     const panel = vscode.window.createWebviewPanel(
       'odavlDoctor',
       'ODAVL Doctor',
@@ -88,7 +153,7 @@ export function activate(context: vscode.ExtensionContext) {
     panel.webview.onDidReceiveMessage(
       (message: { command: string; }) => {
         if (message.command === 'explain') {
-          vscode.window.showInformationMessage('ODAVL Explanation: The system uses Observe-Decide-Act-Verify-Learn cycle to autonomously improve code quality.');
+          vscode.window.showInformationMessage('ODAVL: Observe-Decide-Act-Verify-Learn cycle for autonomous code quality improvement.');
         } else if (message.command === 'run') {
           startODAVLProcess(panel, workspaceRoot);
         }
@@ -98,7 +163,15 @@ export function activate(context: vscode.ExtensionContext) {
     );
   });
 
-  context.subscriptions.push(disposable);
+  const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', () => {
+    vscode.commands.executeCommand('odavl.doctor');
+  });
+
+  const refreshCommand = vscode.commands.registerCommand('odavl.refresh', () => {
+    treeProvider.refresh();
+  });
+
+  context.subscriptions.push(doctorCommand, runCycleCommand, refreshCommand);
 }
 
 function getWebviewContent(): string {

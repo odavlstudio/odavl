@@ -1,6 +1,6 @@
 {
   "name": "odavl",
-  "displayName": "ODAVL Studio",
+  "displayName": "ODAVL",
   "publisher": "odavl",
   "description": "Autonomous code quality with enterprise safety gates.",
   "version": "0.1.1",
@@ -13,14 +13,60 @@
     "Linters",
     "Programming Languages"
   ],
+  "activationEvents": [
+    "workspaceContains:.odavl/"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "views": {
+      "odavl": [
+        {
+          "id": "odavlDoctor",
+          "name": "Doctor Monitor",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "odavl",
+          "title": "ODAVL",
+          "icon": "assets/icon.png"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "odavl.doctor",
-        "title": "ODAVL: Doctor Mode"
+        "title": "ODAVL: Doctor Mode",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "odavl.runCycle",
+        "title": "Run ODAVL Cycle",
+        "icon": "$(play)"
+      },
+      {
+        "command": "odavl.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "odavl.runCycle",
+          "when": "view == odavlDoctor",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl.refresh",
+          "when": "view == odavlDoctor",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "repository": {
     "type": "git",
