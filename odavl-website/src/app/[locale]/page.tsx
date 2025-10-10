@@ -8,13 +8,17 @@ type HomeProps = {
   readonly params: Promise<{ readonly locale: string }>;
 };
 
-function HomeContent() {
+type HomeContentProps = {
+  readonly heroMessages: Record<string, string>;
+};
+
+function HomeContent({ heroMessages }: HomeContentProps) {
   return (
     <div className="min-h-screen">
       <WebVitalsReporter />
       
-      {/* Enhanced Hero Section */}
-      <EnhancedHeroSection />
+      {/* Enhanced Hero Section with pre-loaded messages */}
+      <EnhancedHeroSection heroMessages={heroMessages} />
       
       {/* Trust Section with Social Proof */}
       <TrustSection />
@@ -46,7 +50,19 @@ export default async function Home({ params }: HomeProps) {
   
   if (!messages) {
     console.warn('⚠️ Missing messages for locale', locale);
+    // Return fallback content for SSR safety
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
+        <div className="text-center text-white">
+          <h1 className="text-4xl font-bold mb-4">ODAVL</h1>
+          <p className="text-xl">Loading...</p>
+        </div>
+      </div>
+    );
   }
   
-  return <HomeContent />;
+  // Pre-extract hero messages for SSR hydration
+  const heroMessages = messages.hero as Record<string, string> || {};
+  
+  return <HomeContent heroMessages={heroMessages} />;
 }
