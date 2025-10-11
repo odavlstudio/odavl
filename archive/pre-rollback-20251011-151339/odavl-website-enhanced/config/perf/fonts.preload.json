@@ -1,0 +1,57 @@
+{
+  "fonts": [
+    {
+      "family": "Inter",
+      "variants": ["400", "500", "600", "700"],
+      "display": "swap",
+      "preload": true,
+      "fallback": "system-ui, sans-serif",
+      "files": [
+        {
+          "weight": "400",
+          "style": "normal",
+          "url": "/_next/static/fonts/inter-latin-400-normal.woff2",
+          "format": "woff2"
+        },
+        {
+          "weight": "500", 
+          "style": "normal",
+          "url": "/_next/static/fonts/inter-latin-500-normal.woff2",
+          "format": "woff2"
+        },
+        {
+          "weight": "600",
+          "style": "normal", 
+          "url": "/_next/static/fonts/inter-latin-600-normal.woff2",
+          "format": "woff2"
+        },
+        {
+          "weight": "700",
+          "style": "normal",
+          "url": "/_next/static/fonts/inter-latin-700-normal.woff2",
+          "format": "woff2"
+        }
+      ]
+    }
+  ],
+  "preconnect": [
+    "https://fonts.gstatic.com",
+    "https://plausible.io"
+  ],
+  "dns-prefetch": [
+    "//fonts.googleapis.com",
+    "//plausible.io"
+  ],
+  "critical_fonts": [
+    {
+      "family": "Inter",
+      "weight": "400",
+      "priority": "high"
+    },
+    {
+      "family": "Inter", 
+      "weight": "600",
+      "priority": "medium"
+    }
+  ]
+}

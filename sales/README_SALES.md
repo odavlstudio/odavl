@@ -5,7 +5,7 @@
 - `ONEPAGER.md` - Single-page executive summary (PDF-ready)
 - `PITCH_DECK.md` - 8-slide presentation deck
 - `DEMO_5MIN.md` - Crisp 5-minute live demo script
-- `assets/` - Logo and visual assets (web-safe copies)
+- `assets/` - Sales-specific visual assets (for standardized branding use `../logo/odavl.png`)
 
 ## 🎯 How to Use This Kit
 
@@ -17,7 +17,7 @@
    - `[YOUR_EMAIL]` → Your business email
    - `[YOUR_PHONE]` → Your phone number
 3. Update company-specific metrics in the results section
-4. Add your headshot or company logo if desired
+4. Add your headshot or use the official ODAVL logo at `../logo/odavl.png` if desired
 
 ### Exporting to PDF
 

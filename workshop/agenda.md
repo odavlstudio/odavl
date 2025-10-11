@@ -24,7 +24,7 @@
 
 - Node.js version validation (2 min)
 - Repository clone and setup (5 min)
-- VS Code ODAVL Doctor extension installation (3 min)
+- VS Code ODAVL Studio extension installation (3 min)
 - CLI verification: `pnpm odavl:observe` test run (5 min)
 
 ### 25-45 minutes: First ODAVL Cycle - Sample Repository

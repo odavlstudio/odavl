@@ -1,0 +1,158 @@
+/*
+ * ODAVL WAVE X-1 - Modern Global Styles
+ * Enhanced with glass morphism, dark/light theme support, and modern gradients
+ * Builds upon existing Tailwind/shadcn system without breaking changes
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Enhanced CSS Variables for Modern Theme */
+  :root {
+    --radius: 0.75rem;
+    
+    /* ODAVL Modern Color Palette */
+    --odavl-primary: 221.2 83.2% 53.3%;
+    --odavl-primary-deep: 221.2 83.2% 35%;
+    --odavl-accent: 189 94% 43%;
+    --odavl-pulse: 186 100% 60%;
+    
+    /* Glass Morphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
+    /* Enhanced Gradients */
+    --hero-gradient: radial-gradient(ellipse at top, hsl(var(--odavl-primary-deep)) 0%, hsl(212 84% 24%) 50%, hsl(222 84% 5%) 100%);
+    --card-gradient: linear-gradient(145deg, rgba(30, 64, 175, 0.05), rgba(6, 182, 212, 0.05));
+    --text-gradient: linear-gradient(135deg, hsl(var(--odavl-primary)), hsl(var(--odavl-accent)), hsl(var(--odavl-pulse)));
+    
+    /* Animation Variables */
+    --pulse-duration: 2s;
+    --float-duration: 4s;
+  }
+
+  .dark {
+    /* Dark mode enhancements */
+    --glass-bg: rgba(0, 0, 0, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --hero-gradient: radial-gradient(ellipse at top, hsl(222 84% 5%) 0%, hsl(212 84% 15%) 50%, hsl(222 84% 3%) 100%);
+  }
+
+  /* Global Enhancements */
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--odavl-primary));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--odavl-primary-deep));
+  }
+}
+
+@layer components {
+  /* Glass Morphism Utilities */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+  }
+
+  /* Modern Gradient Text */
+  .gradient-text {
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Enhanced Button Styles */
+  .btn-glass {
+    @apply glass hover:bg-white/20 transition-all duration-300;
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float var(--float-duration) ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow var(--pulse-duration) ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(-10px); }
+    50% { transform: translateY(10px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  /* Responsive Text Utilities */
+  .text-responsive-hero {
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: 1.1;
+  }
+
+  .text-responsive-display {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.2;
+  }
+
+  .text-responsive-body {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  /* Container Utilities */
+  .container-glass {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 glass-card;
+  }
+
+  /* Background Utilities */
+  .bg-hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .bg-card-gradient {
+    background: var(--card-gradient);
+  }
+}

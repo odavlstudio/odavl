@@ -19,7 +19,7 @@
 **[0:10-0:25] Solution Introduction (15 seconds)**
 > "ODAVL is autonomous code quality. It continuously monitors your codebase and makes safe, automated fixes within enterprise safety constraints."
 
-*Visual*: Show ODAVL logo/website hero section
+*Visual*: Show official ODAVL logo (`../logo/odavl.png`) or website hero section
 
 **[0:25-0:45] Live Demo - Installation (20 seconds)**
 > "Installation takes 30 seconds. Install the VS Code extension, then the CLI."

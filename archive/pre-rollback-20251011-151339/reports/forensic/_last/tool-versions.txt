@@ -1,0 +1,15 @@
+ODAVL Forensic Tool Versions:
+ESLint: v9.11.0
+Prettier: 3.6.2
+Madge: 8.0.0
+Knip: 5.64.2
+Vitest: vitest/2.1.9 win32-x64 node-v22.19.0
+TypeScript: 5.6.3
+License Checker: 25.0.1
+Depcheck: 1.4.7
+Audit CI: 7.1.0
+
+Generated: October 9, 2025
+Platform: Windows (PowerShell)
+Node: v22.19.0
+PNPM: 9.12.2

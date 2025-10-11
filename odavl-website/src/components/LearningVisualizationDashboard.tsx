@@ -238,7 +238,7 @@ export function LearningVisualizationDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {data.history.slice(-6).reverse().map((entry, _index) => (
+              {data.history.slice(-6).reverse().map((entry) => (
                 <div key={entry.ts} className="flex items-start gap-4 p-4 bg-slate-50 rounded-lg border">
                   <div className="flex-shrink-0">
                     <Badge variant={entry.success ? "default" : "destructive"} className="mt-1">

@@ -1,0 +1,1287 @@
+[
+  {
+    "ts": "2025-10-05T15:41:58.670Z",
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:41:47.954Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:41:58.666Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "remove-unused"
+  },
+  {
+    "ts": "2025-10-05T15:55:19.949Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:13.521Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:19.946Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T15:55:41.225Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:34.117Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:41.219Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T15:56:04.749Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:55:56.448Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T15:56:04.747Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene"
+  },
+  {
+    "ts": "2025-10-05T16:06:40.629Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:06:33.951Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:06:40.623Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-05T16:20:21.499Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:20:07.403Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:20:13.856Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-05T16:21:15.528Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:21:07.695Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:21:14.003Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-05T16:22:25.516Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:22:08.550Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:22:18.853Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-05T16:32:25.266Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:32:09.964Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:32:20.919Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-05T16:33:24.196Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:33:01.081Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-05T16:33:15.621Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 10
+      },
+      "buildMs": {
+        "deltaPctMax": 5
+      },
+      "policy": {
+        "violationsMax": 0
+      },
+      "shadow": {
+        "mustPass": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-09T21:51:36.767Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:51:09.709Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:51:28.919Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-09T21:58:10.767Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:57:44.608Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:58:03.225Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-09T21:59:28.423Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:58:59.738Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T21:59:18.210Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-09T22:19:09.052Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 2,
+      "typeErrors": 212,
+      "timestamp": "2025-10-09T22:18:39.649Z"
+    },
+    "after": {
+      "eslintWarnings": 2,
+      "typeErrors": 212,
+      "timestamp": "2025-10-09T22:18:58.663Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-09T22:20:07.619Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T22:19:38.586Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T22:19:57.214Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-09T22:51:58.657Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T22:51:29.750Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T22:51:48.416Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-09T23:44:31.500Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T23:44:03.009Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T23:44:22.888Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-09T23:49:09.572Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T23:48:45.993Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-09T23:49:01.101Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:23:17.262Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:22:47.241Z"
+    },
+    "after": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:23:06.237Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:44:20.666Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:43:52.093Z"
+    },
+    "after": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:44:11.612Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:45:38.420Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:45:06.842Z"
+    },
+    "after": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:45:27.643Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:47:30.464Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:46:58.641Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:47:20.100Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:48:52.284Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:48:26.000Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:48:43.404Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T18:51:57.280Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:51:28.011Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T18:51:48.579Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T19:22:16.145Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:21:52.583Z"
+    },
+    "after": {
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:22:09.685Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-10T19:27:45.463Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:26:47.226Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:27:30.019Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T19:40:47.597Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:39:14.366Z"
+    },
+    "after": {
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T19:40:30.124Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  },
+  {
+    "ts": "2025-10-10T20:02:10.749Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 3,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T20:01:08.248Z"
+    },
+    "after": {
+      "eslintWarnings": 3,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T20:01:53.033Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-10T20:18:10.869Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T20:17:12.485Z"
+    },
+    "after": {
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "timestamp": "2025-10-10T20:17:55.179Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": true,
+    "gates": {
+      "eslint": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "typeErrors": {
+        "deltaMax": 0,
+        "absoluteMax": 0
+      },
+      "bundleKB": {
+        "deltaMax": 5,
+        "absoluteMax": 1000
+      },
+      "buildMs": {
+        "deltaPctMax": 3,
+        "absoluteMax": 30000
+      },
+      "policy": {
+        "violationsMax": 0,
+        "strictMode": true
+      },
+      "shadow": {
+        "mustPass": true,
+        "timeoutMs": 60000
+      },
+      "security": {
+        "highCVEs": 0,
+        "mediumCVEs": 5,
+        "licenseIssues": 0
+      },
+      "complexity": {
+        "maxPerFile": 10,
+        "maxTotal": 100
+      },
+      "coverage": {
+        "minPercent": 80,
+        "deltaMin": 0
+      },
+      "pilot": {
+        "readiness": true,
+        "securityPassed": true
+      }
+    }
+  },
+  {
+    "ts": "2025-10-11T11:48:05.231Z",
+    "success": true,
+    "before": {
+      "eslintWarnings": 72,
+      "typeErrors": 280,
+      "timestamp": "2025-10-11T11:47:04.201Z"
+    },
+    "after": {
+      "eslintWarnings": 72,
+      "typeErrors": 280,
+      "timestamp": "2025-10-11T11:47:53.049Z"
+    },
+    "deltas": {
+      "eslint": 0,
+      "types": 0
+    },
+    "decision": "esm-hygiene",
+    "gatesPassed": false,
+    "gates": {}
+  }
+]

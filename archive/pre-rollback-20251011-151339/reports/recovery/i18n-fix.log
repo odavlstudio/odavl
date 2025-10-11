@@ -1,0 +1,32 @@
+# ODAVL Site i18n Fix Log
+**Timestamp:** 2025-10-10 23:05:00 UTC
+**Branch:** odavl/site-hotfix-20251010
+**Issue:** MISSING_MESSAGE errors for pricing tier keys
+
+## Problem Analysis
+EnhancedPricingSection.tsx expects under useTranslations('pricing'):
+- `tiers.starter.{name,price,description,features.*}`
+- `tiers.professional.{name,price,description,features.*}`  
+- `tiers.enterprise.{name,price,description,features.*}`
+
+Current messages/en.json only has partial tiers structure:
+- `tiers.free.description` ✓
+- `tiers.pro.description` ✓ 
+- `tiers.enterprise.description` ✓
+- Missing: All `name`, `price`, complete `features.*` for starter/professional
+
+## Solution Applied
+Add complete pricing tier structure with safe defaults aligned to ODAVL product.
+
+## Files Modified
+1. `messages/en.json` - Add missing pricing tier keys
+
+## Keys Added
+- pricing.tiers.starter.* (complete structure)
+- pricing.tiers.professional.* (complete structure)
+- Updated pricing.tiers.enterprise.* (align naming)
+
+## Safety Constraints Met
+- ≤ 40 lines of JSON added
+- No existing keys modified
+- Product copy aligned to ODAVL branding

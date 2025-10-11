@@ -1,5 +1,9 @@
 import * as vscode from 'vscode';
 import { spawn } from 'child_process';
+import { DashboardProvider } from './components/DashboardProvider';
+import { RecipesProvider } from './components/RecipesProvider';
+import { ActivityProvider } from './components/ActivityProvider';
+import { ConfigProvider } from './components/ConfigProvider';
 
 class ODAVLItem extends vscode.TreeItem {
   constructor(
@@ -128,9 +132,25 @@ function startODAVLProcess(panel: vscode.WebviewPanel, workspaceRoot: string | u
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  // Create tree data provider
-  const treeProvider = new ODAVLTreeDataProvider();
-  vscode.window.registerTreeDataProvider('odavlDoctor', treeProvider);
+  // Log activation to console
+  console.log('ODAVL VS Code extension is now active!');
+  
+  // Show activation confirmation
+  vscode.window.showInformationMessage("ODAVL extension activated!");
+
+  // Create all tree data providers
+  const doctorProvider = new ODAVLTreeDataProvider();
+  const dashboardProvider = new DashboardProvider();
+  const recipesProvider = new RecipesProvider();
+  const activityProvider = new ActivityProvider();
+  const configProvider = new ConfigProvider();
+
+  // Register all tree data providers
+  vscode.window.registerTreeDataProvider('odavlDoctor', doctorProvider);
+  vscode.window.registerTreeDataProvider('odavlDashboard', dashboardProvider);
+  vscode.window.registerTreeDataProvider('odavlRecipes', recipesProvider);
+  vscode.window.registerTreeDataProvider('odavlActivity', activityProvider);
+  vscode.window.registerTreeDataProvider('odavlConfig', configProvider);
 
   // Register commands
   const doctorCommand = vscode.commands.registerCommand('odavl.doctor', () => {
@@ -168,10 +188,39 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   const refreshCommand = vscode.commands.registerCommand('odavl.refresh', () => {
-    treeProvider.refresh();
+    doctorProvider.refresh();
+    dashboardProvider.refresh();
+    recipesProvider.refresh();
+    activityProvider.refresh();
+    configProvider.refresh();
   });
 
-  context.subscriptions.push(doctorCommand, runCycleCommand, refreshCommand);
+  // Add individual refresh commands for each view
+  const refreshDashboardCommand = vscode.commands.registerCommand('odavl.refreshDashboard', () => {
+    dashboardProvider.refresh();
+  });
+
+  const refreshRecipesCommand = vscode.commands.registerCommand('odavl.refreshRecipes', () => {
+    recipesProvider.refresh();
+  });
+
+  const refreshActivityCommand = vscode.commands.registerCommand('odavl.refreshActivity', () => {
+    activityProvider.refresh();
+  });
+
+  const refreshConfigCommand = vscode.commands.registerCommand('odavl.refreshConfig', () => {
+    configProvider.refresh();
+  });
+
+  context.subscriptions.push(
+    doctorCommand, 
+    runCycleCommand, 
+    refreshCommand,
+    refreshDashboardCommand,
+    refreshRecipesCommand,
+    refreshActivityCommand,
+    refreshConfigCommand
+  );
 }
 
 function getWebviewContent(): string {

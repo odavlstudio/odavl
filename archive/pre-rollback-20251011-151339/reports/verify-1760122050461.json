@@ -1,0 +1,55 @@
+{
+  "after": {
+    "eslintWarnings": 0,
+    "typeErrors": 0,
+    "timestamp": "2025-10-10T18:47:20.100Z"
+  },
+  "deltas": {
+    "eslint": 0,
+    "types": 0
+  },
+  "gatesPassed": true,
+  "gates": {
+    "eslint": {
+      "deltaMax": 0,
+      "absoluteMax": 0
+    },
+    "typeErrors": {
+      "deltaMax": 0,
+      "absoluteMax": 0
+    },
+    "bundleKB": {
+      "deltaMax": 5,
+      "absoluteMax": 1000
+    },
+    "buildMs": {
+      "deltaPctMax": 3,
+      "absoluteMax": 30000
+    },
+    "policy": {
+      "violationsMax": 0,
+      "strictMode": true
+    },
+    "shadow": {
+      "mustPass": true,
+      "timeoutMs": 60000
+    },
+    "security": {
+      "highCVEs": 0,
+      "mediumCVEs": 5,
+      "licenseIssues": 0
+    },
+    "complexity": {
+      "maxPerFile": 10,
+      "maxTotal": 100
+    },
+    "coverage": {
+      "minPercent": 80,
+      "deltaMin": 0
+    },
+    "pilot": {
+      "readiness": true,
+      "securityPassed": true
+    }
+  }
+}

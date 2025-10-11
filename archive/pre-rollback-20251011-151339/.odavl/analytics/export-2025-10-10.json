@@ -1,0 +1,483 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-10T19:40:47.642Z",
+  "retentionPolicy": {
+    "rawDataDays": 90,
+    "aggregatedDataMonths": 12,
+    "maxFileSize": 52428800
+  },
+  "summary": {
+    "totalCycles": 17,
+    "successRate": 70.58823529411765,
+    "avgCycleTime": 130881,
+    "topRecipes": [
+      "esm-hygiene"
+    ],
+    "qualityImprovement": 14.273504273504276
+  },
+  "rawData": [
+    {
+      "timestamp": "2025-10-09T21:51:28.919Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": false,
+      "gatesPassed": false,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T21:58:03.225Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": false,
+      "gatesPassed": false,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T21:59:18.210Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T22:18:58.663Z",
+      "eslintWarnings": 2,
+      "typeErrors": 212,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": false,
+      "gatesPassed": false,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T22:19:57.214Z",
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T22:51:48.416Z",
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T23:44:22.888Z",
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-09T23:49:01.101Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:23:06.237Z",
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:44:11.612Z",
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:45:27.643Z",
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:47:20.100Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:48:43.404Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T18:51:48.579Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T19:22:09.685Z",
+      "eslintWarnings": 1,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": false,
+      "gatesPassed": false,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T19:27:30.019Z",
+      "eslintWarnings": 0,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": true,
+      "gatesPassed": true,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    },
+    {
+      "timestamp": "2025-10-10T19:40:30.124Z",
+      "eslintWarnings": 2,
+      "typeErrors": 0,
+      "cycleTime": 130881,
+      "decision": "esm-hygiene",
+      "success": false,
+      "gatesPassed": false,
+      "phases": {
+        "observe": 37662,
+        "decide": 4,
+        "act": 47311,
+        "verify": 45904
+      }
+    }
+  ],
+  "trends": {
+    "hourly": {
+      "period": "hourly",
+      "metrics": []
+    },
+    "daily": {
+      "period": "daily",
+      "metrics": [
+        {
+          "timestamp": "2025-10-09T00:00:00.000Z",
+          "avgEslintWarnings": 0.625,
+          "avgTypeErrors": 26.5,
+          "avgCycleTime": 130881,
+          "successRate": 62.5,
+          "totalRuns": 16,
+          "topDecisions": [
+            {
+              "decision": "esm-hygiene",
+              "count": 16,
+              "successRate": 62.5
+            }
+          ]
+        },
+        {
+          "timestamp": "2025-10-10T00:00:00.000Z",
+          "avgEslintWarnings": 1,
+          "avgTypeErrors": 0,
+          "avgCycleTime": 130881,
+          "successRate": 77.77777777777779,
+          "totalRuns": 18,
+          "topDecisions": [
+            {
+              "decision": "esm-hygiene",
+              "count": 18,
+              "successRate": 77.77777777777779
+            }
+          ]
+        }
+      ]
+    },
+    "weekly": {
+      "period": "weekly",
+      "metrics": []
+    },
+    "monthly": {
+      "period": "monthly",
+      "metrics": []
+    }
+  },
+  "recipes": {
+    "esm-hygiene": {
+      "id": "esm-hygiene",
+      "name": "esm-hygiene",
+      "totalRuns": 17,
+      "successfulRuns": 12,
+      "successRate": 70.58823529411765,
+      "avgExecutionTime": 47310.63904571533,
+      "lastExecuted": "2025-10-10T19:40:30.124Z",
+      "improvementMetrics": {
+        "avgEslintReduction": 0,
+        "avgTypeErrorReduction": 0,
+        "totalLinesFixed": 0
+      },
+      "riskAssessment": {
+        "riskLevel": "low",
+        "filesModifiedAvg": 0,
+        "revertRate": 0
+      }
+    }
+  },
+  "qualityHistory": [
+    {
+      "timestamp": "2025-10-09T21:51:28.919Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 0
+    },
+    {
+      "timestamp": "2025-10-09T21:58:03.225Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 0
+    },
+    {
+      "timestamp": "2025-10-09T21:59:18.210Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-09T22:18:58.663Z",
+      "codeQualityScore": 0,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "degrading",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 0
+    },
+    {
+      "timestamp": "2025-10-09T22:19:57.214Z",
+      "codeQualityScore": 95,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-09T22:51:48.416Z",
+      "codeQualityScore": 95,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-09T23:44:22.888Z",
+      "codeQualityScore": 95,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-09T23:49:01.101Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:23:06.237Z",
+      "codeQualityScore": 90,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:44:11.612Z",
+      "codeQualityScore": 90,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:45:27.643Z",
+      "codeQualityScore": 90,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:47:20.100Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:48:43.404Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T18:51:48.579Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T19:22:09.685Z",
+      "codeQualityScore": 95,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 0
+    },
+    {
+      "timestamp": "2025-10-10T19:27:30.019Z",
+      "codeQualityScore": 100,
+      "eslintTrend": "stable",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 100
+    },
+    {
+      "timestamp": "2025-10-10T19:40:30.124Z",
+      "codeQualityScore": 90,
+      "eslintTrend": "degrading",
+      "typescriptTrend": "stable",
+      "velocityScore": 45.843170513672725,
+      "stabilityScore": 0
+    }
+  ]
+}

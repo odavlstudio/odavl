@@ -1,0 +1,649 @@
+{
+  "brand": {
+    "name": "ODAVL"
+  },
+  "nav": {
+    "home": "Inicio",
+    "docs": "Documentación",
+    "security": "Seguridad",
+    "contact": "Contacto",
+    "pricing": "Precios",
+    "pilot": "Iniciar Piloto"
+  },
+  "cta": {
+    "startPilot": "Iniciar Piloto",
+    "getStarted": "Comenzar",
+    "startTrial": "Prueba gratuita",
+    "contactSales": "Contactar ventas"
+  },
+  "pricing": {
+    "title": {
+      "main": "[Needs Translation: pricing.title.main]",
+      "highlight": "[Needs Translation: pricing.title.highlight]"
+    },
+    "subtitle": "Elige el plan perfecto para tus necesidades de calidad de código",
+    "popular": "Más Popular",
+    "period": {
+      "month": "mes",
+      "year": "año",
+      "custom": "[Needs Translation: pricing.period.custom]"
+    },
+    "tiers": {
+      "starter": {
+        "name": "Inicial",
+        "description": "Perfecto para desarrolladores individuales",
+        "features": {
+          "codeQuality": "Monitoreo básico de calidad de código",
+          "basicFixes": "Correcciones básicas automatizadas",
+          "reports": "Reportes de calidad semanales",
+          "support": "Soporte comunitario",
+          "repositories": "[Needs Translation: pricing.tiers.starter.features.repositories]",
+          "integrations": "[Needs Translation: pricing.tiers.starter.features.integrations]"
+        },
+        "price": "[Needs Translation: pricing.tiers.starter.price]"
+      },
+      "pro": {
+        "name": "Profesional",
+        "description": "Ideal para equipos pequeños y medianos",
+        "features": {
+          "advancedFixes": "Correcciones autónomas avanzadas",
+          "customRules": "Reglas de calidad personalizadas",
+          "integrations": "Integraciones CI/CD",
+          "analytics": "Análisis avanzados",
+          "priority": "Soporte prioritario"
+        }
+      },
+      "enterprise": {
+        "name": "Empresarial",
+        "customPrice": "Personalizado",
+        "description": "Para organizaciones grandes",
+        "features": {
+          "unlimited": "Repositorios ilimitados",
+          "onPremise": "Despliegue local",
+          "sla": "Garantía SLA 99.9%",
+          "dedicated": "Equipo de soporte dedicado",
+          "training": "Capacitación del equipo incluida",
+          "compliance": "[Needs Translation: pricing.tiers.enterprise.features.compliance]",
+          "customization": "[Needs Translation: pricing.tiers.enterprise.features.customization]"
+        },
+        "price": "[Needs Translation: pricing.tiers.enterprise.price]"
+      },
+      "professional": {
+        "name": "[Needs Translation: pricing.tiers.professional.name]",
+        "price": "[Needs Translation: pricing.tiers.professional.price]",
+        "description": "[Needs Translation: pricing.tiers.professional.description]",
+        "features": {
+          "unlimited": "[Needs Translation: pricing.tiers.professional.features.unlimited]",
+          "advancedFixes": "[Needs Translation: pricing.tiers.professional.features.advancedFixes]",
+          "customRules": "[Needs Translation: pricing.tiers.professional.features.customRules]",
+          "cicd": "[Needs Translation: pricing.tiers.professional.features.cicd]",
+          "analytics": "[Needs Translation: pricing.tiers.professional.features.analytics]",
+          "priority": "[Needs Translation: pricing.tiers.professional.features.priority]"
+        }
+      }
+    },
+    "cta": {
+      "getStarted": "Comenzar",
+      "startTrial": "Iniciar Prueba Gratuita",
+      "contactSales": "Contactar Ventas"
+    },
+    "guarantee": "Garantía de reembolso de 30 días. Sin preguntas.",
+    "features": {
+      "noSetup": "Sin tarifas de configuración",
+      "cancel": "Cancelar en cualquier momento",
+      "support": "Soporte 24/7"
+    },
+    "badge": "[Needs Translation: pricing.badge]",
+    "roi": {
+      "title": "[Needs Translation: pricing.roi.title]",
+      "subtitle": "[Needs Translation: pricing.roi.subtitle]",
+      "inputs": {
+        "developers": "[Needs Translation: pricing.roi.inputs.developers]",
+        "hourlyRate": "[Needs Translation: pricing.roi.inputs.hourlyRate]",
+        "issuesPerWeek": "[Needs Translation: pricing.roi.inputs.issuesPerWeek]",
+        "timePerIssue": "[Needs Translation: pricing.roi.inputs.timePerIssue]"
+      },
+      "results": {
+        "roi": "[Needs Translation: pricing.roi.results.roi]",
+        "roiDescription": "[Needs Translation: pricing.roi.results.roiDescription]",
+        "monthlySaving": "[Needs Translation: pricing.roi.results.monthlySaving]",
+        "yearlySaving": "[Needs Translation: pricing.roi.results.yearlySaving]",
+        "netROI": "[Needs Translation: pricing.roi.results.netROI]",
+        "netROIDescription": "[Needs Translation: pricing.roi.results.netROIDescription]"
+      }
+    },
+    "value": {
+      "time": {
+        "title": "[Needs Translation: pricing.value.time.title]",
+        "description": "[Needs Translation: pricing.value.time.description]",
+        "metric": "[Needs Translation: pricing.value.time.metric]"
+      },
+      "cost": {
+        "title": "[Needs Translation: pricing.value.cost.title]",
+        "description": "[Needs Translation: pricing.value.cost.description]",
+        "metric": "[Needs Translation: pricing.value.cost.metric]"
+      },
+      "quality": {
+        "title": "[Needs Translation: pricing.value.quality.title]",
+        "description": "[Needs Translation: pricing.value.quality.description]",
+        "metric": "[Needs Translation: pricing.value.quality.metric]"
+      },
+      "safety": {
+        "title": "[Needs Translation: pricing.value.safety.title]",
+        "description": "[Needs Translation: pricing.value.safety.description]",
+        "metric": "[Needs Translation: pricing.value.safety.metric]"
+      }
+    },
+    "plans": {
+      "title": "[Needs Translation: pricing.plans.title]"
+    },
+    "enterprise": {
+      "title": "[Needs Translation: pricing.enterprise.title]",
+      "description": "[Needs Translation: pricing.enterprise.description]",
+      "cta": "[Needs Translation: pricing.enterprise.cta]"
+    }
+  },
+  "hero": {
+    "title": "ODAVL — Tu médico de código autónomo con seguridad empresarial.",
+    "subtitle": "Observa, corrige, verifica y aprende — sin romper tu base de código.",
+    "ctaPilot": "Iniciar Piloto",
+    "ctaInstall": "Instalar Extensión de VS Code",
+    "trust": "Confiado por Equipos Empresariales",
+    "productPreview": "Vista previa del producto",
+    "preHeadline": "[Needs Translation: hero.preHeadline]",
+    "headline": "[Needs Translation: hero.headline]",
+    "subheadline": "[Needs Translation: hero.subheadline]",
+    "ctaPrimary": "[Needs Translation: hero.ctaPrimary]",
+    "ctaSecondary": "[Needs Translation: hero.ctaSecondary]",
+    "trustIndicator": "[Needs Translation: hero.trustIndicator]",
+    "benefits": {
+      "autonomous": "[Needs Translation: hero.benefits.autonomous]",
+      "enterprise": "[Needs Translation: hero.benefits.enterprise]",
+      "secure": "[Needs Translation: hero.benefits.secure]"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior"
+  },
+  "footer": {
+    "copyright": "© 2025 ODAVL Studio. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "support": "Soporte"
+  },
+  "locale": {
+    "switchTo": "Cambiar a {locale}",
+    "current": "Idioma actual: {locale}"
+  },
+  "docs": {
+    "title": "Documentación",
+    "description": "Aprende cómo usar ODAVL para mejorar la calidad de tu código",
+    "quickstart": "Inicio Rápido",
+    "governance": "Gobernanza y Seguridad",
+    "breadcrumb": {
+      "home": "Inicio",
+      "docs": "Documentación"
+    }
+  },
+  "testimonials": {
+    "badge": "Éxito del Cliente",
+    "title": {
+      "main": "Confianza de",
+      "highlight": "Equipos Enterprise"
+    },
+    "subtitle": "Vea cómo las empresas líderes usan ODAVL para transformar sus flujos de trabajo de desarrollo y mejorar la calidad del código a escala.",
+    "testimonials": {
+      "title": "Lo que dicen nuestros usuarios"
+    },
+    "testimonial1": {
+      "quote": "ODAVL transformó completamente nuestro proceso de calidad de código.",
+      "author": "Sarah M.",
+      "role": "Lead Developer",
+      "company": "TechFlow (Piloto)",
+      "results": {
+        "quality": "Calidad de código mejorada",
+        "time": "Tiempo de revisión ahorrado"
+      }
+    },
+    "testimonial2": {
+      "quote": "Las correcciones autónomas son increíblemente precisas y seguras.",
+      "author": "David R.",
+      "role": "Engineering Manager",
+      "company": "CloudScale (Piloto)",
+      "results": {
+        "defects": "Problemas de producción reducidos",
+        "velocity": "Velocidad de desarrollo"
+      }
+    },
+    "testimonial3": {
+      "quote": "La mejor inversión que hemos hecho en productividad de desarrolladores.",
+      "author": "Alex L.",
+      "role": "CTO",
+      "company": "StartupCo (Piloto)",
+      "results": {
+        "incidents": "Incidentes críticos reducidos",
+        "deployment": "Confianza en despliegue"
+      }
+    },
+    "caseStudies": {
+      "title": "Historias de éxito",
+      "subtitle": "Resultados del mundo real de nuestros participantes del programa piloto."
+    },
+    "case1": {
+      "company": "TechFlow Solutions",
+      "industry": "FinTech",
+      "challenge": "Gestionar la calidad del código en 50+ microservicios con ciclos de despliegue rápidos",
+      "solution": "Implementó ODAVL Professional con puertas de seguridad personalizadas e integración CI/CD",
+      "results": {
+        "quality": {
+          "title": "Problemas de calidad reducidos",
+          "value": "60%",
+          "improvement": "Menos problemas en producción"
+        },
+        "time": {
+          "title": "Velocidad de despliegue",
+          "value": "3x",
+          "improvement": "Despliegues más rápidos"
+        }
+      }
+    },
+    "case2": {
+      "company": "CloudScale Systems",
+      "industry": "Infraestructura en la Nube",
+      "challenge": "Mantener la calidad del código en un equipo distribuido de 200+ desarrolladores",
+      "solution": "Despliegue empresarial con integraciones personalizadas y entrenamiento dedicado",
+      "results": {
+        "defects": {
+          "title": "Defectos de producción",
+          "value": "85%",
+          "improvement": "Reducción de problemas críticos"
+        },
+        "satisfaction": {
+          "title": "Satisfacción del desarrollador",
+          "value": "9.2/10",
+          "improvement": "Puntuación de felicidad del equipo"
+        }
+      }
+    },
+    "trust": {
+      "title": "Por qué los equipos confían en ODAVL",
+      "certification": {
+        "title": "Cumple con SOC 2",
+        "description": "Estándares de seguridad empresarial con rastros de auditoría completos y controles de acceso."
+      },
+      "enterprise": {
+        "title": "Seguridad de nivel empresarial",
+        "description": "Automatización gobernada con controles auditables y marcos de cumplimiento."
+      },
+      "community": {
+        "title": "Fundación de código abierto",
+        "description": "Construido sobre herramientas de código abierto confiables con metodologías transparentes."
+      },
+      "growth": {
+        "title": "500+ Equipos de ingeniería",
+        "description": "Adoptado a través de pilotos y pruebas empresariales con resultados comprobados."
+      }
+    },
+    "cta": {
+      "main": "Únete a estas historias de éxito",
+      "subtitle": "Comienza tu prueba gratuita y ve resultados en tu primera semana"
+    }
+  },
+  "trust": {
+    "heading": "[Needs Translation: trust.heading]",
+    "linesFixed": "[Needs Translation: trust.linesFixed]",
+    "safetyRate": "[Needs Translation: trust.safetyRate]",
+    "enterpriseTeams": "[Needs Translation: trust.enterpriseTeams]",
+    "monitoring": "[Needs Translation: trust.monitoring]"
+  },
+  "featuresSection": {
+    "badge": "[Needs Translation: featuresSection.badge]",
+    "title": {
+      "main": "[Needs Translation: featuresSection.title.main]",
+      "highlight": "[Needs Translation: featuresSection.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: featuresSection.subtitle]",
+    "autonomous": {
+      "title": "[Needs Translation: featuresSection.autonomous.title]",
+      "description": "[Needs Translation: featuresSection.autonomous.description]",
+      "benefits": {
+        "continuous": "[Needs Translation: featuresSection.autonomous.benefits.continuous]",
+        "learning": "[Needs Translation: featuresSection.autonomous.benefits.learning]",
+        "proactive": "[Needs Translation: featuresSection.autonomous.benefits.proactive]"
+      }
+    },
+    "safety": {
+      "title": "[Needs Translation: featuresSection.safety.title]",
+      "description": "[Needs Translation: featuresSection.safety.description]",
+      "benefits": {
+        "gates": "[Needs Translation: featuresSection.safety.benefits.gates]",
+        "rollback": "[Needs Translation: featuresSection.safety.benefits.rollback]",
+        "validation": "[Needs Translation: featuresSection.safety.benefits.validation]"
+      }
+    },
+    "performance": {
+      "title": "[Needs Translation: featuresSection.performance.title]",
+      "description": "[Needs Translation: featuresSection.performance.description]",
+      "benefits": {
+        "speed": "[Needs Translation: featuresSection.performance.benefits.speed]",
+        "efficiency": "[Needs Translation: featuresSection.performance.benefits.efficiency]",
+        "scale": "[Needs Translation: featuresSection.performance.benefits.scale]"
+      }
+    },
+    "precision": {
+      "title": "[Needs Translation: featuresSection.precision.title]",
+      "description": "[Needs Translation: featuresSection.precision.description]",
+      "benefits": {
+        "accuracy": "[Needs Translation: featuresSection.precision.benefits.accuracy]",
+        "context": "[Needs Translation: featuresSection.precision.benefits.context]",
+        "minimal": "[Needs Translation: featuresSection.precision.benefits.minimal]"
+      }
+    },
+    "integration": {
+      "title": "[Needs Translation: featuresSection.integration.title]",
+      "description": "[Needs Translation: featuresSection.integration.description]",
+      "benefits": {
+        "universal": "[Needs Translation: featuresSection.integration.benefits.universal]",
+        "workflow": "[Needs Translation: featuresSection.integration.benefits.workflow]",
+        "tools": "[Needs Translation: featuresSection.integration.benefits.tools]"
+      }
+    },
+    "insights": {
+      "title": "[Needs Translation: featuresSection.insights.title]",
+      "description": "[Needs Translation: featuresSection.insights.description]",
+      "benefits": {
+        "metrics": "[Needs Translation: featuresSection.insights.benefits.metrics]",
+        "trends": "[Needs Translation: featuresSection.insights.benefits.trends]",
+        "optimization": "[Needs Translation: featuresSection.insights.benefits.optimization]"
+      }
+    },
+    "metrics": {
+      "safety": {
+        "label": "[Needs Translation: featuresSection.metrics.safety.label]",
+        "description": "[Needs Translation: featuresSection.metrics.safety.description]"
+      },
+      "speed": {
+        "label": "[Needs Translation: featuresSection.metrics.speed.label]",
+        "description": "[Needs Translation: featuresSection.metrics.speed.description]"
+      },
+      "availability": {
+        "label": "[Needs Translation: featuresSection.metrics.availability.label]",
+        "description": "[Needs Translation: featuresSection.metrics.availability.description]"
+      },
+      "downtime": {
+        "label": "[Needs Translation: featuresSection.metrics.downtime.label]",
+        "description": "[Needs Translation: featuresSection.metrics.downtime.description]"
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: featuresSection.cta.main]",
+      "subtitle": "[Needs Translation: featuresSection.cta.subtitle]"
+    }
+  },
+  "howItWorks": {
+    "badge": "[Needs Translation: howItWorks.badge]",
+    "title": {
+      "main": "[Needs Translation: howItWorks.title.main]",
+      "highlight": "[Needs Translation: howItWorks.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: howItWorks.subtitle]",
+    "process": {
+      "title": "[Needs Translation: howItWorks.process.title]"
+    },
+    "observe": {
+      "title": "[Needs Translation: howItWorks.observe.title]",
+      "description": "[Needs Translation: howItWorks.observe.description]",
+      "details": {
+        "metrics": "[Needs Translation: howItWorks.observe.details.metrics]",
+        "patterns": "[Needs Translation: howItWorks.observe.details.patterns]",
+        "baseline": "[Needs Translation: howItWorks.observe.details.baseline]"
+      }
+    },
+    "decide": {
+      "title": "[Needs Translation: howItWorks.decide.title]",
+      "description": "[Needs Translation: howItWorks.decide.description]",
+      "details": {
+        "analysis": "[Needs Translation: howItWorks.decide.details.analysis]",
+        "priority": "[Needs Translation: howItWorks.decide.details.priority]",
+        "safety": "[Needs Translation: howItWorks.decide.details.safety]"
+      }
+    },
+    "act": {
+      "title": "[Needs Translation: howItWorks.act.title]",
+      "description": "[Needs Translation: howItWorks.act.description]",
+      "details": {
+        "execution": "[Needs Translation: howItWorks.act.details.execution]",
+        "testing": "[Needs Translation: howItWorks.act.details.testing]",
+        "deployment": "[Needs Translation: howItWorks.act.details.deployment]"
+      }
+    },
+    "verify": {
+      "title": "[Needs Translation: howItWorks.verify.title]",
+      "description": "[Needs Translation: howItWorks.verify.description]",
+      "details": {
+        "validation": "[Needs Translation: howItWorks.verify.details.validation]",
+        "metrics": "[Needs Translation: howItWorks.verify.details.metrics]",
+        "rollback": "[Needs Translation: howItWorks.verify.details.rollback]"
+      }
+    },
+    "learn": {
+      "title": "[Needs Translation: howItWorks.learn.title]",
+      "description": "[Needs Translation: howItWorks.learn.description]",
+      "details": {
+        "adaptation": "[Needs Translation: howItWorks.learn.details.adaptation]",
+        "improvement": "[Needs Translation: howItWorks.learn.details.improvement]",
+        "optimization": "[Needs Translation: howItWorks.learn.details.optimization]"
+      }
+    },
+    "journey": {
+      "title": "[Needs Translation: howItWorks.journey.title]",
+      "subtitle": "[Needs Translation: howItWorks.journey.subtitle]",
+      "discovery": {
+        "phase": "[Needs Translation: howItWorks.journey.discovery.phase]",
+        "title": "[Needs Translation: howItWorks.journey.discovery.title]",
+        "description": "[Needs Translation: howItWorks.journey.discovery.description]",
+        "duration": "[Needs Translation: howItWorks.journey.discovery.duration]",
+        "outcomes": {
+          "assessment": "[Needs Translation: howItWorks.journey.discovery.outcomes.assessment]",
+          "demo": "[Needs Translation: howItWorks.journey.discovery.outcomes.demo]",
+          "proposal": "[Needs Translation: howItWorks.journey.discovery.outcomes.proposal]"
+        }
+      },
+      "pilot": {
+        "phase": "[Needs Translation: howItWorks.journey.pilot.phase]",
+        "title": "[Needs Translation: howItWorks.journey.pilot.title]",
+        "description": "[Needs Translation: howItWorks.journey.pilot.description]",
+        "duration": "[Needs Translation: howItWorks.journey.pilot.duration]",
+        "outcomes": {
+          "integration": "[Needs Translation: howItWorks.journey.pilot.outcomes.integration]",
+          "fixes": "[Needs Translation: howItWorks.journey.pilot.outcomes.fixes]",
+          "metrics": "[Needs Translation: howItWorks.journey.pilot.outcomes.metrics]"
+        }
+      },
+      "scale": {
+        "phase": "[Needs Translation: howItWorks.journey.scale.phase]",
+        "title": "[Needs Translation: howItWorks.journey.scale.title]",
+        "description": "[Needs Translation: howItWorks.journey.scale.description]",
+        "duration": "[Needs Translation: howItWorks.journey.scale.duration]",
+        "outcomes": {
+          "rollout": "[Needs Translation: howItWorks.journey.scale.outcomes.rollout]",
+          "training": "[Needs Translation: howItWorks.journey.scale.outcomes.training]",
+          "optimization": "[Needs Translation: howItWorks.journey.scale.outcomes.optimization]"
+        }
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: howItWorks.cta.main]",
+      "subtitle": "[Needs Translation: howItWorks.cta.subtitle]"
+    }
+  },
+  "integrations": {
+    "badge": "[Needs Translation: integrations.badge]",
+    "title": {
+      "main": "[Needs Translation: integrations.title.main]",
+      "highlight": "[Needs Translation: integrations.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: integrations.subtitle]",
+    "status": {
+      "native": "[Needs Translation: integrations.status.native]",
+      "ready": "[Needs Translation: integrations.status.ready]",
+      "planned": "[Needs Translation: integrations.status.planned]"
+    },
+    "development": {
+      "category": "[Needs Translation: integrations.development.category]",
+      "title": "[Needs Translation: integrations.development.title]",
+      "description": "[Needs Translation: integrations.development.description]"
+    },
+    "versionControl": {
+      "category": "[Needs Translation: integrations.versionControl.category]",
+      "title": "[Needs Translation: integrations.versionControl.title]",
+      "description": "[Needs Translation: integrations.versionControl.description]"
+    },
+    "cicd": {
+      "category": "[Needs Translation: integrations.cicd.category]",
+      "title": "[Needs Translation: integrations.cicd.title]",
+      "description": "[Needs Translation: integrations.cicd.description]"
+    },
+    "security": {
+      "category": "[Needs Translation: integrations.security.category]",
+      "title": "[Needs Translation: integrations.security.title]",
+      "description": "[Needs Translation: integrations.security.description]"
+    },
+    "monitoring": {
+      "category": "[Needs Translation: integrations.monitoring.category]",
+      "title": "[Needs Translation: integrations.monitoring.title]",
+      "description": "[Needs Translation: integrations.monitoring.description]"
+    },
+    "communication": {
+      "category": "[Needs Translation: integrations.communication.category]",
+      "title": "[Needs Translation: integrations.communication.title]",
+      "description": "[Needs Translation: integrations.communication.description]"
+    },
+    "workflow": {
+      "title": "[Needs Translation: integrations.workflow.title]",
+      "subtitle": "[Needs Translation: integrations.workflow.subtitle]",
+      "install": {
+        "title": "[Needs Translation: integrations.workflow.install.title]",
+        "description": "[Needs Translation: integrations.workflow.install.description]"
+      },
+      "configure": {
+        "title": "[Needs Translation: integrations.workflow.configure.title]",
+        "description": "[Needs Translation: integrations.workflow.configure.description]"
+      },
+      "automate": {
+        "title": "[Needs Translation: integrations.workflow.automate.title]",
+        "description": "[Needs Translation: integrations.workflow.automate.description]"
+      },
+      "monitor": {
+        "title": "[Needs Translation: integrations.workflow.monitor.title]",
+        "description": "[Needs Translation: integrations.workflow.monitor.description]"
+      }
+    },
+    "enterprise": {
+      "title": "[Needs Translation: integrations.enterprise.title]",
+      "description": "[Needs Translation: integrations.enterprise.description]",
+      "features": {
+        "custom": "[Needs Translation: integrations.enterprise.features.custom]",
+        "priority": "[Needs Translation: integrations.enterprise.features.priority]",
+        "support": "[Needs Translation: integrations.enterprise.features.support]"
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: integrations.cta.main]",
+      "subtitle": "[Needs Translation: integrations.cta.subtitle]"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "[Needs Translation: auth.login.title]",
+      "subtitle": "[Needs Translation: auth.login.subtitle]",
+      "fields": {
+        "email": "[Needs Translation: auth.login.fields.email]",
+        "password": "[Needs Translation: auth.login.fields.password]",
+        "remember": "[Needs Translation: auth.login.fields.remember]"
+      },
+      "placeholders": {
+        "email": "[Needs Translation: auth.login.placeholders.email]",
+        "password": "[Needs Translation: auth.login.placeholders.password]"
+      },
+      "errors": {
+        "emailRequired": "[Needs Translation: auth.login.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.login.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.login.errors.passwordRequired]"
+      },
+      "links": {
+        "forgotPassword": "[Needs Translation: auth.login.links.forgotPassword]",
+        "signUp": "[Needs Translation: auth.login.links.signUp]"
+      },
+      "submit": "[Needs Translation: auth.login.submit]",
+      "noAccount": "[Needs Translation: auth.login.noAccount]",
+      "demo": {
+        "title": "[Needs Translation: auth.login.demo.title]",
+        "description": "[Needs Translation: auth.login.demo.description]"
+      }
+    },
+    "signup": {
+      "title": "[Needs Translation: auth.signup.title]",
+      "subtitle": "[Needs Translation: auth.signup.subtitle]",
+      "fields": {
+        "firstName": "[Needs Translation: auth.signup.fields.firstName]",
+        "lastName": "[Needs Translation: auth.signup.fields.lastName]",
+        "email": "[Needs Translation: auth.signup.fields.email]",
+        "company": "[Needs Translation: auth.signup.fields.company]",
+        "password": "[Needs Translation: auth.signup.fields.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.fields.confirmPassword]"
+      },
+      "placeholders": {
+        "firstName": "[Needs Translation: auth.signup.placeholders.firstName]",
+        "lastName": "[Needs Translation: auth.signup.placeholders.lastName]",
+        "email": "[Needs Translation: auth.signup.placeholders.email]",
+        "company": "[Needs Translation: auth.signup.placeholders.company]",
+        "password": "[Needs Translation: auth.signup.placeholders.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.placeholders.confirmPassword]"
+      },
+      "errors": {
+        "firstNameRequired": "[Needs Translation: auth.signup.errors.firstNameRequired]",
+        "lastNameRequired": "[Needs Translation: auth.signup.errors.lastNameRequired]",
+        "emailRequired": "[Needs Translation: auth.signup.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.signup.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.signup.errors.passwordRequired]",
+        "passwordWeak": "[Needs Translation: auth.signup.errors.passwordWeak]",
+        "passwordMismatch": "[Needs Translation: auth.signup.errors.passwordMismatch]",
+        "termsRequired": "[Needs Translation: auth.signup.errors.termsRequired]"
+      },
+      "passwordStrength": {
+        "title": "[Needs Translation: auth.signup.passwordStrength.title]",
+        "length": "[Needs Translation: auth.signup.passwordStrength.length]",
+        "uppercase": "[Needs Translation: auth.signup.passwordStrength.uppercase]",
+        "lowercase": "[Needs Translation: auth.signup.passwordStrength.lowercase]",
+        "number": "[Needs Translation: auth.signup.passwordStrength.number]",
+        "special": "[Needs Translation: auth.signup.passwordStrength.special]"
+      },
+      "terms": {
+        "prefix": "[Needs Translation: auth.signup.terms.prefix]",
+        "termsLink": "[Needs Translation: auth.signup.terms.termsLink]",
+        "and": "[Needs Translation: auth.signup.terms.and]",
+        "privacyLink": "[Needs Translation: auth.signup.terms.privacyLink]"
+      },
+      "links": {
+        "signIn": "[Needs Translation: auth.signup.links.signIn]"
+      },
+      "submit": "[Needs Translation: auth.signup.submit]",
+      "hasAccount": "[Needs Translation: auth.signup.hasAccount]",
+      "optional": "[Needs Translation: auth.signup.optional]",
+      "demo": {
+        "title": "[Needs Translation: auth.signup.demo.title]",
+        "description": "[Needs Translation: auth.signup.demo.description]"
+      }
+    }
+  }
+}

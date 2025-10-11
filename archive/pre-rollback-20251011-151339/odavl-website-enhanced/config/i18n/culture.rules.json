@@ -1,0 +1,50 @@
+{
+  "culturalRules": {
+    "rtl": {
+      "locales": ["ar"],
+      "textAlign": "right",
+      "direction": "rtl",
+      "paddingAdjustment": "padding-right instead of padding-left"
+    },
+    "ltr": {
+      "locales": ["en", "de", "fr", "es", "it", "pt", "ru", "ja", "zh"],
+      "textAlign": "left",
+      "direction": "ltr",
+      "paddingAdjustment": "standard left-to-right padding"
+    }
+  },
+  "dateFormats": {
+    "en": "MM/dd/yyyy",
+    "de": "dd.MM.yyyy",
+    "ar": "dd/MM/yyyy",
+    "fr": "dd/MM/yyyy",
+    "es": "dd/MM/yyyy",
+    "it": "dd/MM/yyyy",
+    "pt": "dd/MM/yyyy",
+    "ru": "dd.MM.yyyy",
+    "ja": "yyyy/MM/dd",
+    "zh": "yyyy/MM/dd"
+  },
+  "numberFormats": {
+    "en": "1,234.56",
+    "de": "1.234,56",
+    "ar": "1,234.56",
+    "fr": "1 234,56",
+    "es": "1.234,56",
+    "it": "1.234,56",
+    "pt": "1.234,56",
+    "ru": "1 234,56",
+    "ja": "1,234.56",
+    "zh": "1,234.56"
+  },
+  "uiRules": {
+    "buttonPadding": {
+      "rtl": "padding: 12px 16px 12px 24px",
+      "ltr": "padding: 12px 24px 12px 16px"
+    },
+    "iconPosition": {
+      "rtl": "margin-left: 8px",
+      "ltr": "margin-right: 8px"
+    }
+  }
+}

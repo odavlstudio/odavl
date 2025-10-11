@@ -8,7 +8,8 @@
     "security": "Security",
     "contact": "Contact",
     "pricing": "Pricing",
-    "pilot": "Start Pilot"
+    "pilot": "Start Pilot",
+    "privacy": "Privacy Policy"
   },
   "cta": {
     "startPilot": "Start Pilot",
@@ -634,6 +635,200 @@
       "demo": {
         "title": "Demo Environment",
         "description": "This is a demonstration interface. User registration will be implemented in production."
+      }
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy - ODAVL",
+      "description": "Learn how ODAVL protects your privacy with zero telemetry collection and GDPR compliance."
+    },
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "sections": {
+      "overview": {
+        "title": "Overview",
+        "content": "At ODAVL, we believe privacy is a fundamental right. This policy explains how we collect, use, and protect your information when you use our autonomous code quality platform."
+      },
+      "dataCollection": {
+        "title": "Data Collection",
+        "noTelemetry": "🛡️ ODAVL software collects ZERO telemetry from your code or development environment.",
+        "websiteAnalytics": {
+          "title": "Website Analytics",
+          "content": "We use Plausible Analytics (privacy-focused, no cookies) to understand website usage:",
+          "items": {
+            "pageViews": "Page views and session duration",
+            "referrers": "Referral sources and popular pages",
+            "general": "General geographic regions (country-level only)"
+          }
+        },
+        "contactForms": {
+          "title": "Contact Information",
+          "content": "When you contact us or sign up for our services, we collect only the information you voluntarily provide (name, email, company)."
+        }
+      },
+      "dataUse": {
+        "title": "How We Use Your Data",
+        "items": {
+          "communication": "To communicate with you about our services",
+          "improvement": "To improve our website and services",
+          "support": "To provide customer support",
+          "legal": "To comply with legal obligations"
+        }
+      },
+      "dataSharing": {
+        "title": "Data Sharing & Sales",
+        "noSelling": "We NEVER sell, rent, or trade your personal information.",
+        "content": "We may share information only in limited circumstances: legal compliance, service providers (with strict privacy agreements), or business transfers (with notice)."
+      },
+      "cookies": {
+        "title": "Cookies & Tracking",
+        "content": "We use minimal cookies for essential website functionality:",
+        "plausible": {
+          "title": "Plausible Analytics",
+          "content": "Uses a single cookie for visitor counting. No personal data collected. GDPR, CCPA, and PECR compliant."
+        }
+      },
+      "rights": {
+        "title": "Your Rights (GDPR/CCPA)",
+        "content": "You have the right to:",
+        "items": {
+          "access": "Access your personal data",
+          "rectification": "Correct inaccurate data",
+          "erasure": "Request data deletion",
+          "portability": "Data portability",
+          "objection": "Object to processing"
+        }
+      },
+      "security": {
+        "title": "Data Security",
+        "content": "We implement industry-standard security measures including encryption, secure servers, and regular security audits to protect your information."
+      },
+      "international": {
+        "title": "International Transfers",
+        "content": "Your data may be processed in countries with different privacy laws. We ensure adequate protection through standard contractual clauses and other safeguards."
+      },
+      "changes": {
+        "title": "Policy Changes",
+        "content": "We may update this policy periodically. Significant changes will be communicated via email or website notice 30 days in advance."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "For privacy questions or to exercise your rights, contact us:",
+        "email": "Email",
+        "address": "Address"
+      }
+    }
+  },
+  "terms": {
+    "meta": {
+      "title": "Terms of Service - ODAVL",
+      "description": "Terms of service and user agreement for ODAVL autonomous code quality platform."
+    },
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated",
+    "sections": {
+      "acceptance": {
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing or using ODAVL services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using our services."
+      },
+      "services": {
+        "title": "2. Description of Services",
+        "content": "ODAVL provides autonomous code quality improvement services including:",
+        "items": {
+          "cli": "Command-line interface for autonomous code quality improvement",
+          "vscode": "Visual Studio Code extension for real-time monitoring",
+          "website": "Documentation, support, and account management portal",
+          "support": "Technical support and customer service"
+        }
+      },
+      "accounts": {
+        "title": "3. User Accounts",
+        "content": "To access certain features, you may need to create an account. You are responsible for:",
+        "responsibilities": {
+          "accurate": "Providing accurate and complete information",
+          "security": "Maintaining the security of your account credentials",
+          "authorized": "Ensuring all account activity is authorized",
+          "notify": "Notifying us immediately of any unauthorized access"
+        }
+      },
+      "usage": {
+        "title": "4. Acceptable Use",
+        "content": "You agree to use ODAVL services only for lawful purposes and in compliance with these terms.",
+        "prohibited": {
+          "title": "Prohibited Activities:",
+          "items": {
+            "illegal": "Any illegal or unauthorized activities",
+            "malicious": "Uploading malicious code or malware",
+            "unauthorized": "Attempting to gain unauthorized access to our systems",
+            "interference": "Interfering with or disrupting our services",
+            "reverse": "Reverse engineering or attempting to extract source code"
+          }
+        }
+      },
+      "data": {
+        "title": "5. Data Ownership & Privacy",
+        "ownership": "🔒 You retain full ownership of your code and data. ODAVL never claims ownership of your intellectual property.",
+        "content": "Our data handling practices include:",
+        "rights": {
+          "access": "Zero telemetry collection from your development environment",
+          "portability": "Full data portability and export capabilities",
+          "deletion": "Right to delete all data upon account termination"
+        }
+      },
+      "intellectual": {
+        "title": "6. Intellectual Property",
+        "content": "ODAVL and its content are protected by copyright, trademark, and other intellectual property laws.",
+        "license": {
+          "title": "License Grant",
+          "content": "We grant you a limited, non-exclusive, non-transferable license to use our services for their intended purpose."
+        }
+      },
+      "payment": {
+        "title": "7. Payment Terms",
+        "content": "For paid services, the following payment terms apply:",
+        "terms": {
+          "billing": "Billing cycles are monthly or annually as selected",
+          "automatic": "Automatic renewal unless cancelled before renewal date",
+          "taxes": "You are responsible for applicable taxes",
+          "changes": "Price changes require 30 days advance notice"
+        }
+      },
+      "termination": {
+        "title": "8. Termination",
+        "content": "We may terminate or suspend your account for:",
+        "grounds": {
+          "breach": "Material breach of these terms",
+          "illegal": "Illegal or unauthorized use of services",
+          "business": "Business reasons with 30 days notice"
+        }
+      },
+      "disclaimers": {
+        "title": "9. Disclaimers",
+        "warranty": "ODAVL is provided 'AS IS' without warranties of any kind.",
+        "content": "We disclaim all warranties, express or implied, including but not limited to merchantability, fitness for a particular purpose, and non-infringement."
+      },
+      "limitation": {
+        "title": "10. Limitation of Liability",
+        "content": "In no event shall ODAVL be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business interruption."
+      },
+      "indemnification": {
+        "title": "11. Indemnification",
+        "content": "You agree to indemnify and hold ODAVL harmless from any claims, damages, or expenses arising from your use of our services or violation of these terms."
+      },
+      "governing": {
+        "title": "12. Governing Law",
+        "content": "These terms are governed by the laws of the State of California, United States. Any disputes will be resolved in the courts of California."
+      },
+      "changes": {
+        "title": "13. Changes to Terms",
+        "content": "We reserve the right to modify these terms at any time. Material changes will be communicated via email with 30 days advance notice. Continued use constitutes acceptance of modified terms."
+      },
+      "contact": {
+        "title": "Contact Information",
+        "content": "For questions about these terms, contact us:",
+        "email": "Email",
+        "address": "Address"
       }
     }
   }

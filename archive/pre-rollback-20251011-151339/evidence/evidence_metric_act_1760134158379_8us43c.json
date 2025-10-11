@@ -1,0 +1,114 @@
+{
+  "id": "evidence_metric_act_1760134158379_8us43c",
+  "timestamp": "2025-10-10T22:09:18.379Z",
+  "sessionId": "session_1760134158379_osbpxf",
+  "cycleId": "cycle_1760134158379_nl0p2f",
+  "type": "metric",
+  "source": "act",
+  "category": "test",
+  "title": "Test Evidence from act",
+  "description": "Testing evidence from act phase",
+  "data": {
+    "sourcePhase": "act"
+  },
+  "context": {
+    "phase": "act",
+    "cycleDuration": 1000,
+    "phaseStartTime": "2025-10-10T22:09:18.375Z",
+    "phaseEndTime": "2025-10-10T22:09:18.375Z",
+    "system": {
+      "version": "1.0.0-test",
+      "environment": "development",
+      "hostname": "test-host",
+      "processId": 26628
+    },
+    "project": {
+      "name": "odavl-test",
+      "repository": "test-repo",
+      "branch": "main",
+      "commit": "abc123",
+      "path": "C:\\Users\\sabou\\dev\\odavl"
+    },
+    "beforeMetrics": {
+      "timestamp": "2025-10-10T22:09:18.375Z",
+      "metrics": {
+        "eslintErrors": 0,
+        "eslintWarnings": 5,
+        "typescriptErrors": 0,
+        "testCoverage": 85,
+        "codeComplexity": 15,
+        "maintainabilityIndex": 75,
+        "technicalDebt": 10,
+        "securityIssues": 0,
+        "performanceScore": 90,
+        "bundleSize": 1024,
+        "buildTime": 2000
+      },
+      "trends": {
+        "direction": "improving",
+        "rate": 0.1,
+        "confidence": 0.8
+      }
+    },
+    "environment": {
+      "timestamp": "2025-10-10T22:09:18.379Z",
+      "automated": true,
+      "triggerType": "event",
+      "sessionId": "session_1760134158379_osbpxf"
+    },
+    "cycleId": "cycle_1760134158379_nl0p2f"
+  },
+  "confidence": "medium",
+  "impact": "moderate",
+  "quality": {
+    "completeness": 1,
+    "accuracy": 0.9,
+    "reliability": 0.85,
+    "timeliness": 0.95,
+    "relevance": 0.8,
+    "dataIntegrity": true,
+    "sourceVerified": true,
+    "contextComplete": true,
+    "metricAccuracy": true,
+    "overallScore": 0.9,
+    "qualityGrade": "A",
+    "issues": [],
+    "warnings": []
+  },
+  "audit": {
+    "created": "2025-10-10T22:09:18.379Z",
+    "createdBy": "odavl-system",
+    "checksum": "3f19b72c10eb235b44d718331d242fefac7a23f4f76efe070eb9b8641209f268",
+    "retentionPeriod": "30d",
+    "classification": "internal",
+    "sensitivity": "medium",
+    "auditRequired": false,
+    "auditCompleted": false
+  },
+  "compliance": {
+    "status": "compliant",
+    "requirements": [],
+    "violations": [],
+    "lastChecked": "2025-10-10T22:09:18.379Z",
+    "nextCheck": "2025-11-10T23:09:18.379Z",
+    "overallScore": 0.95,
+    "riskScore": 0.1,
+    "certified": false
+  },
+  "relationships": [],
+  "verification": {
+    "verified": true,
+    "verificationMethod": "automated",
+    "verifiedBy": "odavl-system",
+    "verifiedAt": "2025-10-10T22:09:18.379Z",
+    "integrity": true,
+    "authenticity": true,
+    "completeness": true,
+    "accuracy": true,
+    "verificationData": {},
+    "witnesses": [],
+    "trustScore": 0.9,
+    "trustLevel": "high",
+    "issues": []
+  }
+}

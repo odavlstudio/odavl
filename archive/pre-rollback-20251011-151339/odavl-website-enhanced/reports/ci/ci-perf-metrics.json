@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-10-08T22:57:14.947Z",
+  "status": "FAIL",
+  "checks": {
+    "translations": {
+      "status": "PASS",
+      "locales": {
+        "ar": {
+          "total": 367,
+          "present": 367,
+          "missing": [],
+          "coverage": 100
+        },
+        "de": {
+          "total": 367,
+          "present": 367,
+          "missing": [],
+          "coverage": 100
+        },
+        "es": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        },
+        "fr": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        },
+        "it": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        },
+        "ja": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        },
+        "pt": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        },
+        "ru": {
+          "total": 367,
+          "present": 385,
+          "missing": [],
+          "coverage": 105
+        },
+        "zh": {
+          "total": 367,
+          "present": 383,
+          "missing": [],
+          "coverage": 104
+        }
+      },
+      "missingKeys": [],
+      "coverage": 103
+    },
+    "bundles": {
+      "status": "FAIL",
+      "routes": {
+        "/": {
+          "size": 208,
+          "budget": 180,
+          "status": "FAIL"
+        },
+        "/pricing": {
+          "size": 169,
+          "budget": 160,
+          "status": "FAIL"
+        },
+        "/login": {
+          "size": 170,
+          "budget": 150,
+          "status": "FAIL"
+        },
+        "/signup": {
+          "size": 170,
+          "budget": 150,
+          "status": "FAIL"
+        },
+        "/docs": {
+          "size": 140,
+          "budget": 140,
+          "status": "WARN"
+        }
+      }
+    },
+    "accessibility": {
+      "status": "PASS",
+      "contrastIssues": [],
+      "missingAltText": []
+    },
+    "performance": {
+      "status": "PASS",
+      "lighthouse": {
+        "performance": 85,
+        "accessibility": 92,
+        "seo": 88
+      }
+    }
+  },
+  "errors": [
+    "Bundle size exceeded for /: 208KB > 180KB",
+    "Bundle size exceeded for /pricing: 169KB > 160KB",
+    "Bundle size exceeded for /login: 170KB > 150KB",
+    "Bundle size exceeded for /signup: 170KB > 150KB"
+  ],
+  "warnings": [
+    "Bundle size approaching limit for /docs: 140KB (140KB limit)"
+  ]
+}

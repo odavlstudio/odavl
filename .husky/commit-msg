@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ODAVL Commit Message Validation and Enhancement
+echo "📝 ODAVL Commit Message Processing..."
+
+COMMIT_MSG_FILE=$1
+
+# Add ODAVL metrics to commit message if this is an ODAVL-generated commit
+if grep -q "ODAVL:" "$COMMIT_MSG_FILE"; then
+    echo "🤖 ODAVL commit detected, enhancing with metrics..."
+    
+    # Get latest observation metrics
+    LATEST_OBSERVE=$(ls -t reports/observe-*.json 2>/dev/null | head -1)
+    if [ -n "$LATEST_OBSERVE" ]; then
+        ESLINT_WARNINGS=$(jq -r '.data.eslintWarnings // 0' "$LATEST_OBSERVE" 2>/dev/null)
+        TS_ERRORS=$(jq -r '.data.typescriptErrors // 0' "$LATEST_OBSERVE" 2>/dev/null)
+        
+        echo "" >> "$COMMIT_MSG_FILE"
+        echo "📊 Quality Metrics:" >> "$COMMIT_MSG_FILE"
+        echo "- ESLint Warnings: $ESLINT_WARNINGS" >> "$COMMIT_MSG_FILE"
+        echo "- TypeScript Errors: $TS_ERRORS" >> "$COMMIT_MSG_FILE"
+        echo "- Analysis: $(date)" >> "$COMMIT_MSG_FILE"
+    fi
+fi
+
+# Validate commit message format for non-ODAVL commits
+if ! grep -q "ODAVL:" "$COMMIT_MSG_FILE"; then
+    # Check for basic commit message quality
+    COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+    if [ ${#COMMIT_MSG} -lt 10 ]; then
+        echo "❌ Commit message too short. Please provide a descriptive commit message."
+        exit 1
+    fi
+fi
+
+echo "✅ Commit message validation passed!"

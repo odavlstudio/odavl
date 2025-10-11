@@ -1,6 +1,0 @@
-
-> odavl@0.0.1 test:coverage C:\Users\sabou\dev\odavl
-> vitest run --coverage "--reporter=json" "--outputFile=reports/waveA/coverage-summary.json"
-
-JSON report written to C:/Users/sabou/dev/odavl/reports/waveA/coverage-summary.json
-ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

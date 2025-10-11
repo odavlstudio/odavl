@@ -1,0 +1,181 @@
+/* ODAVL Wave 3 - Accessibility CSS Utilities */
+/* WCAG 2.2 AA compliant color combinations and focus styles */
+
+/* High Contrast Color Overrides */
+.text-muted-accessible {
+  /* Replace #94a3b8 (2.56:1) with #6b7280 (4.54:1) for WCAG AA compliance */
+  color: #6b7280 !important;
+}
+
+.text-secondary-accessible {
+  /* Replace #3b82f6 on navy with #60a5fa (4.68:1) for better contrast */
+  color: #60a5fa !important;
+}
+
+/* Focus Ring Utilities */
+.focus-ring-cyan:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.5);
+}
+
+.focus-ring-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--primary));
+}
+
+/* Skip Link Utility */
+.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  z-index: 60;
+  padding: 0.5rem 1rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.375rem;
+  text-decoration: none;
+}
+
+/* Reduced Motion Utilities */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-animate-pulse {
+    animation: none !important;
+  }
+  
+  .motion-safe-animate-bounce {
+    animation: none !important;
+  }
+  
+  .motion-safe-transition-transform {
+    transition: none !important;
+  }
+  
+  .motion-safe-hover-scale:hover {
+    transform: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .text-white-80 {
+    color: rgb(255 255 255) !important;
+  }
+  
+  .text-white-60 {
+    color: rgb(255 255 255 / 0.9) !important;
+  }
+  
+  .border-white-10 {
+    border-color: rgb(255 255 255 / 0.3) !important;
+  }
+}
+
+/* Screen Reader Only Enhancements */
+.sr-only-focusable {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-within {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  z-index: 50;
+  padding: 0.5rem 1rem;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0.375rem;
+}
+
+/* Keyboard Navigation Enhancements */
+.keyboard-focusable:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.5);
+}
+
+.keyboard-focusable-inset:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(34, 211, 238, 0.5);
+}
+
+/* Accessible Button Styles */
+.btn-accessible {
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.btn-accessible:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--primary));
+}
+
+.btn-accessible:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Accessible Link Styles */
+.link-accessible {
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.link-accessible:hover,
+.link-accessible:focus {
+  text-decoration: underline;
+}
+
+.link-accessible:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.5);
+  border-radius: 0.125rem;
+}
+
+/* Form Element Accessibility */
+.form-accessible:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--primary));
+}
+
+.form-accessible:invalid {
+  box-shadow: 0 0 0 2px rgb(239, 68, 68);
+}
+
+.form-accessible[aria-invalid="true"] {
+  box-shadow: 0 0 0 2px rgb(239, 68, 68);
+}
+
+/* Accessible Typography Scales */
+.text-accessible-sm {
+  font-size: 0.875rem; /* 14px - minimum readable size */
+}
+
+.text-accessible-base {
+  font-size: 1rem; /* 16px - recommended minimum */
+}
+
+.text-accessible-lg {
+  font-size: 1.125rem; /* 18px - large text threshold */
+}

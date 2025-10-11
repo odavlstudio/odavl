@@ -1,0 +1,23 @@
+# next-intl TimeZone Configuration Fix
+**Date:** 2025-10-10
+**Branch:** odavl/site-hotfix-20251010
+**Issue:** ENVIRONMENT_FALLBACK warning - no timeZone configured
+
+## Problem Analysis
+- next-intl components (useTranslations, useLocale) require consistent timeZone
+- Missing timeZone causes server/client environment differences
+- Results in ENVIRONMENT_FALLBACK warnings in console
+
+## Solution Applied
+1. Added timeZone: 'UTC' to src/i18n/request.ts config
+2. Added timeZone="UTC" to SafeIntlProvider component
+3. Ensures consistent timezone across server and client
+
+## Files Modified
+- src/i18n/request.ts: Add timeZone configuration
+- src/components/SafeIntlProvider.tsx: Add timeZone prop
+
+## Expected Result
+✅ No more ENVIRONMENT_FALLBACK warnings
+✅ Consistent server/client rendering
+✅ Stable timezone behavior across locales

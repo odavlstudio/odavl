@@ -1,0 +1,2497 @@
+{
+  "isRunning": false,
+  "lastUpdate": 1760181636360,
+  "componentsStatus": {
+    "pattern": {
+      "name": "Pattern Recognition Engine",
+      "isActive": false,
+      "lastUpdate": 0,
+      "performance": 0.5,
+      "accuracy": 0,
+      "errorRate": 0.15,
+      "learningRate": 0,
+      "knowledgeBase": 0
+    },
+    "decision": {
+      "name": "Decision Intelligence Engine",
+      "isActive": false,
+      "lastUpdate": 0,
+      "performance": 0,
+      "accuracy": 0,
+      "errorRate": 0,
+      "learningRate": 0,
+      "knowledgeBase": 0
+    },
+    "analytics": {
+      "name": "Predictive Analytics Engine",
+      "isActive": false,
+      "lastUpdate": 0,
+      "performance": 0,
+      "accuracy": 0,
+      "errorRate": 0,
+      "learningRate": 0,
+      "knowledgeBase": 0
+    },
+    "recipe": {
+      "name": "Self-Improving Recipe Generator",
+      "isActive": false,
+      "lastUpdate": 0,
+      "performance": 0,
+      "accuracy": 0,
+      "errorRate": 0,
+      "learningRate": 0,
+      "knowledgeBase": 0
+    }
+  },
+  "testResults": [],
+  "performanceMetrics": {
+    "totalExecutions": 0,
+    "averageLatency": 0,
+    "throughput": 0,
+    "errorRate": 0,
+    "accuracyRate": 0,
+    "improvementRate": 0,
+    "resourceUtilization": 0,
+    "trends": []
+  },
+  "knowledgeGraph": {
+    "nodes": [],
+    "edges": [],
+    "insights": [
+      {
+        "id": "correlation-1760181600861-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600861-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600861-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600861-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600861-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600861-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600861-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600861-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600865-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600865-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600865-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600867-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600867-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600867-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600869-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600869-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600869-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600870-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600870-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600870-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600885-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600885-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600885-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600888-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600888-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600888-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600889-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600889-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600889-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-pattern-decision",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "decision"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Decision Intelligence Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and decision",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-pattern-analytics",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-pattern-recipe",
+        "type": "correlation",
+        "components": [
+          "pattern",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Pattern Recognition Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for pattern and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600891-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "issue-1760181600891-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181600891-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181600891-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181600891-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181600891-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636217-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636217-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636217-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636217-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636217-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636218-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636325-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636325-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636325-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636325-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636325-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636325-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636327-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636327-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636327-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636327-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636327-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636327-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636329-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636329-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636329-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636329-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636329-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636329-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636333-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636333-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636333-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636333-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636333-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636333-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636334-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636334-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636334-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636334-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636334-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636334-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636351-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636351-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636351-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636351-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636351-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636351-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636356-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636356-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636356-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636356-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636356-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636356-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636357-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636357-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636357-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636357-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636357-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636357-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636359-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636359-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636359-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636359-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636359-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636359-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      },
+      {
+        "id": "correlation-1760181636360-decision-analytics",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "analytics"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Predictive Analytics Engine",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and analytics",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636360-decision-recipe",
+        "type": "correlation",
+        "components": [
+          "decision",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Decision Intelligence Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for decision and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "correlation-1760181636360-analytics-recipe",
+        "type": "correlation",
+        "components": [
+          "analytics",
+          "recipe"
+        ],
+        "description": "Strong performance correlation detected between Predictive Analytics Engine and Self-Improving Recipe Generator",
+        "impact": 0.7,
+        "confidence": 0.8,
+        "actionable": true,
+        "recommendations": [
+          "Consider shared optimization strategies for analytics and recipe",
+          "Monitor for synchronized performance degradation"
+        ]
+      },
+      {
+        "id": "optimization-1760181636360-performance",
+        "type": "optimization",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Performance optimization needed for 4 components",
+        "impact": 0.8,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Review and optimize low-performing components",
+          "Consider resource allocation adjustments",
+          "Analyze bottlenecks and inefficiencies"
+        ]
+      },
+      {
+        "id": "optimization-1760181636360-errors",
+        "type": "optimization",
+        "components": [
+          "pattern"
+        ],
+        "description": "Error rate optimization needed for 1 components",
+        "impact": 0.9,
+        "confidence": 0.95,
+        "actionable": true,
+        "recommendations": [
+          "Investigate and fix high error rate components",
+          "Implement additional error handling",
+          "Review component logic and edge cases"
+        ]
+      },
+      {
+        "id": "issue-1760181636360-accuracy",
+        "type": "validation",
+        "components": [
+          "pattern",
+          "decision",
+          "analytics",
+          "recipe"
+        ],
+        "description": "Accuracy degradation detected in 4 components",
+        "impact": 0.85,
+        "confidence": 0.9,
+        "actionable": true,
+        "recommendations": [
+          "Investigate accuracy degradation causes",
+          "Review recent changes and updates",
+          "Consider model retraining or recalibration"
+        ]
+      }
+    ],
+    "lastUpdated": 1760181636360
+  },
+  "activeTests": 0,
+  "totalTests": 0,
+  "successRate": 0
+}

@@ -1,0 +1,69 @@
+{
+  "name": "odavl",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "node": ">=18.18",
+    "vscode": "^1.85.0"
+  },
+  "packageManager": "pnpm@9.12.2",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pre-commit": "lint-staged",
+    "prepare": "husky",
+    "odavl:init": "tsx scripts/init-workspace.ts",
+    "odavl:run": "tsx apps/cli/src/index.ts run",
+    "odavl:observe": "tsx apps/cli/src/index.ts observe",
+    "odavl:decide": "tsx apps/cli/src/index.ts decide",
+    "odavl:act": "tsx apps/cli/src/index.ts act",
+    "odavl:verify": "tsx apps/cli/src/index.ts verify",
+    "odavl:dashboard": "tsx apps/cli/src/index.ts dashboard",
+    "odavl:export": "tsx apps/cli/src/index.ts export",
+    "ext:compile": "cd apps/vscode-ext && npm run compile",
+    "ext:watch": "cd apps/vscode-ext && npm run watch",
+    "ext:package": "cd apps/vscode-ext && npx vsce package",
+    "perf:cli": "tsx apps/cli/src/index.ts run",
+    "forensic:all": "pnpm run forensic:setup && pnpm run test:coverage && node scripts/forensic/aggregate.mjs",
+    "forensic:setup": "powershell -Command \"New-Item -ItemType Directory -Force -Path reports/forensic/_last; eslint . -f json -o reports/forensic/_last/eslint.json; prettier --check . > reports/forensic/_last/prettier.txt 2>$null; tsc --noEmit --pretty false > reports/forensic/_last/tsc.txt 2>$null; Write-Host 'Forensic setup completed'\"",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.11.0",
+    "@types/node": "^24.6.2",
+    "@vitest/coverage-v8": "2.1.9",
+    "eslint": "9.11.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "tsx": "4.19.1",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.7.0",
+    "vitest": "^2.1.1"
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.ts": [
+      "bash -c 'tsc --noEmit'"
+    ]
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0",
+      "@eslint/plugin-kit@<0.3.4": ">=0.3.4"
+    }
+  }
+}

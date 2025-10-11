@@ -3,8 +3,8 @@
   "displayName": "ODAVL",
   "publisher": "odavl",
   "description": "Autonomous code quality with enterprise safety gates.",
-  "version": "0.1.1",
-  "icon": "assets/icon.png",
+  "version": "1.0.0",
+  "icon": "assets/odavl.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -14,16 +14,32 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "workspaceContains:.odavl/"
+    "onStartupFinished",
+    "onView:odavlDashboard"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "views": {
       "odavl": [
         {
+          "id": "odavlDashboard",
+          "name": "Dashboard"
+        },
+        {
+          "id": "odavlRecipes",
+          "name": "Recipes"
+        },
+        {
+          "id": "odavlActivity",
+          "name": "Activity"
+        },
+        {
+          "id": "odavlConfig",
+          "name": "Configuration"
+        },
+        {
           "id": "odavlDoctor",
-          "name": "Doctor Monitor",
-          "when": "workspaceFolderCount > 0"
+          "name": "Doctor"
         }
       ]
     },
@@ -32,7 +48,7 @@
         {
           "id": "odavl",
           "title": "ODAVL",
-          "icon": "assets/icon.png"
+          "icon": "assets/odavl.png"
         }
       ]
     },
@@ -49,7 +65,27 @@
       },
       {
         "command": "odavl.refresh",
-        "title": "Refresh",
+        "title": "Refresh All Views",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl.refreshDashboard",
+        "title": "Refresh Dashboard",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl.refreshRecipes",
+        "title": "Refresh Recipes",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl.refreshActivity",
+        "title": "Refresh Activity",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl.refreshConfig",
+        "title": "Refresh Configuration",
         "icon": "$(refresh)"
       }
     ],
@@ -63,6 +99,26 @@
         {
           "command": "odavl.refresh",
           "when": "view == odavlDoctor",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl.refreshDashboard",
+          "when": "view == odavlDashboard",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl.refreshRecipes",
+          "when": "view == odavlRecipes",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl.refreshActivity",
+          "when": "view == odavlActivity",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl.refreshConfig",
+          "when": "view == odavlConfig",
           "group": "navigation"
         }
       ]

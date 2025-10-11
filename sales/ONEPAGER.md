@@ -1,6 +1,6 @@
 # ODAVL Studio - Autonomous Code Quality System
 
-![ODAVL Logo](assets/logo-placeholder.png)
+![ODAVL Logo](../logo/odavl.png)
 
 ## 🚨 The Problem: Code Quality Debt is Killing Productivity
 

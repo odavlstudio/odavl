@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-10-08T23:00:00.883Z",
+  "sourceLocale": "en",
+  "targetLocales": [
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "pt",
+    "ru",
+    "zh"
+  ],
+  "keysAdded": {
+    "ar": [],
+    "de": [],
+    "es": [],
+    "fr": [],
+    "it": [],
+    "ja": [],
+    "pt": [],
+    "ru": [],
+    "zh": []
+  },
+  "keysPreserved": {
+    "ar": 367,
+    "de": 367,
+    "es": 367,
+    "fr": 367,
+    "it": 367,
+    "ja": 367,
+    "pt": 367,
+    "ru": 367,
+    "zh": 367
+  },
+  "summary": {
+    "totalKeys": 367,
+    "localesUpdated": 9,
+    "keysAdded": 0
+  }
+}

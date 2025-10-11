@@ -1,0 +1,49 @@
+
+> odavl-website@0.1.0 build
+> next build --turbopack
+
+   Ôû▓ Next.js 15.5.4 (Turbopack)
+   - Experiments (use with caution):
+     ┬À webVitalsAttribution
+     ┬À optimizePackageImports
+
+   Creating an optimized production build ...
+ Ô£ô Finished writing to disk in 153ms
+ Ô£ô Compiled successfully in 7.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ Ô£ô Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                         Size  First Load JS
+Ôöî ãÆ /                            32.6 kB         155 kB
+Ôö£ Ôùï /_not-found                      0 B         114 kB
+Ôö£ ãÆ /[locale]                    2.13 kB         211 kB
+Ôö£ ãÆ /[locale]/contact            1.58 kB         173 kB
+Ôö£ ãÆ /[locale]/docs                   0 B         171 kB
+Ôö£ ãÆ /[locale]/docs/[slug]        1.55 kB         210 kB
+Ôö£ ãÆ /[locale]/pilot              1.46 kB         172 kB
+Ôö£ ãÆ /[locale]/security               0 B         171 kB
+Ôö£ ãÆ /[locale]/test                   0 B         171 kB
+Ôö£ ãÆ /[locale]/test/components    2.08 kB         210 kB
+Ôö£ ãÆ /api/lead                        0 B            0 B
+Ôö£ Ôùï /robots.txt                      0 B            0 B
+Ôö£ Ôùï /sitemap.xml                     0 B            0 B
+Ôöö Ôùï /tokens                      1.13 kB         115 kB
++ First Load JS shared by all     122 kB
+  Ôö£ chunks/079d5ede7af38810.js   58.9 kB
+  Ôö£ chunks/47f477e3d2ef265b.js   20.4 kB
+  Ôö£ chunks/8082ab48faca5ea1.js   17.2 kB
+  Ôöö other shared chunks (total)  25.4 kB
+
+
+ãÆ Middleware                     51.6 kB
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+

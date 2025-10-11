@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ODAVL Post-merge Integration
+echo "🔄 ODAVL Post-merge Integration Running..."
+
+# Check if package.json was updated (dependencies changed)
+if $(git diff-tree -r --name-only --no-commit-id HEAD~1 HEAD | grep -q "package.json\|pnpm-lock.yaml"); then
+    echo "📦 Dependencies changed, running full setup..."
+    pnpm install
+fi
+
+# Run ODAVL cycle to assess new code state
+echo "📊 Running ODAVL post-merge assessment..."
+pnpm run odavl:run
+
+# Update forensic analysis with merged changes
+echo "🔍 Updating forensic analysis..."
+pnpm run forensic:setup
+
+echo "✅ Post-merge integration completed!"

@@ -1,8 +1,0 @@
-2 overrides were added to package.json to fix vulnerabilities.
-Run "pnpm install" to apply the fixes.
-
-The added overrides:
-{
-  "esbuild@<=0.24.2": ">=0.25.0",
-  "@eslint/plugin-kit@<0.3.4": ">=0.3.4"
-}

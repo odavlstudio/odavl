@@ -1,0 +1,13 @@
+{
+  "after": {
+    "eslintWarnings": 2,
+    "typeErrors": 212,
+    "timestamp": "2025-10-09T22:18:58.663Z"
+  },
+  "deltas": {
+    "eslint": 0,
+    "types": 0
+  },
+  "gatesPassed": false,
+  "gates": {}
+}

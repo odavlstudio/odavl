@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ODAVL Pre-push Validation
+echo "🚀 ODAVL Pre-push Validation Running..."
+
+# Ensure all changes are properly formatted and linted
+echo "🔧 Running full codebase validation..."
+pnpm run lint
+pnpm run typecheck
+
+# Run ODAVL full cycle to ensure quality gates pass
+echo "📊 Running ODAVL full cycle validation..."
+pnpm run odavl:run
+
+# Quick forensic setup to capture state
+echo "🔍 Capturing forensic state..."
+pnpm run forensic:setup
+
+echo "✅ Pre-push validation completed! Safe to push."

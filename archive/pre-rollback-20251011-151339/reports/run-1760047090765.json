@@ -1,0 +1,19 @@
+{
+  "before": {
+    "eslintWarnings": 0,
+    "typeErrors": 0,
+    "timestamp": "2025-10-09T21:57:44.608Z"
+  },
+  "after": {
+    "eslintWarnings": 0,
+    "typeErrors": 0,
+    "timestamp": "2025-10-09T21:58:03.225Z"
+  },
+  "deltas": {
+    "eslint": 0,
+    "types": 0
+  },
+  "decision": "esm-hygiene",
+  "gatesPassed": false,
+  "gates": {}
+}

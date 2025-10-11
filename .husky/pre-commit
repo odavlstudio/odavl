@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ODAVL Pre-commit Quality Gates
+echo "🔍 ODAVL Pre-commit Quality Gates Running..."
+
+# Run lint-staged for formatting and linting
+pnpm run pre-commit
+
+# Run TypeScript type checking
+echo "🔧 Running TypeScript type checking..."
+pnpm run typecheck
+
+# Quick ODAVL observation for pre-commit metrics
+echo "📊 Running ODAVL observation for pre-commit metrics..."
+pnpm run odavl:observe
+
+echo "✅ Pre-commit quality gates passed!"

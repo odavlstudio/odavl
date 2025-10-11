@@ -1,0 +1,121 @@
+{
+  "phase": "Ω-1",
+  "timestamp": "2025-10-10T16:00:00Z",
+  "mission": "Logo Correction - Revert to Official ODAVL Logo",
+  "governance": "odavl/logo-correction-20251010 branch, ≤40 lines/≤10 files per batch",
+  
+  "analysis": {
+    "original_logo": {
+      "location": "/logo/odavl.png",
+      "status": "✅ OFFICIAL - Original user-provided logo",
+      "size_bytes": 1606937,
+      "description": "The only approved ODAVL Shield logo"
+    },
+    
+    "generated_assets_requiring_removal": [
+      {
+        "path": "assets/logo/odavl.png",
+        "status": "❌ GENERATED - Must be removed/archived",
+        "size_bytes": 1606937,
+        "description": "Copy created during Visual Identity Integration Project",
+        "action": "DELETE - Archive to assets/archive/old-logos/"
+      },
+      {
+        "path": "assets/archive/old-logos/",
+        "status": "❌ GENERATED - Entire directory must be archived",
+        "description": "Generated backup directory with old logo variants",
+        "action": "ARCHIVE - Move entire directory to deeper archive"
+      }
+    ],
+    
+    "incorrect_references_requiring_correction": [
+      {
+        "file": "apps/vscode-ext/package.json",
+        "line": 7,
+        "current": "\"icon\": \"assets/odavl.png\",",
+        "required": "\"icon\": \"logo/odavl.png\",",
+        "risk": "HIGH - Extension marketplace branding"
+      },
+      {
+        "file": "apps/vscode-ext/package.json", 
+        "line": 34,
+        "current": "\"icon\": \"assets/odavl.png\"",
+        "required": "\"icon\": \"logo/odavl.png\"",
+        "risk": "HIGH - Activity bar icon"
+      },
+      {
+        "file": "odavl-website/public/logo.png",
+        "status": "❌ REPLACED - Must revert to original",
+        "action": "RESTORE original logo.png from logo/odavl.png"
+      },
+      {
+        "file": "odavl-website/config/marketing/brand.identity.json",
+        "status": "❌ MODIFIED - Contains generated asset references",
+        "action": "REVERT to original brand configuration"
+      },
+      {
+        "file": "sales/ONEPAGER.md",
+        "line": 3,
+        "current": "![ODAVL Logo](../assets/logo/odavl.png)",
+        "required": "![ODAVL Logo](../logo/odavl.png)",
+        "risk": "MEDIUM - Sales material consistency"
+      },
+      {
+        "file": "sales/README_SALES.md",
+        "lines": [8, 20],
+        "current": "Multiple references to ../assets/logo/odavl.png",
+        "required": "Update to ../logo/odavl.png",
+        "risk": "MEDIUM - Sales documentation"
+      },
+      {
+        "file": "sales/DEMO_90S.md",
+        "line": 22,
+        "current": "*Visual*: Show standardized ODAVL logo (`../assets/logo/odavl.png`)",
+        "required": "*Visual*: Show official ODAVL logo (`../logo/odavl.png`)",
+        "risk": "MEDIUM - Demo materials"
+      }
+    ]
+  },
+  
+  "correction_batches": {
+    "batch_ω1": {
+      "name": "VS Code Extension Correction",
+      "files": ["apps/vscode-ext/package.json"],
+      "changes": "Update icon paths from assets/odavl.png to logo/odavl.png",
+      "validation": "Extension compilation test"
+    },
+    "batch_ω2": {
+      "name": "Website Asset Restoration",
+      "files": ["odavl-website/public/logo.png", "odavl-website/config/marketing/brand.identity.json"],
+      "changes": "Restore original logo.png, revert brand configuration",
+      "validation": "Website build test"
+    },
+    "batch_ω3": {
+      "name": "Sales Documentation Correction",
+      "files": ["sales/ONEPAGER.md", "sales/README_SALES.md", "sales/DEMO_90S.md"],
+      "changes": "Update all asset references to ../logo/odavl.png",
+      "validation": "Documentation consistency check"
+    },
+    "batch_ω4": {
+      "name": "Archive Generated Assets",
+      "files": ["assets/"],
+      "changes": "Archive entire assets/ directory, clean generated variants",
+      "validation": "No broken references remain"
+    }
+  },
+  
+  "governance_compliance": {
+    "branch": "odavl/logo-correction-20251010",
+    "max_files_per_batch": 10,
+    "max_lines_per_batch": 40,
+    "protected_paths": "No protected paths affected",
+    "rollback_plan": "Git revert available for each batch"
+  },
+  
+  "summary": {
+    "total_incorrect_references": 7,
+    "generated_assets_to_remove": 2,
+    "batches_required": 4,
+    "estimated_completion": "≤30 minutes with validation"
+  }
+}

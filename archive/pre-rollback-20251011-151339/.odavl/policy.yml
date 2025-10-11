@@ -1,0 +1,3 @@
+autonomy: 1
+riskBudget: { maxLinesPerPatch: 40, maxFilesTouched: 10, maxPatchesPerRun: 1 }
+protected: ["**/security/**","**/*.spec.*","**/public-api/**"]

@@ -1,0 +1,8 @@
+{
+  "id": "esm-hygiene",
+  "description": "Removes unused imports and variables",
+  "successPattern": "ESLint warnings",
+  "trust": 0.8,
+  "runs": 0,
+  "success": 0
+}

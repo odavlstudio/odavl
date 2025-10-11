@@ -1,0 +1,301 @@
+{
+  "name": "odavl-studio-enhanced",
+  "displayName": "ODAVL Studio Enhanced",
+  "publisher": "odavl",
+  "description": "ODAVL Studio Enhanced — Enterprise-Grade Code Quality Automation System",
+  "version": "1.0.0",
+  "preview": false,
+  "icon": "assets/odavl-enhanced.png",
+  "license": "MIT",
+  "homepage": "https://odavl.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odavlstudio/odavl.git",
+    "directory": "apps/vscode-ext-enhanced"
+  },
+  "bugs": {
+    "url": "https://github.com/odavlstudio/odavl/issues"
+  },
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=18.18.0"
+  },
+  "categories": [
+    "Linters",
+    "Testing",
+    "Other",
+    "Debuggers",
+    "Visualization"
+  ],
+  "keywords": [
+    "code quality",
+    "automation",
+    "autonomous",
+    "eslint",
+    "typescript",
+    "safety gates",
+    "enterprise",
+    "continuous improvement",
+    "observability",
+    "attestation"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "qna": "https://github.com/odavlstudio/odavl/discussions",
+  "activationEvents": [
+    "workspaceContains:.odavl"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "ODAVL Studio Enhanced",
+      "properties": {
+        "odavl.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh ODAVL status and metrics"
+        },
+        "odavl.refreshInterval": {
+          "type": "number",
+          "default": 5000,
+          "minimum": 1000,
+          "maximum": 60000,
+          "description": "Status refresh interval in milliseconds"
+        },
+        "odavl.enableTelemetry": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable anonymous usage telemetry to improve ODAVL"
+        },
+        "odavl.logLevel": {
+          "type": "string",
+          "enum": [
+            "error",
+            "warn",
+            "info",
+            "debug"
+          ],
+          "default": "info",
+          "description": "Logging level for ODAVL extension"
+        },
+        "odavl.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show ODAVL status notifications"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "odavl-enhanced",
+          "title": "ODAVL Studio Enhanced",
+          "icon": "$(pulse)"
+        }
+      ]
+    },
+    "views": {
+      "odavl-enhanced": [
+        {
+          "id": "odavlExplorerEnhanced",
+          "name": "ODAVL Control Center",
+          "when": "workspaceHasOdavl || odavl.showInitializer",
+          "icon": "$(dashboard)"
+        },
+        {
+          "id": "odavlMetricsView",
+          "name": "Live Metrics",
+          "when": "workspaceHasOdavl",
+          "icon": "$(graph)"
+        },
+        {
+          "id": "odavlConfigView",
+          "name": "Configuration",
+          "when": "workspaceHasOdavl",
+          "icon": "$(settings-gear)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "odavl.initialize",
+        "title": "Initialize ODAVL Workspace",
+        "icon": "$(rocket)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.doctorEnhanced",
+        "title": "ODAVL Doctor Panel Enhanced",
+        "icon": "$(dashboard)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.runCycleEnhanced",
+        "title": "Run ODAVL Cycle (Enhanced)",
+        "icon": "$(play)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.runCycleAdvanced",
+        "title": "Run ODAVL Cycle (Advanced Decisions)",
+        "icon": "$(zap)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.refreshEnhanced",
+        "title": "Refresh All",
+        "icon": "$(refresh)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.undoEnhanced",
+        "title": "Undo Last ODAVL Action",
+        "icon": "$(discard)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.openReportsEnhanced",
+        "title": "Browse Reports & Analytics",
+        "icon": "$(graph)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.openConfigEnhanced",
+        "title": "Open Configuration",
+        "icon": "$(settings-gear)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.exportData",
+        "title": "Export Analytics Data",
+        "icon": "$(export)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.viewAttestation",
+        "title": "View Latest Attestation",
+        "icon": "$(verified)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.securityScan",
+        "title": "Run Security Scan",
+        "icon": "$(shield)",
+        "category": "ODAVL"
+      },
+      {
+        "command": "odavl.goldenCheck",
+        "title": "Golden Repo Validation",
+        "icon": "$(star)",
+        "category": "ODAVL"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "odavl.runCycleEnhanced",
+        "key": "ctrl+shift+o ctrl+shift+r",
+        "when": "workspaceHasOdavl"
+      },
+      {
+        "command": "odavl.doctorEnhanced",
+        "key": "ctrl+shift+o ctrl+shift+d",
+        "when": "workspaceHasOdavl"
+      },
+      {
+        "command": "odavl.undoEnhanced",
+        "key": "ctrl+shift+o ctrl+shift+u",
+        "when": "workspaceHasOdavl"
+      },
+      {
+        "command": "odavl.refreshEnhanced",
+        "key": "ctrl+shift+o ctrl+shift+f5",
+        "when": "workspaceHasOdavl"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "odavl.initialize",
+          "when": "!workspaceHasOdavl"
+        },
+        {
+          "command": "odavl.doctorEnhanced",
+          "when": "workspaceHasOdavl"
+        },
+        {
+          "command": "odavl.runCycleAdvanced",
+          "when": "workspaceHasOdavl"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "odavl.refreshEnhanced",
+          "when": "view =~ /^odavl/",
+          "group": "navigation@1"
+        },
+        {
+          "command": "odavl.runCycleEnhanced",
+          "when": "view == odavlExplorerEnhanced",
+          "group": "navigation@2"
+        },
+        {
+          "command": "odavl.doctorEnhanced",
+          "when": "view == odavlExplorerEnhanced",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "odavl.openReportsEnhanced",
+          "when": "view == odavlExplorerEnhanced && viewItem == reports",
+          "group": "inline@1"
+        },
+        {
+          "command": "odavl.openConfigEnhanced",
+          "when": "view == odavlExplorerEnhanced && viewItem == config",
+          "group": "inline@2"
+        },
+        {
+          "command": "odavl.exportData",
+          "when": "view == odavlMetricsView && viewItem == analytics",
+          "group": "inline@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build:production",
+    "build": "tsc -p ./",
+    "build:production": "tsc -p ./ --sourceMap false",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node ./dist/test/runTest.js",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix",
+    "package": "vsce package --out odavl-studio-enhanced.vsix",
+    "publish": "vsce publish",
+    "clean": "rimraf dist *.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.1",
+    "@vscode/test-electron": "^2.3.4",
+    "@vscode/vsce": "^3.6.2",
+    "eslint": "^8.48.0",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "mocha": "^10.2.0",
+    "ovsx": "^0.10.6",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "author": "",
+  "type": "commonjs"
+}

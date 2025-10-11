@@ -1,0 +1,15 @@
+{
+  "displayName": "ODAVL",
+  "description": "ODAVL — Code Quality Automation System",
+  "command.odavl.doctor": "ODAVL: Doctor Mode",
+  "command.odavl.runCycle": "Run ODAVL Cycle", 
+  "command.odavl.refresh": "Refresh ODAVL Explorer",
+  "command.odavl.undo": "Undo Last ODAVL Action",
+  "command.odavl.openReports": "Browse ODAVL Reports",
+  "command.odavl.openConfig": "Open ODAVL Configuration",
+  "view.odavlExplorer": "ODAVL Explorer",
+  "viewContainer.odavl": "ODAVL",
+  "keybinding.runCycle": "Ctrl+Shift+O Ctrl+Shift+R",
+  "keybinding.doctor": "Ctrl+Shift+O Ctrl+Shift+D", 
+  "keybinding.undo": "Ctrl+Shift+O Ctrl+Shift+U"
+}

@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "project": "ODAVL Visual Identity Integration",
+    "phase": "1-Observe",
+    "timestamp": "2025-10-10T00:00:00Z",
+    "scan_scope": "Complete ODAVL ecosystem excluding node_modules, dist, .next, .turbo",
+    "governance": "Micro-patch methodology, ≤40 lines, ≤10 files per batch"
+  },
+  "summary": {
+    "total_assets_found": 26,
+    "distinct_logo_variants": 8,
+    "products_affected": ["VS Code Extension", "Website", "CLI", "Documentation"],
+    "high_priority_replacements": 12,
+    "estimated_batches": 4
+  },
+  "assets": [
+    {
+      "path": "logo/ODAVL.png",
+      "type": "source_asset",
+      "context": "Root directory - appears to be official source logo",
+      "current_usage": "isolated",
+      "suggested_replacement": "copy to assets/logo/odavl.png as standard location",
+      "risk_level": "low",
+      "batch_priority": "A1",
+      "notes": "This appears to be the official logo to standardize on"
+    },
+    {
+      "path": "apps/vscode-ext/assets/ODAVL.png",
+      "type": "extension_icon",
+      "context": "VS Code extension main icon",
+      "current_usage": "package.json icon field",
+      "suggested_replacement": "replace with standardized assets/logo/odavl.png",
+      "risk_level": "medium",
+      "batch_priority": "A1",
+      "notes": "Critical for VS Code marketplace branding"
+    },
+    {
+      "path": "apps/vscode-ext/assets/icon.png",
+      "type": "extension_icon",
+      "context": "VS Code extension alternative icon (1.53MB)",
+      "current_usage": "referenced in reports, possibly legacy",
+      "suggested_replacement": "replace with standardized assets/logo/odavl.png",
+      "risk_level": "medium",
+      "batch_priority": "A1",
+      "notes": "Large file size suggests needs optimization"
+    },
+    {
+      "path": "odavl-website/public/logo.png",
+      "type": "website_logo",
+      "context": "Website main logo",
+      "current_usage": "structured data references",
+      "suggested_replacement": "replace with standardized logo",
+      "risk_level": "high",
+      "batch_priority": "A2",
+      "notes": "SEO and social sharing impact"
+    },
+    {
+      "path": "odavl-website/public/logo.svg",
+      "type": "website_logo",
+      "context": "Website vector logo",
+      "current_usage": "referenced in components/Navbar.tsx",
+      "suggested_replacement": "create standardized SVG version or update reference",
+      "risk_level": "high",
+      "batch_priority": "A2",
+      "notes": "Used in main navigation, high visibility"
+    },
+    {
+      "path": "odavl-website/design/logo.new.svg",
+      "type": "design_asset",
+      "context": "New design system logo variant",
+      "current_usage": "referenced in brand.identity.json",
+      "suggested_replacement": "standardize or archive",
+      "risk_level": "medium",
+      "batch_priority": "A3",
+      "notes": "Design system integration needed"
+    },
+    {
+      "path": "odavl-website/public/apple-touch-icon.png",
+      "type": "mobile_icon",
+      "context": "iOS home screen bookmark icon (180x180)",
+      "current_usage": "mobile web app icon",
+      "suggested_replacement": "regenerate from standard logo",
+      "risk_level": "medium",
+      "batch_priority": "A2",
+      "notes": "Mobile branding consistency"
+    },
+    {
+      "path": "odavl-website/public/favicon-16x16.png",
+      "type": "favicon",
+      "context": "Browser tab icon small",
+      "current_usage": "browser favicon",
+      "suggested_replacement": "regenerate from standard logo",
+      "risk_level": "medium",
+      "batch_priority": "A2",
+      "notes": "Browser branding"
+    },
+    {
+      "path": "odavl-website/public/favicon-32x32.png",
+      "type": "favicon",
+      "context": "Browser tab icon large",
+      "current_usage": "browser favicon",
+      "suggested_replacement": "regenerate from standard logo",
+      "risk_level": "medium",
+      "batch_priority": "A2",
+      "notes": "Browser branding"
+    },
+    {
+      "path": "odavl-website/src/app/favicon.ico",
+      "type": "favicon",
+      "context": "Browser fallback icon",
+      "current_usage": "default browser favicon",
+      "suggested_replacement": "regenerate from standard logo",
+      "risk_level": "medium",
+      "batch_priority": "A2",
+      "notes": "Browser compatibility"
+    },
+    {
+      "path": "odavl-website/public/og-image.png",
+      "type": "social_image",
+      "context": "Open Graph social sharing image",
+      "current_usage": "social media previews",
+      "suggested_replacement": "regenerate with standard logo",
+      "risk_level": "high",
+      "batch_priority": "A2",
+      "notes": "Social media branding impact"
+    }
+  ],
+  "code_references": [
+    {
+      "path": "apps/vscode-ext/package.json",
+      "line": 7,
+      "context": "\"icon\": \"assets/ODAVL.png\"",
+      "suggested_replacement": "\"icon\": \"assets/logo/odavl.png\"",
+      "risk_level": "medium",
+      "batch_priority": "A1"
+    },
+    {
+      "path": "apps/vscode-ext/package.json",
+      "line": 34,
+      "context": "\"icon\": \"assets/ODAVL.png\"",
+      "suggested_replacement": "\"icon\": \"assets/logo/odavl.png\"",
+      "risk_level": "medium",
+      "batch_priority": "A1"
+    },
+    {
+      "path": "odavl-website/src/components/Navbar.tsx",
+      "line": 39,
+      "context": "src=\"/logo.svg\"",
+      "suggested_replacement": "src=\"/assets/logo/odavl.svg\"",
+      "risk_level": "high",
+      "batch_priority": "A2"
+    },
+    {
+      "path": "odavl-website/config/marketing/brand.identity.json",
+      "line": 50,
+      "context": "\"logo\": \"/design/logo.new.svg\"",
+      "suggested_replacement": "\"logo\": \"/assets/logo/odavl.svg\"",
+      "risk_level": "medium",
+      "batch_priority": "A3"
+    },
+    {
+      "path": "odavl-website/config/seo/schema.config.json",
+      "line": 10,
+      "context": "\"url\": \"https://odavl.studio/logo.png\"",
+      "suggested_replacement": "\"url\": \"https://odavl.studio/assets/logo/odavl.png\"",
+      "risk_level": "high",
+      "batch_priority": "A2"
+    }
+  ],
+  "documentation_references": [
+    {
+      "path": "apps/vscode-ext/reports/publish-vscode-extension.md",
+      "line": 17,
+      "context": "**Icon**: assets/icon.png (1.53 MB - official ODAVL logo)",
+      "suggested_replacement": "**Icon**: assets/logo/odavl.png (optimized ODAVL logo)",
+      "risk_level": "low",
+      "batch_priority": "A4"
+    },
+    {
+      "path": "apps/vscode-ext/reports/rebuild-vsix.md",
+      "line": 32,
+      "context": "**Icon**: assets/icon.png (1.53 MB) included",
+      "suggested_replacement": "**Icon**: assets/logo/odavl.png (optimized) included",
+      "risk_level": "low",
+      "batch_priority": "A4"
+    },
+    {
+      "path": "docs/troubleshooting/audit-findings.md",
+      "line": 33,
+      "context": "**logo.png**: Missing - structured data references broken",
+      "suggested_replacement": "Update to reference standardized logo path",
+      "risk_level": "low",
+      "batch_priority": "A4"
+    }
+  ],
+  "batch_planning": {
+    "A1_vscode_extension": {
+      "description": "VS Code Extension Assets Standardization",
+      "files": ["apps/vscode-ext/package.json", "apps/vscode-ext/assets/"],
+      "estimated_lines": 15,
+      "risk_level": "medium",
+      "dependencies": ["Create standardized asset structure"]
+    },
+    "A2_website_core": {
+      "description": "Website Core Branding Assets",
+      "files": ["odavl-website/public/", "odavl-website/src/components/"],
+      "estimated_lines": 25,
+      "risk_level": "high",
+      "dependencies": ["Website builds and SEO"]
+    },
+    "A3_design_system": {
+      "description": "Design System and Brand Configuration",
+      "files": ["odavl-website/config/", "odavl-website/design/"],
+      "estimated_lines": 10,
+      "risk_level": "medium",
+      "dependencies": ["Brand identity system"]
+    },
+    "A4_documentation": {
+      "description": "Documentation and Reports Update",
+      "files": ["docs/", "apps/vscode-ext/reports/"],
+      "estimated_lines": 20,
+      "risk_level": "low",
+      "dependencies": ["None - documentation only"]
+    }
+  },
+  "risks_and_mitigations": {
+    "high_risk": [
+      "Website logo changes affect SEO and social sharing",
+      "VS Code extension icon changes require marketplace update",
+      "Favicon changes impact brand recognition"
+    ],
+    "mitigations": [
+      "Preserve existing assets in /archive/old-logos/ for rollback",
+      "Test website builds after each batch",
+      "Verify VS Code extension compilation",
+      "Check social media preview generation"
+    ]
+  },
+  "governance_compliance": {
+    "protected_paths_avoided": true,
+    "functional_changes": false,
+    "batch_size_limits": "All batches under 40 lines, 10 files",
+    "rollback_strategy": "Asset backup and git revert capability"
+  }
+}

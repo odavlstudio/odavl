@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "retentionDays": 90,
+  "aggregationIntervals": [
+    "hourly",
+    "daily",
+    "weekly",
+    "monthly"
+  ],
+  "storageFormat": "json",
+  "maxStorageSize": 50,
+  "exportFormats": [
+    "json",
+    "csv"
+  ],
+  "alertThresholds": {
+    "successRateMin": 80,
+    "cycleTimeMax": 120000,
+    "qualityScoreMin": 85
+  }
+}

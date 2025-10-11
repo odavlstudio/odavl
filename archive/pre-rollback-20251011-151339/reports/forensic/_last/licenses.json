@@ -1,0 +1,317 @@
+{
+  "@eslint-community/eslint-utils@4.9.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/eslint-community/eslint-utils",
+    "publisher": "Toru Nagashima",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint-community\\eslint-utils",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint-community\\eslint-utils\\LICENSE"
+  },
+  "@eslint-community/regexpp@4.12.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/eslint-community/regexpp",
+    "publisher": "Toru Nagashima",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint-community\\regexpp",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint-community\\regexpp\\LICENSE"
+  },
+  "@eslint/config-array@0.18.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/eslint/rewrite",
+    "publisher": "Nicholas C. Zakas",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\config-array",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\config-array\\LICENSE"
+  },
+  "@eslint/core@0.13.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/eslint/rewrite",
+    "publisher": "Nicholas C. Zakas",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\core",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\core\\LICENSE"
+  },
+  "@eslint/eslintrc@3.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/eslint/eslintrc",
+    "publisher": "Nicholas C. Zakas",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\eslintrc",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\eslintrc\\LICENSE"
+  },
+  "@eslint/js@9.11.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/eslint/eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\js",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\js\\LICENSE"
+  },
+  "@eslint/object-schema@2.1.6": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/eslint/rewrite",
+    "publisher": "Nicholas C. Zakas",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\object-schema",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\object-schema\\LICENSE"
+  },
+  "@eslint/plugin-kit@0.2.8": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/eslint/rewrite",
+    "publisher": "Nicholas C. Zakas",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\plugin-kit",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@eslint\\plugin-kit\\LICENSE"
+  },
+  "@next/eslint-plugin-next@15.5.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/vercel/next.js",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@next\\eslint-plugin-next",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@next\\eslint-plugin-next\\README.md"
+  },
+  "@rushstack/eslint-patch@1.13.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/microsoft/rushstack",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@rushstack\\eslint-patch",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@rushstack\\eslint-patch\\LICENSE"
+  },
+  "@types/js-yaml@4.0.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@types\\js-yaml",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@types\\js-yaml\\LICENSE"
+  },
+  "@types/node@24.6.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@types\\node",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@types\\node\\LICENSE"
+  },
+  "@typescript-eslint/eslint-plugin@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\eslint-plugin",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\eslint-plugin\\LICENSE"
+  },
+  "@typescript-eslint/parser@8.7.0": {
+    "licenses": "BSD-2-Clause",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\parser",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\parser\\LICENSE"
+  },
+  "@typescript-eslint/project-service@8.46.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\project-service",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\project-service\\LICENSE"
+  },
+  "@typescript-eslint/scope-manager@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\scope-manager",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\scope-manager\\LICENSE"
+  },
+  "@typescript-eslint/tsconfig-utils@8.46.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\tsconfig-utils",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\tsconfig-utils\\LICENSE"
+  },
+  "@typescript-eslint/type-utils@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\type-utils",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\type-utils\\LICENSE"
+  },
+  "@typescript-eslint/types@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\types",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\types\\LICENSE"
+  },
+  "@typescript-eslint/typescript-estree@8.7.0": {
+    "licenses": "BSD-2-Clause",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\typescript-estree",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\typescript-estree\\LICENSE"
+  },
+  "@typescript-eslint/utils@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\utils",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\utils\\LICENSE"
+  },
+  "@typescript-eslint/visitor-keys@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\visitor-keys",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@typescript-eslint\\visitor-keys\\LICENSE"
+  },
+  "@vitest/coverage-v8@2.1.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/vitest-dev/vitest",
+    "publisher": "Anthony Fu",
+    "email": "anthonyfu117@hotmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@vitest\\coverage-v8",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\@vitest\\coverage-v8\\LICENSE"
+  },
+  "audit-ci@7.1.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/IBM/audit-ci",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\audit-ci",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\audit-ci\\LICENSE"
+  },
+  "depcheck@1.4.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/depcheck/depcheck",
+    "publisher": "Djordje Lukic",
+    "email": "lukic.djordje@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\depcheck",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\depcheck\\LICENSE"
+  },
+  "eslint-config-next@15.5.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/vercel/next.js",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-config-next"
+  },
+  "eslint-import-resolver-node@0.3.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/import-js/eslint-plugin-import",
+    "publisher": "Ben Mosher",
+    "url": "me@benmosher.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-import-resolver-node",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-import-resolver-node\\LICENSE"
+  },
+  "eslint-import-resolver-typescript@3.10.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/import-js/eslint-import-resolver-typescript",
+    "publisher": "Alex Gorbatchev",
+    "email": "alex.gorbatchev@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-import-resolver-typescript",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-import-resolver-typescript\\LICENSE"
+  },
+  "eslint-module-utils@2.12.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/import-js/eslint-plugin-import",
+    "publisher": "Ben Mosher",
+    "email": "me@benmosher.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-module-utils",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-module-utils\\LICENSE"
+  },
+  "eslint-plugin-import@2.32.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/import-js/eslint-plugin-import",
+    "publisher": "Ben Mosher",
+    "email": "me@benmosher.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-import",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-import\\LICENSE"
+  },
+  "eslint-plugin-jsx-a11y@6.10.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y",
+    "publisher": "Ethan Cohen",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-jsx-a11y",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-jsx-a11y\\LICENSE.md"
+  },
+  "eslint-plugin-react-hooks@5.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-react-hooks",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-react-hooks\\LICENSE"
+  },
+  "eslint-plugin-react@7.37.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jsx-eslint/eslint-plugin-react",
+    "publisher": "Yannick Croissant",
+    "email": "yannick.croissant+npm@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-react",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-plugin-react\\LICENSE"
+  },
+  "eslint-scope@8.4.0": {
+    "licenses": "BSD-2-Clause",
+    "repository": "https://github.com/eslint/js",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-scope",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-scope\\LICENSE"
+  },
+  "eslint-visitor-keys@4.2.1": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/eslint/js",
+    "publisher": "Toru Nagashima",
+    "url": "https://github.com/mysticatea",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-visitor-keys",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint-visitor-keys\\LICENSE"
+  },
+  "eslint@9.11.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/eslint/eslint",
+    "publisher": "Nicholas C. Zakas",
+    "email": "nicholas+npm@nczconsulting.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\eslint\\LICENSE"
+  },
+  "js-yaml@4.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/nodeca/js-yaml",
+    "publisher": "Vladimir Zapparov",
+    "email": "dervus.grim@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\js-yaml",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\js-yaml\\LICENSE"
+  },
+  "knip@5.64.2": {
+    "licenses": "ISC",
+    "repository": "https://github.com/webpro-nl/knip",
+    "publisher": "Lars Kappert",
+    "email": "lars@webpro.nl",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\knip",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\knip\\README.md"
+  },
+  "license-checker@25.0.1": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/davglass/license-checker",
+    "publisher": "Dav Glass",
+    "email": "davglass@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\license-checker",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\license-checker\\LICENSE"
+  },
+  "madge@8.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/pahen/madge",
+    "publisher": "Patrik Henningsson",
+    "email": "patrik.henningsson@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\madge",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\madge\\LICENSE"
+  },
+  "odavl@0.0.1": {
+    "licenses": "UNLICENSED",
+    "private": true,
+    "path": "C:\\Users\\sabou\\dev\\odavl",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\LICENSE"
+  },
+  "prettier@3.6.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/prettier/prettier",
+    "publisher": "James Long",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\prettier",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\prettier\\LICENSE"
+  },
+  "tsx@4.19.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/privatenumber/tsx",
+    "publisher": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\tsx",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\tsx\\LICENSE"
+  },
+  "typescript-eslint@8.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typescript-eslint/typescript-eslint",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\typescript-eslint",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\typescript-eslint\\LICENSE"
+  },
+  "typescript@5.6.3": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/microsoft/TypeScript",
+    "publisher": "Microsoft Corp.",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\typescript",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\typescript\\LICENSE.txt"
+  },
+  "vitest@2.1.9": {
+    "licenses": "MIT",
+    "repository": "https://github.com/vitest-dev/vitest",
+    "publisher": "Anthony Fu",
+    "email": "anthonyfu117@hotmail.com",
+    "path": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\vitest",
+    "licenseFile": "C:\\Users\\sabou\\dev\\odavl\\node_modules\\vitest\\LICENSE.md"
+  }
+}

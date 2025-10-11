@@ -1,0 +1,590 @@
+{
+  "folders": [
+    {
+      "name": "ODAVL Root",
+      "path": "."
+    },
+    {
+      "name": "CLI",
+      "path": "./apps/cli"
+    },
+    {
+      "name": "VS Code Extension",
+      "path": "./apps/vscode-ext"
+    },
+    {
+      "name": "Website",
+      "path": "./odavl-website"
+    },
+    {
+      "name": "Reports & Analytics",
+      "path": "./reports"
+    }
+  ],
+  "settings": {
+    // ODAVL-specific configuration
+    "odavl.autoRun": false,
+    "odavl.showStatusBar": true,
+    "odavl.enableAnalytics": true,
+    "odavl.doctorMode": true,
+    
+    // TypeScript configuration
+    "typescript.preferences.detectNewLineCharacter": true,
+    "typescript.preferences.includePackageJsonAutoImports": "on",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.inlayHints.parameterNames.enabled": "all",
+    "typescript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.suggest.autoImports": true,
+    
+    // ESLint configuration  
+    "eslint.validate": [
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact"
+    ],
+    "eslint.codeActionsOnSave.mode": "problems",
+    "eslint.workingDirectories": [
+      ".",
+      "apps/cli",
+      "apps/vscode-ext", 
+      "odavl-website"
+    ],
+    
+    // Editor configuration for ODAVL development
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.rulers": [80, 120],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    
+    // File associations
+    "files.associations": {
+      "*.json": "jsonc",
+      ".odavl/gates.yml": "yaml",
+      ".odavl/policy.yml": "yaml",
+      ".odavl/recipes-trust.json": "jsonc",
+      "reports/*.json": "jsonc"
+    },
+    
+    // File exclusions for better performance
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.next": true,
+      "**/coverage": true,
+      "reports/observe-*.json": true,
+      "reports/run-*.json": true
+    },
+    
+    // Search configuration
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.next": true,
+      "**/coverage": true,
+      "reports/*.json": true,
+      "pnpm-lock.yaml": true
+    },
+    
+    // Terminal configuration
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+      "PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell"
+      },
+      "Command Prompt": {
+        "path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+        "args": [],
+        "icon": "terminal-cmd"
+      }
+    },
+    
+    // Git configuration
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.suggestSmartCommit": false,
+    
+    // Problems panel configuration
+    "problems.decorations.enabled": true,
+    "problems.showCurrentInStatus": true,
+    
+    // Explorer configuration
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "package.json": "package-lock.json,pnpm-lock.yaml,yarn.lock,bun.lockb",
+      "tsconfig.json": "tsconfig.*.json",
+      "*.js": "${capture}.js.map,${capture}.d.ts",
+      "*.ts": "${capture}.js,${capture}.d.ts,${capture}.js.map"
+    },
+    
+    // JSON formatting
+    "json.format.enable": true,
+    "json.schemas": [
+      {
+        "fileMatch": [
+          ".odavl/gates.yml"
+        ],
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eslint": {
+              "type": "object",
+              "properties": {
+                "deltaMax": { "type": "number" }
+              }
+            },
+            "typeErrors": {
+              "type": "object", 
+              "properties": {
+                "deltaMax": { "type": "number" }
+              }
+            }
+          }
+        }
+      },
+      {
+        "fileMatch": [
+          "reports/observe-*.json",
+          "reports/run-*.json"
+        ],
+        "schema": {
+          "type": "object",
+          "properties": {
+            "eslintWarnings": { "type": "number" },
+            "typeErrors": { "type": "number" },
+            "timestamp": { "type": "string" }
+          }
+        }
+      }
+    ],
+    
+    // YAML configuration
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
+    },
+    
+    // Markdown configuration
+    "markdown.preview.breaks": true,
+    "markdown.preview.linkify": true,
+    
+    // Extension-specific settings
+    "emmet.includeLanguages": {
+      "typescript": "html",
+      "javascript": "html"
+    },
+    
+    // Debugging configuration
+    "debug.console.fontSize": 14,
+    "debug.console.wordWrap": true,
+    
+    // Performance optimizations
+    "typescript.preferences.useLabelDetailsInCompletionEntries": true,
+    "typescript.suggest.completeFunctionCalls": true,
+    "extensions.ignoreRecommendations": false,
+    
+    // Workspace trust
+    "security.workspace.trust.untrustedFiles": "open",
+    
+    // Live Share (if using collaborative development)
+    "liveshare.featureSet": "stable",
+    
+    // Prettier integration
+    "prettier.configPath": ".prettierrc.json",
+    "prettier.ignorePath": ".prettierignore",
+    
+    // Todo Tree extension configuration (if installed)
+    "todo-tree.general.tags": [
+      "TODO",
+      "FIXME", 
+      "HACK",
+      "BUG",
+      "ODAVL",
+      "RECIPE",
+      "GATE"
+    ],
+    "todo-tree.highlights.customHighlight": {
+      "ODAVL": {
+        "icon": "pulse",
+        "iconColour": "cyan",
+        "foreground": "cyan"
+      },
+      "RECIPE": {
+        "icon": "gear", 
+        "iconColour": "yellow",
+        "foreground": "yellow"
+      },
+      "GATE": {
+        "icon": "shield",
+        "iconColour": "green", 
+        "foreground": "green"
+      }
+    }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "ODAVL: Run Complete Cycle",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["odavl:run"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "problemMatcher": {
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error)\\s+(.*)\\s+(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5,
+            "code": 6
+          }
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Observe (Collect Metrics)",
+        "type": "shell", 
+        "command": "pnpm",
+        "args": ["tsx", "apps/cli/src/index.ts", "observe"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Decide (Determine Action)",
+        "type": "shell",
+        "command": "pnpm", 
+        "args": ["tsx", "apps/cli/src/index.ts", "decide"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always", 
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Act (Execute Recipe)",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["tsx", "apps/cli/src/index.ts", "act"],  
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Verify (Check Gates)",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["tsx", "apps/cli/src/index.ts", "verify"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Dashboard (Launch Analytics)",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["tsx", "apps/cli/src/index.ts", "dashboard"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Export Analytics (JSON)",
+        "type": "shell",
+        "command": "pnpm", 
+        "args": ["tsx", "apps/cli/src/index.ts", "export", "json"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "ODAVL: Undo Last Changes",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["tsx", "apps/cli/src/index.ts", "undo"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": true,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Development: Install Dependencies",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["install"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Development: Type Check",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["typecheck"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": "$tsc",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Development: Lint",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["lint"],
+        "group": "test", 
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": "$eslint-stylish",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Development: Test Coverage",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["test:coverage"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Extension: Compile VS Code Extension",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["ext:compile"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": "$tsc",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Extension: Watch VS Code Extension",
+        "type": "shell",
+        "command": "pnpm", 
+        "args": ["ext:watch"],
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "dedicated"
+        },
+        "problemMatcher": "$tsc-watch",
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Website: Start Development Server",
+        "type": "shell",
+        "command": "pnpm",
+        "args": ["dev"],
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "dedicated"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}/odavl-website"
+        }
+      },
+      {
+        "label": "Security: Policy Guard Check", 
+        "type": "shell",
+        "command": "pwsh",
+        "args": ["-File", "./tools/policy-guard.ps1"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      },
+      {
+        "label": "Security: Golden State Check",
+        "type": "shell", 
+        "command": "pwsh",
+        "args": ["-File", "./tools/golden.ps1"],
+        "group": "test",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        }
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug ODAVL CLI",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/apps/cli/src/index.ts",
+        "args": ["run"],
+        "outFiles": ["${workspaceFolder}/apps/cli/dist/**/*.js"],
+        "console": "integratedTerminal",
+        "envFile": "${workspaceFolder}/.env",
+        "runtimeArgs": ["--loader", "tsx/esm"]
+      },
+      {
+        "name": "Debug VS Code Extension",
+        "type": "extensionHost",
+        "request": "launch",
+        "args": ["--extensionDevelopmentPath=${workspaceFolder}/apps/vscode-ext"],
+        "outFiles": ["${workspaceFolder}/apps/vscode-ext/dist/**/*.js"],
+        "preLaunchTask": "Extension: Compile VS Code Extension"
+      },
+      {
+        "name": "Debug Website (Next.js)",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/odavl-website/node_modules/.bin/next",
+        "args": ["dev"],
+        "cwd": "${workspaceFolder}/odavl-website",
+        "console": "integratedTerminal"
+      }
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.vscode-typescript-next",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.powershell",
+      "GitHub.copilot",
+      "GitHub.copilot-chat",
+      "ms-vscode.test-adapter-converter",
+      "hbenl.vscode-test-explorer",
+      "Gruntfuggly.todo-tree",
+      "aaron-bond.better-comments",
+      "wayou.vscode-todo-highlight",
+      "streetsidesoftware.code-spell-checker",
+      "ms-vscode.vscode-json",
+      "redhat.vscode-yaml",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "odavlstudio.odavl-doctor"
+    ],
+    "unwantedRecommendations": [
+      "ms-vscode.vscode-json"
+    ]
+  }
+}

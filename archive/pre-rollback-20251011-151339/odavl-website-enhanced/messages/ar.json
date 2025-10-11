@@ -1,0 +1,627 @@
+{
+  "brand": {
+    "name": "ODAVL"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "docs": "الوثائق",
+    "security": "الأمان",
+    "contact": "اتصل بنا",
+    "pricing": "الأسعار",
+    "pilot": "بدء التجريب"
+  },
+  "cta": {
+    "startPilot": "بدء التجريب",
+    "getStarted": "ابدأ",
+    "startTrial": "تجربة مجانية",
+    "contactSales": "اتصل بالمبيعات"
+  },
+  "hero": {
+    "title": "ODAVL — طبيبك المستقل للكود مع الأمان المؤسسي.",
+    "subtitle": "يراقب ويصلح ويتحقق ويتعلم — دون كسر قاعدة الكود الخاصة بك.",
+    "preHeadline": "منصة جودة الكود المدعومة بالذكاء الاصطناعي",
+    "headline": "توقف عن إصلاح الأخطاء. ابدأ في منعها.",
+    "subheadline": "حسن جودة الكود باستمرار مع ذكاء اصطناعي يراقب ويقرر ويتصرف ويتعلم — كل ذلك ضمن حدود الأمان على مستوى المؤسسة.",
+    "ctaPrimary": "ابدأ تجربة مجانية لمدة 30 يومًا",
+    "ctaSecondary": "شاهد النتائج المباشرة (دقيقتان)",
+    "ctaPilot": "بدء التجريب",
+    "ctaInstall": "تثبيت إضافة VS Code",
+    "trust": "موثوق من قبل الفرق المؤسسية",
+    "trustIndicator": "انضم إلى أكثر من **500** فريق مؤسسي يستخدمون ODAVL لجودة الكود المستقلة",
+    "productPreview": "معاينة المنتج",
+    "benefits": {
+      "autonomous": "مستقل بالكامل",
+      "enterprise": "جاهز للمؤسسات",
+      "secure": "آمن للغاية"
+    }
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق"
+  },
+  "trust": {
+    "heading": "موثوق من قبل فرق تطوير المؤسسات في جميع أنحاء العالم",
+    "linesFixed": "أسطر الكود المُصلحة",
+    "safetyRate": "معدل نجاح الأمان",
+    "enterpriseTeams": "فرق المؤسسات",
+    "monitoring": "المراقبة المستمرة"
+  },
+  "footer": {
+    "copyright": "© 2025 ODAVL Studio. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "support": "الدعم"
+  },
+  "locale": {
+    "switchTo": "التبديل إلى {locale}",
+    "current": "اللغة الحالية: {locale}"
+  },
+  "docs": {
+    "title": "الوثائق",
+    "description": "تعلم كيفية استخدام ODAVL لتحسين جودة الكود",
+    "quickstart": "البداية السريعة",
+    "governance": "الحوكمة والأمان",
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "docs": "الوثائق"
+    }
+  },
+  "pricing": {
+    "badge": "أسعار شفافة",
+    "title": {
+      "main": "أسعار بسيطة",
+      "highlight": "تتطور معك"
+    },
+    "subtitle": "استثمار في جودة الكود الذاتية يؤتي ثماره. بلا رسوم مخفية، بلا مفاجآت.",
+    "period": {
+      "month": "شهر",
+      "year": "سنة",
+      "custom": "مخصص"
+    },
+    "roi": {
+      "title": "حاسبة العائد على الاستثمار",
+      "subtitle": "احسب وفوراتك المحتملة مع ODAVL",
+      "inputs": {
+        "developers": "عدد المطورين",
+        "hourlyRate": "متوسط أجرة المطور بالساعة",
+        "issuesPerWeek": "مشاكل الكود أسبوعيًا",
+        "timePerIssue": "متوسط الوقت لكل مشكلة (ساعات)"
+      },
+      "results": {
+        "roi": "العائد السنوي على الاستثمار",
+        "roiDescription": "العائد على الاستثمار في السنة الأولى",
+        "monthlySaving": "الوفورات الشهرية",
+        "yearlySaving": "الوفورات السنوية",
+        "netROI": "الفائدة السنوية الصافية",
+        "netROIDescription": "الوفورات بعد تكلفة اشتراك ODAVL"
+      }
+    },
+    "value": {
+      "time": {
+        "title": "توفير الوقت",
+        "description": "قلل وقت مراجعة الكود اليدوية وإصلاح الأخطاء مع إدارة الجودة الذاتية",
+        "metric": "70%"
+      },
+      "cost": {
+        "title": "تقليل التكاليف",
+        "description": "انخفاض إجمالي تكلفة الملكية من خلال تحسينات الجودة الآلية وتقليل الديون التقنية",
+        "metric": "$180k"
+      },
+      "quality": {
+        "title": "تحسين الجودة",
+        "description": "تحسن قابل للقياس في مقاييس جودة الكود وتقليل مشاكل الإنتاج",
+        "metric": "99.8%"
+      },
+      "safety": {
+        "title": "ضمان الأمان",
+        "description": "بوابات أمان على مستوى المؤسسة تضمن عدم وصول تغييرات مكسورة للإنتاج أبدًا",
+        "metric": "100%"
+      }
+    },
+    "tiers": {
+      "starter": {
+        "name": "البادئ",
+        "price": "$29",
+        "description": "مثالي للمطورين الأفراد والمشاريع الصغيرة",
+        "features": {
+          "repositories": "حتى 3 مستودعات",
+          "basicFixes": "إصلاحات أساسية وتنظيف",
+          "reports": "تقارير أسبوعية تلقائيًا",
+          "support": "دعم عبر البريد الإلكتروني",
+          "integrations": "تكاملات GitHub/GitLab"
+        }
+      },
+      "professional": {
+        "name": "احترافي",
+        "price": "$99",
+        "description": "الأفضل للفرق النامية وقواعد أكواد الإنتاج",
+        "features": {
+          "unlimited": "مستودعات غير محدودة",
+          "advancedFixes": "إصلاحات متقدمة وقواعد مخصّصة",
+          "customRules": "قواعد جودة مخصّصة",
+          "cicd": "تكامل CI/CD",
+          "analytics": "لوحة تحليلات",
+          "priority": "دعم أولوية"
+        }
+      },
+      "enterprise": {
+        "name": "المؤسسات",
+        "price": "مخصص",
+        "description": "للمؤسسات الكبيرة ذات المتطلبات المعقدة",
+        "features": {
+          "onPremise": "داخل الشركة أو سحابة خاصة",
+          "sla": "اتفاقية مستوى خدمة وفريق نجاح مخصّص",
+          "dedicated": "امتثال وSSO",
+          "training": "تدريبات للفريق",
+          "compliance": "تكاملات مخصّصة",
+          "customization": "تكاملات مخصّصة"
+        }
+      }
+    },
+    "plans": {
+      "title": "اختر خطتك"
+    },
+    "cta": {
+      "startTrial": "تجربة مجانية",
+      "contactSales": "اتصل بالمبيعات"
+    },
+    "enterprise": {
+      "title": "تحتاج المزيد؟",
+      "description": "مؤسسة كبيرة بمتطلبات محددة؟ سننشئ حلاً مخصصًا يناسب احتياجاتك بالضبط.",
+      "cta": "جدولة عرض توضيحي للمؤسسات"
+    }
+  },
+  "testimonials": {
+    "badge": "نجاح العملاء",
+    "title": {
+      "main": "موثوق من قبل",
+      "highlight": "فرق المؤسسات"
+    },
+    "subtitle": "اكتشف كيف تستخدم الشركات الرائدة ODAVL لتحويل سير عمل التطوير وتحسين جودة الكود على نطاق واسع.",
+    "testimonials": {
+      "title": "ما يقوله مستخدمونا"
+    },
+    "testimonial1": {
+      "quote": "حوّل ODAVL عملية جودة الكود لدينا بالكامل.",
+      "author": "سارة م.",
+      "role": "مطور رئيسي",
+      "company": "TechFlow (تجريبي)",
+      "results": {
+        "quality": "جودة الكود محسّنة",
+        "time": "وقت المراجعة موفّر"
+      }
+    },
+    "testimonial2": {
+      "quote": "الإصلاحات المستقلة دقيقة وآمنة بشكل لا يصدق.",
+      "author": "ديفيد ر.",
+      "role": "مدير الهندسة",
+      "company": "CloudScale (تجريبي)",
+      "results": {
+        "defects": "مشاكل الإنتاج مقللة",
+        "velocity": "سرعة التطوير"
+      }
+    },
+    "testimonial3": {
+      "quote": "أفضل استثمار قمنا به في إنتاجية المطورين.",
+      "author": "أليكس ل.",
+      "role": "كبير مسؤولي التقنية",
+      "company": "StartupCo (تجريبي)",
+      "results": {
+        "incidents": "الحوادث الحرجة انخفضت",
+        "deployment": "ثقة النشر"
+      }
+    },
+    "caseStudies": {
+      "title": "قصص النجاح",
+      "subtitle": "نتائج واقعية من مشاركي برنامجنا التجريبي."
+    },
+    "case1": {
+      "company": "TechFlow Solutions",
+      "industry": "التقنية المالية",
+      "challenge": "إدارة جودة الكود عبر 50+ خدمة مصغرة مع دورات نشر سريعة",
+      "solution": "تنفيذ ODAVL Professional مع بوابات أمان مخصصة وتكامل CI/CD",
+      "results": {
+        "quality": {
+          "title": "مشاكل الجودة مقللة",
+          "value": "60%",
+          "improvement": "مشاكل أقل في الإنتاج"
+        },
+        "time": {
+          "title": "سرعة النشر",
+          "value": "3x",
+          "improvement": "عمليات نشر أسرع"
+        }
+      }
+    },
+    "case2": {
+      "company": "CloudScale Systems",
+      "industry": "البنية التحتية السحابية",
+      "challenge": "الحفاظ على جودة الكود في فريق موزع من 200+ مطور",
+      "solution": "نشر مؤسسي مع تكاملات مخصصة وتدريب مخصص",
+      "results": {
+        "defects": {
+          "title": "عيوب الإنتاج",
+          "value": "85%",
+          "improvement": "تقليل المشاكل الحرجة"
+        },
+        "satisfaction": {
+          "title": "رضا المطور",
+          "value": "9.2/10",
+          "improvement": "نقاط سعادة الفريق"
+        }
+      }
+    },
+    "trust": {
+      "title": "لماذا تثق الفرق في ODAVL",
+      "certification": {
+        "title": "متوافق مع SOC 2",
+        "description": "معايير أمان المؤسسات مع مسارات تدقيق كاملة وضوابط الوصول."
+      },
+      "enterprise": {
+        "title": "أمان على مستوى المؤسسات",
+        "description": "أتمتة محكومة مع ضوابط قابلة للتدقيق وأطر الامتثال."
+      },
+      "community": {
+        "title": "أساس مفتوح المصدر",
+        "description": "مبني على أدوات مفتوحة المصدر موثوقة مع منهجيات شفافة."
+      },
+      "growth": {
+        "title": "500+ فريق هندسة",
+        "description": "معتمد من خلال التجارب والاختبارات المؤسسية مع نتائج مثبتة."
+      }
+    },
+    "cta": {
+      "main": "انضم إلى قصص النجاح هذه",
+      "subtitle": "ابدأ تجربتك المجانية وشاهد النتائج في أسبوعك الأول"
+    }
+  },
+  "featuresSection": {
+    "badge": "قدرات متقدمة",
+    "title": {
+      "main": "ذكاء مؤسسي",
+      "highlight": "ذاتي التحكم"
+    },
+    "subtitle": "قدرات قوية مدفوعة بالذكاء الاصطناعي تحول طريقة إدارة فريقك لجودة الكود والأمان والأداء على نطاق واسع.",
+    "autonomous": {
+      "title": "اتخاذ القرارات الذاتي",
+      "description": "ذكاء اصطناعي يتعلم أنماط قاعدة الكود الخاصة بك ويتخذ قرارات ذكية حول تحسينات الكود بدون تدخل بشري.",
+      "benefits": {
+        "continuous": "مراقبة وتحسين مستمر على مدار الساعة",
+        "learning": "التعلم الآلي يتكيف مع معايير البرمجة الخاصة بك",
+        "proactive": "كشف استباقي للمشاكل قبل تأثيرها على الإنتاج"
+      }
+    },
+    "safety": {
+      "title": "بوابات الأمان المؤسسية",
+      "description": "آليات أمان متعددة الطبقات تضمن أن التغييرات لا تعرض استقرار النظام للخطر أو تدخل تغييرات مكسورة.",
+      "benefits": {
+        "gates": "بوابات الجودة تمنع نشر الانتكاس",
+        "rollback": "قدرات التراجع الفوري لجميع التغييرات",
+        "validation": "التحقق الشامل قبل أي تعديل"
+      }
+    },
+    "performance": {
+      "title": "هندسة عالية الأداء",
+      "description": "مبني للتوسع مع خطوط أنابيب معالجة محسنة تتعامل مع قواعد أكواد المؤسسات دون تدهور الأداء.",
+      "benefits": {
+        "speed": "تحليل دون الثانية لقواعد الأكواد المعقدة",
+        "efficiency": "استخدام موارد أدنى مع أقصى تأثير",
+        "scale": "يتعامل مع مستودعات بملايين أسطر الكود"
+      }
+    },
+    "precision": {
+      "title": "إصلاحات مستهدفة بدقة",
+      "description": "التعرف على الأنماط المتقدم يضمن أن الإصلاحات دقيقة ومناسبة سياقيًا وتحافظ على سلامة الكود.",
+      "benefits": {
+        "accuracy": "دقة إصلاح 99.8% مع أدنى إنذارات كاذبة",
+        "context": "تغييرات واعية بالسياق تحترم الأنماط المعمارية",
+        "minimal": "تغييرات كود أدنى لأقصى تحسين جودة"
+      }
+    },
+    "integration": {
+      "title": "التكامل الشامل",
+      "description": "يتكامل بسلاسة مع سير عمل التطوير الحالي وخطوط أنابيب CI/CD وأدوات المطورين.",
+      "benefits": {
+        "universal": "يعمل مع أي سير عمل قائم على Git وبيئات التطوير الرئيسية",
+        "workflow": "يناسب بشكل طبيعي عمليات التطوير الحالية",
+        "tools": "يتصل بالأدوات الشائعة مثل Jira و Slack و Teams"
+      }
+    },
+    "insights": {
+      "title": "ذكاء الأعمال",
+      "description": "حول مقاييس جودة الكود إلى رؤى عملية للأعمال مع التحليلات والتقارير الشاملة.",
+      "benefits": {
+        "metrics": "مقاييس الجودة في الوقت الفعلي وتحليل الاتجاه",
+        "trends": "تحديد الأنماط وفرص التحسين",
+        "optimization": "تتبع العائد على الاستثمار وتحسين إنتاجية الفريق"
+      }
+    },
+    "metrics": {
+      "safety": {
+        "label": "معدل الأمان",
+        "description": "التغييرات المنشورة دون إدخال انتكاسات أو كسر الوظائف"
+      },
+      "speed": {
+        "label": "أسرع",
+        "description": "التحسن المتوسط في دورات مراجعة الكود ونشر الإصلاحات"
+      },
+      "availability": {
+        "label": "المراقبة",
+        "description": "مراقبة الجودة المستمرة دون مقاطعة سير عمل المطور"
+      },
+      "downtime": {
+        "label": "وقت الإعداد",
+        "description": "جاهز لبدء تحسين قاعدة الكود الخاصة بك فورًا بعد التثبيت"
+      }
+    },
+    "cta": {
+      "main": "اختبر الذكاء المؤسسي",
+      "subtitle": "شاهد كيف يحول ODAVL سير عمل التطوير الخاص بك"
+    }
+  },
+  "howItWorks": {
+    "badge": "عملية ODAVL",
+    "title": {
+      "main": "كيف يعمل الكود",
+      "highlight": "الذكي الذاتي"
+    },
+    "subtitle": "اكتشف العملية المثبتة من 5 خطوات التي تجعل ODAVL منصة جودة الكود الذاتية الأكثر موثوقية لفرق المؤسسات.",
+    "process": {
+      "title": "منهجية ODAVL"
+    },
+    "observe": {
+      "title": "راقب",
+      "description": "المراقبة المستمرة لقاعدة الكود الخاصة بك لتحديد أنماط الجودة والديون التقنية وفرص التحسين باستخدام التحليل الثابت المتقدم.",
+      "details": {
+        "metrics": "جمع المقاييس الجودة ومؤشرات صحة الكود في الوقت الفعلي",
+        "patterns": "التعرف على الأنماط لتحديد المشاكل المتكررة والأنماط المضادة",
+        "baseline": "إنشاء قياسات أساسية لتتبع التحسن مع مرور الوقت"
+      }
+    },
+    "decide": {
+      "title": "قرر",
+      "description": "محرك القرار المدفوع بالذكاء الاصطناعي يحلل البيانات المجمعة لإعطاء الأولوية للإصلاحات وتحديد الإجراءات الأكثر أمانًا وتأثيرًا.",
+      "details": {
+        "analysis": "التحليل الذكي للمخاطر مقابل الفوائد للتغييرات المحتملة",
+        "priority": "الأولوية التلقائية بناءً على التأثير التجاري والأمان",
+        "safety": "التحقق من بوابة الأمان يضمن أن التغييرات تلبي عتبات الجودة"
+      }
+    },
+    "act": {
+      "title": "اعمل",
+      "description": "تعديلات الكود الدقيقة والآلية المنفذة ضمن قيود الأمان، مع الاختبار والتحقق الشامل في كل خطوة.",
+      "details": {
+        "execution": "تغييرات كود جراحية تحافظ على السلامة المعمارية",
+        "testing": "الاختبار التلقائي يضمن أن التغييرات لا تدخل انتكاسات",
+        "deployment": "النشر الآمن مع قدرات التراجع الفوري"
+      }
+    },
+    "verify": {
+      "title": "تحقق",
+      "description": "التحقق الشامل من التغييرات من خلال الاختبار التلقائي وتحليل مقاييس الجودة وتقييم التأثير.",
+      "details": {
+        "validation": "التحقق متعدد الطبقات بما في ذلك اختبارات الوحدة والتكامل والنظام",
+        "metrics": "التحقق من مقاييس الجودة لتأكيد تحقيق التحسين",
+        "rollback": "التراجع التلقائي إذا فشل التحقق أو تم اكتشاف انتكاسات"
+      }
+    },
+    "learn": {
+      "title": "تعلم",
+      "description": "خوارزميات التعلم الآلي تتكيف مع أنماط قاعدة الكود وتفضيلات الفريق والنتائج الناجحة لتحسين القرارات المستقبلية.",
+      "details": {
+        "adaptation": "التعلم المستمر من ملاحظات الفريق والأنماط الناجحة",
+        "improvement": "تحسين النموذج بناءً على بيانات النجاح والفشل التاريخية",
+        "optimization": "تحسين خوارزميات اتخاذ القرار لسياقك المحدد"
+      }
+    },
+    "journey": {
+      "title": "رحلة نجاحك",
+      "subtitle": "من التجريب إلى التحول على مستوى المؤسسة في ثلاث مراحل مثبتة",
+      "discovery": {
+        "phase": "المرحلة 1",
+        "title": "الاكتشاف والتقييم",
+        "description": "التقييم الشامل لمشهد جودة الكود الحالي والتكوين المخصص لـ ODAVL.",
+        "duration": "1-2 أسابيع",
+        "outcomes": {
+          "assessment": "تقييم جودة قاعدة الكود الكامل وخارطة طريق التحسين",
+          "demo": "عرض توضيحي مخصص مع قاعدة الكود الفعلية الخاصة بك",
+          "proposal": "اقتراح تنفيذ مصمم خصيصًا وتوقعات العائد على الاستثمار"
+        }
+      },
+      "pilot": {
+        "phase": "المرحلة 2",
+        "title": "التنفيذ التجريبي",
+        "description": "الطرح المتحكم به على مستودعات مختارة للتحقق من النهج وإثبات القيمة.",
+        "duration": "4-6 أسابيع",
+        "outcomes": {
+          "integration": "التكامل السلس مع سير عمل التطوير الحالي",
+          "fixes": "التحسن القابل للقياس في مقاييس جودة الكود",
+          "metrics": "إنشاء الأساس وإثبات العائد على الاستثمار الأولي"
+        }
+      },
+      "scale": {
+        "phase": "المرحلة 3",
+        "title": "النطاق المؤسسي",
+        "description": "النشر على مستوى المنظمة مع التدريب الشامل والتحسين المستمر.",
+        "duration": "8-12 أسبوع",
+        "outcomes": {
+          "rollout": "النشر المؤسسي الكامل عبر جميع فرق التطوير",
+          "training": "تدريب الفريق ودعم التبني لأقصى فعالية",
+          "optimization": "التحسين المستمر ومراقبة الأداء"
+        }
+      }
+    },
+    "cta": {
+      "main": "ابدأ تحولك",
+      "subtitle": "ابدأ بتقييم شخصي لفرص جودة الكود الخاصة بك"
+    }
+  },
+  "integrations": {
+    "badge": "التكاملات المؤسسية",
+    "title": {
+      "main": "نظام بيئي",
+      "highlight": "تكامل سلس"
+    },
+    "subtitle": "اربط ODAVL بأدوات التطوير وسير العمل الحالية. تكاملات أصلية مع أمان ومطابقة معايير المؤسسات.",
+    "status": {
+      "native": "أصلي",
+      "ready": "جاهز",
+      "planned": "مخطط"
+    },
+    "development": {
+      "category": "بيئات التطوير المتكاملة",
+      "title": "تكامل محرر الكود",
+      "description": "التكامل الأصلي مع بيئات التطوير ومحررات الكود الشائعة للحصول على تجربة تطوير سلسة."
+    },
+    "versionControl": {
+      "category": "التحكم في الإصدار",
+      "title": "دعم منصة Git",
+      "description": "التكامل العميق مع جميع منصات Git الرئيسية لإدارة جودة الكود التلقائية."
+    },
+    "cicd": {
+      "category": "خطوط أنابيب CI/CD",
+      "title": "البناء والنشر",
+      "description": "التكامل مع خط أنابيب CI/CD الخاص بك لمراقبة وتحسين جودة الكود المستمر."
+    },
+    "security": {
+      "category": "الأمان والامتثال",
+      "title": "تكامل الأمان",
+      "description": "الاتصال بأدوات فحص الأمان لتعزيز تحليل أمان الكود والامتثال."
+    },
+    "monitoring": {
+      "category": "المراقبة والتحليلات",
+      "title": "أدوات القابلية للمراقبة",
+      "description": "إرسال مقاييس جودة الكود إلى منصات المراقبة والتحليلات للحصول على رؤى شاملة."
+    },
+    "communication": {
+      "category": "التواصل الجماعي",
+      "title": "الإشعارات والتنبيهات",
+      "description": "أبقِ فريقك مطلعًا بإشعارات في الوقت الفعلي حول تحسينات جودة الكود."
+    },
+    "workflow": {
+      "title": "عملية تكامل بسيطة",
+      "subtitle": "كن جاهزًا للعمل مع أدواتك الحالية في دقائق، وليس ساعات",
+      "install": {
+        "title": "تثبيت الإضافة",
+        "description": "قم بتثبيت إضافة ODAVL في بيئة التطوير الخاصة بك أو أضفها إلى خط أنابيب CI/CD"
+      },
+      "configure": {
+        "title": "تكوين الإعدادات",
+        "description": "قم بإعداد التكاملات مع أدواتك الحالية وتخصيص قواعد الجودة"
+      },
+      "automate": {
+        "title": "أتمتة سير العمل",
+        "description": "يتكامل ODAVL تلقائيًا مع سير عمل التطوير الخاص بك"
+      },
+      "monitor": {
+        "title": "مراقبة النتائج",
+        "description": "تتبع التحسينات واحصل على رؤى من خلال أدواتك المفضلة"
+      }
+    },
+    "enterprise": {
+      "title": "دعم التكامل المؤسسي",
+      "description": "تحتاج إلى تكامل مخصص؟ يمكن لفريق المؤسسات لدينا بناء موصلات مخصصة لأدواتك وسير العمل المحددة.",
+      "features": {
+        "custom": "التكاملات المخصصة متوفرة",
+        "priority": "طلبات التكامل ذات الأولوية",
+        "support": "دعم التكامل المخصص"
+      }
+    },
+    "cta": {
+      "main": "عرض جميع التكاملات",
+      "subtitle": "استكشف كتالوج التكامل الكامل وأدلة الإعداد"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "[Needs Translation: auth.login.title]",
+      "subtitle": "[Needs Translation: auth.login.subtitle]",
+      "fields": {
+        "email": "[Needs Translation: auth.login.fields.email]",
+        "password": "[Needs Translation: auth.login.fields.password]",
+        "remember": "[Needs Translation: auth.login.fields.remember]"
+      },
+      "placeholders": {
+        "email": "[Needs Translation: auth.login.placeholders.email]",
+        "password": "[Needs Translation: auth.login.placeholders.password]"
+      },
+      "errors": {
+        "emailRequired": "[Needs Translation: auth.login.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.login.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.login.errors.passwordRequired]"
+      },
+      "links": {
+        "forgotPassword": "[Needs Translation: auth.login.links.forgotPassword]",
+        "signUp": "[Needs Translation: auth.login.links.signUp]"
+      },
+      "submit": "[Needs Translation: auth.login.submit]",
+      "noAccount": "[Needs Translation: auth.login.noAccount]",
+      "demo": {
+        "title": "[Needs Translation: auth.login.demo.title]",
+        "description": "[Needs Translation: auth.login.demo.description]"
+      }
+    },
+    "signup": {
+      "title": "[Needs Translation: auth.signup.title]",
+      "subtitle": "[Needs Translation: auth.signup.subtitle]",
+      "fields": {
+        "firstName": "[Needs Translation: auth.signup.fields.firstName]",
+        "lastName": "[Needs Translation: auth.signup.fields.lastName]",
+        "email": "[Needs Translation: auth.signup.fields.email]",
+        "company": "[Needs Translation: auth.signup.fields.company]",
+        "password": "[Needs Translation: auth.signup.fields.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.fields.confirmPassword]"
+      },
+      "placeholders": {
+        "firstName": "[Needs Translation: auth.signup.placeholders.firstName]",
+        "lastName": "[Needs Translation: auth.signup.placeholders.lastName]",
+        "email": "[Needs Translation: auth.signup.placeholders.email]",
+        "company": "[Needs Translation: auth.signup.placeholders.company]",
+        "password": "[Needs Translation: auth.signup.placeholders.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.placeholders.confirmPassword]"
+      },
+      "errors": {
+        "firstNameRequired": "[Needs Translation: auth.signup.errors.firstNameRequired]",
+        "lastNameRequired": "[Needs Translation: auth.signup.errors.lastNameRequired]",
+        "emailRequired": "[Needs Translation: auth.signup.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.signup.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.signup.errors.passwordRequired]",
+        "passwordWeak": "[Needs Translation: auth.signup.errors.passwordWeak]",
+        "passwordMismatch": "[Needs Translation: auth.signup.errors.passwordMismatch]",
+        "termsRequired": "[Needs Translation: auth.signup.errors.termsRequired]"
+      },
+      "passwordStrength": {
+        "title": "[Needs Translation: auth.signup.passwordStrength.title]",
+        "length": "[Needs Translation: auth.signup.passwordStrength.length]",
+        "uppercase": "[Needs Translation: auth.signup.passwordStrength.uppercase]",
+        "lowercase": "[Needs Translation: auth.signup.passwordStrength.lowercase]",
+        "number": "[Needs Translation: auth.signup.passwordStrength.number]",
+        "special": "[Needs Translation: auth.signup.passwordStrength.special]"
+      },
+      "terms": {
+        "prefix": "[Needs Translation: auth.signup.terms.prefix]",
+        "termsLink": "[Needs Translation: auth.signup.terms.termsLink]",
+        "and": "[Needs Translation: auth.signup.terms.and]",
+        "privacyLink": "[Needs Translation: auth.signup.terms.privacyLink]"
+      },
+      "links": {
+        "signIn": "[Needs Translation: auth.signup.links.signIn]"
+      },
+      "submit": "[Needs Translation: auth.signup.submit]",
+      "hasAccount": "[Needs Translation: auth.signup.hasAccount]",
+      "optional": "[Needs Translation: auth.signup.optional]",
+      "demo": {
+        "title": "[Needs Translation: auth.signup.demo.title]",
+        "description": "[Needs Translation: auth.signup.demo.description]"
+      }
+    }
+  }
+}

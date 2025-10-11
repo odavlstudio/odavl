@@ -1,0 +1,63 @@
+{
+  "budgets": {
+    "routes": {
+      "/": {
+        "firstLoadJS": "180kb",
+        "allLoadJS": "300kb",
+        "description": "Homepage - critical path"
+      },
+      "/pricing": {
+        "firstLoadJS": "160kb", 
+        "allLoadJS": "280kb",
+        "description": "Pricing page - revenue critical"
+      },
+      "/login": {
+        "firstLoadJS": "150kb",
+        "allLoadJS": "250kb", 
+        "description": "Authentication - minimal dependencies"
+      },
+      "/signup": {
+        "firstLoadJS": "150kb",
+        "allLoadJS": "250kb",
+        "description": "Registration - form focused"
+      },
+      "/docs": {
+        "firstLoadJS": "140kb",
+        "allLoadJS": "220kb",
+        "description": "Documentation - content focused"
+      },
+      "/demo": {
+        "firstLoadJS": "170kb",
+        "allLoadJS": "300kb",
+        "description": "Interactive demo - may need more JS"
+      }
+    }
+  },
+  "performance": {
+    "lighthouse": {
+      "performance": 85,
+      "accessibility": 95,
+      "bestPractices": 90,
+      "seo": 85
+    },
+    "webVitals": {
+      "LCP": "1.5s",
+      "FID": "100ms", 
+      "CLS": "0.1",
+      "TTFB": "600ms",
+      "TTI": "2.0s"
+    }
+  },
+  "monitoring": {
+    "alertThresholds": {
+      "bundleSizeIncrease": "10%",
+      "performanceDecrease": "5%",
+      "errorRate": "1%"
+    },
+    "reportingEndpoints": {
+      "lighthouse": "./reports/guardian/lighthouse-reports/",
+      "bundleAnalysis": "./reports/guardian/bundle-analysis/",
+      "webVitals": "./reports/guardian/web-vitals/"
+    }
+  }
+}
