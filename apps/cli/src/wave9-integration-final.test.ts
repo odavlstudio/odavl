@@ -20,7 +20,7 @@ import { ODAvlContextAnalyzer, ContextAnalysisConfig } from './context-analyzer.
 import { createRealtimeAnalyticsEngine, QualityUpdatePayload } from './realtime-analytics.js';
 
 // Import mock transport for testing
-import { createMockAnalyticsTransport, MockAnalyticsTransport } from './mock-analytics-transport.js';
+import { createMockAnalyticsTransport } from './mock-analytics-transport.js';
 
 // Import types
 import {

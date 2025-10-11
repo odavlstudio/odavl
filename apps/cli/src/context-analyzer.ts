@@ -437,7 +437,7 @@ export class ODAvlContextAnalyzer implements ContextAnalyzer {
   
   async analyzeQualityTrends(
     historicalMetrics: QualityMetrics[],
-    timeWindow: string
+    _timeWindow: string
   ): Promise<QualityTrendAnalysis> {
     
     if (historicalMetrics.length < 2) {

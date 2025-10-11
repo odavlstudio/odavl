@@ -40,7 +40,7 @@ export class MockClient extends EventEmitter {
     this.room = room;
   }
 
-  send(data: any): void {
+  send(data: unknown): void {
     if (!this.connected) return;
     this.emit('message', data);
   }
