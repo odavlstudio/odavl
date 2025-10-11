@@ -118,4 +118,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Created by Mohammad Nawlo
 
-- GitHub: [@Monawlo812](https://github.com/Monawlo812)
+- GitHub: [@odavlstudio](https://github.com/odavlstudio/odavl)

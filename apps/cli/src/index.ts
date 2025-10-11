@@ -497,5 +497,5 @@ else if (cmd === "run")     { runCycle(); }
 else if (cmd === "undo")    { undoLast(); }
 else if (cmd === "dashboard") { launchDashboard(); }
 else {
-  console.log("Usage: tsx apps/cli/src/index.ts <observe|decide|act|verify|run|undo|dashboard>");
+  console.log("Usage: pnpm odavl:run | pnpm odavl:<command> <observe|decide|act|verify|run|undo|dashboard>");
 }

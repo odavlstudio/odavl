@@ -48,7 +48,7 @@ export const seoConfig = {
   // Social media configuration
   social: {
     twitter: '@odavlstudio',
-    github: 'https://github.com/odavlstudio',
+    github: 'https://github.com/odavlstudio/odavl',
     linkedin: 'https://linkedin.com/company/odavl',
   },
 } as const;

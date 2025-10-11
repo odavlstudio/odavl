@@ -71,7 +71,7 @@ export const organizationSchema = {
   logo: 'https://odavl.studio/logo.png',
   description: 'Enterprise-grade autonomous code quality platform',
   foundingDate: '2025',
-  sameAs: ['https://github.com/odavlstudio'],
+  sameAs: ['https://github.com/odavlstudio/odavl'],
 };
 
 export const softwareSchema = {
