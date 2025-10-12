@@ -11,5 +11,5 @@
     "downlevelIteration": true,
     "outDir": "dist"
   },
-  "include": ["apps", "scripts", "vitest.config.ts"]
+  "include": ["apps", "scripts", "tests", "vitest.config.ts"]
 }

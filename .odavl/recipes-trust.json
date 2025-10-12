@@ -1,8 +1,14 @@
 [
   {
     "id": "esm-hygiene",
-    "runs": 27,
-    "success": 27,
+    "runs": 28,
+    "success": 28,
+    "trust": 1
+  },
+  {
+    "id": "noop",
+    "runs": 1,
+    "success": 1,
     "trust": 1
   }
 ]

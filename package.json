@@ -19,6 +19,9 @@
   "scripts": {
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "odavl:run": "tsx apps/cli/src/index.ts run",
     "odavl:observe": "tsx apps/cli/src/index.ts observe",
     "odavl:decide": "tsx apps/cli/src/index.ts decide",
@@ -31,8 +34,7 @@
     "pre-commit": "eslint . --fix",
     "perf:cli": "tsx apps/cli/src/index.ts run",
     "forensic:all": "pnpm run forensic:setup && pnpm run test:coverage && node scripts/forensic/aggregate.mjs",
-    "forensic:setup": "powershell -Command \"New-Item -ItemType Directory -Force -Path reports/forensic/_last; eslint . -f json -o reports/forensic/_last/eslint.json; prettier --check . > reports/forensic/_last/prettier.txt 2>$null; tsc --noEmit --pretty false > reports/forensic/_last/tsc.txt 2>$null; Write-Host 'Forensic setup completed'\"",
-    "test:coverage": "vitest run --coverage"
+    "forensic:setup": "powershell -Command \"New-Item -ItemType Directory -Force -Path reports/forensic/_last; eslint . -f json -o reports/forensic/_last/eslint.json; prettier --check . > reports/forensic/_last/prettier.txt 2>$null; tsc --noEmit --pretty false > reports/forensic/_last/tsc.txt 2>$null; Write-Host 'Forensic setup completed'\""
   },
   "devDependencies": {
     "@eslint/js": "9.11.0",
