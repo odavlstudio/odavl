@@ -29,6 +29,7 @@
     "odavl:verify": "tsx apps/cli/src/index.ts verify",
     "odavl:dashboard": "tsx apps/cli/src/index.ts dashboard",
     "odavl:cleanup": "powershell -File tools/cleanup.ps1",
+    "odavl:validate": "tsx tools/schema-validator-cli.ts",
     "ext:compile": "cd apps/vscode-ext && npm run compile",
     "ext:watch": "cd apps/vscode-ext && npm run watch",
     "pre-commit": "eslint . --fix",

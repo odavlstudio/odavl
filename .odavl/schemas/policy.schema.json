@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://odavl.com/schemas/policy.json",
+  "title": "ODAVL Risk Policy Configuration",
+  "description": "Schema for ODAVL risk policy configuration that defines autonomy constraints and safety limits",
+  "type": "object",
+  "properties": {
+    "autonomy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Autonomy level (0-10) controlling how aggressive the system can be"
+    },
+    "riskBudget": {
+      "type": "object",
+      "description": "Risk budget constraints for autonomous operations",
+      "properties": {
+        "maxLinesPerPatch": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Maximum number of lines that can be modified in a single patch"
+        },
+        "maxFilesTouched": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Maximum number of files that can be modified in a single run"
+        },
+        "maxPatchesPerRun": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Maximum number of patches that can be applied in a single run"
+        }
+      },
+      "required": ["maxLinesPerPatch", "maxFilesTouched", "maxPatchesPerRun"],
+      "additionalProperties": false
+    },
+    "protected": {
+      "type": "array",
+      "description": "List of file patterns that are protected from autonomous modification",
+      "items": {
+        "type": "string",
+        "description": "File pattern (glob format) for protected files"
+      },
+      "uniqueItems": true
+    },
+    "approvalRequired": {
+      "type": "object",
+      "description": "Conditions that require human approval before proceeding",
+      "properties": {
+        "breaking": {
+          "type": "boolean",
+          "description": "Require approval for potentially breaking changes"
+        },
+        "security": {
+          "type": "boolean",
+          "description": "Require approval for security-related changes"
+        },
+        "performance": {
+          "type": "boolean",
+          "description": "Require approval for performance-impacting changes"
+        },
+        "api": {
+          "type": "boolean",
+          "description": "Require approval for public API changes"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rollback": {
+      "type": "object",
+      "description": "Automatic rollback configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether automatic rollback is enabled"
+        },
+        "timeoutMs": {
+          "type": "number",
+          "minimum": 1000,
+          "description": "Timeout before automatic rollback triggers (ms)"
+        },
+        "conditions": {
+          "type": "array",
+          "description": "Conditions that trigger automatic rollback",
+          "items": {
+            "type": "string",
+            "enum": [
+              "build_failure",
+              "test_failure",
+              "quality_gate_failure",
+              "security_alert",
+              "performance_regression"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": ["enabled"],
+      "additionalProperties": false
+    },
+    "learning": {
+      "type": "object",
+      "description": "Machine learning and trust configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether machine learning is enabled"
+        },
+        "trustDecayRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Rate at which trust scores decay over time"
+        },
+        "minTrustScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum trust score required for autonomous action"
+        },
+        "maxTrainingRuns": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Maximum number of runs used for training"
+        }
+      },
+      "required": ["enabled"],
+      "additionalProperties": false
+    },
+    "notifications": {
+      "type": "object",
+      "description": "Notification configuration for different events",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "Send notifications on successful operations"
+        },
+        "failure": {
+          "type": "boolean",
+          "description": "Send notifications on failures"
+        },
+        "warnings": {
+          "type": "boolean",
+          "description": "Send notifications on warnings"
+        },
+        "channels": {
+          "type": "array",
+          "description": "Notification channels to use",
+          "items": {
+            "type": "string",
+            "enum": ["email", "slack", "teams", "webhook", "console"]
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "schedule": {
+      "type": "object",
+      "description": "Scheduling configuration for autonomous runs",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether scheduled runs are enabled"
+        },
+        "cron": {
+          "type": "string",
+          "pattern": "^(\\*|[0-5]?[0-9]|\\*/[0-9]+) (\\*|[01]?[0-9]|2[0-3]|\\*/[0-9]+) (\\*|[012]?[0-9]|3[01]|\\*/[0-9]+) (\\*|[01]?[0-9]|1[0-2]|\\*/[0-9]+) (\\*|[0-6]|\\*/[0-9]+)$",
+          "description": "Cron expression for scheduled runs"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Timezone for scheduled runs (IANA timezone identifier)"
+        }
+      },
+      "required": ["enabled"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "autonomy",
+    "riskBudget",
+    "protected"
+  ],
+  "additionalProperties": false
+}
