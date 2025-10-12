@@ -80,6 +80,61 @@ export function saveUndoSnapshot(modifiedFiles: string[]) {
  * Creates undo snapshots before making changes for safe rollback capability.
  * 
  * @param decision - The recipe identifier to execute
+ * 
+ * @example
+ * ```typescript
+ * import { act } from './phases/act.js';
+ * import { decide } from './phases/decide.js';
+ * import { observe } from './phases/observe.js';
+ * 
+ * // Basic usage with decision from DECIDE phase
+ * const metrics = observe();
+ * const decision = decide(metrics);
+ * act(decision);
+ * 
+ * // Example execution scenarios:
+ * 
+ * // Scenario 1: Execute ESLint fixes
+ * act("remove-unused");
+ * // Result: 
+ * // - Creates undo snapshot in .odavl/undo/
+ * // - Runs `pnpm exec eslint . --fix`
+ * // - Logs: "[ACT] Running eslint --fix …"
+ * 
+ * // Scenario 2: Execute formatting fixes  
+ * act("format-consistency");
+ * // Result:
+ * // - Creates undo snapshot for safety
+ * // - Runs ESLint with --fix flag
+ * // - Automatically fixes formatting issues
+ * 
+ * // Scenario 3: No action needed
+ * act("noop");
+ * // Result: 
+ * // - Logs: "[ACT] noop (nothing to fix)"
+ * // - No files modified, no snapshot created
+ * 
+ * // Safety features demonstration:
+ * // Before any changes, undo snapshot is saved:
+ * // .odavl/undo/undo-1640995200000.json contains:
+ * // {
+ * //   "timestamp": "2025-01-12T10:30:00.000Z",
+ * //   "modifiedFiles": ["apps/cli/src/index.ts", "package.json"],
+ * //   "data": {
+ * //     "apps/cli/src/index.ts": "original file content...",
+ * //     "package.json": "original package.json content..."
+ * //   }
+ * // }
+ * 
+ * // Complete ODAVL integration:
+ * const before = observe();
+ * const decision = decide(before);
+ * if (decision !== "noop") {
+ *   console.log(`Executing action: ${decision}`);
+ *   act(decision);
+ *   console.log("Action completed - undo snapshot saved");
+ * }
+ * ```
  */
 export function act(decision: string) {
   if (decision === "remove-unused" || decision === "esm-hygiene" || decision === "format-consistency") {

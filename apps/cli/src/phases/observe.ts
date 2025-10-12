@@ -53,6 +53,31 @@ function ensureDirs() {
  * This is the first phase of the ODAVL cycle, establishing baseline measurements.
  * 
  * @returns Metrics object containing warning counts and timestamp
+ * 
+ * @example
+ * ```typescript
+ * import { observe } from './phases/observe.js';
+ * 
+ * // Basic usage - collect current code quality metrics
+ * const metrics = observe();
+ * console.log(`ESLint warnings: ${metrics.eslintWarnings}`);
+ * console.log(`TypeScript errors: ${metrics.typeErrors}`);
+ * console.log(`Collected at: ${metrics.timestamp}`);
+ * 
+ * // Example output:
+ * // {
+ * //   "eslintWarnings": 3,
+ * //   "typeErrors": 0,
+ * //   "timestamp": "2025-01-12T10:30:45.123Z"
+ * // }
+ * 
+ * // Usage in ODAVL cycle
+ * const before = observe();
+ * // ... perform improvements ...
+ * const after = observe();
+ * const improvement = before.eslintWarnings - after.eslintWarnings;
+ * console.log(`Improved by ${improvement} warnings`);
+ * ```
  */
 export function observe(): Metrics {
   ensureDirs();

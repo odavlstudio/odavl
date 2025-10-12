@@ -111,6 +111,41 @@ export function updateTrust(recipeId: string, success: boolean) {
  * 
  * @param _m - Current metrics (unused in basic implementation, reserved for future ML)
  * @returns String identifier of the selected recipe or "noop"
+ * 
+ * @example
+ * ```typescript
+ * import { decide } from './phases/decide.js';
+ * import { observe } from './phases/observe.js';
+ * 
+ * // Basic usage with current metrics
+ * const currentMetrics = observe();
+ * const decision = decide(currentMetrics);
+ * console.log(`Selected action: ${decision}`);
+ * 
+ * // Example scenarios:
+ * 
+ * // Scenario 1: High-trust recipe available
+ * // .odavl/recipes/remove-unused.json: {"id": "remove-unused", "trust": 0.9}
+ * // Result: "remove-unused"
+ * 
+ * // Scenario 2: Multiple recipes, chooses highest trust
+ * // .odavl/recipes/format.json: {"id": "format-fix", "trust": 0.7}
+ * // .odavl/recipes/unused.json: {"id": "remove-unused", "trust": 0.9}
+ * // Result: "remove-unused" (higher trust score)
+ * 
+ * // Scenario 3: No recipes available
+ * // .odavl/recipes/ directory empty or missing
+ * // Result: "noop"
+ * 
+ * // Integration with ODAVL cycle
+ * const metrics = observe();
+ * const action = decide(metrics);
+ * if (action !== "noop") {
+ *   console.log(`Will execute: ${action}`);
+ * } else {
+ *   console.log("No action needed");
+ * }
+ * ```
  */
 export function decide(_m: Metrics): string {
   const recipes = loadRecipes();

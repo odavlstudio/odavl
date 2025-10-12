@@ -121,6 +121,67 @@ function checkGates(deltas: { eslint: number; types: number }): {
  * 
  * @param before - The metrics collected before the ACT phase
  * @returns Object containing after metrics, deltas, gate results, and gate configuration
+ * 
+ * @example
+ * ```typescript
+ * import { verify } from './phases/verify.js';
+ * import { observe } from './phases/observe.js';
+ * import { act } from './phases/act.js';
+ * 
+ * // Basic usage after ACT phase
+ * const beforeMetrics = observe();
+ * act("remove-unused");
+ * const result = verify(beforeMetrics);
+ * 
+ * console.log(`Gates passed: ${result.gatesPassed}`);
+ * console.log(`ESLint change: ${result.deltas.eslint}`);
+ * console.log(`Type errors change: ${result.deltas.types}`);
+ * 
+ * // Example verification scenarios:
+ * 
+ * // Scenario 1: Successful improvement
+ * // Before: { eslintWarnings: 10, typeErrors: 2 }
+ * // After:  { eslintWarnings: 7, typeErrors: 2 }
+ * // Result: {
+ * //   after: { eslintWarnings: 7, typeErrors: 2, timestamp: "..." },
+ * //   deltas: { eslint: -3, types: 0 },
+ * //   gatesPassed: true,
+ * //   gates: { eslint: { deltaMax: 0 }, typeErrors: { deltaMax: 0 } }
+ * // }
+ * 
+ * // Scenario 2: Quality degradation (gates fail)
+ * // Before: { eslintWarnings: 5, typeErrors: 0 }
+ * // After:  { eslintWarnings: 8, typeErrors: 1 }
+ * // .odavl/gates.yml: { eslint: { deltaMax: 0 }, typeErrors: { deltaMax: 0 } }
+ * // Result: {
+ * //   after: { eslintWarnings: 8, typeErrors: 1, timestamp: "..." },
+ * //   deltas: { eslint: 3, types: 1 },
+ * //   gatesPassed: false,
+ * //   gates: { eslint: { deltaMax: 0 }, typeErrors: { deltaMax: 0 } }
+ * // }
+ * 
+ * // Scenario 3: Shadow verification failure
+ * // If lint or typecheck commands fail in shadow environment:
+ * // Result: { gatesPassed: false, ... }
+ * 
+ * // Complete ODAVL integration:
+ * const before = observe();
+ * act("remove-unused");
+ * const verification = verify(before);
+ * 
+ * if (verification.gatesPassed) {
+ *   console.log("✅ Quality improvement verified!");
+ *   console.log(`Reduced warnings by ${-verification.deltas.eslint}`);
+ * } else {
+ *   console.log("❌ Quality gates failed - consider rollback");
+ * }
+ * 
+ * // Quality gates configuration (.odavl/gates.yml):
+ * // eslint:
+ * //   deltaMax: 0    # No increase in ESLint warnings allowed
+ * // typeErrors:
+ * //   deltaMax: 0    # No increase in TypeScript errors allowed
+ * ```
  */
 export function verify(before: Metrics): { 
   after: Metrics; 
