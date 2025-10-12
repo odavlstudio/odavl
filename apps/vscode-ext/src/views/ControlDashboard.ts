@@ -88,7 +88,7 @@ export class ControlDashboard {
     }
 
     // Use Node.js execution instead of tsx
-    const cli = spawn('node', ['dist/cli/index.js', 'run', '--json'], {
+    const cli = spawn('node', ['apps/cli/dist/index.js', 'run', '--json'], {
       cwd: workspaceRoot,
       shell: true,
       stdio: ['ignore', 'pipe', 'pipe'],

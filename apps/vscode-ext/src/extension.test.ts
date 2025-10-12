@@ -13,14 +13,14 @@ describe('VS Code Extension Smoke Tests', () => {
     expect(pkg.contributes).toBeDefined()
   })
 
-  it('should have ODAVL doctor command configured', () => {
+  it('should have ODAVL control command configured', () => {
     const packagePath = resolve('apps/vscode-ext/package.json')
     const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'))
     
     const commands = pkg.contributes?.commands || []
-    const doctorCommand = commands.find((cmd: { command: string }) => cmd.command === 'odavl.doctor')
+    const controlCommand = commands.find((cmd: { command: string }) => cmd.command === 'odavl.control')
     
-    expect(doctorCommand).toBeDefined()
-    expect(doctorCommand.title).toBe('ODAVL: Doctor Mode')
+    expect(controlCommand).toBeDefined()
+    expect(controlCommand.title).toBe('ODAVL: Show Control Panel')
   })
 })

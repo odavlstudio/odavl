@@ -1,6 +1,6 @@
 {
   "name": "odavl",
-  "displayName": "ODAVL",
+  "displayName": "ODAVL Control",
   "publisher": "odavl",
   "description": "Autonomous code quality with enterprise safety gates.",
   "version": "1.0.0",
@@ -50,7 +50,7 @@
       "activitybar": [
         {
           "id": "odavl",
-          "title": "ODAVL",
+          "title": "ODAVL Control",
           "icon": "media/logo.png"
         }
       ]
