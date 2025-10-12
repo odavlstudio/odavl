@@ -2,6 +2,14 @@
   "name": "odavl-website",
   "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavl/odavl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/odavl/odavl/issues"
+  },
+  "homepage": "https://odavl.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

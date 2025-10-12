@@ -27,6 +27,7 @@
     "odavl:dashboard": "tsx apps/cli/src/index.ts dashboard",
     "ext:compile": "cd apps/vscode-ext && npm run compile",
     "ext:watch": "cd apps/vscode-ext && npm run watch",
+    "pre-commit": "eslint . --fix",
     "perf:cli": "tsx apps/cli/src/index.ts run",
     "forensic:all": "pnpm run forensic:setup && pnpm run test:coverage && node scripts/forensic/aggregate.mjs",
     "forensic:setup": "powershell -Command \"New-Item -ItemType Directory -Force -Path reports/forensic/_last; eslint . -f json -o reports/forensic/_last/eslint.json; prettier --check . > reports/forensic/_last/prettier.txt 2>$null; tsc --noEmit --pretty false > reports/forensic/_last/tsc.txt 2>$null; Write-Host 'Forensic setup completed'\"",

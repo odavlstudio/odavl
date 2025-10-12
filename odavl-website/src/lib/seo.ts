@@ -92,6 +92,31 @@ export const softwareSchema = {
   },
 };
 
+/**
+ * Generates dynamic SEO metadata for different page types
+ */
+export function generateSEOMetadata(pageType: 'home' | 'docs' | 'blog' | 'showcase', title?: string, description?: string): Metadata {
+  const baseTitle = title || 'ODAVL - Autonomous Code Quality Platform';
+  const baseDescription = description || defaultMetadata.description || '';
+  
+  return {
+    ...defaultMetadata,
+    title: pageType === 'home' ? baseTitle : `${title} | ODAVL`,
+    description: baseDescription,
+    openGraph: {
+      ...defaultMetadata.openGraph,
+      title: baseTitle,
+      description: baseDescription,
+      url: `https://odavl.studio/${pageType === 'home' ? '' : pageType}`,
+    },
+    twitter: {
+      ...defaultMetadata.twitter,
+      title: baseTitle,
+      description: baseDescription,
+    },
+  };
+}
+
 /* <ODAVL-WAVE-X3-INJECT-START> */
 // Enhanced SEO infrastructure from WAVE X-3 - Now activated for production
 export { generateMeta } from '../../config/seo/meta.generator';

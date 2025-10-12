@@ -1,0 +1,26 @@
+{
+  "data": {
+    "lint": {
+      "errors": 0
+    },
+    "packages": {
+      "cli": {
+        "built": true
+      },
+      "vscode": {
+        "built": true
+      }
+    },
+    "build": {
+      "success": true,
+      "errors": 0
+    },
+    "typecheck": {
+      "errors": 0
+    }
+  },
+  "timestamp": "2025-10-12T02:50:39.285Z",
+  "status": "PASS",
+  "tool": "golden",
+  "errors": []
+}

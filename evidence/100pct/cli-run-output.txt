@@ -1,0 +1,27 @@
+
+> odavl@1.0.0 odavl:run C:\Users\sabou\dev\odavl
+> tsx apps/cli/src/index.ts run
+
+[ODAVL] Observe ÔåÆ Decide ÔåÆ Act ÔåÆ Verify ÔåÆ Learn
+[OBSERVE] ESLint warnings: 0, Type errors: 0 (12648.4ms)
+[DECIDE] Selected recipe: esm-hygiene (trust 0.8)
+[DECIDE] esm-hygiene (0.6ms)
+[UNDO] Snapshot saved: C:\Users\sabou\dev\odavl\.odavl\undo\undo-1760219687290.json
+[ACT] Running eslint --fix ÔÇª
+[ACT] Completed (9283.2ms)
+[SHADOW] Verifying in isolated environment...
+[SHADOW] pnpm run lint
+
+> odavl@1.0.0 lint C:\Users\sabou\dev\odavl
+> eslint .
+
+[SHADOW] pnpm run typecheck
+
+> odavl@1.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc -p tsconfig.json --noEmit
+
+[SHADOW] Ô£à All checks passed
+[VERIFY] Gates check: PASS Ô£à
+[VERIFY] Gates PASSED (24191.2ms)
+[LEARN] Attestation saved ÔåÆ C:\Users\sabou\dev\odavl\.odavl\attestation\attestation-2025-10-11T215520766Z.json
+[DONE] ESLint warnings: 0 ÔåÆ 0 (╬ö 0) | Type errors: 0 ÔåÆ 0 (╬ö 0) | Total: 46124.4ms

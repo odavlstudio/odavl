@@ -5,14 +5,20 @@ ODAVL (Observe-Decide-Act-Verify-Learn) is an autonomous code quality improvemen
 
 ## Architecture
 - **Monorepo**: Uses pnpm workspaces (`pnpm-workspace.yaml`) with 3 main components:
-  - `apps/cli/` - Core ODAVL CLI system
-  - `apps/vscode-ext/` - VS Code Doctor extension
-  - `odavl-website/` - Next.js marketing/docs site with i18n
+  - `apps/cli/` - Core ODAVL CLI system (single TypeScript file)
+  - `apps/vscode-ext/` - VS Code Doctor extension with live cycle monitoring
+  - `odavl-website/` - Next.js marketing/docs site with i18n (9 languages)
 - **Main CLI**: Single TypeScript file at `apps/cli/src/index.ts` implementing the ODAVL cycle
 - **Reports System**: JSON reports stored in `reports/` (gitignored) track metrics over time
 - **Learning System**: `.odavl/history.json` maintains run history with trust scoring
 - **Safety Gates**: `.odavl/gates.yml` defines strict quality thresholds (zero tolerance for type errors)
 - **Risk Policy**: `.odavl/policy.yml` limits autonomy scope (max 10 files, 40 lines per change)
+
+## Critical Data Flows
+- **Evidence System**: `evidence/` directory contains timestamped action/audit/decision logs
+- **Attestation Chain**: Cryptographic proofs in `.odavl/attestation/` for successful improvements
+- **Undo System**: Automatic snapshots in `.odavl/undo/` enable instant rollback
+- **Recipe Trust**: `.odavl/recipes-trust.json` tracks success rates for ML-driven decisions
 
 ## Key Workflows
 
@@ -37,6 +43,14 @@ pnpm lint            # ESLint with flat config
 # VS Code extension development
 pnpm ext:compile     # Build VS Code Doctor extension
 pnpm ext:watch       # Watch mode for extension development
+
+# Website development (Next.js with i18n)
+cd odavl-website && npm run dev    # Development server
+cd odavl-website && npm run build  # Production bundle
+cd odavl-website && npm run i18n:sync  # Sync translation files
+
+# Dashboard & Analytics
+pnpm odavl:dashboard  # Launch learning visualization dashboard
 ```
 
 ### Metrics Collection
@@ -100,3 +114,15 @@ Check `.odavl/gates.yml` and `.odavl/policy.yml` before making changes:
 - Reports stored in `reports/` with separate directories for runtime, golden snapshots
 - The system is designed for autonomous operation with enterprise-grade safety controls
 - Website includes comprehensive i18n (9 languages) and performance optimizations
+
+## PowerShell Tooling (Windows-first)
+- `.\tools\golden.ps1` - Comprehensive repo stability verification
+- `.\tools\policy-guard.ps1` - Governance and compliance checks
+- `.\tools\security-scan.ps1` - CVE scanning and license validation
+- All PowerShell scripts use `$ErrorActionPreference = "Stop"` for fail-fast behavior
+
+## VS Code Extension Integration
+- Extension uses JSON messaging protocol for real-time cycle monitoring
+- Command: "ODAVL: Doctor Mode" with color-coded phase indicators
+- Views: Dashboard, Recipes, Activity, Configuration, Doctor
+- Uses VS Code TreeDataProvider pattern for dynamic content updates

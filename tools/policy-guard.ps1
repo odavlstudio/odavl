@@ -1,8 +1,12 @@
 #!/usr/bin/env pwsh
 # ODAVL Policy Guard - Validates governance compliance
-param([switch]$Verbose)
+param([switch]$Verbose, [switch]$Json)
 $ErrorActionPreference = "Stop"
-Write-Host "🛡️ ODAVL Policy Guard - $(Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.fffZ')" -ForegroundColor Cyan
+
+# Import common utilities
+. "$PSScriptRoot/common.ps1"
+
+if (!$Json) { Write-Host "🛡️ ODAVL Policy Guard - $(Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.fffZ')" -ForegroundColor Cyan }
 $violations = @()
 try {
     if (!(Test-Path ".odavl.policy.yml")) { $violations += "Missing .odavl.policy.yml" }
@@ -20,17 +24,27 @@ try {
         }
         if ($lines.Count -gt $limit) { $violations += "File $($file): $($lines.Count) lines > $limit limit" }
     }
-    if ($violations.Count -eq 0) {
-        Write-Host "✅ Policy compliance: PASS" -ForegroundColor Green
-        @{ status = "PASS"; violations = @(); timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ" } | ConvertTo-Json | Out-File "reports/waves/policy-check.json" -Encoding UTF8
-        return 0
-    } else {
-        Write-Host "❌ Policy violations found:" -ForegroundColor Red
-        $violations | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
-        @{ status = "FAIL"; violations = $violations; timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ" } | ConvertTo-Json | Out-File "reports/waves/policy-check.json" -Encoding UTF8
-        return 1
+    $status = if ($violations.Count -eq 0) { "PASS" } else { "FAIL" }
+    $data = @{ violations = $violations; filesChecked = $changedFiles.Count }
+    $response = New-ODAVLResponse -Tool "policy-guard" -Status $status -Data $data
+    
+    # Ensure reports directory exists
+    if (!(Test-Path "reports/waves")) { New-Item -Path "reports/waves" -ItemType Directory -Force | Out-Null }
+    $response | ConvertTo-Json -Depth 4 | Out-File "reports/waves/policy-check.json" -Encoding UTF8
+    
+    if (!$Json) {
+        if ($violations.Count -eq 0) {
+            Write-Host "✅ Policy compliance: PASS" -ForegroundColor Green
+        } else {
+            Write-Host "❌ Policy violations found:" -ForegroundColor Red
+            $violations | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
+        }
     }
+    
+    $exitCode = if ($violations.Count -eq 0) { 0 } else { 1 }
+    Exit-WithCode -Code $exitCode -Response $response -Json:$Json
 } catch {
-    Write-Host "💥 Policy guard failed: $_" -ForegroundColor Red
-    return 999
+    $response = New-ODAVLResponse -Tool "policy-guard" -Status "ERROR" -Errors @($_.Exception.Message)
+    if (!$Json) { Write-Host "💥 Policy guard failed: $_" -ForegroundColor Red }
+    Exit-WithCode -Code 999 -Response $response -Json:$Json
 }

@@ -1,6 +1,6 @@
 {
-  "planId": "W3-2025-10-11T23:36:45.716Z",
-  "timestamp": "2025-10-11T23:36:45.716Z",
+  "planId": "W3-2025-10-11T21:54:24.013Z",
+  "timestamp": "2025-10-11T21:54:24.013Z",
   "recipe": "esm-hygiene",
   "deltas": {
     "eslint": 0,
@@ -50,5 +50,5 @@
       "securityPassed": true
     }
   },
-  "signature": "sig-yyjuofxt"
+  "signature": "sig-0vw0xaaz"
 }

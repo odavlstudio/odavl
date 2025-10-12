@@ -1,9 +1,12 @@
 #!/usr/bin/env pwsh
 # ODAVL Security Scanner - Wave 9
 param([switch]$Json)
+$ErrorActionPreference = "Stop"
 
-$timestamp = Get-Date -Format "yyyy-MM-ddTHH:mm:ss.fffZ"
-Write-Host "🔒 ODAVL Security Scan - $timestamp" -ForegroundColor Cyan
+# Import common utilities
+. "$PSScriptRoot/common.ps1"
+
+if (!$Json) { Write-Host "🔒 ODAVL Security Scan - $(Get-Date -Format 'yyyy-MM-ddTHH:mm:ss.fffZ')" -ForegroundColor Cyan }
 
 # Dependency audit
 $auditResult = npm audit --json 2>$null | ConvertFrom-Json -ErrorAction SilentlyContinue
@@ -28,18 +31,21 @@ if ($packageJson -and $packageJson.dependencies) {
     }
 }
 
-$securityReport = @{
-    timestamp = $timestamp
+$status = if ($highCVEs -gt 0) { "FAIL" } elseif ($mediumCVEs -gt 0) { "WARN" } else { "PASS" }
+$data = @{
     vulnerabilities = @{ high = $highCVEs; medium = $mediumCVEs; low = $lowCVEs }
     licenses = @{ issues = $licenseIssues }
-    status = if ($highCVEs -gt 0) { "FAIL" } else { "PASS" }
 }
 
-if ($Json) { $securityReport | ConvertTo-Json -Depth 3 }
-else {
+$response = New-ODAVLResponse -Tool "security-scan" -Status $status -Data $data
+
+if ($Json) { 
+    $response | ConvertTo-Json -Depth 4 
+} else {
     Write-Host "🛡️ Vulnerabilities: High=$highCVEs, Medium=$mediumCVEs, Low=$lowCVEs"
     Write-Host "📜 License Issues: $licenseIssues"
-    Write-Host "🎯 Security Status: $($securityReport.status)"
+    Write-Host "🎯 Security Status: $status"
 }
 
-if ($highCVEs -gt 0) { exit 1 } else { exit 0 }
+$exitCode = if ($highCVEs -gt 0) { 1 } else { 0 }
+exit $exitCode
