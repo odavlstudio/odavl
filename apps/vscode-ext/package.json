@@ -100,6 +100,31 @@
         "command": "odavl.refreshIntelligence",
         "title": "Refresh Intelligence",
         "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl.observe",
+        "title": "Run Observe Phase",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "odavl.decide",
+        "title": "Run Decide Phase",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "odavl.act",
+        "title": "Run Act Phase",
+        "icon": "$(play)"
+      },
+      {
+        "command": "odavl.verify",
+        "title": "Run Verify Phase",
+        "icon": "$(check)"
+      },
+      {
+        "command": "odavl.learn",
+        "title": "Run Learn Phase",
+        "icon": "$(book)"
       }
     ],
     "menus": {

@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 import { spawn } from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
 import { ODAVLDataService } from '../services/ODAVLDataService';
 import { AIInsightsEngine } from '../intelligence/AIInsightsEngine';
 import { DataAnalyzer } from '../intelligence/DataAnalyzer';
@@ -87,8 +89,22 @@ export class ControlDashboard {
       return;
     }
 
-    // Use Node.js execution instead of tsx
-    const cli = spawn('node', ['apps/cli/dist/index.js', 'run', '--json'], {
+    // Use workspace CLI execution with proper path detection
+    let cliCommand = 'pnpm';
+    let cliArgs = ['odavl:run', '--json'];
+    
+    // Check if we can use the built CLI directly
+    try {
+      const cliPath = path.join(workspaceRoot, 'apps', 'cli', 'dist', 'index.js');
+      if (fs.existsSync(cliPath)) {
+        cliCommand = 'node';
+        cliArgs = [cliPath, 'run', '--json'];
+      }
+    } catch {
+      // Fall back to pnpm command
+    }
+
+    const cli = spawn(cliCommand, cliArgs, {
       cwd: workspaceRoot,
       shell: true,
       stdio: ['ignore', 'pipe', 'pipe'],

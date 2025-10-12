@@ -1,4 +1,7 @@
 import * as vscode from 'vscode';
+import { spawn } from 'child_process';
+import * as path from 'path';
+import * as fs from 'fs';
 import { DashboardProvider } from './components/DashboardProvider';
 import { RecipesProvider } from './components/RecipesProvider';
 import { ActivityProvider } from './components/ActivityProvider';
@@ -17,8 +20,17 @@ class ODAVLItem extends vscode.TreeItem {
     public readonly status?: string
   ) {
     super(label, collapsibleState);
-    this.tooltip = `${this.label}`;
+    this.tooltip = `${this.label} - Click to run this phase`;
     this.contextValue = phase || 'root';
+    
+    // Link phase items to their corresponding commands
+    if (phase) {
+      this.command = {
+        command: `odavl.${phase.toLowerCase()}`,
+        title: `Run ${phase}`,
+        arguments: []
+      };
+    }
     
     if (status) {
       let iconName: string;
@@ -37,6 +49,54 @@ class ODAVLItem extends vscode.TreeItem {
 }
 
 type TreeChangeEvent = ODAVLItem | undefined | null | void;
+
+/**
+ * Unified CLI command helper for executing ODAVL operations
+ */
+async function runCLICommand(cmd: string, workspaceRoot?: string): Promise<void> {
+  const wsRoot = workspaceRoot || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  if (!wsRoot) {
+    vscode.window.showErrorMessage('ODAVL requires a workspace folder to run commands.');
+    return;
+  }
+
+  // Determine the appropriate command to use
+  let command = 'pnpm';
+  let args: string[] = [];
+  
+  if (cmd === 'run') {
+    args = ['odavl:run'];
+  } else if (cmd === 'observe') {
+    args = ['odavl:observe'];
+  } else if (cmd === 'decide') {
+    args = ['odavl:decide'];
+  } else if (cmd === 'act') {
+    args = ['odavl:act'];
+  } else if (cmd === 'verify') {
+    args = ['odavl:verify'];
+  } else {
+    args = [cmd];
+  }
+
+  // Check if we can use the built CLI directly
+  try {
+    const cliPath = path.join(wsRoot, 'apps', 'cli', 'dist', 'index.js');
+    if (fs.existsSync(cliPath)) {
+      command = 'node';
+      args = [cliPath, cmd];
+    }
+  } catch {
+    // Fall back to pnpm command
+  }
+
+  const terminal = vscode.window.createTerminal({
+    name: `ODAVL ${cmd}`,
+    cwd: wsRoot
+  });
+
+  terminal.sendText(`${command} ${args.join(' ')}`);
+  terminal.show();
+}
 
 class ODAVLTreeDataProvider implements vscode.TreeDataProvider<ODAVLItem> {
   private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
@@ -128,8 +188,8 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', () => {
-    vscode.commands.executeCommand('odavl.control');
+  const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', async () => {
+    await runCLICommand('run');
   });
 
   const refreshCommand = vscode.commands.registerCommand('odavl.refresh', () => {
@@ -173,6 +233,27 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
+  // Individual ODAVL phase commands for tree item interaction
+  const observeCommand = vscode.commands.registerCommand('odavl.observe', async () => {
+    await runCLICommand('observe');
+  });
+
+  const decideCommand = vscode.commands.registerCommand('odavl.decide', async () => {
+    await runCLICommand('decide');
+  });
+
+  const actCommand = vscode.commands.registerCommand('odavl.act', async () => {
+    await runCLICommand('act');
+  });
+
+  const verifyCommand = vscode.commands.registerCommand('odavl.verify', async () => {
+    await runCLICommand('verify');
+  });
+
+  const learnCommand = vscode.commands.registerCommand('odavl.learn', async () => {
+    await runCLICommand('learn');
+  });
+
   // Performance tracking
   const activationEnd = performance.now();
   const activationTime = activationEnd - activationStart;
@@ -188,7 +269,12 @@ export function activate(context: vscode.ExtensionContext) {
     refreshActivityCommand,
     refreshConfigCommand,
     analyticsCommand,
-    refreshIntelligenceCommand
+    refreshIntelligenceCommand,
+    observeCommand,
+    decideCommand,
+    actCommand,
+    verifyCommand,
+    learnCommand
   );
 }
 
