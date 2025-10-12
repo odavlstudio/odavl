@@ -84,11 +84,11 @@ export class ConfigProvider implements vscode.TreeDataProvider<ConfigItem> {
       
       return Promise.resolve([
         new ConfigItem('Type Errors Delta Max', vscode.TreeItemCollapsibleState.None, 'gates', 
-          gates.typeErrors?.deltaMax?.toString() || '0', false),
+          this.safeToString(this.getNestedValue(gates, 'typeErrors.deltaMax')) || '0', false),
         new ConfigItem('ESLint Delta Max', vscode.TreeItemCollapsibleState.None, 'gates', 
-          gates.eslint?.deltaMax?.toString() || '0', false),
+          this.safeToString(this.getNestedValue(gates, 'eslint.deltaMax')) || '0', false),
         new ConfigItem('Shadow Testing', vscode.TreeItemCollapsibleState.None, 'gates', 
-          gates.shadow?.mustPass ? 'Required' : 'Optional', false),
+          this.getNestedValue(gates, 'shadow.mustPass') ? 'Required' : 'Optional', false),
         new ConfigItem('Edit Gates Config', vscode.TreeItemCollapsibleState.None, 'gates', '.odavl/gates.yml', true)
       ]);
     } else if (element.label === 'Risk Policy') {
@@ -97,9 +97,9 @@ export class ConfigProvider implements vscode.TreeDataProvider<ConfigItem> {
       
       return Promise.resolve([
         new ConfigItem('Max Files Per Change', vscode.TreeItemCollapsibleState.None, 'policy', 
-          policy.riskBudget?.maxFilesTouched?.toString() || '10', false),
+          this.safeToString(this.getNestedValue(policy, 'riskBudget.maxFilesTouched')) || '10', false),
         new ConfigItem('Max Lines Per Change', vscode.TreeItemCollapsibleState.None, 'policy', 
-          policy.riskBudget?.maxLinesPerPatch?.toString() || '40', false),
+          this.safeToString(this.getNestedValue(policy, 'riskBudget.maxLinesPerPatch')) || '40', false),
         new ConfigItem('Autonomy Level', vscode.TreeItemCollapsibleState.None, 'policy', 
           policy.autonomy?.toString() || '1', false),
         new ConfigItem('Edit Policy Config', vscode.TreeItemCollapsibleState.None, 'policy', '.odavl/policy.yml', true)
@@ -122,5 +122,23 @@ export class ConfigProvider implements vscode.TreeDataProvider<ConfigItem> {
     }
     
     return Promise.resolve([]);
+  }
+
+  private getNestedValue(obj: Record<string, unknown>, path: string): unknown {
+    return path.split('.').reduce((current: unknown, key: string) => {
+      return (current && typeof current === 'object' && key in current) 
+        ? (current as Record<string, unknown>)[key] 
+        : undefined;
+    }, obj);
+  }
+
+  private safeToString(value: unknown): string | undefined {
+    if (value === undefined || value === null) {
+      return undefined;
+    }
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      return String(value);
+    }
+    return undefined;
   }
 }

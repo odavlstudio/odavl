@@ -78,11 +78,11 @@ export class ODAVLDataService {
       const policyPath = path.join(this.workspaceRoot, '.odavl', 'policy.yml');
       
       const gates = fs.existsSync(gatesPath) 
-        ? yaml.load(fs.readFileSync(gatesPath, 'utf8')) as Record<string, any>
+        ? yaml.load(fs.readFileSync(gatesPath, 'utf8')) as Record<string, unknown>
         : {};
       
       const policy = fs.existsSync(policyPath)
-        ? yaml.load(fs.readFileSync(policyPath, 'utf8')) as Record<string, any>
+        ? yaml.load(fs.readFileSync(policyPath, 'utf8')) as Record<string, unknown>
         : {};
 
       return { gates, policy };

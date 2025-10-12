@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { ODAVLDataService } from '../services/ODAVLDataService';
-import { RecipeTrust } from '../types/ODAVLTypes';
+
 
 type TreeChangeEvent = RecipeItem | undefined | null | void;
 

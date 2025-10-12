@@ -7,7 +7,7 @@ interface PerformanceRecord {
   timestamp: string;
   operation: string;
   duration: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 class PerformanceMetricsCollector {
@@ -26,7 +26,7 @@ class PerformanceMetricsCollector {
     this.addRecord('service-call', duration, { operation });
   }
 
-  private addRecord(operation: string, duration: number, metadata?: Record<string, any>): void {
+  private addRecord(operation: string, duration: number, metadata?: Record<string, unknown>): void {
     this.records.push({
       timestamp: new Date().toISOString(),
       operation,

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { ODAVLDataService } from '../services/ODAVLDataService';
-import { SystemMetrics, HistoryEntry } from '../types/ODAVLTypes';
+
 
 type TreeChangeEvent = DashboardItem | undefined | null | void;
 

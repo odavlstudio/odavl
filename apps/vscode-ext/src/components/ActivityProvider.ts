@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import { ODAVLDataService } from '../services/ODAVLDataService';
-import { HistoryEntry } from '../types/ODAVLTypes';
 
 type TreeChangeEvent = ActivityItem | undefined | null | void;
 

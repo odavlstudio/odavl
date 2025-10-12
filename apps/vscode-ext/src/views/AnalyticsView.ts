@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { AIInsightsEngine } from '../intelligence/AIInsightsEngine';
 import { DataAnalyzer } from '../intelligence/DataAnalyzer';
+import { HistoryEntry, EvidenceFile, SystemMetrics } from '../types/ODAVLTypes';
 
 /**
  * Analytics View - Advanced visualization dashboard for ODAVL intelligence
@@ -9,8 +10,8 @@ import { DataAnalyzer } from '../intelligence/DataAnalyzer';
 export class AnalyticsView {
   private panel: vscode.WebviewPanel | undefined;
   private readonly context: vscode.ExtensionContext;
-  private insights: AIInsightsEngine;
-  private analyzer: DataAnalyzer;
+  private readonly insights: AIInsightsEngine;
+  private readonly analyzer: DataAnalyzer;
 
   constructor(context: vscode.ExtensionContext) {
     this.context = context;
@@ -57,8 +58,8 @@ export class AnalyticsView {
    * Update dashboard with fresh data
    */
   public updateData(history: unknown[], evidence: unknown[], metrics: unknown[]): void {
-    this.insights.initialize(history as any);
-    this.analyzer.initialize(evidence as any, metrics as any);
+    this.insights.initialize(history as HistoryEntry[]);
+    this.analyzer.initialize(evidence as EvidenceFile[], metrics as SystemMetrics[]);
     
     if (this.panel) {
       this.panel.webview.postMessage({

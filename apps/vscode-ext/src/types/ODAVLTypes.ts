@@ -14,7 +14,7 @@ export interface HistoryEntry {
   deltas: { eslint: number; types: number };
   decision: string;
   gatesPassed?: boolean;
-  gates?: Record<string, any>;
+  gates?: Record<string, unknown>;
 }
 
 export interface RecipeTrust {
@@ -25,8 +25,8 @@ export interface RecipeTrust {
 }
 
 export interface ODAVLConfig {
-  gates: Record<string, any>;
-  policy: Record<string, any>;
+  gates: Record<string, unknown>;
+  policy: Record<string, unknown>;
 }
 
 export interface EvidenceFile {
@@ -35,7 +35,7 @@ export interface EvidenceFile {
   type: string;
   source: string;
   category: string;
-  data: any;
+  data: unknown;
 }
 
 export interface CacheStatus {
