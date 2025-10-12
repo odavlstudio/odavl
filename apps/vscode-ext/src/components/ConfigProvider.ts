@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { ODAVLDataService } from '../services/ODAVLDataService';
 
 type TreeChangeEvent = ConfigItem | undefined | null | void;
 
@@ -44,6 +45,12 @@ export class ConfigItem extends vscode.TreeItem {
 export class ConfigProvider implements vscode.TreeDataProvider<ConfigItem> {
   private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
   readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+  private readonly dataService?: ODAVLDataService;
+
+  constructor(dataService?: ODAVLDataService) {
+    this.dataService = dataService;
+    this.dataService?.onConfigChanged(() => this.refresh());
+  }
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
@@ -72,17 +79,29 @@ export class ConfigProvider implements vscode.TreeDataProvider<ConfigItem> {
         new ConfigItem('JSON Output', vscode.TreeItemCollapsibleState.None, 'setting', 'true', true)
       ]);
     } else if (element.label === 'Safety Gates') {
+      const config = this.dataService?.getConfiguration();
+      const gates = config?.gates || {};
+      
       return Promise.resolve([
-        new ConfigItem('Type Error Tolerance', vscode.TreeItemCollapsibleState.None, 'gates', '0 (Zero tolerance)', false),
-        new ConfigItem('ESLint Warning Max', vscode.TreeItemCollapsibleState.None, 'gates', 'No limit', false),
-        new ConfigItem('Quality Gate Status', vscode.TreeItemCollapsibleState.None, 'gates', 'Active', false),
+        new ConfigItem('Type Errors Delta Max', vscode.TreeItemCollapsibleState.None, 'gates', 
+          gates.typeErrors?.deltaMax?.toString() || '0', false),
+        new ConfigItem('ESLint Delta Max', vscode.TreeItemCollapsibleState.None, 'gates', 
+          gates.eslint?.deltaMax?.toString() || '0', false),
+        new ConfigItem('Shadow Testing', vscode.TreeItemCollapsibleState.None, 'gates', 
+          gates.shadow?.mustPass ? 'Required' : 'Optional', false),
         new ConfigItem('Edit Gates Config', vscode.TreeItemCollapsibleState.None, 'gates', '.odavl/gates.yml', true)
       ]);
     } else if (element.label === 'Risk Policy') {
+      const config = this.dataService?.getConfiguration();
+      const policy = config?.policy || {};
+      
       return Promise.resolve([
-        new ConfigItem('Max Files Per Change', vscode.TreeItemCollapsibleState.None, 'policy', '10', false),
-        new ConfigItem('Max Lines Per Change', vscode.TreeItemCollapsibleState.None, 'policy', '40', false),
-        new ConfigItem('Protected Paths', vscode.TreeItemCollapsibleState.None, 'policy', 'package.json, tsconfig.json', false),
+        new ConfigItem('Max Files Per Change', vscode.TreeItemCollapsibleState.None, 'policy', 
+          policy.riskBudget?.maxFilesTouched?.toString() || '10', false),
+        new ConfigItem('Max Lines Per Change', vscode.TreeItemCollapsibleState.None, 'policy', 
+          policy.riskBudget?.maxLinesPerPatch?.toString() || '40', false),
+        new ConfigItem('Autonomy Level', vscode.TreeItemCollapsibleState.None, 'policy', 
+          policy.autonomy?.toString() || '1', false),
         new ConfigItem('Edit Policy Config', vscode.TreeItemCollapsibleState.None, 'policy', '.odavl/policy.yml', true)
       ]);
     } else if (element.label === 'Extension Settings') {

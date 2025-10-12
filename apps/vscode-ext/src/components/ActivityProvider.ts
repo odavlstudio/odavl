@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import { ODAVLDataService } from '../services/ODAVLDataService';
+import { HistoryEntry } from '../types/ODAVLTypes';
 
 type TreeChangeEvent = ActivityItem | undefined | null | void;
 
@@ -47,6 +49,12 @@ export class ActivityItem extends vscode.TreeItem {
 export class ActivityProvider implements vscode.TreeDataProvider<ActivityItem> {
   private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
   readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+  private readonly dataService?: ODAVLDataService;
+
+  constructor(dataService?: ODAVLDataService) {
+    this.dataService = dataService;
+    this.dataService?.onHistoryChanged(() => this.refresh());
+  }
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
@@ -66,24 +74,41 @@ export class ActivityProvider implements vscode.TreeDataProvider<ActivityItem> {
         new ActivityItem('Cycle History', vscode.TreeItemCollapsibleState.Collapsed, undefined, undefined, 'Complete cycle execution history')
       ]);
     } else if (element.label === 'Recent Activity') {
-      return Promise.resolve([
-        new ActivityItem('Extension Activated', vscode.TreeItemCollapsibleState.None, new Date().toLocaleTimeString(), 'info', 'ODAVL VS Code extension loaded successfully'),
-        new ActivityItem('Workspace Scanned', vscode.TreeItemCollapsibleState.None, new Date(Date.now() - 60000).toLocaleTimeString(), 'success', 'Found .odavl configuration directory'),
-        new ActivityItem('Ready for Cycle', vscode.TreeItemCollapsibleState.None, new Date(Date.now() - 120000).toLocaleTimeString(), 'info', 'System ready to run ODAVL cycle')
-      ]);
+      const history = this.dataService?.getHistoryEntries(5) || [];
+      if (history.length === 0) {
+        return Promise.resolve([
+          new ActivityItem('No cycles run yet', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Run your first ODAVL cycle')
+        ]);
+      }
+      
+      return Promise.resolve(history.map(entry => {
+        const status = entry.success ? 'success' : 'error';
+        const time = new Date(entry.ts).toLocaleString();
+        const details = `Decision: ${entry.decision}, Gates: ${entry.gatesPassed ? 'Passed' : 'Failed'}`;
+        return new ActivityItem(`${entry.decision} Cycle`, vscode.TreeItemCollapsibleState.None, time, status, details);
+      }));
     } else if (element.label === 'Today') {
       return Promise.resolve([
-        new ActivityItem('No cycles run today', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Run your first ODAVL cycle using the Doctor view')
+        new ActivityItem('No cycles run today', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Run your first ODAVL cycle using the Control panel')
       ]);
     } else if (element.label === 'This Week') {
       return Promise.resolve([
         new ActivityItem('No cycles run this week', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'ODAVL cycles will appear here once executed')
       ]);
     } else if (element.label === 'Cycle History') {
-      return Promise.resolve([
-        new ActivityItem('History Empty', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Cycle history will be populated after running ODAVL cycles'),
-        new ActivityItem('View Reports Folder', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Check reports/ directory for detailed cycle logs')
-      ]);
+      const allHistory = this.dataService?.getHistoryEntries(20) || [];
+      if (allHistory.length === 0) {
+        return Promise.resolve([
+          new ActivityItem('History Empty', vscode.TreeItemCollapsibleState.None, undefined, 'info', 'Cycle history will be populated after running ODAVL cycles')
+        ]);
+      }
+
+      return Promise.resolve(allHistory.map(entry => {
+        const status = entry.success ? 'success' : 'error';
+        const time = new Date(entry.ts).toLocaleString();
+        const deltaText = `ESLint: ${entry.deltas.eslint}, Types: ${entry.deltas.types}`;
+        return new ActivityItem(`${entry.decision}`, vscode.TreeItemCollapsibleState.None, time, status, deltaText);
+      }));
     }
     
     return Promise.resolve([]);

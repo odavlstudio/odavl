@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import { ODAVLDataService } from '../services/ODAVLDataService';
+import { SystemMetrics, HistoryEntry } from '../types/ODAVLTypes';
 
 type TreeChangeEvent = DashboardItem | undefined | null | void;
 
@@ -22,6 +24,13 @@ export class DashboardItem extends vscode.TreeItem {
 export class DashboardProvider implements vscode.TreeDataProvider<DashboardItem> {
   private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
   readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+  private readonly dataService?: ODAVLDataService;
+
+  constructor(dataService?: ODAVLDataService) {
+    this.dataService = dataService;
+    this.dataService?.onMetricsChanged(() => this.refresh());
+    this.dataService?.onHistoryChanged(() => this.refresh());
+  }
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
@@ -41,22 +50,36 @@ export class DashboardProvider implements vscode.TreeDataProvider<DashboardItem>
         new DashboardItem('Quick Actions', vscode.TreeItemCollapsibleState.Collapsed, undefined, 'rocket')
       ]);
     } else if (element.label === 'System Status') {
+      const metrics = this.dataService?.getCurrentMetrics();
       return Promise.resolve([
-        new DashboardItem('ESLint', vscode.TreeItemCollapsibleState.None, 'Ready', 'check'),
-        new DashboardItem('TypeScript', vscode.TreeItemCollapsibleState.None, 'Ready', 'check'),
-        new DashboardItem('ODAVL Config', vscode.TreeItemCollapsibleState.None, 'Loaded', 'settings-gear')
+        new DashboardItem('ESLint', vscode.TreeItemCollapsibleState.None, 
+          metrics ? `${metrics.eslintWarnings} warnings` : 'Loading...', 
+          metrics?.eslintWarnings === 0 ? 'check' : 'warning'),
+        new DashboardItem('TypeScript', vscode.TreeItemCollapsibleState.None, 
+          metrics ? `${metrics.typeErrors} errors` : 'Loading...', 
+          metrics?.typeErrors === 0 ? 'check' : 'error'),
+        new DashboardItem('ODAVL Config', vscode.TreeItemCollapsibleState.None, 
+          this.dataService ? 'Loaded' : 'Not Connected', 'settings-gear')
       ]);
     } else if (element.label === 'Quality Metrics') {
+      const metrics = this.dataService?.getCurrentMetrics();
       return Promise.resolve([
-        new DashboardItem('Warnings', vscode.TreeItemCollapsibleState.None, '0', 'warning'),
-        new DashboardItem('Errors', vscode.TreeItemCollapsibleState.None, '0', 'error'),
+        new DashboardItem('Warnings', vscode.TreeItemCollapsibleState.None, 
+          metrics ? metrics.eslintWarnings.toString() : 'Loading...', 'warning'),
+        new DashboardItem('Errors', vscode.TreeItemCollapsibleState.None, 
+          metrics ? metrics.typeErrors.toString() : 'Loading...', 'error'),
         new DashboardItem('Code Coverage', vscode.TreeItemCollapsibleState.None, 'N/A', 'shield')
       ]);
     } else if (element.label === 'Last Run Results') {
+      const history = this.dataService?.getHistoryEntries(1);
+      const lastRun = history?.[0];
       return Promise.resolve([
-        new DashboardItem('Last Cycle', vscode.TreeItemCollapsibleState.None, 'Never', 'clock'),
-        new DashboardItem('Duration', vscode.TreeItemCollapsibleState.None, '-', 'stopwatch'),
-        new DashboardItem('Files Changed', vscode.TreeItemCollapsibleState.None, '0', 'file')
+        new DashboardItem('Last Cycle', vscode.TreeItemCollapsibleState.None, 
+          lastRun ? new Date(lastRun.ts).toLocaleString() : 'Never', 'clock'),
+        new DashboardItem('Decision', vscode.TreeItemCollapsibleState.None, 
+          lastRun?.decision || 'None', lastRun?.success ? 'check' : 'error'),
+        new DashboardItem('Gates Passed', vscode.TreeItemCollapsibleState.None, 
+          lastRun?.gatesPassed ? 'Yes' : 'No', lastRun?.gatesPassed ? 'check' : 'x')
       ]);
     } else if (element.label === 'Quick Actions') {
       return Promise.resolve([

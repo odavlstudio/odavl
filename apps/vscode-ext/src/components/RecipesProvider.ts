@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import { ODAVLDataService } from '../services/ODAVLDataService';
+import { RecipeTrust } from '../types/ODAVLTypes';
 
 type TreeChangeEvent = RecipeItem | undefined | null | void;
 
@@ -33,6 +35,11 @@ export class RecipeItem extends vscode.TreeItem {
 export class RecipesProvider implements vscode.TreeDataProvider<RecipeItem> {
   private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
   readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+  private readonly dataService?: ODAVLDataService;
+
+  constructor(dataService?: ODAVLDataService) {
+    this.dataService = dataService;
+  }
 
   refresh(): void {
     this._onDidChangeTreeData.fire();
@@ -53,11 +60,23 @@ export class RecipesProvider implements vscode.TreeDataProvider<RecipeItem> {
         new RecipeItem('Custom Recipes', vscode.TreeItemCollapsibleState.Collapsed, 'category', undefined, 'User-defined custom recipes')
       ]);
     } else if (element.label === 'ESLint Fixes') {
+      const trustData = this.dataService?.getRecipeTrust() || [];
+      const getRecipeTrust = (id: string): number => {
+        const recipe = trustData.find(r => r.id === id);
+        return recipe ? Math.round(recipe.trust * 100) : 0;
+      };
+      const getRecipeRuns = (id: string): number => {
+        const recipe = trustData.find(r => r.id === id);
+        return recipe?.runs || 0;
+      };
+
       return Promise.resolve([
-        new RecipeItem('Remove Unused Variables', vscode.TreeItemCollapsibleState.None, 'eslint', 95, 'Removes unused variable declarations'),
-        new RecipeItem('Fix Import Order', vscode.TreeItemCollapsibleState.None, 'eslint', 88, 'Sorts imports according to ESLint rules'),
-        new RecipeItem('Add Missing Semicolons', vscode.TreeItemCollapsibleState.None, 'eslint', 92, 'Adds missing semicolons to statements'),
-        new RecipeItem('Fix Indentation', vscode.TreeItemCollapsibleState.None, 'eslint', 85, 'Corrects code indentation issues')
+        new RecipeItem('ESM Hygiene', vscode.TreeItemCollapsibleState.None, 'eslint', 
+          getRecipeTrust('esm-hygiene'), 
+          `Removes unused imports and variables (${getRecipeRuns('esm-hygiene')} runs)`),
+        new RecipeItem('No-op Recipe', vscode.TreeItemCollapsibleState.None, 'eslint', 
+          getRecipeTrust('noop'), 
+          `Testing recipe for validation (${getRecipeRuns('noop')} runs)`)
       ]);
     } else if (element.label === 'Code Quality') {
       return Promise.resolve([
