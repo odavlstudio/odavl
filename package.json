@@ -25,6 +25,7 @@
     "odavl:act": "tsx apps/cli/src/index.ts act",
     "odavl:verify": "tsx apps/cli/src/index.ts verify",
     "odavl:dashboard": "tsx apps/cli/src/index.ts dashboard",
+    "odavl:cleanup": "powershell -File tools/cleanup.ps1",
     "ext:compile": "cd apps/vscode-ext && npm run compile",
     "ext:watch": "cd apps/vscode-ext && npm run watch",
     "pre-commit": "eslint . --fix",

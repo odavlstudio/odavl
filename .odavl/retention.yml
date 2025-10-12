@@ -1,0 +1,32 @@
+# ODAVL Evidence Retention Policy
+# Controls automatic cleanup of evidence files while preserving critical data
+
+retention:
+  # Maximum age for evidence files (days)
+  max_age_days: 30
+  
+  # Evidence types that are never deleted (critical for compliance)
+  exclude_types: 
+    - "attestation"
+    - "audit"
+    - "outcome"
+    - "rollback"
+  
+  # Archive location for old evidence (relative to repo root)
+  archive_path: "archive/evidence"
+  
+  # Batch size for cleanup operations (safety limit)
+  batch_size: 50
+  
+  # Dry run mode (preview cleanup without deletion)
+  dry_run: false
+
+# File pattern matching for evidence types
+patterns:
+  attestation: "**/*attestation*"
+  audit: "**/evidence_audit_*"
+  outcome: "**/evidence_outcome_*"
+  rollback: "**/*rollback*"
+  metric: "**/evidence_metric_*"
+  action: "**/evidence_action_*"
+  decision: "**/evidence_decision_*"

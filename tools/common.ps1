@@ -6,7 +6,7 @@
 function New-ODAVLResponse {
     param(
         [Parameter(Mandatory)]
-        [ValidateSet("golden", "policy-guard", "security-scan", "release")]
+        [ValidateSet("golden", "policy-guard", "security-scan", "release", "cleanup")]
         [string]$Tool,
         
         [Parameter(Mandatory)]
