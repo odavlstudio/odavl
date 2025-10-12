@@ -177,10 +177,12 @@
     "url": "https://github.com/odavlstudio/odavl.git"
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
+    "vscode:prepublish": "npm run build && npm run validate",
     "build": "tsc -p ./",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "validate": "node validate-extension.js",
+    "postbuild": "npm run validate"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",

@@ -28,6 +28,6 @@ export default [
     }
   },
   {
-    ignores: ["dist/**","node_modules/**","reports/**","apps/vscode-ext/out/**","apps/vscode-ext/dist/**","apps/cli/dist/**","odavl-website/.next/**","odavl-website/node_modules/**","odavl-website/next-env.d.ts","odavl-website/postcss.config.js","odavl-website/scripts/**","archive/**"]
+    ignores: ["dist/**","node_modules/**","reports/**","apps/vscode-ext/out/**","apps/vscode-ext/dist/**","apps/vscode-ext/validate-extension.js","apps/cli/dist/**","odavl-website/.next/**","odavl-website/node_modules/**","odavl-website/next-env.d.ts","odavl-website/postcss.config.js","odavl-website/scripts/**","archive/**"]
   }
 ];

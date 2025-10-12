@@ -10,6 +10,7 @@ import { ODAVLDataService } from './services/ODAVLDataService';
 import { PerformanceMetrics } from './utils/PerformanceMetrics';
 import { AnalyticsView } from './views/AnalyticsView';
 import { ControlDashboard } from './views/ControlDashboard';
+import { Logger } from './utils/Logger';
 
 class ODAVLItem extends vscode.TreeItem {
   constructor(
@@ -50,13 +51,52 @@ class ODAVLItem extends vscode.TreeItem {
 type TreeChangeEvent = ODAVLItem | undefined | null | void;
 
 /**
+ * Update status bar with current ODAVL system state
+ */
+function updateStatusBar(statusBarItem: vscode.StatusBarItem, state: 'active' | 'updated' | 'running', dataService?: ODAVLDataService): void {
+  const metrics = dataService?.getCurrentMetrics();
+  const hasIssues = metrics && (metrics.eslintWarnings > 0 || metrics.typeErrors > 0);
+  
+  let icon = '$(pulse)';
+  let text = 'ODAVL Control';
+  let color = undefined;
+  
+  if (state === 'running') {
+    icon = '$(sync~spin)';
+    text = 'ODAVL Running...';
+    color = '#00d4ff';
+  } else if (hasIssues && metrics) {
+    icon = '$(warning)';
+    text = `ODAVL ${metrics.eslintWarnings + metrics.typeErrors} issues`;
+    color = '#f59e0b';
+  } else if (metrics) {
+    icon = '$(check)';
+    text = 'ODAVL ✓ Clean';
+    color = '#10b981';
+  }
+  
+  statusBarItem.text = `${icon} ${text}`;
+  statusBarItem.color = color;
+  statusBarItem.tooltip = dataService 
+    ? `ODAVL Control - ESLint: ${metrics?.eslintWarnings || 0}, Types: ${metrics?.typeErrors || 0}`
+    : 'ODAVL Control - Click to open dashboard';
+  statusBarItem.command = 'odavl.control';
+  statusBarItem.show();
+}
+
+/**
  * Unified CLI command helper for executing ODAVL operations
  */
-async function runCLICommand(cmd: string, workspaceRoot?: string): Promise<void> {
+async function runCLICommand(cmd: string, workspaceRoot?: string, statusBarItem?: vscode.StatusBarItem, dataService?: ODAVLDataService): Promise<void> {
   const wsRoot = workspaceRoot || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
   if (!wsRoot) {
     vscode.window.showErrorMessage('ODAVL requires a workspace folder to run commands.');
     return;
+  }
+
+  // Update status bar to show running state
+  if (statusBarItem) {
+    updateStatusBar(statusBarItem, 'running', dataService);
   }
 
   // Determine the appropriate command to use
@@ -95,6 +135,13 @@ async function runCLICommand(cmd: string, workspaceRoot?: string): Promise<void>
 
   terminal.sendText(`${command} ${args.join(' ')}`);
   terminal.show();
+
+  // Reset status bar after a short delay (assuming command completes)
+  setTimeout(() => {
+    if (statusBarItem) {
+      updateStatusBar(statusBarItem, 'active', dataService);
+    }
+  }, 5000);
 }
 
 class ODAVLTreeDataProvider implements vscode.TreeDataProvider<ODAVLItem> {
@@ -128,23 +175,28 @@ class ODAVLTreeDataProvider implements vscode.TreeDataProvider<ODAVLItem> {
 export function activate(context: vscode.ExtensionContext) {
   const activationStart = performance.now();
   
-  // Log activation to console
-  console.log('ODAVL VS Code extension is now active!');
+  // Initialize global logger
+  const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+  const logger = new Logger(workspaceRoot);
+  
+  logger.info('ODAVL VS Code extension activating...', 'Extension');
   
   // Initialize ODAVL data service
-  const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
   const dataService = workspaceRoot ? new ODAVLDataService(workspaceRoot) : undefined;
   
-  // Create status bar item for better UX
+  // Create enhanced status bar item
   const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-  statusBarItem.text = "$(pulse) ODAVL Control Active";
-  statusBarItem.tooltip = "ODAVL autonomous code quality system is active";
-  statusBarItem.command = 'odavl.control';
-  statusBarItem.show();
+  updateStatusBar(statusBarItem, 'active', dataService);
   context.subscriptions.push(statusBarItem);
   
-  // Show activation confirmation
-  vscode.window.showInformationMessage("ODAVL extension activated!");
+  // Setup status bar updates when data changes
+  if (dataService) {
+    dataService.onMetricsChanged(() => {
+      updateStatusBar(statusBarItem, 'updated', dataService);
+    });
+  }
+  
+  logger.success('ODAVL extension activated successfully!', 'Extension');
 
   // Create all tree data providers with data service integration
   const controlProvider = new ODAVLTreeDataProvider();
@@ -159,10 +211,11 @@ export function activate(context: vscode.ExtensionContext) {
   // Phase 3: Performance monitoring
   const performanceMetrics = PerformanceMetrics;
   
-  // Dispose data service when extension is deactivated
+  // Dispose services when extension is deactivated
   if (dataService) {
     context.subscriptions.push({ dispose: () => dataService.dispose() });
   }
+  context.subscriptions.push({ dispose: () => logger.dispose() });
 
   // Register tree view providers  
   vscode.window.registerTreeDataProvider('odavlControl', controlProvider);
@@ -188,7 +241,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', async () => {
-    await runCLICommand('run');
+    await runCLICommand('run', workspaceRoot, statusBarItem, dataService);
   });
 
   const refreshCommand = vscode.commands.registerCommand('odavl.refresh', () => {
@@ -234,23 +287,23 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Individual ODAVL phase commands for tree item interaction
   const observeCommand = vscode.commands.registerCommand('odavl.observe', async () => {
-    await runCLICommand('observe');
+    await runCLICommand('observe', workspaceRoot, statusBarItem, dataService);
   });
 
   const decideCommand = vscode.commands.registerCommand('odavl.decide', async () => {
-    await runCLICommand('decide');
+    await runCLICommand('decide', workspaceRoot, statusBarItem, dataService);
   });
 
   const actCommand = vscode.commands.registerCommand('odavl.act', async () => {
-    await runCLICommand('act');
+    await runCLICommand('act', workspaceRoot, statusBarItem, dataService);
   });
 
   const verifyCommand = vscode.commands.registerCommand('odavl.verify', async () => {
-    await runCLICommand('verify');
+    await runCLICommand('verify', workspaceRoot, statusBarItem, dataService);
   });
 
   const learnCommand = vscode.commands.registerCommand('odavl.learn', async () => {
-    await runCLICommand('learn');
+    await runCLICommand('learn', workspaceRoot, statusBarItem, dataService);
   });
 
   // Performance tracking
