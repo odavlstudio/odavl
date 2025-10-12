@@ -14,8 +14,8 @@ export class ODAVLDataService {
   readonly onHistoryChanged = this._onHistoryChanged.event;
   readonly onConfigChanged = this._onConfigChanged.event;
 
-  private fileWatcher = new FileWatcher();
-  private workspaceRoot: string;
+  private readonly fileWatcher = new FileWatcher();
+  private readonly workspaceRoot: string;
 
   constructor(workspaceRoot: string) {
     this.workspaceRoot = workspaceRoot;
@@ -23,8 +23,11 @@ export class ODAVLDataService {
   }
 
   private initializeWatchers(): void {
+    // Watch ODAVL configuration files
     const historyPath = path.join(this.workspaceRoot, '.odavl', 'history.json');
     const gatesPath = path.join(this.workspaceRoot, '.odavl', 'gates.yml');
+    const policyPath = path.join(this.workspaceRoot, '.odavl', 'policy.yml');
+    const trustPath = path.join(this.workspaceRoot, '.odavl', 'recipes-trust.json');
 
     this.fileWatcher.watch(historyPath, () => {
       this._onHistoryChanged.fire(this.getHistoryEntries());
@@ -33,6 +36,32 @@ export class ODAVLDataService {
     this.fileWatcher.watch(gatesPath, () => {
       this._onConfigChanged.fire(this.getConfiguration());
     });
+
+    this.fileWatcher.watch(policyPath, () => {
+      this._onConfigChanged.fire(this.getConfiguration());
+    });
+
+    this.fileWatcher.watch(trustPath, () => {
+      // Trigger a general metrics update when trust scores change
+      this._onMetricsChanged.fire(this.getCurrentMetrics());
+    });
+
+    // Watch reports directory for new observation files
+    const reportsDir = path.join(this.workspaceRoot, 'reports');
+    if (fs.existsSync(reportsDir)) {
+      // Watch for new files in reports directory
+      try {
+        fs.watch(reportsDir, (eventType, filename) => {
+          if (filename && filename.startsWith('observe-') && filename.endsWith('.json')) {
+            setTimeout(() => {
+              this._onMetricsChanged.fire(this.getCurrentMetrics());
+            }, 100); // Small delay to ensure file is written completely
+          }
+        });
+      } catch (error) {
+        console.error('Failed to watch reports directory:', error);
+      }
+    }
   }
 
   getCurrentMetrics(): SystemMetrics {
@@ -40,7 +69,7 @@ export class ODAVLDataService {
       const reportsDir = path.join(this.workspaceRoot, 'reports');
       const observeFiles = fs.readdirSync(reportsDir)
         .filter(f => f.startsWith('observe-') && f.endsWith('.json'))
-        .sort().reverse();
+        .sort((a, b) => b.localeCompare(a));
 
       if (observeFiles.length === 0) {
         return { eslintWarnings: 0, typeErrors: 0, timestamp: new Date().toISOString() };

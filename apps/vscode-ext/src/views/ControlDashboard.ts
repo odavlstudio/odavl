@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { ODAVLDataService } from '../services/ODAVLDataService';
 import { AIInsightsEngine } from '../intelligence/AIInsightsEngine';
 import { DataAnalyzer } from '../intelligence/DataAnalyzer';
+import { Logger } from '../utils/Logger';
 
 /**
  * ODAVL Control Dashboard - Unified WebView Interface
@@ -15,11 +16,16 @@ export class ControlDashboard {
   private readonly dataService: ODAVLDataService;
   private readonly aiEngine: AIInsightsEngine;
   private readonly dataAnalyzer: DataAnalyzer;
+  private readonly logger: Logger;
+  private dataUpdateInterval: NodeJS.Timeout | undefined;
 
   constructor(private readonly context: vscode.ExtensionContext, dataService: ODAVLDataService) {
     this.dataService = dataService;
     this.aiEngine = new AIInsightsEngine();
     this.dataAnalyzer = new DataAnalyzer();
+    this.logger = new Logger(vscode.workspace.workspaceFolders?.[0]?.uri.fsPath);
+    
+    this.logger.info('ControlDashboard initialized', 'ControlDashboard');
   }
 
   public show(): void {
@@ -47,7 +53,8 @@ export class ControlDashboard {
     this.startDataUpdate();
 
     this.panel.onDidDispose(() => {
-      this.panel = undefined;
+      this.logger.info('ControlDashboard panel disposed', 'ControlDashboard');
+      this.dispose();
     }, null, this.context.subscriptions);
   }
 
@@ -81,13 +88,17 @@ export class ControlDashboard {
 
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     if (!workspaceRoot) {
+      const errorMsg = 'No workspace folder found';
+      this.logger.error(errorMsg, 'ExecuteODAVLCycle');
       this.panel.webview.postMessage({
         type: 'control',
         status: 'error',
-        data: { phase: 'Error', msg: 'No workspace folder found' }
+        data: { phase: 'Error', msg: errorMsg }
       });
       return;
     }
+
+    this.logger.info('Starting ODAVL cycle execution', 'ExecuteODAVLCycle');
 
     // Use workspace CLI execution with proper path detection
     let cliCommand = 'pnpm';
@@ -104,6 +115,8 @@ export class ControlDashboard {
       // Fall back to pnpm command
     }
 
+    this.logger.info(`Executing: ${cliCommand} ${cliArgs.join(' ')}`, 'ExecuteODAVLCycle');
+
     const cli = spawn(cliCommand, cliArgs, {
       cwd: workspaceRoot,
       shell: true,
@@ -119,6 +132,7 @@ export class ControlDashboard {
         
         for (const line of lines) {
           if (line.trim()) {
+            this.logger.debug(`CLI stdout: ${line}`, 'ExecuteODAVLCycle');
             try {
               const message = JSON.parse(line);
               if (message.type === 'control') {
@@ -137,19 +151,33 @@ export class ControlDashboard {
     }
 
     cli.stderr?.on('data', (data: Buffer) => {
+      const errorMsg = data.toString().trim();
+      this.logger.error(`CLI stderr: ${errorMsg}`, 'ExecuteODAVLCycle');
       this.panel?.webview.postMessage({
         type: 'control',
         status: 'error',
-        data: { phase: 'CLI Error', msg: data.toString().trim() }
+        data: { phase: 'CLI Error', msg: errorMsg }
       });
     });
 
     cli.on('close', (code: number) => {
+      const msg = `ODAVL cycle completed with exit code ${code}`;
+      if (code === 0) {
+        this.logger.success(msg, 'ExecuteODAVLCycle');
+      } else {
+        this.logger.error(msg, 'ExecuteODAVLCycle');
+      }
+      
       this.panel?.webview.postMessage({
         type: 'control',
         status: code === 0 ? 'success' : 'error',
-        data: { phase: 'Process', msg: `ODAVL cycle completed with exit code ${code}` }
+        data: { phase: 'Process', msg }
       });
+      
+      // Refresh data after successful completion
+      if (code === 0) {
+        setTimeout(() => this.refreshDashboardData(), 1000);
+      }
     });
   }
 
@@ -296,15 +324,22 @@ export class ControlDashboard {
   }
 
   private startDataUpdate(): void {
+    this.logger.info('Starting data update service', 'DataUpdate');
+    
     // Initial data load
     this.refreshDashboardData();
     
     // Periodic updates every 30 seconds
-    const interval = setInterval(() => {
+    this.dataUpdateInterval = setInterval(() => {
       if (this.panel) {
+        this.logger.debug('Refreshing dashboard data automatically', 'DataUpdate');
         this.refreshDashboardData();
       } else {
-        clearInterval(interval);
+        this.logger.info('Panel closed, stopping data updates', 'DataUpdate');
+        if (this.dataUpdateInterval) {
+          clearInterval(this.dataUpdateInterval);
+          this.dataUpdateInterval = undefined;
+        }
       }
     }, 30000);
   }
@@ -829,5 +864,15 @@ export class ControlDashboard {
     </script>
 </body>
 </html>`;
+  }
+
+  dispose(): void {
+    if (this.dataUpdateInterval) {
+      clearInterval(this.dataUpdateInterval);
+      this.dataUpdateInterval = undefined;
+    }
+    this.logger.info('ControlDashboard disposed', 'ControlDashboard');
+    this.logger.dispose();
+    this.panel = undefined;
   }
 }
