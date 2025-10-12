@@ -14,8 +14,7 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onStartupFinished",
-    "onView:odavlDashboard"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {

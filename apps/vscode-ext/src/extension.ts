@@ -135,6 +135,14 @@ export function activate(context: vscode.ExtensionContext) {
   // Log activation to console
   console.log('ODAVL VS Code extension is now active!');
   
+  // Create status bar item for better UX
+  const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  statusBarItem.text = "$(pulse) ODAVL Doctor Active";
+  statusBarItem.tooltip = "ODAVL autonomous code quality system is active";
+  statusBarItem.command = 'odavl.doctor';
+  statusBarItem.show();
+  context.subscriptions.push(statusBarItem);
+  
   // Show activation confirmation
   vscode.window.showInformationMessage("ODAVL extension activated!");
 
