@@ -1,0 +1,3 @@
+# ODAVL Evidence Chain Log
+# Append-only, tamper-evident log of all ODAVL cycle runs
+# Each entry: { timestamp, runId, prevHash, summary, signature }

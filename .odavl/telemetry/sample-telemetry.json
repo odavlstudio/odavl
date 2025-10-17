@@ -1,0 +1,137 @@
+[
+  {
+    "timestamp": "2025-10-15T10:00:00.000Z",
+    "phases": {
+      "observe": {
+        "duration": 120,
+        "status": "success"
+      },
+      "decide": {
+        "duration": 80,
+        "status": "success"
+      },
+      "act": {
+        "duration": 200,
+        "status": "success"
+      },
+      "verify": {
+        "duration": 150,
+        "status": "success"
+      },
+      "learn": {
+        "duration": 60,
+        "status": "success"
+      }
+    },
+    "riskScore": 34,
+    "result": "success"
+  },
+  {
+    "timestamp": "2025-10-15T11:00:00.000Z",
+    "phases": {
+      "observe": {
+        "duration": 110,
+        "status": "success"
+      },
+      "decide": {
+        "duration": 90,
+        "status": "success"
+      },
+      "act": {
+        "duration": 210,
+        "status": "success"
+      },
+      "verify": {
+        "duration": 140,
+        "status": "success"
+      },
+      "learn": {
+        "duration": 70,
+        "status": "success"
+      }
+    },
+    "riskScore": 28,
+    "result": "success"
+  },
+  {
+    "timestamp": "2025-10-15T12:00:00.000Z",
+    "phases": {
+      "observe": {
+        "duration": 100,
+        "status": "success"
+      },
+      "decide": {
+        "duration": 85,
+        "status": "success"
+      },
+      "act": {
+        "duration": 190,
+        "status": "success"
+      },
+      "verify": {
+        "duration": 130,
+        "status": "success"
+      },
+      "learn": {
+        "duration": 65,
+        "status": "success"
+      }
+    },
+    "riskScore": 18,
+    "result": "success"
+  },
+  {
+    "timestamp": "2025-10-15T13:00:00.000Z",
+    "phases": {
+      "observe": {
+        "duration": 105,
+        "status": "success"
+      },
+      "decide": {
+        "duration": 95,
+        "status": "success"
+      },
+      "act": {
+        "duration": 205,
+        "status": "success"
+      },
+      "verify": {
+        "duration": 120,
+        "status": "success"
+      },
+      "learn": {
+        "duration": 75,
+        "status": "success"
+      }
+    },
+    "riskScore": 12,
+    "result": "success"
+  },
+  {
+    "timestamp": "2025-10-15T14:00:00.000Z",
+    "phases": {
+      "observe": {
+        "duration": 98,
+        "status": "success"
+      },
+      "decide": {
+        "duration": 88,
+        "status": "success"
+      },
+      "act": {
+        "duration": 180,
+        "status": "success"
+      },
+      "verify": {
+        "duration": 110,
+        "status": "success"
+      },
+      "learn": {
+        "duration": 60,
+        "status": "success"
+      }
+    },
+    "riskScore": 10,
+    "result": "success"
+  }
+]

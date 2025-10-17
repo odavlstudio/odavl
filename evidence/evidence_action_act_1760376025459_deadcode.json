@@ -1,0 +1,15 @@
+{
+  "action": "deadcode-removal",
+  "timestamp": "2025-10-13T17:21:25Z",
+  "files": [
+    "apps/cli/src/phases/verify.ts",
+    "apps/cli/src/phases/act.ts",
+    "apps/cli/src/phases/decide.ts"
+  ],
+  "linesRemoved": 60,
+  "governance": {
+    "maxFiles": 10,
+    "maxLines": 40
+  },
+  "result": "success"
+}

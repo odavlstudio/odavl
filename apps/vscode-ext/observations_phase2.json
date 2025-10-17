@@ -1,0 +1,58 @@
+{
+  "phase": "Phase 2 - Activation & Performance",
+  "timestamp": "2025-10-13T22:43:00Z",
+  "branch": "odavl/vscode-audit-20251013",
+  "observations": {
+    "current_activation": {
+      "pattern": "Implicit activation via contributed views",
+      "heavy_operations": [
+        "ODAVLDataService initialization with file watchers",
+        "AIInsightsEngine and DataAnalyzer creation",
+        "All TreeDataProviders created immediately",
+        "GitHub session pre-warming",
+        "Status bar updates and metrics collection"
+      ],
+      "activation_time": "Measured via performance.now() but could be optimized"
+    },
+    "optimization_opportunities": {
+      "lazy_activation_events": [
+        "onView:odavl.dashboard",
+        "onCommand:odavl.control",
+        "onCommand:odavl.runCycle"
+      ],
+      "deferrable_services": [
+        "ODAVLDataService (only needed when workspace has .odavl/)",
+        "Intelligence providers (only needed when analytics opened)",
+        "Control dashboard webview creation"
+      ],
+      "performance_enhancements": [
+        "Add lazy loading timing to PerformanceMetrics",
+        "Defer GitHub session check until actually needed",
+        "Batch provider registration for faster startup"
+      ]
+    }
+  },
+  "plan": {
+    "step1": {
+      "file": "package.json",
+      "changes": "Add explicit activationEvents for lazy loading",
+      "lines": "~3-5"
+    },
+    "step2": {
+      "file": "src/extension.ts",
+      "changes": "Split activation into minimal startup + lazy full initialization",
+      "lines": "~30-35"
+    },
+    "step3": {
+      "file": "src/utils/PerformanceMetrics.ts",
+      "changes": "Add start/end timing methods for lazy loading measurement",
+      "lines": "~10-15"
+    }
+  },
+  "success_criteria": [
+    "Extension startup time reduced to <50ms baseline",
+    "No regressions in functionality when views are accessed",
+    "Performance telemetry shows lazy loading benefits",
+    "Build and validation passes"
+  ]
+}

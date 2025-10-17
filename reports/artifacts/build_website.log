@@ -1,0 +1,10 @@
+
+> odavl@1.0.0 build C:\Users\sabou\dev\odavl
+> pnpm run odavl:run "--filter" "odavl-website"
+
+
+> odavl@1.0.0 odavl:run C:\Users\sabou\dev\odavl
+> tsx apps/cli/src/index.ts run "--filter" "odavl-website"
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

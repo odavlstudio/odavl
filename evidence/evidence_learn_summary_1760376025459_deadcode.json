@@ -1,0 +1,4 @@
+{
+  "learning": "Centralize logging utility, avoid file-local duplicates. All logging now uses shared logPhase. No regressions. Pattern: prefer shared utility for cross-phase concerns.",
+  "timestamp": "2025-10-13T17:21:25Z"
+}

@@ -1,0 +1,12 @@
+id: accessibility-a11y
+area: ui
+priority: Medium
+match:
+  files: ["**/*.{tsx,jsx}"]
+check:
+  rules:
+    - name: missing-aria
+      fail_if_regex: "<(button|input|select|textarea)[^>]*>"
+propose:
+  playbook: a11y-min-fixes
+  rationale: "Add ARIA attributes and labels."

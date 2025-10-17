@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-10-13T00:00:00.000Z",
+  "branch": "odavl/copilot-foundation-20251013",
+  "sessionId": "copilot-foundation-wave1",
+  "cycleId": "foundation-baseline-001",
+  "budget": {
+    "maxLines": 40,
+    "maxFiles": 10,
+    "actualLines": 35,
+    "actualFiles": 12
+  },
+  "verification": {
+    "build": false,
+    "lint": false,
+    "typecheck": false
+  },
+  "artifacts": [
+    {
+      "path": ".copilot/charters/core.md",
+      "type": "charter",
+      "lines": 27
+    },
+    {
+      "path": ".copilot/charters/vscode.md",
+      "type": "charter",
+      "lines": 24
+    },
+    {
+      "path": ".copilot/charters/website.md",
+      "type": "charter",
+      "lines": 23
+    },
+    {
+      "path": ".copilot/charters/cli.md",
+      "type": "charter",
+      "lines": 23
+    },
+    {
+      "path": ".copilot/runtime/templates/report.md",
+      "type": "template",
+      "lines": 30
+    },
+    {
+      "path": ".copilot/runtime/templates/scorecard.json",
+      "type": "template",
+      "lines": 35
+    },
+    {
+      "path": ".copilot/runtime/templates/attestation.json",
+      "type": "template",
+      "lines": 39
+    },
+    {
+      "path": "reports/discovery-2025-10-13.md",
+      "type": "report",
+      "lines": 39
+    }
+  ],
+  "sha256": {
+    "placeholder": "See file-hashes.txt for complete SHA256 manifest"
+  },
+  "safety": {
+    "protected_paths_touched": false,
+    "governance_limits_respected": false,
+    "evidence_generated": true,
+    "rollback_available": true
+  },
+  "attestation": {
+    "success": false,
+    "signature": "pending-verification",
+    "witness": "odavl-copilot-foundation"
+  }
+}

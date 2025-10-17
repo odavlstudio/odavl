@@ -1,0 +1,11 @@
+{
+  "decision": "remove-deadcode-local-logPhase",
+  "timestamp": "2025-10-13T17:21:25Z",
+  "rationale": "Three file-local logPhase functions in CLI phases were dead code, replaced by shared import.",
+  "evidence": [
+    "code search",
+    "usage analysis",
+    "test pass",
+    "lint/typecheck pass"
+  ]
+}

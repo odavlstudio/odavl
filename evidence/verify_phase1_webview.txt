@@ -1,0 +1,15 @@
+ODAVL VS Code Extension – Phase 1 (Security Hardening) Verification
+Timestamp: 2025-10-12T22:43:30Z
+
+Quality gates:
+- Build: PASS (esbuild bundling succeeded)
+- Typecheck: PASS (tsc --noEmit)
+- Lint: PASS (eslint .)
+
+Scope validated:
+- apps/vscode-ext/src/views/AnalyticsView.ts: CSP uses webview.cspSource; no external network; signature fixed
+- apps/vscode-ext/src/views/ControlDashboard.ts: CSP added; surfaced CLI errors via notifications; success info toast
+
+Notes:
+- No new dependencies added; bundle size +0.4kb
+- Changes kept < 40 lines per file and < 10 files total

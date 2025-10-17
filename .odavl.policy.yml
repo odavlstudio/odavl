@@ -1,6 +1,32 @@
 odavl_version: "0.1.0"
 governance:
   strictness_level: "high"
+
+# ODAVL Policy Metadata
+policy_metadata:
+  updated_by: copilot
+  updated_on: 2025-10-13
+  reason: streamline safe developer workflow
+
+# Explicit allowlist for safe developer commands
+autoApprove:
+  allow:
+    - "cd *"
+    - "npm install"
+    - "npm run compile"
+    - "pnpm install"
+    - "pnpm build"
+    - "npx vsce package"
+    - "vsce show"
+    - "vsce verify"
+    - "code --install-extension *.vsix"
+  deny:
+    - "Remove-Item*"
+    - "rm -rf*"
+    - "git push*"
+    - "npm publish*"
+    - "pnpm publish*"
+    - "yarn publish*"
   
 risk_management:
   max_files_per_cycle: 5

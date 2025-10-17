@@ -1,0 +1,178 @@
+*** Begin Patch
+*** Update File: apps/vscode-ext/package.json
+@@
+   "activationEvents": [
+-    "onStartupFinished"
++    "onView:odavl.dashboard",
++    "onView:odavl.recipes",
++    "onView:odavl.activity",
++    "onView:odavl.config",
++    "onView:odavl.controlPanel",
++    "onView:odavl.intelligence",
++    "onCommand:odavl.control",
++    "onCommand:odavl.runCycle",
++    "onCommand:odavl.observe",
++    "onCommand:odavl.decide",
++    "onCommand:odavl.act",
++    "onCommand:odavl.verify",
++    "onCommand:odavl.learn"
+   ],
+@@
+   "devDependencies": {
+     "esbuild": "^0.25.0",
+     "@types/js-yaml": "^4.0.9",
+     "@types/node": "18.x",
+-    "@types/vscode": "^1.74.0",
++    "@types/vscode": "^1.85.0",
+     "@vscode/vsce": "^3.6.2",
+     "ovsx": "^0.10.6",
+     "typescript": "5.5.4"
+   },
+*** End Patch
+
+*** Begin Patch
+*** Update File: apps/vscode-ext/src/views/AnalyticsView.ts
+@@
+   private generateHtmlContent(): string {
+     return `<!DOCTYPE html>
+     <html>
+     <head>
+-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
++      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
+       <style>
+         body { font-family: var(--vscode-font-family); background: var(--vscode-editor-background); }
+         .chart-container { width: 100%; height: 300px; margin: 20px 0; }
+         h2 { color: var(--vscode-foreground); }
+       </style>
+     </head>
+     <body>
+       <h2>ODAVL Analytics Dashboard</h2>
+       <div class="chart-container">
+         <canvas id="qualityChart"></canvas>
+       </div>
+       <div class="chart-container">
+         <canvas id="trendChart"></canvas>
+       </div>
+       <script>
+         const vscode = acquireVsCodeApi();
+         const qualityCtx = document.getElementById('qualityChart').getContext('2d');
+         const trendCtx = document.getElementById('trendChart').getContext('2d');
+         
+         function clearCanvas(ctx) {
+           ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+         }
+         function drawLineChart(ctx, labels, data) {
+           clearCanvas(ctx);
+           const w = ctx.canvas.width, h = ctx.canvas.height;
+           const max = Math.max(...data, 1);
+           const stepX = w / Math.max(labels.length - 1, 1);
+           ctx.strokeStyle = '#4FC3F7';
+           ctx.beginPath();
+           data.forEach((v, i) => {
+             const x = i * stepX;
+             const y = h - (v / max) * (h - 20) - 10;
+             if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+           });
+           ctx.stroke();
+         }
+         function drawBarChart(ctx, labels, data) {
+           clearCanvas(ctx);
+           const w = ctx.canvas.width, h = ctx.canvas.height;
+           const max = Math.max(...data, 1);
+           const barW = w / (labels.length * 1.5);
+           data.forEach((v, i) => {
+             const x = i * barW * 1.5 + barW * 0.25;
+             const barH = (v / max) * (h - 20);
+             ctx.fillStyle = '#81C784';
+             ctx.fillRect(x, h - barH - 10, barW, barH);
+           });
+         }
+         
+         let quality = { labels: [], datasets: [{ label: 'Quality', data: [] }] };
+         let trends = { labels: [], datasets: [{ label: 'Performance', data: [] }] };
+         
+         function render() {
+           drawLineChart(qualityCtx, quality.labels, quality.datasets[0].data);
+           drawBarChart(trendCtx, trends.labels, trends.datasets[0].data);
+         }
+         
+         window.addEventListener('message', event => {
+           if (event.data.command === 'updateCharts') {
+             quality = event.data.data.quality;
+             trends = event.data.data.trends;
+             render();
+           }
+         });
+       </script>
+     </body>
+     </html>`;
+   }
+*** End Patch
+
+*** Begin Patch
+*** Update File: apps/vscode-ext/src/extension.ts
+@@
+ import * as fs from 'fs';
++import { performance } from 'perf_hooks';
+*** End Patch
+
+*** Begin Patch
+*** Update File: apps/vscode-ext/src/services/ODAVLDataService.ts
+@@
+     const reportsDir = path.join(workspaceRoot, 'reports');
+-    if (fs.existsSync(reportsDir)) {
+-      // Watch for new files in reports directory
+-      try {
+-        fs.watch(reportsDir, (eventType, filename) => {
+-          if (filename && filename.startsWith('observe-') && filename.endsWith('.json')) {
+-            setTimeout(() => {
+-              this._onMetricsChanged.fire(this.getCurrentMetrics());
+-            }, 100);
+-          }
+-        });
+-      } catch (error) {
+-        console.error('Failed to watch reports directory:', error);
+-      }
+-    }
++    if (fs.existsSync(reportsDir) && (vscode.workspace.isTrusted ?? true)) {
++      try {
++        this.fsWatcher = fs.watch(reportsDir, (_eventType, filename) => {
++          if (filename && filename.startsWith('observe-') && filename.endsWith('.json')) {
++            setTimeout(() => this._onMetricsChanged.fire(this.getCurrentMetrics()), 100);
++          }
++        });
++      } catch (error) {
++        console.error('Failed to watch reports directory:', error);
++      }
++    }
+@@
+-    this.fileWatcher.dispose();
++    try { this.fsWatcher?.close(); } catch { /* ignore close errors */ }
++    this.fileWatcher.dispose();
+*** End Patch
+
+*** Begin Patch
+*** Update File: apps/vscode-ext/src/views/ControlDashboard.ts
+@@
+-    let cliCommand = 'pnpm';
+-    let cliArgs = ['odavl:run', '--json'];
++    let cliCommand = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
++    let cliArgs = ['odavl:run', '--json'];
+@@
+-      if (fs.existsSync(cliPath)) {
+-        cliCommand = 'node';
+-        cliArgs = [cliPath, 'run', '--json'];
+-      }
++      if (fs.existsSync(cliPath)) {
++        cliCommand = process.execPath;
++        cliArgs = [cliPath, 'run', '--json'];
++      }
+@@
+-     const cli = spawn(process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm', 
+-      ['odavl:run', '--json'], {
++     const cli = spawn(cliCommand, cliArgs, {
+       cwd: workspaceRoot,
+       stdio: ['ignore', 'pipe', 'pipe'],
+       shell: false
+     });
+*** End Patch

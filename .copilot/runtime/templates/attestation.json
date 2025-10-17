@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "timestamp": "",
+  "branch": "",
+  "sessionId": "{{SESSION_ID}}",
+  "cycleId": "{{CYCLE_ID}}",
+  "budget": {
+    "lines": 40,
+    "files": 10
+  },
+  "verify": {
+    "build": true,
+    "lint": true,
+    "typecheck": true,
+    "vsce": true,
+    "site": true
+  },
+  "artifacts": [
+    "patch.diff",
+    "verify.log",
+    "reports/*"
+  ],
+  "sha256": {}
+}

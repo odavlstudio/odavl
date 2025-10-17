@@ -1,0 +1,847 @@
+{
+  "nav": {
+    "home": "首页",
+    "docs": "文档",
+    "security": "安全",
+    "contact": "联系",
+    "pricing": "价格",
+    "pilot": "开始试点",
+    "privacy": "[Needs Translation: nav.privacy]"
+  },
+  "cta": {
+    "startPilot": "开始试点",
+    "getStarted": "开始",
+    "startTrial": "免费试用",
+    "contactSales": "联系销售"
+  },
+  "pricing": {
+    "title": {
+      "main": "[Needs Translation: pricing.title.main]",
+      "highlight": "[Needs Translation: pricing.title.highlight]"
+    },
+    "subtitle": "选择适合您代码质量需求的完美计划",
+    "popular": "最受欢迎",
+    "period": {
+      "month": "月",
+      "year": "年",
+      "custom": "[Needs Translation: pricing.period.custom]"
+    },
+    "tiers": {
+      "starter": {
+        "name": "入门版",
+        "description": "适合个人开发者",
+        "features": {
+          "codeQuality": "基本代码质量监控",
+          "basicFixes": "自动基本修复",
+          "reports": "每周质量报告",
+          "support": "社区支持",
+          "repositories": "[Needs Translation: pricing.tiers.starter.features.repositories]",
+          "integrations": "[Needs Translation: pricing.tiers.starter.features.integrations]"
+        },
+        "price": "[Needs Translation: pricing.tiers.starter.price]"
+      },
+      "pro": {
+        "name": "专业版",
+        "description": "最适合中小型团队",
+        "features": {
+          "advancedFixes": "高级自主修复",
+          "customRules": "自定义质量规则",
+          "integrations": "CI/CD集成",
+          "analytics": "高级分析",
+          "priority": "优先支持"
+        }
+      },
+      "enterprise": {
+        "name": "企业版",
+        "customPrice": "定制",
+        "description": "适合大型组织",
+        "features": {
+          "unlimited": "无限仓库",
+          "onPremise": "本地部署",
+          "sla": "99.9% SLA保证",
+          "dedicated": "专属支持团队",
+          "training": "包含团队培训",
+          "compliance": "[Needs Translation: pricing.tiers.enterprise.features.compliance]",
+          "customization": "[Needs Translation: pricing.tiers.enterprise.features.customization]"
+        },
+        "price": "[Needs Translation: pricing.tiers.enterprise.price]"
+      },
+      "professional": {
+        "name": "[Needs Translation: pricing.tiers.professional.name]",
+        "price": "[Needs Translation: pricing.tiers.professional.price]",
+        "description": "[Needs Translation: pricing.tiers.professional.description]",
+        "features": {
+          "unlimited": "[Needs Translation: pricing.tiers.professional.features.unlimited]",
+          "advancedFixes": "[Needs Translation: pricing.tiers.professional.features.advancedFixes]",
+          "customRules": "[Needs Translation: pricing.tiers.professional.features.customRules]",
+          "cicd": "[Needs Translation: pricing.tiers.professional.features.cicd]",
+          "analytics": "[Needs Translation: pricing.tiers.professional.features.analytics]",
+          "priority": "[Needs Translation: pricing.tiers.professional.features.priority]"
+        }
+      },
+      "free": {
+        "description": "[Needs Translation: pricing.tiers.free.description]"
+      }
+    },
+    "cta": {
+      "getStarted": "开始使用",
+      "startTrial": "开始免费试用",
+      "contactSales": "联系销售"
+    },
+    "guarantee": "30天退款保证，无需理由。",
+    "features": {
+      "noSetup": "无设置费用",
+      "cancel": "随时取消",
+      "support": "24/7支持"
+    },
+    "badge": "[Needs Translation: pricing.badge]",
+    "roi": {
+      "title": "[Needs Translation: pricing.roi.title]",
+      "subtitle": "[Needs Translation: pricing.roi.subtitle]",
+      "inputs": {
+        "developers": "[Needs Translation: pricing.roi.inputs.developers]",
+        "hourlyRate": "[Needs Translation: pricing.roi.inputs.hourlyRate]",
+        "issuesPerWeek": "[Needs Translation: pricing.roi.inputs.issuesPerWeek]",
+        "timePerIssue": "[Needs Translation: pricing.roi.inputs.timePerIssue]"
+      },
+      "results": {
+        "roi": "[Needs Translation: pricing.roi.results.roi]",
+        "roiDescription": "[Needs Translation: pricing.roi.results.roiDescription]",
+        "monthlySaving": "[Needs Translation: pricing.roi.results.monthlySaving]",
+        "yearlySaving": "[Needs Translation: pricing.roi.results.yearlySaving]",
+        "netROI": "[Needs Translation: pricing.roi.results.netROI]",
+        "netROIDescription": "[Needs Translation: pricing.roi.results.netROIDescription]"
+      }
+    },
+    "value": {
+      "time": {
+        "title": "[Needs Translation: pricing.value.time.title]",
+        "description": "[Needs Translation: pricing.value.time.description]",
+        "metric": "[Needs Translation: pricing.value.time.metric]"
+      },
+      "cost": {
+        "title": "[Needs Translation: pricing.value.cost.title]",
+        "description": "[Needs Translation: pricing.value.cost.description]",
+        "metric": "[Needs Translation: pricing.value.cost.metric]"
+      },
+      "quality": {
+        "title": "[Needs Translation: pricing.value.quality.title]",
+        "description": "[Needs Translation: pricing.value.quality.description]",
+        "metric": "[Needs Translation: pricing.value.quality.metric]"
+      },
+      "safety": {
+        "title": "[Needs Translation: pricing.value.safety.title]",
+        "description": "[Needs Translation: pricing.value.safety.description]",
+        "metric": "[Needs Translation: pricing.value.safety.metric]"
+      }
+    },
+    "plans": {
+      "title": "[Needs Translation: pricing.plans.title]"
+    },
+    "enterprise": {
+      "title": "[Needs Translation: pricing.enterprise.title]",
+      "description": "[Needs Translation: pricing.enterprise.description]",
+      "cta": "[Needs Translation: pricing.enterprise.cta]"
+    }
+  },
+  "hero": {
+    "title": "ODAVL — 您的企业级安全自主代码医生。",
+    "subtitle": "观察、修复、验证和学习 — 不破坏您的代码库。",
+    "ctaPilot": "启动试点",
+    "ctaInstall": "安装VS Code扩展",
+    "trust": "受企业团队信赖",
+    "productPreview": "产品预览",
+    "preHeadline": "[Needs Translation: hero.preHeadline]",
+    "headline": "[Needs Translation: hero.headline]",
+    "subheadline": "[Needs Translation: hero.subheadline]",
+    "ctaPrimary": "[Needs Translation: hero.ctaPrimary]",
+    "ctaSecondary": "[Needs Translation: hero.ctaSecondary]",
+    "trustIndicator": "[Needs Translation: hero.trustIndicator]",
+    "benefits": {
+      "autonomous": "[Needs Translation: hero.benefits.autonomous]",
+      "enterprise": "[Needs Translation: hero.benefits.enterprise]",
+      "secure": "[Needs Translation: hero.benefits.secure]"
+    }
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "back": "返回",
+    "next": "下一个",
+    "previous": "上一个"
+  },
+  "footer": {
+    "copyright": "© 2025 ODAVL Studio. 保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "support": "支持"
+  },
+  "locale": {
+    "switchTo": "切换到{locale}",
+    "current": "当前语言：{locale}"
+  },
+  "docs": {
+    "title": "文档",
+    "description": "学习如何使用ODAVL改善代码质量",
+    "quickstart": "快速开始",
+    "governance": "治理与安全",
+    "breadcrumb": {
+      "home": "首页",
+      "docs": "文档"
+    }
+  },
+  "testimonials": {
+    "badge": "客户成功",
+    "title": {
+      "main": "受到",
+      "highlight": "企业团队信赖"
+    },
+    "subtitle": "了解领先企业如何使用ODAVL转变开发工作流程并大规模改善代码质量。",
+    "testimonials": {
+      "title": "用户评价"
+    },
+    "testimonial1": {
+      "quote": "ODAVL完全改变了我们的代码质量流程。",
+      "author": "Sarah M.",
+      "role": "首席开发者",
+      "company": "TechFlow（试点）",
+      "results": {
+        "quality": "代码质量得到改善",
+        "time": "节省审查时间"
+      }
+    },
+    "testimonial2": {
+      "quote": "自主修复非常精确且安全。",
+      "author": "David R.",
+      "role": "工程经理",
+      "company": "CloudScale（试点）",
+      "results": {
+        "defects": "生产问题减少",
+        "velocity": "开发速度"
+      }
+    },
+    "testimonial3": {
+      "quote": "这是我们在开发者生产力方面做出的最佳投资。",
+      "author": "Alex L.",
+      "role": "首席技术官",
+      "company": "StartupCo（试点）",
+      "results": {
+        "incidents": "关键事件减少",
+        "deployment": "部署信心"
+      }
+    },
+    "caseStudies": {
+      "title": "成功案例",
+      "subtitle": "来自试点项目参与者的真实成果。"
+    },
+    "case1": {
+      "company": "TechFlow Solutions",
+      "industry": "金融科技",
+      "challenge": "在50+微服务中管理代码质量，部署周期快速",
+      "solution": "实施ODAVL Professional，配备定制安全门和CI/CD集成",
+      "results": {
+        "quality": {
+          "title": "质量问题减少",
+          "value": "60%",
+          "improvement": "生产中问题更少"
+        },
+        "time": {
+          "title": "部署速度",
+          "value": "3倍",
+          "improvement": "更快的部署"
+        }
+      }
+    },
+    "case2": {
+      "company": "CloudScale Systems",
+      "industry": "云基础设施",
+      "challenge": "在200+开发者的分布式团队中维护代码质量",
+      "solution": "企业级部署，配备定制集成和专门培训",
+      "results": {
+        "defects": {
+          "title": "生产缺陷",
+          "value": "85%",
+          "improvement": "关键问题减少"
+        },
+        "satisfaction": {
+          "title": "开发者满意度",
+          "value": "9.2/10",
+          "improvement": "团队满意度评分"
+        }
+      }
+    },
+    "trust": {
+      "title": "团队信赖ODAVL的原因",
+      "certification": {
+        "title": "SOC 2合规",
+        "description": "企业安全标准，具备完整审计跟踪和访问控制。"
+      },
+      "enterprise": {
+        "title": "企业级安全",
+        "description": "受管控的自动化，具备可审计控制和合规框架。"
+      },
+      "community": {
+        "title": "开源基础",
+        "description": "基于可信的开源工具构建，采用透明方法论。"
+      },
+      "growth": {
+        "title": "500+工程团队",
+        "description": "通过试点和企业试验采用，具备经过验证的结果。"
+      }
+    },
+    "cta": {
+      "main": "加入这些成功案例",
+      "subtitle": "开始免费试用，在第一周就能看到成果"
+    }
+  },
+  "brand": {
+    "name": "[Needs Translation: brand.name]"
+  },
+  "trust": {
+    "heading": "[Needs Translation: trust.heading]",
+    "linesFixed": "[Needs Translation: trust.linesFixed]",
+    "safetyRate": "[Needs Translation: trust.safetyRate]",
+    "enterpriseTeams": "[Needs Translation: trust.enterpriseTeams]",
+    "monitoring": "[Needs Translation: trust.monitoring]"
+  },
+  "featuresSection": {
+    "badge": "[Needs Translation: featuresSection.badge]",
+    "title": {
+      "main": "[Needs Translation: featuresSection.title.main]",
+      "highlight": "[Needs Translation: featuresSection.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: featuresSection.subtitle]",
+    "autonomous": {
+      "title": "[Needs Translation: featuresSection.autonomous.title]",
+      "description": "[Needs Translation: featuresSection.autonomous.description]",
+      "benefits": {
+        "continuous": "[Needs Translation: featuresSection.autonomous.benefits.continuous]",
+        "learning": "[Needs Translation: featuresSection.autonomous.benefits.learning]",
+        "proactive": "[Needs Translation: featuresSection.autonomous.benefits.proactive]"
+      }
+    },
+    "safety": {
+      "title": "[Needs Translation: featuresSection.safety.title]",
+      "description": "[Needs Translation: featuresSection.safety.description]",
+      "benefits": {
+        "gates": "[Needs Translation: featuresSection.safety.benefits.gates]",
+        "rollback": "[Needs Translation: featuresSection.safety.benefits.rollback]",
+        "validation": "[Needs Translation: featuresSection.safety.benefits.validation]"
+      }
+    },
+    "performance": {
+      "title": "[Needs Translation: featuresSection.performance.title]",
+      "description": "[Needs Translation: featuresSection.performance.description]",
+      "benefits": {
+        "speed": "[Needs Translation: featuresSection.performance.benefits.speed]",
+        "efficiency": "[Needs Translation: featuresSection.performance.benefits.efficiency]",
+        "scale": "[Needs Translation: featuresSection.performance.benefits.scale]"
+      }
+    },
+    "precision": {
+      "title": "[Needs Translation: featuresSection.precision.title]",
+      "description": "[Needs Translation: featuresSection.precision.description]",
+      "benefits": {
+        "accuracy": "[Needs Translation: featuresSection.precision.benefits.accuracy]",
+        "context": "[Needs Translation: featuresSection.precision.benefits.context]",
+        "minimal": "[Needs Translation: featuresSection.precision.benefits.minimal]"
+      }
+    },
+    "integration": {
+      "title": "[Needs Translation: featuresSection.integration.title]",
+      "description": "[Needs Translation: featuresSection.integration.description]",
+      "benefits": {
+        "universal": "[Needs Translation: featuresSection.integration.benefits.universal]",
+        "workflow": "[Needs Translation: featuresSection.integration.benefits.workflow]",
+        "tools": "[Needs Translation: featuresSection.integration.benefits.tools]"
+      }
+    },
+    "insights": {
+      "title": "[Needs Translation: featuresSection.insights.title]",
+      "description": "[Needs Translation: featuresSection.insights.description]",
+      "benefits": {
+        "metrics": "[Needs Translation: featuresSection.insights.benefits.metrics]",
+        "trends": "[Needs Translation: featuresSection.insights.benefits.trends]",
+        "optimization": "[Needs Translation: featuresSection.insights.benefits.optimization]"
+      }
+    },
+    "metrics": {
+      "safety": {
+        "label": "[Needs Translation: featuresSection.metrics.safety.label]",
+        "description": "[Needs Translation: featuresSection.metrics.safety.description]"
+      },
+      "speed": {
+        "label": "[Needs Translation: featuresSection.metrics.speed.label]",
+        "description": "[Needs Translation: featuresSection.metrics.speed.description]"
+      },
+      "availability": {
+        "label": "[Needs Translation: featuresSection.metrics.availability.label]",
+        "description": "[Needs Translation: featuresSection.metrics.availability.description]"
+      },
+      "downtime": {
+        "label": "[Needs Translation: featuresSection.metrics.downtime.label]",
+        "description": "[Needs Translation: featuresSection.metrics.downtime.description]"
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: featuresSection.cta.main]",
+      "subtitle": "[Needs Translation: featuresSection.cta.subtitle]"
+    }
+  },
+  "howItWorks": {
+    "badge": "[Needs Translation: howItWorks.badge]",
+    "title": {
+      "main": "[Needs Translation: howItWorks.title.main]",
+      "highlight": "[Needs Translation: howItWorks.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: howItWorks.subtitle]",
+    "process": {
+      "title": "[Needs Translation: howItWorks.process.title]"
+    },
+    "observe": {
+      "title": "[Needs Translation: howItWorks.observe.title]",
+      "description": "[Needs Translation: howItWorks.observe.description]",
+      "details": {
+        "metrics": "[Needs Translation: howItWorks.observe.details.metrics]",
+        "patterns": "[Needs Translation: howItWorks.observe.details.patterns]",
+        "baseline": "[Needs Translation: howItWorks.observe.details.baseline]"
+      }
+    },
+    "decide": {
+      "title": "[Needs Translation: howItWorks.decide.title]",
+      "description": "[Needs Translation: howItWorks.decide.description]",
+      "details": {
+        "analysis": "[Needs Translation: howItWorks.decide.details.analysis]",
+        "priority": "[Needs Translation: howItWorks.decide.details.priority]",
+        "safety": "[Needs Translation: howItWorks.decide.details.safety]"
+      }
+    },
+    "act": {
+      "title": "[Needs Translation: howItWorks.act.title]",
+      "description": "[Needs Translation: howItWorks.act.description]",
+      "details": {
+        "execution": "[Needs Translation: howItWorks.act.details.execution]",
+        "testing": "[Needs Translation: howItWorks.act.details.testing]",
+        "deployment": "[Needs Translation: howItWorks.act.details.deployment]"
+      }
+    },
+    "verify": {
+      "title": "[Needs Translation: howItWorks.verify.title]",
+      "description": "[Needs Translation: howItWorks.verify.description]",
+      "details": {
+        "validation": "[Needs Translation: howItWorks.verify.details.validation]",
+        "metrics": "[Needs Translation: howItWorks.verify.details.metrics]",
+        "rollback": "[Needs Translation: howItWorks.verify.details.rollback]"
+      }
+    },
+    "learn": {
+      "title": "[Needs Translation: howItWorks.learn.title]",
+      "description": "[Needs Translation: howItWorks.learn.description]",
+      "details": {
+        "adaptation": "[Needs Translation: howItWorks.learn.details.adaptation]",
+        "improvement": "[Needs Translation: howItWorks.learn.details.improvement]",
+        "optimization": "[Needs Translation: howItWorks.learn.details.optimization]"
+      }
+    },
+    "journey": {
+      "title": "[Needs Translation: howItWorks.journey.title]",
+      "subtitle": "[Needs Translation: howItWorks.journey.subtitle]",
+      "discovery": {
+        "phase": "[Needs Translation: howItWorks.journey.discovery.phase]",
+        "title": "[Needs Translation: howItWorks.journey.discovery.title]",
+        "description": "[Needs Translation: howItWorks.journey.discovery.description]",
+        "duration": "[Needs Translation: howItWorks.journey.discovery.duration]",
+        "outcomes": {
+          "assessment": "[Needs Translation: howItWorks.journey.discovery.outcomes.assessment]",
+          "demo": "[Needs Translation: howItWorks.journey.discovery.outcomes.demo]",
+          "proposal": "[Needs Translation: howItWorks.journey.discovery.outcomes.proposal]"
+        }
+      },
+      "pilot": {
+        "phase": "[Needs Translation: howItWorks.journey.pilot.phase]",
+        "title": "[Needs Translation: howItWorks.journey.pilot.title]",
+        "description": "[Needs Translation: howItWorks.journey.pilot.description]",
+        "duration": "[Needs Translation: howItWorks.journey.pilot.duration]",
+        "outcomes": {
+          "integration": "[Needs Translation: howItWorks.journey.pilot.outcomes.integration]",
+          "fixes": "[Needs Translation: howItWorks.journey.pilot.outcomes.fixes]",
+          "metrics": "[Needs Translation: howItWorks.journey.pilot.outcomes.metrics]"
+        }
+      },
+      "scale": {
+        "phase": "[Needs Translation: howItWorks.journey.scale.phase]",
+        "title": "[Needs Translation: howItWorks.journey.scale.title]",
+        "description": "[Needs Translation: howItWorks.journey.scale.description]",
+        "duration": "[Needs Translation: howItWorks.journey.scale.duration]",
+        "outcomes": {
+          "rollout": "[Needs Translation: howItWorks.journey.scale.outcomes.rollout]",
+          "training": "[Needs Translation: howItWorks.journey.scale.outcomes.training]",
+          "optimization": "[Needs Translation: howItWorks.journey.scale.outcomes.optimization]"
+        }
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: howItWorks.cta.main]",
+      "subtitle": "[Needs Translation: howItWorks.cta.subtitle]"
+    }
+  },
+  "integrations": {
+    "badge": "[Needs Translation: integrations.badge]",
+    "title": {
+      "main": "[Needs Translation: integrations.title.main]",
+      "highlight": "[Needs Translation: integrations.title.highlight]"
+    },
+    "subtitle": "[Needs Translation: integrations.subtitle]",
+    "status": {
+      "native": "[Needs Translation: integrations.status.native]",
+      "ready": "[Needs Translation: integrations.status.ready]",
+      "planned": "[Needs Translation: integrations.status.planned]"
+    },
+    "development": {
+      "category": "[Needs Translation: integrations.development.category]",
+      "title": "[Needs Translation: integrations.development.title]",
+      "description": "[Needs Translation: integrations.development.description]"
+    },
+    "versionControl": {
+      "category": "[Needs Translation: integrations.versionControl.category]",
+      "title": "[Needs Translation: integrations.versionControl.title]",
+      "description": "[Needs Translation: integrations.versionControl.description]"
+    },
+    "cicd": {
+      "category": "[Needs Translation: integrations.cicd.category]",
+      "title": "[Needs Translation: integrations.cicd.title]",
+      "description": "[Needs Translation: integrations.cicd.description]"
+    },
+    "security": {
+      "category": "[Needs Translation: integrations.security.category]",
+      "title": "[Needs Translation: integrations.security.title]",
+      "description": "[Needs Translation: integrations.security.description]"
+    },
+    "monitoring": {
+      "category": "[Needs Translation: integrations.monitoring.category]",
+      "title": "[Needs Translation: integrations.monitoring.title]",
+      "description": "[Needs Translation: integrations.monitoring.description]"
+    },
+    "communication": {
+      "category": "[Needs Translation: integrations.communication.category]",
+      "title": "[Needs Translation: integrations.communication.title]",
+      "description": "[Needs Translation: integrations.communication.description]"
+    },
+    "workflow": {
+      "title": "[Needs Translation: integrations.workflow.title]",
+      "subtitle": "[Needs Translation: integrations.workflow.subtitle]",
+      "install": {
+        "title": "[Needs Translation: integrations.workflow.install.title]",
+        "description": "[Needs Translation: integrations.workflow.install.description]"
+      },
+      "configure": {
+        "title": "[Needs Translation: integrations.workflow.configure.title]",
+        "description": "[Needs Translation: integrations.workflow.configure.description]"
+      },
+      "automate": {
+        "title": "[Needs Translation: integrations.workflow.automate.title]",
+        "description": "[Needs Translation: integrations.workflow.automate.description]"
+      },
+      "monitor": {
+        "title": "[Needs Translation: integrations.workflow.monitor.title]",
+        "description": "[Needs Translation: integrations.workflow.monitor.description]"
+      }
+    },
+    "enterprise": {
+      "title": "[Needs Translation: integrations.enterprise.title]",
+      "description": "[Needs Translation: integrations.enterprise.description]",
+      "features": {
+        "custom": "[Needs Translation: integrations.enterprise.features.custom]",
+        "priority": "[Needs Translation: integrations.enterprise.features.priority]",
+        "support": "[Needs Translation: integrations.enterprise.features.support]"
+      }
+    },
+    "cta": {
+      "main": "[Needs Translation: integrations.cta.main]",
+      "subtitle": "[Needs Translation: integrations.cta.subtitle]"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "[Needs Translation: auth.login.title]",
+      "subtitle": "[Needs Translation: auth.login.subtitle]",
+      "fields": {
+        "email": "[Needs Translation: auth.login.fields.email]",
+        "password": "[Needs Translation: auth.login.fields.password]",
+        "remember": "[Needs Translation: auth.login.fields.remember]"
+      },
+      "placeholders": {
+        "email": "[Needs Translation: auth.login.placeholders.email]",
+        "password": "[Needs Translation: auth.login.placeholders.password]"
+      },
+      "errors": {
+        "emailRequired": "[Needs Translation: auth.login.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.login.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.login.errors.passwordRequired]"
+      },
+      "links": {
+        "forgotPassword": "[Needs Translation: auth.login.links.forgotPassword]",
+        "signUp": "[Needs Translation: auth.login.links.signUp]"
+      },
+      "submit": "[Needs Translation: auth.login.submit]",
+      "noAccount": "[Needs Translation: auth.login.noAccount]",
+      "demo": {
+        "title": "[Needs Translation: auth.login.demo.title]",
+        "description": "[Needs Translation: auth.login.demo.description]"
+      }
+    },
+    "signup": {
+      "title": "[Needs Translation: auth.signup.title]",
+      "subtitle": "[Needs Translation: auth.signup.subtitle]",
+      "fields": {
+        "firstName": "[Needs Translation: auth.signup.fields.firstName]",
+        "lastName": "[Needs Translation: auth.signup.fields.lastName]",
+        "email": "[Needs Translation: auth.signup.fields.email]",
+        "company": "[Needs Translation: auth.signup.fields.company]",
+        "password": "[Needs Translation: auth.signup.fields.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.fields.confirmPassword]"
+      },
+      "placeholders": {
+        "firstName": "[Needs Translation: auth.signup.placeholders.firstName]",
+        "lastName": "[Needs Translation: auth.signup.placeholders.lastName]",
+        "email": "[Needs Translation: auth.signup.placeholders.email]",
+        "company": "[Needs Translation: auth.signup.placeholders.company]",
+        "password": "[Needs Translation: auth.signup.placeholders.password]",
+        "confirmPassword": "[Needs Translation: auth.signup.placeholders.confirmPassword]"
+      },
+      "errors": {
+        "firstNameRequired": "[Needs Translation: auth.signup.errors.firstNameRequired]",
+        "lastNameRequired": "[Needs Translation: auth.signup.errors.lastNameRequired]",
+        "emailRequired": "[Needs Translation: auth.signup.errors.emailRequired]",
+        "emailInvalid": "[Needs Translation: auth.signup.errors.emailInvalid]",
+        "passwordRequired": "[Needs Translation: auth.signup.errors.passwordRequired]",
+        "passwordWeak": "[Needs Translation: auth.signup.errors.passwordWeak]",
+        "passwordMismatch": "[Needs Translation: auth.signup.errors.passwordMismatch]",
+        "termsRequired": "[Needs Translation: auth.signup.errors.termsRequired]"
+      },
+      "passwordStrength": {
+        "title": "[Needs Translation: auth.signup.passwordStrength.title]",
+        "length": "[Needs Translation: auth.signup.passwordStrength.length]",
+        "uppercase": "[Needs Translation: auth.signup.passwordStrength.uppercase]",
+        "lowercase": "[Needs Translation: auth.signup.passwordStrength.lowercase]",
+        "number": "[Needs Translation: auth.signup.passwordStrength.number]",
+        "special": "[Needs Translation: auth.signup.passwordStrength.special]"
+      },
+      "terms": {
+        "prefix": "[Needs Translation: auth.signup.terms.prefix]",
+        "termsLink": "[Needs Translation: auth.signup.terms.termsLink]",
+        "and": "[Needs Translation: auth.signup.terms.and]",
+        "privacyLink": "[Needs Translation: auth.signup.terms.privacyLink]"
+      },
+      "links": {
+        "signIn": "[Needs Translation: auth.signup.links.signIn]"
+      },
+      "submit": "[Needs Translation: auth.signup.submit]",
+      "hasAccount": "[Needs Translation: auth.signup.hasAccount]",
+      "optional": "[Needs Translation: auth.signup.optional]",
+      "demo": {
+        "title": "[Needs Translation: auth.signup.demo.title]",
+        "description": "[Needs Translation: auth.signup.demo.description]"
+      }
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "[Needs Translation: privacy.meta.title]",
+      "description": "[Needs Translation: privacy.meta.description]"
+    },
+    "title": "[Needs Translation: privacy.title]",
+    "lastUpdated": "[Needs Translation: privacy.lastUpdated]",
+    "sections": {
+      "overview": {
+        "title": "[Needs Translation: privacy.sections.overview.title]",
+        "content": "[Needs Translation: privacy.sections.overview.content]"
+      },
+      "dataCollection": {
+        "title": "[Needs Translation: privacy.sections.dataCollection.title]",
+        "noTelemetry": "[Needs Translation: privacy.sections.dataCollection.noTelemetry]",
+        "websiteAnalytics": {
+          "title": "[Needs Translation: privacy.sections.dataCollection.websiteAnalytics.title]",
+          "content": "[Needs Translation: privacy.sections.dataCollection.websiteAnalytics.content]",
+          "items": {
+            "pageViews": "[Needs Translation: privacy.sections.dataCollection.websiteAnalytics.items.pageViews]",
+            "referrers": "[Needs Translation: privacy.sections.dataCollection.websiteAnalytics.items.referrers]",
+            "general": "[Needs Translation: privacy.sections.dataCollection.websiteAnalytics.items.general]"
+          }
+        },
+        "contactForms": {
+          "title": "[Needs Translation: privacy.sections.dataCollection.contactForms.title]",
+          "content": "[Needs Translation: privacy.sections.dataCollection.contactForms.content]"
+        }
+      },
+      "dataUse": {
+        "title": "[Needs Translation: privacy.sections.dataUse.title]",
+        "items": {
+          "communication": "[Needs Translation: privacy.sections.dataUse.items.communication]",
+          "improvement": "[Needs Translation: privacy.sections.dataUse.items.improvement]",
+          "support": "[Needs Translation: privacy.sections.dataUse.items.support]",
+          "legal": "[Needs Translation: privacy.sections.dataUse.items.legal]"
+        }
+      },
+      "dataSharing": {
+        "title": "[Needs Translation: privacy.sections.dataSharing.title]",
+        "noSelling": "[Needs Translation: privacy.sections.dataSharing.noSelling]",
+        "content": "[Needs Translation: privacy.sections.dataSharing.content]"
+      },
+      "cookies": {
+        "title": "[Needs Translation: privacy.sections.cookies.title]",
+        "content": "[Needs Translation: privacy.sections.cookies.content]",
+        "plausible": {
+          "title": "[Needs Translation: privacy.sections.cookies.plausible.title]",
+          "content": "[Needs Translation: privacy.sections.cookies.plausible.content]"
+        }
+      },
+      "rights": {
+        "title": "[Needs Translation: privacy.sections.rights.title]",
+        "content": "[Needs Translation: privacy.sections.rights.content]",
+        "items": {
+          "access": "[Needs Translation: privacy.sections.rights.items.access]",
+          "rectification": "[Needs Translation: privacy.sections.rights.items.rectification]",
+          "erasure": "[Needs Translation: privacy.sections.rights.items.erasure]",
+          "portability": "[Needs Translation: privacy.sections.rights.items.portability]",
+          "objection": "[Needs Translation: privacy.sections.rights.items.objection]"
+        }
+      },
+      "security": {
+        "title": "[Needs Translation: privacy.sections.security.title]",
+        "content": "[Needs Translation: privacy.sections.security.content]"
+      },
+      "international": {
+        "title": "[Needs Translation: privacy.sections.international.title]",
+        "content": "[Needs Translation: privacy.sections.international.content]"
+      },
+      "changes": {
+        "title": "[Needs Translation: privacy.sections.changes.title]",
+        "content": "[Needs Translation: privacy.sections.changes.content]"
+      },
+      "contact": {
+        "title": "[Needs Translation: privacy.sections.contact.title]",
+        "content": "[Needs Translation: privacy.sections.contact.content]",
+        "email": "[Needs Translation: privacy.sections.contact.email]",
+        "address": "[Needs Translation: privacy.sections.contact.address]"
+      }
+    }
+  },
+  "terms": {
+    "meta": {
+      "title": "[Needs Translation: terms.meta.title]",
+      "description": "[Needs Translation: terms.meta.description]"
+    },
+    "title": "[Needs Translation: terms.title]",
+    "lastUpdated": "[Needs Translation: terms.lastUpdated]",
+    "sections": {
+      "acceptance": {
+        "title": "[Needs Translation: terms.sections.acceptance.title]",
+        "content": "[Needs Translation: terms.sections.acceptance.content]"
+      },
+      "services": {
+        "title": "[Needs Translation: terms.sections.services.title]",
+        "content": "[Needs Translation: terms.sections.services.content]",
+        "items": {
+          "cli": "[Needs Translation: terms.sections.services.items.cli]",
+          "vscode": "[Needs Translation: terms.sections.services.items.vscode]",
+          "website": "[Needs Translation: terms.sections.services.items.website]",
+          "support": "[Needs Translation: terms.sections.services.items.support]"
+        }
+      },
+      "accounts": {
+        "title": "[Needs Translation: terms.sections.accounts.title]",
+        "content": "[Needs Translation: terms.sections.accounts.content]",
+        "responsibilities": {
+          "accurate": "[Needs Translation: terms.sections.accounts.responsibilities.accurate]",
+          "security": "[Needs Translation: terms.sections.accounts.responsibilities.security]",
+          "authorized": "[Needs Translation: terms.sections.accounts.responsibilities.authorized]",
+          "notify": "[Needs Translation: terms.sections.accounts.responsibilities.notify]"
+        }
+      },
+      "usage": {
+        "title": "[Needs Translation: terms.sections.usage.title]",
+        "content": "[Needs Translation: terms.sections.usage.content]",
+        "prohibited": {
+          "title": "[Needs Translation: terms.sections.usage.prohibited.title]",
+          "items": {
+            "illegal": "[Needs Translation: terms.sections.usage.prohibited.items.illegal]",
+            "malicious": "[Needs Translation: terms.sections.usage.prohibited.items.malicious]",
+            "unauthorized": "[Needs Translation: terms.sections.usage.prohibited.items.unauthorized]",
+            "interference": "[Needs Translation: terms.sections.usage.prohibited.items.interference]",
+            "reverse": "[Needs Translation: terms.sections.usage.prohibited.items.reverse]"
+          }
+        }
+      },
+      "data": {
+        "title": "[Needs Translation: terms.sections.data.title]",
+        "ownership": "[Needs Translation: terms.sections.data.ownership]",
+        "content": "[Needs Translation: terms.sections.data.content]",
+        "rights": {
+          "access": "[Needs Translation: terms.sections.data.rights.access]",
+          "portability": "[Needs Translation: terms.sections.data.rights.portability]",
+          "deletion": "[Needs Translation: terms.sections.data.rights.deletion]"
+        }
+      },
+      "intellectual": {
+        "title": "[Needs Translation: terms.sections.intellectual.title]",
+        "content": "[Needs Translation: terms.sections.intellectual.content]",
+        "license": {
+          "title": "[Needs Translation: terms.sections.intellectual.license.title]",
+          "content": "[Needs Translation: terms.sections.intellectual.license.content]"
+        }
+      },
+      "payment": {
+        "title": "[Needs Translation: terms.sections.payment.title]",
+        "content": "[Needs Translation: terms.sections.payment.content]",
+        "terms": {
+          "billing": "[Needs Translation: terms.sections.payment.terms.billing]",
+          "automatic": "[Needs Translation: terms.sections.payment.terms.automatic]",
+          "taxes": "[Needs Translation: terms.sections.payment.terms.taxes]",
+          "changes": "[Needs Translation: terms.sections.payment.terms.changes]"
+        }
+      },
+      "termination": {
+        "title": "[Needs Translation: terms.sections.termination.title]",
+        "content": "[Needs Translation: terms.sections.termination.content]",
+        "grounds": {
+          "breach": "[Needs Translation: terms.sections.termination.grounds.breach]",
+          "illegal": "[Needs Translation: terms.sections.termination.grounds.illegal]",
+          "business": "[Needs Translation: terms.sections.termination.grounds.business]"
+        }
+      },
+      "disclaimers": {
+        "title": "[Needs Translation: terms.sections.disclaimers.title]",
+        "warranty": "[Needs Translation: terms.sections.disclaimers.warranty]",
+        "content": "[Needs Translation: terms.sections.disclaimers.content]"
+      },
+      "limitation": {
+        "title": "[Needs Translation: terms.sections.limitation.title]",
+        "content": "[Needs Translation: terms.sections.limitation.content]"
+      },
+      "indemnification": {
+        "title": "[Needs Translation: terms.sections.indemnification.title]",
+        "content": "[Needs Translation: terms.sections.indemnification.content]"
+      },
+      "governing": {
+        "title": "[Needs Translation: terms.sections.governing.title]",
+        "content": "[Needs Translation: terms.sections.governing.content]"
+      },
+      "changes": {
+        "title": "[Needs Translation: terms.sections.changes.title]",
+        "content": "[Needs Translation: terms.sections.changes.content]"
+      },
+      "contact": {
+        "title": "[Needs Translation: terms.sections.contact.title]",
+        "content": "[Needs Translation: terms.sections.contact.content]",
+        "email": "[Needs Translation: terms.sections.contact.email]",
+        "address": "[Needs Translation: terms.sections.contact.address]"
+      }
+    }
+  }
+}

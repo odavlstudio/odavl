@@ -1,12 +1,29 @@
 {
+  "main": "./dist/extension.js",
   "name": "odavl",
   "displayName": "ODAVL Studio",
   "publisher": "odavl",
   "description": "Autonomous code quality with enterprise safety gates.",
   "version": "0.1.1",
   "icon": "assets/icon.png",
+  "version": "1.2.0",
+  "icon": "media/odavl.png",
+  "keywords": [
+    "odavl",
+    "code quality",
+    "governance",
+    "security",
+    "automation",
+    "linting",
+    "typescript",
+    "eslint"
+  ],
+  "galleryBanner": {
+    "color": "#0f3460",
+    "theme": "dark"
+  },
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": ">=1.85.0"
   },
   "categories": [
     "Other",
@@ -19,24 +36,164 @@
       {
         "command": "odavl.doctor",
         "title": "ODAVL: Doctor Mode"
-      }
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/odavl-org/odavl_studio.git"
-  },
-  "scripts": {
+  "homepage": "https://github.com/odavl/odavl-extension",
+        "bugs": {
+          "url": "https://github.com/odavl/odavl-extension/issues"
+        },
+        "contributes": {
+          "configuration": {
+            "type": "object",
+            "title": "ODAVL Extension Configuration",
+            "properties": {
+              "odavl.enablePerfMetrics": {
+                "type": "boolean",
+                "default": false,
+                "description": "Enable performance metrics logging for ODAVL extension (for diagnostics and profiling)."
+              }
+            }
+          },
+          "viewsContainers": {
+            "activitybar": [
+              {
+                "id": "odavl",
+                "title": "ODAVL Control",
+                "icon": "media/odavl.png"
+              }
+            ]
+          },
+          "views": {
+            "odavl": [
+              {
+                "id": "odavl.dashboard",
+                "name": "Dashboard",
+                "icon": "$(graph-line)"
+              },
+              {
+                "id": "odavl.recipes",
+                "name": "Recipes",
+                "icon": "$(flame)"
+              },
+              {
+                "id": "odavl.activity",
+                "name": "Activity",
+                "icon": "$(pulse)"
+              },
+              {
+                "id": "odavl.config",
+                "name": "Configuration",
+                "icon": "$(gear)"
+              },
+              {
+                "id": "odavl.controlPanel",
+                "name": "Control",
+                "icon": "$(play-circle)"
+              },
+              {
+                "id": "odavl.intelligence",
+                "name": "Intelligence",
+                "icon": "$(lightbulb)"
+              },
+              {
+                "id": "odavl.insights",
+                "name": "Insights",
+                "icon": "graph-line"
+              }
+            ]
+          },
+          "commands": [
+            {
+              "command": "odavl.control",
+              "title": "ODAVL: Show Control Panel",
+              "icon": "$(play-circle)"
+            },
+            {
+              "command": "odavl.runCycle",
+              "title": "ODAVL: Run Cycle",
+              "icon": "$(run-all)"
+            },
+            {
+              "command": "odavl.observe",
+              "title": "ODAVL: Observe Phase",
+              "icon": "$(eye)"
+            },
+            {
+              "command": "odavl.decide",
+              "title": "ODAVL: Decide Phase",
+              "icon": "$(lightbulb-autofix)"
+            },
+            {
+              "command": "odavl.act",
+              "title": "ODAVL: Act Phase",
+              "icon": "$(debug-start)"
+            },
+            {
+              "command": "odavl.verify",
+              "title": "ODAVL: Verify Phase",
+              "icon": "$(verified)"
+            },
+            {
+              "command": "odavl.learn",
+              "title": "ODAVL: Learn Phase",
+              "icon": "$(mortar-board)"
+            },
+            {
+              "command": "odavl.refreshInsights",
+              "title": "ODAVL: Refresh Insights",
+              "icon": "refresh"
+            }
+          ]
+        },
+        "activationEvents": [
+          "onStartupFinished",
+          "onCommand:odavl.control",
+          "onView:odavl.dashboard"
+        ],
+        "repository": {
+          "type": "git",
+          "url": "https://github.com/odavl-org/odavl_studio.git"
+        },
+        "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p ./",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
-  },
-  "devDependencies": {
-    "@types/node": "18.x",
-    "@types/vscode": "^1.74.0",
+          "build": "tsc -p ./",
+          "compile": "tsc -p ./",
+          "watch": "tsc -watch -p ./"
+        },
+        "devDependencies": {
+          "@types/node": "18.x",
+          "@types/vscode": "^1.74.0",
+    "clean": "rimraf dist",
+          "build": "pnpm run clean && esbuild src/extension.ts --bundle --outfile=dist/extension.js --platform=node --external:vscode --minify",
+          "package": "vsce package",
+          "publish": "vsce publish",
+          "vscode:prepublish": "npm run build && npm run validate",
+          "compile": "tsc -p ./",
+          "watch": "tsc -watch -p ./",
+          "validate": "node validate-extension.js",
+          "postbuild": "node scripts/postbuild.js"
+        },
+        "devDependencies": {
+          "@types/node": "^18.0.0",
+          "@types/react": "^19.0.0",
+          "@types/react-dom": "^19.0.0",
+          "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.6.2",
-    "ovsx": "^0.10.6",
+          "autoprefixer": "^10.4.21",
+          "esbuild": "^0.25.10",
+          "eslint": "^8.56.0",
+          "framer-motion": "^12.23.24",
+          "lucide-react": "^0.545.0",
+          "ovsx": "^0.10.6",
     "typescript": "^4.9.4"
-  }
-}
+    "postcss": "^8.5.6",
+          "rimraf": "^5.0.5",
+          "tailwindcss": "^3.4.18",
+          "typescript": "^5.5.4",
+          "vitest": "^1.0.4"
+        },
+        "license": "MIT",
+        "dependencies": {
+          "js-yaml": "^4.1.0",
+          "react": "19.1.0",
+          "react-dom": "19.1.0"
+        }
+      }

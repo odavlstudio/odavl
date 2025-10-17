@@ -16,9 +16,28 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+        - name: Governance Gates Check
+          run: pwsh .odavl/policy-guard.ps1 --mode pre-check --gates .odavl/gates.yml
+
+        - name: Branch Naming Validation
+          run: pwsh .odavl/scripts/validate-branch.ps1
+
+        - name: LOC and File Limits Enforcement
+          run: pwsh .odavl/scripts/enforce-limits.ps1 --loc 40 --files 10
+
+        - name: Policy Guard (Post Build)
+          run: pwsh .odavl/policy-guard.ps1 --mode post-check --policy .odavl/.odavl.policy.yml
+
+        - name: Attestation Token Generation
+          run: pwsh .odavl/scripts/generate-attestation.ps1 --output evidence/attestation-$(date +%Y%m%d).json
+
+        - name: Undo Snapshot Creation
+          run: pwsh .odavl/scripts/create-undo.ps1 --output .odavl/undo/
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -43,7 +62,3 @@ jobs:
         
     - name: Publish to Marketplace
       if: inputs.publish_target == 'marketplace' || inputs.publish_target == 'both'
-      working-directory: apps/vscode-ext
-      run: npx vsce publish -p $VSCE_TOKEN
-      env:
-        VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}

@@ -1,7 +1,11 @@
 node_modules
+
 dist
 .pnpm-store
 .env
+logs/
+.next/
+test-output/
 reports/*.log
 reports/*.json
 reports/waves/*

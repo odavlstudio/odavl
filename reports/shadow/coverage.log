@@ -1,0 +1,11 @@
+# Shadow CI Coverage Log
+
+This log tracks the coverage and verification status for each Shadow CI run.
+
+| Date       | Commit   | Coverage % | Tests Run | Pass Rate |
+|------------|----------|------------|-----------|-----------|
+| (auto)     | (auto)   | (auto)     | (auto)    | (auto)    |
+
+---
+
+*Generated as part of ODAVL 100/10 Wave 1: Shadow CI Bootstrap.*

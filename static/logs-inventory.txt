@@ -1,0 +1,9 @@
+C:\Users\sabou\dev\odavl\logs\continuous-loop-wave8-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\deep-insight-wave9-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\discovery-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\discovery-wave2-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\discovery-wave3-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\insights-wave5-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\precision-wave7-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\runtime-wave4-2025-10-13.log
+C:\Users\sabou\dev\odavl\logs\verify_phase6_final.log

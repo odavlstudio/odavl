@@ -1,0 +1,13 @@
+schedules:
+  - id: light-scan
+    cron: "0 9 * * *"
+    tasks: ["lint-clean", "typecheck"]
+  - id: weekly-scan
+    cron: "0 10 * * FRI"
+    tasks: ["lint-clean", "bundle-size", "view-icons"]
+onCommit:
+  run: ["lint-clean"]
+limits:
+  files: 10
+  lines: 40
+  allowNewFeatures: false

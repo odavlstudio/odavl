@@ -1,90 +1,74 @@
-# ODAVL - Self-Healing Code Infrastructure
+# ODAVL – Autonomous Code Quality & Governance for Enterprises
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6+-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+**Secure, compliant, and intelligent code governance directly inside VS Code.**
 
-**ODAVL** (Observe-Decide-Act-Verify-Learn) is an autonomous code quality improvement system that continuously monitors and fixes code issues within defined safety constraints.
+## Overview
 
-## 🎯 Features
+- 🧠 Intelligent ODAVL Cycles (Observe→Decide→Act→Verify→Learn)
+- 🔒 Real-Time Security & Policy Gates
+- 📊 Enterprise Insights Dashboard
+- 🧩 Configurable Risk Budgets & Compliance
+- 🧾 Automated Attestation Reports
 
-- **🔍 Observe**: Continuous monitoring of ESLint warnings and TypeScript errors
-- **🧠 Decide**: AI-powered decision making using recipe-based trust learning
-- **⚡ Act**: Automated code fixes with eslint --fix and other remediation strategies
-- **✅ Verify**: Safety gates and shadow verification ensure quality never degrades
-- **📚 Learn**: Cryptographic attestation and trust scoring for continuous improvement
+## Requirements
 
-## 🚀 Quick Start
+## Features
+
+- 🧠 Intelligent ODAVL Cycles (Observe→Decide→Act→Verify→Learn)
+- 🔒 Real-Time Security & Policy Gates
+- 📊 Enterprise Insights Dashboard
+- 🧩 Configurable Risk Budgets & Compliance
+- 🧾 Automated Attestation Reports
+
+## System Requirements
+
+      gitleaks git --config /home/dev/customgitleaks.toml .
+      ```bash
+
+# ODAVL – Autonomous Code Quality & Governance for Enterprises
+
+**Secure, compliant, and intelligent code governance directly inside VS Code.**
+
+## Overview
+
+- 🧠 Intelligent ODAVL Cycles (Observe→Decide→Act→Verify→Learn)
+- 🔒 Real-Time Security & Policy Gates
+- 📊 Enterprise Insights Dashboard
+- 🧩 Configurable Risk Budgets & Compliance
+- 🗃️ Automated Attestation Reports
+
+## Features
+
+- 🧠 Intelligent ODAVL Cycles (Observe→Decide→Act→Verify→Learn)
+- 🔒 Real-Time Security & Policy Gates
+- 📊 Enterprise Insights Dashboard
+- 🧩 Configurable Risk Budgets & Compliance
+- 🗃️ Automated Attestation Reports
+
+## System Requirements
+
+- VS Code ≥ 1.85.0
+- Node ≥ 18
+- pnpm ≥ 9
+
+## Install
 
 ```bash
-# Install globally
-npm install -g @odavl/cli
-
-# Or run directly
-npx @odavl/cli run
-
-# Basic usage in your project
-odavl run
+code --install-extension odavl.odavl-extension
 ```
 
-## 📋 Example Output
+## Marketplace Metadata
 
-```bash
-[ODAVL] Observe → Decide → Act → Verify → Learn
-[OBSERVE] ESLint warnings: 5, Type errors: 0
-[DECIDE] Selected recipe: remove-unused (trust 0.9)
-[ACT] Running eslint --fix …
-[VERIFY] Gates check: PASS ✅
-[DONE] ESLint warnings: 5 → 0 (Δ -5) | Type errors: 0 → 0 (Δ 0)
+- **Repository:** [https://github.com/odavlstudio/odavl](https://github.com/odavlstudio/odavl)
+- **Bugs:** [https://github.com/odavlstudio/odavl/issues](https://github.com/odavlstudio/odavl/issues)
+- **Homepage:** [https://odavl.com](https://odavl.com)
+- **License:** MIT
+- **Categories:** Linters, Testing, Other
+- **Keywords:** ODAVL, Governance, Security, Code Quality
+
+## Monorepo Structure
+
 ```
-
-## 🔐 Attestation & Trust
-
-ODAVL generates cryptographic attestations for successful improvements:
-
-```json
-{
-  "planId": "improve-eslint-20251005",
-  "timestamp": "2025-10-05T16:33:24.196Z",
-  "deltas": { "eslint": -5, "types": 0 },
-  "gatesPassed": true,
-  "attestation": "verified",
-  "signature": "sha256:a1b2c3..."
-}
-```
-
-## 🎨 VS Code Doctor Mode
-
-Install the ODAVL Doctor extension for live cycle monitoring:
-
-1. Install from VS Code Marketplace (search "ODAVL Doctor")
-2. Command Palette → "ODAVL: Doctor Mode"  
-3. Click "Run ODAVL Cycle" to see real-time progress
-4. View color-coded phase indicators and detailed logs
-
-## 🛡️ Safety & Configuration
-
-ODAVL includes multiple safety mechanisms:
-
-- **Quality Gates**: Zero tolerance for new type errors
-- **Shadow Verification**: Test changes in isolated environment
-- **Undo System**: Automatic snapshots before modifications
-- **Trust Learning**: Recipe success rates inform future decisions
-
-Configure via `.odavl/gates.yml`:
-
-```yaml
-eslint:
-  deltaMax: 0
-typeErrors:
-  deltaMax: 0
-policy:
-  maxFilesTouched: 10
-```
-
-## 📦 Project Structure
-
-```text
 apps/
   cli/           # @odavl/cli package
   vscode-ext/    # VS Code Doctor extension
@@ -94,22 +78,20 @@ apps/
   attestation/   # Cryptographic proofs
   undo/          # Rollback snapshots
 reports/         # Metrics and run history
+odavl-website/   # Next.js marketing/docs site
 ```
 
-## 🤝 Contributing
+## Configuration
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+ODAVL uses YAML and JSON configuration files in `.odavl/` for safety gates, risk policy, and run history. See the documentation for details.
 
-## 📄 License
+## Documentation
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- [Official Docs](https://odavl.org/docs)
+- [Quick Start](https://odavl.org/docs/quickstart)
+- [API Reference](https://odavl.org/docs/api)
 
-## 👨‍💻 Author
+## License
 
-Created by Mohammad Nawlo
+MIT
 
-- GitHub: [@Monawlo812](https://github.com/Monawlo812)

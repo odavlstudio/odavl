@@ -1,0 +1,115 @@
+# ODAVL Auto-Approval Policy Configuration
+# Defines which commands can be automatically approved vs. require manual approval
+
+version: "1.0"
+safetyLevel: "enterprise"
+
+# Allow patterns - commands that are safe for auto-approval
+allow:
+  # Package management (read-only operations)
+  - pattern: "^(npm|pnpm|yarn) *(list|ls|info|show|view|outdated|audit)( .*)?$"
+    reason: "Read-only package operations are safe"
+    safetyLevel: "high"
+  
+  # Node.js operations (safe execution)
+  - pattern: "^node +-+(version|help|check)( .*)?$"
+    reason: "Node version and help commands are harmless"
+    safetyLevel: "high"
+  
+  # Code editor operations
+  - pattern: "^code +--list-extensions( --show-versions)?$"
+    reason: "VS Code extension listing is read-only"
+    safetyLevel: "high"
+  
+  - pattern: "^code +--help$"
+    reason: "Help commands are safe"
+    safetyLevel: "high"
+  
+  # PowerShell safe operations
+  - pattern: "^Get-ChildItem( .*)?$"
+    reason: "Directory listing is read-only"
+    safetyLevel: "high"
+  
+  - pattern: "^Select-String( .*)?$"
+    reason: "Text search is read-only"
+    safetyLevel: "high"
+  
+  - pattern: "^Select-Object( .*)?$"
+    reason: "Object filtering is read-only"
+    safetyLevel: "high"
+  
+  - pattern: "^Test-Path( .*)?$"
+    reason: "Path testing is read-only"
+    safetyLevel: "high"
+  
+  # Git operations (read-only)
+  - pattern: "^git +(status|log|show|diff|branch)( .*)?$"
+    reason: "Read-only git operations are safe"
+    safetyLevel: "high"
+  
+  # System info commands
+  - pattern: "^cd [\\w\\-\\.\\\\/_:]+$"
+    reason: "Directory navigation is safe"
+    safetyLevel: "medium"
+  
+  # PowerShell expressions with parentheses (for encoding/drawing)
+  - pattern: "^\\[.*\\]::.*\\(.*\\)$"
+    reason: "PowerShell static method calls for encoding/drawing"
+    safetyLevel: "medium"
+
+# Deny patterns - explicitly dangerous operations
+deny:
+  # File system destruction - specific patterns for each dangerous command
+  - pattern: ".*\\brm\\b.*"
+    reason: "Unix rm command is destructive"
+    safetyLevel: "critical"
+  
+  - pattern: ".*\\bRemove-Item\\b.*"
+    reason: "PowerShell Remove-Item is destructive"
+    safetyLevel: "critical"
+  
+  - pattern: ".*\\bdel\\b.*"
+    reason: "DOS/Windows del command is destructive"
+    safetyLevel: "critical"
+  
+  - pattern: ".*\\bformat\\b.*"
+    reason: "Format command can destroy data"
+    safetyLevel: "critical"
+  
+  # Additional file system destruction patterns
+  - pattern: ".*(rmdir|Remove-Directory).*"
+    reason: "Directory deletion operations are destructive"
+    safetyLevel: "critical"
+  
+  # System modification
+  - pattern: ".*(fdisk|diskpart|reg +delete).*"
+    reason: "System modification commands are dangerous"
+    safetyLevel: "critical"
+  
+  # Network operations
+  - pattern: ".*(curl|wget|Invoke-WebRequest).*"
+    reason: "Network operations can be unsafe"
+    safetyLevel: "high"
+  
+  # Process control
+  - pattern: ".*(kill|taskkill|Stop-Process).*"
+    reason: "Process termination can be disruptive"
+    safetyLevel: "high"
+  
+  # PowerShell execution policy changes
+  - pattern: ".*Set-ExecutionPolicy.*"
+    reason: "Execution policy changes affect security"
+    safetyLevel: "critical"
+
+# Default behavior for unmatched commands
+default:
+  action: "deny"
+  reason: "Unknown commands require manual review"
+  safetyLevel: "unknown"
+  requireApproval: true
+
+# Logging configuration
+logging:
+  includeReason: true
+  logLevel: "info"
+  auditTrail: true

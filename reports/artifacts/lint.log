@@ -1,0 +1,572 @@
+
+> odavl@1.0.0 lint C:\Users\sabou\dev\odavl
+> eslint .
+
+
+C:\Users\sabou\dev\odavl\.odavl\scripts\check-webview-assets.cjs
+   9:28  error  '__dirname' is not defined  no-undef
+  13:1   error  'console' is not defined    no-undef
+  16:5   error  'console' is not defined    no-undef
+  17:5   error  'process' is not defined    no-undef
+  22:5   error  'console' is not defined    no-undef
+  23:5   error  'process' is not defined    no-undef
+  26:1   error  'console' is not defined    no-undef
+
+C:\Users\sabou\dev\odavl\apps\cli\policy-validator.js
+  2:11  error  'console' is already defined as a built-in global variable  no-redeclare
+
+C:\Users\sabou\dev\odavl\apps\cli\src\analytics-privacy.ts
+  24:3  error  'NONE' is defined but never used          no-unused-vars
+  25:3  error  'BASIC' is defined but never used         no-unused-vars
+  26:3  error  'STANDARD' is defined but never used      no-unused-vars
+  27:3  error  'ENHANCED' is defined but never used      no-unused-vars
+  28:3  error  'RESEARCH' is defined but never used      no-unused-vars
+  35:3  error  'PUBLIC' is defined but never used        no-unused-vars
+  36:3  error  'INTERNAL' is defined but never used      no-unused-vars
+  37:3  error  'CONFIDENTIAL' is defined but never used  no-unused-vars
+  38:3  error  'RESTRICTED' is defined but never used    no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\analytics.types.ts
+  323:9   error  'query' is defined but never used          no-unused-vars
+  328:20  error  'timeRange' is defined but never used      no-unused-vars
+  333:20  error  'dashboardId' is defined but never used    no-unused-vars
+  338:21  error  'callback' is defined but never used       no-unused-vars
+  338:32  error  'event' is defined but never used          no-unused-vars
+  343:15  error  'event' is defined but never used          no-unused-vars
+  349:5   error  'format' is defined but never used         no-unused-vars
+  350:5   error  'timeRange' is defined but never used      no-unused-vars
+  368:23  error  'data' is defined but never used           no-unused-vars
+  374:5   error  'metric' is defined but never used         no-unused-vars
+  375:5   error  'timeRange' is defined but never used      no-unused-vars
+  376:5   error  'filters' is defined but never used        no-unused-vars
+  382:20  error  'metrics' is defined but never used        no-unused-vars
+  387:18  error  'teamId' is defined but never used         no-unused-vars
+  387:34  error  'timeRange' is defined but never used      no-unused-vars
+  392:11  error  'retentionDays' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\analytics\dashboard-formatter.ts
+  104:40  error  '_reliability' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\analytics\index.ts
+  49:26  error  '_options' is assigned a value but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\context-analyzer.ts
+   227:18  error  'rootPath' is defined but never used           no-unused-vars
+   232:20  error  'rootPath' is defined but never used           no-unused-vars
+   237:23  error  'rootPath' is defined but never used           no-unused-vars
+   242:23  error  'trainingData' is defined but never used       no-unused-vars
+   248:5   error  'historicalMetrics' is defined but never used  no-unused-vars
+   249:5   error  'timeWindow' is defined but never used         no-unused-vars
+   255:27  error  'rootPath' is defined but never used           no-unused-vars
+   261:5   error  'existingContext' is defined but never used    no-unused-vars
+   262:5   error  'newData' is defined but never used            no-unused-vars
+   440:5   error  '_timeWindow' is defined but never used        no-unused-vars
+   664:72  error  '_rootPath' is defined but never used          no-unused-vars
+   701:78  error  '_rootPath' is defined but never used          no-unused-vars
+   847:42  error  '_files' is defined but never used             no-unused-vars
+   858:39  error  '_files' is defined but never used             no-unused-vars
+   867:43  error  '_files' is defined but never used             no-unused-vars
+   877:47  error  '_rootPath' is defined but never used          no-unused-vars
+   903:38  error  '_rootPath' is defined but never used          no-unused-vars
+   915:45  error  '_rootPath' is defined but never used          no-unused-vars
+  1086:33  error  '_metrics' is defined but never used           no-unused-vars
+  1096:36  error  '_metrics' is defined but never used           no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\index.ts
+  14:13  error    'fs' is defined but never used                                                         no-unused-vars
+  14:13  warning  'fs' is defined but never used. Allowed unused vars must match /^_/u                   @typescript-eslint/no-unused-vars
+  31:7   error    'reportsDir' is assigned a value but never used                                        no-unused-vars
+  31:7   warning  'reportsDir' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  38:10  error    'learn' is defined but never used                                                      no-unused-vars
+  38:10  warning  'learn' is defined but never used. Allowed unused vars must match /^_/u                @typescript-eslint/no-unused-vars
+  50:11  error    'perfStart' is assigned a value but never used                                         no-unused-vars
+  50:11  warning  'perfStart' is assigned a value but never used. Allowed unused vars must match /^_/u   @typescript-eslint/no-unused-vars
+  50:23  error    'performance' is not defined                                                           no-undef
+  54:26  error    'performance' is not defined                                                           no-undef
+  56:25  error    'performance' is not defined                                                           no-undef
+
+C:\Users\sabou\dev\odavl\apps\cli\src\ml-engine.types.ts
+  170:22  error  'metrics' is defined but never used      no-unused-vars
+  176:5   error  'context' is defined but never used      no-unused-vars
+  183:5   error  'decision' is defined but never used     no-unused-vars
+  184:5   error  'outcome' is defined but never used      no-unused-vars
+  191:5   error  'context' is defined but never used      no-unused-vars
+  192:5   error  'timeHorizon' is defined but never used  no-unused-vars
+  198:19  error  'decision' is defined but never used     no-unused-vars
+  215:27  error  'rootPath' is defined but never used     no-unused-vars
+  220:22  error  'files' is defined but never used        no-unused-vars
+  225:33  error  'rootPath' is defined but never used     no-unused-vars
+  230:25  error  'rootPath' is defined but never used     no-unused-vars
+  252:5   error  'context' is defined but never used      no-unused-vars
+  253:5   error  'decision' is defined but never used     no-unused-vars
+  254:5   error  'outcome' is defined but never used      no-unused-vars
+  261:5   error  'fromDate' is defined but never used     no-unused-vars
+  262:5   error  'toDate' is defined but never used       no-unused-vars
+  268:24  error  'data' is defined but never used         no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\phases\decide.ts
+  151:24  error  '_m' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\predictive-engine.ts
+  135:9   error  'data' is defined but never used               no-unused-vars
+  136:11  error  'features' is defined but never used           no-unused-vars
+  137:17  error  'feedback' is defined but never used           no-unused-vars
+  138:12  error  'testData' is defined but never used           no-unused-vars
+  348:13  error  'rootPath' is defined but never used           no-unused-vars
+  349:13  error  'config' is assigned a value but never used    no-unused-vars
+  703:5   error  '_currentMetrics' is defined but never used    no-unused-vars
+  729:5   error  '_features' is defined but never used          no-unused-vars
+  742:5   error  '_modelPredictions' is defined but never used  no-unused-vars
+  743:5   error  '_ensembleScore' is defined but never used     no-unused-vars
+  768:5   error  '_prediction' is defined but never used        no-unused-vars
+  769:5   error  '_features' is defined but never used          no-unused-vars
+  770:5   error  '_timeframe' is defined but never used         no-unused-vars
+  776:5   error  '_trends' is defined but never used            no-unused-vars
+  777:5   error  '_metrics' is defined but never used           no-unused-vars
+  788:5   error  '_codeStyle' is defined but never used         no-unused-vars
+  789:5   error  '_architecture' is defined but never used      no-unused-vars
+  800:5   error  '_metrics' is defined but never used           no-unused-vars
+  801:5   error  '_trends' is defined but never used            no-unused-vars
+  812:5   error  '_project' is defined but never used           no-unused-vars
+  813:5   error  '_architecture' is defined but never used      no-unused-vars
+  824:5   error  '_teamBehavior' is defined but never used      no-unused-vars
+  835:5   error  '_prediction' is defined but never used        no-unused-vars
+  836:5   error  '_riskCategories' is defined but never used    no-unused-vars
+  837:5   error  '_teamBehavior' is defined but never used      no-unused-vars
+  865:5   error  '_riskAssessment' is defined but never used    no-unused-vars
+  866:5   error  '_prediction' is defined but never used        no-unused-vars
+  884:5   error  '_riskAssessment' is defined but never used    no-unused-vars
+  885:5   error  '_contextAnalysis' is defined but never used   no-unused-vars
+  907:5   error  '_contextAnalysis' is defined but never used   no-unused-vars
+  914:5   error  '_prediction' is defined but never used        no-unused-vars
+  930:5   error  '_contextAnalysis' is defined but never used   no-unused-vars
+  937:5   error  '_riskAssessment' is defined but never used    no-unused-vars
+  952:5   error  '_teamBehavior' is defined but never used      no-unused-vars
+  953:5   error  '_riskAssessment' is defined but never used    no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\realtime-analytics.ts
+   41:8   error    'data' is defined but never used                                                       no-unused-vars
+   50:6   error    '_event' is defined but never used                                                     no-unused-vars
+   50:28  error    '_listener' is defined but never used                                                  no-unused-vars
+   50:40  error    '_socket' is defined but never used                                                    no-unused-vars
+   50:60  error    '_request' is defined but never used                                                   no-unused-vars
+   58:7   error    'MockWebSocketServer' is defined but never used                                        no-unused-vars
+   58:7   warning  'MockWebSocketServer' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+   59:6   error    '_event' is defined but never used                                                     no-unused-vars
+   59:22  error    '_listener' is defined but never used                                                  no-unused-vars
+   59:37  error    '_args' is defined but never used                                                      no-unused-vars
+  265:20  error    'WebSocketServer' is not defined                                                       no-undef
+  688:58  error    'client' is defined but never used                                                     no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\self-healing-loop.ts
+  49:67  error  Empty block statement  no-empty
+
+C:\Users\sabou\dev\odavl\apps\cli\src\training-data-collector.ts
+  407:5  error  '_method' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\cli\src\training-data.types.ts
+  178:19  error  'dataPoint' is defined but never used         no-unused-vars
+  183:21  error  'features' is defined but never used          no-unused-vars
+  189:5   error  'templateData' is defined but never used      no-unused-vars
+  190:5   error  'targetCount' is defined but never used       no-unused-vars
+  196:20  error  'features' is defined but never used          no-unused-vars
+  256:5   error  'runId' is defined but never used             no-unused-vars
+  257:5   error  'beforeMetrics' is defined but never used     no-unused-vars
+  258:5   error  'action' is defined but never used            no-unused-vars
+  259:5   error  'afterMetrics' is defined but never used      no-unused-vars
+  260:5   error  'outcome' is defined but never used           no-unused-vars
+  266:18  error  'dataPoint' is defined but never used         no-unused-vars
+  271:19  error  'filters' is defined but never used           no-unused-vars
+  284:5   error  'name' is defined but never used              no-unused-vars
+  285:5   error  'filters' is defined but never used           no-unused-vars
+  286:5   error  'config' is defined but never used            no-unused-vars
+  297:5   error  'dataSetId' is defined but never used         no-unused-vars
+  298:5   error  'format' is defined but never used            no-unused-vars
+  304:16  error  'dataSetId' is defined but never used         no-unused-vars
+  309:17  error  'dataPoints' is defined but never used        no-unused-vars
+  385:5   error  'dataSetId' is defined but never used         no-unused-vars
+  386:5   error  'config' is defined but never used            no-unused-vars
+  393:5   error  'modelId' is defined but never used           no-unused-vars
+  394:5   error  'testDataSetId' is defined but never used     no-unused-vars
+  404:5   error  'modelIds' is defined but never used          no-unused-vars
+  415:5   error  'modelId' is defined but never used           no-unused-vars
+  416:5   error  'deploymentConfig' is defined but never used  no-unused-vars
+  426:16  error  'modelId' is defined but never used           no-unused-vars
+  440:24  error  'config' is defined but never used            no-unused-vars
+  446:5   error  'context' is defined but never used           no-unused-vars
+  447:5   error  'decision' is defined but never used          no-unused-vars
+  448:5   error  'confidence' is defined but never used        no-unused-vars
+  455:5   error  'correlationId' is defined but never used     no-unused-vars
+  456:5   error  'outcome' is defined but never used           no-unused-vars
+  457:5   error  'userFeedback' is defined but never used      no-unused-vars
+  464:5   error  'predictionId' is defined but never used      no-unused-vars
+  465:5   error  'actualOutcome' is defined but never used     no-unused-vars
+  466:5   error  'userSatisfaction' is defined but never used  no-unused-vars
+  475:24  error  'dataPoint' is defined but never used         no-unused-vars
+  480:17  error  'userId' is defined but never used            no-unused-vars
+  480:33  error  'consentType' is defined but never used       no-unused-vars
+  485:25  error  'data' is defined but never used              no-unused-vars
+  490:18  error  'userId' is defined but never used            no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\frontend\src\main.tsx
+  13:12  error  'acquireVsCodeApi' is not defined  no-undef
+  15:9   error  Empty block statement              no-empty
+  17:21  error  'document' is not defined          no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\frontend\src\views\Config.tsx
+  27:38  error  'NodeJS' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\frontend\src\views\Insights.tsx
+   51:11  error    'ReportItem' is defined but never used                                        no-unused-vars
+   51:11  warning  'ReportItem' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  210:74  error    'navigator' is not defined                                                    no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\common\Header.tsx
+  21:16  error  'window' is not defined  no-undef
+  23:27  error  'window' is not defined  no-undef
+  31:16  error  'window' is not defined  no-undef
+  33:7   error  'window' is not defined  no-undef
+  33:56  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\common\Sidebar.tsx
+  16:16  error  'route' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\button.tsx
+  26:10  error  'React' is not defined  no-undef
+  41:10  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\dialog.tsx
+  8:18  error  'open' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\select.tsx
+  15:19  error  'value' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\tabs.tsx
+  14:19  error  'value' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\toast.tsx
+  8:18  error  'open' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\use-toast.ts
+  44:27  error  Parsing error: '>' expected
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\components\ui\use-toast.tsx
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): apps\vscode-ext\src.backup\components\ui\use-toast.tsx
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\intelligence\engine.ts
+  16:20  error    'decision' is defined but never used                                             no-unused-vars
+  16:20  warning  'decision' is defined but never used. Allowed unused args must match /^_/u       @typescript-eslint/no-unused-vars
+  28:22  error    'results' is defined but never used                                              no-unused-vars
+  28:22  warning  'results' is defined but never used. Allowed unused args must match /^_/u        @typescript-eslint/no-unused-vars
+  34:37  error    'workspacePath' is defined but never used                                        no-unused-vars
+  34:37  warning  'workspacePath' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\main.tsx
+  7:12  error  'document' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\utils\isTrustedMessage.ts
+  6:22  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\views\Dashboard.tsx
+  39:9   error  'window' is not defined  no-undef
+  42:5   error  'window' is not defined  no-undef
+  43:18  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\views\Insights.tsx
+  29:5   error  'window' is not defined  no-undef
+  30:18  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src.backup\views\Intelligence.tsx
+  39:9   error  'window' is not defined  no-undef
+  42:5   error  'window' is not defined  no-undef
+  43:18  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\components\ActivityProvider.ts
+   62:31  error  'performance' is not defined  no-undef
+   65:24  error  'performance' is not defined  no-undef
+   81:31  error  'performance' is not defined  no-undef
+  131:28  error  'performance' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\components\ConfigProvider.ts
+  61:27  error  'performance' is not defined  no-undef
+  64:18  error  'performance' is not defined  no-undef
+  80:27  error  'performance' is not defined  no-undef
+  96:18  error  'performance' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\components\DashboardProvider.ts
+  58:41  error  'Thenable' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\components\IntelligenceProvider.ts
+   53:32  error  'dataService' is defined but never used  no-unused-vars
+   61:27  error  'performance' is not defined             no-undef
+   64:18  error  'performance' is not defined             no-undef
+   80:27  error  'performance' is not defined             no-undef
+  101:20  error  'performance' is not defined             no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\extension.ts
+   42:27  error    'fetch' is not defined                                                               no-undef
+   56:16  error    'handleCompareRuns' is defined but never used                                        no-unused-vars
+   56:16  warning  'handleCompareRuns' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  131:39  error    'Thenable' is not defined                                                            no-undef
+  163:10  error    'sendStatus' is defined but never used                                               no-unused-vars
+  163:10  warning  'sendStatus' is defined but never used. Allowed unused vars must match /^_/u         @typescript-eslint/no-unused-vars
+  167:10  error    'sendUpdate' is defined but never used                                               no-unused-vars
+  167:10  warning  'sendUpdate' is defined but never used. Allowed unused vars must match /^_/u         @typescript-eslint/no-unused-vars
+  253:29  error    'performance' is not defined                                                         no-undef
+  298:25  error    Empty block statement                                                                no-empty
+  306:25  error    Empty block statement                                                                no-empty
+  313:29  error    Empty block statement                                                                no-empty
+  370:17  error    Empty block statement                                                                no-empty
+  494:27  error    'performance' is not defined                                                         no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\DataAnalyzer.ts
+  76:32  error  '_metric' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\advisor.ts
+  1:46  error    'policies' is defined but never used                                        no-unused-vars
+  1:46  warning  'policies' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\analyzer.ts
+  13:11  error  Empty block statement  no-empty
+  17:11  error  Empty block statement  no-empty
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\attestation.ts
+  35:13  error  Empty block statement  no-empty
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\engine.ts
+  13:17  error  'phase' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\governance.ts
+   9:69  error    'policy' is defined but never used                                                      no-unused-vars
+   9:69  warning  'policy' is defined but never used. Allowed unused args must match /^_/u                @typescript-eslint/no-unused-vars
+  61:9   error    'totalWeight' is assigned a value but never used                                        no-unused-vars
+  61:9   warning  'totalWeight' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\handlers\configHandlers.ts
+  3:76   error  'msg' is defined but never used  no-unused-vars
+  8:111  error  'msg' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\handlers\governanceHandlers.ts
+  4:80  error  'msg' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\handlers\workspaceHandlers.ts
+  5:81  error  'msg' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\intelligence\metrics.ts
+  18:5  error    'cycleStart' is assigned a value but never used                                        no-unused-vars
+  18:5  warning  'cycleStart' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\logs\index.ts
+  13:17  error  Empty block statement  no-empty
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\utils\FileWatcher.ts
+  5:50  error  'NodeJS' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\utils\PerformanceMetrics.ts
+  20:25  error  'performance' is not defined  no-undef
+  28:22  error  'performance' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\utils\dataLoader.ts
+  1:24  error    'RecipeTrust' is defined but never used                                        no-unused-vars
+  1:24  warning  'RecipeTrust' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\utils\webviewMessaging.test.ts
+   5:1   error  'describe' is not defined        no-undef
+   6:5   error  'it' is not defined              no-undef
+   9:40  error  'msg' is defined but never used  no-unused-vars
+  22:5   error  'it' is not defined              no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\utils\webviewMessaging.ts
+   4:38  error  'message' is defined but never used  no-unused-vars
+  23:4   error  'Thenable' is not defined            no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\view\EvidencePanel.tsx
+  19:22  error    'e' is defined but never used  no-unused-vars
+  19:22  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\view\EvidencePanelProvider.ts
+  2:13  error    'React' is defined but never used                                                no-unused-vars
+  2:13  warning  'React' is defined but never used. Allowed unused vars must match /^_/u          @typescript-eslint/no-unused-vars
+  3:8   error    'EvidencePanel' is defined but never used                                        no-unused-vars
+  3:8   warning  'EvidencePanel' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+  7:34  error    'context' is defined but never used                                              no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\AnalyticsView.ts
+  31:27  error  'performance' is not defined            no-undef
+  53:13  error  '_' is assigned a value but never used  no-unused-vars
+  73:18  error  'performance' is not defined            no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\ControlDashboard.ts
+   10:27   error  'msg' is defined but never used                  no-unused-vars
+   10:40   error  'ctx' is defined but never used                  no-unused-vars
+   10:69   error  'msg' is defined but never used                  no-unused-vars
+   10:82   error  'ctx' is defined but never used                  no-unused-vars
+   10:109  error  'msg' is defined but never used                  no-unused-vars
+   10:122  error  'ctx' is defined but never used                  no-unused-vars
+   10:150  error  'msg' is defined but never used                  no-unused-vars
+   10:163  error  'ctx' is defined but never used                  no-unused-vars
+   11:39   error  'msg' is defined but never used                  no-unused-vars
+   13:34   error  'history' is defined but never used              no-unused-vars
+   13:83   error  'type' is defined but never used                 no-unused-vars
+   21:10   error  '_isOutputChannel' is defined but never used     no-unused-vars
+   30:10   error  '_isDataAnalyzer' is defined but never used      no-unused-vars
+   49:33   error  'NodeJS' is not defined                          no-undef
+   75:69   error  Empty block statement                            no-empty
+  102:33   error  '_line' is defined but never used                no-unused-vars
+  162:35   error  '_tab' is defined but never used                 no-unused-vars
+  210:36   error  '_data' is defined but never used                no-unused-vars
+  437:15   error  '_nonce' is assigned a value but never used      no-unused-vars
+  438:15   error  '_cspSource' is assigned a value but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\InsightsView.ts
+  5:34  error  'ctx' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\OdavlControlViewProvider.ts
+  6:34  error  'context' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\UnifiedDashboard.tsx
+  78:164  error  'alert' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\UnifiedDashboardBridge.ts
+  21:42  error  'msg' is defined but never used  no-unused-vars
+  22:21  error  'window' is not defined          no-undef
+  50:17  error  'window' is not defined          no-undef
+  54:9   error  'window' is not defined          no-undef
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\src\views\getDashboardHtml.ts
+  19:21  error  Empty block statement  no-empty
+
+C:\Users\sabou\dev\odavl\apps\vscode-ext\webview\main.js
+   3:15  error  'document' is not defined  no-undef
+   5:13  error  'document' is not defined  no-undef
+  16:5   error  'document' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\config\i18n\language.switcher.tsx
+  18:25  error  'window' is not defined  no-undef
+  21:5   error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\config\marketing\analytics.config.ts
+   6:16  error  'args' is defined but never used     no-unused-vars
+   7:18  error  'event' is defined but never used    no-unused-vars
+   7:33  error  'options' is defined but never used  no-unused-vars
+  57:61  error  'window' is not defined              no-undef
+  58:5   error  'window' is not defined              no-undef
+  65:55  error  'window' is not defined              no-undef
+  66:5   error  'window' is not defined              no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\config\security\csp.policy.ts
+  13:3   error  'crypto' is not defined  no-undef
+  14:10  error  'btoa' is not defined    no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\analytics\init.ts
+  29:24  error  'window' is not defined              no-undef
+  41:24  error  'window' is not defined              no-undef
+  41:49  error  'event' is defined but never used    no-unused-vars
+  41:64  error  'options' is defined but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\[locale]\docs\[slug]\page.tsx
+  23:75  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\[locale]\layout.tsx
+  11:22  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\[locale]\login\LoginForm.tsx
+  24:36  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\[locale]\signup\page.tsx
+  49:34  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\[locale]\test\page.tsx
+  59:18  error  'document' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\api\stripe\create-session\route.ts
+  13:28  error    'request' is defined but never used                                        no-unused-vars
+  13:28  warning  'request' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+  20:27  error    'request' is defined but never used                                        no-unused-vars
+  20:27  warning  'request' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+C:\Users\sabou\dev\odavl\odavl-website\src\app\layout.tsx
+  21:22  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\AccessibilityAudit.tsx
+  42:20  error  'document' is not defined  no-undef
+  56:31  error  'document' is not defined  no-undef
+  62:22  error  'window' is not defined    no-undef
+  79:30  error  'document' is not defined  no-undef
+  91:33  error  'document' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\ErrorBoundary.tsx
+  18:14  error  'error' is defined but never used      no-unused-vars
+  18:28  error  'errorInfo' is defined but never used  no-unused-vars
+  88:32  error  'window' is not defined                no-undef
+  95:32  error  'window' is not defined                no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\LearningVisualizationDashboard.tsx
+  16:27  error  'fetch' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\LocaleSwitcher.tsx
+  28:25  error  'window' is not defined  no-undef
+  45:5   error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\WebVitalsReporter.tsx
+  14:11  error  'navigator' is not defined  no-undef
+  15:9   error  'navigator' is not defined  no-undef
+  17:9   error  'fetch' is not defined      no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\docs\CodeBlock.tsx
+  19:11  error  'navigator' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\forms\ContactForm.tsx
+   32:34  error  'React' is not defined  no-undef
+   43:30  error  'fetch' is not defined  no-undef
+  105:25  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\forms\PilotForm.tsx
+   33:34  error  'React' is not defined  no-undef
+   44:30  error  'fetch' is not defined  no-undef
+   77:27  error  'React' is not defined  no-undef
+   89:25  error  'React' is not defined  no-undef
+  100:25  error  'React' is not defined  no-undef
+  111:25  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\landing\EnhancedPricingSection.tsx
+  236:9  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\landing\FeaturesSection.tsx
+  24:9  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\landing\HowItWorksSection.tsx
+  26:9  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\landing\IntegrationsSection.tsx
+  36:9  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\landing\TestimonialsSection.tsx
+  174:9  error  'React' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\components\ui\card.interactive.tsx
+  2:7  error  '_odavlLintSilencer' is assigned a value but never used  no-unused-vars
+
+C:\Users\sabou\dev\odavl\odavl-website\src\lib\ai\useAdaptiveCTA.ts
+  23:47  error  'window' is not defined  no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\lib\analytics.tsx
+  11:18  error  'event' is defined but never used    no-unused-vars
+  11:33  error  'options' is defined but never used  no-unused-vars
+  33:40  error  'window' is not defined              no-undef
+  34:5   error  'window' is not defined              no-undef
+
+C:\Users\sabou\dev\odavl\odavl-website\src\utils\performance.ts
+  52:67  error  'window' is not defined     no-undef
+  82:42  error  'window' is not defined     no-undef
+  85:43  error  'navigator' is not defined  no-undef
+  86:5   error  'navigator' is not defined  no-undef
+  88:5   error  'fetch' is not defined      no-undef
+
+C:\Users\sabou\dev\odavl\scripts\check-bundle-budget.js
+  8:7  error  'gates' is assigned a value but never used  no-unused-vars
+
+Ô£û 377 problems (355 errors, 22 warnings)
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

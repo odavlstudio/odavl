@@ -1,0 +1,37 @@
+{
+  "session": "wave2-2025-10-13",
+  "detectors": [
+    ".vscode-webview-csp.yaml",
+    ".vscode-activation.yaml",
+    ".website-required-pages.yaml"
+  ],
+  "findings": {
+    "vscode-webview-csp": {
+      "matches": [
+        {
+          "file": "apps/vscode-ext/src/views/ControlDashboard.ts",
+          "line": 39
+        },
+        {
+          "file": "apps/vscode-ext/src/views/AnalyticsView.ts",
+          "line": 31
+        }
+      ],
+      "csp_checks": "manual review required"
+    },
+    "vscode-activation": {
+      "matches": []
+    },
+    "website-required-pages": {
+      "missing": [
+        "apps/web/src/app/signup/page.tsx",
+        "apps/web/src/app/privacy-policy/page.tsx",
+        "apps/web/src/app/terms/page.tsx",
+        "apps/web/src/app/docs/page.tsx"
+      ]
+    }
+  },
+  "report": "reports/discovery-wave2-2025-10-13.md",
+  "log": "logs/discovery-wave2-2025-10-13.log",
+  "timestamp": "2025-10-13T10:00:03Z"
+}

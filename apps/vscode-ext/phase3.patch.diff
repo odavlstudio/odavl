@@ -1,0 +1,330 @@
+diff --git a/apps/vscode-ext/README.md b/apps/vscode-ext/README.md
+index f070421..57f1c48 100644
+--- a/apps/vscode-ext/README.md
++++ b/apps/vscode-ext/README.md
+@@ -16,25 +16,14 @@ Transform your development workflow with **enterprise-grade autonomous code qual
+ 
+ ---
+ 
+-## � **Screenshots & Visual Tour**
++## 📸 **Visual Overview**
+ 
+-> **Note**: Screenshots will be added upon Marketplace publication
++> **Note**: Complete visual documentation available at [odavl.org/docs](https://odavl.org/docs)
+ 
+-### **Activity Bar Integration**
+-![ODAVL Activity Bar](screenshots/activity-bar-integration.png)
+-*The ODAVL icon appears prominently in the VS Code Activity Bar with instant access to all five views*
+-
+-### **Dashboard Overview**
+-![Dashboard View](screenshots/dashboard-overview.png)
+-*Real-time system status, quality metrics, and performance insights at a glance*
+-
+-### **Live Cycle Monitoring**
+-![Doctor Panel](screenshots/doctor-panel-live.png)
+-*Watch the Observe-Decide-Act-Verify-Learn cycle in real-time with color-coded indicators*
+-
+-### **Configuration Management**
+-![Configuration Hub](screenshots/config-management.png)
+-*Visual management of safety gates, risk policies, and system settings*
++- **Activity Bar Integration**: ODAVL icon with instant access to Dashboard, Recipes, Activity, Configuration, Control, and Intelligence views
++- **Real-time Monitoring**: Live cycle visualization with color-coded phase indicators  
++- **Enterprise Dashboard**: Quality metrics, performance insights, and audit trails
++- **Configuration Hub**: Visual management of safety gates and risk policies
+ 
+ ---
+ 
+diff --git a/apps/vscode-ext/package.json b/apps/vscode-ext/package.json
+index 15a3f62..beaf1ea 100644
+--- a/apps/vscode-ext/package.json
++++ b/apps/vscode-ext/package.json
+@@ -3,8 +3,22 @@
+   "displayName": "ODAVL Control",
+   "publisher": "odavl",
+   "description": "Autonomous code quality with enterprise safety gates.",
+-  "version": "1.0.0",
+-  "icon": "media/logo.png",
++  "version": "1.0.2",
++  "icon": "media/odavl.png",
++  "keywords": [
++    "odavl",
++    "code quality",
++    "governance",
++    "security",
++    "automation",
++    "linting",
++    "typescript",
++    "eslint"
++  ],
++  "galleryBanner": {
++    "color": "#0f3460",
++    "theme": "dark"
++  },
+   "engines": {
+     "vscode": "^1.85.0"
+   },
+@@ -13,164 +27,81 @@
+     "Linters",
+     "Programming Languages"
+   ],
+-  "activationEvents": [
+-    "onStartupFinished"
+-  ],
+   "main": "./dist/extension.js",
+   "contributes": {
++    "viewsContainers": {
++      "activitybar": [
++        {
++          "id": "odavl",
++          "title": "ODAVL Control",
++          "icon": "media/odavl.png"
++        }
++      ]
++    },
+     "views": {
+       "odavl": [
+         {
+-          "id": "odavlDashboard",
+-          "name": "Dashboard"
++          "id": "odavl.dashboard",
++          "name": "Dashboard",
++          "icon": "media/odavl.png"
+         },
+         {
+-          "id": "odavlRecipes",
+-          "name": "Recipes"
++          "id": "odavl.recipes",
++          "name": "Recipes",
++          "icon": "media/odavl.png"
+         },
+         {
+-          "id": "odavlActivity",
+-          "name": "Activity"
++          "id": "odavl.activity",
++          "name": "Activity",
++          "icon": "media/odavl.png"
+         },
+         {
+-          "id": "odavlConfig",
+-          "name": "Configuration"
++          "id": "odavl.config",
++          "name": "Configuration",
++          "icon": "media/odavl.png"
+         },
+         {
+-          "id": "odavlControl",
+-          "name": "Control"
++          "id": "odavl.controlPanel",
++          "name": "Control",
++          "icon": "media/odavl.png"
+         },
+         {
+-          "id": "odavlIntelligence",
+-          "name": "Intelligence"
+-        }
+-      ]
+-    },
+-    "viewsContainers": {
+-      "activitybar": [
+-        {
+-          "id": "odavl",
+-          "title": "ODAVL Control",
+-          "icon": "media/logo.png"
++          "id": "odavl.intelligence",
++          "name": "Intelligence",
++          "icon": "media/odavl.png"
+         }
+       ]
+     },
+     "commands": [
+       {
+         "command": "odavl.control",
+-        "title": "ODAVL: Show Control Panel",
+-        "icon": "$(pulse)"
++        "title": "ODAVL: Show Control Panel"
+       },
+       {
+         "command": "odavl.runCycle",
+-        "title": "Run ODAVL Cycle",
+-        "icon": "$(play)"
+-      },
+-      {
+-        "command": "odavl.refresh",
+-        "title": "Refresh All Views",
+-        "icon": "$(refresh)"
+-      },
+-      {
+-        "command": "odavl.refreshDashboard",
+-        "title": "Refresh Dashboard",
+-        "icon": "$(refresh)"
+-      },
+-      {
+-        "command": "odavl.refreshRecipes",
+-        "title": "Refresh Recipes",
+-        "icon": "$(refresh)"
+-      },
+-      {
+-        "command": "odavl.refreshActivity",
+-        "title": "Refresh Activity",
+-        "icon": "$(refresh)"
+-      },
+-      {
+-        "command": "odavl.refreshConfig",
+-        "title": "Refresh Configuration",
+-        "icon": "$(refresh)"
+-      },
+-      {
+-        "command": "odavl.showAnalytics",
+-        "title": "Show Analytics Dashboard",
+-        "icon": "$(graph)"
+-      },
+-      {
+-        "command": "odavl.refreshIntelligence",
+-        "title": "Refresh Intelligence",
+-        "icon": "$(refresh)"
++        "title": "ODAVL: Run Cycle"
+       },
+       {
+         "command": "odavl.observe",
+-        "title": "Run Observe Phase",
+-        "icon": "$(eye)"
++        "title": "Run Observe Phase"
+       },
+       {
+         "command": "odavl.decide",
+-        "title": "Run Decide Phase",
+-        "icon": "$(lightbulb)"
++        "title": "Run Decide Phase"
+       },
+       {
+         "command": "odavl.act",
+-        "title": "Run Act Phase",
+-        "icon": "$(play)"
++        "title": "Run Act Phase"
+       },
+       {
+         "command": "odavl.verify",
+-        "title": "Run Verify Phase",
+-        "icon": "$(check)"
++        "title": "Run Verify Phase"
+       },
+       {
+         "command": "odavl.learn",
+-        "title": "Run Learn Phase",
+-        "icon": "$(book)"
++        "title": "Run Learn Phase"
+       }
+-    ],
+-    "menus": {
+-      "view/title": [
+-        {
+-          "command": "odavl.runCycle",
+-          "when": "view == odavlControl",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refresh",
+-          "when": "view == odavlControl",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refreshDashboard",
+-          "when": "view == odavlDashboard",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refreshRecipes",
+-          "when": "view == odavlRecipes",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refreshActivity",
+-          "when": "view == odavlActivity",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refreshConfig",
+-          "when": "view == odavlConfig",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.showAnalytics",
+-          "when": "view == odavlIntelligence",
+-          "group": "navigation"
+-        },
+-        {
+-          "command": "odavl.refreshIntelligence",
+-          "when": "view == odavlIntelligence",
+-          "group": "navigation"
+-        }
+-      ]
+-    }
++    ]
+   },
+   "repository": {
+     "type": "git",
+@@ -178,16 +109,17 @@
+   },
+   "scripts": {
+     "vscode:prepublish": "npm run build && npm run validate",
+-    "build": "tsc -p ./",
++    "build": "esbuild ./src/extension.ts --bundle --platform=node --external:vscode --outfile=dist/extension.js --format=cjs --sourcemap",
+     "compile": "tsc -p ./",
+     "watch": "tsc -watch -p ./",
+     "validate": "node validate-extension.js",
+     "postbuild": "npm run validate"
+   },
+   "devDependencies": {
++    "esbuild": "^0.25.0",
+     "@types/js-yaml": "^4.0.9",
+     "@types/node": "18.x",
+-    "@types/vscode": "^1.74.0",
++    "@types/vscode": "^1.85.0",
+     "@vscode/vsce": "^3.6.2",
+     "ovsx": "^0.10.6",
+     "typescript": "5.5.4"
+@@ -195,4 +127,4 @@
+   "dependencies": {
+     "js-yaml": "^4.1.0"
+   }
+-}
++}
+\ No newline at end of file
+diff --git a/apps/vscode-ext/package.nls.json b/apps/vscode-ext/package.nls.json
+index 179953f..0b18391 100644
+--- a/apps/vscode-ext/package.nls.json
++++ b/apps/vscode-ext/package.nls.json
+@@ -1,15 +1,18 @@
+ {
+-  "displayName": "ODAVL",
+-  "description": "ODAVL — Code Quality Automation System",
+-  "command.odavl.doctor": "ODAVL: Doctor Mode",
+-  "command.odavl.runCycle": "Run ODAVL Cycle", 
+-  "command.odavl.refresh": "Refresh ODAVL Explorer",
+-  "command.odavl.undo": "Undo Last ODAVL Action",
+-  "command.odavl.openReports": "Browse ODAVL Reports",
+-  "command.odavl.openConfig": "Open ODAVL Configuration",
+-  "view.odavlExplorer": "ODAVL Explorer",
+-  "viewContainer.odavl": "ODAVL",
+-  "keybinding.runCycle": "Ctrl+Shift+O Ctrl+Shift+R",
+-  "keybinding.doctor": "Ctrl+Shift+O Ctrl+Shift+D", 
+-  "keybinding.undo": "Ctrl+Shift+O Ctrl+Shift+U"
+-}
+\ No newline at end of file
++  "displayName": "ODAVL Control",
++  "description": "Autonomous code quality with enterprise safety gates.",
++  "command.odavl.control": "ODAVL: Show Control Panel",
++  "command.odavl.runCycle": "ODAVL: Run Cycle",
++  "command.odavl.observe": "Run Observe Phase",
++  "command.odavl.decide": "Run Decide Phase",
++  "command.odavl.act": "Run Act Phase",
++  "command.odavl.verify": "Run Verify Phase",
++  "command.odavl.learn": "Run Learn Phase",
++  "viewContainer.odavl": "ODAVL Control",
++  "view.odavl.dashboard": "Dashboard",
++  "view.odavl.recipes": "Recipes",
++  "view.odavl.activity": "Activity",
++  "view.odavl.config": "Configuration",
++  "view.odavl.controlPanel": "Control",
++  "view.odavl.intelligence": "Intelligence"
++}

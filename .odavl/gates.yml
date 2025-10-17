@@ -1,3 +1,8 @@
+
+- id: verify-webview-assets
+	description: Ensure webview assets exist before packaging
+	run: node .odavl/scripts/check-webview-assets.cjs
+	on_fail: block
 eslint:       { deltaMax: 0, absoluteMax: 0 }
 typeErrors:   { deltaMax: 0, absoluteMax: 0 }
 bundleKB:     { deltaMax: 5, absoluteMax: 1000 }

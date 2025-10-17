@@ -1,0 +1,716 @@
+diff --git a/apps/vscode-ext/src/extension.ts b/apps/vscode-ext/src/extension.ts
+index 9ee4b08..eecc4c5 100644
+--- a/apps/vscode-ext/src/extension.ts
++++ b/apps/vscode-ext/src/extension.ts
+@@ -1,51 +1,54 @@
+ import * as vscode from 'vscode';
+ import * as path from 'path';
+ import * as fs from 'fs';
++import { performance } from 'perf_hooks';
+ import { DashboardProvider } from './components/DashboardProvider';
+ import { RecipesProvider } from './components/RecipesProvider';
+ import { ActivityProvider } from './components/ActivityProvider';
+ import { ConfigProvider } from './components/ConfigProvider';
+ import { IntelligenceProvider } from './components/IntelligenceProvider';
++import { getODAVLIcon } from './utils/iconLoader';
+ import { ODAVLDataService } from './services/ODAVLDataService';
+ import { PerformanceMetrics } from './utils/PerformanceMetrics';
+ import { AnalyticsView } from './views/AnalyticsView';
+ import { ControlDashboard } from './views/ControlDashboard';
+ import { Logger } from './utils/Logger';
++import { getGitHubSession } from './services/GitHubConnector';
+ 
+ class ODAVLItem extends vscode.TreeItem {
+-  constructor(
+-    public readonly label: string,
+-    public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+-    public readonly phase?: string,
+-    public readonly status?: string
+-  ) {
+-    super(label, collapsibleState);
+-    this.tooltip = `${this.label} - Click to run this phase`;
+-    this.contextValue = phase || 'root';
+-    
+-    // Link phase items to their corresponding commands
+-    if (phase) {
+-      this.command = {
+-        command: `odavl.${phase.toLowerCase()}`,
+-        title: `Run ${phase}`,
+-        arguments: []
+-      };
++    constructor(
++        public readonly label: string,
++        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
++        public readonly phase?: string,
++        public readonly status?: string
++    ) {
++        super(label, collapsibleState);
++        this.tooltip = `${this.label} - Click to run this phase`;
++        this.contextValue = phase || 'root';
++
++        // Link phase items to their corresponding commands
++        if (phase) {
++            this.command = {
++                command: `odavl.${phase.toLowerCase()}`,
++                title: `Run ${phase}`,
++                arguments: []
++            };
++        }
++
++        if (status) {
++            let iconName: string;
++            if (status === 'success') {
++                iconName = 'check';
++            } else if (status === 'error') {
++                iconName = 'error';
++            } else if (status === 'running') {
++                iconName = 'sync~spin';
++            } else {
++                iconName = 'circle-outline';
++            }
++            this.iconPath = getODAVLIcon(iconName);
++        }
+     }
+-    
+-    if (status) {
+-      let iconName: string;
+-      if (status === 'success') {
+-        iconName = 'check';
+-      } else if (status === 'error') {
+-        iconName = 'error';
+-      } else if (status === 'running') {
+-        iconName = 'sync~spin';
+-      } else {
+-        iconName = 'circle-outline';
+-      }
+-      this.iconPath = new vscode.ThemeIcon(iconName);
+-    }
+-  }
+ }
+ 
+ type TreeChangeEvent = ODAVLItem | undefined | null | void;
+@@ -54,282 +57,320 @@ type TreeChangeEvent = ODAVLItem | undefined | null | void;
+  * Update status bar with current ODAVL system state
+  */
+ function updateStatusBar(statusBarItem: vscode.StatusBarItem, state: 'active' | 'updated' | 'running', dataService?: ODAVLDataService): void {
+-  const metrics = dataService?.getCurrentMetrics();
+-  const hasIssues = metrics && (metrics.eslintWarnings > 0 || metrics.typeErrors > 0);
+-  
+-  let icon = '$(pulse)';
+-  let text = 'ODAVL Control';
+-  let color = undefined;
+-  
+-  if (state === 'running') {
+-    icon = '$(sync~spin)';
+-    text = 'ODAVL Running...';
+-    color = '#00d4ff';
+-  } else if (hasIssues && metrics) {
+-    icon = '$(warning)';
+-    text = `ODAVL ${metrics.eslintWarnings + metrics.typeErrors} issues`;
+-    color = '#f59e0b';
+-  } else if (metrics) {
+-    icon = '$(check)';
+-    text = 'ODAVL ✓ Clean';
+-    color = '#10b981';
+-  }
+-  
+-  statusBarItem.text = `${icon} ${text}`;
+-  statusBarItem.color = color;
+-  statusBarItem.tooltip = dataService 
+-    ? `ODAVL Control - ESLint: ${metrics?.eslintWarnings || 0}, Types: ${metrics?.typeErrors || 0}`
+-    : 'ODAVL Control - Click to open dashboard';
+-  statusBarItem.command = 'odavl.control';
+-  statusBarItem.show();
++    const metrics = dataService?.getCurrentMetrics();
++    const hasIssues = metrics && (metrics.eslintWarnings > 0 || metrics.typeErrors > 0);
++
++    let icon = '$(pulse)';
++    let text = 'ODAVL Control';
++    let color = undefined;
++
++    if (state === 'running') {
++        icon = '$(sync~spin)';
++        text = 'ODAVL Running...';
++        color = '#00d4ff';
++    } else if (hasIssues && metrics) {
++        icon = '$(warning)';
++        text = `ODAVL ${metrics.eslintWarnings + metrics.typeErrors} issues`;
++        color = '#f59e0b';
++    } else if (metrics) {
++        icon = '$(check)';
++        text = 'ODAVL ✓ Clean';
++        color = '#10b981';
++    }
++
++    statusBarItem.text = `${icon} ${text}`;
++    statusBarItem.color = color;
++    statusBarItem.tooltip = dataService
++        ? `ODAVL Control - ESLint: ${metrics?.eslintWarnings || 0}, Types: ${metrics?.typeErrors || 0}`
++        : 'ODAVL Control - Click to open dashboard';
++    statusBarItem.command = 'odavl.control';
++    statusBarItem.show();
+ }
+ 
+ /**
+  * Unified CLI command helper for executing ODAVL operations
+  */
+ async function runCLICommand(cmd: string, workspaceRoot?: string, statusBarItem?: vscode.StatusBarItem, dataService?: ODAVLDataService): Promise<void> {
+-  const wsRoot = workspaceRoot || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+-  if (!wsRoot) {
+-    vscode.window.showErrorMessage('ODAVL requires a workspace folder to run commands.');
+-    return;
+-  }
+-
+-  // Update status bar to show running state
+-  if (statusBarItem) {
+-    updateStatusBar(statusBarItem, 'running', dataService);
+-  }
+-
+-  // Determine the appropriate command to use
+-  let command = 'pnpm';
+-  let args: string[] = [];
+-  
+-  if (cmd === 'run') {
+-    args = ['odavl:run'];
+-  } else if (cmd === 'observe') {
+-    args = ['odavl:observe'];
+-  } else if (cmd === 'decide') {
+-    args = ['odavl:decide'];
+-  } else if (cmd === 'act') {
+-    args = ['odavl:act'];
+-  } else if (cmd === 'verify') {
+-    args = ['odavl:verify'];
+-  } else {
+-    args = [cmd];
+-  }
+-
+-  // Check if we can use the built CLI directly
+-  try {
+-    const cliPath = path.join(wsRoot, 'apps', 'cli', 'dist', 'index.js');
+-    if (fs.existsSync(cliPath)) {
+-      command = 'node';
+-      args = [cliPath, cmd];
++    const wsRoot = workspaceRoot || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
++    if (!wsRoot) {
++        vscode.window.showErrorMessage('ODAVL requires a workspace folder to run commands.');
++        return;
+     }
+-  } catch {
+-    // Fall back to pnpm command
+-  }
+ 
+-  const terminal = vscode.window.createTerminal({
+-    name: `ODAVL ${cmd}`,
+-    cwd: wsRoot
+-  });
++    // Update status bar to show running state
++    if (statusBarItem) {
++        updateStatusBar(statusBarItem, 'running', dataService);
++    }
+ 
+-  terminal.sendText(`${command} ${args.join(' ')}`);
+-  terminal.show();
++    // Determine the appropriate command to use
++    let command = 'pnpm';
++    let args: string[] = [];
++
++    if (cmd === 'run') {
++        args = ['odavl:run'];
++    } else if (cmd === 'observe') {
++        args = ['odavl:observe'];
++    } else if (cmd === 'decide') {
++        args = ['odavl:decide'];
++    } else if (cmd === 'act') {
++        args = ['odavl:act'];
++    } else if (cmd === 'verify') {
++        args = ['odavl:verify'];
++    } else {
++        args = [cmd];
++    }
+ 
+-  // Reset status bar after a short delay (assuming command completes)
+-  setTimeout(() => {
+-    if (statusBarItem) {
+-      updateStatusBar(statusBarItem, 'active', dataService);
++    // Check if we can use the built CLI directly
++    try {
++        const cliPath = path.join(wsRoot, 'apps', 'cli', 'dist', 'index.js');
++        if (fs.existsSync(cliPath)) {
++            command = 'node';
++            args = [cliPath, cmd];
++        }
++    } catch {
++        // Fall back to pnpm command
+     }
+-  }, 5000);
++
++    const terminal = vscode.window.createTerminal({
++        name: `ODAVL ${cmd}`,
++        cwd: wsRoot
++    });
++
++    terminal.sendText(`${command} ${args.join(' ')}`);
++    terminal.show();
++
++    // Reset status bar after a short delay (assuming command completes)
++    setTimeout(() => {
++        if (statusBarItem) {
++            updateStatusBar(statusBarItem, 'active', dataService);
++        }
++    }, 5000);
+ }
+ 
+ class ODAVLTreeDataProvider implements vscode.TreeDataProvider<ODAVLItem> {
+-  private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
+-  readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
+-
+-  private readonly cycleStatus: { [key: string]: string } = {};
+-
+-  refresh(): void {
+-    this._onDidChangeTreeData.fire();
+-  }
+-
+-  getTreeItem(element: ODAVLItem): vscode.TreeItem {
+-    return element;
+-  }
+-
+-  getChildren(element?: ODAVLItem): Thenable<ODAVLItem[]> {
+-    if (!element) {
+-      return Promise.resolve([
+-        new ODAVLItem('Observe', vscode.TreeItemCollapsibleState.None, 'observe', this.cycleStatus['observe']),
+-        new ODAVLItem('Decide', vscode.TreeItemCollapsibleState.None, 'decide', this.cycleStatus['decide']),
+-        new ODAVLItem('Act', vscode.TreeItemCollapsibleState.None, 'act', this.cycleStatus['act']),
+-        new ODAVLItem('Verify', vscode.TreeItemCollapsibleState.None, 'verify', this.cycleStatus['verify']),
+-        new ODAVLItem('Learn', vscode.TreeItemCollapsibleState.None, 'learn', this.cycleStatus['learn'])
+-      ]);
++    private readonly _onDidChangeTreeData: vscode.EventEmitter<TreeChangeEvent> = new vscode.EventEmitter<TreeChangeEvent>();
++    readonly onDidChangeTreeData: vscode.Event<TreeChangeEvent> = this._onDidChangeTreeData.event;
++
++    private readonly cycleStatus: { [key: string]: string } = {};
++
++    refresh(): void {
++        this._onDidChangeTreeData.fire();
++    }
++
++    getTreeItem(element: ODAVLItem): vscode.TreeItem {
++        return element;
++    }
++
++    getChildren(element?: ODAVLItem): Thenable<ODAVLItem[]> {
++        if (!element) {
++            return Promise.resolve([
++                new ODAVLItem('Observe', vscode.TreeItemCollapsibleState.None, 'observe', this.cycleStatus['observe']),
++                new ODAVLItem('Decide', vscode.TreeItemCollapsibleState.None, 'decide', this.cycleStatus['decide']),
++                new ODAVLItem('Act', vscode.TreeItemCollapsibleState.None, 'act', this.cycleStatus['act']),
++                new ODAVLItem('Verify', vscode.TreeItemCollapsibleState.None, 'verify', this.cycleStatus['verify']),
++                new ODAVLItem('Learn', vscode.TreeItemCollapsibleState.None, 'learn', this.cycleStatus['learn'])
++            ]);
++        }
++        return Promise.resolve([]);
+     }
+-    return Promise.resolve([]);
+-  }
+ }
+ 
+-export function activate(context: vscode.ExtensionContext) {
+-  const activationStart = performance.now();
+-  
+-  // Initialize global logger
+-  const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+-  const logger = new Logger(workspaceRoot);
+-  
+-  logger.info('ODAVL VS Code extension activating...', 'Extension');
+-  
+-  // Initialize ODAVL data service
+-  const dataService = workspaceRoot ? new ODAVLDataService(workspaceRoot) : undefined;
+-  
+-  // Create enhanced status bar item
+-  const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+-  updateStatusBar(statusBarItem, 'active', dataService);
+-  context.subscriptions.push(statusBarItem);
+-  
+-  // Setup status bar updates when data changes
+-  if (dataService) {
+-    dataService.onMetricsChanged(() => {
+-      updateStatusBar(statusBarItem, 'updated', dataService);
+-    });
+-  }
+-  
+-  logger.success('ODAVL extension activated successfully!', 'Extension');
+-
+-  // Create all tree data providers with data service integration
+-  const controlProvider = new ODAVLTreeDataProvider();
+-  const dashboardProvider = new DashboardProvider(dataService);
+-  const recipesProvider = new RecipesProvider(dataService);
+-  const activityProvider = new ActivityProvider(dataService);
+-  const configProvider = new ConfigProvider(dataService);
+-  
+-  // Phase 3: Initialize intelligence features (only if dataService available)
+-  const intelligenceProvider = dataService ? new IntelligenceProvider(dataService) : undefined;
+-  
+-  // Phase 3: Performance monitoring
+-  const performanceMetrics = PerformanceMetrics;
+-  
+-  // Dispose services when extension is deactivated
+-  if (dataService) {
+-    context.subscriptions.push({ dispose: () => dataService.dispose() });
+-  }
+-  context.subscriptions.push({ dispose: () => logger.dispose() });
+-
+-  // Register tree view providers  
+-  vscode.window.registerTreeDataProvider('odavlControl', controlProvider);
+-  vscode.window.registerTreeDataProvider('odavlDashboard', dashboardProvider);
+-  vscode.window.registerTreeDataProvider('odavlRecipes', recipesProvider);
+-  vscode.window.registerTreeDataProvider('odavlActivity', activityProvider);
+-  vscode.window.registerTreeDataProvider('odavlConfig', configProvider);
+-  
+-  if (intelligenceProvider) {
+-    vscode.window.registerTreeDataProvider('odavlIntelligence', intelligenceProvider);
+-  }
+-
+-  // Phase 4: Initialize Control Dashboard (only if dataService available)
+-  const controlDashboard = dataService ? new ControlDashboard(context, dataService) : undefined;
+-
+-  // Register commands
+-  const controlCommand = vscode.commands.registerCommand('odavl.control', () => {
+-    if (controlDashboard) {
+-      controlDashboard.show();
+-    } else {
+-      vscode.window.showWarningMessage('ODAVL Control requires a workspace to be opened.');
++// Lazy initialization state
++let isFullyActivated = false;
++let lazyServices: {
++    dataService?: ODAVLDataService;
++    controlDashboard?: ControlDashboard;
++    providers?: {
++        dashboard: DashboardProvider;
++        recipes: RecipesProvider;
++        activity: ActivityProvider;
++        config: ConfigProvider;
++        intelligence?: IntelligenceProvider;
++    };
++} = {};
++
++async function activateOnDemand(context: vscode.ExtensionContext): Promise<void> {
++    if (isFullyActivated) return;
++
++    const lazyStart = PerformanceMetrics.start('lazy-activation');
++    const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
++
++    if (workspaceRoot && !lazyServices.dataService) {
++        lazyServices.dataService = new ODAVLDataService(workspaceRoot);
++        context.subscriptions.push({ dispose: () => lazyServices.dataService?.dispose() });
+     }
+-  });
+-
+-  const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', async () => {
+-    await runCLICommand('run', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  const refreshCommand = vscode.commands.registerCommand('odavl.refresh', () => {
+-    controlProvider.refresh();
+-    dashboardProvider.refresh();
+-    recipesProvider.refresh();
+-    activityProvider.refresh();
+-    configProvider.refresh();
+-  });
+-
+-  // Add individual refresh commands for each view
+-  const refreshDashboardCommand = vscode.commands.registerCommand('odavl.refreshDashboard', () => {
+-    dashboardProvider.refresh();
+-  });
+-
+-  const refreshRecipesCommand = vscode.commands.registerCommand('odavl.refreshRecipes', () => {
+-    recipesProvider.refresh();
+-  });
+-
+-  const refreshActivityCommand = vscode.commands.registerCommand('odavl.refreshActivity', () => {
+-    activityProvider.refresh();
+-  });
+-
+-  const refreshConfigCommand = vscode.commands.registerCommand('odavl.refreshConfig', () => {
+-    configProvider.refresh();
+-  });
+-
+-  const refreshIntelligenceCommand = vscode.commands.registerCommand('odavl.refreshIntelligence', () => {
+-    if (intelligenceProvider) {
+-      intelligenceProvider.refresh();
++
++    if (!lazyServices.providers) {
++        lazyServices.providers = {
++            dashboard: new DashboardProvider(lazyServices.dataService),
++            recipes: new RecipesProvider(lazyServices.dataService),
++            activity: new ActivityProvider(lazyServices.dataService),
++            config: new ConfigProvider(lazyServices.dataService),
++            intelligence: lazyServices.dataService ? new IntelligenceProvider(lazyServices.dataService) : undefined
++        };
++
++        // Register tree view providers
++        vscode.window.registerTreeDataProvider('odavl.dashboard', lazyServices.providers.dashboard);
++        vscode.window.registerTreeDataProvider('odavl.recipes', lazyServices.providers.recipes);
++        vscode.window.registerTreeDataProvider('odavl.activity', lazyServices.providers.activity);
++        vscode.window.registerTreeDataProvider('odavl.config', lazyServices.providers.config);
++        if (lazyServices.providers.intelligence) {
++            vscode.window.registerTreeDataProvider('odavl.intelligence', lazyServices.providers.intelligence);
++        }
+     }
+-  });
+ 
+-  // Phase 3: Analytics command
+-  const analyticsCommand = vscode.commands.registerCommand('odavl.analytics', () => {
+-    if (dataService) {
+-      const analyticsView = new AnalyticsView(context);
+-      analyticsView.show();
+-    } else {
+-      vscode.window.showWarningMessage('Analytics requires a workspace to be opened.');
++    if (lazyServices.dataService && !lazyServices.controlDashboard) {
++        lazyServices.controlDashboard = new ControlDashboard(context, lazyServices.dataService);
+     }
+-  });
+-
+-  // Individual ODAVL phase commands for tree item interaction
+-  const observeCommand = vscode.commands.registerCommand('odavl.observe', async () => {
+-    await runCLICommand('observe', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  const decideCommand = vscode.commands.registerCommand('odavl.decide', async () => {
+-    await runCLICommand('decide', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  const actCommand = vscode.commands.registerCommand('odavl.act', async () => {
+-    await runCLICommand('act', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  const verifyCommand = vscode.commands.registerCommand('odavl.verify', async () => {
+-    await runCLICommand('verify', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  const learnCommand = vscode.commands.registerCommand('odavl.learn', async () => {
+-    await runCLICommand('learn', workspaceRoot, statusBarItem, dataService);
+-  });
+-
+-  // Performance tracking
+-  const activationEnd = performance.now();
+-  const activationTime = activationEnd - activationStart;
+-  performanceMetrics.recordActivation(activationTime);
+-
+-  // Register all commands for disposal
+-  context.subscriptions.push(
+-    controlCommand, 
+-    runCycleCommand, 
+-    refreshCommand,
+-    refreshDashboardCommand,
+-    refreshRecipesCommand,
+-    refreshActivityCommand,
+-    refreshConfigCommand,
+-    analyticsCommand,
+-    refreshIntelligenceCommand,
+-    observeCommand,
+-    decideCommand,
+-    actCommand,
+-    verifyCommand,
+-    learnCommand
+-  );
++
++    isFullyActivated = true;
++    PerformanceMetrics.end(lazyStart, { workspaceRoot: !!workspaceRoot });
++}
++
++export function activate(context: vscode.ExtensionContext) {
++    const activationStart = performance.now();
++
++    // Minimal startup - only essential services
++    const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
++    const logger = new Logger(workspaceRoot);
++
++    // Create ODAVL output channel
++    const outputChannel = vscode.window.createOutputChannel('ODAVL');
++    context.subscriptions.push(outputChannel);
++
++    outputChannel.appendLine('ODAVL VS Code extension starting...');
++    logger.info('ODAVL VS Code extension activating...', 'Extension');
++
++    // Create lightweight status bar (no data service dependency)
++    const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
++    statusBarItem.text = '$(pulse) ODAVL Control';
++    statusBarItem.tooltip = 'ODAVL Control - Click to open dashboard';
++    statusBarItem.command = 'odavl.control';
++    statusBarItem.show();
++    context.subscriptions.push(statusBarItem);
++
++    logger.success('ODAVL extension activated successfully!', 'Extension');
++    context.subscriptions.push({ dispose: () => logger.dispose() });
++
++    // Create minimal control provider for immediate tree view
++    const controlProvider = new ODAVLTreeDataProvider();
++    vscode.window.registerTreeDataProvider('odavl.controlPanel', controlProvider);
++    outputChannel.appendLine('✓ Registered Control Panel provider');
++
++    // Register commands with lazy activation
++    outputChannel.appendLine('Registering commands...');
++    const controlCommand = vscode.commands.registerCommand('odavl.control', async () => {
++        await activateOnDemand(context);
++        if (lazyServices.controlDashboard) {
++            lazyServices.controlDashboard.show();
++        } else {
++            vscode.window.showWarningMessage('ODAVL Control requires a workspace to be opened.');
++        }
++    });
++
++    const runCycleCommand = vscode.commands.registerCommand('odavl.runCycle', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('run', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    const refreshCommand = vscode.commands.registerCommand('odavl.refresh', async () => {
++        await activateOnDemand(context);
++        controlProvider.refresh();
++        lazyServices.providers?.dashboard.refresh();
++        lazyServices.providers?.recipes.refresh();
++        lazyServices.providers?.activity.refresh();
++        lazyServices.providers?.config.refresh();
++    });
++
++    const refreshDashboardCommand = vscode.commands.registerCommand('odavl.refreshDashboard', async () => {
++        await activateOnDemand(context);
++        lazyServices.providers?.dashboard.refresh();
++    });
++
++    const refreshRecipesCommand = vscode.commands.registerCommand('odavl.refreshRecipes', async () => {
++        await activateOnDemand(context);
++        lazyServices.providers?.recipes.refresh();
++    });
++
++    const refreshActivityCommand = vscode.commands.registerCommand('odavl.refreshActivity', async () => {
++        await activateOnDemand(context);
++        lazyServices.providers?.activity.refresh();
++    });
++
++    const refreshConfigCommand = vscode.commands.registerCommand('odavl.refreshConfig', async () => {
++        await activateOnDemand(context);
++        lazyServices.providers?.config.refresh();
++    });
++
++    const refreshIntelligenceCommand = vscode.commands.registerCommand('odavl.refreshIntelligence', async () => {
++        await activateOnDemand(context);
++        lazyServices.providers?.intelligence?.refresh();
++    });
++
++    const analyticsCommand = vscode.commands.registerCommand('odavl.analytics', async () => {
++        await activateOnDemand(context);
++        if (lazyServices.dataService) {
++            const analyticsView = new AnalyticsView(context);
++            analyticsView.show();
++        } else {
++            vscode.window.showWarningMessage('Analytics requires a workspace to be opened.');
++        }
++    });
++
++    // Individual ODAVL phase commands
++    const observeCommand = vscode.commands.registerCommand('odavl.observe', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('observe', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    const decideCommand = vscode.commands.registerCommand('odavl.decide', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('decide', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    const actCommand = vscode.commands.registerCommand('odavl.act', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('act', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    const verifyCommand = vscode.commands.registerCommand('odavl.verify', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('verify', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    const learnCommand = vscode.commands.registerCommand('odavl.learn', async () => {
++        await activateOnDemand(context);
++        await runCLICommand('learn', workspaceRoot, statusBarItem, lazyServices.dataService);
++    });
++
++    // Performance tracking
++    const activationEnd = performance.now();
++    const activationTime = activationEnd - activationStart;
++    PerformanceMetrics.recordActivation(activationTime);
++
++    // Set activation context
++    vscode.commands.executeCommand('setContext', 'odavl.activated', true);
++    outputChannel.appendLine(`✅ ODAVL extension fully activated in ${activationTime.toFixed(2)}ms`);
++
++    // Register all commands for disposal
++    context.subscriptions.push(
++        controlCommand,
++        runCycleCommand,
++        refreshCommand,
++        refreshDashboardCommand,
++        refreshRecipesCommand,
++        refreshActivityCommand,
++        refreshConfigCommand,
++        analyticsCommand,
++        refreshIntelligenceCommand,
++        observeCommand,
++        decideCommand,
++        actCommand,
++        verifyCommand,
++        learnCommand
++    );
+ }
+ 
+ export function deactivate() {
+-  // Extension cleanup logic would go here
+-}
+\ No newline at end of file
++    // Extension cleanup logic would go here
++}
+diff --git a/apps/vscode-ext/src/utils/PerformanceMetrics.ts b/apps/vscode-ext/src/utils/PerformanceMetrics.ts
+index 98a0fa9..5d5cb8e 100644
+--- a/apps/vscode-ext/src/utils/PerformanceMetrics.ts
++++ b/apps/vscode-ext/src/utils/PerformanceMetrics.ts
+@@ -13,6 +13,25 @@ interface PerformanceRecord {
+ class PerformanceMetricsCollector {
+   private records: PerformanceRecord[] = [];
+   private readonly maxRecords = 100;
++  private readonly timers: Map<string, number> = new Map();
++
++  start(operation: string): string {
++    const id = `${operation}_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
++    this.timers.set(id, performance.now());
++    return id;
++  }
++
++  end(timerId: string, metadata?: Record<string, unknown>): number {
++    const startTime = this.timers.get(timerId);
++    if (!startTime) return 0;
++
++    const duration = performance.now() - startTime;
++    this.timers.delete(timerId);
++
++    const operation = timerId.split('_')[0];
++    this.addRecord(operation, duration, metadata);
++    return duration;
++  }
+ 
+   recordActivation(duration: number): void {
+     this.addRecord('activation', duration);
+@@ -43,8 +62,8 @@ class PerformanceMetricsCollector {
+   getMetrics(): { activation: number; avgRefresh: number; totalCalls: number } {
+     const activation = this.records.find(r => r.operation === 'activation')?.duration || 0;
+     const refreshRecords = this.records.filter(r => r.operation === 'refresh');
+-    const avgRefresh = refreshRecords.length > 0 
+-      ? refreshRecords.reduce((sum, r) => sum + r.duration, 0) / refreshRecords.length 
++    const avgRefresh = refreshRecords.length > 0
++      ? refreshRecords.reduce((sum, r) => sum + r.duration, 0) / refreshRecords.length
+       : 0;
+ 
+     return {
+@@ -55,4 +74,4 @@ class PerformanceMetricsCollector {
+   }
+ }
+ 
+-export const PerformanceMetrics = new PerformanceMetricsCollector();
+\ No newline at end of file
++export const PerformanceMetrics = new PerformanceMetricsCollector();

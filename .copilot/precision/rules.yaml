@@ -1,0 +1,17 @@
+# Precision Quality Rules
+rules:
+  - id: lint-clean
+    description: Ensure all files pass ESLint with zero warnings.
+    command: pnpm -r lint
+    severity: High
+    playbook: fix-lint
+  - id: bundle-size
+    description: Keep Next.js bundle size < 250KB per page.
+    command: (cd apps/web && pnpm analyze:bundle || true)
+    severity: Medium
+    playbook: optimize-performance
+  - id: view-icons
+    description: Ensure each ActivityBar view has unique ThemeIcon.
+    command: check-insights-icons
+    severity: Low
+    playbook: improve-consistency

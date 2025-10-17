@@ -1,0 +1,11 @@
+id: website-required-pages
+area: website
+priority: High
+paths_required:
+  - apps/web/src/app/signup/page.tsx
+  - apps/web/src/app/privacy-policy/page.tsx
+  - apps/web/src/app/terms/page.tsx
+  - apps/web/src/app/docs/page.tsx
+propose:
+  playbook: add-missing-pages
+  rationale: "Ensure legal readiness; prevent 404s; maintain privacy compliance."

@@ -1,0 +1,29 @@
+
+> odavl@1.0.0 odavl:run C:\Users\sabou\dev\odavl
+> tsx apps/cli/src/index.ts run "verify"
+
+[ODAVL] Observe ÔåÆ Decide ÔåÆ Act ÔåÆ Verify ÔåÆ Learn
+[OBSERVE] ESLint warnings: 0, Type errors: 0 (11804.3ms)
+[DECIDE] Selected recipe: esm-hygiene (trust 0.8)
+[DECIDE] ÔØî Auto-approval: DENIED - Unknown commands require manual review (safetyReason: unknown)
+[DECIDE] esm-hygiene (9.0ms)
+[UNDO] Snapshot saved: C:\Users\sabou\dev\odavl\.odavl\undo\undo-1760375959378.json
+[ACT] Running eslint --fix ÔÇª
+[ACT] Completed (8601.0ms)
+[SHADOW] Verifying in isolated environment...
+[SHADOW] pnpm run lint
+
+> odavl@1.0.0 lint C:\Users\sabou\dev\odavl
+> eslint .
+
+[SHADOW] pnpm run typecheck
+
+> odavl@1.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc -p tsconfig.json --noEmit
+
+[SHADOW] Ô£à All checks passed
+[VERIFY] Gates check: PASS Ô£à
+[VERIFY] Gates PASSED (23706.2ms)
+[LEARN] Attestation saved ÔåÆ C:\Users\sabou\dev\odavl\.odavl\attestation\attestation-2025-10-13T172003579Z.json
+[LEARN] Trust scores updated (11895.2ms)
+[DONE] ESLint warnings: 0 ÔåÆ 0 (╬ö 0) | Type errors: 0 ÔåÆ 0 (╬ö 0) | Total: 56016.7ms

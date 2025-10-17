@@ -1,8 +1,31 @@
+{
+  "remove-unused": {
+    "success": 2,
+    "fail": 0,
+    "lastSuccess": "2025-10-05T15:41:58.670Z"
+  },
+  "esm-hygiene": {
+    "success": 6,
+    "fail": 0,
+    "lastSuccess": "2025-10-05T16:33:24.196Z"
+  }
+}
 [
   {
     "id": "esm-hygiene",
+<<<<<<< Updated upstream
     "runs": 9,
     "success": 9,
+=======
+    "runs": 51,
+    "success": 51,
+    "trust": 1
+  },
+  {
+    "id": "noop",
+    "runs": 13,
+    "success": 13,
+>>>>>>> Stashed changes
     "trust": 1
   }
 ]

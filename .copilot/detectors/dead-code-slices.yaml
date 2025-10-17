@@ -1,0 +1,14 @@
+id: dead-code-slices
+area: all
+priority: Medium
+match:
+  files: ["**/*.{ts,tsx,js}"]
+check:
+  rules:
+    - name: unused-function
+      fail_if_regex: "function\s+[_a-zA-Z0-9]+\s*\([^)]*\)\s*\{[^}]*\}"
+    - name: unreachable-code
+      fail_if_regex: "return;[\s\S]*[a-zA-Z0-9]"
+propose:
+  playbook: prune-dead-code
+  rationale: "Remove unused and unreachable code."

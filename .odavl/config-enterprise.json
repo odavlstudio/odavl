@@ -1,0 +1,6 @@
+{
+  "enableSecurityScan": true,
+  "blockOnCritical": false,
+  "includeGatesInReports": true,
+  "riskBudget": 75
+}

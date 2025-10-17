@@ -1,0 +1,4 @@
+# ODAVL Terminal Session Policy
+maxRetainedSessions: 3
+idleAutoCloseMinutes: 30
+# Notes: Enforced by ODAVL automation; unknown consumers must honor manually.

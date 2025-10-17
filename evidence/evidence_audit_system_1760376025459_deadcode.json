@@ -1,0 +1,9 @@
+{
+  "audit": "deadcode-removal",
+  "timestamp": "2025-10-13T17:21:25Z",
+  "branch": "odavl/microfix-deadcode-20251013",
+  "patch": "patch.diff",
+  "verifyLog": "verify.log",
+  "attestation": "attestation-deadcode.json",
+  "result": "pass"
+}

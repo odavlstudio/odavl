@@ -1,0 +1,36 @@
+
+> odavl@1.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc -p tsconfig.json --noEmit
+
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(44,28): error TS1005: '>' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(44,33): error TS1005: ')' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(44,36): error TS1136: Property assignment expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(44,56): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(44,57): error TS1109: Expression expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(46,15): error TS1005: ';' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(48,19): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(59,15): error TS1005: '>' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(59,18): error TS1005: ')' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(59,27): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(60,30): error TS1136: Property assignment expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(62,15): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(62,24): error TS1136: Property assignment expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(62,41): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(64,18): error TS1005: '>' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(64,27): error TS1005: ';' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(64,53): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(64,63): error TS1161: Unterminated regular expression literal.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(65,29): error TS1005: '>' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(65,38): error TS1005: ';' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(65,69): error TS1005: ',' expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(65,85): error TS1161: Unterminated regular expression literal.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(66,2): error TS1110: Type expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(67,11): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(68,9): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(68,10): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(68,11): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(69,2): error TS1110: Type expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(70,6): error TS1161: Unterminated regular expression literal.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(71,3): error TS1128: Declaration or statement expected.
+apps/vscode-ext/src.backup/components/ui/use-toast.ts(72,1): error TS1128: Declaration or statement expected.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 2.

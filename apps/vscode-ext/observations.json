@@ -1,0 +1,140 @@
+{
+  "generatedAt": "2025-10-13T00:00:00.000Z",
+  "scope": "apps/vscode-ext",
+  "summary": {
+    "critical": 0,
+    "high": 3,
+    "medium": 6,
+    "low": 5
+  },
+  "observations": [
+    {
+      "id": "ACT-001",
+      "severity": "High",
+      "title": "Activation on onStartupFinished may delay load and violates on-demand principle",
+      "details": "package.json uses activationEvents [onStartupFinished]; consider view/context/command-based activation to reduce startup cost.",
+      "files": [
+        "apps/vscode-ext/package.json:15-23"
+      ],
+      "evidence": "activationEvents = ['onStartupFinished']",
+      "recommendation": "Switch to onView:odavl.* and onCommand:odavl.* events; add when-clause context guards.",
+      "category": "performance"
+    },
+    {
+      "id": "SEC-004",
+      "severity": "High",
+      "title": "Webview loads external CDN (Chart.js) without CSP",
+      "details": "AnalyticsView injects external script src which violates Marketplace guidelines and can break offline.",
+      "files": [
+        "apps/vscode-ext/src/views/AnalyticsView.ts:76"
+      ],
+      "evidence": "<script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>",
+      "recommendation": "Bundle locally and reference via webview.asWebviewUri; add CSP meta and no-inline-scripts policy.",
+      "category": "security"
+    },
+    {
+      "id": "FS-005",
+      "severity": "Medium",
+      "title": "Reports fs.watch lacked disposal and trust guard",
+      "details": "Original implementation did not retain FSWatcher; patch adds handle and close() with trust check.",
+      "files": [
+        "apps/vscode-ext/src/services/ODAVLDataService.ts:48-88,196-204"
+      ],
+      "evidence": "fs.watch without reference; no dispose",
+      "recommendation": "Keep as patched; add try/catch logging and throttle updates.",
+      "category": "resource-management"
+    },
+    {
+      "id": "PERF-006",
+      "severity": "Medium",
+      "title": "performance.now() without import",
+      "details": "Node requires perf_hooks import; patched in extension.ts.",
+      "files": [
+        "apps/vscode-ext/src/extension.ts:1-20"
+      ],
+      "evidence": "Added import { performance } from 'perf_hooks'",
+      "recommendation": "No further action.",
+      "category": "performance"
+    },
+    {
+      "id": "PROC-007",
+      "severity": "Medium",
+      "title": "Child process command detection inconsistency",
+      "details": "ControlDashboard hardcoded pnpm spawn; patched to honor node CLI fallback and Windows pnpm.cmd.",
+      "files": [
+        "apps/vscode-ext/src/views/ControlDashboard.ts:99-139"
+      ],
+      "evidence": "spawn(cliCommand, cliArgs)",
+      "recommendation": "Consider VS Code tasks for better UX.",
+      "category": "reliability"
+    },
+    {
+      "id": "PKG-008",
+      "severity": "Low",
+      "title": "@types/vscode misaligned with engines.vscode",
+      "details": "engines.vscode ^1.85.0 while @types/vscode ^1.74.0; can cause outdated typings.",
+      "files": [
+        "apps/vscode-ext/package.json:10,58"
+      ],
+      "evidence": "types=1.74 vs engine 1.85",
+      "recommendation": "Bump @types/vscode to ^1.85.x.",
+      "category": "types"
+    },
+    {
+      "id": "NLS-009",
+      "severity": "Low",
+      "title": "NLS keys without contributed commands",
+      "details": "package.nls.json contains command labels not present in contributes.commands.",
+      "files": [
+        "apps/vscode-ext/package.nls.json",
+        "apps/vscode-ext/package.json:40-53"
+      ],
+      "recommendation": "Add or remove to avoid confusion.",
+      "category": "packaging"
+    },
+    {
+      "id": "UX-010",
+      "severity": "Low",
+      "title": "Activity Bar icon and view icons reuse same PNG",
+      "details": "Single PNG used across all views; consider distinct glyphs for better scannability.",
+      "files": [
+        "apps/vscode-ext/package.json:24-39"
+      ],
+      "recommendation": "Use ThemeIcon per view or provide per-view media.",
+      "category": "branding"
+    },
+    {
+      "id": "CLEAN-011",
+      "severity": "Low",
+      "title": "Empty deactivate()",
+      "details": "Relying on subscriptions is fine; add comment or explicit cleanup for clarity.",
+      "files": [
+        "apps/vscode-ext/src/extension.ts:344-346"
+      ],
+      "recommendation": "Document cleanup strategy.",
+      "category": "maintainability"
+    },
+    {
+      "id": "DOC-012",
+      "severity": "Low",
+      "title": "README references screenshots not present",
+      "details": "images under screenshots/ are referenced but not included in repo.",
+      "files": [
+        "apps/vscode-ext/README.md"
+      ],
+      "recommendation": "Add assets or remove section until published.",
+      "category": "docs"
+    },
+    {
+      "id": "CSP-013",
+      "severity": "High",
+      "title": "Webview lacks CSP meta tag",
+      "details": "ControlDashboard HTML lacks Content-Security-Policy; inline scripts/styles permitted.",
+      "files": [
+        "apps/vscode-ext/src/views/ControlDashboard.ts:163-494"
+      ],
+      "recommendation": "Inject CSP and move scripts to file URIs; use nonce and webview.cspSource.",
+      "category": "security"
+    }
+  ]
+}

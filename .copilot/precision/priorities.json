@@ -1,0 +1,12 @@
+{
+  "maxFeatures": 0,
+  "maxFiles": 10,
+  "maxLines": 40,
+  "allowNewFeatures": false,
+  "focus": [
+    "quality",
+    "security",
+    "performance",
+    "consistency"
+  ]
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODAVL Webview</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root">
+        <div id="statusBar">Status: <span id="statusText">Idle</span></div>
+        <div style="margin:1rem 0;">
+            <button id="runCycleBtn">Run ODAVL Cycle</button>
+            <button id="verifyBtn">Verify</button>
+            <button id="analyzeBtn">Analyze</button>
+            <button id="learnBtn">Learn</button>
+            <button id="refreshIntelligenceBtn">Refresh Intelligence</button>
+        </div>
+        <div id="logs"
+            style="background:#fff;border:1px solid #eee;padding:1rem;min-height:100px;max-height:200px;overflow:auto;font-size:0.95rem;">
+            <b>Logs:</b>
+            <div id="logsContent"></div>
+        </div>
+        <div id="results" style="margin-top:1rem;"></div>
+        <div id="insightsReport"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>

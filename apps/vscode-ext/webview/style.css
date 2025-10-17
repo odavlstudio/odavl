@@ -1,0 +1,16 @@
+#odavlToast {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.2s;
+}
+
+body {
+    font-family: sans-serif;
+    background: #f6f8fa;
+    color: #222;
+    margin: 0;
+    padding: 2rem;
+}
+
+#root {
+    font-size: 1.2rem;
+}

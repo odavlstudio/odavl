@@ -1,0 +1,11 @@
+{
+  "microfix": "deadcode-removal",
+  "date": "2025-10-13",
+  "filesTouched": 3,
+  "linesRemoved": 60,
+  "testsPass": true,
+  "lintPass": true,
+  "typecheckPass": true,
+  "gatesPassed": true,
+  "attestation": "attestation-deadcode.json"
+}

@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "releaseDate": "2025-10-16",
+  "buildCommit": "18298fe53fb6f84e77f3540fd75bcb638def58a8",
+  "validated": true,
+  "certified": true,
+  "includes": [
+    "Security Scan Engine",
+    "Governance Gates",
+    "Attestation System",
+    "Insights Dashboard",
+    "Enterprise Config",
+    "Risk Budget Controls"
+  ],
+  "enterpriseLevel": "Full Compliance",
+  "securityScore": 100,
+  "performanceScore": 100
+}

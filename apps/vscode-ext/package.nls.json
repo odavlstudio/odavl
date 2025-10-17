@@ -1,0 +1,18 @@
+{
+  "displayName": "ODAVL Control",
+  "description": "Autonomous code quality with enterprise safety gates.",
+  "command.odavl.control": "ODAVL: Show Control Panel",
+  "command.odavl.runCycle": "ODAVL: Run Cycle",
+  "command.odavl.observe": "Run Observe Phase",
+  "command.odavl.decide": "Run Decide Phase",
+  "command.odavl.act": "Run Act Phase",
+  "command.odavl.verify": "Run Verify Phase",
+  "command.odavl.learn": "Run Learn Phase",
+  "viewContainer.odavl": "ODAVL Control",
+  "view.odavl.dashboard": "Dashboard",
+  "view.odavl.recipes": "Recipes",
+  "view.odavl.activity": "Activity",
+  "view.odavl.config": "Configuration",
+  "view.odavl.controlPanel": "Control",
+  "view.odavl.intelligence": "Intelligence"
+}

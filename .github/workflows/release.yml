@@ -13,8 +13,55 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        - name: Governance Gates Check
+          run: pwsh .odavl/policy-guard.ps1 --mode pre-check --gates .odavl/gates.yml
+
+        - name: Branch Naming Validation
+          run: pwsh .odavl/scripts/validate-branch.ps1
+
+        - name: LOC and File Limits Enforcement
+          run: pwsh .odavl/scripts/enforce-limits.ps1 --loc 40 --files 10
+
+        - name: Policy Guard (Post Build)
+          run: pwsh .odavl/policy-guard.ps1 --mode post-check --policy .odavl/.odavl.policy.yml
+
+        - name: Attestation Token Generation
+          run: pwsh .odavl/scripts/generate-attestation.ps1 --output evidence/attestation-$(date +%Y%m%d).json
+
+        - name: Undo Snapshot Creation
+          run: pwsh .odavl/scripts/create-undo.ps1 --output .odavl/undo/
+        - name: 🛡️ Governance Gates Check
+          run: |
+            echo "🔒 Checking ODAVL governance gates..."
+            if [ ! -f "../../.odavl/gates.yml" ]; then
+              echo "❌ gates.yml not found!"; exit 1;
+            fi
+            yq e '.' ../../.odavl/gates.yml > /dev/null || { echo "❌ gates.yml is invalid"; exit 1; }
+            echo "✅ gates.yml validated."
+        - name: 🏷️ Branch Naming Validation
+          run: |
+            echo "🔎 Validating branch naming pattern..."
+            if [[ "${{ github.ref_name }}" =~ ^odavl\/.*-[0-9]{8}$ ]]; then
+              echo "✅ Branch name matches governance pattern."
+            else
+              echo "❌ Branch name '${{ github.ref_name }}' does not match 'odavl/<task>-<date>'!"; exit 1;
+            fi
+        - name: 📏 LOC/File Limit Enforcement
+          if: github.event_name == 'pull_request'
+          run: |
+            echo "📏 Checking lines of code and files changed..."
+            gh pr view ${{ github.event.pull_request.number }} --json files,additions,deletions > pr.json
+            FILES=$(jq '.files | length' pr.json)
+            ADD=$(jq '.additions' pr.json)
+            DEL=$(jq '.deletions' pr.json)
+            LOC=$((ADD + DEL))
+            if [ "$FILES" -gt 10 ]; then echo "❌ More than 10 files changed!"; exit 1; fi
+            if [ "$LOC" -gt 40 ]; then echo "❌ More than 40 lines changed!"; exit 1; fi
+            echo "✅ LOC and file limits passed."
       - uses: pnpm/action-setup@v2
         with: { version: 8 }
       - uses: actions/setup-node@v4
@@ -23,7 +70,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm lint
+        - name: 🛡️ Policy Guard Pre-Build
+          run: pwsh ./tools/policy-guard.ps1 -Phase pre-build
       - run: pwsh ./tools/release.ps1 -Version ${{ github.event.inputs.version || '0.1.0' }}
+        - name: 🛡️ Policy Guard Post-Build
+          run: pwsh ./tools/policy-guard.ps1 -Phase post-build
       
       - name: Upload Release Artifacts
         uses: actions/upload-artifact@v4
@@ -31,3 +82,16 @@ jobs:
           name: odavl-release
           path: dist/
           retention-days: 90
+        - name: 🛡️ Attestation Token Generation
+          run: |
+            echo "🔏 Generating attestation token..."
+            mkdir -p ./evidence/
+            echo "{ \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)\", \"branch\": \"${{ github.ref_name }}\", \"commit\": \"${{ github.sha }}\", \"workflow\": \"${{ github.workflow }}\", \"status\": \"passed\" }" > ./evidence/attestation-${{ github.run_id }}.json
+            echo "✅ Attestation token stored in evidence/"
+        - name: 🛡️ Undo Snapshot Generation
+          if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+          run: |
+            echo "🛡️ Generating undo snapshot..."
+            mkdir -p ./.odavl/undo/
+            echo "{ \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)\", \"branch\": \"${{ github.ref_name }}\", \"commit\": \"${{ github.sha }}\", \"workflow\": \"${{ github.workflow }}\", \"status\": \"merged\" }" > ./.odavl/undo/undo-${{ github.run_id }}.json
+            echo "✅ Undo snapshot stored in .odavl/undo/"

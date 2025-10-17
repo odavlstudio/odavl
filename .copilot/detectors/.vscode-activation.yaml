@@ -1,0 +1,9 @@
+id: vscode-activation
+area: vscode
+priority: Medium
+match:
+  files: [ "apps/vscode-ext/package.json" ]
+  contains_any: [ "onStartupFinished" ]
+propose:
+  playbook: lazy-activation
+  rationale: "Improve startup performance; activate only when needed."
