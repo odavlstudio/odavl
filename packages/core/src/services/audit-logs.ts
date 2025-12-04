@@ -627,12 +627,12 @@ export class AuditLogsService {
     const criticalEvents = logs.filter(log => log.severity === AuditSeverity.CRITICAL);
     
     // User activity
-    const userActivity = new Map<string, { userId: string; userEmail: string; count: number; lastActivity: Date }>();
+    const userActivity = new Map<string, { userId: string; userEmail: string; actionCount: number; lastActivity: Date }>();
     logs.forEach(log => {
       if (log.userId && log.userEmail) {
         const existing = userActivity.get(log.userId);
         if (existing) {
-          existing.count++;
+          existing.actionCount++;
           if (log.timestamp > existing.lastActivity) {
             existing.lastActivity = log.timestamp;
           }
@@ -640,7 +640,7 @@ export class AuditLogsService {
           userActivity.set(log.userId, {
             userId: log.userId,
             userEmail: log.userEmail,
-            count: 1,
+            actionCount: 1,
             lastActivity: log.timestamp,
           });
         }
@@ -674,7 +674,7 @@ export class AuditLogsService {
         dataModifications: logs.filter(log => log.category === AuditCategory.DATA_MODIFICATION).length,
         failedActions: logs.filter(log => !log.success).length,
       },
-      userActivity: Array.from(userActivity.values()).sort((a, b) => b.count - a.count),
+      userActivity: Array.from(userActivity.values()).sort((a, b) => b.actionCount - a.actionCount),
       securityEvents,
       criticalEvents,
       complianceMetrics,
