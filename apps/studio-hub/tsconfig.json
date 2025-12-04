@@ -22,10 +22,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@/packages/*": ["../../packages/*"],
+      "@odavl/*": ["../../packages/*"]
     }
   },
   "include": [

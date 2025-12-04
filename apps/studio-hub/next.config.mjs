@@ -1,5 +1,10 @@
 // @ts-check
 import createNextIntlPlugin from 'next-intl/plugin';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
@@ -91,6 +96,14 @@ const nextConfig = {
   // Package optimizations
   experimental: {
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],
+  },
+
+  // Webpack configuration for monorepo path resolution
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname);
+    config.resolve.alias['@/packages'] = path.resolve(__dirname, '../../packages');
+    config.resolve.alias['@odavl'] = path.resolve(__dirname, '../../packages');
+    return config;
   },
 
   // TypeScript configuration
