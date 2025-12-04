@@ -47,7 +47,7 @@ apps/insight-cloud/.next/
 apps/vscode-ext/dist/
 apps/vscode-ext/out/
 apps/cli/dist/
-packages/*/dist/
+# packages/*/dist/  # ← Commented: dist/ needed for Vercel production builds
 packages/*/build/
 
 # Tool caches (safe to regenerate)
