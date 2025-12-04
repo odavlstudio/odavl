@@ -1,0 +1,15 @@
+id: vscode-webview-csp
+area: vscode
+priority: High
+match:
+  files: [ "apps/vscode-ext/src/**/*.ts" ]
+  contains_any: [ "createWebviewPanel(" ]
+check:
+  rules:
+    - name: no_external_cdn
+      fail_if_regex: "https?://(cdn|unpkg|jsdelivr|cdnjs)\\."
+    - name: has_csp_meta
+      pass_if_regex: "Content-Security-Policy"
+propose:
+  playbook: fix-webview-csp
+  rationale: "Secure webviews; bundle assets locally; forbid external scripts."

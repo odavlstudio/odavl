@@ -1,0 +1,15 @@
+{
+  "url": "http://localhost:3000/",
+  "timestamp": "2025-11-25T16:20:03.575Z",
+  "duration": 9612,
+  "browserType": "chromium",
+  "status": "passed",
+  "issues": [],
+  "metrics": {
+    "totalIssues": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  }
+}

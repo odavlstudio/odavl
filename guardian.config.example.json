@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "products": {
+    "criticalityScores": {
+      "insight-core": 95,
+      "autopilot-engine": 90,
+      "guardian-cli": 80,
+      "studio-cli": 75
+    },
+    "custom": [
+      {
+        "id": "my-custom-product",
+        "name": "My Custom Product",
+        "directory": "custom/my-product",
+        "dependencies": ["insight-core"],
+        "criticalityScore": 70,
+        "description": "Example custom product for extending Guardian"
+      }
+    ],
+    "autoDiscover": {
+      "enabled": true,
+      "workspaceFile": "pnpm-workspace.yaml",
+      "defaultCriticality": 50
+    }
+  },
+  "performance": {
+    "impactCache": {
+      "maxSize": 100,
+      "ttlMinutes": 15
+    },
+    "similarityCache": {
+      "maxSize": 1000
+    },
+    "correlation": {
+      "timeout": 30000,
+      "maxErrors": 1000
+    }
+  },
+  "thresholds": {
+    "severity": {
+      "low": 25,
+      "medium": 50,
+      "high": 75,
+      "critical": 90
+    },
+    "confidence": {
+      "minimum": 30,
+      "warning": 50
+    }
+  },
+  "plugins": {
+    "detectors": [],
+    "analyzers": [],
+    "hooks": {}
+  },
+  "dashboard": {
+    "port": 3333,
+    "autoOpen": true,
+    "theme": "auto"
+  }
+}

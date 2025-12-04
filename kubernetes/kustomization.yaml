@@ -1,0 +1,65 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: production
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - guardian-deployment.yaml
+  - insight-cloud-deployment.yaml
+  - cli-cronjob.yaml
+  - ingress.yaml
+
+commonLabels:
+  project: odavl
+  managed-by: kustomize
+
+images:
+  - name: ghcr.io/odavl/odavl-guardian
+    newTag: latest
+  - name: ghcr.io/odavl/odavl-insight-cloud
+    newTag: latest
+  - name: ghcr.io/odavl/odavl-cli
+    newTag: latest
+
+configMapGenerator:
+  - name: odavl-version
+    literals:
+      - version=1.4.1
+      - build-date=2025-11-15
+
+secretGenerator:
+  - name: odavl-secrets
+    envs:
+      - secrets.env
+    options:
+      disableNameSuffixHash: true
+
+replicas:
+  - name: odavl-guardian
+    count: 3
+  - name: odavl-insight-cloud
+    count: 2
+
+patches:
+  - target:
+      kind: Deployment
+      name: odavl-guardian
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "3000"
+          prometheus.io/path: "/api/metrics"
+  - target:
+      kind: Deployment
+      name: odavl-insight-cloud
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "3000"
+          prometheus.io/path: "/api/metrics"

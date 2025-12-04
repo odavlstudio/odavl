@@ -1,0 +1,62 @@
+name: Publish ODAVL Studio to Open VSX
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_target:
+        description: "Publish to (openvsx, marketplace, or both)"
+        required: true
+        default: "openvsx"
+        type: choice
+        options:
+          - openvsx
+          - marketplace
+          - both
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Governance Gates Check
+        run: pwsh .odavl/policy-guard.ps1 --mode pre-check --gates .odavl/gates.yml
+      - name: Branch Naming Validation
+        run: pwsh .odavl/scripts/validate-branch.ps1
+      - name: LOC and File Limits Enforcement
+        run: pwsh .odavl/scripts/enforce-limits.ps1 --loc 40 --files 10
+      - name: Policy Guard (Post Build)
+        run: pwsh .odavl/policy-guard.ps1 --mode post-check --policy .odavl/policy.yml
+      - name: Attestation Token Generation
+        run: pwsh .odavl/scripts/generate-attestation.ps1 --output .odavl/attestation/attestation-$(date +%Y%m%d).json
+      - name: Undo Snapshot Creation
+        run: pwsh .odavl/scripts/create-undo.ps1 --output .odavl/undo/undo-$(date +%Y%m%d).json
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - name: Build extension
+        working-directory: apps/vscode-ext
+        run: pnpm run build
+
+      - name: Publish to Open VSX
+        if: inputs.publish_target == 'openvsx' || inputs.publish_target == 'both'
+        working-directory: apps/vscode-ext
+        run: npx ovsx publish -p $OPEN_VSX_TOKEN
+        env:
+          OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+
+      - name: Publish to Marketplace
+        if: inputs.publish_target == 'marketplace' || inputs.publish_target == 'both'
+        working-directory: apps/vscode-ext
+        run: npx vsce publish -p $VSCE_TOKEN
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}

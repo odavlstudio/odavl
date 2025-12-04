@@ -1,0 +1,44 @@
+{
+  "url": "http://localhost:3000/auth/signin",
+  "timestamp": "2025-11-25T15:51:03.034Z",
+  "duration": 5248,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_CSP",
+      "severity": "high",
+      "message": "🔒 Missing Content Security Policy",
+      "fix": [
+        "Add Content-Security-Policy header",
+        "Start with restrictive policy",
+        "Use nonce or hash for inline scripts",
+        "Avoid 'unsafe-inline' and 'unsafe-eval'",
+        "Test with report-only mode first"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 1 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 1
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 2,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 0
+  }
+}

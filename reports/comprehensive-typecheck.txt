@@ -1,0 +1,4 @@
+
+> odavl@2.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc --noEmit
+

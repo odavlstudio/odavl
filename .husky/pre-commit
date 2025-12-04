@@ -1,0 +1,70 @@
+# ODAVL Pre-Commit Hook - Run linting, typecheck, and governance validation
+
+echo "🔍 Running pre-commit checks..."
+
+# Package versions check
+echo "📦 Validating package versions..."
+tsx scripts/check-package-versions.ts
+
+if [ $? -ne 0 ]; then
+  echo "❌ Package version validation failed"
+  exit 1
+fi
+
+# Security audit
+echo "🔒 Running security audit..."
+pnpm audit --audit-level=critical --json > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "⚠️  Critical security vulnerabilities detected (run: pnpm audit)"
+  # Don't exit, just warn (high-level vulnerabilities in dependencies are not blocking)
+fi
+
+# Verify lockfile
+if [ ! -f "pnpm-lock.yaml" ]; then
+  echo "❌ Missing pnpm-lock.yaml"
+  exit 1
+fi
+
+# Standard linting and typecheck
+echo "🎨 Running lint and typecheck..."
+pnpm lint && pnpm typecheck
+
+if [ $? -ne 0 ]; then
+  echo "❌ Lint or typecheck failed"
+  exit 1
+fi
+
+# ODAVL Governance Validation
+echo "📋 Validating .odavl configuration files..."
+pnpm tsx tools/validate-odavl-schemas.ts
+
+if [ $? -ne 0 ]; then
+  echo "❌ Schema validation failed"
+  exit 1
+fi
+
+# Check metrics directory size
+echo "📊 Checking metrics directory..."
+METRICS_COUNT=$(find .odavl/metrics -name "*.json" 2>/dev/null | wc -l || echo "0")
+
+if [ "$METRICS_COUNT" -gt 500 ]; then
+  echo "⚠️  Warning: $METRICS_COUNT metrics files (threshold: 500)"
+  echo "💡 Consider: pnpm tsx scripts/archive-old-metrics.ts"
+fi
+
+if [ "$METRICS_COUNT" -gt 1000 ]; then
+  echo "❌ Critical: $METRICS_COUNT metrics files (max: 1000)"
+  exit 1
+fi
+
+# Check undo snapshots
+echo "⏪ Checking undo snapshots..."
+UNDO_COUNT=$(find .odavl/undo -name "*.json" ! -name "latest.json" 2>/dev/null | wc -l || echo "0")
+
+if [ "$UNDO_COUNT" -gt 200 ]; then
+  echo "❌ Critical: $UNDO_COUNT undo snapshots (max: 200)"
+  exit 1
+fi
+
+echo "✅ All pre-commit checks passed"
+exit 0

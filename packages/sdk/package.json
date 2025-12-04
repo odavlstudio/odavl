@@ -1,0 +1,84 @@
+{
+  "name": "@odavl-studio/sdk",
+  "version": "0.1.0",
+  "description": "Official SDK for ODAVL Studio - Integrate Insight, Autopilot, and Guardian into your applications",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./insight": {
+      "types": "./dist/insight.d.ts",
+      "import": "./dist/insight.js",
+      "require": "./dist/insight.cjs"
+    },
+    "./autopilot": {
+      "types": "./dist/autopilot.d.ts",
+      "import": "./dist/autopilot.js",
+      "require": "./dist/autopilot.cjs"
+    },
+    "./guardian": {
+      "types": "./dist/guardian.d.ts",
+      "import": "./dist/guardian.js",
+      "require": "./dist/guardian.cjs"
+    },
+    "./plugin": {
+      "types": "./dist/plugin-sdk.d.ts",
+      "import": "./dist/plugin-sdk.js",
+      "require": "./dist/plugin-sdk.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts --format esm,cjs --dts --watch",
+    "test": "vitest",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "odavl",
+    "sdk",
+    "code-quality",
+    "error-detection",
+    "self-healing",
+    "deployment-protection",
+    "typescript",
+    "automation"
+  ],
+  "author": "ODAVL Studio Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Monawlo812/odavl.git",
+    "directory": "packages/sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Monawlo812/odavl/issues"
+  },
+  "homepage": "https://github.com/Monawlo812/odavl#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873"
+  },
+  "dependencies": {
+    "@odavl-studio/insight-core": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}

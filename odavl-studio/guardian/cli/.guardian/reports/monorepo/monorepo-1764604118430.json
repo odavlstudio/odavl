@@ -1,0 +1,109 @@
+{
+  "path": "C:\\Users\\sabou\\AppData\\Local\\Temp\\guardian-phase3-test\\monorepo-pnpm",
+  "timestamp": "2025-12-01T15:48:38.427Z",
+  "overallScore": 53,
+  "status": "fail",
+  "productionReady": false,
+  "info": {
+    "type": "pnpm-workspace",
+    "root": "C:\\Users\\sabou\\AppData\\Local\\Temp\\guardian-phase3-test\\monorepo-pnpm",
+    "totalProducts": 1,
+    "totalPackages": 0,
+    "languages": [],
+    "frameworks": []
+  },
+  "products": {
+    "score": 0,
+    "products": [],
+    "summary": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "warnings": 0
+    },
+    "issues": []
+  },
+  "dependencies": {
+    "score": 90,
+    "graph": [],
+    "circular": [],
+    "impact": {
+      "mostCritical": [],
+      "mostUsed": [],
+      "isolated": []
+    },
+    "issues": []
+  },
+  "health": {
+    "score": 74,
+    "metrics": {
+      "codeQuality": 75,
+      "testCoverage": 60,
+      "documentation": 70,
+      "security": 80,
+      "performance": 85
+    },
+    "trends": {
+      "improving": [],
+      "declining": [],
+      "stable": []
+    },
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "Health",
+        "message": "Low test coverage",
+        "recommendation": "Increase test coverage to 70%+"
+      }
+    ]
+  },
+  "integration": {
+    "score": 40,
+    "tested": false,
+    "crossProductTests": 0,
+    "passed": 0,
+    "failed": 0,
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "Integration",
+        "message": "No integration tests found",
+        "recommendation": "Add integration tests for cross-product features"
+      }
+    ]
+  },
+  "build": {
+    "score": 60,
+    "buildOrder": [],
+    "parallel": [
+      [],
+      []
+    ],
+    "totalTime": 0,
+    "optimized": true,
+    "issues": []
+  },
+  "versions": {
+    "score": 100,
+    "consistent": true,
+    "strategy": "independent",
+    "conflicts": [],
+    "issues": []
+  },
+  "publishing": {
+    "score": 100,
+    "strategy": "manual",
+    "ready": true,
+    "order": [],
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "Publishing",
+        "message": "No automated publishing strategy",
+        "recommendation": "Use changesets or lerna for publishing"
+      }
+    ]
+  },
+  "recommendations": [],
+  "reportPath": ""
+}

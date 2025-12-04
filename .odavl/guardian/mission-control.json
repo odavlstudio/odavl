@@ -1,0 +1,63 @@
+{
+  "context": {
+    "name": "odavl",
+    "type": "single",
+    "primaryLanguage": "typescript",
+    "languageBreakdown": [
+      {
+        "language": "typescript",
+        "percentage": 100
+      },
+      {
+        "language": "javascript",
+        "percentage": 85
+      },
+      {
+        "language": "python",
+        "percentage": 21
+      }
+    ],
+    "lastScanTime": "2025-12-01T13:35:10.936Z",
+    "healthScore": 85,
+    "totalIssues": 5
+  },
+  "history": [
+    {
+      "type": "AI Full Scan",
+      "timestamp": "2025-12-01T13:35:10.936Z",
+      "duration": 60,
+      "healthScore": 85,
+      "issuesFound": 5,
+      "status": "passed",
+      "id": "1764596110936"
+    },
+    {
+      "type": "AI Full Scan",
+      "timestamp": "2025-12-01T13:29:09.735Z",
+      "duration": 60,
+      "healthScore": 85,
+      "issuesFound": 5,
+      "status": "passed",
+      "id": "1764595749736"
+    },
+    {
+      "type": "AI Full Scan",
+      "timestamp": "2025-12-01T12:43:04.947Z",
+      "duration": 60,
+      "healthScore": 85,
+      "issuesFound": 5,
+      "status": "passed",
+      "id": "1764592984947"
+    },
+    {
+      "type": "AI Full Scan",
+      "timestamp": "2025-12-01T12:10:36.038Z",
+      "duration": 60,
+      "healthScore": 85,
+      "issuesFound": 5,
+      "status": "passed",
+      "id": "1764591036039"
+    }
+  ],
+  "updatedAt": "2025-12-01T13:35:10.938Z"
+}

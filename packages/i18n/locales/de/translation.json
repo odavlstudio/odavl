@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "ODAVL Studio",
+    "welcome": "Willkommen",
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen"
+  },
+  "insight": {
+    "title": "ODAVL Insight",
+    "description": "KI-gesteuerte Fehlererkennung",
+    "analyze": "Code analysieren",
+    "severity": {
+      "critical": "Kritisch",
+      "high": "Hoch",
+      "medium": "Mittel",
+      "low": "Niedrig"
+    },
+    "detectors": {
+      "typescript": "TypeScript-Detektor",
+      "eslint": "ESLint-Integration",
+      "security": "Sicherheitslücken",
+      "performance": "Leistungsprobleme",
+      "complexity": "Komplexitätsanalyse"
+    }
+  },
+  "autopilot": {
+    "title": "ODAVL Autopilot",
+    "description": "Selbstheilende Code-Infrastruktur",
+    "phases": {
+      "observe": "Beobachten",
+      "decide": "Entscheiden",
+      "act": "Handeln",
+      "verify": "Überprüfen",
+      "learn": "Lernen"
+    },
+    "run": "Selbstheilungszyklus ausführen",
+    "undo": "Änderungen rückgängig machen",
+    "status": "Status"
+  },
+  "guardian": {
+    "title": "ODAVL Guardian",
+    "description": "Vor-Deployment-Tests und Überwachung",
+    "test": "Anwendung testen",
+    "passed": "Bestanden",
+    "failed": "Fehlgeschlagen",
+    "pending": "Ausstehend"
+  },
+  "plugins": {
+    "marketplace": "Plugin-Marktplatz",
+    "search": "Plugins suchen",
+    "install": "Installieren",
+    "uninstall": "Deinstallieren",
+    "installed": "Installiert",
+    "verified": "Verifiziert",
+    "official": "Offiziell"
+  }
+}

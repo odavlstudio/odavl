@@ -1,0 +1,12 @@
+id: api-surface-diff
+area: api
+priority: Medium
+match:
+  files: ["**/*.{ts,js}"]
+check:
+  rules:
+    - name: export-diff
+      fail_if_regex: "export\s+(function|const|let|var|class)"
+propose:
+  playbook: sync-commands-views
+  rationale: "Sync API surface with docs and consumers."

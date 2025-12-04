@@ -1,0 +1,157 @@
+# Anti-Patterns (Consistently Fail)
+# These patterns have consistently failed and should be avoided
+# Version: 1.0.0
+# Last updated: 2025-11-26
+
+anti_patterns:
+  # Type system violations
+  using_any_type:
+    pattern: "Using 'any' type in TypeScript"
+    failure_rate: 0.95
+    sample_size: 67
+    severity: high
+    reasons:
+      - "Breaks type safety"
+      - "Hides bugs until runtime"
+      - "Makes refactoring dangerous"
+    alternatives:
+      - "Use 'unknown' and narrow with type guards"
+      - "Define proper interfaces"
+      - "Use generic types"
+  
+  # Error handling
+  silent_catch:
+    pattern: "Empty catch blocks (swallowing errors)"
+    failure_rate: 0.92
+    sample_size: 45
+    severity: critical
+    reasons:
+      - "Hides bugs completely"
+      - "Makes debugging impossible"
+      - "Violates fail-fast principle"
+    alternatives:
+      - "Log error with context"
+      - "Re-throw with additional context"
+      - "Use proper error handling strategy"
+  
+  # Code organization
+  god_functions:
+    pattern: "Functions with >100 LOC"
+    failure_rate: 0.78
+    sample_size: 23
+    severity: medium
+    reasons:
+      - "Hard to test"
+      - "Difficult to maintain"
+      - "Usually violates SRP"
+    alternatives:
+      - "Extract into smaller functions"
+      - "Use composition"
+      - "Apply single responsibility"
+  
+  # Security
+  hardcoded_secrets:
+    pattern: "Hardcoded API keys or passwords"
+    failure_rate: 1.00
+    sample_size: 12
+    severity: critical
+    reasons:
+      - "Major security vulnerability"
+      - "Exposed in version control"
+      - "Violates security best practices"
+    alternatives:
+      - "Use environment variables"
+      - "Use secret management service"
+      - "Use configuration files (gitignored)"
+  
+  # Dependencies
+  wildcard_versions:
+    pattern: "Using '*' or 'x' in package versions"
+    failure_rate: 0.85
+    sample_size: 34
+    severity: high
+    reasons:
+      - "Unpredictable builds"
+      - "Breaking changes without warning"
+      - "Hard to reproduce bugs"
+    alternatives:
+      - "Use exact versions"
+      - "Use ^ for minor updates only"
+      - "Lock versions in production"
+  
+  # Async operations
+  missing_await:
+    pattern: "Forgetting await on async functions"
+    failure_rate: 0.88
+    sample_size: 56
+    severity: high
+    reasons:
+      - "Race conditions"
+      - "Unhandled promise rejections"
+      - "Incorrect execution order"
+    alternatives:
+      - "Enable @typescript-eslint/no-floating-promises"
+      - "Use void operator explicitly if intentional"
+      - "Always await in async context"
+  
+  # Testing
+  no_assertions:
+    pattern: "Tests without assertions"
+    failure_rate: 0.90
+    sample_size: 28
+    severity: medium
+    reasons:
+      - "Tests pass but verify nothing"
+      - "False confidence"
+      - "Wasted test execution"
+    alternatives:
+      - "Add explicit assertions"
+      - "Use expect() statements"
+      - "Verify behavior, not just execution"
+
+# Pattern warnings (sometimes fail, context-dependent)
+warnings:
+  - pattern: "Deep nesting (>4 levels)"
+    failure_rate: 0.65
+    advice: "Consider extracting or early returns"
+  
+  - pattern: "console.log in production code"
+    failure_rate: 0.70
+    advice: "Use proper logging utility"
+  
+  - pattern: "Mutation of function parameters"
+    failure_rate: 0.60
+    advice: "Prefer immutable operations"
+
+# Recovery strategies (how to fix these anti-patterns)
+recovery_strategies:
+  using_any_type:
+    steps:
+      - "Identify actual type needed"
+      - "Create interface if complex"
+      - "Replace 'any' with proper type"
+      - "Run tsc to verify"
+  
+  silent_catch:
+    steps:
+      - "Add logger.error() call"
+      - "Include error context"
+      - "Decide: re-throw or handle"
+      - "Add recovery logic if handling"
+  
+  hardcoded_secrets:
+    steps:
+      - "Move to .env file"
+      - "Add .env to .gitignore"
+      - "Use process.env.SECRET_NAME"
+      - "Document in .env.example"
+      - "Scan git history for leaked secrets"
+
+# Detection metadata
+metadata:
+  total_anti_patterns: 7
+  total_warnings: 3
+  detection_period: "2025-11-01 to 2025-11-26"
+  total_failures_analyzed: 234
+  confidence_threshold: 0.70
+  min_sample_size: 10

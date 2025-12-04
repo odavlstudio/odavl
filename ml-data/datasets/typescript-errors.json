@@ -1,0 +1,135 @@
+{
+  "version": "1.0",
+  "updated": "2025-11-26",
+  "description": "TypeScript error patterns for ML training",
+  "totalSamples": 10,
+  "categories": [
+    "type-mismatch",
+    "missing-property",
+    "null-reference",
+    "undefined-variable",
+    "wrong-parameter-count"
+  ],
+  "samples": [
+    {
+      "id": "ts-001",
+      "errorCode": "TS2345",
+      "message": "Argument of type 'string' is not assignable to parameter of type 'number'",
+      "severity": "error",
+      "category": "type-mismatch",
+      "codeContext": {
+        "before": "function add(a: number, b: number): number {",
+        "error": "  return add('1', 2);",
+        "after": "}"
+      },
+      "suggestedFix": {
+        "type": "type-conversion",
+        "code": "  return add(parseInt('1'), 2);",
+        "confidence": 0.95
+      },
+      "metadata": {
+        "tsVersion": "5.3.0",
+        "project": "sample-app",
+        "frequency": 142,
+        "successRate": 0.95,
+        "autoFixable": true
+      }
+    },
+    {
+      "id": "ts-002",
+      "errorCode": "TS2339",
+      "message": "Property 'name' does not exist on type '{}'",
+      "severity": "error",
+      "category": "missing-property",
+      "codeContext": {
+        "before": "const user = {};",
+        "error": "console.log(user.name);",
+        "after": ""
+      },
+      "suggestedFix": {
+        "type": "add-property",
+        "code": "const user: { name?: string } = {};",
+        "confidence": 0.88
+      },
+      "metadata": {
+        "tsVersion": "5.3.0",
+        "project": "user-management",
+        "frequency": 89,
+        "successRate": 0.88,
+        "autoFixable": false
+      }
+    },
+    {
+      "id": "ts-003",
+      "errorCode": "TS2531",
+      "message": "Object is possibly 'null'",
+      "severity": "error",
+      "category": "null-reference",
+      "codeContext": {
+        "before": "const element = document.getElementById('app');",
+        "error": "element.textContent = 'Hello';",
+        "after": ""
+      },
+      "suggestedFix": {
+        "type": "null-check",
+        "code": "element?.textContent = 'Hello';",
+        "confidence": 0.92
+      },
+      "metadata": {
+        "tsVersion": "5.3.0",
+        "project": "dom-app",
+        "frequency": 67,
+        "successRate": 0.92,
+        "autoFixable": true
+      }
+    },
+    {
+      "id": "ts-004",
+      "errorCode": "TS2304",
+      "message": "Cannot find name 'myVariable'",
+      "severity": "error",
+      "category": "undefined-variable",
+      "codeContext": {
+        "before": "function test() {",
+        "error": "  console.log(myVariable);",
+        "after": "}"
+      },
+      "suggestedFix": {
+        "type": "declare-variable",
+        "code": "  const myVariable = ...;",
+        "confidence": 0.75
+      },
+      "metadata": {
+        "tsVersion": "5.3.0",
+        "project": "test-suite",
+        "frequency": 54,
+        "successRate": 0.75,
+        "autoFixable": false
+      }
+    },
+    {
+      "id": "ts-005",
+      "errorCode": "TS2554",
+      "message": "Expected 2 arguments, but got 1",
+      "severity": "error",
+      "category": "wrong-parameter-count",
+      "codeContext": {
+        "before": "function greet(firstName: string, lastName: string) {",
+        "error": "greet('John');",
+        "after": "}"
+      },
+      "suggestedFix": {
+        "type": "add-parameter",
+        "code": "greet('John', 'Doe');",
+        "confidence": 0.80
+      },
+      "metadata": {
+        "tsVersion": "5.3.0",
+        "project": "greeting-app",
+        "frequency": 32,
+        "successRate": 0.80,
+        "autoFixable": false
+      }
+    }
+  ]
+}

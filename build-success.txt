@@ -1,0 +1,42 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Ôû▓ Next.js 14.2.18
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./components/analytics/activity-feed.tsx
+Module not found: Can't resolve '@heroicons/react/24/outline'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./components/dashboard/header.tsx
+Module not found: Can't resolve '@heroicons/react/24/outline'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./components/dashboard/sidebar.tsx
+Module not found: Can't resolve '@heroicons/react/24/outline'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./components/guardian/test-detail.tsx
+Module not found: Can't resolve '@heroicons/react/24/outline'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./components/guardian/test-results-table.tsx
+
+./app/(dashboard)/analytics/page.tsx
+Module not found: Can't resolve '@heroicons/react/24/outline'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

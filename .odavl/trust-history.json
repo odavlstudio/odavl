@@ -1,0 +1,3504 @@
+[
+  {
+    "timestamp": "2025-11-16T02:46:37.093Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:46:37.096Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T02:46:37.099Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.655Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.738Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.746Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.773Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.778Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.820Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.853Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.860Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.910Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.975Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:48:37.993Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.001Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.007Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.061Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.069Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.075Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.131Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.136Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.146Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T02:48:38.152Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T02:48:43.582Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:48:43.631Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 3,
+    "success": 3,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.205Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.243Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.250Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T02:55:48.727Z",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.104Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.118Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.128Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.236Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.242Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.250Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.259Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.265Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.268Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.508Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.522Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.525Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.529Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.532Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.534Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.537Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.540Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.544Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.548Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T03:02:44.553Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T03:02:46.583Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 2,
+    "success": 2,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:02:46.593Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 5,
+    "success": 5,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.535Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.540Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.547Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T03:14:03.367Z",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.731Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.736Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.737Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.742Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.744Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.746Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.752Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.754Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.757Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.765Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.783Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.784Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.786Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.787Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.789Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.791Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.793Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.794Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.796Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:20:13.797Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:20:15.048Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 3,
+    "success": 3,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:15.052Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 6,
+    "success": 6,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.754Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.772Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.796Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.361Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.386Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.391Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.401Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.405Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.408Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.442Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.445Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.448Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.458Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.467Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.470Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.473Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.485Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.488Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.491Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.494Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.498Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.501Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:23:29.506Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:23:33.280Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 4,
+    "success": 4,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:33.289Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 9,
+    "success": 9,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.109Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.112Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.117Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.054Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.062Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.065Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.072Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.074Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.076Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.083Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.087Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.090Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.097Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.104Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.107Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.109Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.111Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.114Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.116Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.118Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.120Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.122Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:26:06.124Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.759Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.765Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.767Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.772Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.774Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.777Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.783Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.785Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.787Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.791Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.797Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.800Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.802Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.804Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.806Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.807Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.809Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.811Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.813Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:28:15.815Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.356Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.362Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.364Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.369Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.371Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.374Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.380Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.382Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.385Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.390Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.395Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.397Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.399Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.401Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.406Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.408Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.410Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.412Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.414Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:29:32.415Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.117Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.123Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.126Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.131Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.134Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.136Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.143Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.145Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.147Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.152Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.159Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.161Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.163Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.165Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.167Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.169Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.171Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.173Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.175Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:31:39.177Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.347Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.355Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.357Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.363Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.365Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.368Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.373Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.375Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.377Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.381Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.387Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.389Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.391Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.393Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.395Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.396Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.398Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.400Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.402Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:32:06.404Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.347Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.353Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.355Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.361Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.363Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.365Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.372Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.374Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.376Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.381Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.387Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.389Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.392Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.393Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.395Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.397Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.399Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.401Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.403Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:33:10.405Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.433Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.444Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.448Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.461Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.465Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.470Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.481Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.486Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.489Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.498Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.510Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.45454545454545453,
+    "runs": 11,
+    "success": 5,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.518Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.4166666666666667,
+    "runs": 12,
+    "success": 5,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.522Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.38461538461538464,
+    "runs": 13,
+    "success": 5,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.531Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.35714285714285715,
+    "runs": 14,
+    "success": 5,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.534Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.3333333333333333,
+    "runs": 15,
+    "success": 5,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.539Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.3125,
+    "runs": 16,
+    "success": 5,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.544Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.29411764705882354,
+    "runs": 17,
+    "success": 5,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.548Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.2777777777777778,
+    "runs": 18,
+    "success": 5,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.551Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.2631578947368421,
+    "runs": 19,
+    "success": 5,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:33:38.554Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.25,
+    "runs": 20,
+    "success": 5,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:33:40.181Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:40.188Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.203Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.209Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.213Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.818Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.827Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.834Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.843Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.848Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.852Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.859Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.862Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.865Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.872Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.885Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.889Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.892Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.896Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.899Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.903Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.907Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.910Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.914Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:41:20.920Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:41:22.655Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 2,
+    "success": 2,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:22.662Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 3,
+    "success": 3,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.150Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.155Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.159Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.730Z",
+    "recipeId": "import-cleaner",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.741Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.746Z",
+    "recipeId": "eslint-auto-fix",
+    "trust": 0.5,
+    "runs": 2,
+    "success": 1,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.760Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.763Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.768Z",
+    "recipeId": "typescript-fixer",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.783Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.788Z",
+    "recipeId": "security-hardening",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.790Z",
+    "recipeId": "security-hardening",
+    "trust": 0.3333333333333333,
+    "runs": 3,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.798Z",
+    "recipeId": "performance-optimizer",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.809Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.813Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.816Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.819Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 4,
+    "success": 0,
+    "consecutiveFailures": 4
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.823Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 5,
+    "success": 0,
+    "consecutiveFailures": 5
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.828Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 6,
+    "success": 0,
+    "consecutiveFailures": 6
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.833Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 7,
+    "success": 0,
+    "consecutiveFailures": 7
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.836Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 8,
+    "success": 0,
+    "consecutiveFailures": 8
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.841Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 9,
+    "success": 0,
+    "consecutiveFailures": 9
+  },
+  {
+    "timestamp": "2025-11-16T10:42:05.843Z",
+    "recipeId": "import-cleaner",
+    "trust": 0.1,
+    "runs": 10,
+    "success": 0,
+    "consecutiveFailures": 10
+  },
+  {
+    "timestamp": "2025-11-16T10:42:07.824Z",
+    "recipeId": "foo",
+    "trust": 1,
+    "runs": 3,
+    "success": 3,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:07.831Z",
+    "recipeId": "test-recipe",
+    "trust": 1,
+    "runs": 6,
+    "success": 6,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.418Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.421Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.424Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.394Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.397Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.400Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.564Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.567Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.570Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.098Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.101Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.105Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.720Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.724Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.728Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.731Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.737Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.741Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.271Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.274Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.277Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.374Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.377Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.380Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.924Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.927Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.930Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.818Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.823Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.828Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.868Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.872Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.875Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.113Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.118Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.122Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.922Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.925Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.927Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.476Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.479Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.482Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.149Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.151Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.155Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.353Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.356Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.358Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.321Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.324Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.326Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.360Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.363Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.366Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.760Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.763Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.765Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.891Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.893Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.896Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.084Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.089Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.092Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.151Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.154Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.156Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.372Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.376Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.380Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.968Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.970Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.974Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.080Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.082Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.085Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.405Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.408Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.411Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.185Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.188Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.191Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.847Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.850Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.853Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.567Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.572Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.575Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.282Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.292Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.301Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.134Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.142Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.150Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.147Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.157Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.166Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.950Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.956Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.961Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.342Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.348Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.352Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.053Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.059Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.063Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.884Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.891Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.896Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.228Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.288Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.354Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.371Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.380Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.392Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.470Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.476Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.482Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.698Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.704Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.709Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.487Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.495Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.501Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.929Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.936Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.943Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.781Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.785Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.789Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.550Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.557Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.563Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.217Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.226Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.231Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.215Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.219Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.224Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.773Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "trust": 0.1,
+    "runs": 1,
+    "success": 0,
+    "consecutiveFailures": 1
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.782Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "trust": 0.1,
+    "runs": 2,
+    "success": 0,
+    "consecutiveFailures": 2
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.788Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "trust": 0.1,
+    "runs": 3,
+    "success": 0,
+    "consecutiveFailures": 3
+  }
+]

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Pre-commit hook: Run Guardian tests before commit
+
+set -e
+
+echo "🔍 Running Guardian pre-commit tests..."
+
+# Check if Guardian is built
+if [ ! -d "odavl-studio/guardian/core/dist" ]; then
+  echo "📦 Building Guardian Core..."
+  cd odavl-studio/guardian/core
+  pnpm build
+  cd ../../..
+fi
+
+# Run quick tests on localhost
+echo "🚀 Testing localhost..."
+
+cd odavl-studio/guardian/core
+
+# Check if localhost:3000 is running
+if curl -s http://localhost:3000 > /dev/null; then
+  pnpm exec guardian-test http://localhost:3000 --format json --output .odavl/guardian/pre-commit
+  
+  # Check results
+  CRITICAL_COUNT=$(jq '.metrics.critical' .odavl/guardian/pre-commit/report-*.json | tail -1)
+  
+  if [ "$CRITICAL_COUNT" -gt 0 ]; then
+    echo "❌ Critical issues found! Commit blocked."
+    echo "Run 'pnpm guardian:test' to see details."
+    exit 1
+  fi
+  
+  echo "✅ Guardian tests passed!"
+else
+  echo "⚠️  localhost:3000 not running, skipping Guardian tests"
+fi
+
+cd ../../..

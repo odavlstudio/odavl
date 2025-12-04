@@ -1,0 +1,34 @@
+{
+  "url": "http://localhost:3000/test-guardian",
+  "timestamp": "2025-11-25T18:01:36.499Z",
+  "duration": 7176,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "CONSOLE_ERROR",
+      "severity": "high",
+      "message": "⚠️ 1 console error(s) detected",
+      "fix": [
+        "Check browser DevTools console",
+        "Fix JavaScript errors in your code",
+        "Ensure all dependencies are loaded correctly",
+        "Check for missing resources (404s)"
+      ],
+      "details": {
+        "errors": [
+          "Cannot render a sync or defer <script> outside the main document without knowing its order. Try adding async=\"\" or moving it into the root <head> tag."
+        ],
+        "count": 1,
+        "url": "http://localhost:3000/test-guardian"
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 1,
+    "critical": 0,
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  }
+}

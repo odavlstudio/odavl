@@ -1,0 +1,21 @@
+{
+  "branch": "",
+  "budget": {
+    "lines": 40,
+    "files": 10
+  },
+  "verify": {
+    "build": true,
+    "lint": true,
+    "typecheck": true,
+    "vsce": true,
+    "site": true
+  },
+  "artifacts": [
+    "patch.diff",
+    "verify.log",
+    "reports/*"
+  ],
+  "sha256": {},
+  "timestamp": ""
+}

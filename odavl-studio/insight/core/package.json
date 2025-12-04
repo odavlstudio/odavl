@@ -1,0 +1,161 @@
+{
+  "name": "@odavl-studio/insight-core",
+  "version": "2.0.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./server": {
+      "import": {
+        "types": "./dist/server.d.ts",
+        "default": "./dist/server.mjs"
+      },
+      "require": {
+        "types": "./dist/server.d.ts",
+        "default": "./dist/server.js"
+      }
+    },
+    "./detector": {
+      "import": {
+        "types": "./dist/detector/index.d.ts",
+        "default": "./dist/detector/index.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/index.d.ts",
+        "default": "./dist/detector/index.js"
+      }
+    },
+    "./detector/typescript": {
+      "import": {
+        "types": "./dist/detector/typescript.d.ts",
+        "default": "./dist/detector/typescript.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/typescript.d.ts",
+        "default": "./dist/detector/typescript.js"
+      }
+    },
+    "./detector/eslint": {
+      "import": {
+        "types": "./dist/detector/eslint.d.ts",
+        "default": "./dist/detector/eslint.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/eslint.d.ts",
+        "default": "./dist/detector/eslint.js"
+      }
+    },
+    "./detector/security": {
+      "import": {
+        "types": "./dist/detector/security.d.ts",
+        "default": "./dist/detector/security.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/security.d.ts",
+        "default": "./dist/detector/security.js"
+      }
+    },
+    "./detector/performance": {
+      "import": {
+        "types": "./dist/detector/performance.d.ts",
+        "default": "./dist/detector/performance.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/performance.d.ts",
+        "default": "./dist/detector/performance.js"
+      }
+    },
+    "./detector/complexity": {
+      "import": {
+        "types": "./dist/detector/complexity.d.ts",
+        "default": "./dist/detector/complexity.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/complexity.d.ts",
+        "default": "./dist/detector/complexity.js"
+      }
+    },
+    "./detector/import": {
+      "import": {
+        "types": "./dist/detector/import.d.ts",
+        "default": "./dist/detector/import.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/import.d.ts",
+        "default": "./dist/detector/import.js"
+      }
+    },
+    "./detector/python": {
+      "import": {
+        "types": "./dist/detector/python.d.ts",
+        "default": "./dist/detector/python.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/python.d.ts",
+        "default": "./dist/detector/python.js"
+      }
+    },
+    "./detector/java": {
+      "import": {
+        "types": "./dist/detector/java.d.ts",
+        "default": "./dist/detector/java.mjs"
+      },
+      "require": {
+        "types": "./dist/detector/java.d.ts",
+        "default": "./dist/detector/java.js"
+      }
+    },
+    "./learning": {
+      "import": {
+        "types": "./dist/learning/index.d.ts",
+        "default": "./dist/learning/index.mjs"
+      },
+      "require": {
+        "types": "./dist/learning/index.d.ts",
+        "default": "./dist/learning/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build-esbuild.js",
+    "insight:watch": "tsx scripts/watch-errors.ts",
+    "insight:analyze": "tsx scripts/analyze-stack.ts",
+    "insight:root": "tsx scripts/detect-root.ts",
+    "insight:fix": "tsx scripts/suggest-fixes.ts",
+    "insight:live": "tsx scripts/live-notifier.ts",
+    "insight:train": "tsx scripts/train-memory.ts",
+    "insight:learn": "tsx scripts/run-learning.ts",
+    "ml:train": "tsx scripts/train-tensorflow-v2.ts",
+    "ml:collect": "tsx scripts/train-tensorflow-v2.ts --collect-only"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "@next/mdx": "^16.0.1",
+    "glob": "^11.0.0",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2"
+  },
+  "optionalDependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.0",
+    "java-ast": "^0.4.1",
+    "npm-dts": "^1.3.13",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0"
+  }
+}

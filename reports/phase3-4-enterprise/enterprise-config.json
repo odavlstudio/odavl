@@ -1,0 +1,122 @@
+{
+  "features": {
+    "oktaSso": {
+      "id": "okta-sso",
+      "name": "Okta SSO Integration",
+      "category": "auth",
+      "setup": {
+        "complexity": "medium",
+        "timeMinutes": 15
+      },
+      "features": [
+        "saml2",
+        "oidc",
+        "scim",
+        "jit-provisioning"
+      ]
+    },
+    "auth0Sso": {
+      "id": "auth0-sso",
+      "name": "Auth0 SSO Integration",
+      "category": "auth",
+      "setup": {
+        "complexity": "simple",
+        "timeMinutes": 10
+      },
+      "features": [
+        "universal-login",
+        "mfa",
+        "social-connections"
+      ]
+    },
+    "azureAdSso": {
+      "id": "azure-ad-sso",
+      "name": "Azure AD SSO Integration",
+      "category": "auth",
+      "setup": {
+        "complexity": "medium",
+        "timeMinutes": 12
+      },
+      "features": [
+        "saml2",
+        "openid",
+        "conditional-access"
+      ]
+    },
+    "rbac": {
+      "id": "rbac-system",
+      "name": "Role-Based Access Control",
+      "category": "auth",
+      "setup": {
+        "complexity": "complex",
+        "timeMinutes": 20
+      },
+      "features": [
+        "roles",
+        "permissions",
+        "groups",
+        "audit"
+      ]
+    },
+    "selfHosted": {
+      "id": "self-hosted",
+      "name": "Self-Hosted Deployment",
+      "category": "deployment",
+      "setup": {
+        "complexity": "complex",
+        "timeMinutes": 60
+      },
+      "features": [
+        "docker",
+        "kubernetes",
+        "helm",
+        "backup"
+      ]
+    },
+    "airGapped": {
+      "id": "air-gapped",
+      "name": "Air-Gapped Environment",
+      "category": "deployment",
+      "setup": {
+        "complexity": "expert",
+        "timeMinutes": 120
+      },
+      "features": [
+        "offline-install",
+        "local-registry",
+        "manual-updates"
+      ]
+    },
+    "compliance": {
+      "id": "compliance-reports",
+      "name": "Compliance Reporting",
+      "category": "compliance",
+      "setup": {
+        "complexity": "medium",
+        "timeMinutes": 30
+      },
+      "features": [
+        "soc2",
+        "iso27001",
+        "hipaa",
+        "gdpr"
+      ]
+    },
+    "audit": {
+      "id": "audit-logs",
+      "name": "Advanced Audit Logs",
+      "category": "audit",
+      "setup": {
+        "complexity": "medium",
+        "timeMinutes": 25
+      },
+      "features": [
+        "activity-tracking",
+        "retention",
+        "export",
+        "alerting"
+      ]
+    }
+  },
+  "generated": "2025-11-29T19:34:30.230Z"
+}

@@ -1,0 +1,38 @@
+# .github/workflows/odavl-advanced.yml
+name: ODAVL Insight (Advanced)
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [typescript, python, java]
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: ODAVL Insight Analysis
+        uses: odavl-studio/insight-action@v1
+        with:
+          token: ${{ secrets.ODAVL_TOKEN }}
+          languages: ${{ matrix.language }}
+          quality-gates: true
+          fail-on-error: true
+          error-threshold: 3
+          complexity-threshold: 8
+          coverage-threshold: 85
+          security-levels: critical,high,medium
+          upload-sarif: true
+      
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: odavl-results-${{ matrix.language }}
+          path: .odavl/reports/

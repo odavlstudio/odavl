@@ -1,0 +1,282 @@
+# ODAVL Insight - Automated Code Quality Analysis for GitLab CI
+#
+# This pipeline runs ODAVL Insight on every merge request and posts
+# results as a comment with interactive charts and detailed findings.
+#
+# Setup:
+# 1. Add this file to .gitlab-ci.yml (or include it via `include:` directive)
+# 2. Install ODAVL CLI: pnpm add -D @odavl/cli
+# 3. Set CI_JOB_TOKEN permissions: Settings → CI/CD → Token Access → Enable
+
+variables:
+  NODE_VERSION: "20"
+  PNPM_VERSION: "9"
+  ODAVL_REPORT_DIR: ".odavl/reports"
+
+stages:
+  - quality-analysis
+  - report
+
+# Cache dependencies for faster runs
+.pnpm-cache:
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@${PNPM_VERSION} --activate
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+
+odavl-insight-analysis:
+  stage: quality-analysis
+  extends: .pnpm-cache
+  image: node:${NODE_VERSION}
+
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "web" # Manual trigger
+
+  script:
+    - echo "🚀 Running ODAVL Insight Analysis..."
+    - mkdir -p $ODAVL_REPORT_DIR
+
+    # Run analysis (don't fail pipeline, report in MR comment)
+    - |
+      pnpm odavl:insight --all --format=json --output=$ODAVL_REPORT_DIR/ci-report.json || true
+
+    # Generate HTML report
+    - pnpm odavl:insight --all --format=html --output=$ODAVL_REPORT_DIR/ci-report.html || true
+
+    # Parse JSON results
+    - |
+      if [ -f "$ODAVL_REPORT_DIR/ci-report.json" ]; then
+        export TOTAL_ISSUES=$(jq '.totalIssues // 0' $ODAVL_REPORT_DIR/ci-report.json)
+        export CRITICAL=$(jq '.criticalCount // 0' $ODAVL_REPORT_DIR/ci-report.json)
+        export HIGH=$(jq '.highCount // 0' $ODAVL_REPORT_DIR/ci-report.json)
+        export MEDIUM=$(jq '.mediumCount // 0' $ODAVL_REPORT_DIR/ci-report.json)
+        export LOW=$(jq '.lowCount // 0' $ODAVL_REPORT_DIR/ci-report.json)
+        export HEALTH_SCORE=$(jq '.healthScore // 100' $ODAVL_REPORT_DIR/ci-report.json)
+        
+        echo "Total Issues: $TOTAL_ISSUES"
+        echo "Critical: $CRITICAL | High: $HIGH | Medium: $MEDIUM | Low: $LOW"
+        echo "Health Score: $HEALTH_SCORE/100"
+        
+        # Save to CI environment for downstream jobs
+        echo "TOTAL_ISSUES=$TOTAL_ISSUES" >> odavl-metrics.env
+        echo "CRITICAL=$CRITICAL" >> odavl-metrics.env
+        echo "HIGH=$HIGH" >> odavl-metrics.env
+        echo "MEDIUM=$MEDIUM" >> odavl-metrics.env
+        echo "LOW=$LOW" >> odavl-metrics.env
+        echo "HEALTH_SCORE=$HEALTH_SCORE" >> odavl-metrics.env
+      else
+        echo "⚠️ No report generated, setting defaults"
+        echo "TOTAL_ISSUES=0" >> odavl-metrics.env
+        echo "CRITICAL=0" >> odavl-metrics.env
+        echo "HIGH=0" >> odavl-metrics.env
+        echo "MEDIUM=0" >> odavl-metrics.env
+        echo "LOW=0" >> odavl-metrics.env
+        echo "HEALTH_SCORE=100" >> odavl-metrics.env
+      fi
+
+    # Quality Gates Check
+    - |
+      if [ "$CRITICAL" -gt 0 ]; then
+        echo "❌ Quality Gate Failed: $CRITICAL critical issue(s) detected"
+        exit 1
+      fi
+
+      if [ "$HEALTH_SCORE" -lt 60 ]; then
+        echo "❌ Quality Gate Failed: Health score ($HEALTH_SCORE) below threshold (60)"
+        exit 1
+      fi
+
+      echo "✅ Quality Gates Passed!"
+
+  artifacts:
+    name: "odavl-insight-report-$CI_COMMIT_SHORT_SHA"
+    paths:
+      - $ODAVL_REPORT_DIR/ci-report.json
+      - $ODAVL_REPORT_DIR/ci-report.html
+      - odavl-metrics.env
+    reports:
+      dotenv: odavl-metrics.env
+    expire_in: 30 days
+    when: always
+
+  allow_failure: false # Fail pipeline if quality gates not met
+
+odavl-mr-comment:
+  stage: report
+  image: alpine:latest
+
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+  needs:
+    - job: odavl-insight-analysis
+      artifacts: true
+
+  before_script:
+    - apk add --no-cache curl jq
+
+  script:
+    - |
+      # Load metrics from dotenv artifact
+      source odavl-metrics.env
+
+      # Determine badge color and emoji
+      if [ "$HEALTH_SCORE" -ge 80 ]; then
+        BADGE_COLOR="success"
+        BADGE_EMOJI="🟢"
+      elif [ "$HEALTH_SCORE" -ge 60 ]; then
+        BADGE_COLOR="yellow"
+        BADGE_EMOJI="🟡"
+      else
+        BADGE_COLOR="critical"
+        BADGE_EMOJI="🔴"
+      fi
+
+      # Generate MR comment body
+      cat > mr-comment.md <<EOF
+      ## ${BADGE_EMOJI} ODAVL Insight Report
+
+      ![Health Score](https://img.shields.io/badge/Health_Score-${HEALTH_SCORE}%25-${BADGE_COLOR}?style=for-the-badge&logo=checkmarx)
+
+      ### 📊 Summary
+
+      | Metric | Count |
+      |--------|-------|
+      | **Total Issues** | ${TOTAL_ISSUES} |
+      | 🔴 **Critical** | ${CRITICAL} |
+      | 🟠 **High** | ${HIGH} |
+      | 🔵 **Medium** | ${MEDIUM} |
+      | 🟢 **Low** | ${LOW} |
+
+      ### 📈 Health Score: ${HEALTH_SCORE}/100
+
+      $(if [ "$HEALTH_SCORE" -ge 80 ]; then echo "✅ **Excellent!** Your code quality is world-class."; fi)
+      $(if [ "$HEALTH_SCORE" -ge 60 ] && [ "$HEALTH_SCORE" -lt 80 ]; then echo "⚠️ **Good, but room for improvement.** Consider addressing high-priority issues."; fi)
+      $(if [ "$HEALTH_SCORE" -lt 60 ]; then echo "🚨 **Action required!** Critical issues detected. Please review before merging."; fi)
+
+      ### 🔍 Detailed Findings
+
+      $(if [ "$CRITICAL" -gt 0 ]; then echo "⚠️ **${CRITICAL} Critical Issue(s)** - Must be fixed before merge"; fi)
+      $(if [ "$HIGH" -gt 0 ]; then echo "⚠️ **${HIGH} High-Priority Issue(s)** - Should be addressed soon"; fi)
+      $(if [ "$MEDIUM" -gt 0 ]; then echo "ℹ️ **${MEDIUM} Medium-Priority Issue(s)** - Consider addressing"; fi)
+      $(if [ "$LOW" -gt 0 ]; then echo "💡 **${LOW} Low-Priority Issue(s)** - Optional improvements"; fi)
+
+      ### 📥 Full Report
+
+      Download the complete HTML report from the [pipeline artifacts](${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/browse/${ODAVL_REPORT_DIR}).
+
+      ---
+
+      <sub>🤖 Generated by [ODAVL Insight](https://odavl.dev) • [View Pipeline](${CI_PIPELINE_URL})</sub>
+      EOF
+
+      # Escape JSON special characters
+      COMMENT_BODY=$(jq -Rs . < mr-comment.md)
+
+      # Post comment to MR using GitLab API
+      curl --request POST \
+        --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
+        --header "Content-Type: application/json" \
+        --data "{\"body\": ${COMMENT_BODY}}" \
+        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests/${CI_MERGE_REQUEST_IID}/notes"
+
+      echo "✅ Posted comment to MR !${CI_MERGE_REQUEST_IID}"
+
+  allow_failure: true # Don't fail pipeline if comment posting fails
+
+# Optional: Create issue for critical findings
+odavl-create-issue:
+  stage: report
+  image: alpine:latest
+
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CRITICAL > 0
+
+  needs:
+    - job: odavl-insight-analysis
+      artifacts: true
+
+  before_script:
+    - apk add --no-cache curl jq
+
+  script:
+    - |
+      source odavl-metrics.env
+
+      ISSUE_TITLE="🚨 ODAVL Insight: ${CRITICAL} Critical Issue(s) Detected"
+
+      cat > issue-body.md <<EOF
+      ## Critical Security/Quality Issues Detected
+
+      ODAVL Insight has detected **${CRITICAL} critical issue(s)** in the latest code analysis.
+
+      ### 🔥 Action Required
+
+      Critical issues **must** be addressed before merging to production. These may include:
+      - Security vulnerabilities (hardcoded secrets, XSS, SQL injection)
+      - Critical TypeScript errors preventing builds
+      - Import cycle issues causing runtime failures
+
+      ### 📥 View Full Report
+
+      Check the [latest pipeline](${CI_PIPELINE_URL}) for the complete HTML report.
+
+      ### 🛠️ Next Steps
+
+      1. Download the HTML report from pipeline artifacts
+      2. Review each critical issue with detailed explanations
+      3. Apply suggested fixes or use ODAVL's Quick Fix feature in VS Code
+      4. Re-run analysis to verify fixes
+
+      ---
+
+      <sub>🤖 Auto-generated by ODAVL Insight CI/CD Integration</sub>
+      EOF
+
+      ISSUE_BODY=$(jq -Rs . < issue-body.md)
+
+      # Create issue via GitLab API
+      curl --request POST \
+        --header "PRIVATE-TOKEN: ${CI_JOB_TOKEN}" \
+        --header "Content-Type: application/json" \
+        --data "{
+          \"title\": \"${ISSUE_TITLE}\",
+          \"description\": ${ISSUE_BODY},
+          \"labels\": \"security,critical,odavl-insight\"
+        }" \
+        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/issues"
+
+      echo "✅ Created issue for critical findings"
+
+  allow_failure: true
+
+# Optional: Badge generation for README
+odavl-badge:
+  stage: report
+  image: alpine:latest
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+  needs:
+    - job: odavl-insight-analysis
+      artifacts: true
+
+  script:
+    - |
+      source odavl-metrics.env
+
+      echo "Generate badge with: https://img.shields.io/badge/ODAVL_Health-${HEALTH_SCORE}%25-success"
+      echo "Add to README.md:"
+      echo "![ODAVL Health](https://img.shields.io/badge/ODAVL_Health-${HEALTH_SCORE}%25-success)"
+
+  allow_failure: true

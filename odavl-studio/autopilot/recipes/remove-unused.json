@@ -1,0 +1,24 @@
+{
+  "id": "remove-unused",
+  "name": "Remove Unused Code",
+  "description": "Removes unused variables and imports",
+  "trust": 0.7,
+  "priority": 5,
+  "condition": {
+    "type": "threshold",
+    "rules": [
+      {
+        "metric": "eslintWarnings",
+        "operator": ">=",
+        "value": 10
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "shell",
+      "command": "pnpm -s exec eslint . --fix",
+      "description": "Remove unused code"
+    }
+  ]
+}

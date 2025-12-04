@@ -1,0 +1,233 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.6 [39m[90mC:/Users/sabou/dev/odavl[39m
+
+- Running observe phase...
+Ô£ö Observe: Errors detected
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould execute all ODAVL phases
+[22m[39m
+­ƒÜÇ ODAVL Autopilot: O-D-A-V-L Cycle
+
+Governance: max 10 files, 40 LOC per file
+
+- Running decide phase...
+Ô£ö Decide: Recipe selected
+- Running act phase...
+Ô£ö Act: No changes needed (dry run)
+- Running verify phase...
+Ô£ö Verify: Quality gates passed
+- Running learn phase...
+Ô£ö Learn: Trust scores updated
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould execute all ODAVL phases
+[22m[39m
+Ô£à O-D-A-V-L Cycle Complete
+
+Run ID: 1763737506925
+Check .odavl/ledger/run-1763737506925.json for details
+
+- Running observe phase...
+Ô£ö Observe: Errors detected
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould respect risk budget constraints
+[22m[39m
+­ƒÜÇ ODAVL Autopilot: O-D-A-V-L Cycle
+
+Governance: max 5 files, 20 LOC per file
+
+- Running decide phase...
+Ô£ö Decide: Recipe selected
+- Running act phase...
+Ô£ö Act: No changes needed (dry run)
+- Running verify phase...
+Ô£ö Verify: Quality gates passed
+- Running learn phase...
+Ô£ö Learn: Trust scores updated
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould respect risk budget constraints
+[22m[39m
+Ô£à O-D-A-V-L Cycle Complete
+
+Run ID: 1763737513617
+Check .odavl/ledger/run-1763737513617.json for details
+
+ [31m├ù[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mrunFullCycle[2m > [22mshould execute all ODAVL phases[33m 6695[2mms[22m[39m
+[31m   ÔåÆ expected "vi.fn()" to be called at least once[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mrunFullCycle[2m > [22mshould respect risk budget constraints[33m 6460[2mms[22m[39m
+- Running observe phase...
+Ô£ö Observe: Errors detected
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould create .odavl directory if it does not exist
+[22m[39m
+­ƒÜÇ ODAVL Autopilot: O-D-A-V-L Cycle
+
+Governance: max 10 files, 40 LOC per file
+
+- Running decide phase...
+Ô£ö Decide: Recipe selected
+- Running act phase...
+Ô£ö Act: No changes needed (dry run)
+- Running verify phase...
+Ô£ö Verify: Quality gates passed
+- Running learn phase...
+Ô£ö Learn: Trust scores updated
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22m[2mAutopilot Commands[2m > [22m[2mrunFullCycle[2m > [22m[2mshould create .odavl directory if it does not exist
+[22m[39m
+Ô£à O-D-A-V-L Cycle Complete
+
+Run ID: 1763737520078
+Check .odavl/ledger/run-1763737520078.json for details
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mrunFullCycle[2m > [22mshould create .odavl directory if it does not exist[33m 6229[2mms[22m[39m
+- Running observe phase...
+Ô£ö Observe: Errors detected
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mrunPhase[2m > [22mshould execute individual phase[33m 6411[2mms[22m[39m
+- Reverting changes...
+Ô£û No undo snapshots found
+- Reverting changes...
+Ô£û No undo snapshots found
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mrunPhase[2m > [22mshould validate phase name[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mundoLastChange[2m > [22mshould check for undo directory existence[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/autopilot.test.ts[2m > [22mAutopilot Commands[2m > [22mundoLastChange[2m > [22mshould use latest snapshot if no ID provided[32m 2[2mms[22m[39m
+- Running accessibility tests...
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run all quality checks
+[22m[39m
+­ƒøí´©Å  ODAVL Guardian: Pre-Deploy Tests
+
+Target: https://example.com
+Tests: all
+
+
+ÔÜá accessibility: 82/100 - Needs improvement
+- Running performance tests...
+ÔÜá performance: 88/100 - Needs improvement
+- Running security tests...
+ÔÜá security: 70/100 - Needs improvement
+- Running seo tests...
+Ô£ö seo: 91/100 - Excellent
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run all quality checks
+[22m[39m
+Test Summary:
+  Passed: 1
+  Failed: 0
+  Warnings: 3
+
+Ô£à Deployment approved
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould run all quality checks[33m 4049[2mms[22m[39m
+- Running accessibility tests...
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run specific tests when provided
+[22m[39m
+­ƒøí´©Å  ODAVL Guardian: Pre-Deploy Tests
+
+Target: https://example.com
+Tests: accessibility,performance
+
+
+ÔÜá accessibility: 74/100 - Needs improvement
+- Running performance tests...
+Ô£ö performance: 91/100 - Excellent
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run specific tests when provided
+[22m[39m
+Test Summary:
+  Passed: 1
+  Failed: 0
+  Warnings: 1
+
+Ô£à Deployment approved
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould run specific tests when provided[33m 2017[2mms[22m[39m
+- Running accessibility tests...
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould execute without errors
+[22m[39m
+­ƒøí´©Å  ODAVL Guardian: Pre-Deploy Tests
+
+Target: https://example.com
+Tests: accessibility
+
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould validate URL format[32m 5[2mms[22m[39m
+ÔÜá accessibility: 74/100 - Needs improvement
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould execute without errors
+[22m[39m
+Test Summary:
+  Passed: 0
+  Failed: 0
+  Warnings: 1
+
+Ô£à Deployment approved
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould execute without errors[33m 1011[2mms[22m[39m
+- Running accessibility tests...
+Ô£ö accessibility: 95/100 - Excellent
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run accessibility test[33m 1003[2mms[22m[39m
+- Running performance tests...
+ÔÜá performance: 72/100 - Needs improvement
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run performance test[33m 1009[2mms[22m[39m
+- Running security tests...
+Ô£ö security: 98/100 - Excellent
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run security test[33m 1007[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould validate test type[32m 1[2mms[22m[39m
+- Analyzing workspace...
+Ô£ö TypeScript: No errors
+Ô£ö ESLint: No errors
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould run TypeScript and ESLint checks and handle results
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Analyzing workspace...
+ÔÜá TypeScript: 0 errors found
+ÔÜá ESLint: 0 issues found
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould handle errors gracefully
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Analyzing workspace...
+Ô£ö TypeScript: No errors
+Ô£ö ESLint: No errors
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould run specific detectors when provided
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould run TypeScript and ESLint checks and handle results[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould handle errors gracefully[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould run specific detectors when provided[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22mgetFixSuggestions[2m > [22mshould complete without returning data (feature in progress)[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22mgetFixSuggestions[2m > [22mshould run without errors when called[32m 2[2mms[22m[39m
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 1 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  apps/studio-cli/src/commands/__tests__/autopilot.test.ts > Autopilot Commands > runFullCycle > should execute all ODAVL phases
+AssertionError: expected "vi.fn()" to be called at least once
+ ÔØ» apps/studio-cli/src/commands/__tests__/autopilot.test.ts:20:39
+     18| 
+     19|             expect(mkdirSyncMock).toHaveBeenCalled();
+     20|             expect(writeFileSyncMock).toHaveBeenCalled();
+       |                                       ^
+     21|         });
+     22| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/1]ÔÄ»
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m19 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 16:05:05
+[2m   Duration [22m 38.72s[2m (transform 185ms, setup 147ms, collect 448ms, tests 35.94s, environment 2ms, prepare 59ms)[22m
+

@@ -1,0 +1,798 @@
+openapi: 3.0.3
+info:
+  title: ODAVL Studio API
+  description: |
+    ODAVL Studio REST API - Autonomous Code Quality & Governance Platform
+    
+    This API provides endpoints for:
+    - **Insight**: Error detection and analysis (12 detectors)
+    - **Autopilot**: Autonomous O→D→A→V→L improvement cycles
+    - **Guardian**: Automated testing and monitoring
+    
+    ## Authentication
+    
+    All API requests require authentication using either:
+    - **API Key** (X-API-Key header)
+    - **JWT Token** (Authorization: Bearer <token>)
+    
+    ## Rate Limits
+    
+    - Free Tier: 100 requests/hour
+    - Pro Tier: 1,000 requests/hour
+    - Enterprise Tier: Unlimited
+    
+    ## Versioning
+    
+    The API uses URL versioning (e.g., /api/v1/). Breaking changes will increment the major version.
+  version: 1.0.0
+  contact:
+    name: ODAVL Support
+    email: support@odavl.com
+    url: https://odavl.com/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: https://odavl.com/terms
+
+servers:
+  - url: https://api.odavl.com/v1
+    description: Production server
+  - url: https://staging-api.odavl.com/v1
+    description: Staging server
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+
+tags:
+  - name: Insight
+    description: Error detection and analysis endpoints
+  - name: Autopilot
+    description: Autonomous improvement cycle endpoints
+  - name: Guardian
+    description: Testing and monitoring endpoints
+  - name: Auth
+    description: Authentication and authorization
+  - name: Health
+    description: Health check and metrics
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Returns the health status of the API server
+      tags:
+        - Health
+      security: []
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /auth/login:
+    post:
+      summary: User Login
+      description: Authenticate user and return JWT token
+      tags:
+        - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: SecurePassword123!
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /insight/detect:
+    post:
+      summary: Run Insight Detectors
+      description: |
+        Analyze codebase using ODAVL Insight detectors.
+        
+        Available detectors:
+        - typescript: TypeScript compiler errors
+        - eslint: ESLint violations
+        - imports: Import resolution issues
+        - packages: Package.json problems
+        - runtime: Runtime error patterns
+        - build: Build configuration issues
+        - security: Security vulnerabilities
+        - circular: Circular dependencies
+        - network: Network request issues
+        - performance: Performance bottlenecks
+        - complexity: Code complexity analysis
+        - isolation: Test isolation violations
+      tags:
+        - Insight
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projectPath
+              properties:
+                projectPath:
+                  type: string
+                  description: Absolute path to project root
+                  example: /Users/dev/my-project
+                detectors:
+                  type: array
+                  description: Specific detectors to run (default: all)
+                  items:
+                    type: string
+                    enum:
+                      - typescript
+                      - eslint
+                      - imports
+                      - packages
+                      - runtime
+                      - build
+                      - security
+                      - circular
+                      - network
+                      - performance
+                      - complexity
+                      - isolation
+                  example: ["typescript", "eslint", "security"]
+      responses:
+        '200':
+          description: Detection complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsightResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /autopilot/run:
+    post:
+      summary: Run Autopilot Cycle
+      description: Execute full O→D→A→V→L autonomous improvement cycle
+      tags:
+        - Autopilot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projectPath
+              properties:
+                projectPath:
+                  type: string
+                  description: Absolute path to project root
+                  example: /Users/dev/my-project
+                dryRun:
+                  type: boolean
+                  description: Run without making changes
+                  default: false
+                maxFiles:
+                  type: integer
+                  description: Max files to modify (risk budget)
+                  default: 10
+                  minimum: 1
+                  maximum: 50
+                maxLinesPerFile:
+                  type: integer
+                  description: Max lines per file edit
+                  default: 40
+                  minimum: 1
+                  maximum: 200
+      responses:
+        '200':
+          description: Autopilot cycle complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutopilotResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /autopilot/undo:
+    post:
+      summary: Undo Last Change
+      description: Rollback the last Autopilot change using undo snapshots
+      tags:
+        - Autopilot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projectPath
+              properties:
+                projectPath:
+                  type: string
+                  description: Absolute path to project root
+                  example: /Users/dev/my-project
+                snapshotId:
+                  type: string
+                  description: Specific snapshot ID to restore (default: latest)
+                  example: "2025-01-09T12-00-00-000Z"
+      responses:
+        '200':
+          description: Changes rolled back successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  filesRestored:
+                    type: integer
+                    example: 5
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Snapshot not found
+
+  /guardian/test:
+    post:
+      summary: Run Guardian Tests
+      description: |
+        Execute automated testing with Guardian test runners:
+        - e2e: End-to-end testing with video recording
+        - visual: Visual regression testing
+        - a11y: Accessibility testing (axe-core)
+        - i18n: Internationalization testing (9 languages)
+        - performance: Performance testing (Core Web Vitals)
+      tags:
+        - Guardian
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projectPath
+                - runners
+              properties:
+                projectPath:
+                  type: string
+                  description: Absolute path to project root
+                  example: /Users/dev/my-project
+                runners:
+                  type: array
+                  description: Test runners to execute
+                  items:
+                    type: string
+                    enum: [e2e, visual, a11y, i18n, performance]
+                  example: ["e2e", "a11y"]
+                headless:
+                  type: boolean
+                  description: Run in headless mode
+                  default: true
+                recordVideo:
+                  type: boolean
+                  description: Record test execution video
+                  default: false
+      responses:
+        '200':
+          description: Tests complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuardianTestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+
+  /guardian/monitor:
+    post:
+      summary: Start Monitoring
+      description: Start post-deploy monitoring with alerts
+      tags:
+        - Guardian
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - appUrl
+              properties:
+                appUrl:
+                  type: string
+                  format: uri
+                  description: Application URL to monitor
+                  example: https://my-app.com
+                checks:
+                  type: array
+                  description: Health check endpoints
+                  items:
+                    type: string
+                  example: ["/health", "/api/ready"]
+                alerts:
+                  type: object
+                  description: Alert configuration
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      example: alerts@example.com
+                    slack:
+                      type: string
+                      format: uri
+                      example: https://hooks.slack.com/services/xxx
+                    webhook:
+                      type: string
+                      format: uri
+                      example: https://my-webhook.com/odavl-alerts
+      responses:
+        '200':
+          description: Monitoring started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  monitoringId:
+                    type: string
+                    example: mon_abc123xyz
+                  status:
+                    type: string
+                    enum: [active, paused]
+                    example: active
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /recipes:
+    get:
+      summary: List Recipes
+      description: Get all improvement recipes with trust scores
+      tags:
+        - Autopilot
+      parameters:
+        - name: sortBy
+          in: query
+          description: Sort field
+          schema:
+            type: string
+            enum: [trust, name, lastUsed]
+            default: trust
+        - name: minTrust
+          in: query
+          description: Minimum trust score filter
+          schema:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1
+            default: 0.5
+      responses:
+        '200':
+          description: Recipe list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recipes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recipe'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /metrics:
+    get:
+      summary: Get Metrics
+      description: Retrieve project quality metrics
+      tags:
+        - Insight
+      parameters:
+        - name: projectPath
+          in: query
+          required: true
+          description: Project path
+          schema:
+            type: string
+            example: /Users/dev/my-project
+      responses:
+        '200':
+          description: Metrics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded, down]
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-01-09T12:00:00Z"
+        version:
+          type: string
+          example: 1.0.0
+        services:
+          type: object
+          properties:
+            database:
+              type: string
+              enum: [healthy, unhealthy]
+              example: healthy
+            redis:
+              type: string
+              enum: [healthy, unhealthy]
+              example: healthy
+
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: JWT access token
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        refreshToken:
+          type: string
+          description: Refresh token for renewing access
+          example: rt_abc123xyz
+        expiresIn:
+          type: integer
+          description: Token expiration time in seconds
+          example: 3600
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              example: usr_abc123
+            email:
+              type: string
+              format: email
+              example: user@example.com
+            tier:
+              type: string
+              enum: [free, pro, enterprise]
+              example: pro
+
+    InsightResponse:
+      type: object
+      properties:
+        runId:
+          type: string
+          example: run_20250109_120000
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-01-09T12:00:00Z"
+        detectors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: typescript
+              issues:
+                type: integer
+                example: 5
+              severity:
+                type: string
+                enum: [critical, high, medium, low]
+                example: high
+              executionTime:
+                type: integer
+                description: Execution time in milliseconds
+                example: 1234
+        totalIssues:
+          type: integer
+          example: 47
+        metrics:
+          $ref: '#/components/schemas/Metrics'
+
+    AutopilotResponse:
+      type: object
+      properties:
+        runId:
+          type: string
+          example: run_20250109_120000
+        status:
+          type: string
+          enum: [success, failed, partial]
+          example: success
+        phases:
+          type: object
+          properties:
+            observe:
+              type: object
+              properties:
+                duration:
+                  type: integer
+                  description: Duration in milliseconds
+                  example: 2340
+                issuesFound:
+                  type: integer
+                  example: 12
+            decide:
+              type: object
+              properties:
+                duration:
+                  type: integer
+                  example: 150
+                recipeSelected:
+                  type: string
+                  example: fix-typescript-errors
+                recipeTrust:
+                  type: number
+                  format: float
+                  example: 0.87
+            act:
+              type: object
+              properties:
+                duration:
+                  type: integer
+                  example: 5600
+                filesModified:
+                  type: integer
+                  example: 3
+                linesChanged:
+                  type: integer
+                  example: 45
+            verify:
+              type: object
+              properties:
+                duration:
+                  type: integer
+                  example: 3200
+                passed:
+                  type: boolean
+                  example: true
+                issuesResolved:
+                  type: integer
+                  example: 8
+            learn:
+              type: object
+              properties:
+                duration:
+                  type: integer
+                  example: 80
+                trustUpdated:
+                  type: number
+                  format: float
+                  example: 0.89
+        undoSnapshot:
+          type: string
+          description: Snapshot ID for rollback
+          example: "2025-01-09T12-00-00-000Z"
+
+    GuardianTestResponse:
+      type: object
+      properties:
+        runId:
+          type: string
+          example: test_20250109_120000
+        runners:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: e2e
+              status:
+                type: string
+                enum: [passed, failed]
+                example: passed
+              duration:
+                type: integer
+                description: Duration in milliseconds
+                example: 15340
+              testCount:
+                type: integer
+                example: 25
+              failures:
+                type: integer
+                example: 0
+              artifacts:
+                type: array
+                description: Generated artifacts (videos, screenshots, reports)
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [video, screenshot, report]
+                      example: video
+                    path:
+                      type: string
+                      example: /artifacts/test-video-001.mp4
+        totalTests:
+          type: integer
+          example: 25
+        totalFailures:
+          type: integer
+          example: 0
+
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: string
+          example: fix-typescript-errors
+        name:
+          type: string
+          example: Fix TypeScript Errors
+        description:
+          type: string
+          example: Automatically fix common TypeScript compilation errors
+        trust:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          example: 0.87
+        runs:
+          type: integer
+          description: Total execution count
+          example: 45
+        successes:
+          type: integer
+          description: Successful execution count
+          example: 39
+        lastUsed:
+          type: string
+          format: date-time
+          example: "2025-01-08T15:30:00Z"
+
+    Metrics:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-01-09T12:00:00Z"
+        typescript:
+          type: object
+          properties:
+            errors:
+              type: integer
+              example: 5
+            warnings:
+              type: integer
+              example: 12
+        eslint:
+          type: object
+          properties:
+            errors:
+              type: integer
+              example: 3
+            warnings:
+              type: integer
+              example: 8
+        codeQuality:
+          type: object
+          properties:
+            totalFiles:
+              type: integer
+              example: 247
+            linesOfCode:
+              type: integer
+              example: 15340
+            complexity:
+              type: number
+              format: float
+              example: 8.4
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          example: AUTH_FAILED
+        message:
+          type: string
+          example: Invalid API key
+        details:
+          type: object
+          additionalProperties: true
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid input parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: BAD_REQUEST
+            message: Invalid project path
+    
+    Unauthorized:
+      description: Unauthorized - Invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: AUTH_FAILED
+            message: Invalid API key or token
+    
+    RateLimitExceeded:
+      description: Rate limit exceeded - Too many requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: RATE_LIMIT_EXCEEDED
+            message: Rate limit exceeded. Upgrade to Pro for higher limits.
+            details:
+              limit: 100
+              remaining: 0
+              resetAt: "2025-01-09T13:00:00Z"

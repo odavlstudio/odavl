@@ -1,0 +1,17 @@
+{
+  "unknown_test-issue_react_component": {
+    "pattern_id": "unknown_test-issue_react_component",
+    "detector": "unknown",
+    "issue_type": "test-issue",
+    "code_pattern": "VAR VAR = VAR.VAR;",
+    "context_requirements": [
+      "framework:react",
+      "pattern:component",
+      "filetype:.ts"
+    ],
+    "success_rate": 1,
+    "confidence_multiplier": 1.05,
+    "learned_from": 2,
+    "last_updated": "2025-11-26T01:08:35.906Z"
+  }
+}

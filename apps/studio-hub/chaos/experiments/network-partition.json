@@ -1,0 +1,248 @@
+{
+  "version": "1.0.0",
+  "title": "Network Partition - Service-to-Service Communication Failure",
+  "description": "Simulates network partition between studio-hub and database services. Tests the system's ability to handle network failures, connection retries, and graceful degradation.",
+  "tags": [
+    "network",
+    "partition",
+    "resilience",
+    "communication"
+  ],
+  "configuration": {
+    "kubernetes_namespace": {
+      "type": "env",
+      "key": "CHAOS_K8S_NAMESPACE",
+      "default": "odavl-staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    },
+    "partition_duration_seconds": {
+      "type": "env",
+      "key": "PARTITION_DURATION",
+      "default": "30"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "Services can communicate with each other",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "studio-hub-responds",
+        "tolerance": {
+          "type": "http",
+          "status": 200
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/health",
+          "timeout": 5
+        }
+      },
+      {
+        "type": "probe",
+        "name": "database-accessible-from-app",
+        "tolerance": {
+          "type": "http",
+          "status": 200
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/trpc/health.getDatabaseStatus",
+          "timeout": 5
+        }
+      },
+      {
+        "type": "probe",
+        "name": "network-latency-normal",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 100]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "histogram_quantile(0.95, rate(http_request_duration_milliseconds_bucket[1m]))",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "create-network-partition",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "create_network_policy",
+        "arguments": {
+          "ns": "${kubernetes_namespace}",
+          "name": "chaos-partition-studio-hub-to-postgres",
+          "spec": {
+            "podSelector": {
+              "matchLabels": {
+                "app": "studio-hub"
+              }
+            },
+            "policyTypes": ["Egress"],
+            "egress": [
+              {
+                "to": [
+                  {
+                    "podSelector": {
+                      "matchExpressions": [
+                        {
+                          "key": "app",
+                          "operator": "NotIn",
+                          "values": ["postgres"]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-partition-active",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.probes",
+        "func": "network_policy_exists",
+        "arguments": {
+          "name": "chaos-partition-studio-hub-to-postgres",
+          "ns": "${kubernetes_namespace}"
+        }
+      },
+      "pauses": {
+        "after": 3
+      }
+    },
+    {
+      "type": "probe",
+      "name": "test-database-connectivity-fails",
+      "tolerance": {
+          "type": "http",
+          "status": [503, 504, 500]
+        },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+        "timeout": 15
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "monitor-error-rate-increase",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(http_requests_total{status=~\"5..\"}[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "check-circuit-breaker-activated",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "circuit_breaker_state{service=\"database\"}",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "before": 5,
+        "after": 10
+      }
+    },
+    {
+      "type": "action",
+      "name": "remove-network-partition",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "delete_network_policy",
+        "arguments": {
+          "name": "chaos-partition-studio-hub-to-postgres",
+          "ns": "${kubernetes_namespace}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-connectivity-restored",
+      "tolerance": {
+        "type": "http",
+        "status": 200
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/health.getDatabaseStatus",
+        "timeout": 10
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-application-recovered",
+      "tolerance": {
+        "type": "http",
+        "status": 200
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+        "timeout": 5
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "ensure-network-policy-removed",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "delete_network_policy",
+        "arguments": {
+          "name": "chaos-partition-studio-hub-to-postgres",
+          "ns": "${kubernetes_namespace}"
+        }
+      }
+    }
+  ]
+}

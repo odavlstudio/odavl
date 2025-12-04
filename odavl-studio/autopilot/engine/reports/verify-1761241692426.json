@@ -1,0 +1,17 @@
+{
+  "after": {
+    "eslintWarnings": 176,
+    "typeErrors": 2,
+    "timestamp": "2025-10-23T17:48:09.615Z"
+  },
+  "deltas": {
+    "eslint": 176,
+    "types": 2
+  },
+  "gatesPassed": false,
+  "gates": {},
+  "passed": false,
+  "errors": [
+    "Shadow verification failed"
+  ]
+}

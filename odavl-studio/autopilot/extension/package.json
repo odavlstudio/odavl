@@ -1,0 +1,105 @@
+{
+  "name": "odavl-autopilot-vscode",
+  "displayName": "ODAVL Autopilot",
+  "description": "Self-healing code infrastructure with O-D-A-V-L cycle automation and recipe-based improvements",
+  "version": "0.1.0",
+  "publisher": "odavl",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Linters",
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "self-healing",
+    "automation",
+    "code-quality",
+    "refactoring",
+    "odavl",
+    "recipes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavl-studio/odavl.git",
+    "directory": "odavl-studio/autopilot/extension"
+  },
+  "bugs": {
+    "url": "https://github.com/odavl-studio/odavl/issues"
+  },
+  "homepage": "https://odavl.studio",
+  "galleryBanner": {
+    "color": "#10b981",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "odavl-autopilot.runCycle",
+        "title": "ODAVL Autopilot: Run Full Cycle"
+      },
+      {
+        "command": "odavl-autopilot.runPhase",
+        "title": "ODAVL Autopilot: Run Single Phase"
+      },
+      {
+        "command": "odavl-autopilot.undo",
+        "title": "ODAVL Autopilot: Undo Last Change"
+      },
+      {
+        "command": "odavl-autopilot.viewLedger",
+        "title": "ODAVL Autopilot: View Ledger"
+      }
+    ],
+    "configuration": {
+      "title": "ODAVL Autopilot",
+      "properties": {
+        "odavl-autopilot.autoOpenLedger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open ledger after run"
+        },
+        "odavl-autopilot.maxFiles": {
+          "type": "number",
+          "default": 10,
+          "description": "Maximum files per cycle"
+        },
+        "odavl-autopilot.maxLOC": {
+          "type": "number",
+          "default": 40,
+          "description": "Maximum LOC per file"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "odavl-autopilot-recipes",
+          "name": "ODAVL Autopilot Recipes"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.0.0",
+    "esbuild": "^0.27.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@odavl-studio/autopilot-engine": "workspace:^"
+  }
+}

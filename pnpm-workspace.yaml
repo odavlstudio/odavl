@@ -1,0 +1,10 @@
+packages:
+  - "odavl-studio/insight/*"
+  - "odavl-studio/autopilot/*"
+  - "odavl-studio/guardian/*"
+  - "apps/*"
+  - "packages/*"
+  - "packages/plugins/*"
+  - "tools/*"
+  - "internal/*"
+  - "github-actions"

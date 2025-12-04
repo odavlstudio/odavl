@@ -1,0 +1,36 @@
+# Markdownlint configuration for ODAVL project
+globs:
+  - "**/*.md"
+
+ignores:
+  - "**/node_modules/**"
+  - "**/.next/**"
+  - "**/dist/**"
+  - "**/out/**"
+  - "**/.odavl/**"
+
+config:
+  # MD033: Inline HTML - allow for tables and special formatting
+  MD033: false
+
+  # MD040: Fenced code blocks should have a language specified
+  MD040: false
+
+  # MD024: Multiple headings with the same content - allow in different sections
+  MD024:
+    siblings_only: true
+
+  # MD013: Line length - disable (too restrictive for technical docs)
+  MD013: false
+
+  # MD041: First line in file should be a top level heading
+  MD041: false
+
+  # MD034: Bare URL used - disable (common in docs)
+  MD034: false
+
+  # MD036: Emphasis used as heading
+  MD036: false
+
+  # MD060: Table column style
+  MD060: false

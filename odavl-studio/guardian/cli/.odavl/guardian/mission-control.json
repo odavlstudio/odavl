@@ -1,0 +1,19 @@
+{
+  "context": {
+    "name": "@odavl-studio/guardian-cli",
+    "type": "single",
+    "primaryLanguage": "typescript",
+    "languageBreakdown": [
+      {
+        "language": "typescript",
+        "percentage": 70
+      },
+      {
+        "language": "javascript",
+        "percentage": 27
+      }
+    ]
+  },
+  "history": [],
+  "updatedAt": "2025-12-01T16:17:21.336Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "security-hardening",
+  "name": "Security Hardening",
+  "description": "Fixes security vulnerabilities",
+  "trust": 0.95,
+  "priority": 10,
+  "condition": {
+    "type": "threshold",
+    "rules": [
+      {
+        "metric": "securityIssues",
+        "operator": ">=",
+        "value": 1
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "shell",
+      "command": "pnpm audit --fix",
+      "description": "Fix security issues"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+name: 'ODAVL Code Quality'
+description: 'AI-powered code quality analysis with 78% auto-fix rate'
+author: 'ODAVL Studio'
+
+branding:
+  icon: 'zap'
+  color: 'blue'
+
+inputs:
+  github-token:
+    description: 'GitHub token for creating checks and comments'
+    required: true
+  
+  auto-fix:
+    description: 'Automatically fix issues and commit changes (true/false)'
+    required: false
+    default: 'true'
+  
+  detectors:
+    description: 'Comma-separated list of detectors to run (typescript,eslint,security,performance,all)'
+    required: false
+    default: 'all'
+  
+  max-files:
+    description: 'Maximum number of files to auto-fix per run'
+    required: false
+    default: '10'
+  
+  max-loc-per-file:
+    description: 'Maximum lines of code to modify per file'
+    required: false
+    default: '40'
+  
+  create-pr:
+    description: 'Create pull request with fixes instead of direct commit (true/false)'
+    required: false
+    default: 'false'
+  
+  fail-on-errors:
+    description: 'Fail the workflow if errors are found (true/false)'
+    required: false
+    default: 'false'
+
+outputs:
+  issues-found:
+    description: 'Number of issues found by analysis'
+  
+  issues-fixed:
+    description: 'Number of issues fixed automatically'
+  
+  fix-rate:
+    description: 'Percentage of issues fixed (0-100)'
+  
+  analysis-url:
+    description: 'URL to full analysis report'
+  
+  pr-number:
+    description: 'Pull request number if create-pr is true'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

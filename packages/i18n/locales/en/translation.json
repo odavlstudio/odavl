@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "ODAVL Studio",
+    "welcome": "Welcome to ODAVL Studio",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "insight": {
+    "title": "ODAVL Insight",
+    "description": "AI-powered error detection",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing...",
+    "issuesFound": "{{count}} issues found",
+    "noIssues": "No issues found",
+    "severity": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "detectors": {
+      "typescript": "TypeScript",
+      "eslint": "ESLint",
+      "security": "Security",
+      "performance": "Performance"
+    }
+  },
+  "autopilot": {
+    "title": "ODAVL Autopilot",
+    "description": "Self-healing code infrastructure",
+    "run": "Run Autopilot",
+    "running": "Running...",
+    "phases": {
+      "observe": "Observe",
+      "decide": "Decide",
+      "act": "Act",
+      "verify": "Verify",
+      "learn": "Learn"
+    }
+  },
+  "guardian": {
+    "title": "ODAVL Guardian",
+    "description": "Pre-deploy quality gates",
+    "test": "Run Tests",
+    "testing": "Testing...",
+    "passed": "Passed",
+    "failed": "Failed"
+  },
+  "plugins": {
+    "title": "Plugin Marketplace",
+    "search": "Search plugins...",
+    "install": "Install",
+    "uninstall": "Uninstall",
+    "installed": "Installed",
+    "verified": "Verified"
+  }
+}

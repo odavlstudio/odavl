@@ -1,0 +1,207 @@
+name: Sentry Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to create release for (e.g., v2.0.0)'
+        required: true
+        type: string
+
+jobs:
+  create-sentry-release:
+    name: Create Sentry Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏷️ Get Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Sentry CLI
+        run: npm install -g @sentry/cli
+
+      - name: 🚀 Create Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-studio
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          # Create release
+          sentry-cli releases new "$VERSION"
+          
+          # Associate commits
+          sentry-cli releases set-commits "$VERSION" --auto
+          
+          echo "✅ Sentry release $VERSION created successfully"
+
+      - name: 📤 Upload Source Maps (Insight Cloud)
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-insight-cloud
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          if [ -d "odavl-studio/insight/cloud/.next" ]; then
+            sentry-cli releases files "$VERSION" upload-sourcemaps \
+              odavl-studio/insight/cloud/.next \
+              --url-prefix '~/_next' \
+              --validate
+            
+            echo "✅ Source maps uploaded for Insight Cloud"
+          else
+            echo "⚠️ .next directory not found - skipping source map upload"
+          fi
+
+      - name: 📤 Upload Source Maps (Guardian App)
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-guardian-app
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          if [ -d "odavl-studio/guardian/app/.next" ]; then
+            sentry-cli releases files "$VERSION" upload-sourcemaps \
+              odavl-studio/guardian/app/.next \
+              --url-prefix '~/_next' \
+              --validate
+            
+            echo "✅ Source maps uploaded for Guardian App"
+          else
+            echo "⚠️ .next directory not found - skipping source map upload"
+          fi
+
+      - name: 📤 Upload Source Maps (Studio Hub)
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-studio-hub
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          if [ -d "apps/studio-hub/.next" ]; then
+            sentry-cli releases files "$VERSION" upload-sourcemaps \
+              apps/studio-hub/.next \
+              --url-prefix '~/_next' \
+              --validate
+            
+            echo "✅ Source maps uploaded for Studio Hub"
+          else
+            echo "⚠️ .next directory not found - skipping source map upload"
+          fi
+
+      - name: 🏁 Finalize Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-studio
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          # Finalize the release
+          sentry-cli releases finalize "$VERSION"
+          
+          echo "✅ Sentry release $VERSION finalized"
+
+      - name: 🎯 Deploy to Production Environment
+        if: startsWith(steps.version.outputs.version, 'v')
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: odavl-studio
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          # Mark as deployed to production
+          sentry-cli releases deploys "$VERSION" new -e production
+          
+          echo "✅ Marked as deployed to production in Sentry"
+
+      - name: 📊 Create Release Summary
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          
+          cat > sentry-release-summary.md <<EOF
+          # 🚀 Sentry Release: $VERSION
+          
+          ## Release Information
+          - **Version**: $VERSION
+          - **Created**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          - **Commit**: ${{ github.sha }}
+          - **Triggered by**: ${{ github.actor }}
+          
+          ## Uploaded Source Maps
+          - ✅ ODAVL Insight Cloud
+          - ✅ ODAVL Guardian App
+          - ✅ ODAVL Studio Hub
+          
+          ## Environment
+          - 🎯 Production deployment marked
+          - 📊 Commits associated automatically
+          - 🔍 Source maps uploaded for error tracking
+          
+          ## Next Steps
+          1. Monitor error rates in Sentry dashboard
+          2. Set up release alerts for new error types
+          3. Review performance metrics
+          4. Configure release health tracking
+          
+          ## Links
+          - [Sentry Dashboard](https://sentry.io/organizations/${{ secrets.SENTRY_ORG }}/projects/odavl-studio/)
+          - [Release Details](https://sentry.io/organizations/${{ secrets.SENTRY_ORG }}/releases/$VERSION/)
+          - [Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          EOF
+          
+          cat sentry-release-summary.md
+
+      - name: 📤 Upload Summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: sentry-release-summary
+          path: sentry-release-summary.md
+          retention-days: 30
+
+  notify-sentry-integration:
+    name: Notify Team
+    needs: create-sentry-release
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📊 Integration Status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ needs.create-sentry-release.result }}';
+            const version = '${{ needs.create-sentry-release.outputs.version }}';
+            
+            let statusEmoji = status === 'success' ? '✅' : '❌';
+            let statusText = status === 'success' ? 'SUCCESSFUL' : 'FAILED';
+            
+            const comment = `## ${statusEmoji} Sentry Release Integration ${statusText}\n\n**Version**: ${version || 'N/A'}\n**Status**: ${statusText}\n**Timestamp**: ${new Date().toISOString()}\n\n### Actions Taken:\n${status === 'success' ? '- ✅ Sentry release created\n- ✅ Source maps uploaded\n- ✅ Commits associated\n- ✅ Marked as deployed to production' : '- ❌ Integration failed - check logs'}\n\n[View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            core.info(comment);

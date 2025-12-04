@@ -1,0 +1,2 @@
+ÔÇëERRORÔÇë Unknown options: 'coverage', 'project'
+For help, run: pnpm help test

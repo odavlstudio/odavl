@@ -1,0 +1,16 @@
+id: taint-fs-net
+area: all
+priority: High
+match:
+  files: ["**/*.{ts,tsx}"]
+check:
+  rules:
+    - name: direct-fs-access
+      fail_if_regex: "require\(['\"]fs['\"]\)"
+    - name: net-access
+      fail_if_regex: "require\(['\"]net['\"]\)"
+    - name: child-process
+      fail_if_regex: "require\(['\"]child_process['\"]\)"
+propose:
+  playbook: harden-fs-net
+  rationale: "Minimize direct FS/Net/Process access. Use safe wrappers."

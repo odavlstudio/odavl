@@ -1,0 +1,286 @@
+{
+  "path": "C:\\Users\\sabou\\AppData\\Local\\Temp\\guardian-phase3-test\\extension",
+  "timestamp": "2025-12-01T15:57:54.625Z",
+  "overallScore": 63,
+  "status": "fail",
+  "readyToPublish": false,
+  "activation": {
+    "score": 100,
+    "time": 0,
+    "acceptable": true,
+    "issues": []
+  },
+  "packageJson": {
+    "score": 18,
+    "complete": false,
+    "requiredFields": [
+      {
+        "field": "name",
+        "present": true,
+        "valid": true
+      },
+      {
+        "field": "displayName",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "description",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "version",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "publisher",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "engines",
+        "present": true,
+        "valid": "^1.80.0"
+      },
+      {
+        "field": "categories",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "activationEvents",
+        "present": false,
+        "valid": false
+      }
+    ],
+    "optionalFields": [
+      {
+        "field": "icon",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "repository",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "license",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "keywords",
+        "present": false,
+        "valid": false
+      },
+      {
+        "field": "galleryBanner",
+        "present": false,
+        "valid": false
+      }
+    ],
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: displayName",
+        "recommendation": "Add \"displayName\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: description",
+        "recommendation": "Add \"description\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: version",
+        "recommendation": "Add \"version\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: publisher",
+        "recommendation": "Add \"publisher\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: categories",
+        "recommendation": "Add \"categories\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: activationEvents",
+        "recommendation": "Add \"activationEvents\" to package.json"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: icon",
+        "recommendation": "Consider adding \"icon\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: repository",
+        "recommendation": "Consider adding \"repository\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: license",
+        "recommendation": "Consider adding \"license\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: keywords",
+        "recommendation": "Consider adding \"keywords\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: galleryBanner",
+        "recommendation": "Consider adding \"galleryBanner\" for better discoverability"
+      }
+    ]
+  },
+  "commands": {
+    "score": 100,
+    "total": 0,
+    "registered": 0,
+    "issues": [
+      {
+        "severity": "low",
+        "category": "Commands",
+        "message": "No commands defined",
+        "recommendation": "Consider adding commands for key functionality"
+      }
+    ]
+  },
+  "documentation": {
+    "score": 0,
+    "hasReadme": false,
+    "hasChangelog": false,
+    "hasLicense": false,
+    "hasScreenshots": false,
+    "readmeQuality": 0,
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "Documentation",
+        "message": "README.md not found",
+        "recommendation": "Create comprehensive README with features, usage, screenshots"
+      },
+      {
+        "severity": "medium",
+        "category": "Documentation",
+        "message": "CHANGELOG.md not found",
+        "recommendation": "Create CHANGELOG to track version history"
+      },
+      {
+        "severity": "high",
+        "category": "Documentation",
+        "message": "LICENSE file not found",
+        "recommendation": "Add LICENSE file (e.g., MIT, Apache-2.0)"
+      }
+    ]
+  },
+  "marketplace": {
+    "score": 0,
+    "compliant": false,
+    "checks": {
+      "hasIcon": false,
+      "iconSize": {
+        "width": 0,
+        "height": 0,
+        "valid": false
+      },
+      "hasBadge": false,
+      "hasCategories": false,
+      "hasKeywords": false,
+      "hasGalleryBanner": false
+    },
+    "issues": [
+      {
+        "severity": "high",
+        "category": "Marketplace",
+        "message": "No icon specified",
+        "recommendation": "Add icon (128x128 PNG) for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "Marketplace",
+        "message": "No categories specified",
+        "recommendation": "Add categories for better discoverability"
+      },
+      {
+        "severity": "low",
+        "category": "Marketplace",
+        "message": "No keywords specified",
+        "recommendation": "Add keywords for better search results"
+      },
+      {
+        "severity": "low",
+        "category": "Marketplace",
+        "message": "No gallery banner color",
+        "recommendation": "Add galleryBanner for consistent branding"
+      }
+    ]
+  },
+  "security": {
+    "score": 100,
+    "secure": true,
+    "checks": {
+      "noHardcodedSecrets": true,
+      "noSensitiveData": true,
+      "usesSecureStorage": true
+    },
+    "findings": [],
+    "issues": []
+  },
+  "telemetry": {
+    "score": 100,
+    "hasTelemetry": false,
+    "hasPrivacyStatement": false,
+    "hasOptOut": false,
+    "issues": []
+  },
+  "bundle": {
+    "score": 100,
+    "size": 56,
+    "acceptable": true,
+    "optimized": true,
+    "issues": []
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Complete package.json",
+      "reason": "Missing required fields",
+      "impact": "Extension will not publish",
+      "estimatedTime": "30 minutes"
+    },
+    {
+      "priority": "high",
+      "action": "Improve documentation",
+      "reason": "README is missing or incomplete",
+      "impact": "Users won't understand extension",
+      "estimatedTime": "1-2 hours"
+    },
+    {
+      "priority": "medium",
+      "action": "Meet Marketplace guidelines",
+      "reason": "Missing icon or categories",
+      "impact": "Poor discoverability",
+      "estimatedTime": "30 minutes"
+    }
+  ],
+  "reportPath": ""
+}

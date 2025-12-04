@@ -1,0 +1,139 @@
+# Artillery Load Testing Configuration
+#
+# Tests Guardian API under realistic load conditions
+#
+# Usage:
+#   npx artillery run artillery.yml                    # Run load test
+#   npx artillery run --output report.json artillery.yml  # Generate report
+#   npx artillery report report.json                   # View HTML report
+
+config:
+  target: "http://localhost:3003"
+  phases:
+    # Phase 1: Warm-up (10 users for 30 seconds)
+    - duration: 30
+      arrivalRate: 10
+      name: "Warm-up phase"
+
+    # Phase 2: Ramp-up (increase from 10 to 50 users over 1 minute)
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp-up phase"
+
+    # Phase 3: Sustained load (50 users for 2 minutes)
+    - duration: 120
+      arrivalRate: 50
+      name: "Sustained load phase"
+
+    # Phase 4: Spike (100 users for 30 seconds)
+    - duration: 30
+      arrivalRate: 100
+      name: "Spike phase"
+
+    # Phase 5: Cool-down (50 users for 30 seconds)
+    - duration: 30
+      arrivalRate: 50
+      name: "Cool-down phase"
+
+  # Load testing plugins
+  plugins:
+    metrics-by-endpoint:
+      # Track metrics per endpoint
+      stripQueryString: false
+      metricsNamespace: "guardian_api"
+
+  # Performance targets (SLOs)
+  ensure:
+    maxErrorRate: 1 # Max 1% error rate
+    p95: 200 # P95 response time < 200ms
+    p99: 500 # P99 response time < 500ms
+
+  # Variables
+  variables:
+    projectId: "test-project-1"
+    organizationId: "test-org-1"
+
+scenarios:
+  # Scenario 1: Monitor listing (most common)
+  - name: "Get Monitors"
+    weight: 40
+    flow:
+      - get:
+          url: "/api/monitors?projectId={{ projectId }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: monitors
+
+  # Scenario 2: Test runs listing
+  - name: "Get Test Runs"
+    weight: 30
+    flow:
+      - get:
+          url: "/api/test-runs?projectId={{ projectId }}&limit=50"
+          expect:
+            - statusCode: 200
+            - contentType: json
+
+  # Scenario 3: Analytics timeseries
+  - name: "Get Analytics Timeseries"
+    weight: 20
+    flow:
+      - get:
+          url: "/api/analytics/timeseries?metric=tests&days=30"
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: data
+
+  # Scenario 4: Health check (lightweight)
+  - name: "Health Check"
+    weight: 10
+    flow:
+      - get:
+          url: "/api/health"
+          expect:
+            - statusCode: 200
+
+  # Scenario 5: Mixed workflow (realistic user behavior)
+  - name: "User Workflow"
+    weight: 20
+    flow:
+      # 1. Check health
+      - get:
+          url: "/api/health"
+
+      # 2. Get monitors
+      - get:
+          url: "/api/monitors?projectId={{ projectId }}"
+          capture:
+            - json: "$.monitors[0].id"
+              as: "monitorId"
+
+      # 3. Get test runs
+      - get:
+          url: "/api/test-runs?projectId={{ projectId }}&limit=20"
+
+      # 4. Get analytics
+      - get:
+          url: "/api/analytics/timeseries?metric=tests&days=7"
+
+      # Think time (user reading results)
+      - think: 2
+
+# Custom HTTP headers
+http:
+  timeout: 10000 # 10 seconds
+  headers:
+    User-Agent: "Artillery-Load-Test"
+    Accept: "application/json"
+
+# Metrics collection
+metrics:
+  - name: "response_time"
+    type: "histogram"
+  - name: "request_rate"
+    type: "counter"
+  - name: "error_rate"
+    type: "rate"

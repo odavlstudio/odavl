@@ -1,0 +1,94 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.0.3
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô¿» Failed to find font override values for font `Geist`
+ Ô¿» Failed to find font override values for font `Geist Mono`
+ Ô¿» Failed to find font override values for font `Geist`
+ Ô¿» Failed to find font override values for font `Geist Mono`
+
+[316.98ms] [@tailwindcss/postcss] app\globals.css
+[  0.07ms]   Ôå│ Quick bail check
+[ 12.19ms]   Ôå│ Setup compiler
+[  0.34ms]     Ôå│ PostCSS AST -> Tailwind CSS AST
+[ 11.81ms]     Ôå│ Create compiler
+[  0.82ms]   Ôå│ Register full rebuild paths
+[  2.47ms]   Ôå│ Setup scanner
+[132.25ms]   Ôå│ Scan for candidates
+[122.80ms]   Ôå│ Register dependency messages
+[ 40.65ms]   Ôå│ Build utilities
+[  3.45ms]   Ôå│ Transform Tailwind CSS AST into PostCSS AST
+[  1.75ms]   Ôå│ Update PostCSS AST
+
+ Ô¿» Failed to find font override values for font `Geist`
+ Ô¿» Failed to find font override values for font `Geist Mono`
+ Ô¿» Failed to find font override values for font `Geist`
+ Ô¿» Failed to find font override values for font `Geist Mono`
+
+[1.58ms] [@tailwindcss/postcss] ..\..\node_modules\.pnpm\swagger-ui-react@5.30.2_@types+react@19.2.6_react-dom@19.2.0_react@19.2.0__react@19.2.0\node_modules\swagger-ui-react\swagger-ui.css
+[1.56ms]   Ôå│ Quick bail check
+
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+
+   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+   The following mandatory changes were made to your tsconfig.json:
+
+   	- jsx was set to preserve (next.js implements its own optimized jsx transform)
+
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244
+            throw new Error('Failed to patch ESLint because the calling module was not recognized.\n' +
+                  ^
+
+Error: Failed to patch ESLint because the calling module was not recognized.
+If you are using a newer ESLint version that may be unsupported, please create a GitHub issue:
+https://github.com/microsoft/rushstack/issues
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\modern-module-resolution.js:11:23)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+
+Node.js v20.19.5
+   Collecting page data ...
+ ÔÜá Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/132) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at K (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@15.0.3_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_babel-plugin-_csi5wcvfuywf5eybb7pak27imq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\3403.js:6:1263)
+    at Object.react_stack_bottom_frame (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:10313:18)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5399:19)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5834:23)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5820:11)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at K (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@15.0.3_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_babel-plugin-_csi5wcvfuywf5eybb7pak27imq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\3403.js:6:1263)
+    at Object.react_stack_bottom_frame (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:10313:18)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5399:19)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5834:23)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5820:11)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+Export encountered an error on /_error: /404, exiting the build.
+ Ô¿» Static worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

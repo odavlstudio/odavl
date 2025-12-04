@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-11-30T12:00:00.000Z",
+  "accuracy": 85,
+  "readiness": 75,
+  "confidence": 95,
+  "executionTime": 3190,
+  "issues": [
+    {
+      "message": "TypeScript error: Property 'map' does not exist on type 'never'",
+      "severity": "critical",
+      "file": "src/components/App.tsx",
+      "line": 45
+    },
+    {
+      "message": "ESLint: 'console.log' is not allowed",
+      "severity": "medium",
+      "file": "src/utils/debug.ts",
+      "line": 12
+    }
+  ]
+}

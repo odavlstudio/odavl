@@ -1,0 +1,49 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <!-- Background gradient -->
+    <defs>
+        <linearGradient id="autopilotBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="autopilotAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Rounded square background -->
+    <rect width="128" height="128" rx="24" fill="url(#autopilotBg)"/>
+
+    <!-- Gear/automation icon (center) -->
+    <g transform="translate(64, 64)">
+        <!-- Main gear circle -->
+        <circle r="22" fill="url(#autopilotAccent)"/>
+
+        <!-- Gear teeth (8 teeth) -->
+        <g fill="#ffffff">
+            <rect x="-4" y="-28" width="8" height="8" rx="1"/>
+            <rect x="-4" y="20" width="8" height="8" rx="1"/>
+            <rect x="20" y="-4" width="8" height="8" rx="1"/>
+            <rect x="-28" y="-4" width="8" height="8" rx="1"/>
+
+            <rect x="16" y="-20" width="7" height="7" rx="1" transform="rotate(45 19.5 -16.5)"/>
+            <rect x="-23" y="-20" width="7" height="7" rx="1" transform="rotate(-45 -19.5 -16.5)"/>
+            <rect x="16" y="13" width="7" height="7" rx="1" transform="rotate(-45 19.5 16.5)"/>
+            <rect x="-23" y="13" width="7" height="7" rx="1" transform="rotate(45 -19.5 16.5)"/>
+        </g>
+
+        <!-- Center hole -->
+        <circle r="8" fill="#059669"/>
+
+        <!-- Play/automation arrow inside -->
+        <path d="M -3 -5 L -3 5 L 5 0 Z" fill="#ffffff"/>
+    </g>
+
+    <!-- Circular arrows indicating automation loop -->
+    <path d="M 35 25 Q 30 20 30 15 Q 30 10 35 8" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <polygon points="37,6 33,10 38,11" fill="#ffffff" opacity="0.7"/>
+
+    <path d="M 93 103 Q 98 108 98 113 Q 98 118 93 120" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <polygon points="91,122 95,118 90,117" fill="#ffffff" opacity="0.7"/>
+</svg>

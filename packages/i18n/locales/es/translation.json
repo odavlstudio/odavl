@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "ODAVL Studio",
+    "welcome": "Bienvenido",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar"
+  },
+  "insight": {
+    "title": "ODAVL Insight",
+    "description": "Detección de errores con IA",
+    "analyze": "Analizar código",
+    "severity": {
+      "critical": "Crítico",
+      "high": "Alto",
+      "medium": "Medio",
+      "low": "Bajo"
+    },
+    "detectors": {
+      "typescript": "Detector TypeScript",
+      "eslint": "Integración ESLint",
+      "security": "Vulnerabilidades de seguridad",
+      "performance": "Problemas de rendimiento",
+      "complexity": "Análisis de complejidad"
+    }
+  },
+  "autopilot": {
+    "title": "ODAVL Autopilot",
+    "description": "Infraestructura de código auto-reparable",
+    "phases": {
+      "observe": "Observar",
+      "decide": "Decidir",
+      "act": "Actuar",
+      "verify": "Verificar",
+      "learn": "Aprender"
+    },
+    "run": "Ejecutar ciclo de auto-reparación",
+    "undo": "Deshacer cambios",
+    "status": "Estado"
+  },
+  "guardian": {
+    "title": "ODAVL Guardian",
+    "description": "Pruebas previas al despliegue y monitoreo",
+    "test": "Probar aplicación",
+    "passed": "Aprobado",
+    "failed": "Fallido",
+    "pending": "Pendiente"
+  },
+  "plugins": {
+    "marketplace": "Mercado de plugins",
+    "search": "Buscar plugins",
+    "install": "Instalar",
+    "uninstall": "Desinstalar",
+    "installed": "Instalado",
+    "verified": "Verificado",
+    "official": "Oficial"
+  }
+}

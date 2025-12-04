@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "updated": "2025-11-26",
+  "environment": {
+    "os": "Windows 11",
+    "cpu": "Intel Core i7-12700K",
+    "memory": "32 GB",
+    "node": "20.10.0"
+  },
+  "baselines": {
+    "insight": {
+      "typescript-detector": {
+        "avgTime": 250,
+        "throughput": 4.0,
+        "memory": 50000000
+      },
+      "eslint-detector": {
+        "avgTime": 200,
+        "throughput": 5.0,
+        "memory": 35000000
+      },
+      "security-detector": {
+        "avgTime": 300,
+        "throughput": 3.3,
+        "memory": 30000000
+      },
+      "circular-detector": {
+        "avgTime": 150,
+        "throughput": 6.7,
+        "memory": 25000000
+      },
+      "import-detector": {
+        "avgTime": 100,
+        "throughput": 10.0,
+        "memory": 20000000
+      },
+      "performance-detector": {
+        "avgTime": 270,
+        "throughput": 3.7,
+        "memory": 28000000
+      },
+      "complexity-detector": {
+        "avgTime": 160,
+        "throughput": 6.3,
+        "memory": 22000000
+      }
+    },
+    "autopilot": {
+      "observe-phase": { "time": 1200, "memory": 25000000 },
+      "decide-phase": { "time": 300, "memory": 5000000 },
+      "act-phase": { "time": 2000, "memory": 45000000 },
+      "verify-phase": { "time": 1800, "memory": 38000000 },
+      "learn-phase": { "time": 400, "memory": 8000000 },
+      "total-cycle": { "time": 5700, "memory": 121000000 }
+    },
+    "guardian": {
+      "lighthouse-test": { "time": 8000, "memory": 250000000 },
+      "accessibility-test": { "time": 3000, "memory": 90000000 },
+      "screenshot-capture": { "time": 1500, "memory": 50000000 }
+    }
+  },
+  "thresholds": {
+    "maxRegression": 0.15,
+    "minImprovement": 0.05,
+    "description": "Performance regression > 15% triggers alert, improvement > 5% is noteworthy"
+  },
+  "notes": {
+    "insight": "Detector baselines based on typical TypeScript project with 100 files",
+    "autopilot": "Cycle baselines for moderate complexity project (5 files, 200 LOC changed)",
+    "guardian": "Test baselines for production website (Lighthouse score ~90-95)"
+  }
+}

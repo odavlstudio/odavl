@@ -1,0 +1,23 @@
+{
+  "models": {
+    "primary": "gpt-4-turbo",
+    "fallback": "claude-3-opus",
+    "offline": "odavl-detector-v1"
+  },
+  "strategy": {
+    "hybrid": true,
+    "ruleBased": true,
+    "semantic": true,
+    "aiEnhanced": true
+  },
+  "performance": {
+    "maxLatency": 3000,
+    "cacheEnabled": true,
+    "batchProcessing": true
+  },
+  "costs": {
+    "gpt4PerRequest": 0.01,
+    "claudePerRequest": 0.008,
+    "monthlyBudget": 1000
+  }
+}

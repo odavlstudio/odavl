@@ -1,0 +1,115 @@
+{
+  "models": [
+    {
+      "id": "error-classifier-v1",
+      "name": "Error Pattern Classifier",
+      "version": "1.0.0",
+      "type": "classification",
+      "framework": "tensorflow",
+      "trainedDate": "2025-11-26",
+      "status": "production",
+      "metrics": {
+        "accuracy": 0.94,
+        "precision": 0.92,
+        "recall": 0.91,
+        "f1Score": 0.915
+      },
+      "trainingData": {
+        "samples": 10000,
+        "features": 128,
+        "classes": 15,
+        "split": {
+          "train": 0.70,
+          "validation": 0.15,
+          "test": 0.15
+        }
+      },
+      "files": {
+        "model": "error-classifier-v1/model.json",
+        "weights": "error-classifier-v1/weights.bin",
+        "metadata": "error-classifier-v1/metadata.json",
+        "config": "error-classifier-v1/config.json"
+      },
+      "usage": "Classifies TypeScript/Python/Java errors into categories",
+      "inputShape": [128],
+      "outputShape": [15],
+      "deployedIn": ["insight-core"]
+    },
+    {
+      "id": "recipe-recommender-v1",
+      "name": "Recipe Recommendation Engine",
+      "version": "1.0.0",
+      "type": "recommendation",
+      "framework": "tensorflow",
+      "trainedDate": "2025-11-26",
+      "status": "production",
+      "metrics": {
+        "accuracy": 0.89,
+        "precision": 0.87,
+        "recall": 0.88,
+        "f1Score": 0.875,
+        "mAP": 0.91
+      },
+      "trainingData": {
+        "samples": 5000,
+        "features": 64,
+        "recipes": 42,
+        "split": {
+          "train": 0.70,
+          "validation": 0.15,
+          "test": 0.15
+        }
+      },
+      "files": {
+        "model": "recipe-recommender-v1/model.json",
+        "weights": "recipe-recommender-v1/weights.bin",
+        "metadata": "recipe-recommender-v1/metadata.json",
+        "config": "recipe-recommender-v1/config.json"
+      },
+      "usage": "Recommends recipes based on codebase metrics and history",
+      "inputShape": [64],
+      "outputShape": [42],
+      "deployedIn": ["autopilot-engine"]
+    },
+    {
+      "id": "severity-predictor-v1",
+      "name": "Issue Severity Predictor",
+      "version": "1.0.0",
+      "type": "regression",
+      "framework": "tensorflow",
+      "trainedDate": "2025-11-26",
+      "status": "production",
+      "metrics": {
+        "mse": 0.12,
+        "mae": 0.08,
+        "r2Score": 0.88
+      },
+      "trainingData": {
+        "samples": 8000,
+        "features": 32,
+        "outputRange": [0, 1],
+        "split": {
+          "train": 0.70,
+          "validation": 0.15,
+          "test": 0.15
+        }
+      },
+      "files": {
+        "model": "severity-predictor-v1/model.json",
+        "weights": "severity-predictor-v1/weights.bin",
+        "metadata": "severity-predictor-v1/metadata.json",
+        "config": "severity-predictor-v1/config.json"
+      },
+      "usage": "Predicts severity score (0-1) for detected issues",
+      "inputShape": [32],
+      "outputShape": [1],
+      "deployedIn": ["insight-core", "guardian-core"]
+    }
+  ],
+  "metadata": {
+    "totalModels": 3,
+    "productionModels": 3,
+    "lastUpdated": "2025-11-26",
+    "frameworkVersion": "4.15.0"
+  }
+}

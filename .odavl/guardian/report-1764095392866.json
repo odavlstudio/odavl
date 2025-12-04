@@ -1,0 +1,173 @@
+{
+  "url": "http://localhost:3000/api-docs",
+  "timestamp": "2025-11-25T18:29:52.776Z",
+  "duration": 7446,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_FORM_LABELS",
+      "severity": "high",
+      "message": "♿ 1 form input(s) missing labels",
+      "fix": [
+        "Add <label> element for each input",
+        "Use for attribute to associate label with input",
+        "Use aria-label for inputs without visible labels",
+        "Use aria-labelledby for complex labels",
+        "Ensure labels are descriptive"
+      ],
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "type": "MULTIPLE_H1",
+      "severity": "low",
+      "message": "♿ Page has 12 <h1> headings (should have 1)",
+      "fix": [
+        "Use only one <h1> per page",
+        "Convert additional h1s to h2/h3",
+        "Maintain proper heading hierarchy",
+        "Use h1 for main content heading only"
+      ],
+      "details": {
+        "noH1": false,
+        "multipleH1": true,
+        "total": 12
+      }
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 16 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 16,
+        "elements": [
+          {
+            "text": "https://docs.odavl.com",
+            "tag": "a",
+            "width": 139,
+            "height": 16
+          },
+          {
+            "text": "Authorize",
+            "tag": "button",
+            "width": 152,
+            "height": 34
+          },
+          {
+            "text": "insight",
+            "tag": "a",
+            "width": 79,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "autopilot",
+            "tag": "a",
+            "width": 101,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "guardian",
+            "tag": "a",
+            "width": 101,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "analytics",
+            "tag": "a",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "organizations",
+            "tag": "a",
+            "width": 156,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "projects",
+            "tag": "a",
+            "width": 93,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "users",
+            "tag": "a",
+            "width": 64,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          }
+        ]
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 4,
+    "critical": 0,
+    "high": 1,
+    "medium": 1,
+    "low": 2
+  }
+}

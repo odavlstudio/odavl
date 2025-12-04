@@ -1,0 +1,13 @@
+{
+  "name": "test-codebase",
+  "version": "1.0.0",
+  "description": "Sample codebase for ODAVL Autopilot integration testing",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  }
+}

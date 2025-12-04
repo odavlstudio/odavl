@@ -1,0 +1,74 @@
+{
+  "format": "tfjs-layers",
+  "generatedBy": "ODAVL ML Training v1.0",
+  "convertedBy": null,
+  "weightsManifest": [
+    {
+      "paths": [
+        "weights.json"
+      ],
+      "weights": [
+        {
+          "name": "weight_0",
+          "shape": [
+            12,
+            64
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_1",
+          "shape": [
+            64
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_2",
+          "shape": [
+            64,
+            32
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_3",
+          "shape": [
+            32
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_4",
+          "shape": [
+            32,
+            16
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_5",
+          "shape": [
+            16
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_6",
+          "shape": [
+            16,
+            1
+          ],
+          "dtype": "float32"
+        },
+        {
+          "name": "weight_7",
+          "shape": [
+            1
+          ],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ]
+}

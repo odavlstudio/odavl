@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://odavl.studio/schemas/gates.json",
+  "title": "ODAVL Governance Gates Schema",
+  "description": "Schema for ODAVL governance rules and risk budget constraints",
+  "type": "object",
+  "required": ["risk_budget", "forbidden_paths", "actions"],
+  "properties": {
+    "risk_budget": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000,
+      "description": "Maximum risk points per cycle (1 point = 1 file change)"
+    },
+    "forbidden_paths": {
+      "type": "array",
+      "description": "Paths that must not be modified automatically",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[^\\s].*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "actions": {
+      "type": "object",
+      "required": ["max_auto_changes", "max_files_per_cycle"],
+      "properties": {
+        "max_auto_changes": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Maximum number of automated changes per cycle"
+        },
+        "max_files_per_cycle": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Maximum number of files to modify per cycle"
+        }
+      }
+    },
+    "enforcement": {
+      "type": "array",
+      "description": "Enforcement strategies",
+      "items": {
+        "type": "string",
+        "enum": [
+          "block_if_risk_exceeded",
+          "rollback_on_failure",
+          "require_attestation"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "max_risk_per_action": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "min_success_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "max_consecutive_failures": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    }
+  }
+}

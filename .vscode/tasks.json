@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Forensic: Setup Analysis",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "forensic:setup"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Forensic: Test Coverage",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "test:coverage"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Forensic: All",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "forensic:all"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Forensic: Tool Versions",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "& { Write-Host 'ODAVL Forensic Tool Versions:'; pnpm exec eslint --version 2>$null | ForEach-Object { Write-Host \"ESLint: $_\" }; pnpm exec prettier --version 2>$null | ForEach-Object { Write-Host \"Prettier: $_\" }; pnpm exec madge --version 2>$null | ForEach-Object { Write-Host \"Madge: $_\" }; pnpm exec knip --version 2>$null | ForEach-Object { Write-Host \"Knip: $_\" }; pnpm exec vitest --version 2>$null | ForEach-Object { Write-Host \"Vitest: $_\" } } | Tee-Object -FilePath reports/forensic/_last/tool-versions.txt"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}

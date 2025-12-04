@@ -1,0 +1,92 @@
+# ODAVL Studio - Pre-commit Hooks Configuration
+# Prevents accidental commits of secrets, large files, and common mistakes
+
+repos:
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Prevent commits of large files (>500KB)
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      
+      # Detect private keys (RSA, SSH, etc.)
+      - id: detect-private-key
+      
+      # Prevent merge conflict markers
+      - id: check-merge-conflict
+      
+      # Ensure files end with newline
+      - id: end-of-file-fixer
+        exclude: '\.png$|\.jpg$|\.gif$|\.svg$'
+      
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+        exclude: '\.md$|\.txt$'
+      
+      # Check JSON syntax
+      - id: check-json
+      
+      # Check YAML syntax
+      - id: check-yaml
+        args: ['--unsafe']  # Allow custom tags in YAML
+      
+      # Prevent direct commits to main/master
+      - id: no-commit-to-branch
+        args: ['--branch', 'main', '--branch', 'master']
+
+  # Detect secrets using multiple patterns
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: '\.env\.example$|package-lock\.json$|pnpm-lock\.yaml$'
+
+  # Additional security scanning
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.18.1
+    hooks:
+      - id: gitleaks
+
+  # TypeScript/JavaScript linting (optional - already have ESLint)
+  - repo: local
+    hooks:
+      - id: eslint
+        name: ESLint
+        entry: pnpm exec eslint
+        language: system
+        types: [javascript, jsx, ts, tsx]
+        exclude: 'node_modules/|dist/|\.next/'
+        pass_filenames: true
+        
+      # Check TypeScript types before commit
+      - id: typescript-check
+        name: TypeScript Check
+        entry: pnpm exec tsc --noEmit
+        language: system
+        types: [ts, tsx]
+        pass_filenames: false
+        
+  # Prevent .env files from being committed
+  - repo: local
+    hooks:
+      - id: prevent-env-files
+        name: Prevent .env commits
+        entry: bash -c 'if git diff --cached --name-only | grep -E "\.env$|\.env\..*$" | grep -v "\.env\.example"; then echo "ERROR: .env file detected in commit. Use .env.example instead."; exit 1; fi'
+        language: system
+        pass_filenames: false
+        always_run: true
+
+# Global exclusions
+exclude: |
+  (?x)^(
+      node_modules/|
+      dist/|
+      \.next/|
+      out/|
+      reports/|
+      \.odavl/|
+      pnpm-lock\.yaml|
+      package-lock\.json
+  )$

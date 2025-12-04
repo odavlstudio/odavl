@@ -1,0 +1,218 @@
+{
+  "version": "1.0.0",
+  "title": "Database Connection Pool Exhaustion",
+  "description": "Tests the system's behavior when database connection pool is exhausted. Validates connection pool configuration, timeouts, and graceful degradation mechanisms.",
+  "tags": [
+    "database",
+    "connection-pool",
+    "resilience",
+    "performance"
+  ],
+  "configuration": {
+    "database_host": {
+      "type": "env",
+      "key": "DATABASE_HOST",
+      "default": "postgres-staging.odavl.studio"
+    },
+    "database_port": {
+      "type": "env",
+      "key": "DATABASE_PORT",
+      "default": "5432"
+    },
+    "database_name": {
+      "type": "env",
+      "key": "DATABASE_NAME",
+      "default": "odavl_studio_staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "Database connections are available and within limits",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "check-active-connections",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [1, 15]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosdb.postgresql.probes",
+          "func": "query",
+          "arguments": {
+            "host": "${database_host}",
+            "port": "${database_port}",
+            "database": "${database_name}",
+            "query": "SELECT count(*) FROM pg_stat_activity WHERE state = 'active';"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "check-idle-connections",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [1, 10]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosdb.postgresql.probes",
+          "func": "query",
+          "arguments": {
+            "host": "${database_host}",
+            "port": "${database_port}",
+            "database": "${database_name}",
+            "query": "SELECT count(*) FROM pg_stat_activity WHERE state = 'idle';"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "application-responds-normally",
+        "tolerance": {
+          "type": "http",
+          "status": 200,
+          "timeout": 5
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+          "timeout": 5
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "create-many-idle-connections",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "create_connections",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "count": 25,
+          "hold_duration": 60
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-connection-count-increased",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [20, 50]
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.probes",
+        "func": "query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT count(*) FROM pg_stat_activity;"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "test-application-with-limited-connections",
+      "tolerance": {
+        "type": "http",
+        "status": [200, 503, 504]
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+        "timeout": 10
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "monitor-connection-pool-metrics",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "pg_pool_connections{state=\"waiting\"}",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "action",
+      "name": "release-connections-gradually",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "close_connections",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE state = 'idle' AND query_start < now() - interval '1 minute' LIMIT 10;"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-recovery",
+      "tolerance": {
+        "type": "http",
+        "status": 200,
+        "timeout": 5
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+        "timeout": 5
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "kill-all-idle-connections",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "close_connections",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE state = 'idle' AND application_name NOT LIKE 'psql%';"
+        }
+      }
+    }
+  ]
+}

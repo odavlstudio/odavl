@@ -1,0 +1,208 @@
+{
+  "common": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "back": "رجوع",
+    "next": "التالي",
+    "loading": "جاري التحميل...",
+    "search": "بحث",
+    "filter": "تصفية",
+    "export": "تصدير",
+    "import": "استيراد",
+    "learnMore": "اعرف المزيد"
+  },
+  "home": {
+    "hero": {
+      "badge": "موثوق به من قبل فرق المؤسسات عالمياً",
+      "title": "حوّل جودة الكود باستخدام",
+      "titleAccent": "الاستقلالية المدعومة بالذكاء الاصطناعي",
+      "description": "يجمع ODAVL Studio بين التعلم الآلي والأتمتة ذاتية الإصلاح والاختبار قبل النشر للقضاء على مشاكل جودة الكود قبل وصولها للإنتاج.",
+      "ctaPrimary": "ابدأ تجربة مجانية",
+      "ctaSecondary": "شاهد العرض التوضيحي",
+      "trust1": "ضمان توفر 99.9%",
+      "trust2": "معتمد SOC 2 Type II",
+      "trust3": "متوافق مع GDPR"
+    },
+    "products": {
+      "title": "ثلاثة منتجات. مهمة واحدة.",
+      "subtitle": "أدوات على مستوى المؤسسات تعمل معاً لضمان جودة الكود في كل مرحلة",
+      "insightDesc": "اكتشاف الأخطاء المدعوم بالتعلم الآلي مع 12 كاشف متخصص يحلل قواعد بيانات TypeScript وPython وJava في الوقت الفعلي.",
+      "insightFeature1": "12 كاشف متقدم (TypeScript، الأمان، الأداء)",
+      "insightFeature2": "تكامل VS Code في الوقت الفعلي",
+      "insightFeature3": "دعم متعدد اللغات (TS، Python، Java)",
+      "autopilotDesc": "بنية تحتية ذاتية الإصلاح تصلح المشاكل بشكل مستقل باستخدام دورة O-D-A-V-L مع التوثيق التشفيري.",
+      "autopilotFeature1": "دورة الإصلاح الذاتي المستقلة O-D-A-V-L",
+      "autopilotFeature2": "أمان ثلاثي الطبقات (ميزانية المخاطر، التراجع، التوثيق)",
+      "autopilotFeature3": "نظام تسجيل الثقة المبني على ML",
+      "guardianDesc": "اختبار شامل قبل النشر يغطي إمكانية الوصول والأداء والأمان وSEO مع تقارير مفصلة.",
+      "guardianFeature1": "اختبار تلقائي لإمكانية الوصول (WCAG 2.1)",
+      "guardianFeature2": "مراقبة الأداء (Core Web Vitals)",
+      "guardianFeature3": "فحص الأمان (OWASP Top 10)"
+    },
+    "features": {
+      "title": "لماذا تختار ODAVL Studio؟",
+      "subtitle": "مميزات على مستوى المؤسسات مصممة لفرق التطوير الحديثة",
+      "security": {
+        "title": "أمان المؤسسات",
+        "description": "معتمد SOC 2 Type II مع توافق GDPR، وتحكم وصول قائم على الأدوار، وتسجيل تدقيق للشفافية الكاملة."
+      },
+      "ml": {
+        "title": "مدعوم بالتعلم الآلي",
+        "description": "نماذج TensorFlow.js مدربة على ملايين أنماط الكود للتنبؤ بالمشاكل ومنعها قبل حدوثها."
+      },
+      "monitoring": {
+        "title": "مراقبة في الوقت الفعلي",
+        "description": "مراقبة مستمرة على مدار الساعة مع تنبيهات فورية وتحليل الاتجاهات وكشف الشذوذ التنبؤي."
+      },
+      "autonomous": {
+        "title": "الإصلاح المستقل",
+        "description": "دورة الإصلاح الذاتي O-D-A-V-L تصلح المشاكل تلقائياً مع التوثيق التشفيري وحماية التراجع."
+      },
+      "multilang": {
+        "title": "دعم متعدد اللغات",
+        "description": "دعم أصلي لـ TypeScript وPython وJava مع كواشف متخصصة لكل نظام بيئي."
+      },
+      "integration": {
+        "title": "تكامل المؤسسات",
+        "description": "تكامل سلس مع GitHub وGitLab وBitbucket وJira وSlack وخطوط CI/CD الحالية."
+      }
+    },
+    "stats": {
+      "uptime": "ضمان التوفر",
+      "detectors": "كاشف متقدم",
+      "languages": "لغات مدعومة",
+      "monitoring": "دعم"
+    },
+    "testimonials": {
+      "title": "موثوق به من قبل فرق المؤسسات",
+      "subtitle": "اطّلع على ما يقوله قادة التطوير عن ODAVL Studio",
+      "quote1": "قلّص ODAVL وقت مراجعة الكود بنسبة 60٪ واكتشف مشاكل أمنية حرجة قبل النشر. تغيير جذري لفريقنا.",
+      "quote2": "الطيار الآلي ذاتي الإصلاح وفّر علينا ساعات لا تُحصى. كأن لديك مهندس كبير يراقب الكود على مدار الساعة.",
+      "quote3": "اختبار Guardian قبل النشر اكتشف مشاكل إمكانية الوصول لم نكن نعلم بوجودها. أساسي لمتطلبات الامتثال.",
+      "viewAll": "عرض جميع دراسات الحالة"
+    },
+    "cta": {
+      "title": "هل أنت مستعد لتحويل جودة الكود؟",
+      "subtitle": "انضم لآلاف المطورين الذين يستخدمون ODAVL Studio لتقديم كود أفضل بشكل أسرع.",
+      "primary": "ابدأ تجربة مجانية",
+      "secondary": "تحدث مع المبيعات",
+      "note": "لا حاجة لبطاقة ائتمان • تجربة مجانية 14 يوم • إلغاء في أي وقت"
+    }
+  },
+  "nav": {
+    "overview": "نظرة عامة",
+    "insight": "التحليل",
+    "autopilot": "الطيار الآلي",
+    "guardian": "الحارس",
+    "analytics": "التحليلات",
+    "billing": "الفواتير",
+    "team": "الفريق"
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "signUp": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "rememberMe": "تذكرني",
+    "continueWithGithub": "المتابعة مع GitHub",
+    "continueWithGoogle": "المتابعة مع Google",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟"
+  },
+  "dashboard": {
+    "welcome": "مرحباً بك في ODAVL Studio",
+    "subtitle": "منصة جودة الكود التلقائية",
+    "recentActivity": "النشاط الأخير",
+    "quickActions": "إجراءات سريعة",
+    "viewAll": "عرض الكل",
+    "noData": "لا توجد بيانات متاحة"
+  },
+  "insight": {
+    "title": "تحليل Insight",
+    "subtitle": "كشف الأخطاء بالذكاء الاصطناعي",
+    "issues": "المشاكل",
+    "severity": "الخطورة",
+    "detector": "الكاشف",
+    "file": "الملف",
+    "message": "الرسالة",
+    "time": "الوقت",
+    "resolved": "تم الحل",
+    "unresolved": "لم يُحل",
+    "critical": "حرج",
+    "high": "عالي",
+    "medium": "متوسط",
+    "low": "منخفض"
+  },
+  "autopilot": {
+    "title": "الطيار الآلي",
+    "subtitle": "بنية تحتية ذاتية الإصلاح",
+    "runs": "التشغيلات",
+    "cycle": "دورة O-D-A-V-L",
+    "observe": "المراقبة",
+    "decide": "القرار",
+    "act": "التنفيذ",
+    "verify": "التحقق",
+    "learn": "التعلم",
+    "undoHistory": "سجل التراجع",
+    "restore": "استعادة",
+    "trustScore": "درجة الثقة",
+    "successRate": "معدل النجاح"
+  },
+  "guardian": {
+    "title": "الحارس",
+    "subtitle": "اختبار ومراقبة ما قبل النشر",
+    "tests": "الاختبارات",
+    "passRate": "معدل النجاح",
+    "avgScore": "المتوسط",
+    "testsRun": "الاختبارات المنفذة",
+    "criticalIssues": "المشاكل الحرجة",
+    "runTest": "تشغيل الاختبار",
+    "testUrl": "رابط الاختبار",
+    "accessibility": "إمكانية الوصول",
+    "performance": "الأداء",
+    "security": "الأمان"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "organization": "المؤسسة",
+    "billing": "الفواتير",
+    "apiKeys": "مفاتيح API",
+    "notifications": "الإشعارات",
+    "security": "الأمان",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "timezone": "المنطقة الزمنية"
+  },
+  "billing": {
+    "title": "الفواتير والاشتراك",
+    "currentPlan": "الخطة الحالية",
+    "usage": "الاستخدام",
+    "invoices": "الفواتير",
+    "paymentMethod": "طريقة الدفع",
+    "changePlan": "تغيير الخطة",
+    "free": "مجاني",
+    "pro": "احترافي",
+    "enterprise": "مؤسسي",
+    "perMonth": "شهرياً",
+    "upgradeTo": "الترقية إلى {plan}"
+  },
+  "errors": {
+    "notFound": "الصفحة غير موجودة",
+    "unauthorized": "غير مصرح بالوصول",
+    "serverError": "خطأ في الخادم",
+    "networkError": "خطأ في الشبكة",
+    "tryAgain": "حاول مرة أخرى",
+    "goHome": "العودة للرئيسية"
+  }
+}
+  

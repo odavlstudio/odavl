@@ -1,0 +1,24 @@
+{
+  "id": "typescript-fixer",
+  "name": "TypeScript Error Fixer",
+  "description": "Fixes common TypeScript errors",
+  "trust": 0.85,
+  "priority": 8,
+  "condition": {
+    "type": "threshold",
+    "rules": [
+      {
+        "metric": "typeErrors",
+        "operator": ">=",
+        "value": 3
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "shell",
+      "command": "pnpm exec tsc --noEmit",
+      "description": "Run TypeScript compiler"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: odavl-config
+  namespace: production
+data:
+  # ODAVL Core Configuration
+  ODAVL_VERSION: "1.4.1"
+  ODAVL_ENVIRONMENT: "production"
+
+  # Quality Gates
+  MAX_FILES_PER_CYCLE: "10"
+  MAX_LOC_PER_FILE: "40"
+  RISK_BUDGET: "100"
+
+  # Recipe Configuration
+  RECIPE_TRUST_THRESHOLD: "0.2"
+  RECIPE_BLACKLIST_FAILURES: "3"
+
+  # Detector Configuration
+  DETECTOR_TIMEOUT_MS: "300000"
+  DETECTOR_VERBOSE: "false"
+
+  # Logging
+  LOG_LEVEL: "info"
+  LOG_FORMAT: "json"
+
+  # Performance
+  MAX_CONCURRENT_DETECTORS: "5"
+  CACHE_TTL_SECONDS: "3600"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: odavl-secrets
+  namespace: production
+type: Opaque
+stringData:
+  # Database URLs (replace with actual values)
+  database-url: "postgresql://odavl:changeme@postgres:5432/odavl_db"
+
+  # Redis URL (replace with actual value)
+  redis-url: "redis://redis:6379"
+
+  # Sentry DSN (replace with actual value)
+  sentry-dsn: ""
+
+  # GitHub Token for CI/CD integration (replace with actual value)
+  github-token: ""
+
+  # npm Token for publishing (replace with actual value)
+  npm-token: ""
+
+  # VS Code Marketplace Token (replace with actual value)
+  vscode-marketplace-token: ""
+
+  # Open VSX Token (replace with actual value)
+  open-vsx-token: ""
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: odavl-gates
+  namespace: production
+data:
+  gates.yml: |
+    risk_budget: 100
+    forbidden_paths:
+      - security/**
+      - public-api/**
+      - "**/*.spec.*"
+      - "**/*.test.*"
+      - auth/**
+    actions:
+      max_auto_changes: 10
+      max_files_per_cycle: 10
+    enforcement:
+      - block_if_risk_exceeded
+      - rollback_on_failure
+      - require_attestation
+    thresholds:
+      max_risk_per_action: 25
+      min_success_rate: 0.75
+      max_consecutive_failures: 3

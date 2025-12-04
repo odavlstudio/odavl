@@ -1,0 +1,204 @@
+{
+  "name": "odavl-insight-vscode",
+  "displayName": "ODAVL Insight",
+  "description": "ML-powered error detection for TypeScript, Python, and Java with 20+ specialized detectors",
+  "version": "2.0.4",
+  "publisher": "odavl",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages",
+    "Testing"
+  ],
+  "keywords": [
+    "error-detection",
+    "code-quality",
+    "ml",
+    "typescript",
+    "python",
+    "java",
+    "multi-language",
+    "diagnostics",
+    "odavl",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavl-studio/odavl.git",
+    "directory": "odavl-studio/insight/extension"
+  },
+  "bugs": {
+    "url": "https://github.com/odavl-studio/odavl/issues"
+  },
+  "homepage": "https://odavl.studio",
+  "galleryBanner": {
+    "color": "#2563eb",
+    "theme": "dark"
+  },
+  "activationEvents": [
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "odavl-insight",
+          "title": "ODAVL Insight",
+          "icon": "media/activitybar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "odavl-insight": [
+        {
+          "id": "odavl-insight.issuesExplorer",
+          "name": "Issues Explorer"
+        },
+        {
+          "id": "odavl-insight.detectors",
+          "name": "Detectors"
+        },
+        {
+          "id": "odavl-insight.statistics",
+          "name": "Statistics"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "odavl-insight.analyzeWorkspace",
+        "title": "ODAVL Insight: Analyze Workspace (All Languages)",
+        "icon": "$(search)"
+      },
+      {
+        "command": "odavl-insight.analyzeActiveFile",
+        "title": "ODAVL Insight: Analyze Active File",
+        "icon": "$(file)"
+      },
+      {
+        "command": "odavl-insight.clearDiagnostics",
+        "title": "ODAVL Insight: Clear Diagnostics",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "odavl-insight.runDetector",
+        "title": "ODAVL Insight: Run Detector",
+        "icon": "$(play)"
+      },
+      {
+        "command": "odavl-insight.showLanguageInfo",
+        "title": "ODAVL Insight: Show Language Info",
+        "icon": "$(info)"
+      },
+      {
+        "command": "odavl-insight.showWorkspaceLanguages",
+        "title": "ODAVL Insight: Show Workspace Languages",
+        "icon": "$(symbol-namespace)"
+      },
+      {
+        "command": "odavl-insight.showDashboard",
+        "title": "ODAVL Insight: Show Dashboard",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "odavl-insight.refreshIssues",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "odavl-insight.toggleDetector",
+        "title": "Toggle Detector",
+        "icon": "$(debug-stop)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "odavl-insight.refreshIssues",
+          "when": "view == odavl-insight.issuesExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl-insight.analyzeWorkspace",
+          "when": "view == odavl-insight.issuesExplorer",
+          "group": "navigation"
+        },
+        {
+          "command": "odavl-insight.showDashboard",
+          "when": "view == odavl-insight.statistics",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "odavl-insight.toggleDetector",
+          "when": "view == odavl-insight.detectors",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ODAVL Insight",
+      "properties": {
+        "odavl-insight.autoAnalyzeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze files on save"
+        },
+        "odavl-insight.enabledDetectors": {
+          "type": "array",
+          "default": [
+            "typescript",
+            "eslint",
+            "security"
+          ],
+          "description": "List of enabled detectors"
+        },
+        "odavl-insight.supportedLanguages": {
+          "type": "array",
+          "default": [
+            "typescript",
+            "javascript",
+            "python",
+            "java"
+          ],
+          "description": "List of supported programming languages",
+          "items": {
+            "type": "string",
+            "enum": [
+              "typescript",
+              "javascript",
+              "python",
+              "java"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify --sourcemap",
+    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch --sourcemap",
+    "package": "vsce package",
+    "analyze-bundle": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --metafile=dist/meta.json --analyze"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.0.0",
+    "esbuild": "^0.25.0",
+    "sharp": "^0.34.5",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@odavl-studio/insight-core": "workspace:^",
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

@@ -1,0 +1,105 @@
+// Notification System Schema Extension
+// Add this to your main schema.prisma file
+
+model NotificationPreference {
+  id        String   @id @default(cuid())
+  userId    String
+
+  // Email notifications
+  emailEnabled            Boolean @default(true)
+  emailInvitations        Boolean @default(true)
+  emailErrorAlerts        Boolean @default(true)
+  emailUsageLimits        Boolean @default(true)
+  emailBilling            Boolean @default(true)
+  emailWeeklySummary      Boolean @default(true)
+
+  // In-app notifications
+  inAppEnabled            Boolean @default(true)
+  inAppInvitations        Boolean @default(true)
+  inAppErrorAlerts        Boolean @default(true)
+  inAppUsageLimits        Boolean @default(true)
+  inAppBilling            Boolean @default(true)
+
+  // Webhook notifications
+  webhookEnabled          Boolean @default(false)
+  webhookUrl              String?
+  webhookEvents           String[] // Array of event types
+
+  // Thresholds
+  errorAlertThreshold     Int     @default(10)  // Alert when errors exceed this
+  usageLimitThreshold     Int     @default(80)  // Alert at 80% usage
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId])
+  @@index([userId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  organizationId String?
+
+  type      NotificationType
+  title     String
+  message   String
+  data      Json?    // Additional data
+
+  read      Boolean  @default(false)
+  readAt    DateTime?
+
+  actionUrl String?
+  actionText String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+  @@index([organizationId])
+  @@index([createdAt])
+}
+
+model EmailLog {
+  id        String   @id @default(cuid())
+
+  to        String
+  subject   String
+  type      String
+  status    EmailStatus
+
+  sentAt    DateTime?
+  failedAt  DateTime?
+  error     String?
+
+  organizationId String?
+  userId    String?
+
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum NotificationType {
+  INVITATION
+  ERROR_ALERT
+  USAGE_LIMIT
+  BILLING
+  SUBSCRIPTION_CHANGED
+  MEMBER_JOINED
+  MEMBER_LEFT
+  PROJECT_CREATED
+  AUTOPILOT_COMPLETED
+  GUARDIAN_FAILED
+}
+
+enum EmailStatus {
+  PENDING
+  SENT
+  FAILED
+  BOUNCED
+}

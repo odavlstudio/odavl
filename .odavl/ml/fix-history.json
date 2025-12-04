@@ -1,0 +1,64 @@
+[
+  {
+    "id": "fix_1764118901522_g65l5tuy3",
+    "timestamp": "2025-11-26T01:01:41.522Z",
+    "issue": {
+      "type": "test-issue",
+      "message": "Test security issue",
+      "file": "test.ts",
+      "line": 10,
+      "severity": "high",
+      "detector": "unknown"
+    },
+    "fix": {
+      "applied": true,
+      "method": "auto",
+      "success": true,
+      "code_before": "const value = obj.prop;",
+      "code_after": "const value = obj?.prop;",
+      "user_feedback": "helpful"
+    },
+    "context": {
+      "framework": "react",
+      "pattern": "component",
+      "file_type": ".ts",
+      "surrounding_code": "const value = obj.prop;"
+    },
+    "outcome": {
+      "resolved": true,
+      "time_to_fix": 30,
+      "subsequent_issues": 0
+    }
+  },
+  {
+    "id": "fix_1764119315902_mr1mpzawa",
+    "timestamp": "2025-11-26T01:08:35.902Z",
+    "issue": {
+      "type": "test-issue",
+      "message": "Test security issue",
+      "file": "test.ts",
+      "line": 10,
+      "severity": "high",
+      "detector": "unknown"
+    },
+    "fix": {
+      "applied": true,
+      "method": "auto",
+      "success": true,
+      "code_before": "const value = obj.prop;",
+      "code_after": "const value = obj?.prop;",
+      "user_feedback": "helpful"
+    },
+    "context": {
+      "framework": "react",
+      "pattern": "component",
+      "file_type": ".ts",
+      "surrounding_code": "const value = obj.prop;"
+    },
+    "outcome": {
+      "resolved": true,
+      "time_to_fix": 30,
+      "subsequent_issues": 0
+    }
+  }
+]

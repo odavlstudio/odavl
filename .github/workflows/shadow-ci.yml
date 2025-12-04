@@ -1,0 +1,31 @@
+name: ODAVL Shadow CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  shadow-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: pnpm install
+      - name: Run Gates (lint + typecheck + test + osv + gitleaks)
+        run: |
+          pnpm lint
+          pnpm typecheck
+          pnpm test
+          pnpm scan:osv || true
+          pnpm scan:gitleaks || true
+      - name: Generate Verification Report
+        run: |
+          echo "# Shadow CI Verification Report" > shadow/verify-report.md
+          echo "✅ Lint ✓" >> shadow/verify-report.md
+          echo "✅ Typecheck ✓" >> shadow/verify-report.md
+          echo "✅ Tests ✓" >> shadow/verify-report.md
+          echo "🕵️ OSV & Gitleaks scanned" >> shadow/verify-report.md
+          date >> shadow/verify-report.md

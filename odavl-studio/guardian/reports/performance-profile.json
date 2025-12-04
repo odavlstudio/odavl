@@ -1,0 +1,43 @@
+{
+  "totalDuration": 279.81600000000003,
+  "agents": [
+    {
+      "agent": "RuntimeTestingAgent",
+      "initTime": 0.09489999999999554,
+      "executionTime": 114.3132,
+      "memoryUsed": 0.1838836669921875,
+      "memoryBefore": 7.8515167236328125,
+      "memoryAfter": 8.035400390625,
+      "success": true
+    },
+    {
+      "agent": "AIVisualInspector",
+      "initTime": 0.1229000000000724,
+      "executionTime": 59.254499999999894,
+      "memoryUsed": 0.00690460205078125,
+      "memoryBefore": 8.041496276855469,
+      "memoryAfter": 8.04840087890625,
+      "success": true
+    },
+    {
+      "agent": "SmartErrorAnalyzer",
+      "initTime": 0.2136000000000422,
+      "executionTime": 77.21310000000005,
+      "memoryUsed": 0.00067901611328125,
+      "memoryBefore": 8.052352905273438,
+      "memoryAfter": 8.053031921386719,
+      "success": true
+    },
+    {
+      "agent": "HandoffGenerator",
+      "initTime": 0.11540000000002237,
+      "executionTime": 28.488399999999956,
+      "memoryUsed": 0.0069580078125,
+      "memoryBefore": 8.047607421875,
+      "memoryAfter": 8.0545654296875,
+      "success": true
+    }
+  ],
+  "totalMemory": 0.19842529296875,
+  "peakMemory": 8.0545654296875
+}

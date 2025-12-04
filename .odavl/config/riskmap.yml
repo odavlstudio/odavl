@@ -1,0 +1,275 @@
+# ODAVL Risk Map Configuration
+# Risk zones and automation strategies per code area
+# Version: 1.0.0
+# Created: 2025-11-26
+
+risk_zones:
+  # Critical zone - Touch ONLY if 100% confident
+  critical:
+    description: "Mission-critical code - one bug = disaster"
+    paths:
+      - payment/**                 # Payment processing
+      - billing/**                 # Billing logic
+      - security/**                # Security code
+      - auth/**                    # Authentication
+      - packages/auth/**           # Auth package
+      - "**/*-security.*"          # Security-related files
+      - "**/*-payment.*"           # Payment-related files
+    
+    rules:
+      max_changes_per_run: 1       # ONE change at a time
+      require_review: true         # Always need human review
+      min_trust_score: 0.95        # 95%+ trust required
+      rollback_on_failure: immediate
+      allow_formatting: false      # Even formatting needs review
+      require_tests: true          # Must have tests
+      min_test_coverage: 0.90      # 90%+ coverage required
+    
+    safety:
+      double_check: true           # Verify twice
+      create_backup: true          # Always backup
+      dry_run_first: true          # Test without applying
+      require_approval: true       # Need explicit approval
+
+  # High risk zone - Be extremely careful
+  high:
+    description: "High-impact code - bugs are very expensive"
+    paths:
+      - api/**                     # API endpoints
+      - database/**                # Database code
+      - config/**                  # Configuration
+      - prisma/**                  # Database schema
+      - odavl-studio/*/core/**     # Core packages
+      - packages/sdk/**            # Public SDK
+      - "**/*-api.*"               # API-related files
+      - "**/*-db.*"                # Database files
+    
+    rules:
+      max_changes_per_run: 3       # Max 3 changes
+      require_review: false        # Optional review
+      min_trust_score: 0.85        # 85%+ trust required
+      rollback_on_failure: automatic
+      allow_formatting: true       # Formatting allowed
+      require_tests: true          # Must have tests
+      min_test_coverage: 0.75      # 75%+ coverage required
+    
+    safety:
+      double_check: true           # Verify twice
+      create_backup: true          # Always backup
+      dry_run_first: false         # Can apply directly
+      require_approval: false      # Auto-approve if gates pass
+
+  # Medium risk zone - Normal caution
+  medium:
+    description: "Standard code - bugs are fixable"
+    paths:
+      - components/**              # UI components
+      - utils/**                   # Utility functions
+      - lib/**                     # Libraries
+      - hooks/**                   # React hooks
+      - odavl-studio/*/extension/** # VS Code extensions
+      - "**/*-utils.*"             # Utility files
+      - "**/*-helpers.*"           # Helper files
+    
+    rules:
+      max_changes_per_run: 5       # Max 5 changes
+      require_review: false        # No review needed
+      min_trust_score: 0.70        # 70%+ trust required
+      rollback_on_failure: automatic
+      allow_formatting: true       # Formatting allowed
+      require_tests: false         # Tests optional
+      min_test_coverage: 0.50      # 50%+ coverage preferred
+    
+    safety:
+      double_check: false          # Single check OK
+      create_backup: true          # Backup just in case
+      dry_run_first: false         # Direct application
+      require_approval: false      # Auto-approve
+
+  # Low risk zone - Feel free to experiment
+  low:
+    description: "Safe code - bugs are trivial"
+    paths:
+      - docs/**                    # Documentation
+      - examples/**                # Example code
+      - test-fixtures/**           # Test data
+      - "**/*.md"                  # Markdown files
+      - "**/*.test.*"              # Test files
+      - "**/*.spec.*"              # Spec files
+      - scripts/**                 # Scripts
+      - tools/**                   # Tools
+    
+    rules:
+      max_changes_per_run: 10      # Max 10 changes
+      require_review: false        # No review
+      min_trust_score: 0.50        # 50%+ trust OK
+      rollback_on_failure: optional
+      allow_formatting: true       # Format away
+      require_tests: false         # No tests needed
+      min_test_coverage: 0.00      # No coverage required
+    
+    safety:
+      double_check: false          # No double check
+      create_backup: false         # No backup needed
+      dry_run_first: false         # Just do it
+      require_approval: false      # Fully automated
+
+  # Experimental zone - Playground
+  experimental:
+    description: "Experimental code - break things and learn"
+    paths:
+      - playground/**              # Playground
+      - experiments/**             # Experiments
+      - prototypes/**              # Prototypes
+      - sandbox/**                 # Sandbox
+      - tmp/**                     # Temporary
+    
+    rules:
+      max_changes_per_run: 999     # No limit
+      require_review: false        # No review
+      min_trust_score: 0.10        # Any trust level
+      rollback_on_failure: never   # Keep failures to learn
+      allow_formatting: true       # Whatever
+      require_tests: false         # No tests
+      min_test_coverage: 0.00      # No coverage
+    
+    safety:
+      double_check: false          # YOLO
+      create_backup: false         # No backup
+      dry_run_first: false         # Live dangerously
+      require_approval: false      # Fully automated
+
+# Risk calculation algorithm
+risk_scoring:
+  enabled: true
+  
+  # Risk factors with weights (must sum to 1.0)
+  factors:
+    file_criticality: 0.30         # 30% - How critical is the file?
+    operation_danger: 0.25         # 25% - How dangerous is the operation?
+    change_magnitude: 0.20         # 20% - How big is the change?
+    historical_failures: 0.15      # 15% - Past failure rate
+    test_coverage: 0.10            # 10% - Test coverage
+  
+  # File criticality scoring
+  file_criticality_scores:
+    payment: 100                   # Payment = max risk
+    security: 100                  # Security = max risk
+    auth: 95                       # Auth = very high risk
+    api: 80                        # API = high risk
+    database: 80                   # Database = high risk
+    core: 70                       # Core = medium-high risk
+    utils: 40                      # Utils = medium-low risk
+    docs: 10                       # Docs = low risk
+    tests: 5                       # Tests = very low risk
+  
+  # Operation danger scoring
+  operation_danger_scores:
+    delete_code: 90                # Deletion = very dangerous
+    change_types: 80               # Type changes = dangerous
+    refactor_logic: 70             # Logic changes = risky
+    add_features: 50               # New features = moderate
+    fix_bugs: 40                   # Bug fixes = low risk
+    formatting: 10                 # Formatting = safe
+    docs: 5                        # Docs = very safe
+  
+  # Change magnitude scoring
+  change_magnitude_scores:
+    files_changed: 2               # 2 points per file
+    lines_changed: 0.1             # 0.1 points per line
+    functions_changed: 5           # 5 points per function
+  
+  # Thresholds
+  thresholds:
+    low: 30                        # 0-30 = low risk
+    medium: 60                     # 31-60 = medium risk
+    high: 80                       # 61-80 = high risk
+    critical: 100                  # 81-100 = critical risk
+
+# Zone-specific strategies
+strategies:
+  critical:
+    approach: "defensive"
+    verification: "exhaustive"
+    rollback: "immediate"
+    monitoring: "continuous"
+  
+  high:
+    approach: "cautious"
+    verification: "thorough"
+    rollback: "automatic"
+    monitoring: "regular"
+  
+  medium:
+    approach: "balanced"
+    verification: "standard"
+    rollback: "automatic"
+    monitoring: "periodic"
+  
+  low:
+    approach: "aggressive"
+    verification: "basic"
+    rollback: "optional"
+    monitoring: "minimal"
+  
+  experimental:
+    approach: "experimental"
+    verification: "none"
+    rollback: "never"
+    monitoring: "none"
+
+# Integration with other systems
+integration:
+  # Learning system
+  learning:
+    enabled: true
+    adjust_zones: true             # Auto-adjust zones based on learning
+    update_frequency: monthly      # Review monthly
+  
+  # Immune system
+  immune:
+    enabled: true
+    respect_blocks: true           # Never override immune blocks
+    merge_strategy: strict_union   # Strictest of both
+  
+  # Brain system
+  brain:
+    enabled: true
+    track_decisions: true          # Track risk-based decisions
+    learn_from_outcomes: true      # Learn from results
+
+# Performance
+performance:
+  cache_risk_scores: true
+  cache_ttl: 3600                  # 1 hour
+  parallel_scoring: true
+  early_exit: true                 # Stop if threshold exceeded
+
+# Monitoring
+monitoring:
+  log_risk_scores: true
+  log_path: .odavl/logs/riskmap.log
+  track_violations: true
+  violations_path: .odavl/riskmap/violations.json
+  alert_on_critical: true
+
+# Auto-classification
+auto_classification:
+  enabled: true                    # Auto-classify new files
+  
+  # Classification rules
+  rules:
+    - pattern: "**/*payment*"
+      zone: critical
+    - pattern: "**/*security*"
+      zone: critical
+    - pattern: "**/*auth*"
+      zone: critical
+    - pattern: "**/api/**"
+      zone: high
+    - pattern: "**/database/**"
+      zone: high
+    - pattern: "**/docs/**"
+      zone: low
+    - pattern: "**/*.test.*"
+      zone: low

@@ -1,0 +1,2772 @@
+{
+  "workspace": "apps/studio-hub",
+  "duration": 41.5,
+  "totalIssues": 300,
+  "timestamp": "29.11.2025, 14:30:08",
+  "detectors": [
+    {
+      "name": "Security",
+      "icon": "🔒",
+      "count": 5,
+      "severity": {
+        "critical": 5,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      }
+    },
+    {
+      "name": "Performance",
+      "icon": "⚡",
+      "count": 135,
+      "severity": {
+        "critical": 49,
+        "high": 0,
+        "medium": 86,
+        "low": 0
+      }
+    },
+    {
+      "name": "Complexity",
+      "icon": "🧮",
+      "count": 55,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 55,
+        "low": 0
+      }
+    },
+    {
+      "name": "Circular Deps",
+      "icon": "🔄",
+      "count": 2,
+      "severity": {
+        "critical": 1,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      }
+    },
+    {
+      "name": "Runtime",
+      "icon": "⚙️",
+      "count": 21,
+      "severity": {
+        "critical": 5,
+        "high": 0,
+        "medium": 16,
+        "low": 0
+      }
+    },
+    {
+      "name": "Build",
+      "icon": "🏗️",
+      "count": 1,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      }
+    },
+    {
+      "name": "Network",
+      "icon": "🌐",
+      "count": 61,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 61,
+        "low": 0
+      }
+    },
+    {
+      "name": "Isolation",
+      "icon": "🔐",
+      "count": 20,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 20,
+        "low": 0
+      }
+    }
+  ],
+  "issues": [
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "Hardcoded Credential detected: api_key: \"${GREMLIN_API_KEY}\"...",
+      "file": "chaos\\chaostoolkit-settings.yaml",
+      "line": 312,
+      "suggestion": "Move sensitive data to environment variables (.env) and use process.env"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "Hardcoded Credential detected: TOKEN = 'third_party_token'...",
+      "file": "lib\\security\\secrets-manager.ts",
+      "line": 22,
+      "suggestion": "Move sensitive data to environment variables (.env) and use process.env"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "Hardcoded Credential detected: SECRET = 'webhook_secret'...",
+      "file": "lib\\security\\secrets-manager.ts",
+      "line": 24,
+      "suggestion": "Move sensitive data to environment variables (.env) and use process.env"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "Hardcoded Credential detected: apiKey = `odavl_${keyId}_${key...",
+      "file": "app\\api\\api-keys\\route.ts",
+      "line": 16,
+      "suggestion": "Move sensitive data to environment variables (.env) and use process.env"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Potential XSS: Using dangerouslySetInnerHTML",
+      "file": "app\\auth\\signin\\page.tsx",
+      "line": 83,
+      "suggestion": "Sanitize HTML content using DOMPurify or avoid dangerouslySetInnerHTML"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\pages\\_error.tsx",
+      "line": 12,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\pages\\_error.tsx",
+      "line": 22,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\pages\\_error.tsx",
+      "line": 25,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (23)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\tests\\load\\dashboard.js",
+      "line": 419,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (53)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\tests\\load\\dashboard.js",
+      "line": 480,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (241 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\tests\\load\\dashboard.js",
+      "line": 480,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (291 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\playground\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (20)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\playground\\page.tsx",
+      "line": 77,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (214 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\playground\\page.tsx",
+      "line": 77,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 38,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 42,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 43,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 46,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 51,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 54,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 59,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 62,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 69,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 81,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 105,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 110,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\sandbox\\test-guardian\\page.tsx",
+      "line": 112,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\utils\\fetch.ts",
+      "line": 65,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (16)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 215,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 447,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Prisma query inside loop (N+1 problem)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\gdpr\\data-fetcher.ts",
+      "line": 235,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Prisma query inside loop (N+1 problem)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\gdpr\\data-fetcher.ts",
+      "line": 249,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Prisma query inside loop (N+1 problem)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\gdpr\\data-fetcher.ts",
+      "line": 267,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (283 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\auth\\permission-context.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (117 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\layout\\footer.tsx",
+      "line": 4,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (241 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\social-proof.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (150 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\social-proof.tsx",
+      "line": 91,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (202 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\products-grid.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (131 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\products-grid.tsx",
+      "line": 71,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (152 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\pricing-teaser.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (212 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\hero-section.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (203 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\landing\\hero-section.tsx",
+      "line": 9,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (156 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\insight\\issues-trend.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (138 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\insight\\issues-trend.tsx",
+      "line": 18,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (204 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\insight\\issues-table.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (171 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\insight\\issue-detail.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (232 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\guardian\\test-results-table.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (285 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\guardian\\test-detail.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (302 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\gdpr\\cookie-consent-banner.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (193 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\gdpr\\cookie-consent-banner.tsx",
+      "line": 58,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (172 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\dashboard\\sidebar.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (312 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\dashboard\\notifications-bell.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (22)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\dashboard\\notifications-bell.tsx",
+      "line": 91,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (221 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\dashboard\\notifications-bell.tsx",
+      "line": 91,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (127 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\dashboard\\header.tsx",
+      "line": 11,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (226 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\autopilot\\runs-table.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (211 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\autopilot\\run-detail.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\global-error.tsx",
+      "line": 35,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\global-error.tsx",
+      "line": 45,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\global-error.tsx",
+      "line": 53,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\global-error.tsx",
+      "line": 60,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\health\\page.tsx",
+      "line": 6,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (243 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (147 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\page.tsx",
+      "line": 95,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_test\\page.tsx",
+      "line": 5,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_simple\\page.tsx",
+      "line": 3,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_simple\\page.tsx",
+      "line": 20,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_simple\\page.tsx",
+      "line": 26,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_simple\\page.tsx",
+      "line": 35,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\_disabled_simple\\page.tsx",
+      "line": 44,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (429 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\resources\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (414 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\resources\\page.tsx",
+      "line": 15,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (244 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\integrations\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (229 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\integrations\\page.tsx",
+      "line": 15,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (326 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\features\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (310 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\features\\page.tsx",
+      "line": 16,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (260 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (254 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\page.tsx",
+      "line": 6,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (342 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\contact\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (328 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\contact\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (257 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\case-studies\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (242 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\case-studies\\page.tsx",
+      "line": 15,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (372 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\pricing\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (32)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\pricing\\page.tsx",
+      "line": 6,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (366 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\pricing\\page.tsx",
+      "line": 6,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (311 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\blog\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (297 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\blog\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (258 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 167,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 170,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 173,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 176,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 179,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 228,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 229,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 230,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 236,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 237,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 238,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 244,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 245,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Complex inline style object in JSX",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 246,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (238 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\api-docs\\page.tsx",
+      "line": 20,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (119 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\about\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (132 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\docs\\route.ts",
+      "line": 17,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (188 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\monitoring\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (19)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\monitoring\\page.tsx",
+      "line": 68,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (112 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\monitoring\\page.tsx",
+      "line": 68,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (171 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\insight\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (206 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\guardian\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (176 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\autopilot\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (185 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\analytics\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (385 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\guardian\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (371 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\guardian\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (464 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\insight\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (450 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\insight\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (384 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\autopilot\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (369 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\products\\autopilot\\page.tsx",
+      "line": 15,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (420 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\team\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (391 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\team\\page.tsx",
+      "line": 29,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (276 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\projects\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (270 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\projects\\page.tsx",
+      "line": 6,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (293 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\permissions\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (17)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\permissions\\page.tsx",
+      "line": 13,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (254 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\permissions\\page.tsx",
+      "line": 13,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (432 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\notifications\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (36)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\notifications\\page.tsx",
+      "line": 126,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (306 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\notifications\\page.tsx",
+      "line": 126,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (347 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\insight\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (20)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\insight\\page.tsx",
+      "line": 22,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (325 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\insight\\page.tsx",
+      "line": 22,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (362 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\guardian\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (332 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\guardian\\page.tsx",
+      "line": 30,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (361 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\autopilot\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (341 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\autopilot\\page.tsx",
+      "line": 20,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (284 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\blog\\[slug]\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (17)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\comparison\\route.ts",
+      "line": 6,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (164 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\settings\\billing\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Large component (209 lines) without React.memo",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\settings\\notifications\\page.tsx",
+      "line": 1,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (153 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\[locale]\\dashboard\\settings\\notifications\\page.tsx",
+      "line": 56,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'GET' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\edge\\geolocation\\route.ts",
+      "line": 18,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 163)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\auth\\permission-context.tsx",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 164)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\auth\\permission-context.tsx",
+      "line": 130,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 165)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\auth\\permission-context.tsx",
+      "line": 131,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 108)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 58,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 166)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 58,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 166)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 108,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 174)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 148,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 106)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 56,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 164)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 56,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 164)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 106,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 107)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 57,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 165)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 57,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 165)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\contentful.ts",
+      "line": 107,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 218)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 162,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 270)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 162,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 316)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 162,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 313)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 215,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 270)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 218,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 316)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 218,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 316)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 270,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 219)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 163,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 271)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 163,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 317)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 163,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 314)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 216,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 271)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 219,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 317)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 219,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 317)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 271,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 161)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 94,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 269)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 94,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 269)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 161,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 312)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 214,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 315)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\email\\templates.ts",
+      "line": 217,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Long function (122 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\gdpr\\data-fetcher.ts",
+      "line": 23,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 140)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\monitoring\\sentry-config.ts",
+      "line": 41,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'createRateLimitMiddleware' has high cyclomatic complexity (15)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\rate-limit\\middleware.ts",
+      "line": 207,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'createAuditLog' has high cyclomatic complexity (14)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\audit-logger.ts",
+      "line": 91,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'parseZAPAlert' has high cyclomatic complexity (16)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 412,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 140)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 83,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'scanDirectory' has high cyclomatic complexity (15)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 215,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 308)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 239,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 309)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 240,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 310)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 241,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 284)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 209,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 285)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 210,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 307)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 238,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'getSlackEmoji' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 309,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'getDiscordEmoji' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 335,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 210)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 147,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 212)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 149,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 211)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 148,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 213)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\webhooks\\service.ts",
+      "line": 150,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 89)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\autopilot.ts",
+      "line": 16,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 82)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\guardian.ts",
+      "line": 14,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 71)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\insight.ts",
+      "line": 17,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Circular dependency detected: 1 files",
+      "suggestion": "Medium complexity cycle. Solutions:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Circular dependency detected: 2 files",
+      "suggestion": "Direct circular dependency. Solutions:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 60,
+      "message": "Prisma connection without cleanup (high confidence)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\prisma\\seed.ts",
+      "line": 6,
+      "suggestion": "💡 Enable stricter linting rules to catch this earlier."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 60,
+      "message": "Prisma connection without cleanup (high confidence)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\monitoring\\database.ts",
+      "line": 11,
+      "suggestion": "💡 Enable stricter linting rules to catch this earlier."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "PostgreSQL (pg) connection without cleanup (high confidence)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\db\\pool.ts",
+      "line": 41,
+      "suggestion": "💡 Enable stricter linting rules to catch this earlier."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 60,
+      "message": "Prisma connection without cleanup (high confidence)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\db\\monitoring.ts",
+      "line": 45,
+      "suggestion": "💡 Enable stricter linting rules to catch this earlier."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 60,
+      "message": "Prisma connection without cleanup (high confidence)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\db\\monitoring.ts",
+      "line": 276,
+      "suggestion": "💡 Enable stricter linting rules to catch this earlier."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "setInterval without cleanup",
+      "file": "lib\\monitoring\\performance.ts",
+      "line": 169,
+      "suggestion": "1. Store interval ID: const id = setInterval(...)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "setInterval without cleanup",
+      "file": "lib\\db\\pool.ts",
+      "line": 331,
+      "suggestion": "1. Store interval ID: const id = setInterval(...)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "setInterval without cleanup",
+      "file": "lib\\db\\monitoring.ts",
+      "line": 350,
+      "suggestion": "1. Store interval ID: const id = setInterval(...)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "setInterval without cleanup",
+      "file": "lib\\cache\\redis.ts",
+      "line": 375,
+      "suggestion": "1. Store interval ID: const id = setInterval(...)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "sandbox\\playground\\page.tsx",
+      "line": 87,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\insight\\issues-trend.tsx",
+      "line": 22,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\insight\\issues-table.tsx",
+      "line": 45,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\guardian\\web-vitals-chart.tsx",
+      "line": 21,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\guardian\\test-results-table.tsx",
+      "line": 48,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\gdpr\\cookie-consent-banner.tsx",
+      "line": 69,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\gdpr\\cookie-consent-banner.tsx",
+      "line": 258,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\autopilot\\runs-table.tsx",
+      "line": 53,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\autopilot\\run-stats.tsx",
+      "line": 20,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "components\\analytics\\activity-feed.tsx",
+      "line": 21,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "app\\[locale]\\api-docs\\page.tsx",
+      "line": 25,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "State update in useEffect without dependencies",
+      "file": "app\\[locale]\\api-docs\\page.tsx",
+      "line": 26,
+      "suggestion": "Add proper dependencies to useEffect:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Build failed",
+      "suggestion": "Run build command manually and review details:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\circuit-breaker.ts",
+      "line": 81,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\circuit-breaker.ts",
+      "line": 81,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 50,
+      "message": "Hardcoded URL in fetch: https://api.github.com/users/octocat",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\circuit-breaker.ts",
+      "line": 81,
+      "suggestion": "Move URL to environment variable or config:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\circuit-breaker.ts",
+      "line": 400,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\utils\\fetch.ts",
+      "line": 65,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\utils\\fetch.ts",
+      "line": 211,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Unlimited concurrent requests detected",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\utils\\fetch.ts",
+      "line": 211,
+      "suggestion": "Limit concurrent requests using p-limit or similar:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\utils\\fetch.ts",
+      "line": 241,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\vulnerability-scanner.ts",
+      "line": 333,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 172,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 184,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 197,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 213,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 224,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 245,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 263,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 275,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 184,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 197,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 213,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 224,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 275,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\penetration-testing.ts",
+      "line": 291,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\csrf.ts",
+      "line": 78,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\csrf.ts",
+      "line": 78,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\csrf.ts",
+      "line": 78,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\cloudflare-waf.ts",
+      "line": 36,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\cloudflare-waf.ts",
+      "line": 36,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\cloudflare-waf.ts",
+      "line": 36,
+      "suggestion": "Check response status:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\security\\audit-logger.ts",
+      "line": 156,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\performance\\web-vitals.ts",
+      "line": 45,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\performance\\web-vitals.ts",
+      "line": 45,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\performance\\web-vitals.ts",
+      "line": 49,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\monitoring\\performance.ts",
+      "line": 201,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\monitoring\\performance.ts",
+      "line": 235,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\gdpr\\data-fetcher.ts",
+      "line": 50,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Potential race condition: setState after async operation without cleanup",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\context\\organization.tsx",
+      "line": 119,
+      "suggestion": "Add cleanup in useEffect to prevent race conditions:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\cache\\strategy.ts",
+      "line": 92,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\cache\\strategy.ts",
+      "line": 92,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\api\\versioning.ts",
+      "line": 196,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\api\\versioning.ts",
+      "line": 196,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\api\\versioning.ts",
+      "line": 199,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\lib\\api\\versioning.ts",
+      "line": 199,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Potential race condition: setState after async operation without cleanup",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\components\\organization\\usage-card.tsx",
+      "line": 55,
+      "suggestion": "Add cleanup in useEffect to prevent race conditions:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\page.tsx",
+      "line": 23,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\page.tsx",
+      "line": 52,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\organization.ts",
+      "line": 81,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\insight.ts",
+      "line": 88,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\server\\trpc\\routers\\autopilot.ts",
+      "line": 106,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\usage\\route.ts",
+      "line": 27,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\insight\\page.tsx",
+      "line": 44,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\guardian\\page.tsx",
+      "line": 44,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\autopilot\\page.tsx",
+      "line": 40,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\analytics\\page.tsx",
+      "line": 55,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\(dashboard)\\analytics\\page.tsx",
+      "line": 82,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\edge\\metrics\\route.ts",
+      "line": 29,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "fetch() call without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\web-vitals\\route.ts",
+      "line": 39,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\web-vitals\\route.ts",
+      "line": 39,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\export\\route.ts",
+      "line": 38,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\comparison\\route.ts",
+      "line": 25,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 75,
+      "message": "Promise.all() without error handling",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\app\\api\\analytics\\activity\\route.ts",
+      "line": 29,
+      "suggestion": "1. Wrap in try-catch block"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 625 LOC (consider refactoring for better maintainability)",
+      "file": "tests\\load\\dashboard.js",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "sandbox\\playground\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, Business logic, Data persistence, Event handling",
+      "file": "lib\\monitoring\\performance.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Data persistence",
+      "file": "lib\\context\\organization.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Business logic, Event handling",
+      "file": "components\\landing\\hero-section.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "components\\insight\\issues-table.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "components\\guardian\\test-results-table.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, Data persistence, Event handling",
+      "file": "components\\guardian\\test-detail.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "components\\gdpr\\cookie-consent-banner.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Event handling",
+      "file": "components\\billing\\plan-selector.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "components\\autopilot\\runs-table.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "components\\analytics\\metrics-comparison.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "components\\analytics\\export-reports.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Business logic, Event handling",
+      "file": "app\\[locale]\\pricing\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "app\\[locale]\\api-docs\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, Business logic, Data persistence",
+      "file": "app\\(dashboard)\\monitoring\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Business logic, Data persistence, Event handling",
+      "file": "app\\(dashboard)\\analytics\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Business logic, Event handling",
+      "file": "app\\[locale]\\dashboard\\projects\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, State management, Business logic, Data persistence, Event handling",
+      "file": "app\\[locale]\\dashboard\\insight\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Business logic, Event handling",
+      "file": "app\\[locale]\\dashboard\\autopilot\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "url": "http://localhost:3000/api-docs",
+  "timestamp": "2025-11-25T16:21:28.005Z",
+  "duration": 16281,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_FORM_LABELS",
+      "severity": "high",
+      "message": "♿ 1 form input(s) missing labels",
+      "fix": [
+        "Add <label> element for each input",
+        "Use for attribute to associate label with input",
+        "Use aria-label for inputs without visible labels",
+        "Use aria-labelledby for complex labels",
+        "Ensure labels are descriptive"
+      ],
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "type": "MISSING_PAGE_TITLE",
+      "severity": "high",
+      "message": "♿ Page missing title",
+      "fix": [
+        "Add <title> tag in <head>",
+        "Make title descriptive and unique",
+        "Include site name in title",
+        "Keep title under 60 characters for SEO",
+        "Update title for different pages/routes"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MULTIPLE_H1",
+      "severity": "low",
+      "message": "♿ Page has 12 <h1> headings (should have 1)",
+      "fix": [
+        "Use only one <h1> per page",
+        "Convert additional h1s to h2/h3",
+        "Maintain proper heading hierarchy",
+        "Use h1 for main content heading only"
+      ],
+      "details": {
+        "noH1": false,
+        "multipleH1": true,
+        "total": 12
+      }
+    },
+    {
+      "type": "MISSING_META_DESCRIPTION",
+      "severity": "high",
+      "message": "📄 Missing meta description",
+      "fix": [
+        "Add meta description tag in <head>",
+        "Keep description between 150-160 characters",
+        "Make description unique for each page",
+        "Include target keywords naturally",
+        "Write compelling, actionable description"
+      ],
+      "details": {
+        "length": 0,
+        "content": ""
+      }
+    },
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CANONICAL",
+      "severity": "medium",
+      "message": "🔗 Missing canonical URL",
+      "fix": [
+        "Add <link rel=\"canonical\"> in <head>",
+        "Point to preferred version of page",
+        "Prevent duplicate content issues",
+        "Use absolute URLs",
+        "Set canonical for paginated content"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 32 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 32,
+        "elements": [
+          {
+            "text": "Download OpenAPI Spec",
+            "tag": "a",
+            "width": 166,
+            "height": 17
+          },
+          {
+            "text": "Getting Started Guide",
+            "tag": "a",
+            "width": 140,
+            "height": 17
+          },
+          {
+            "text": "Insight API",
+            "tag": "a",
+            "width": 73,
+            "height": 17
+          },
+          {
+            "text": "Autopilot API",
+            "tag": "a",
+            "width": 90,
+            "height": 17
+          },
+          {
+            "text": "Guardian API",
+            "tag": "a",
+            "width": 88,
+            "height": 17
+          },
+          {
+            "text": "Organizations",
+            "tag": "a",
+            "width": 89,
+            "height": 17
+          },
+          {
+            "text": "Authentication",
+            "tag": "a",
+            "width": 95,
+            "height": 17
+          },
+          {
+            "text": "https://docs.odavl.com",
+            "tag": "a",
+            "width": 139,
+            "height": 16
+          },
+          {
+            "text": "Authorize",
+            "tag": "button",
+            "width": 152,
+            "height": 34
+          },
+          {
+            "text": "insight",
+            "tag": "a",
+            "width": 79,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "autopilot",
+            "tag": "a",
+            "width": 101,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "guardian",
+            "tag": "a",
+            "width": 101,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "analytics",
+            "tag": "a",
+            "width": 103,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "organizations",
+            "tag": "a",
+            "width": 156,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "projects",
+            "tag": "a",
+            "width": 93,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "users",
+            "tag": "a",
+            "width": 64,
+            "height": 28
+          },
+          {
+            "text": "",
+            "tag": "button",
+            "width": 32,
+            "height": 22
+          },
+          {
+            "text": "Documentation",
+            "tag": "a",
+            "width": 99,
+            "height": 17
+          },
+          {
+            "text": "Tutorials",
+            "tag": "a",
+            "width": 57,
+            "height": 17
+          },
+          {
+            "text": "Code Examples",
+            "tag": "a",
+            "width": 101,
+            "height": 17
+          },
+          {
+            "text": "GitHub Issues",
+            "tag": "a",
+            "width": 91,
+            "height": 17
+          },
+          {
+            "text": "Discord Community",
+            "tag": "a",
+            "width": 131,
+            "height": 17
+          },
+          {
+            "text": "Email Support",
+            "tag": "a",
+            "width": 93,
+            "height": 17
+          },
+          {
+            "text": "Terms of Service",
+            "tag": "a",
+            "width": 109,
+            "height": 17
+          },
+          {
+            "text": "Privacy Policy",
+            "tag": "a",
+            "width": 94,
+            "height": 17
+          },
+          {
+            "text": "API Terms",
+            "tag": "a",
+            "width": 69,
+            "height": 17
+          }
+        ]
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 9,
+    "critical": 0,
+    "high": 3,
+    "medium": 3,
+    "low": 3
+  }
+}

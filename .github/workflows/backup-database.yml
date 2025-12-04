@@ -1,0 +1,230 @@
+name: Automated Database Backup
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to backup'
+        required: true
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  backup-production:
+    name: Backup Production Database
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.environment == 'production'
+    environment: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Create database backup
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          BACKUP_RETENTION_DAYS: '30'
+        run: |
+          node -e "
+            const { databaseBackupService } = require('./packages/core/src/services/database-backup');
+            databaseBackupService.createBackup()
+              .then(result => {
+                if (result.success) {
+                  console.log('✅ Backup successful:', result);
+                  process.exit(0);
+                } else {
+                  console.error('❌ Backup failed:', result);
+                  process.exit(1);
+                }
+              })
+              .catch(error => {
+                console.error('❌ Backup error:', error);
+                process.exit(1);
+              });
+          "
+
+      - name: Get backup statistics
+        if: always()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          node -e "
+            const { databaseBackupService } = require('./packages/core/src/services/database-backup');
+            databaseBackupService.getBackupStats()
+              .then(stats => {
+                console.log('📊 Backup Statistics:');
+                console.log('  Total backups:', stats.totalBackups);
+                console.log('  Total size:', (stats.totalSize / 1024 / 1024).toFixed(2), 'MB');
+                if (stats.oldestBackup) console.log('  Oldest backup:', stats.oldestBackup.toISOString());
+                if (stats.latestBackup) console.log('  Latest backup:', stats.latestBackup.toISOString());
+              });
+          "
+
+      - name: Send Slack notification (Success)
+        if: success()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "✅ Production Database Backup Successful",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*✅ Production database backup completed successfully*\n\n*Environment:* Production\n*Time:* ${{ github.run_started_at }}\n*Status:* Success"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack notification (Failure)
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "❌ Production Database Backup Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*❌ Production database backup failed!*\n\n*Environment:* Production\n*Time:* ${{ github.run_started_at }}\n*Status:* Failed\n*Logs:* ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  backup-staging:
+    name: Backup Staging Database
+    runs-on: ubuntu-latest
+    if: github.event.inputs.environment == 'staging'
+    environment: staging
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Create database backup
+        env:
+          DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.STAGING_AWS_S3_BUCKET }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          BACKUP_RETENTION_DAYS: '7'
+        run: |
+          node -e "
+            const { databaseBackupService } = require('./packages/core/src/services/database-backup');
+            databaseBackupService.createBackup()
+              .then(result => {
+                if (result.success) {
+                  console.log('✅ Backup successful:', result);
+                  process.exit(0);
+                } else {
+                  console.error('❌ Backup failed:', result);
+                  process.exit(1);
+                }
+              })
+              .catch(error => {
+                console.error('❌ Backup error:', error);
+                process.exit(1);
+              });
+          "
+
+  verify-backup:
+    name: Verify Latest Backup
+    runs-on: ubuntu-latest
+    needs: backup-production
+    if: github.event_name == 'schedule'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: List backups
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          node -e "
+            const { databaseBackupService } = require('./packages/core/src/services/database-backup');
+            databaseBackupService.listBackups()
+              .then(backups => {
+                console.log('📋 Available backups:', backups.length);
+                backups.slice(0, 5).forEach(backup => {
+                  console.log('  -', backup.key, '(' + (backup.size / 1024 / 1024).toFixed(2) + ' MB)');
+                });
+              });
+          "

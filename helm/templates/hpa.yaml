@@ -1,0 +1,136 @@
+# Kubernetes Horizontal Pod Autoscaler (HPA) Configuration
+# Auto-scales based on CPU, memory, and custom metrics
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: odavl-studio-hub-hpa
+  namespace: production
+  labels:
+    app: odavl-studio-hub
+    tier: web
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: odavl-studio-hub
+  
+  # Scaling limits
+  minReplicas: 3     # Minimum for high availability
+  maxReplicas: 100   # Maximum for cost control
+  
+  # Metrics for scaling decisions
+  metrics:
+    # CPU-based scaling
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70  # Scale when CPU > 70%
+    
+    # Memory-based scaling
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80  # Scale when Memory > 80%
+    
+    # Custom metric: Request rate (requests per second)
+    - type: Pods
+      pods:
+        metric:
+          name: http_requests_per_second
+        target:
+          type: AverageValue
+          averageValue: "1000"  # Scale when > 1000 req/s per pod
+    
+    # Custom metric: Response time (P95 latency)
+    - type: Pods
+      pods:
+        metric:
+          name: http_request_duration_p95
+        target:
+          type: AverageValue
+          averageValue: "500m"  # Scale when P95 > 500ms
+  
+  # Scaling behavior
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # Wait 5 minutes before scaling down
+      policies:
+        - type: Percent
+          value: 50      # Scale down max 50% of pods
+          periodSeconds: 60
+        - type: Pods
+          value: 5       # Scale down max 5 pods at a time
+          periodSeconds: 60
+      selectPolicy: Min  # Use more conservative policy
+    
+    scaleUp:
+      stabilizationWindowSeconds: 0  # Scale up immediately
+      policies:
+        - type: Percent
+          value: 100     # Scale up max 100% of pods (double)
+          periodSeconds: 30
+        - type: Pods
+          value: 10      # Scale up max 10 pods at a time
+          periodSeconds: 30
+      selectPolicy: Max  # Use more aggressive policy
+
+---
+# Vertical Pod Autoscaler (VPA) - Recommends resource limits
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: odavl-studio-hub-vpa
+  namespace: production
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: odavl-studio-hub
+  
+  updatePolicy:
+    updateMode: "Recreate"  # Recreate pods with new limits
+  
+  resourcePolicy:
+    containerPolicies:
+      - containerName: '*'
+        minAllowed:
+          cpu: 100m
+          memory: 256Mi
+        maxAllowed:
+          cpu: 4000m
+          memory: 8Gi
+        controlledResources: ["cpu", "memory"]
+
+---
+# Pod Disruption Budget - Ensure availability during scaling
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: odavl-studio-hub-pdb
+  namespace: production
+spec:
+  minAvailable: 2  # Always keep at least 2 pods running
+  selector:
+    matchLabels:
+      app: odavl-studio-hub
+
+---
+# Service Monitor for Prometheus metrics
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: odavl-studio-hub-metrics
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: odavl-studio-hub
+  endpoints:
+    - port: metrics
+      interval: 30s
+      path: /metrics

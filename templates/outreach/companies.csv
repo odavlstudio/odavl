@@ -1,0 +1,42 @@
+company_name,website,contact_name,email,title,company_size,tech_stack,notes,status,last_contact,next_action
+"TechCorp Solutions","https://techcorp.com","Sarah Johnson","sarah.johnson@techcorp.com","VP Engineering","50-100","TypeScript, React, Node.js","Actively hiring TS developers, recent Series B","prospecting","","initial_outreach"
+"DevStart Inc","https://devstart.io","Ahmed Al-Rashid","ahmed@devstart.io","CTO","10-25","Vue, TypeScript, Python","YC startup, scaling team rapidly","prospecting","","initial_outreach"
+"Enterprise Systems Ltd","https://entsys.com","Michael Chen","m.chen@entsys.com","Lead Developer","100-500","Angular, Java, TypeScript","Legacy modernization project ongoing","prospecting","","initial_outreach"
+"CloudNative Co","https://cloudnative.co","Lisa Rodriguez","lisa.r@cloudnative.co","Engineering Manager","25-50","React, TypeScript, AWS","Remote-first team, code quality focus","prospecting","","initial_outreach"
+"DataFlow Analytics","https://dataflow.ai","David Kim","david@dataflow.ai","Senior Architect","15-30","TypeScript, GraphQL, PostgreSQL","High-growth B2B SaaS, technical debt concerns","prospecting","","initial_outreach"
+"WebScale Innovations","https://webscale.dev","Emma Thompson","emma.thompson@webscale.dev","Head of Engineering","75-150","Next.js, TypeScript, Microservices","Recently raised Series A, hiring aggressively","prospecting","","initial_outreach"
+"FinTech Solutions","https://fintech-sol.com","Omar Hassan","omar.hassan@fintech-sol.com","Technical Lead","30-60","React, TypeScript, Node.js","Regulatory compliance requirements, code quality critical","prospecting","","initial_outreach"
+"MobileFirst Ltd","https://mobilefirst.com","Jennifer Park","j.park@mobilefirst.com","VP Product Engineering","40-80","React Native, TypeScript, Firebase","Cross-platform development, CI/CD optimization needed","prospecting","","initial_outreach"
+"AI Innovations Corp","https://ai-innov.com","Robert Singh","robert.singh@ai-innov.com","Director of Engineering","60-120","Python, TypeScript, TensorFlow","ML platform with frontend components, scaling challenges","prospecting","","initial_outreach"
+"E-commerce Plus","https://ecommerceplus.com","Maria Garcia","maria@ecommerceplus.com","CTO","20-40","Shopify, TypeScript, React","High transaction volume, performance critical","prospecting","","initial_outreach"
+
+# CSV Field Descriptions:
+# company_name: Full legal or common company name
+# website: Primary company website URL
+# contact_name: Primary technical decision maker
+# email: Business email address for outreach
+# title: Job title/role of the contact
+# company_size: Employee count range
+# tech_stack: Primary technologies used (focus on TypeScript/JS)
+# notes: Key insights, hiring status, recent news, pain points
+# status: prospecting, contacted, demo_scheduled, pilot_active, customer, closed_lost
+# last_contact: Date of last interaction (YYYY-MM-DD format)
+# next_action: Planned follow-up action
+
+# Usage Instructions:
+# 1. Research companies using LinkedIn, AngelList, Crunchbase, job boards
+# 2. Identify companies with TypeScript/JavaScript in job postings
+# 3. Find engineering leaders through LinkedIn, company websites, GitHub
+# 4. Update status and next_action as outreach progresses
+# 5. Add personalization notes for each contact attempt
+
+# Outreach Prioritization:
+# High Priority: Active TypeScript hiring, recent funding, 20-100 employees
+# Medium Priority: Established companies with legacy modernization needs
+# Low Priority: Early-stage startups (<10 employees) or large enterprises (>500)
+
+# Success Indicators:
+# - Reply rate >15% for initial outreach
+# - Demo conversion rate >30% from replies  
+# - Pilot conversion rate >50% from demos
+# - Customer conversion rate >70% from successful pilots

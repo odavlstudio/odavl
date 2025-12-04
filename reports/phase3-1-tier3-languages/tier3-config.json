@@ -1,0 +1,575 @@
+{
+  "ruby": {
+    "id": "ruby",
+    "displayName": "Ruby",
+    "tier": 3,
+    "icon": "💎",
+    "color": "#CC342D",
+    "fileExtensions": [
+      ".rb",
+      ".rake",
+      ".gemspec"
+    ],
+    "packageManagers": [
+      "bundler",
+      "rubygems"
+    ],
+    "frameworks": [
+      "Rails",
+      "Sinatra",
+      "Hanami",
+      "Roda"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 400,
+    "detectors": [
+      {
+        "id": "rails-patterns",
+        "name": "Rails Best Practices",
+        "description": "Detect Rails-specific anti-patterns and best practices violations",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "N+1 queries",
+          "Missing validations",
+          "Fat models",
+          "Controller logic in views",
+          "Missing database indexes"
+        ]
+      },
+      {
+        "id": "gem-security",
+        "name": "Gem Security Scanner",
+        "description": "Scan for vulnerable gem dependencies",
+        "category": "security",
+        "severity": "critical",
+        "examples": [
+          "Outdated gems with CVEs",
+          "Gem with known vulnerabilities",
+          "Insecure gem sources",
+          "Missing Gemfile.lock"
+        ]
+      },
+      {
+        "id": "ruby-security",
+        "name": "Ruby Security Patterns",
+        "description": "Detect security vulnerabilities in Ruby code",
+        "category": "security",
+        "severity": "high",
+        "examples": [
+          "SQL injection risks",
+          "XSS vulnerabilities",
+          "Mass assignment",
+          "Unsafe deserialization",
+          "Command injection"
+        ]
+      },
+      {
+        "id": "ruby-style",
+        "name": "Ruby Style & Idioms",
+        "description": "Enforce Ruby community style guide and idioms",
+        "category": "style",
+        "severity": "low",
+        "examples": [
+          "Non-idiomatic Ruby",
+          "Long methods",
+          "Complex conditionals",
+          "Missing documentation",
+          "Naming conventions"
+        ]
+      },
+      {
+        "id": "rspec-patterns",
+        "name": "RSpec Best Practices",
+        "description": "Detect testing anti-patterns in RSpec",
+        "category": "testing",
+        "severity": "medium",
+        "examples": [
+          "Slow tests",
+          "Flaky tests",
+          "Missing coverage",
+          "Test interdependencies",
+          "Duplicate test setups"
+        ]
+      }
+    ]
+  },
+  "swift": {
+    "id": "swift",
+    "displayName": "Swift",
+    "tier": 3,
+    "icon": "🦅",
+    "color": "#FA7343",
+    "fileExtensions": [
+      ".swift"
+    ],
+    "packageManagers": [
+      "swift-package-manager",
+      "cocoapods",
+      "carthage"
+    ],
+    "frameworks": [
+      "SwiftUI",
+      "UIKit",
+      "Combine",
+      "Vapor",
+      "Kitura"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 380,
+    "detectors": [
+      {
+        "id": "memory-management",
+        "name": "Memory Management",
+        "description": "Detect memory leaks and retain cycles",
+        "category": "performance",
+        "severity": "high",
+        "examples": [
+          "Strong reference cycles",
+          "Unowned vs weak issues",
+          "Closure capture lists",
+          "Memory leaks in delegates",
+          "Retain cycles in closures"
+        ]
+      },
+      {
+        "id": "async-await",
+        "name": "Async/Await Patterns",
+        "description": "Detect issues with Swift concurrency",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Missing actor isolation",
+          "Data races",
+          "Blocking async calls",
+          "Missing Sendable conformance",
+          "Task cancellation issues"
+        ]
+      },
+      {
+        "id": "swiftui-patterns",
+        "name": "SwiftUI Best Practices",
+        "description": "SwiftUI-specific patterns and anti-patterns",
+        "category": "framework",
+        "severity": "medium",
+        "examples": [
+          "Unnecessary view updates",
+          "@State vs @Binding misuse",
+          "Missing @Published",
+          "View model issues",
+          "Performance bottlenecks"
+        ]
+      },
+      {
+        "id": "swift-protocols",
+        "name": "Protocol-Oriented Design",
+        "description": "Protocol usage and composition patterns",
+        "category": "patterns",
+        "severity": "low",
+        "examples": [
+          "Protocol witness issues",
+          "Missing protocol conformance",
+          "Over-abstraction",
+          "Missing associated types",
+          "Protocol inheritance issues"
+        ]
+      },
+      {
+        "id": "xctest-patterns",
+        "name": "XCTest Best Practices",
+        "description": "iOS testing patterns and anti-patterns",
+        "category": "testing",
+        "severity": "medium",
+        "examples": [
+          "UI test flakiness",
+          "Missing test isolation",
+          "Slow unit tests",
+          "Test coverage gaps",
+          "Mock/stub issues"
+        ]
+      }
+    ]
+  },
+  "kotlin": {
+    "id": "kotlin",
+    "displayName": "Kotlin",
+    "tier": 3,
+    "icon": "🎯",
+    "color": "#7F52FF",
+    "fileExtensions": [
+      ".kt",
+      ".kts"
+    ],
+    "packageManagers": [
+      "gradle",
+      "maven"
+    ],
+    "frameworks": [
+      "Android",
+      "Ktor",
+      "Spring Boot",
+      "Compose"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 450,
+    "detectors": [
+      {
+        "id": "coroutines",
+        "name": "Coroutines Best Practices",
+        "description": "Detect coroutine misuse and anti-patterns",
+        "category": "patterns",
+        "severity": "high",
+        "examples": [
+          "Blocking in coroutines",
+          "Missing dispatcher",
+          "Coroutine leaks",
+          "GlobalScope usage",
+          "Uncaught exceptions"
+        ]
+      },
+      {
+        "id": "null-safety",
+        "name": "Null Safety",
+        "description": "Detect null safety violations",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Unnecessary !! operator",
+          "Unsafe casts",
+          "Platform type usage",
+          "Missing null checks",
+          "Nullable lateinit"
+        ]
+      },
+      {
+        "id": "android-patterns",
+        "name": "Android Best Practices",
+        "description": "Android-specific patterns and lifecycle issues",
+        "category": "framework",
+        "severity": "high",
+        "examples": [
+          "Memory leaks in Activities",
+          "Context leaks",
+          "Lifecycle violations",
+          "Missing permissions",
+          "UI on main thread"
+        ]
+      },
+      {
+        "id": "kotlin-dsl",
+        "name": "DSL Design",
+        "description": "Kotlin DSL patterns and type-safe builders",
+        "category": "patterns",
+        "severity": "low",
+        "examples": [
+          "DSL scope issues",
+          "Receiver type problems",
+          "Builder pattern misuse",
+          "Implicit receivers",
+          "DSL markers missing"
+        ]
+      },
+      {
+        "id": "java-interop",
+        "name": "Java Interoperability",
+        "description": "Kotlin-Java interop issues",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Platform type leaks",
+          "@JvmStatic misuse",
+          "SAM conversion issues",
+          "Java nullability",
+          "Companion object issues"
+        ]
+      }
+    ]
+  },
+  "scala": {
+    "id": "scala",
+    "displayName": "Scala",
+    "tier": 3,
+    "icon": "🎭",
+    "color": "#DC322F",
+    "fileExtensions": [
+      ".scala",
+      ".sc"
+    ],
+    "packageManagers": [
+      "sbt",
+      "mill",
+      "maven"
+    ],
+    "frameworks": [
+      "Akka",
+      "Play",
+      "Cats",
+      "ZIO",
+      "Spark"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 500,
+    "detectors": [
+      {
+        "id": "functional-patterns",
+        "name": "Functional Programming",
+        "description": "FP patterns and functional design issues",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Mutable state in FP",
+          "Side effects in pure functions",
+          "Missing for-comprehension",
+          "Improper Option usage",
+          "Future composition issues"
+        ]
+      },
+      {
+        "id": "implicits",
+        "name": "Implicit Resolution",
+        "description": "Implicit parameter and conversion issues",
+        "category": "patterns",
+        "severity": "high",
+        "examples": [
+          "Implicit ambiguity",
+          "Missing implicit scope",
+          "Implicit conversion pitfalls",
+          "Type class derivation",
+          "Given/using issues (Scala 3)"
+        ]
+      },
+      {
+        "id": "type-system",
+        "name": "Advanced Type System",
+        "description": "Type-level programming and variance issues",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Variance annotations",
+          "Type bounds issues",
+          "Path-dependent types",
+          "Higher-kinded types",
+          "Type refinements"
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Scala Performance",
+        "description": "Performance anti-patterns in Scala",
+        "category": "performance",
+        "severity": "high",
+        "examples": [
+          "Boxing overhead",
+          "Collection inefficiency",
+          "Stream materialization",
+          "Reflection usage",
+          "Slow pattern matching"
+        ]
+      },
+      {
+        "id": "akka-patterns",
+        "name": "Akka Best Practices",
+        "description": "Actor system and Akka patterns",
+        "category": "framework",
+        "severity": "high",
+        "examples": [
+          "Actor blocking",
+          "Message protocol issues",
+          "Supervision strategy",
+          "Actor lifecycle",
+          "Akka Streams backpressure"
+        ]
+      }
+    ]
+  },
+  "elixir": {
+    "id": "elixir",
+    "displayName": "Elixir",
+    "tier": 3,
+    "icon": "💜",
+    "color": "#4B275F",
+    "fileExtensions": [
+      ".ex",
+      ".exs"
+    ],
+    "packageManagers": [
+      "mix",
+      "hex"
+    ],
+    "frameworks": [
+      "Phoenix",
+      "Nerves",
+      "Absinthe",
+      "Ecto"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 350,
+    "detectors": [
+      {
+        "id": "processes",
+        "name": "Process Management",
+        "description": "Process spawning and message passing patterns",
+        "category": "patterns",
+        "severity": "high",
+        "examples": [
+          "Process leaks",
+          "Mailbox overflow",
+          "Blocking receive",
+          "Missing process links",
+          "GenServer bottlenecks"
+        ]
+      },
+      {
+        "id": "supervision",
+        "name": "Supervision Trees",
+        "description": "Supervisor and fault tolerance patterns",
+        "category": "patterns",
+        "severity": "high",
+        "examples": [
+          "Missing supervision",
+          "Wrong restart strategy",
+          "Supervisor explosion",
+          "Child spec issues",
+          "Dynamic supervisor misuse"
+        ]
+      },
+      {
+        "id": "phoenix-patterns",
+        "name": "Phoenix Best Practices",
+        "description": "Phoenix framework patterns and LiveView",
+        "category": "framework",
+        "severity": "medium",
+        "examples": [
+          "Controller fat code",
+          "Context boundaries",
+          "LiveView state issues",
+          "Channel inefficiency",
+          "Missing telemetry"
+        ]
+      },
+      {
+        "id": "macros",
+        "name": "Macro Usage",
+        "description": "Macro hygiene and metaprogramming",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Macro hygiene issues",
+          "Compile-time bottlenecks",
+          "Over-metaprogramming",
+          "Quote/unquote misuse",
+          "Macro debugging difficulty"
+        ]
+      },
+      {
+        "id": "exunit-patterns",
+        "name": "ExUnit Best Practices",
+        "description": "Testing patterns with ExUnit",
+        "category": "testing",
+        "severity": "medium",
+        "examples": [
+          "Async test issues",
+          "Missing test tags",
+          "Slow integration tests",
+          "Test isolation problems",
+          "Mock/stub patterns"
+        ]
+      }
+    ]
+  },
+  "haskell": {
+    "id": "haskell",
+    "displayName": "Haskell",
+    "tier": 3,
+    "icon": "🔷",
+    "color": "#5D4F85",
+    "fileExtensions": [
+      ".hs",
+      ".lhs"
+    ],
+    "packageManagers": [
+      "cabal",
+      "stack"
+    ],
+    "frameworks": [
+      "Yesod",
+      "Servant",
+      "Scotty",
+      "IHP"
+    ],
+    "targetAccuracy": 95,
+    "targetSpeed": 420,
+    "detectors": [
+      {
+        "id": "type-classes",
+        "name": "Type Class Design",
+        "description": "Type class usage and design patterns",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Orphan instances",
+          "Missing fundeps",
+          "Type class misuse",
+          "Overlapping instances",
+          "Type family issues"
+        ]
+      },
+      {
+        "id": "purity",
+        "name": "Purity & Side Effects",
+        "description": "Side effect management and IO patterns",
+        "category": "patterns",
+        "severity": "high",
+        "examples": [
+          "Unsafe IO usage",
+          "Missing MonadIO",
+          "Effect system issues",
+          "Lazy IO problems",
+          "Exception handling"
+        ]
+      },
+      {
+        "id": "laziness",
+        "name": "Laziness Issues",
+        "description": "Lazy evaluation and strictness",
+        "category": "performance",
+        "severity": "high",
+        "examples": [
+          "Space leaks",
+          "Thunk accumulation",
+          "Missing bang patterns",
+          "Lazy fold issues",
+          "Streaming problems"
+        ]
+      },
+      {
+        "id": "monads",
+        "name": "Monad Transformers",
+        "description": "Monad stack and transformer patterns",
+        "category": "patterns",
+        "severity": "medium",
+        "examples": [
+          "Transformer inefficiency",
+          "Stack too deep",
+          "Missing mtl instances",
+          "IO in wrong layer",
+          "Lift chain issues"
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Haskell Performance",
+        "description": "Performance optimization patterns",
+        "category": "performance",
+        "severity": "high",
+        "examples": [
+          "Inefficient data structures",
+          "String vs Text/ByteString",
+          "List vs Vector",
+          "Fusion not firing",
+          "Missing INLINE pragmas"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+name: ODAVL Governance Guard
+on:
+  pull_request:
+
+jobs:
+  governance-check:
+    runs-on: ubuntu-latest
+    name: Enforce ODAVL Constraints
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 🛡️ Governance Gates Check
+        run: |
+          echo "🔒 Checking ODAVL governance gates..."
+          if [ ! -f "../../.odavl/gates.yml" ]; then
+            echo "❌ gates.yml not found!"; exit 1;
+          fi
+          yq e '.' ../../.odavl/gates.yml > /dev/null || { echo "❌ gates.yml is invalid"; exit 1; }
+          echo "✅ gates.yml validated."
+      - name: 🏷️ Branch Naming Validation
+        run: |
+          echo "🔎 Validating branch naming pattern..."
+          if [[ "${{ github.ref_name }}" =~ ^odavl\/.*-[0-9]{8}$ ]]; then
+            echo "✅ Branch name matches governance pattern."
+          else
+            echo "❌ Branch name '${{ github.ref_name }}' does not match 'odavl/<task>-<date>'!"; exit 1;
+          fi
+      - name: 📏 LOC/File Limit Enforcement
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "📏 Checking lines of code and files changed..."
+          gh pr view ${{ github.event.pull_request.number }} --json files,additions,deletions > pr.json
+          FILES=$(jq '.files | length' pr.json)
+          ADD=$(jq '.additions' pr.json)
+          DEL=$(jq '.deletions' pr.json)
+          LOC=$((ADD + DEL))
+          if [ "$FILES" -gt 10 ]; then echo "❌ More than 10 files changed!"; exit 1; fi
+          if [ "$LOC" -gt 40 ]; then echo "❌ More than 40 lines changed!"; exit 1; fi
+          echo "✅ LOC and file limits passed."
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Check Diff Limits
+        run: node scripts/check-diff.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+      - name: Check i18n Integrity
+        run: node scripts/check-i18n.mjs
+        if: contains(github.event.pull_request.changed_files, 'odavl-website/messages/')
+      - name: Verify Protected Paths
+        run: |
+          if git diff --name-only origin/main...HEAD | grep -E "(security/|\.spec\.|public-api/)"; then
+            echo "❌ BLOCKED: Protected paths modified"
+            echo "Files in protected paths:"
+            git diff --name-only origin/main...HEAD | grep -E "(security/|\.spec\.|public-api/)" || true
+            exit 1
+          else
+            echo "✅ PASSED: No protected paths modified"
+          fi
+      - name: Check Branch Naming
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          if [[ ! "$BRANCH_NAME" =~ ^odavl/(core|web|hotfix)- ]]; then
+            echo "❌ BLOCKED: Invalid branch name: $BRANCH_NAME"
+            echo "Expected: odavl/(core|web|hotfix)-<task>-<date>"
+            exit 1
+          else
+            echo "✅ PASSED: Branch name follows convention: $BRANCH_NAME"
+          fi
+  build-verification:
+    runs-on: ubuntu-latest
+    name: Build & Quality Checks
+    needs: governance-check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: 🛡️ Policy Guard Pre-Build
+        run: pwsh ./tools/policy-guard.ps1 -Phase pre-build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript Check
+        run: pnpm typecheck
+      - name: Lint Check
+        run: pnpm lint
+      - name: Build Verification
+        run: pnpm build
+      - name: 🛡️ Policy Guard Post-Build
+        run: pwsh ./tools/policy-guard.ps1 -Phase post-build
+      - name: Final Status
+        run: |
+          echo "✅ All governance and quality checks passed!"
+          echo "✅ Ready for human LGTM review"
+      - name: 🛡️ Attestation Token Generation
+        run: |
+          echo "🔏 Generating attestation token..."
+          mkdir -p ./evidence/
+          echo "{ \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)\", \"branch\": \"${{ github.ref_name }}\", \"commit\": \"${{ github.sha }}\", \"workflow\": \"${{ github.workflow }}\", \"status\": \"passed\" }" > ./evidence/attestation-${{ github.run_id }}.json
+          echo "✅ Attestation token stored in evidence/"
+      - name: 🛡️ Undo Snapshot Generation
+        if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+        run: |
+          echo "🛡️ Generating undo snapshot..."
+          mkdir -p ./.odavl/undo/
+          echo "{ \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)\", \"branch\": \"${{ github.ref_name }}\", \"commit\": \"${{ github.sha }}\", \"workflow\": \"${{ github.workflow }}\", \"status\": \"merged\" }" > ./.odavl/undo/undo-${{ github.run_id }}.json
+          echo "✅ Undo snapshot stored in .odavl/undo/"
+          echo "✅ Ready for human LGTM review"

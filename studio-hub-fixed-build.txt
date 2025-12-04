@@ -1,0 +1,28 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 16.0.6 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ┬À optimizePackageImports
+
+ ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 12.9s
+   Running TypeScript ...
+Failed to compile.
+
+./lib/gdpr/data-fetcher.ts:146:11
+Type error: Object literal may only specify known properties, and 'createdAt' does not exist in type 'AuditLogSelect<DefaultArgs>'.
+
+  144 |           action: true,
+  145 |           metadata: true,
+> 146 |           createdAt: true,
+      |           ^
+  147 |         },
+  148 |         take: 1000,
+  149 |       }),
+Next.js build worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

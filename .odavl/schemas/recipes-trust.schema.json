@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://odavl.studio/schemas/recipes-trust.json",
+  "title": "ODAVL Recipes Trust Schema",
+  "description": "Schema for recipe trust scores with ML feedback loop",
+  "type": "object",
+  "required": ["version", "recipes"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version (semver)"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp (ISO 8601)"
+    },
+    "recipes": {
+      "type": "object",
+      "description": "Map of recipe IDs to trust data",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["trust", "runs", "successes", "failures"],
+        "properties": {
+          "trust": {
+            "type": "number",
+            "minimum": 0.1,
+            "maximum": 1.0,
+            "description": "Current trust score (0.1-1.0)"
+          },
+          "runs": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Total number of runs"
+          },
+          "successes": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of successful runs"
+          },
+          "failures": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of failed runs"
+          },
+          "consecutiveFailures": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Current streak of consecutive failures"
+          },
+          "blacklisted": {
+            "type": "boolean",
+            "description": "Whether recipe is blacklisted (3+ consecutive failures)"
+          },
+          "lastRun": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of last execution"
+          },
+          "history": {
+            "type": "array",
+            "description": "Historical trust score evolution",
+            "items": {
+              "type": "object",
+              "required": ["timestamp", "trust"],
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "trust": {
+                  "type": "number",
+                  "minimum": 0.1,
+                  "maximum": 1.0
+                },
+                "event": {
+                  "type": "string",
+                  "enum": ["success", "failure", "manual_adjustment"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

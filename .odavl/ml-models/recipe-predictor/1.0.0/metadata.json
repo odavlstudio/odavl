@@ -1,0 +1,25 @@
+{
+  "name": "recipe-predictor",
+  "version": "1.0.0",
+  "description": "Example ML model for recipe prediction",
+  "savedAt": "2024-11-24T00:00:00Z",
+  "accuracy": 0.95,
+  "loss": 0.05,
+  "trainingDataVersion": "1.0.0",
+  "architecture": {
+    "layers": 5,
+    "parameters": 12850,
+    "inputShape": [10],
+    "outputShape": [3]
+  },
+  "training": {
+    "epochs": 100,
+    "batchSize": 32,
+    "optimizer": "adam",
+    "learningRate": 0.001
+  },
+  "performance": {
+    "inferenceTimeMs": 5,
+    "memoryUsageMB": 2.5
+  }
+}

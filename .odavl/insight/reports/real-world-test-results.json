@@ -1,0 +1,210 @@
+{
+  "timestamp": "2025-11-28T20:29:29.355Z",
+  "testProjects": [
+    {
+      "project": "Flask API",
+      "totalIssues": 13,
+      "totalExpected": 10,
+      "accuracy": 130,
+      "performance": 274,
+      "detectorResults": [
+        {
+          "name": "Type Hints",
+          "issues": 11,
+          "expected": 5,
+          "samples": [
+            {
+              "file": "app.py",
+              "line": 14,
+              "message": "Function 'get_db_connection' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "app.py",
+              "line": 21,
+              "message": "Function 'get_user' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "app.py",
+              "line": 35,
+              "message": "Function 'backup_database' missing return type hint",
+              "severity": "warning"
+            }
+          ],
+          "performance": 154
+        },
+        {
+          "name": "Security",
+          "issues": 2,
+          "expected": 3,
+          "samples": [
+            {
+              "file": "app.py",
+              "line": 38,
+              "message": "Command injection via os.system()",
+              "severity": "high"
+            },
+            {
+              "file": "app.py",
+              "line": 74,
+              "message": "Weak random number generator (not cryptographically secure)",
+              "severity": "medium"
+            }
+          ],
+          "performance": 5
+        },
+        {
+          "name": "Complexity",
+          "issues": 0,
+          "expected": 2,
+          "samples": [],
+          "performance": 106
+        }
+      ]
+    },
+    {
+      "project": "FastAPI Sample",
+      "totalIssues": 22,
+      "totalExpected": 9,
+      "accuracy": 244.4,
+      "performance": 213,
+      "detectorResults": [
+        {
+          "name": "Type Hints",
+          "issues": 19,
+          "expected": 4,
+          "samples": [
+            {
+              "file": "main.py",
+              "line": 19,
+              "message": "Function 'get_database' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "main.py",
+              "line": 28,
+              "message": "Function 'get_user' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "main.py",
+              "line": 40,
+              "message": "Function 'backup_database' missing return type hint",
+              "severity": "warning"
+            }
+          ],
+          "performance": 105
+        },
+        {
+          "name": "Security",
+          "issues": 3,
+          "expected": 2,
+          "samples": [
+            {
+              "file": "main.py",
+              "line": 42,
+              "message": "Command injection via os.system()",
+              "severity": "high"
+            },
+            {
+              "file": "main.py",
+              "line": 50,
+              "message": "Insecure deserialization with pickle",
+              "severity": "high"
+            },
+            {
+              "file": "main.py",
+              "line": 111,
+              "message": "Weak random number generator (not cryptographically secure)",
+              "severity": "medium"
+            }
+          ],
+          "performance": 2
+        },
+        {
+          "name": "Complexity",
+          "issues": 0,
+          "expected": 3,
+          "samples": [],
+          "performance": 102
+        }
+      ]
+    },
+    {
+      "project": "Django Blog",
+      "totalIssues": 19,
+      "totalExpected": 15,
+      "accuracy": 126.7,
+      "performance": 447,
+      "detectorResults": [
+        {
+          "name": "Type Hints",
+          "issues": 16,
+          "expected": 6,
+          "samples": [
+            {
+              "file": "models.py",
+              "line": 8,
+              "message": "Function 'get_user_posts' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "models.py",
+              "line": 14,
+              "message": "Function 'validate_post_data' missing return type hint",
+              "severity": "warning"
+            },
+            {
+              "file": "models.py",
+              "line": 50,
+              "message": "Function 'get_related_posts' missing return type hint",
+              "severity": "warning"
+            }
+          ],
+          "performance": 222
+        },
+        {
+          "name": "Security",
+          "issues": 3,
+          "expected": 4,
+          "samples": [
+            {
+              "file": "models.py",
+              "line": 74,
+              "message": "Command injection via os.system()",
+              "severity": "high"
+            },
+            {
+              "file": "views.py",
+              "line": 12,
+              "message": "Weak random number generator (not cryptographically secure)",
+              "severity": "medium"
+            },
+            {
+              "file": "views.py",
+              "line": 52,
+              "message": "Insecure deserialization with pickle",
+              "severity": "high"
+            }
+          ],
+          "performance": 5
+        },
+        {
+          "name": "Complexity",
+          "issues": 0,
+          "expected": 5,
+          "samples": [],
+          "performance": 213
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "projectsTested": 3,
+    "totalIssues": 54,
+    "totalExpected": 34,
+    "avgAccuracy": 167.03333333333333,
+    "avgPerformance": 311.3333333333333
+  }
+}

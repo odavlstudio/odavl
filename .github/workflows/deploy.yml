@@ -1,0 +1,237 @@
+name: Deploy to Kubernetes
+
+on:
+    workflow_run:
+        workflows: ["Build & Publish"]
+        types:
+            - completed
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Environment to deploy to"
+                required: true
+                type: choice
+                options:
+                    - staging
+                    - production
+            version:
+                description: "Image version/tag to deploy"
+                required: true
+                type: string
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+    deploy-staging:
+        name: Deploy to Staging
+        runs-on: ubuntu-latest
+        if: github.event.inputs.environment == 'staging' || (github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main')
+        environment:
+            name: staging
+            url: https://staging.odavl.com
+        timeout-minutes: 15
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup kubectl
+              uses: azure/setup-kubectl@v4
+              with:
+                  version: "v1.28.0"
+
+            - name: Configure Kubeconfig
+              run: |
+                  mkdir -p $HOME/.kube
+                  echo "${{ secrets.KUBE_CONFIG_STAGING }}" | base64 -d > $HOME/.kube/config
+                  chmod 600 $HOME/.kube/config
+
+            - name: Set Image Version
+              id: version
+              run: |
+                  if [ -n "${{ github.event.inputs.version }}" ]; then
+                    echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+                  else
+                    echo "version=main-${{ github.sha }}" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Deploy Guardian to Staging
+              run: |
+                  kubectl set image deployment/odavl-guardian \
+                    guardian=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-guardian:${{ steps.version.outputs.version }} \
+                    -n staging
+                  kubectl rollout status deployment/odavl-guardian -n staging --timeout=5m
+
+            - name: Deploy Insight Cloud to Staging
+              run: |
+                  kubectl set image deployment/odavl-insight-cloud \
+                    insight-cloud=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-insight-cloud:${{ steps.version.outputs.version }} \
+                    -n staging
+                  kubectl rollout status deployment/odavl-insight-cloud -n staging --timeout=5m
+
+            - name: Run Smoke Tests
+              run: |
+                  echo "Running smoke tests against staging..."
+                  curl --fail --retry 3 --retry-delay 5 https://staging.odavl.com/api/health || exit 1
+                  curl --fail --retry 3 --retry-delay 5 https://staging.odavl.com/api/ready || exit 1
+
+            - name: Notify Slack
+              if: always()
+              uses: 8398a7/action-slack@v3
+              with:
+                  status: ${{ job.status }}
+                  text: "Staging deployment ${{ job.status }}"
+                  webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+              env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    deploy-production:
+        name: Deploy to Production
+        runs-on: ubuntu-latest
+        needs: [deploy-staging]
+        if: github.event.inputs.environment == 'production' || (github.event.workflow_run.conclusion == 'success' && startsWith(github.ref, 'refs/tags/v'))
+        environment:
+            name: production
+            url: https://odavl.com
+        timeout-minutes: 20
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup Helm
+              uses: azure/setup-helm@v4
+              with:
+                  version: "v3.13.0"
+
+            - name: Setup kubectl
+              uses: azure/setup-kubectl@v4
+              with:
+                  version: "v1.28.0"
+
+            - name: Configure Kubeconfig
+              run: |
+                  mkdir -p $HOME/.kube
+                  echo "${{ secrets.KUBE_CONFIG_PRODUCTION }}" | base64 -d > $HOME/.kube/config
+                  chmod 600 $HOME/.kube/config
+
+            - name: Set Image Version
+              id: version
+              run: |
+                  if [ -n "${{ github.event.inputs.version }}" ]; then
+                    echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+                  else
+                    echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Deploy with Helm
+              run: |
+                  helm upgrade --install odavl-guardian ./helm/odavl-guardian \
+                    --namespace production \
+                    --set image.repository=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-guardian \
+                    --set image.tag=${{ steps.version.outputs.version }} \
+                    --set replicaCount=3 \
+                    --set autoscaling.enabled=true \
+                    --set autoscaling.minReplicas=3 \
+                    --set autoscaling.maxReplicas=10 \
+                    --set ingress.enabled=true \
+                    --set ingress.hosts[0].host=guardian.odavl.com \
+                    --wait --timeout 10m
+
+                  helm upgrade --install odavl-insight-cloud ./helm/odavl-insight-cloud \
+                    --namespace production \
+                    --set image.repository=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-insight-cloud \
+                    --set image.tag=${{ steps.version.outputs.version }} \
+                    --set replicaCount=2 \
+                    --set autoscaling.enabled=true \
+                    --set autoscaling.minReplicas=2 \
+                    --set autoscaling.maxReplicas=8 \
+                    --set ingress.enabled=true \
+                    --set ingress.hosts[0].host=insight.odavl.com \
+                    --wait --timeout 10m
+
+            - name: Verify Deployment
+              run: |
+                  kubectl get deployments -n production
+                  kubectl get pods -n production
+                  kubectl get services -n production
+                  kubectl get ingress -n production
+
+            - name: Run Health Checks
+              run: |
+                  echo "Running health checks against production..."
+                  curl --fail --retry 5 --retry-delay 10 https://odavl.com/api/health || exit 1
+                  curl --fail --retry 5 --retry-delay 10 https://odavl.com/api/ready || exit 1
+                  curl --fail --retry 5 --retry-delay 10 https://guardian.odavl.com/api/health || exit 1
+                  curl --fail --retry 5 --retry-delay 10 https://insight.odavl.com/api/health || exit 1
+
+            - name: Run E2E Tests
+              run: |
+                  cd apps/guardian
+                  npx playwright test --config=playwright.config.production.ts
+              continue-on-error: true
+
+            - name: Notify Slack
+              if: always()
+              uses: 8398a7/action-slack@v3
+              with:
+                  status: ${{ job.status }}
+                  text: "Production deployment ${{ job.status }}"
+                  webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+              env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    rollback:
+        name: Rollback Deployment
+        runs-on: ubuntu-latest
+        needs: [deploy-production]
+        if: failure()
+        environment:
+            name: production
+        timeout-minutes: 10
+
+        steps:
+            - name: Setup Helm
+              uses: azure/setup-helm@v4
+              with:
+                  version: "v3.13.0"
+
+            - name: Setup kubectl
+              uses: azure/setup-kubectl@v4
+              with:
+                  version: "v1.28.0"
+
+            - name: Configure Kubeconfig
+              run: |
+                  mkdir -p $HOME/.kube
+                  echo "${{ secrets.KUBE_CONFIG_PRODUCTION }}" | base64 -d > $HOME/.kube/config
+                  chmod 600 $HOME/.kube/config
+
+            - name: Rollback Guardian
+              run: |
+                  helm rollback odavl-guardian -n production
+                  kubectl rollout status deployment/odavl-guardian -n production --timeout=5m
+
+            - name: Rollback Insight Cloud
+              run: |
+                  helm rollback odavl-insight-cloud -n production
+                  kubectl rollout status deployment/odavl-insight-cloud -n production --timeout=5m
+
+            - name: Verify Rollback
+              run: |
+                  curl --fail https://odavl.com/api/health || exit 1
+                  curl --fail https://guardian.odavl.com/api/health || exit 1
+                  curl --fail https://insight.odavl.com/api/health || exit 1
+
+            - name: Notify Slack
+              uses: 8398a7/action-slack@v3
+              with:
+                  status: "warning"
+                  text: "Production deployment rolled back due to failures"
+                  webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+              env:
+                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

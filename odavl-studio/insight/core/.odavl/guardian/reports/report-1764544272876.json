@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-11-30T23:11:12.874Z",
+  "version": "4.0.0",
+  "path": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core",
+  "readiness": 65,
+  "confidence": 95,
+  "issues": {
+    "total": 2,
+    "critical": 2,
+    "warnings": 0,
+    "info": 0
+  },
+  "phases": {
+    "staticAnalysis": {
+      "status": "complete",
+      "duration": 2173
+    },
+    "runtimeTests": {
+      "status": "complete",
+      "duration": 26505
+    },
+    "aiVisualAnalysis": {
+      "status": "complete",
+      "duration": 1
+    },
+    "aiErrorAnalysis": {
+      "status": "complete",
+      "duration": 1
+    }
+  },
+  "executionTime": 29686
+}

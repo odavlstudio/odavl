@@ -1,0 +1,226 @@
+{
+  "version": "1.0.0",
+  "title": "Network Latency Injection - High Latency Simulation",
+  "description": "Injects network latency between services to test timeout configurations, retry mechanisms, and user experience under degraded network conditions.",
+  "tags": [
+    "network",
+    "latency",
+    "performance",
+    "resilience"
+  ],
+  "configuration": {
+    "kubernetes_namespace": {
+      "type": "env",
+      "key": "CHAOS_K8S_NAMESPACE",
+      "default": "odavl-staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    },
+    "latency_milliseconds": {
+      "type": "env",
+      "key": "LATENCY_MS",
+      "default": "1000"
+    },
+    "jitter_milliseconds": {
+      "type": "env",
+      "key": "JITTER_MS",
+      "default": "500"
+    },
+    "duration_seconds": {
+      "type": "env",
+      "key": "DURATION_SECONDS",
+      "default": "60"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "Network latency is within acceptable bounds",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "check-response-time",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 300]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "histogram_quantile(0.95, rate(http_request_duration_milliseconds_bucket[1m]))",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "application-responds-quickly",
+        "tolerance": {
+          "type": "http",
+          "status": 200,
+          "timeout": 2
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/health",
+          "timeout": 2
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "inject-network-latency",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "add_latency",
+        "arguments": {
+          "label_selector": "app=studio-hub",
+          "ns": "${kubernetes_namespace}",
+          "latency_ms": "${latency_milliseconds}",
+          "jitter_ms": "${jitter_milliseconds}",
+          "duration": "${duration_seconds}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-increased-latency",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [500, 3000]
+        },
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "histogram_quantile(0.95, rate(http_request_duration_milliseconds_bucket[1m]))",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "test-user-experience-degraded",
+      "tolerance": {
+        "type": "http",
+        "status": [200, 504]
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":20}",
+        "timeout": 5
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "monitor-timeout-errors",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(http_requests_total{status=\"504\"}[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "check-retry-attempts",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(http_request_retries_total[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 15
+      }
+    },
+    {
+      "type": "action",
+      "name": "wait-for-latency-to-expire",
+      "provider": {
+        "type": "process",
+        "path": "sleep",
+        "arguments": ["${duration_seconds}"]
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-latency-removed",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [0, 300]
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "histogram_quantile(0.95, rate(http_request_duration_milliseconds_bucket[1m]))",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-normal-operation-restored",
+      "tolerance": {
+        "type": "http",
+        "status": 200,
+        "timeout": 2
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/health",
+        "timeout": 2
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "remove-all-network-delays",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "remove_latency",
+        "arguments": {
+          "label_selector": "app=studio-hub",
+          "ns": "${kubernetes_namespace}"
+        }
+      }
+    }
+  ]
+}

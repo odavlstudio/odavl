@@ -1,0 +1,54 @@
+# ==
+# ODAVL Copilot – Full Precision Cycle Configuration
+# ==
+version: 1.0
+description: >
+  Execute a complete ODAVL Copilot quality-improvement and verification cycle
+  in safe, evidence-first order.
+
+governance:
+  branch_prefix: odavl/fullcycle-
+  limits:
+    files: 10
+    lines: 40
+  protected:
+    - "**/security/**"
+    - "**/*.spec.*"
+    - "**/public-api/**"
+  evidence: true
+  rollback_on_failure: true
+
+phases:
+  - id: precision-scan
+    title: Precision Quality Scan
+    description: Run precision rules (lint, performance, security, consistency).
+    command: "@copilot precision:run"
+
+  - id: deep-insight
+    title: Deep Insight Audit
+    description: Run advanced detectors and diagnostics from Deep Insight Suite.
+    command: "@copilot deep:audit"
+
+  - id: microfix
+    title: Micro-Fix Application
+    description: Apply top 3 safe micro-fixes discovered by Deep Insight.
+    command: "@copilot apply microfix"
+
+  - id: continuous-loop
+    title: Continuous Precision Loop
+    description: Start daily/weekly automated scan defined in automation.yaml.
+    command: "@copilot precision:run --loop"
+
+  - id: verify
+    title: Verification & Attestation
+    description: Run verify hooks, generate scorecard and attestation reports.
+    command: "@copilot verify & attest"
+
+options:
+  confirm_each_phase: false     # run phases sequentially without prompts
+  safe_mode: true               # obey ODAVL risk budgets
+  evidence_path: "evidence/full_cycle"
+  report_path: "reports/full_cycle"
+  log_path: "logs/full_cycle"
+  notify_success: true
+  notify_failure: true

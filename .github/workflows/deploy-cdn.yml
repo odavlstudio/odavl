@@ -1,0 +1,130 @@
+name: Deploy to CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'odavl-studio/insight/cloud/public/**'
+      - 'odavl-studio/insight/cloud/.next/static/**'
+  workflow_dispatch:
+
+jobs:
+  deploy-cdn:
+    name: Deploy Static Assets to CDN
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Insight Cloud
+        run: |
+          cd odavl-studio/insight/cloud
+          pnpm build
+
+      - name: Optimize images
+        run: |
+          cd odavl-studio/insight/cloud
+          
+          # Install image optimization tools
+          npm install -g sharp-cli
+          
+          # Optimize public images
+          find public -type f \( -name "*.jpg" -o -name "*.png" \) -exec sharp -i {} -o {}.optimized.webp -- {} \;
+          
+          echo "✅ Images optimized"
+
+      - name: Deploy to CloudFlare CDN
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          # Install Wrangler CLI
+          npm install -g wrangler
+          
+          # Deploy static assets
+          cd odavl-studio/insight/cloud
+          
+          # Deploy to CloudFlare Pages (or R2)
+          wrangler pages deploy public --project-name=odavl-cdn
+          
+          # Deploy Next.js static assets
+          wrangler pages deploy .next/static --project-name=odavl-cdn
+          
+          echo "✅ Assets deployed to CloudFlare CDN"
+
+      - name: Purge CloudFlare cache
+        env:
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          # Purge everything
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}'
+          
+          echo "✅ CloudFlare cache purged"
+
+      - name: Deploy to AWS S3 (optional)
+        if: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        run: |
+          # Install AWS CLI
+          pip install awscli
+          
+          # Sync to S3
+          cd odavl-studio/insight/cloud
+          
+          aws s3 sync public s3://odavl-cdn/public --delete --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync .next/static s3://odavl-cdn/static --delete --cache-control "public, max-age=31536000, immutable"
+          
+          # Invalidate CloudFront distribution
+          if [ -n "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
+            aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+          fi
+          
+          echo "✅ Assets deployed to AWS S3/CloudFront"
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ CDN deployment successful!"
+          echo "Assets are now available globally via CDN"
+
+      - name: Notify on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "❌ CDN Deployment Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*CDN Deployment Failed* :x:\n\nBranch: `${{ github.ref_name }}`\nCommit: `${{ github.sha }}`\nActor: ${{ github.actor }}"
+                  }
+                }
+              ]
+            }

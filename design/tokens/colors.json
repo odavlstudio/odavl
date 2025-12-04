@@ -1,0 +1,460 @@
+{
+  "$schema": "https://json.schemastore.org/design-tokens.json",
+  "description": "ODAVL Studio Design System - Color Palette",
+  "version": "2.0.0",
+  "colors": {
+    "primary": {
+      "50": {
+        "value": "#EEF2FF",
+        "type": "color",
+        "description": "Lightest primary shade - backgrounds, hover states"
+      },
+      "100": {
+        "value": "#E0E7FF",
+        "type": "color",
+        "description": "Very light primary - subtle backgrounds"
+      },
+      "200": {
+        "value": "#C7D2FE",
+        "type": "color",
+        "description": "Light primary - borders, disabled states"
+      },
+      "300": {
+        "value": "#A5B4FC",
+        "type": "color",
+        "description": "Medium-light primary - secondary actions"
+      },
+      "400": {
+        "value": "#818CF8",
+        "type": "color",
+        "description": "Medium primary - hover states"
+      },
+      "500": {
+        "value": "#6366F1",
+        "type": "color",
+        "description": "Base primary - main brand color, primary actions"
+      },
+      "600": {
+        "value": "#4F46E5",
+        "type": "color",
+        "description": "Dark primary - active states"
+      },
+      "700": {
+        "value": "#4338CA",
+        "type": "color",
+        "description": "Darker primary - pressed states"
+      },
+      "800": {
+        "value": "#3730A3",
+        "type": "color",
+        "description": "Very dark primary - contrast elements"
+      },
+      "900": {
+        "value": "#312E81",
+        "type": "color",
+        "description": "Darkest primary - dark mode accents"
+      }
+    },
+    "success": {
+      "50": {
+        "value": "#ECFDF5",
+        "type": "color",
+        "description": "Success background light"
+      },
+      "100": {
+        "value": "#D1FAE5",
+        "type": "color"
+      },
+      "200": {
+        "value": "#A7F3D0",
+        "type": "color"
+      },
+      "300": {
+        "value": "#6EE7B7",
+        "type": "color"
+      },
+      "400": {
+        "value": "#34D399",
+        "type": "color"
+      },
+      "500": {
+        "value": "#10B981",
+        "type": "color",
+        "description": "Success base - checkmarks, success messages"
+      },
+      "600": {
+        "value": "#059669",
+        "type": "color"
+      },
+      "700": {
+        "value": "#047857",
+        "type": "color"
+      },
+      "800": {
+        "value": "#065F46",
+        "type": "color"
+      },
+      "900": {
+        "value": "#064E3B",
+        "type": "color"
+      }
+    },
+    "warning": {
+      "50": {
+        "value": "#FFFBEB",
+        "type": "color",
+        "description": "Warning background light"
+      },
+      "100": {
+        "value": "#FEF3C7",
+        "type": "color"
+      },
+      "200": {
+        "value": "#FDE68A",
+        "type": "color"
+      },
+      "300": {
+        "value": "#FCD34D",
+        "type": "color"
+      },
+      "400": {
+        "value": "#FBBF24",
+        "type": "color"
+      },
+      "500": {
+        "value": "#F59E0B",
+        "type": "color",
+        "description": "Warning base - caution messages, pending states"
+      },
+      "600": {
+        "value": "#D97706",
+        "type": "color"
+      },
+      "700": {
+        "value": "#B45309",
+        "type": "color"
+      },
+      "800": {
+        "value": "#92400E",
+        "type": "color"
+      },
+      "900": {
+        "value": "#78350F",
+        "type": "color"
+      }
+    },
+    "error": {
+      "50": {
+        "value": "#FEF2F2",
+        "type": "color",
+        "description": "Error background light"
+      },
+      "100": {
+        "value": "#FEE2E2",
+        "type": "color"
+      },
+      "200": {
+        "value": "#FECACA",
+        "type": "color"
+      },
+      "300": {
+        "value": "#FCA5A5",
+        "type": "color"
+      },
+      "400": {
+        "value": "#F87171",
+        "type": "color"
+      },
+      "500": {
+        "value": "#EF4444",
+        "type": "color",
+        "description": "Error base - error messages, destructive actions"
+      },
+      "600": {
+        "value": "#DC2626",
+        "type": "color"
+      },
+      "700": {
+        "value": "#B91C1C",
+        "type": "color"
+      },
+      "800": {
+        "value": "#991B1B",
+        "type": "color"
+      },
+      "900": {
+        "value": "#7F1D1D",
+        "type": "color"
+      }
+    },
+    "info": {
+      "50": {
+        "value": "#EFF6FF",
+        "type": "color",
+        "description": "Info background light"
+      },
+      "100": {
+        "value": "#DBEAFE",
+        "type": "color"
+      },
+      "200": {
+        "value": "#BFDBFE",
+        "type": "color"
+      },
+      "300": {
+        "value": "#93C5FD",
+        "type": "color"
+      },
+      "400": {
+        "value": "#60A5FA",
+        "type": "color"
+      },
+      "500": {
+        "value": "#3B82F6",
+        "type": "color",
+        "description": "Info base - informational messages, help text"
+      },
+      "600": {
+        "value": "#2563EB",
+        "type": "color"
+      },
+      "700": {
+        "value": "#1D4ED8",
+        "type": "color"
+      },
+      "800": {
+        "value": "#1E40AF",
+        "type": "color"
+      },
+      "900": {
+        "value": "#1E3A8A",
+        "type": "color"
+      }
+    },
+    "gray": {
+      "50": {
+        "value": "#F9FAFB",
+        "type": "color",
+        "description": "Lightest gray - page backgrounds"
+      },
+      "100": {
+        "value": "#F3F4F6",
+        "type": "color",
+        "description": "Very light gray - card backgrounds"
+      },
+      "200": {
+        "value": "#E5E7EB",
+        "type": "color",
+        "description": "Light gray - borders, dividers"
+      },
+      "300": {
+        "value": "#D1D5DB",
+        "type": "color",
+        "description": "Medium-light gray - disabled borders"
+      },
+      "400": {
+        "value": "#9CA3AF",
+        "type": "color",
+        "description": "Medium gray - disabled text, placeholders"
+      },
+      "500": {
+        "value": "#6B7280",
+        "type": "color",
+        "description": "Base gray - secondary text"
+      },
+      "600": {
+        "value": "#4B5563",
+        "type": "color",
+        "description": "Dark gray - body text"
+      },
+      "700": {
+        "value": "#374151",
+        "type": "color",
+        "description": "Darker gray - headings"
+      },
+      "800": {
+        "value": "#1F2937",
+        "type": "color",
+        "description": "Very dark gray - emphasis text"
+      },
+      "900": {
+        "value": "#111827",
+        "type": "color",
+        "description": "Darkest gray - primary text, dark backgrounds"
+      }
+    },
+    "white": {
+      "value": "#FFFFFF",
+      "type": "color",
+      "description": "Pure white - light mode backgrounds, text on dark"
+    },
+    "black": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Pure black - overlays, dark mode backgrounds"
+    },
+    "semantic": {
+      "background": {
+        "primary": {
+          "value": "{colors.white}",
+          "type": "color",
+          "description": "Main background color"
+        },
+        "secondary": {
+          "value": "{colors.gray.50}",
+          "type": "color",
+          "description": "Secondary background (cards, panels)"
+        },
+        "tertiary": {
+          "value": "{colors.gray.100}",
+          "type": "color",
+          "description": "Tertiary background (hover states)"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "{colors.gray.900}",
+          "type": "color",
+          "description": "Primary text color"
+        },
+        "secondary": {
+          "value": "{colors.gray.600}",
+          "type": "color",
+          "description": "Secondary text (labels, descriptions)"
+        },
+        "tertiary": {
+          "value": "{colors.gray.500}",
+          "type": "color",
+          "description": "Tertiary text (timestamps, captions)"
+        },
+        "disabled": {
+          "value": "{colors.gray.400}",
+          "type": "color",
+          "description": "Disabled text"
+        },
+        "inverse": {
+          "value": "{colors.white}",
+          "type": "color",
+          "description": "Text on dark backgrounds"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{colors.gray.200}",
+          "type": "color",
+          "description": "Default border color"
+        },
+        "strong": {
+          "value": "{colors.gray.300}",
+          "type": "color",
+          "description": "Emphasized borders"
+        },
+        "subtle": {
+          "value": "{colors.gray.100}",
+          "type": "color",
+          "description": "Subtle borders"
+        }
+      },
+      "action": {
+        "primary": {
+          "value": "{colors.primary.500}",
+          "type": "color",
+          "description": "Primary action color"
+        },
+        "primaryHover": {
+          "value": "{colors.primary.600}",
+          "type": "color",
+          "description": "Primary action hover"
+        },
+        "primaryActive": {
+          "value": "{colors.primary.700}",
+          "type": "color",
+          "description": "Primary action active/pressed"
+        },
+        "success": {
+          "value": "{colors.success.500}",
+          "type": "color"
+        },
+        "warning": {
+          "value": "{colors.warning.500}",
+          "type": "color"
+        },
+        "error": {
+          "value": "{colors.error.500}",
+          "type": "color"
+        },
+        "info": {
+          "value": "{colors.info.500}",
+          "type": "color"
+        }
+      },
+      "focus": {
+        "ring": {
+          "value": "{colors.primary.500}",
+          "type": "color",
+          "description": "Focus ring color"
+        },
+        "ringOpacity": {
+          "value": "0.5",
+          "type": "number",
+          "description": "Focus ring opacity"
+        }
+      }
+    }
+  },
+  "dark": {
+    "description": "Dark mode color overrides",
+    "semantic": {
+      "background": {
+        "primary": {
+          "value": "{colors.gray.900}",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "{colors.gray.800}",
+          "type": "color"
+        },
+        "tertiary": {
+          "value": "{colors.gray.700}",
+          "type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "{colors.gray.50}",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "{colors.gray.300}",
+          "type": "color"
+        },
+        "tertiary": {
+          "value": "{colors.gray.400}",
+          "type": "color"
+        },
+        "disabled": {
+          "value": "{colors.gray.600}",
+          "type": "color"
+        },
+        "inverse": {
+          "value": "{colors.gray.900}",
+          "type": "color"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "{colors.gray.700}",
+          "type": "color"
+        },
+        "strong": {
+          "value": "{colors.gray.600}",
+          "type": "color"
+        },
+        "subtle": {
+          "value": "{colors.gray.800}",
+          "type": "color"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "device": "desktop",
+      "percentageDiff": 3.5,
+      "hasDifference": true,
+      "diffPath": ".odavl/guardian/diffs/desktop-diff.png"
+    },
+    {
+      "device": "tablet",
+      "percentageDiff": 2.1,
+      "hasDifference": true,
+      "diffPath": ".odavl/guardian/diffs/tablet-diff.png"
+    },
+    {
+      "device": "mobile",
+      "percentageDiff": 4.2,
+      "hasDifference": true,
+      "diffPath": ".odavl/guardian/diffs/mobile-diff.png"
+    }
+  ]
+}

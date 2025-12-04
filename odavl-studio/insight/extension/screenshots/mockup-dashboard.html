@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, height=720">
+  <title>ODAVL Insight - Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 720px;
+      background: #1e1e1e;
+      color: #cccccc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+    }
+    .header {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: white;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .header p {
+      color: #e0e7ff;
+      font-size: 14px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: #252526;
+      border: 1px solid #3e3e42;
+      border-radius: 6px;
+      padding: 15px;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4fc3f7;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #8c8c8c;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .detections {
+      background: #252526;
+      border: 1px solid #3e3e42;
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .detections h2 {
+      font-size: 18px;
+      color: #e0e0e0;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #3e3e42;
+      padding-bottom: 10px;
+    }
+    .detection-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #2d2d30;
+      border-left: 3px solid #f59e0b;
+      border-radius: 4px;
+    }
+    .detection-item.error {
+      border-left-color: #ef4444;
+    }
+    .detection-item.warning {
+      border-left-color: #f59e0b;
+    }
+    .detection-item.info {
+      border-left-color: #3b82f6;
+    }
+    .severity-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .severity-icon.error {
+      background: #ef4444;
+      color: white;
+    }
+    .severity-icon.warning {
+      background: #f59e0b;
+      color: white;
+    }
+    .severity-icon.info {
+      background: #3b82f6;
+      color: white;
+    }
+    .detection-content {
+      flex: 1;
+    }
+    .detection-title {
+      font-size: 14px;
+      color: #e0e0e0;
+      margin-bottom: 4px;
+    }
+    .detection-file {
+      font-size: 12px;
+      color: #8c8c8c;
+      font-family: 'Consolas', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔍 ODAVL Insight Dashboard</h1>
+    <p>Real-time code quality analysis powered by ML</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">42</div>
+      <div class="stat-label">Issues Detected</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Critical</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">2.3s</div>
+      <div class="stat-label">Analysis Time</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">89%</div>
+      <div class="stat-label">Code Quality</div>
+    </div>
+  </div>
+
+  <div class="detections">
+    <h2>Recent Detections</h2>
+    
+    <div class="detection-item error">
+      <div class="severity-icon error">!</div>
+      <div class="detection-content">
+        <div class="detection-title">Hardcoded API key detected in authentication module</div>
+        <div class="detection-file">src/services/auth.ts:24:15</div>
+      </div>
+    </div>
+
+    <div class="detection-item error">
+      <div class="severity-icon error">!</div>
+      <div class="detection-content">
+        <div class="detection-title">Circular dependency detected between modules</div>
+        <div class="detection-file">src/utils/helpers.ts → src/core/engine.ts</div>
+      </div>
+    </div>
+
+    <div class="detection-item warning">
+      <div class="severity-icon warning">⚠</div>
+      <div class="detection-content">
+        <div class="detection-title">Unused import: 'React' is imported but never used</div>
+        <div class="detection-file">src/components/Dashboard.tsx:3:8</div>
+      </div>
+    </div>
+
+    <div class="detection-item warning">
+      <div class="severity-icon warning">⚠</div>
+      <div class="detection-content">
+        <div class="detection-title">High complexity function detected (cyclomatic: 24)</div>
+        <div class="detection-file">src/phases/decide.ts:45:10</div>
+      </div>
+    </div>
+
+    <div class="detection-item info">
+      <div class="severity-icon info">i</div>
+      <div class="detection-content">
+        <div class="detection-title">Package.json outdated dependencies (3 packages)</div>
+        <div class="detection-file">package.json</div>
+      </div>
+    </div>
+
+    <div class="detection-item info">
+      <div class="severity-icon info">i</div>
+      <div class="detection-content">
+        <div class="detection-title">Consider adding error boundaries in React components</div>
+        <div class="detection-file">src/components/ErrorDisplay.tsx:12:1</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

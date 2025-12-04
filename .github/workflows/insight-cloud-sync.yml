@@ -1,0 +1,49 @@
+name: ODAVL Insight Cloud Sync
+
+on:
+    schedule:
+        - cron: "0 6 * * 1" # Every Monday at 6 AM UTC
+    workflow_dispatch: # Allow manual trigger
+
+permissions:
+    contents: read
+
+jobs:
+    sync-insight-reports:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Upload Insight Reports
+              env:
+                  INSIGHT_API_KEY: ${{ secrets.INSIGHT_API_KEY }}
+                  INSIGHT_CLOUD_URL: ${{ secrets.INSIGHT_CLOUD_URL }}
+                  PROJECT_NAME: odavl
+              run: pnpm tsx scripts/upload-insight-cloud.ts
+
+            - name: Report Status
+              if: always()
+              run: |
+                  if [ $? -eq 0 ]; then
+                    echo "✅ Insight reports uploaded successfully!"
+                  else
+                    echo "❌ Failed to upload insight reports."
+                    exit 1
+                  fi

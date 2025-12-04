@@ -1,0 +1,4175 @@
+{
+  "workspace": "odavl-studio/insight",
+  "duration": 43.6,
+  "totalIssues": 464,
+  "timestamp": "28.11.2025, 21:33:10",
+  "detectors": [
+    {
+      "name": "Performance",
+      "icon": "⚡",
+      "count": 131,
+      "severity": {
+        "critical": 58,
+        "high": 0,
+        "medium": 73,
+        "low": 0
+      }
+    },
+    {
+      "name": "Complexity",
+      "icon": "🧮",
+      "count": 279,
+      "severity": {
+        "critical": 2,
+        "high": 0,
+        "medium": 277,
+        "low": 0
+      }
+    },
+    {
+      "name": "Build",
+      "icon": "🏗️",
+      "count": 1,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+      }
+    },
+    {
+      "name": "Isolation",
+      "icon": "🔐",
+      "count": 53,
+      "severity": {
+        "critical": 5,
+        "high": 0,
+        "medium": 48,
+        "low": 0
+      }
+    }
+  ],
+  "issues": [
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\training.ts",
+      "line": 25,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (84)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\scripts\\interactive-cli.ts",
+      "line": 336,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (326 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\scripts\\interactive-cli.ts",
+      "line": 336,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (162 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\NotificationCenter.tsx",
+      "line": 13,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (19)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\beta-signup-form.tsx",
+      "line": 25,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (312 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\beta-signup-form.tsx",
+      "line": 25,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (20)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\analytics.ts",
+      "line": 114,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 313,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 317,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 385,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 435,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 437,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 465,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 469,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 482,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 554,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\ml-trust-predictor.ts",
+      "line": 262,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\ml-trust-predictor.ts",
+      "line": 272,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\ml-trust-predictor.ts",
+      "line": 282,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\data-collection.ts",
+      "line": 139,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\language\\multi-language-aggregator.ts",
+      "line": 137,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\smart-security-scanner.ts",
+      "line": 505,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\smart-security-scanner.js",
+      "line": 453,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 309,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 318,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 357,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 433,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 493,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 300,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 307,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 340,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 406,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 458,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 140,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 302,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 452,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 570,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 575,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 331,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 350,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 143,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 291,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 428,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 535,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 540,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 318,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 337,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\python-security-detector.ts",
+      "line": 236,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 607,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 158,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 189,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "axios call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 253,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "axios call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 275,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 432,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.ts",
+      "line": 570,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 558,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 150,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 180,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "axios call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 237,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "axios call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 258,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 400,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\network-detector.js",
+      "line": 525,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\framework-rules.ts",
+      "line": 200,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\framework-rules.ts",
+      "line": 206,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (28)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\framework-rules.js",
+      "line": 22,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\framework-rules.js",
+      "line": 162,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 90,
+      "message": "fetch call inside loop (N+1 HTTP requests)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\framework-rules.js",
+      "line": 168,
+      "suggestion": "1. Collect all IDs first: const ids = items.map(i => i.id)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n²) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\eslint-detector.js",
+      "line": 78,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\cve-scanner-detector.ts",
+      "line": 68,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\context-aware-performance.ts",
+      "line": 169,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\context-aware-performance.js",
+      "line": 160,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (24)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\confidence-scoring.js",
+      "line": 119,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 647,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\src\\lib\\SyncService.ts",
+      "line": 36,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\src\\lib\\GlobalVerifier.ts",
+      "line": 11,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (16)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\widgets\\SystemStatusWidget.tsx",
+      "line": 18,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (102 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\widgets\\SystemStatusWidget.tsx",
+      "line": 18,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (102 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\widgets\\ActivityTimelineWidget.tsx",
+      "line": 27,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (111 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\reset-password\\page.tsx",
+      "line": 19,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (154 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\omega\\page.tsx",
+      "line": 20,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (46)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\guardian\\page.tsx",
+      "line": 40,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (274 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\guardian\\page.tsx",
+      "line": 40,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (128 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\meta\\page.tsx",
+      "line": 24,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (192 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\beta\\page.tsx",
+      "line": 6,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 187,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 245,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 296,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 341,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 352,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 129,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 140,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 150,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 195,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 268,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Triple nested loop (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 278,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-spring-detector.ts",
+      "line": 332,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-performance-detector.ts",
+      "line": 90,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-null-safety-detector.ts",
+      "line": 217,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 130,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 199,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 213,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 261,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 298,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 117,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 206,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 263,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 331,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-concurrency-detector.ts",
+      "line": 70,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n²) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-complexity-detector.ts",
+      "line": 101,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-architecture-detector.ts",
+      "line": 386,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 95,
+      "message": "Nested loop detected (O(n*m) complexity)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-architecture-detector.ts",
+      "line": 435,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (156 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\widgets\\page.tsx",
+      "line": 26,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (19)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\reports\\page.tsx",
+      "line": 24,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (373 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\reports\\page.tsx",
+      "line": 24,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (24)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\realtime\\page.tsx",
+      "line": 14,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (290 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\realtime\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (36)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\overview\\page.tsx",
+      "line": 26,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (273 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\overview\\page.tsx",
+      "line": 26,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (23)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\collaboration\\page.tsx",
+      "line": 14,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (301 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\collaboration\\page.tsx",
+      "line": 14,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (28)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\notifications\\page.tsx",
+      "line": 13,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (215 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\notifications\\page.tsx",
+      "line": 13,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (187 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\charts\\page.tsx",
+      "line": 20,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (26)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\analysis\\page.tsx",
+      "line": 12,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (290 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\analysis\\page.tsx",
+      "line": 12,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (242 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\billing\\page.tsx",
+      "line": 30,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (173 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\forgot-password\\page.tsx",
+      "line": 11,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (19)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\guardian\\validators.ts",
+      "line": 50,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 95,
+      "message": "High cyclomatic complexity (25)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\billing\\upgrade\\page.tsx",
+      "line": 13,
+      "suggestion": "Review and refactor this code section."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (236 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\billing\\upgrade\\page.tsx",
+      "line": 13,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Long function (241 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\dashboard\\billing\\usage\\page.tsx",
+      "line": 35,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'GET' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\auth\\verify-email\\route.ts",
+      "line": 10,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 63)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\custom-rules\\route.ts",
+      "line": 16,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 64)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\custom-rules\\route.ts",
+      "line": 17,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 66)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\custom-rules\\route.ts",
+      "line": 19,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 68)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\api\\custom-rules\\route.ts",
+      "line": 21,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 70)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 56,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 84)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 56,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 84)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 70,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 69)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 55,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 83)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 55,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 83)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 69,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 71)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 57,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 85)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 57,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 85)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 71,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 82)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\auth\\verified\\page.tsx",
+      "line": 68,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'loadResults' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\app\\guardian\\page.tsx",
+      "line": 47,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'handleExport' has high cyclomatic complexity (15)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\components\\export-reports.tsx",
+      "line": 56,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'createPrismaAdapter' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 25,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 53)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 34,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 82)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 34,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 82)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 53,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 49)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 30,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 51)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 32,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 54)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 35,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 83)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 35,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 83)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 54,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 55)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 36,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 84)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 36,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 84)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\auth-adapter.ts",
+      "line": 55,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 188)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 71,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 189)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 72,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 191)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 74,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 192)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 75,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 193)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 76,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 194)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 77,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 195)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 78,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 196)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 79,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 197)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\billing\\gates.ts",
+      "line": 80,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'arrayToCSV' has high cognitive complexity (23)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 13,
+      "suggestion": "Break down into smaller functions, reduce nesting, extract complex conditions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 67)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 47,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 69)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 49,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 70)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 50,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 71)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 51,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 72)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\metrics\\export.ts",
+      "line": 52,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 353)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\swagger\\spec.ts",
+      "line": 304,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 350)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\swagger\\spec.ts",
+      "line": 301,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 351)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\swagger\\spec.ts",
+      "line": 302,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 352)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\cloud\\lib\\swagger\\spec.ts",
+      "line": 303,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Function 'scanDirectory' has high cognitive complexity (32)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\scripts\\interactive-cli.ts",
+      "line": 261,
+      "suggestion": "Break down into smaller functions, reduce nesting, extract complex conditions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'scanDirectory' has high cyclomatic complexity (15)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\scripts\\interactive-cli.ts",
+      "line": 261,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'printDetectorSummary' has high cyclomatic complexity (16)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\scripts\\lib\\report-printer.ts",
+      "line": 71,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (41 lines, also at line 306)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 163,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (25 lines, also at line 322)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 179,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (21 lines, also at line 502)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 179,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 328)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 185,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 508)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 185,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 334)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 191,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (21 lines, also at line 502)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 322,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 508)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 328,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (42 lines, also at line 305)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 162,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (43 lines, also at line 304)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 161,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (38 lines, also at line 309)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 166,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (37 lines, also at line 310)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 167,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (36 lines, also at line 311)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 168,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (33 lines, also at line 314)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 171,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (29 lines, also at line 494)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 171,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (29 lines, also at line 494)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 314,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (32 lines, also at line 315)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 172,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (28 lines, also at line 495)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 172,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (28 lines, also at line 495)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 315,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (29 lines, also at line 318)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 175,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (25 lines, also at line 498)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 175,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (25 lines, also at line 498)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 318,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (28 lines, also at line 319)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 176,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (24 lines, also at line 499)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 176,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (22 lines, also at line 325)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 182,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 505)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 182,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 331)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 188,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 511)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 188,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 337)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 194,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (24 lines, also at line 499)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 319,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 505)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 325,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 511)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 331,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (27 lines, also at line 320)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 177,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (23 lines, also at line 500)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 177,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (23 lines, also at line 500)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 320,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (26 lines, also at line 321)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 178,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (22 lines, also at line 501)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 178,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (20 lines, also at line 327)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 184,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 507)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 184,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 333)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 190,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 513)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 190,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (22 lines, also at line 501)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 321,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 507)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 327,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 513)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 333,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (23 lines, also at line 324)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 181,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 504)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 181,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 504)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 324,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (21 lines, also at line 326)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 183,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 506)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 183,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 506)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 326,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 330)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 187,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 510)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 187,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 510)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 330,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 332)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 189,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 512)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 189,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 512)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 332,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 336)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 193,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 590)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 537,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 591)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 538,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 594)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 541,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 390)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 269,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 459)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 269,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 459)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 390,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 592)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 539,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 588)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 535,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 593)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\complexity-detector.ts",
+      "line": 540,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Excessive nesting depth (13 levels) in function 'generateExplanation'",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\confidence-scoring.ts",
+      "line": 247,
+      "suggestion": "Use early returns, extract nested logic to separate functions, flatten structure"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 557)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\enhanced-db-detector.ts",
+      "line": 541,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'filterFalsePositives' has high cognitive complexity (25)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\false-positive-filters.ts",
+      "line": 183,
+      "suggestion": "Break down into smaller functions, reduce nesting, extract complex conditions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 197)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\gradle-parser.ts",
+      "line": 181,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 198)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\gradle-parser.ts",
+      "line": 182,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 199)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\gradle-parser.ts",
+      "line": 183,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 200)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\gradle-parser.ts",
+      "line": 184,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 176)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-architecture-detector.ts",
+      "line": 153,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 189)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 101,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 191)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-exception-detector.ts",
+      "line": 103,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 316)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-memory-detector.ts",
+      "line": 234,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 355)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-null-safety-detector.ts",
+      "line": 317,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 355)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-performance-detector.ts",
+      "line": 295,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 356)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-performance-detector.ts",
+      "line": 296,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 357)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-performance-detector.ts",
+      "line": 297,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 231)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 168,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 233)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 170,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 234)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-stream-detector.ts",
+      "line": 171,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 392)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\java\\java-testing-detector.ts",
+      "line": 133,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'lineCount' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\performance-detector.js",
+      "line": 478,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'lineCount' has high cyclomatic complexity (13)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\performance-detector.ts",
+      "line": 579,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 274)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 125,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 411)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 125,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 411)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 274,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 276)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 413)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 596)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 413)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 276,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 596)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 276,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 596)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 413,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 275)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 412)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 595)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 412)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 275,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 595)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 275,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 595)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 412,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 277)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 128,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 414)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 128,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 597)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 128,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 414)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 277,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 597)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 277,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 597)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 414,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 278)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 415)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 598)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 415)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 278,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 598)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 278,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 598)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 415,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 279)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 130,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 416)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 130,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 599)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 130,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 416)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 279,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 599)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 279,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 599)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 416,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 280)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 131,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 417)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 131,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 600)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 131,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 417)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 280,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 600)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 280,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 600)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 417,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 281)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 132,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 418)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 132,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 418)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 281,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 419)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 282,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 420)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.js",
+      "line": 283,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (20 lines, also at line 282)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 119,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (20 lines, also at line 432)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 119,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (23 lines, also at line 432)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 282,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 285)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 122,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 435)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 122,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 637)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 122,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (20 lines, also at line 435)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 285,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 637)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 285,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 637)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 435,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 518)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 268,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 704)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 268,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 445)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 295,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 704)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 518,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 284)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 121,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 434)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 121,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 636)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 121,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (21 lines, also at line 434)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 284,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 636)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 284,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 636)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 434,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 286)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 123,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 436)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 123,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 638)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 123,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (19 lines, also at line 436)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 286,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 638)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 286,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 638)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 436,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 287)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 124,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 437)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 124,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 639)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 124,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (18 lines, also at line 437)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 287,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 639)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 287,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 639)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 437,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 288)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 125,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 438)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 125,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 640)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 125,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (17 lines, also at line 438)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 288,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 640)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 288,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 640)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 438,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 289)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 439)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 641)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 126,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (16 lines, also at line 439)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 289,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 641)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 289,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 641)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 439,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 290)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 440)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 642)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 127,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 440)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 290,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 642)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 290,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 642)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 440,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 291)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 128,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 441)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 128,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (14 lines, also at line 441)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 291,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 292)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 442)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 129,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 442)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 292,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 443)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 293,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 444)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\runtime-detector.ts",
+      "line": 294,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 397)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 331,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 449)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 331,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 449)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 397,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 398)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 332,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 450)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 332,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 450)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.js",
+      "line": 398,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 421)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 345,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 481)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 345,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (15 lines, also at line 481)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 421,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 424)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 348,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 484)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 348,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 484)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 424,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 425)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 349,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 485)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 349,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 485)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 425,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 426)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 350,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 486)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 350,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 486)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 426,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 423)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 347,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 483)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 347,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 483)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\security-detector.ts",
+      "line": 423,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 431)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\detector\\smart-security-scanner.ts",
+      "line": 376,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 382)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\fixer\\auto-fix-engine.ts",
+      "line": 251,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'extractFeatures' has high cyclomatic complexity (18)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\ml-trust-predictor.ts",
+      "line": 406,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 535)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\learning\\pattern-memory.ts",
+      "line": 223,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 397)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 343,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 398)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 344,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 399)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 345,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (12 lines, also at line 504)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 503,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 505)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 503,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 506)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 503,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 505)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 504,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 506)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 504,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 506)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 505,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 655)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 638,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 656)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 639,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (13 lines, also at line 653)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\parsers\\java-parser.ts",
+      "line": 636,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 223)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\src\\security\\cve-scanner.ts",
+      "line": 175,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'deactivate' has high cyclomatic complexity (15)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\extension\\src\\extension.ts",
+      "line": 56,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'scan' has high cognitive complexity (28)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\extension\\src\\language-detector.ts",
+      "line": 221,
+      "suggestion": "Break down into smaller functions, reduce nesting, extract complex conditions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "package.json not found",
+      "suggestion": "Ensure you are in the correct project directory"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Event handling",
+      "file": "cloud\\components\\WelcomeModal.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\components\\ThemeToggle.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\components\\theme-provider.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\components\\real-time-metrics.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\components\\NotificationCenter.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\components\\export-reports.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Business logic, Event handling",
+      "file": "cloud\\components\\ErrorBoundary.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\components\\DarkModeToggle.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\components\\beta-signup-form.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component is imported by 13 files (threshold: 10)",
+      "file": "core\\src\\utils\\logger.ts",
+      "suggestion": "This might be a utility/shared component. Consider if interface is stable and well-documented."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 718 LOC (consider refactoring for better maintainability)",
+      "file": "core\\src\\parsers\\java-parser.ts",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 609 LOC (consider refactoring for better maintainability)",
+      "file": "core\\src\\detector\\smart-security-scanner.ts",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 6 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\detector\\runtime-detector.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Component has 730 LOC and 6 responsibilities (god component anti-pattern)",
+      "file": "core\\src\\detector\\runtime-detector.ts",
+      "suggestion": "Break down into smaller components following Single Responsibility Principle (SRP). Extract reusable logic into separate modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 6 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\detector\\runtime-detector.js",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Component has 772 LOC and 6 responsibilities (god component anti-pattern)",
+      "file": "core\\src\\detector\\runtime-detector.js",
+      "suggestion": "Break down into smaller components following Single Responsibility Principle (SRP). Extract reusable logic into separate modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: Data fetching, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\detector\\performance-detector.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Component has 929 LOC and 4 responsibilities (god component anti-pattern)",
+      "file": "core\\src\\detector\\performance-detector.ts",
+      "suggestion": "Break down into smaller components following Single Responsibility Principle (SRP). Extract reusable logic into separate modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: Data fetching, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\detector\\performance-detector.js",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Component has 845 LOC and 4 responsibilities (god component anti-pattern)",
+      "file": "core\\src\\detector\\performance-detector.js",
+      "suggestion": "Break down into smaller components following Single Responsibility Principle (SRP). Extract reusable logic into separate modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Business logic",
+      "file": "core\\src\\detector\\network-detector.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 678 LOC (consider refactoring for better maintainability)",
+      "file": "core\\src\\detector\\network-detector.ts",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Business logic",
+      "file": "core\\src\\detector\\network-detector.js",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 694 LOC (consider refactoring for better maintainability)",
+      "file": "core\\src\\detector\\network-detector.js",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, State management, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\detector\\isolation-detector.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Component has 615 LOC and 5 responsibilities (god component anti-pattern)",
+      "file": "core\\src\\detector\\isolation-detector.ts",
+      "suggestion": "Break down into smaller components following Single Responsibility Principle (SRP). Extract reusable logic into separate modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 12 dependencies (threshold: 7)",
+      "file": "core\\src\\detector\\index.ts",
+      "suggestion": "High coupling. Group related dependencies into modules, use facade pattern, or introduce service layer."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component depends on 12 files (threshold: 10)",
+      "file": "core\\src\\detector\\index.ts",
+      "suggestion": "Group related dependencies into facade/aggregate modules to reduce fan-out"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 12 dependencies (threshold: 7)",
+      "file": "core\\src\\detector\\index.js",
+      "suggestion": "High coupling. Group related dependencies into modules, use facade pattern, or introduce service layer."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component depends on 12 files (threshold: 10)",
+      "file": "core\\src\\detector\\index.js",
+      "suggestion": "Group related dependencies into facade/aggregate modules to reduce fan-out"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "core\\src\\detector\\framework-rules.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "core\\src\\detector\\framework-rules.js",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 664 LOC (consider refactoring for better maintainability)",
+      "file": "core\\src\\detector\\complexity-detector.ts",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, Business logic, Data persistence, Event handling",
+      "file": "core\\src\\analyzer\\enhanced-analyzer.ts",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component is imported by 14 files (threshold: 10)",
+      "file": "cloud\\src\\utils\\logger.ts",
+      "suggestion": "This might be a utility/shared component. Consider if interface is stable and well-documented."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 610 LOC (consider refactoring for better maintainability)",
+      "file": "cloud\\lib\\swagger\\spec.ts",
+      "suggestion": "Consider extracting helper functions or splitting into logical modules."
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Event handling",
+      "file": "cloud\\app\\reset-password\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Event handling",
+      "file": "cloud\\app\\guardian\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\app\\dashboard\\layout.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\beta\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\dashboard\\reports\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\app\\dashboard\\realtime\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\dashboard\\overview\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, State management, Data persistence, Event handling",
+      "file": "cloud\\app\\dashboard\\notifications\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Data persistence, Event handling",
+      "file": "cloud\\app\\dashboard\\collaboration\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\dashboard\\charts\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Business logic",
+      "file": "cloud\\app\\dashboard\\billing\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Data persistence, Event handling",
+      "file": "cloud\\app\\dashboard\\analysis\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\auth\\forgot-password\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\global-insight\\signature\\[id]\\FeedbackButton.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\app\\dashboard\\billing\\usage\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 5 distinct responsibilities: UI rendering, Data fetching, State management, Business logic, Event handling",
+      "file": "cloud\\app\\dashboard\\billing\\upgrade\\page.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Component has 4 distinct responsibilities: UI rendering, Data fetching, State management, Event handling",
+      "file": "cloud\\src\\app\\global-insight\\signature\\[id]\\FeedbackButton.tsx",
+      "suggestion": "Split component into smaller, focused components with single responsibilities (SRP)"
+    }
+  ]
+}

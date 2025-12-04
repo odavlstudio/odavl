@@ -1,0 +1,210 @@
+{
+  "url": "https://www.google.com",
+  "timestamp": "2025-11-25T14:36:59.401Z",
+  "duration": 11882,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_ALT_TEXT",
+      "severity": "medium",
+      "message": "♿ 10 image(s) missing alt text",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Use alt=\"\" for decorative images",
+        "Use aria-label for icon buttons",
+        "Ensure alt text describes image content",
+        "Keep alt text concise (< 125 characters)"
+      ],
+      "details": {
+        "count": 10
+      }
+    },
+    {
+      "type": "MISSING_FORM_LABELS",
+      "severity": "high",
+      "message": "♿ 4 form input(s) missing labels",
+      "fix": [
+        "Add <label> element for each input",
+        "Use for attribute to associate label with input",
+        "Use aria-label for inputs without visible labels",
+        "Use aria-labelledby for complex labels",
+        "Ensure labels are descriptive"
+      ],
+      "details": {
+        "count": 4
+      }
+    },
+    {
+      "type": "KEYBOARD_NAVIGATION",
+      "severity": "medium",
+      "message": "♿ 11 element(s) not keyboard accessible",
+      "fix": [
+        "Remove tabindex=\"-1\" from interactive elements",
+        "Ensure all interactive elements are keyboard accessible",
+        "Test with Tab key navigation",
+        "Add visible focus indicators",
+        "Use semantic HTML (button, a, input)"
+      ],
+      "details": {
+        "negativeTabIndex": 11,
+        "total": 145
+      }
+    },
+    {
+      "type": "MISSING_CSP",
+      "severity": "high",
+      "message": "🔒 Missing Content Security Policy",
+      "fix": [
+        "Add Content-Security-Policy header",
+        "Start with restrictive policy",
+        "Use nonce or hash for inline scripts",
+        "Avoid 'unsafe-inline' and 'unsafe-eval'",
+        "Test with report-only mode first"
+      ],
+      "details": {}
+    },
+    {
+      "type": "INLINE_EVENT_HANDLERS",
+      "severity": "medium",
+      "message": "🔒 1 inline event handler(s) found (XSS risk)",
+      "fix": [
+        "Remove onclick, onload, etc. attributes",
+        "Use addEventListener in JavaScript",
+        "Implement proper CSP to block inline handlers",
+        "Use React/Vue event binding instead",
+        "Validate and sanitize all user input"
+      ],
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "type": "MISSING_META_DESCRIPTION",
+      "severity": "high",
+      "message": "📄 Missing meta description",
+      "fix": [
+        "Add meta description tag in <head>",
+        "Keep description between 150-160 characters",
+        "Make description unique for each page",
+        "Include target keywords naturally",
+        "Write compelling, actionable description"
+      ],
+      "details": {
+        "length": 0,
+        "content": ""
+      }
+    },
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CANONICAL",
+      "severity": "medium",
+      "message": "🔗 Missing canonical URL",
+      "fix": [
+        "Add <link rel=\"canonical\"> in <head>",
+        "Point to preferred version of page",
+        "Prevent duplicate content issues",
+        "Use absolute URLs",
+        "Set canonical for paginated content"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SEO_MISSING_ALT",
+      "severity": "medium",
+      "message": "🖼️ 10 image(s) missing alt text (SEO)",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Include relevant keywords naturally",
+        "Describe image content accurately",
+        "Keep alt text concise (< 125 characters)",
+        "Use alt=\"\" for decorative images only"
+      ],
+      "details": {
+        "count": 10
+      }
+    },
+    {
+      "type": "MISSING_VIEWPORT",
+      "severity": "critical",
+      "message": "📱 Missing viewport meta tag",
+      "fix": [
+        "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "Essential for mobile responsiveness",
+        "Place in <head> section",
+        "Avoid user-scalable=no (accessibility)",
+        "Test on actual mobile devices"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 38 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 38
+      }
+    },
+    {
+      "type": "LARGE_FIXED_ELEMENTS",
+      "severity": "low",
+      "message": "📌 Fixed element(s) taking up > 30% of viewport",
+      "fix": [
+        "Reduce size of fixed headers/footers on mobile",
+        "Use CSS media queries for mobile adjustments",
+        "Consider sticky positioning instead",
+        "Ensure content is not obscured",
+        "Test scroll behavior on mobile"
+      ],
+      "details": {
+        "count": 2
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 13,
+    "critical": 1,
+    "high": 3,
+    "medium": 7,
+    "low": 2
+  }
+}

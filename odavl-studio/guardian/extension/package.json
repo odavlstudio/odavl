@@ -1,0 +1,146 @@
+{
+  "name": "odavl-guardian-vscode",
+  "displayName": "ODAVL Guardian",
+  "description": "Real-time quality monitoring with scheduled tests, alerts, and trends",
+  "version": "2.0.0",
+  "publisher": "odavl",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Testing",
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "testing",
+    "accessibility",
+    "performance",
+    "security",
+    "deployment",
+    "quality-gates",
+    "odavl"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavl-studio/odavl.git",
+    "directory": "odavl-studio/guardian/extension"
+  },
+  "bugs": {
+    "url": "https://github.com/odavl-studio/odavl/issues"
+  },
+  "homepage": "https://odavl.studio",
+  "galleryBanner": {
+    "color": "#f97316",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "odavl-guardian.analyzeUrl",
+        "title": "Guardian: Analyze URL"
+      },
+      {
+        "command": "odavl-guardian.showDashboard",
+        "title": "Guardian: Show Dashboard"
+      },
+      {
+        "command": "odavl-guardian.runScheduledTests",
+        "title": "Guardian: Run Scheduled Tests"
+      },
+      {
+        "command": "odavl-guardian.viewAlerts",
+        "title": "Guardian: View Alerts"
+      },
+      {
+        "command": "odavl-guardian.createTest",
+        "title": "Guardian: Create Scheduled Test"
+      },
+      {
+        "command": "odavl-guardian.executeTest",
+        "title": "Guardian: Execute Test Now"
+      },
+      {
+        "command": "odavl-guardian.acknowledgeAlert",
+        "title": "Guardian: Acknowledge Alert"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "guardian",
+          "title": "Guardian",
+          "icon": "resources/shield.svg"
+        }
+      ]
+    },
+    "views": {
+      "guardian": [
+        {
+          "id": "guardian.tests",
+          "name": "Scheduled Tests"
+        },
+        {
+          "id": "guardian.alerts",
+          "name": "Active Alerts"
+        },
+        {
+          "id": "guardian.trends",
+          "name": "Quality Trends"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Guardian",
+      "properties": {
+        "guardian.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:3003",
+          "description": "Guardian API server URL"
+        },
+        "guardian.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Guardian API key for authentication"
+        },
+        "guardian.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Auto-refresh test results"
+        },
+        "guardian.refreshInterval": {
+          "type": "number",
+          "default": 60,
+          "description": "Refresh interval in seconds"
+        },
+        "guardian.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show desktop notifications for alerts"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm build",
+    "compile": "tsup",
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}

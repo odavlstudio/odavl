@@ -1,0 +1,49 @@
+{
+  "name": "@odavl/insight-core",
+  "version": "1.5.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./server": {
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs"
+    },
+    "./detector": {
+      "import": "./dist/detector/index.js",
+      "require": "./dist/detector/index.cjs"
+    },
+    "./learning": {
+      "import": "./dist/learning/index.js",
+      "require": "./dist/learning/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/server.ts src/detector/index.ts src/learning/index.ts --format esm,cjs --dts",
+    "insight:watch": "tsx scripts/watch-errors.ts",
+    "insight:analyze": "tsx scripts/analyze-stack.ts",
+    "insight:root": "tsx scripts/detect-root.ts",
+    "insight:fix": "tsx scripts/suggest-fixes.ts",
+    "insight:live": "tsx scripts/live-notifier.ts",
+    "insight:train": "tsx scripts/train-memory.ts",
+    "insight:learn": "tsx scripts/run-learning.ts"
+  },
+  "dependencies": {
+    "@next/mdx": "^16.0.1",
+    "glob": "^11.0.0",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2"
+  },
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0"
+  }
+}

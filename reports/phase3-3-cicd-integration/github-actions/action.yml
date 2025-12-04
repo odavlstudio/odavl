@@ -1,0 +1,55 @@
+name: 'ODAVL Insight'
+description: 'Detect code issues with AI-powered analysis'
+author: 'ODAVL Studio'
+branding:
+  icon: 'search'
+  color: 'purple'
+
+inputs:
+  token:
+    description: 'ODAVL API token'
+    required: true
+  languages:
+    description: 'Languages to analyze (comma-separated)'
+    required: false
+    default: 'auto'
+  quality-gates:
+    description: 'Enable quality gates'
+    required: false
+    default: 'true'
+  fail-on-error:
+    description: 'Fail build on quality gate failure'
+    required: false
+    default: 'true'
+  error-threshold:
+    description: 'Maximum error rate (%)'
+    required: false
+    default: '5'
+  complexity-threshold:
+    description: 'Maximum cyclomatic complexity'
+    required: false
+    default: '10'
+  coverage-threshold:
+    description: 'Minimum test coverage (%)'
+    required: false
+    default: '80'
+  security-levels:
+    description: 'Security levels to block (critical,high,medium,low)'
+    required: false
+    default: 'critical,high'
+  upload-sarif:
+    description: 'Upload SARIF to GitHub Security'
+    required: false
+    default: 'true'
+
+outputs:
+  issues-found:
+    description: 'Number of issues detected'
+  quality-gate-passed:
+    description: 'Whether quality gates passed'
+  report-url:
+    description: 'URL to detailed report'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

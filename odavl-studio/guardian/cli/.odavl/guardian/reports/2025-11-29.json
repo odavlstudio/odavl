@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-11-29T10:00:00.000Z",
+  "accuracy": 80,
+  "readiness": 70,
+  "confidence": 90,
+  "issues": [{ "message": "Test error 1", "severity": "high" }]
+}

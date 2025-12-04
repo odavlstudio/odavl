@@ -1,0 +1,279 @@
+name: Monitoring & Observability
+
+on:
+  push:
+    branches: [main, develop]
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    name: Health Check & Uptime Monitoring
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🏥 Check Insight Cloud Health
+        id: insight_health
+        run: |
+          INSIGHT_URL="https://odavl-insight.vercel.app/api/health"
+          if [ -n "${{ secrets.INSIGHT_CLOUD_URL }}" ]; then
+            INSIGHT_URL="${{ secrets.INSIGHT_CLOUD_URL }}/api/health"
+          fi
+          
+          echo "Checking Insight Cloud health at $INSIGHT_URL"
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" "$INSIGHT_URL" || echo "000")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | head -n-1)
+          
+          echo "http_code=$HTTP_CODE" >> $GITHUB_OUTPUT
+          echo "response_body=$BODY" >> $GITHUB_OUTPUT
+          
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ Insight Cloud is healthy"
+            exit 0
+          else
+            echo "❌ Insight Cloud health check failed with HTTP $HTTP_CODE"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: 🏥 Check Guardian App Health
+        id: guardian_health
+        run: |
+          GUARDIAN_URL="https://odavl-guardian.vercel.app/api/health"
+          if [ -n "${{ secrets.GUARDIAN_APP_URL }}" ]; then
+            GUARDIAN_URL="${{ secrets.GUARDIAN_APP_URL }}/api/health"
+          fi
+          
+          echo "Checking Guardian App health at $GUARDIAN_URL"
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" "$GUARDIAN_URL" || echo "000")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          
+          echo "http_code=$HTTP_CODE" >> $GITHUB_OUTPUT
+          
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ Guardian App is healthy"
+            exit 0
+          else
+            echo "❌ Guardian App health check failed with HTTP $HTTP_CODE"
+            exit 1
+          fi
+        continue-on-error: true
+
+      - name: 📊 Performance Metrics
+        id: performance
+        run: |
+          echo "Collecting performance metrics..."
+          
+          # Measure response time for Insight Cloud
+          INSIGHT_URL="https://odavl-insight.vercel.app"
+          if [ -n "${{ secrets.INSIGHT_CLOUD_URL }}" ]; then
+            INSIGHT_URL="${{ secrets.INSIGHT_CLOUD_URL }}"
+          fi
+          
+          START=$(date +%s%N)
+          curl -s -o /dev/null "$INSIGHT_URL" || true
+          END=$(date +%s%N)
+          RESPONSE_TIME=$(( (END - START) / 1000000 ))
+          
+          echo "response_time_ms=$RESPONSE_TIME" >> $GITHUB_OUTPUT
+          echo "📊 Insight Cloud response time: ${RESPONSE_TIME}ms"
+          
+          if [ "$RESPONSE_TIME" -gt 3000 ]; then
+            echo "⚠️  Response time is slow (>${RESPONSE_TIME}ms)"
+          else
+            echo "✅ Response time is good"
+          fi
+
+      - name: 🔔 Create Monitoring Report
+        if: always()
+        run: |
+          echo "## 📊 Monitoring Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Service | Status | HTTP Code | Response Time |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|--------|-----------|---------------|" >> $GITHUB_STEP_SUMMARY
+          
+          INSIGHT_STATUS="${{ steps.insight_health.outcome }}"
+          INSIGHT_CODE="${{ steps.insight_health.outputs.http_code }}"
+          RESPONSE_TIME="${{ steps.performance.outputs.response_time_ms }}"
+          
+          if [ "$INSIGHT_STATUS" == "success" ]; then
+            echo "| Insight Cloud | ✅ Healthy | $INSIGHT_CODE | ${RESPONSE_TIME}ms |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Insight Cloud | ❌ Down | $INSIGHT_CODE | N/A |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          GUARDIAN_STATUS="${{ steps.guardian_health.outcome }}"
+          GUARDIAN_CODE="${{ steps.guardian_health.outputs.http_code }}"
+          
+          if [ "$GUARDIAN_STATUS" == "success" ]; then
+            echo "| Guardian App | ✅ Healthy | $GUARDIAN_CODE | N/A |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Guardian App | ❌ Down | $GUARDIAN_CODE | N/A |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🚨 Alert on Failure
+        if: |
+          steps.insight_health.outcome == 'failure' ||
+          steps.guardian_health.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const insightStatus = '${{ steps.insight_health.outcome }}';
+            const guardianStatus = '${{ steps.guardian_health.outcome }}';
+            
+            let failedServices = [];
+            if (insightStatus === 'failure') failedServices.push('Insight Cloud');
+            if (guardianStatus === 'failure') failedServices.push('Guardian App');
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Service Health Check Failed: ${failedServices.join(', ')}`,
+              body: `## Health Check Alert\n\n**Time**: ${new Date().toISOString()}\n**Failed Services**: ${failedServices.join(', ')}\n\n**Details**:\n- Insight Cloud: ${insightStatus}\n- Guardian App: ${guardianStatus}\n\n[View Workflow Run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+              labels: ['monitoring', 'critical', 'automated']
+            });
+
+  metrics-collection:
+    name: Collect Application Metrics
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 📥 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 📊 Collect Build Metrics
+        run: |
+          echo "Collecting build metrics..."
+          
+          # Count lines of code
+          LOC=$(find . -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" | \
+                xargs wc -l 2>/dev/null | tail -1 | awk '{print $1}')
+          echo "Total LOC: $LOC"
+          
+          # Count files
+          FILES=$(find . -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" | wc -l)
+          echo "Total Files: $FILES"
+          
+          # Count packages
+          PACKAGES=$(find . -name "package.json" | wc -l)
+          echo "Total Packages: $PACKAGES"
+          
+          # Save metrics
+          mkdir -p reports/metrics
+          echo "{\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"loc\":$LOC,\"files\":$FILES,\"packages\":$PACKAGES}" > reports/metrics/build-metrics.json
+
+      - name: 📊 Analyze Dependencies
+        run: |
+          echo "Analyzing dependencies..."
+          
+          # Check for outdated dependencies
+          pnpm outdated --json > reports/metrics/outdated-deps.json 2>/dev/null || echo "{}" > reports/metrics/outdated-deps.json
+          
+          # Check for security vulnerabilities
+          pnpm audit --json > reports/metrics/security-audit.json 2>/dev/null || echo "{}" > reports/metrics/security-audit.json
+
+      - name: 📤 Upload Metrics
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monitoring-metrics-${{ github.run_number }}
+          path: reports/metrics/
+          retention-days: 90
+
+      - name: 📊 Metrics Summary
+        if: always()
+        run: |
+          echo "## 📊 Application Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "reports/metrics/build-metrics.json" ]; then
+            LOC=$(jq -r '.loc' reports/metrics/build-metrics.json)
+            FILES=$(jq -r '.files' reports/metrics/build-metrics.json)
+            PACKAGES=$(jq -r '.packages' reports/metrics/build-metrics.json)
+            
+            echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Lines of Code | $LOC |" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Files | $FILES |" >> $GITHUB_STEP_SUMMARY
+            echo "| Packages | $PACKAGES |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  log-aggregation:
+    name: Aggregate Logs
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    timeout-minutes: 5
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📋 Collect Recent Workflow Logs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Get recent workflow runs
+            const runs = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 50
+            });
+            
+            const failedRuns = runs.data.workflow_runs.filter(run => run.conclusion === 'failure');
+            
+            // Create summary
+            const summary = {
+              timestamp: new Date().toISOString(),
+              total_runs: runs.data.workflow_runs.length,
+              failed_runs: failedRuns.length,
+              success_rate: ((runs.data.workflow_runs.length - failedRuns.length) / runs.data.workflow_runs.length * 100).toFixed(2) + '%',
+              failures: failedRuns.map(run => ({
+                name: run.name,
+                created_at: run.created_at,
+                url: run.html_url
+              }))
+            };
+            
+            // Save to file
+            fs.mkdirSync('reports/logs', { recursive: true });
+            fs.writeFileSync('reports/logs/workflow-summary.json', JSON.stringify(summary, null, 2));
+            
+            console.log(`Total Runs: ${summary.total_runs}`);
+            console.log(`Failed Runs: ${summary.failed_runs}`);
+            console.log(`Success Rate: ${summary.success_rate}`);
+
+      - name: 📤 Upload Log Summary
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: log-summary-${{ github.run_number }}
+          path: reports/logs/
+          retention-days: 30

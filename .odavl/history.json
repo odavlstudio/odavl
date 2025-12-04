@@ -1,0 +1,898 @@
+[
+  {
+    "timestamp": "2025-11-16T02:46:30.047Z",
+    "recipeId": "sample-recipe",
+    "success": true,
+    "improvement": {
+      "eslint": 5,
+      "typescript": 3,
+      "total": 8
+    }
+  },
+  {
+    "timestamp": "2025-11-16T02:46:37.094Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:46:37.097Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:46:37.100Z",
+    "recipeId": "test-failing-recipe-1763261197091",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:48:43.586Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T02:48:43.633Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.233Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.244Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:49:02.251Z",
+    "recipeId": "test-failing-recipe-1763261342199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T02:55:48.728Z"
+  },
+  {
+    "timestamp": "2025-11-16T03:02:46.585Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T03:02:46.594Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.536Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.541Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T03:03:02.547Z",
+    "recipeId": "test-failing-recipe-1763262182531",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T03:14:03.368Z"
+  },
+  {
+    "timestamp": "2025-11-16T10:20:15.049Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:20:15.053Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.767Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.773Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:20:30.797Z",
+    "recipeId": "test-failing-recipe-1763288430751",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:23:33.283Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:23:33.289Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.109Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.113Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:23:41.118Z",
+    "recipeId": "test-failing-recipe-1763288621050",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:33:40.183Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:33:40.189Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.204Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.210Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:33:45.214Z",
+    "recipeId": "test-failing-recipe-1763289225194",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:41:22.657Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:41:22.662Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.151Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.156Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:41:28.160Z",
+    "recipeId": "test-failing-recipe-1763289688148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:42:07.826Z",
+    "recipeId": "foo",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:42:07.832Z",
+    "recipeId": "test-recipe",
+    "success": true
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.419Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.422Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-16T10:42:13.426Z",
+    "recipeId": "test-failing-recipe-1763289733417",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.395Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.398Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:08.402Z",
+    "recipeId": "test-failing-recipe-1763803688392",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.565Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.568Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:28:56.571Z",
+    "recipeId": "test-failing-recipe-1763803736563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.098Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.103Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:29:48.106Z",
+    "recipeId": "test-failing-recipe-1763803788095",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.721Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.724Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:32:41.729Z",
+    "recipeId": "test-failing-recipe-1763803961717",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.732Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.738Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:53:29.741Z",
+    "recipeId": "test-failing-recipe-1763805209729",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.272Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.275Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:55:16.278Z",
+    "recipeId": "test-failing-recipe-1763805316269",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.375Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.378Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:56:07.381Z",
+    "recipeId": "test-failing-recipe-1763805367372",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.924Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.928Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:57:02.931Z",
+    "recipeId": "test-failing-recipe-1763805422922",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.819Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.824Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T09:59:17.829Z",
+    "recipeId": "test-failing-recipe-1763805557816",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.869Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.872Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T15:16:57.876Z",
+    "recipeId": "test-failing-recipe-1763824617862",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.114Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.118Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:11:58.122Z",
+    "recipeId": "test-failing-recipe-1763827918107",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.922Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.925Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T16:13:03.928Z",
+    "recipeId": "test-failing-recipe-1763827983920",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.477Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.480Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:31:59.483Z",
+    "recipeId": "test-failing-recipe-1763839919471",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.149Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.152Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:32:44.155Z",
+    "recipeId": "test-failing-recipe-1763839964147",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.354Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.356Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:04.359Z",
+    "recipeId": "test-failing-recipe-1763840044352",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.322Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.324Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:34:50.327Z",
+    "recipeId": "test-failing-recipe-1763840090319",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.360Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.364Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:35:34.367Z",
+    "recipeId": "test-failing-recipe-1763840134358",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.760Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.763Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:13.766Z",
+    "recipeId": "test-failing-recipe-1763840293758",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.891Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.894Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:38:58.896Z",
+    "recipeId": "test-failing-recipe-1763840338889",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.085Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.089Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T19:39:51.093Z",
+    "recipeId": "test-failing-recipe-1763840391082",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.152Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.155Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:00:32.157Z",
+    "recipeId": "test-failing-recipe-1763841632148",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.373Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.378Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:01:25.381Z",
+    "recipeId": "test-failing-recipe-1763841685371",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.968Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.971Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:07.974Z",
+    "recipeId": "test-failing-recipe-1763841727966",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.080Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.083Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:02:50.085Z",
+    "recipeId": "test-failing-recipe-1763841770078",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.406Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.409Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:03:36.412Z",
+    "recipeId": "test-failing-recipe-1763841816404",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.186Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.189Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:05:28.191Z",
+    "recipeId": "test-failing-recipe-1763841928184",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.848Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.851Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-22T20:06:37.854Z",
+    "recipeId": "test-failing-recipe-1763841997845",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.568Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.573Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T16:50:51.576Z",
+    "recipeId": "test-failing-recipe-1764175851563",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.284Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.294Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-26T19:41:06.302Z",
+    "recipeId": "test-failing-recipe-1764186066276",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.135Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.144Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:02:05.151Z",
+    "recipeId": "test-failing-recipe-1764266525130",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.149Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.158Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T18:34:45.167Z",
+    "recipeId": "test-failing-recipe-1764268485140",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.951Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.957Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-27T23:12:57.962Z",
+    "recipeId": "test-failing-recipe-1764285177946",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.343Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.349Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:05:50.353Z",
+    "recipeId": "test-failing-recipe-1764453950338",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.054Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.060Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:07:15.065Z",
+    "recipeId": "test-failing-recipe-1764454035049",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.886Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.893Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-29T22:49:08.896Z",
+    "recipeId": "test-failing-recipe-1764456548881",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.246Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.299Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:11:02.364Z",
+    "recipeId": "test-failing-recipe-1764468662199",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.374Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.383Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T02:38:40.394Z",
+    "recipeId": "test-failing-recipe-1764470320366",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.472Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.478Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "success": false
+  },
+  {
+    "timestamp": "2025-11-30T11:38:35.483Z",
+    "recipeId": "test-failing-recipe-1764502715466",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.700Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.705Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T22:50:30.711Z",
+    "recipeId": "test-failing-recipe-1764715830694",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.488Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.496Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:17:23.503Z",
+    "recipeId": "test-failing-recipe-1764717443482",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.931Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.937Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:20:51.945Z",
+    "recipeId": "test-failing-recipe-1764717651927",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.782Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.786Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:26:13.790Z",
+    "recipeId": "test-failing-recipe-1764717973777",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.551Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.559Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:33:07.565Z",
+    "recipeId": "test-failing-recipe-1764718387546",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.219Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.227Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:52:30.233Z",
+    "recipeId": "test-failing-recipe-1764719550213",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.216Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.220Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-02T23:56:44.227Z",
+    "recipeId": "test-failing-recipe-1764719804212",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.775Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.785Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "success": false
+  },
+  {
+    "timestamp": "2025-12-03T00:36:21.789Z",
+    "recipeId": "test-failing-recipe-1764722181768",
+    "success": false
+  }
+]

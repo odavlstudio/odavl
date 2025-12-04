@@ -1,0 +1,30 @@
+{
+  "name": "test-extension",
+  "version": "1.0.0",
+  "description": "Test VS Code extension for Guardian v5.0 validation",
+  "private": true,
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "test-extension.hello",
+        "title": "Hello Test"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

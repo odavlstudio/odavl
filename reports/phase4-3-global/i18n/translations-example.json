@@ -1,0 +1,39 @@
+// English (en.json)
+{
+  "common": {
+    "welcome": "Welcome to ODAVL Insight",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "settings": "Settings"
+  },
+  "detection": {
+    "title": "Detection Results",
+    "issues_found": "{{count}} issues found",
+    "severity": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  }
+}
+
+// Arabic (ar.json)
+{
+  "common": {
+    "welcome": "مرحباً بك في ODAVL Insight",
+    "dashboard": "لوحة التحكم",
+    "projects": "المشاريع",
+    "settings": "الإعدادات"
+  },
+  "detection": {
+    "title": "نتائج الكشف",
+    "issues_found": "تم العثور على {{count}} مشكلة",
+    "severity": {
+      "critical": "حرج",
+      "high": "عالي",
+      "medium": "متوسط",
+      "low": "منخفض"
+    }
+  }
+}

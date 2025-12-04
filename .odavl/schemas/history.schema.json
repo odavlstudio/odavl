@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://odavl.studio/schemas/history.json",
+  "title": "ODAVL Run History Schema",
+  "description": "Schema for ODAVL run history with trust scoring",
+  "type": "object",
+  "required": ["version", "runs"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version (semver)"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp (ISO 8601)"
+    },
+    "runs": {
+      "type": "array",
+      "description": "Array of historical runs",
+      "items": {
+        "type": "object",
+        "required": ["runId", "timestamp", "result"],
+        "properties": {
+          "runId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "recipe": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "type": "string",
+            "enum": ["success", "failure", "partial"]
+          },
+          "trustScoreBefore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "trustScoreAfter": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "filesModified": {
+            "type": "number",
+            "minimum": 0
+          },
+          "linesChanged": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

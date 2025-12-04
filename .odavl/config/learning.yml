@@ -1,0 +1,113 @@
+# ODAVL Learning System Configuration
+# This system enables auto-learning from user behavior and project patterns
+# Version: 1.0.0
+# Created: 2025-11-26
+
+learning_config:
+  # Global code preferences - what patterns we prefer
+  code_style:
+    prefer:
+      - strict_typescript         # Always prefer strict TypeScript
+      - pure_functions           # Functional programming patterns
+      - immutable_patterns       # Immutability over mutation
+      - explicit_types           # Explicit over implicit types
+      - async_await              # Modern async patterns
+      - error_handling           # Proper try-catch patterns
+    
+    avoid:
+      - any_type                 # Avoid 'any' type usage
+      - console_logs             # Use Logger utility instead
+      - dynamic_imports          # Static imports preferred
+      - nested_callbacks         # Callback hell
+      - global_state             # Avoid global mutable state
+      - implicit_coercion        # Explicit type conversions
+
+  # Pattern trust levels (0.0 - 1.0)
+  # These scores determine how confidently we apply each pattern
+  pattern_trust:
+    security_fixes: 0.95         # High trust - security is critical
+    type_safety: 0.90            # High trust - TypeScript strict mode
+    import_cleanup: 0.85         # High trust - unused imports safe to remove
+    performance_opts: 0.75       # Medium trust - needs verification
+    code_formatting: 0.70        # Medium trust - subjective
+    refactoring: 0.60            # Medium-low trust - risky
+    style_changes: 0.40          # Low trust - cosmetic only
+    experimental: 0.20           # Very low trust - new patterns
+
+  # Auto-learning rules
+  # System adjusts trust scores based on outcomes
+  auto_adjust:
+    enabled: true
+    min_samples: 5               # Need 5 runs before adjusting
+    success_threshold: 0.8       # 80% success = increase trust by 0.05
+    failure_threshold: 0.3       # <30% success = decrease trust by 0.10
+    max_trust: 0.98              # Never go to 1.0 (always some risk)
+    min_trust: 0.10              # Never go to 0.0 (might work someday)
+    adjustment_rate: 0.05        # How much to adjust per iteration
+
+  # Feedback loop - learn from user actions
+  feedback:
+    collect_metrics: true
+    
+    # If user rejects a fix (undo or manual revert)
+    track_user_overrides: true
+    override_penalty: -0.15      # Decrease trust by 0.15 on override
+    
+    # If user rolls back (uses undo system)
+    learn_from_rollbacks: true
+    rollback_penalty: -0.20      # Decrease trust by 0.20 on rollback
+    
+    # If user manually fixes differently
+    learn_from_edits: true
+    alternative_bonus: +0.10     # Learn from user's better approach
+    
+    # If fix passes all gates + verification
+    success_bonus: +0.05         # Increase trust on verified success
+
+  # Project-specific overrides
+  # These can override global preferences
+  project_overrides:
+    enabled: true
+    inherit_global: true
+    custom_patterns: []          # Add project-specific patterns here
+
+# Integration with existing ODAVL systems
+legacy_integration:
+  # Import existing trust scores
+  trust_scores:
+    import_from: .odavl/recipes-trust.json
+    merge_strategy: weighted_average  # Combine old and new scores
+    legacy_weight: 0.7               # 70% weight to historical data
+    new_weight: 0.3                  # 30% weight to new learning
+  
+  # Import gates constraints
+  gates:
+    import_from: .odavl/gates.yml
+    respect_constraints: true        # Never violate gates
+  
+  # Import run history for learning
+  history:
+    import_from: .odavl/history.json
+    analyze_patterns: true
+    learn_from_past: true
+
+# Performance tuning
+performance:
+  cache_learned_patterns: true
+  cache_ttl: 3600                # 1 hour cache
+  async_learning: true           # Learn in background
+  batch_updates: true            # Batch trust score updates
+
+# Logging and monitoring
+monitoring:
+  log_learning_events: true
+  log_path: .odavl/logs/learning.log
+  track_trust_evolution: true
+  evolution_path: .odavl/brain/analytics/trust-evolution.json
+
+# Safety mechanisms
+safety:
+  require_verification: true     # Always verify before applying
+  max_auto_adjustments: 10       # Max 10 auto adjustments per run
+  conservative_mode: false       # Set true for extra caution
+  emergency_stop_threshold: 0.05 # Stop if trust drops below 0.05

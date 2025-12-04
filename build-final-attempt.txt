@@ -1,0 +1,38 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Ôû▓ Next.js 14.2.18
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+
+[277.40ms] [@tailwindcss/postcss] app\globals.css
+[  0.16ms]   Ôå│ Quick bail check
+[ 13.16ms]   Ôå│ Setup compiler
+[  0.39ms]     Ôå│ PostCSS AST -> Tailwind CSS AST
+[ 12.74ms]     Ôå│ Create compiler
+[  0.15ms]   Ôå│ Register full rebuild paths
+[  1.94ms]   Ôå│ Setup scanner
+[ 76.48ms]   Ôå│ Scan for candidates
+[138.89ms]   Ôå│ Register dependency messages
+[ 40.14ms]   Ôå│ Build utilities
+[  3.24ms]   Ôå│ Transform Tailwind CSS AST into PostCSS AST
+[  2.67ms]   Ôå│ Update PostCSS AST
+
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/(dashboard)/page.tsx:112:13
+Type error: Cannot find name 'RocketLaunchIcon'.
+
+  110 |       name: 'Auto-Fixes Applied',
+  111 |       value: stats.autopilot.count.toLocaleString(),
+> 112 |       icon: RocketLaunchIcon,
+      |             ^
+  113 |       trend: stats.autopilot.trend,
+  114 |       color: 'bg-purple-500',
+  115 |     },
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

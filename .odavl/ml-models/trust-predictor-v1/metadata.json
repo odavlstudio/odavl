@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "trainedAt": "2025-11-28T20:24:29.034Z",
+  "architecture": "12 → 64 → 32 → 16 → 1",
+  "features": [
+    "historicalSuccess",
+    "complexity",
+    "linesChanged",
+    "testCoverage",
+    "projectMaturity",
+    "errorType_type",
+    "errorType_import",
+    "errorType_runtime",
+    "errorType_security",
+    "errorType_performance",
+    "errorType_complexity",
+    "language"
+  ],
+  "metrics": {
+    "accuracy": 0.8,
+    "precision": 0.8,
+    "recall": 1,
+    "f1Score": 0.89
+  }
+}

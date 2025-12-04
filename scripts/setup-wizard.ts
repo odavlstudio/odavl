@@ -1,0 +1,329 @@
+#!/usr/bin/env node
+
+/**
+ * ODAVL Studio Setup Wizard
+ * Interactive first-time setup for new users
+ */
+
+import { execSync } from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as readline from 'readline';
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Color codes for beautiful output
+const colors = {
+  reset: '\x1b[0m',
+  bright: '\x1b[1m',
+  cyan: '\x1b[36m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  red: '\x1b[31m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m'
+};
+
+function print(message: string, color: keyof typeof colors = 'reset') {
+  console.log(`${colors[color]}${message}${colors.reset}`);
+}
+
+function printHeader(title: string) {
+  console.log('');
+  print('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
+  print(title, 'bright');
+  print('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
+  console.log('');
+}
+
+function ask(question: string): Promise<string> {
+  return new Promise((resolve) => {
+    rl.question(`${colors.yellow}${question}${colors.reset} `, resolve);
+  });
+}
+
+async function checkPrerequisites(): Promise<boolean> {
+  printHeader('🔍 Checking Prerequisites');
+
+  const checks = [
+    { name: 'Node.js', command: 'node --version', required: '18.18' },
+    { name: 'pnpm', command: 'pnpm --version', required: '9.12' },
+    { name: 'Git', command: 'git --version', required: null }
+  ];
+
+  let allPassed = true;
+
+  for (const check of checks) {
+    try {
+      const version = execSync(check.command, { encoding: 'utf-8' }).trim();
+      print(`✅ ${check.name}: ${version}`, 'green');
+    } catch (error) {
+      print(`❌ ${check.name}: Not found`, 'red');
+      if (check.required) {
+        print(`   Required: ${check.required}+`, 'yellow');
+      }
+      allPassed = false;
+    }
+  }
+
+  console.log('');
+  return allPassed;
+}
+
+async function installDependencies(): Promise<void> {
+  printHeader('📦 Installing Dependencies');
+
+  const answer = await ask('Install dependencies with pnpm? (Y/n)');
+  
+  if (answer.toLowerCase() !== 'n') {
+    try {
+      print('Installing... This may take 2-3 minutes ⏳', 'cyan');
+      execSync('pnpm install --frozen-lockfile', { stdio: 'inherit' });
+      print('✅ Dependencies installed successfully!', 'green');
+    } catch (error) {
+      print('❌ Installation failed. Please run: pnpm install', 'red');
+    }
+  } else {
+    print('⚠️  Skipped. Run manually: pnpm install', 'yellow');
+  }
+  console.log('');
+}
+
+async function buildPlatform(): Promise<void> {
+  printHeader('🔨 Building ODAVL Studio');
+
+  const answer = await ask('Build all packages? (Y/n)');
+  
+  if (answer.toLowerCase() !== 'n') {
+    try {
+      print('Building... This may take 1-2 minutes ⏳', 'cyan');
+      execSync('pnpm build', { stdio: 'inherit' });
+      print('✅ Build completed successfully!', 'green');
+    } catch (error) {
+      print('❌ Build failed. Check errors above.', 'red');
+    }
+  } else {
+    print('⚠️  Skipped. Run manually: pnpm build', 'yellow');
+  }
+  console.log('');
+}
+
+async function selectProducts(): Promise<string[]> {
+  printHeader('🎯 Select Products to Use');
+
+  print('ODAVL Studio has three products:', 'bright');
+  console.log('');
+  print('1. 🔍 Insight    - Error detection (12 detectors)', 'cyan');
+  print('2. 🤖 Autopilot  - Self-healing code', 'cyan');
+  print('3. 🛡️  Guardian   - Web testing', 'cyan');
+  console.log('');
+
+  const answer = await ask('Which products do you want to use? (1,2,3 or "all")');
+
+  if (answer.toLowerCase() === 'all') {
+    return ['insight', 'autopilot', 'guardian'];
+  }
+
+  const selected: string[] = [];
+  if (answer.includes('1')) selected.push('insight');
+  if (answer.includes('2')) selected.push('autopilot');
+  if (answer.includes('3')) selected.push('guardian');
+
+  console.log('');
+  print(`✅ Selected: ${selected.join(', ')}`, 'green');
+  console.log('');
+
+  return selected;
+}
+
+async function configureSafety(): Promise<void> {
+  printHeader('🛡️  Autopilot Safety Configuration');
+
+  print('Autopilot needs safety constraints:', 'bright');
+  console.log('');
+
+  const maxFiles = await ask('Max files to modify per cycle? (default: 10)');
+  const maxLOC = await ask('Max lines per file? (default: 40)');
+
+  const config = {
+    risk_budget: 100,
+    forbidden_paths: [
+      'security/**',
+      'auth/**',
+      '**/*.test.*',
+      '**/*.spec.*',
+      'public-api/**'
+    ],
+    actions: {
+      max_auto_changes: parseInt(maxFiles) || 10,
+      max_files_per_cycle: parseInt(maxFiles) || 10
+    },
+    thresholds: {
+      max_risk_per_action: 25,
+      min_success_rate: 0.75
+    }
+  };
+
+  const odavlDir = path.join(process.cwd(), '.odavl');
+  if (!fs.existsSync(odavlDir)) {
+    fs.mkdirSync(odavlDir, { recursive: true });
+  }
+
+  const configPath = path.join(odavlDir, 'gates.yml');
+  const yaml = `# ODAVL Autopilot Safety Configuration
+# Generated by Setup Wizard
+
+risk_budget: ${config.risk_budget}
+
+forbidden_paths:
+${config.forbidden_paths.map(p => `  - ${p}`).join('\n')}
+
+actions:
+  max_auto_changes: ${config.actions.max_auto_changes}
+  max_files_per_cycle: ${config.actions.max_files_per_cycle}
+
+thresholds:
+  max_risk_per_action: ${config.thresholds.max_risk_per_action}
+  min_success_rate: ${config.thresholds.min_success_rate}
+`;
+
+  fs.writeFileSync(configPath, yaml, 'utf-8');
+  print(`✅ Configuration saved to: ${configPath}`, 'green');
+  console.log('');
+}
+
+async function testProducts(products: string[]): Promise<void> {
+  printHeader('🧪 Testing Products');
+
+  for (const product of products) {
+    print(`Testing ${product}...`, 'cyan');
+
+    try {
+      let command: string;
+      switch (product) {
+        case 'insight':
+          command = 'pnpm odavl:insight --help';
+          break;
+        case 'autopilot':
+          command = 'pnpm odavl:autopilot --help';
+          break;
+        case 'guardian':
+          command = 'pnpm odavl:guardian --help';
+          break;
+        default:
+          continue;
+      }
+
+      execSync(command, { stdio: 'pipe' });
+      print(`✅ ${product} is working!`, 'green');
+    } catch (error) {
+      print(`❌ ${product} test failed`, 'red');
+    }
+  }
+  console.log('');
+}
+
+async function showNextSteps(products: string[]): Promise<void> {
+  printHeader('🎉 Setup Complete!');
+
+  print('Your next steps:', 'bright');
+  console.log('');
+
+  if (products.includes('insight')) {
+    print('🔍 Try Insight:', 'cyan');
+    print('   pnpm odavl:insight', 'bright');
+    console.log('');
+  }
+
+  if (products.includes('autopilot')) {
+    print('🤖 Try Autopilot:', 'cyan');
+    print('   pnpm odavl:autopilot run', 'bright');
+    console.log('');
+  }
+
+  if (products.includes('guardian')) {
+    print('🛡️  Try Guardian:', 'cyan');
+    print('   pnpm odavl:guardian test https://example.com', 'bright');
+    console.log('');
+  }
+
+  print('📚 Documentation:', 'yellow');
+  print('   • GETTING_STARTED.md  - Detailed guide', 'bright');
+  print('   • UNIFIED_COMMANDS.md - Command reference', 'bright');
+  print('   • docs/               - Full documentation', 'bright');
+  console.log('');
+
+  print('💡 Tips:', 'magenta');
+  print('   • Run "pnpm forensic:all" before commits', 'bright');
+  print('   • Use "pnpm odavl:autopilot undo" to rollback', 'bright');
+  print('   • Check .odavl/gates.yml for safety settings', 'bright');
+  console.log('');
+
+  print('🚀 Happy coding with ODAVL Studio!', 'green');
+  console.log('');
+}
+
+async function main() {
+  console.clear();
+  
+  print('╔═══════════════════════════════════════════╗', 'cyan');
+  print('║                                           ║', 'cyan');
+  print('║     🧩 ODAVL Studio Setup Wizard 🧩      ║', 'bright');
+  print('║                                           ║', 'cyan');
+  print('║    Autonomous Code Quality Platform       ║', 'cyan');
+  print('║                                           ║', 'cyan');
+  print('╚═══════════════════════════════════════════╝', 'cyan');
+  console.log('');
+
+  print('Welcome! This wizard will set up ODAVL Studio in 5 minutes.', 'bright');
+  console.log('');
+
+  const answer = await ask('Ready to start? (Y/n)');
+  if (answer.toLowerCase() === 'n') {
+    print('Setup cancelled. Run again with: node scripts/setup-wizard.ts', 'yellow');
+    rl.close();
+    return;
+  }
+
+  // Step 1: Prerequisites
+  const prereqsPassed = await checkPrerequisites();
+  if (!prereqsPassed) {
+    print('⚠️  Some prerequisites are missing. Please install them first.', 'yellow');
+    const continueAnyway = await ask('Continue anyway? (y/N)');
+    if (continueAnyway.toLowerCase() !== 'y') {
+      rl.close();
+      return;
+    }
+  }
+
+  // Step 2: Install Dependencies
+  await installDependencies();
+
+  // Step 3: Build
+  await buildPlatform();
+
+  // Step 4: Select Products
+  const products = await selectProducts();
+
+  // Step 5: Configure Safety (if Autopilot selected)
+  if (products.includes('autopilot')) {
+    await configureSafety();
+  }
+
+  // Step 6: Test Products
+  await testProducts(products);
+
+  // Step 7: Next Steps
+  await showNextSteps(products);
+
+  rl.close();
+}
+
+main().catch((error) => {
+  console.error('Setup failed:', error);
+  rl.close();
+  process.exit(1);
+});

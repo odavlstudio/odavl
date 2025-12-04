@@ -1,0 +1,24 @@
+{
+  "id": "import-cleaner",
+  "name": "Import Cleaner",
+  "description": "Removes unused imports",
+  "trust": 0.75,
+  "priority": 6,
+  "condition": {
+    "type": "threshold",
+    "rules": [
+      {
+        "metric": "unusedImports",
+        "operator": ">=",
+        "value": 5
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "shell",
+      "command": "pnpm exec eslint . --fix",
+      "description": "Clean imports"
+    }
+  ]
+}

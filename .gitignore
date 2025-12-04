@@ -1,0 +1,163 @@
+# ============================================================================
+# ODAVL Safety Gate — Build Artifacts & Cache Protection
+# ============================================================================
+# Do not remove. Ensures repo stays light, reproducible, and CI-friendly.
+# All build outputs can be regenerated via: pnpm build, pnpm dev
+# Governed by: .odavl/gates.yml (risk budget enforcement)
+# ============================================================================
+
+# Core dependencies & environment
+node_modules
+dist
+.pnpm-store
+
+# ML Training Data (contains test secrets patterns - not for production)
+.odavl/datasets/mock-training-data.json
+
+# Environment files (CRITICAL - NEVER COMMIT!)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+!**/.env.template
+!.env.template
+logs/
+
+# Build outputs (auto-generated, never commit)
+.next/
+out/
+build/
+coverage/
+test-output/
+reports/*.log
+reports/*.json
+reports/waves/*
+
+# Build artifacts (app-specific)
+odavl-website/.next/
+odavl-website/.next/cache/
+odavl-website/.next/server/
+apps/odavl-website-v2/.next/
+apps/insight-cloud/.next/
+apps/vscode-ext/dist/
+apps/vscode-ext/out/
+apps/cli/dist/
+packages/*/dist/
+packages/*/build/
+
+# Tool caches (safe to regenerate)
+.turbo/
+.eslintcache
+.tsbuildinfo
+
+# Temp files (never commit)
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Security reports (runtime-generated)
+gitleaks-report-remediate.json
+gitleaks-report-final.json
+gitleaks-report.json
+gitleaks.json
+osv-results.json
+
+# Security files (NEVER commit)
+security/certificates/*.pem
+security/certificates/*.csr
+security/scans/*.json
+security/scans/*.txt
+security/sbom/*.json
+*.sig
+private-key.pem
+public-key.pem
+certificate.pem
+cert.csr
+
+# ==========================================
+# ENHANCED SECURITY (Phase 1 - Day 1)
+# ==========================================
+# Secrets and keys (all formats)
+secrets/
+**/secrets/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+.ssh/
+*.asc
+*.gpg
+
+# Database files & dumps
+*.sql
+*.dump
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*.old
+*~
+*.orig
+
+# API keys and tokens
+*api-key*
+*apikey*
+*secret-key*
+*access-token*
+
+# Legacy artifacts & temporary data (never commit)
+attestation.json
+install-log.json
+npm-audit.json
+package-clean.json
+forensic-inventory.cjs
+log-inventory.cjs
+manifest.json
+observations.json
+pr-description.md
+.cleanup-inventory-*.csv
+sample-plan.*
+phase*.json
+*plan*.json
+*plan*.yml
+
+# Test & shadow artifacts (runtime-only)
+.shadow-run/
+.test-privacy/
+.trash/
+shadow/
+static/
+
+# OS files (platform-specific)
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Secrets
+*.pem
+*.key
+*.secret
+*-credentials.json
+secrets/
+secrets.json
+!secrets.example.json

@@ -1,0 +1,46 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Ôû▓ Next.js 14.2.18
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+
+[298.12ms] [@tailwindcss/postcss] app\globals.css
+[  0.09ms]   Ôå│ Quick bail check
+[ 11.93ms]   Ôå│ Setup compiler
+[  0.35ms]     Ôå│ PostCSS AST -> Tailwind CSS AST
+[ 11.54ms]     Ôå│ Create compiler
+[  0.14ms]   Ôå│ Register full rebuild paths
+[ 10.87ms]   Ôå│ Setup scanner
+[ 89.78ms]   Ôå│ Scan for candidates
+[130.13ms]   Ôå│ Register dependency messages
+[ 47.82ms]   Ôå│ Build utilities
+[  4.03ms]   Ôå│ Transform Tailwind CSS AST into PostCSS AST
+[  2.69ms]   Ôå│ Update PostCSS AST
+
+
+[1.82ms] [@tailwindcss/postcss] ..\..\node_modules\.pnpm\swagger-ui-react@5.30.2_@types+react@18.3.18_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\swagger-ui-react\swagger-ui.css
+[1.79ms]   Ôå│ Quick bail check
+
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./components/ui/dialog.tsx:44:10
+Type error: 'XMarkIcon' cannot be used as a JSX component.
+  Its type 'ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, "ref"> & { title?: string | undefined; titleId?: string | undefined; } & RefAttributes<SVGSVGElement>>' is not a valid JSX element type.
+    Type 'ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, "ref"> & { title?: string | undefined; titleId?: string | undefined; } & RefAttributes<SVGSVGElement>>' is not assignable to type '(props: any, deprecatedLegacyContext?: any) => ReactNode'.
+      Type 'React.ReactNode' is not assignable to type 'import("C:/Users/sabou/dev/odavl/node_modules/.pnpm/@types+react@18.3.18/node_modules/@types/react/index").ReactNode'.
+        Type 'bigint' is not assignable to type 'ReactNode'.
+
+  42 |       {children}
+  43 |       <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+> 44 |         <XMarkIcon className="h-4 w-4" />
+     |          ^
+  45 |         <span className="sr-only">Close</span>
+  46 |       </DialogPrimitive.Close>
+  47 |     </DialogPrimitive.Content>
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

@@ -1,0 +1,37 @@
+// Jenkinsfile (Scripted Pipeline)
+node {
+    def odavlResult
+    
+    try {
+        stage('Checkout') {
+            checkout scm
+        }
+        
+        stage('ODAVL Insight') {
+            withCredentials([string(credentialsId: 'odavl-token', variable: 'ODAVL_TOKEN')]) {
+                odavlResult = odavlInsight(
+                    token: ODAVL_TOKEN,
+                    languages: 'typescript,python,java',
+                    qualityGates: true,
+                    failOnError: true
+                )
+            }
+        }
+        
+        stage('Report') {
+            publishHTML([
+                reportDir: '.odavl/reports',
+                reportFiles: 'report.html',
+                reportName: 'ODAVL Insight Report'
+            ])
+            
+            echo "Issues found: ${odavlResult.issuesFound}"
+            echo "Quality gate: ${odavlResult.qualityGatePassed ? 'PASSED' : 'FAILED'}"
+        }
+    } catch (Exception e) {
+        currentBuild.result = 'FAILURE'
+        throw e
+    } finally {
+        archiveArtifacts artifacts: '.odavl/reports/**/*', allowEmptyArchive: true
+    }
+}

@@ -1,0 +1,277 @@
+name: Emergency Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to rollback'
+        required: true
+        type: choice
+        options:
+          - production
+          - staging
+      version:
+        description: 'Target version to rollback to (e.g., v1.0.0)'
+        required: false
+        type: string
+      reason:
+        description: 'Reason for rollback'
+        required: true
+        type: string
+
+jobs:
+  validate-rollback:
+    name: Validate Rollback Request
+    runs-on: ubuntu-latest
+    outputs:
+      target_version: ${{ steps.validate.outputs.target_version }}
+      can_rollback: ${{ steps.validate.outputs.can_rollback }}
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Validate Rollback Target
+        id: validate
+        run: |
+          ENV="${{ github.event.inputs.environment }}"
+          VERSION="${{ github.event.inputs.version }}"
+          
+          echo "Validating rollback to $VERSION in $ENV environment..."
+          
+          # If no version specified, get the previous release
+          if [ -z "$VERSION" ]; then
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+            PREVIOUS_TAG=$(git describe --tags --abbrev=0 ${LATEST_TAG}^ 2>/dev/null || echo "")
+            
+            if [ -z "$PREVIOUS_TAG" ]; then
+              echo "❌ No previous version found for rollback"
+              echo "can_rollback=false" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+            
+            VERSION=$PREVIOUS_TAG
+          fi
+          
+          # Check if version exists
+          if ! git tag | grep -q "^${VERSION}$"; then
+            echo "❌ Version $VERSION not found in git tags"
+            echo "can_rollback=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+          echo "✅ Rollback target validated: $VERSION"
+          echo "target_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "can_rollback=true" >> $GITHUB_OUTPUT
+
+      - name: 🚨 Create Rollback Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Emergency Rollback: ${{ github.event.inputs.environment }} → ${{ steps.validate.outputs.target_version }}`,
+              body: `## Emergency Rollback Initiated\n\n**Environment**: ${{ github.event.inputs.environment }}\n**Target Version**: ${{ steps.validate.outputs.target_version }}\n**Reason**: ${{ github.event.inputs.reason }}\n**Initiated By**: @${{ github.actor }}\n**Time**: ${new Date().toISOString()}\n\n[Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
+              labels: ['rollback', 'critical', 'automated', '${{ github.event.inputs.environment }}'],
+              assignees: ['${{ github.actor }}']
+            });
+
+  backup-current-state:
+    name: Backup Current State
+    needs: validate-rollback
+    if: needs.validate-rollback.outputs.can_rollback == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 💾 Backup Current State
+        run: |
+          echo "Creating backup of current state..."
+          
+          mkdir -p ./rollback-backups
+          
+          # Backup current commit
+          CURRENT_COMMIT=$(git rev-parse HEAD)
+          echo "$CURRENT_COMMIT" > ./rollback-backups/current-commit.txt
+          
+          # Backup current version
+          CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "unknown")
+          echo "$CURRENT_VERSION" > ./rollback-backups/current-version.txt
+          
+          # Backup package.json versions
+          find . -name "package.json" -type f | while read f; do
+            cp "$f" "./rollback-backups/$(echo $f | sed 's/\//-/g')"
+          done
+          
+          # Create metadata
+          cat > ./rollback-backups/metadata.json <<EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "environment": "${{ github.event.inputs.environment }}",
+            "current_commit": "$CURRENT_COMMIT",
+            "current_version": "$CURRENT_VERSION",
+            "target_version": "${{ needs.validate-rollback.outputs.target_version }}",
+            "reason": "${{ github.event.inputs.reason }}",
+            "initiated_by": "${{ github.actor }}"
+          }
+          EOF
+          
+          echo "✅ Backup created successfully"
+
+      - name: 📤 Upload Backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: rollback-backup-${{ github.run_number }}
+          path: rollback-backups/
+          retention-days: 90
+
+  execute-rollback:
+    name: Execute Rollback
+    needs: [validate-rollback, backup-current-state]
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: 📥 Checkout Target Version
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.validate-rollback.outputs.target_version }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 📥 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧪 Run Critical Tests
+        run: pnpm test
+        continue-on-error: false
+
+      - name: 🏗️ Build Application
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+            cd odavl-studio/insight/cloud
+            pnpm build
+          else
+            pnpm build
+          fi
+        env:
+          NODE_ENV: ${{ github.event.inputs.environment }}
+
+      - name: 🚀 Deploy Rollback
+        if: github.event.inputs.environment == 'production'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./odavl-studio/insight/cloud
+          vercel-args: '--prod'
+
+      - name: ⏱️ Wait for Deployment
+        run: sleep 30
+
+      - name: 🏥 Health Check After Rollback
+        run: |
+          for i in {1..10}; do
+            if curl -f https://odavl-insight.vercel.app/api/health; then
+              echo "✅ Health check passed after rollback"
+              exit 0
+            fi
+            echo "Attempt $i failed, retrying..."
+            sleep 5
+          done
+          echo "❌ Health check failed after rollback"
+          exit 1
+
+      - name: 🧪 Smoke Tests After Rollback
+        run: |
+          # Test critical endpoints
+          curl -f https://odavl-insight.vercel.app/ || exit 1
+          curl -f https://odavl-insight.vercel.app/api/health || exit 1
+          curl -f https://odavl-insight.vercel.app/dashboard/overview || exit 1
+          
+          echo "✅ All smoke tests passed after rollback"
+
+  notify-rollback:
+    name: Notify Rollback Status
+    needs: [validate-rollback, execute-rollback]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📊 Rollback Summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const rollbackStatus = '${{ needs.execute-rollback.result }}';
+            const targetVersion = '${{ needs.validate-rollback.outputs.target_version }}';
+            
+            let statusEmoji = rollbackStatus === 'success' ? '✅' : '❌';
+            let statusText = rollbackStatus === 'success' ? 'SUCCESSFUL' : 'FAILED';
+            
+            const comment = `## ${statusEmoji} Rollback ${statusText}\n\n**Environment**: ${{ github.event.inputs.environment }}\n**Target Version**: ${targetVersion}\n**Status**: ${statusText}\n**Reason**: ${{ github.event.inputs.reason }}\n**Completed**: ${new Date().toISOString()}\n\n### Next Steps:\n${rollbackStatus === 'success' ? '- Monitor application metrics\n- Review logs for any issues\n- Update incident post-mortem' : '- Review rollback logs\n- Investigate failure cause\n- Consider manual intervention'}\n\n[View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            
+            // Find the rollback issue
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'rollback',
+              state: 'open',
+              per_page: 10
+            });
+            
+            const rollbackIssue = issues.data.find(issue => 
+              issue.title.includes('Emergency Rollback') && 
+              issue.title.includes('${{ github.event.inputs.environment }}')
+            );
+            
+            if (rollbackIssue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: rollbackIssue.number,
+                body: comment
+              });
+              
+              if (rollbackStatus === 'success') {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: rollbackIssue.number,
+                  state: 'closed',
+                  labels: ['rollback', 'resolved', '${{ github.event.inputs.environment }}']
+                });
+              }
+            }
+
+      - name: 🔔 Notify Team
+        if: needs.execute-rollback.result == 'failure'
+        run: |
+          echo "❌ Rollback failed - manual intervention required!"
+          echo "Please check the workflow logs and take immediate action."

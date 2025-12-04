@@ -1,0 +1,31 @@
+Ôû▓ [WARNING] Duplicate key "overrides" in object literal [duplicate-object-key]
+
+    package.json:173:4:
+      173 Ôöé     "overrides": {
+          ÔòÁ     ~~~~~~~~~~~
+
+  The original key "overrides" is here:
+
+    package.json:146:4:
+      146 Ôöé     "overrides": {
+          ÔòÁ     ~~~~~~~~~~~
+
+Loaded  vitest@4.0.15  and  @vitest/coverage-istanbul@4.0.14 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+- Running observe phase...
+- Analyzing workspace...
+Ô£ö ­ƒôÿ TypeScript: No errors
+Ô£ö ­ƒöì ESLint: No errors
+- Analyzing workspace...
+ÔÜá ­ƒôÿ TypeScript: 0 errors found
+ÔÜá ­ƒöì ESLint: 0 issues found
+- Analyzing workspace...
+Ô£ö ­ƒôÿ TypeScript: No errors
+Ô£ö ­ƒöì ESLint: No errors
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze

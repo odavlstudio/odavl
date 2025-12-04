@@ -1,0 +1,39 @@
+{
+  "name": "@odavl-studio/guardian-workers",
+  "version": "2.0.0",
+  "description": "Guardian scheduled monitoring and background workers",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx src/worker.ts",
+    "start": "node dist/worker.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@odavl-studio/guardian-core": "workspace:*",
+    "better-sqlite3": "^11.8.1",
+    "node-cron": "^3.0.3",
+    "winston": "^3.18.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.9.0",
+    "@types/node-cron": "^3.0.11",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@vitest/coverage-istanbul": "^2.1.9",
+    "vitest": "^2.1.9"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

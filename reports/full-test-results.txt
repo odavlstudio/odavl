@@ -1,0 +1,918 @@
+
+> odavl@2.0.0 test C:\Users\sabou\dev\odavl
+> vitest run
+
+Ôû▓ [WARNING] Duplicate key "overrides" in object literal [duplicate-object-key]
+
+    package.json:173:4:
+      173 Ôöé     "overrides": {
+          ÔòÁ     ~~~~~~~~~~~
+
+  The original key "overrides" is here:
+
+    package.json:146:4:
+      146 Ôöé     "overrides": {
+          ÔòÁ     ~~~~~~~~~~~
+
+Loaded  vitest@4.0.15  and  @vitest/coverage-istanbul@4.0.14 .
+Running mixed versions is not supported and may lead into bugs
+Update your dependencies and make sure the versions match.
+
+[1m[46m RUN [49m[22m [36mv4.0.15 [39m[90mC:/Users/sabou/dev/odavl[39m
+      [2mCoverage enabled with [22m[33mistanbul[39m
+
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect high cognitive complexity (nested if statements)[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect cognitive complexity from logical operators[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect cognitive complexity from nested loops[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould NOT flag low cognitive complexity functions[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect high cyclomatic complexity (many decision points)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect cyclomatic complexity from switch statements[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect cyclomatic complexity from ternary operators[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould NOT flag low cyclomatic complexity functions[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect excessively long functions (>100 lines)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect critically long functions (>200 lines)[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect extremely long functions (>300 lines)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould NOT flag short functions[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect excessive nesting (>4 levels)[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect critical nesting depth (>6 levels)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect extreme nesting (>8 levels)[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould NOT flag shallow nesting[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect exact code duplication (>10 lines)[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect large duplication (>20 lines)[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect critical duplication (>50 lines)[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould NOT flag small duplications (<10 lines)[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mStatistics Calculation[2m > [22mshould calculate aggregate statistics correctly[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mStatistics Calculation[2m > [22mshould track severity distribution[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mError Formatting[2m > [22mshould format errors with all required fields[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mError Formatting[2m > [22mshould include severity icon in formatted output[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle empty files[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle files with only comments[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould skip node_modules directory[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould skip test files[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle arrow functions[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle async functions[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect fetch without .catch() handler[32m 19[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with try/catch[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with .catch() handler[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect fetch without timeout configuration[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with AbortController timeout[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect hardcoded production URLs[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag localhost URLs[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect fetch without response.ok check[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with response.ok check[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect multiple fetch issues in same file[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould detect axios.get without error handling[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould NOT flag axios with try/catch[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould detect axios without timeout[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould NOT flag axios.create with timeout[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould detect axios.create without interceptors[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould NOT flag axios.create with interceptors[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould detect axios.post without error handling[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectAxiosIssues[2m > [22mshould detect all axios methods (get, post, put, delete, patch)[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectTimeoutIssues[2m > [22mshould detect excessive timeout (>30s)[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectTimeoutIssues[2m > [22mshould NOT flag reasonable timeouts (<30s)[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectTimeoutIssues[2m > [22mshould detect very long timeout (>1 minute)[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectTimeoutIssues[2m > [22mshould NOT flag Promise.race with timeout[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectTimeoutIssues[2m > [22mshould detect multiple excessive timeouts[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould detect .then() without .catch() for fetch[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould NOT flag .then() with .catch()[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould detect .then() without .catch() for axios[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould detect nested .then() without top-level .catch()[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould NOT flag .then() with .finally() and .catch()[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould detect response.ok check missing in multiple functions[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectErrorHandlingIssues[2m > [22mshould NOT flag non-network .then() patterns[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould detect Promise.all without error handling[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould NOT flag Promise.all with try/catch[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould detect unlimited concurrent requests[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould detect race condition: setState after async in useEffect[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould NOT flag useEffect with AbortController[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould detect multiple concurrent fetch without limit[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould detect Promise.all with axios.map pattern[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectConcurrencyIssues[2m > [22mshould NOT flag Promise.allSettled (safer alternative)[32m 16[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould exclude test files[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould exclude spec files[32m 23[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould exclude mock files[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould exclude config files[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould exclude type definition files[32m 22[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould handle empty files[32m 21[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould handle files with only comments[32m 19[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mEdge cases and exclusions[2m > [22mshould handle files with only interfaces[32m 16[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould detect component with exactly threshold (7) dependencies[32m 59[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould detect component with 8 dependencies (just over threshold)[32m 29[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould detect medium coupling (10-14 dependencies)[32m 38[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould detect high coupling (>14 dependencies)[32m 46[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould include affected files in coupling issue[32m 28[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mTight Coupling Detection[2m > [22mshould not report coupling issue for well-isolated component[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mLow Cohesion Detection[2m > [22mshould detect component with exactly threshold (3) responsibilities[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mLow Cohesion Detection[2m > [22mshould detect component with 4 distinct responsibilities[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mLow Cohesion Detection[2m > [22mshould detect component with multiple unrelated responsibilities[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mLow Cohesion Detection[2m > [22mshould list all detected responsibilities in message[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mLow Cohesion Detection[2m > [22mshould not report cohesion issue for focused component[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-In Detection[2m > [22mshould detect component with exactly threshold (10) dependents[32m 34[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-In Detection[2m > [22mshould detect high fan-in (>10 dependents)[32m 33[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-In Detection[2m > [22mshould include affected files in fan-in issue[32m 30[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-In Detection[2m > [22mshould not report fan-in issue for moderately used component[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-Out Detection[2m > [22mshould detect high fan-out (>10 dependencies)[32m 33[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-Out Detection[2m > [22mshould provide appropriate suggestions for fan-out[32m 32[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mFan-Out Detection[2m > [22mshould not report fan-out for moderate dependencies[32m 29[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould detect presentation layer importing from presentation (valid)[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould detect domain layer importing from application (invalid)[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould detect infrastructure importing from domain (invalid)[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould detect application importing from domain (valid)[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould provide fix suggestions for boundary violations[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mgetStatistics[2m > [22mshould calculate comprehensive statistics[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mgetStatistics[2m > [22mshould handle empty results[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mformatError[2m > [22mshould format error with all details[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould detect multiple boundary violations in single file[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mBoundary Violation Detection[2m > [22mshould not report boundary violations for valid layered dependencies[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mGod Component Detection[2m > [22mshould detect component with exactly threshold (300) LOC[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mGod Component Detection[2m > [22mshould detect component with >300 LOC (high LOC)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mGod Component Detection[2m > [22mshould detect component with >4.5 responsibilities (many concerns)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mGod Component Detection[2m > [22mshould detect god component with both high LOC and responsibilities[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mGod Component Detection[2m > [22mshould not report god component for reasonably sized component[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect UI rendering responsibility[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect data fetching responsibility[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect state management responsibility[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect business logic responsibility[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect data persistence responsibility[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mResponsibility Detection[2m > [22mshould detect event handling responsibility[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mMemory Leak Detection[2m > [22mshould detect addEventListener without removeEventListener[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mMemory Leak Detection[2m > [22mshould detect setInterval without clearInterval[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mMemory Leak Detection[2m > [22mshould NOT flag properly cleaned event listeners[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mMemory Leak Detection[2m > [22mshould detect setTimeout leaks with high count[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mSlow Function Detection[2m > [22mshould detect high cyclomatic complexity[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mSlow Function Detection[2m > [22mshould detect long functions (>100 lines)[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mSlow Function Detection[2m > [22mshould tier severity based on complexity[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mLarge Bundle Detection[2m > [22mshould detect files larger than 500KB[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 named imports[32m 52[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 default imports[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 namespace imports[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect dynamic imports[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mStatistics Calculation[2m > [22mshould calculate correct totals[32m 23[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mStatistics Calculation[2m > [22mshould calculate averages correctly[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mStatistics Calculation[2m > [22mshould count well-isolated components[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mStatistics Calculation[2m > [22mshould handle empty results gracefully[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude test files[32m 57[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude mock files[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude fixture files[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect CommonJS require[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect export-from statements[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect multiple import patterns in one file[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect simple 2-file cycle[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect 3-file cycle[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect 4-file cycle[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect multiple independent cycles[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect nested cycles[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould not report false positives for non-circular imports[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mPath Resolution[2m > [22mshould resolve relative imports with .ts extension[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mLarge Bundle Detection[2m > [22mshould tier severity: medium (>500KB), high (>750KB), critical (>1MB)[32m 53[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mLarge Bundle Detection[2m > [22mshould estimate load time impact[32m 68[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mConsole Formatting[2m > [22mshould format tight-coupling issue with correct emoji[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mConsole Formatting[2m > [22mshould format boundary-violation with HIGH severity emoji[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/isolation-detector.test.ts[2m > [22mComponentIsolationDetector[2m > [22mConsole Formatting[2m > [22mshould format god-component with suggested fix[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mPath Resolution[2m > [22mshould resolve relative imports without extension[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mPath Resolution[2m > [22mshould resolve parent directory imports[32m 16[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mPath Resolution[2m > [22mshould resolve index.ts imports[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mPath Resolution[2m > [22mshould try multiple extensions (.ts, .tsx, .js, .jsx)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mSeverity Assessment[2m > [22mshould mark 2-file cycles as HIGH severity[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mSeverity Assessment[2m > [22mshould mark 3-4 file cycles as MEDIUM severity[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mSeverity Assessment[2m > [22mshould mark 5+ file cycles as LOW severity[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mRefactoring Suggestions[2m > [22mshould provide suggestions for 2-file cycles[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mRefactoring Suggestions[2m > [22mshould provide suggestions for medium cycles[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mRefactoring Suggestions[2m > [22mshould provide suggestions for complex cycles[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude node_modules[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mBlocking Operation Detection[2m > [22mshould detect sync file system operations[32m 51[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mBlocking Operation Detection[2m > [22mshould detect sync crypto operations[32m 52[2mms[22m[39m
+stderr | odavl-studio/insight/core/tests/ai-detector-engine.test.ts > AIDetectorEngine > Semantic Analysis > should handle semantic analysis failures gracefully
+Custom model not found, will use rule-based fallback
+
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude dist directory[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude .next directory[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude test files[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude spec files[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude mock files[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude fixture files[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude data files[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude examples directory[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude demo directory[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mStatistics[2m > [22mshould calculate total cycles[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mStatistics[2m > [22mshould count cycles by severity[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mRule-Based Detection[2m > [22mshould detect hardcoded API keys[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mRule-Based Detection[2m > [22mshould skip placeholders in test files[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mRule-Based Detection[2m > [22mshould detect hardcoded passwords[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mSemantic Analysis[2m > [22mshould detect code smells using ML model[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mSemantic Analysis[2m > [22mshould handle semantic analysis failures gracefully[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mGPT-4 Detection[2m > [22mshould use GPT-4 for large files[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mGPT-4 Detection[2m > [22mshould fallback to Claude if GPT-4 fails[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mPR Review[2m > [22mshould review PR with multiple files[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mPR Review[2m > [22mshould calculate accurate review time[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mPR Review[2m > [22mshould categorize issues correctly[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mPerformance[2m > [22mshould complete detection in under 3 seconds[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mPerformance[2m > [22mshould use fast detection for small files[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mContext Awareness[2m > [22mshould skip enums for hardcoded values[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mContext Awareness[2m > [22mshould detect language correctly from file extension[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mContext Awareness[2m > [22mshould detect file type correctly[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mIssue Deduplication[2m > [22mshould deduplicate identical issues[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mIssue Deduplication[2m > [22mshould rank issues by severity and confidence[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mIntegration[2m > [22mshould provide autopilot handoff for fixable issues[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mIntegration[2m > [22mshould include fix complexity estimation[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mError Handling[2m > [22mshould handle API timeout gracefully[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mError Handling[2m > [22mshould handle invalid code gracefully[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/ai-detector-engine.test.ts[2m > [22mAIDetectorEngine[2m > [22mError Handling[2m > [22mshould handle missing API keys[32m 2[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mBlocking Operation Detection[2m > [22mshould detect execSync
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mBlocking Operation Detection[2m > [22mshould estimate blocking time
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mInefficient Loop Detection[2m > [22mshould detect nested loops (O(n┬▓))
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mInefficient Loop Detection[2m > [22mshould detect triple nested loops (O(n┬│))[32m 54[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mInefficient Loop Detection[2m > [22mshould detect array.push in loops
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mInefficient Loop Detection[2m > [22mshould detect large array allocations
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mN+1 Query Detection[2m > [22mshould detect Prisma queries in loops[32m 62[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mStatistics[2m > [22mshould count cycles by depth[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mStatistics[2m > [22mshould count affected files[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mStatistics[2m > [22mshould handle empty results[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mOutput Formatting[2m > [22mshould format error with cycle visualization[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mOutput Formatting[2m > [22mshould include severity emoji[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mOutput Formatting[2m > [22mshould include suggested fix[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle empty directory[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle single file with no imports[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle self-import (edge case)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle malformed imports gracefully[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle non-existent import paths[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÉ Authentication API[2m > [22mPOST /api/auth/signin[2m > [22mshould accept valid OAuth redirect[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÉ Authentication API[2m > [22mPOST /api/auth/signin[2m > [22mshould reject invalid credentials[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÉ Authentication API[2m > [22mPOST /api/auth/signin[2m > [22mshould return proper session token[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÉ Authentication API[2m > [22mPOST /api/auth/signout[2m > [22mshould clear session on signout[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÉ Authentication API[2m > [22mPOST /api/auth/signout[2m > [22mshould invalidate JWT token[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mPOST /api/newsletter[2m > [22mshould accept valid email subscription[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mPOST /api/newsletter[2m > [22mshould reject invalid email format[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mPOST /api/newsletter[2m > [22mshould handle duplicate subscriptions gracefully[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mPOST /api/newsletter[2m > [22mshould respect rate limits (5 requests/minute)[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mPOST /api/newsletter[2m > [22mshould return proper CORS headers[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô¼ Newsletter API[2m > [22mOPTIONS /api/newsletter[2m > [22mshould respond to preflight requests[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mPOST /api/contact[2m > [22mshould accept valid contact form submission[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mPOST /api/contact[2m > [22mshould reject missing required fields[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mPOST /api/contact[2m > [22mshould sanitize XSS attempts in message[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mPOST /api/contact[2m > [22mshould enforce message length limits (max 5000 chars)[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mPOST /api/contact[2m > [22mshould respect rate limits (3 requests/minute)[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒô× Contact Form API[2m > [22mOPTIONS /api/contact[2m > [22mshould handle CORS preflight[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöì Health Check API[2m > [22mGET /health[2m > [22mshould return 200 when healthy[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöì Health Check API[2m > [22mGET /health[2m > [22mshould check database connection[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöì Health Check API[2m > [22mGET /health[2m > [22mshould check Redis connection[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöì Health Check API[2m > [22mGET /health[2m > [22mshould return response within 500ms[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.list[2m > [22mshould return paginated projects[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.list[2m > [22mshould require authentication[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.list[2m > [22mshould filter by user ownership[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.create[2m > [22mshould create project with valid data[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.create[2m > [22mshould validate required fields[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.create[2m > [22mshould prevent duplicate slugs[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.update[2m > [22mshould update owned projects only[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.update[2m > [22mshould validate ownership before update[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.delete[2m > [22mshould soft-delete projects[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22mproject.delete[2m > [22mshould prevent deletion of non-owned projects[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22merrorSignature.list[2m > [22mshould return error signatures for project[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22merrorSignature.list[2m > [22mshould filter by severity[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôè tRPC Procedures[2m > [22merrorSignature.list[2m > [22mshould paginate large result sets[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mRate Limit Headers[2m > [22mshould include X-RateLimit-Limit[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mRate Limit Headers[2m > [22mshould include X-RateLimit-Remaining[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mRate Limit Headers[2m > [22mshould include X-RateLimit-Reset[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mRate Limit Headers[2m > [22mshould return 429 when limit exceeded[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mSecurity Headers[2m > [22mshould include Content-Security-Policy[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mSecurity Headers[2m > [22mshould include X-Frame-Options: SAMEORIGIN[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mSecurity Headers[2m > [22mshould include X-Content-Type-Options: nosniff[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mSecurity Headers[2m > [22mshould include Strict-Transport-Security (HSTS)[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mInput Validation[2m > [22mshould reject SQL injection attempts[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mInput Validation[2m > [22mshould sanitize XSS in all text inputs[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒöÆ Security & Rate Limiting[2m > [22mInput Validation[2m > [22mshould validate UUID formats[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôä OpenAPI Specification[2m > [22mGET /api/openapi[2m > [22mshould return valid OpenAPI 3.1 spec[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôä OpenAPI Specification[2m > [22mGET /api/openapi[2m > [22mshould document all REST endpoints[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôä OpenAPI Specification[2m > [22mGET /api/openapi[2m > [22mshould include response schemas[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒôä OpenAPI Specification[2m > [22mGET /api/openapi[2m > [22mshould include authentication requirements[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒîÉ CORS & Preflight[2m > [22mshould handle OPTIONS requests for all endpoints[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒîÉ CORS & Preflight[2m > [22mshould allow configured origins only[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22m­ƒîÉ CORS & Preflight[2m > [22mshould include proper Access-Control headers[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Response Format[2m > [22mshould return structured error for 400 Bad Request[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Response Format[2m > [22mshould return 401 for unauthenticated requests[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Response Format[2m > [22mshould return 403 for unauthorized access[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Response Format[2m > [22mshould return 404 for not found resources[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Response Format[2m > [22mshould return 500 for server errors[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Logging[2m > [22mshould log errors to Sentry[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/api/studio-hub-api.test.ts[2m > [22mÔØî Error Handling[2m > [22mError Logging[2m > [22mshould not expose internal errors to client[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mEdge Cases[2m > [22mshould handle absolute imports (no cycles expected)[32m 12[2mms[22m[39m
+stderr | apps/studio-cli/tests/commands/guardian.test.ts > Guardian CLI Commands > checkAllProducts > should scan workspace and show summary
+[vitest] The vi.fn() mock did not use 'function' or 'class' in its implementation, see https://vitest.dev/api/vi#vi-spyon for examples.
+
+stderr | apps/studio-cli/tests/commands/guardian.test.ts > Guardian CLI Commands > checkAllProducts > should calculate summary statistics
+[vitest] The vi.fn() mock did not use 'function' or 'class' in its implementation, see https://vitest.dev/api/vi#vi-spyon for examples.
+
+stderr | apps/studio-cli/tests/commands/guardian.test.ts > Guardian CLI Commands > checkAllProducts > should show auto-fixable issues count
+[vitest] The vi.fn() mock did not use 'function' or 'class' in its implementation, see https://vitest.dev/api/vi#vi-spyon for examples.
+
+stderr | apps/studio-cli/tests/commands/guardian.test.ts > Guardian CLI Commands > checkAllProducts > should handle empty workspace
+[vitest] The vi.fn() mock did not use 'function' or 'class' in its implementation, see https://vitest.dev/api/vi#vi-spyon for examples.
+
+stderr | apps/studio-cli/tests/commands/guardian.test.ts > Guardian CLI Commands > checkAllProducts > should handle scan errors gracefully
+[vitest] The vi.fn() mock did not use 'function' or 'class' in its implementation, see https://vitest.dev/api/vi#vi-spyon for examples.
+
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould display readiness score and status for ready product[32m 15[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould show warning for unstable product (70-89%)[32m 2[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould show error for blocked product (<70%)[32m 3[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould group issues by severity[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould show auto-fixable suggestion[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckProduct[2m > [22mshould handle validation errors gracefully[32m 5[2mms[22m[39m
+[31m   ÔåÆ expected "vi.fn()" to be called at least once[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mfixProduct[2m > [22mshould apply fixes and show improvement[32m 2[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mfixProduct[2m > [22mshould show fixes applied[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mfixProduct[2m > [22mshould show remaining issues if not all fixed[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mfixProduct[2m > [22mshould handle fix errors gracefully[32m 1[2mms[22m[39m
+[31m   ÔåÆ expected "vi.fn()" to be called at least once[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckAllProducts[2m > [22mshould scan workspace and show summary[32m 6[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckAllProducts[2m > [22mshould calculate summary statistics[32m 2[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckAllProducts[2m > [22mshould show auto-fixable issues count[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckAllProducts[2m > [22mshould handle empty workspace[32m 1[2mms[22m[39m
+[31m   ÔåÆ process.exit unexpectedly called with "1"[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.test.ts[2m > [22mGuardian CLI Commands[2m > [22mcheckAllProducts[2m > [22mshould handle scan errors gracefully[32m 1[2mms[22m[39m
+[31m   ÔåÆ expected "vi.fn()" to be called at least once[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mN+1 Query Detection[2m > [22mshould detect fetch in loops[32m 64[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mN+1 Query Detection[2m > [22mshould detect axios in loops[32m 71[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mN+1 Query Detection[2m > [22mshould suggest batching solutions[32m 61[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mStatistics Calculation[2m > [22mshould aggregate by severity[32m 78[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect addEventListener without removeEventListener[32m 58[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould NOT flag addEventListener with removeEventListener[32m 26[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect addEventListener in useEffect without cleanup[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould NOT flag addEventListener with useEffect cleanup[32m 33[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect multiple addEventListener without cleanup[32m 32[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect window event listeners without cleanup[32m 27[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould detect AWS access keys[32m 60[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould detect GitHub personal access tokens[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould detect JWT tokens[32m 30[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould detect private keys[32m 23[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould detect database connection strings with credentials[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould filter false positives from example/test files[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectHardcodedSecrets[2m > [22mshould filter false positives with placeholder text[32m 24[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectInjectionVulnerabilities[2m > [22mshould detect SQL injection with string interpolation[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectInjectionVulnerabilities[2m > [22mshould detect command injection[32m 22[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectInjectionVulnerabilities[2m > [22mshould detect XSS with dangerouslySetInnerHTML[32m 18[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectInjectionVulnerabilities[2m > [22mshould detect path traversal without sanitization[32m 23[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect document event listeners without cleanup[32m 27[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Event Listeners[2m > [22mshould detect class component with listeners but no componentWillUnmount[32m 27[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould detect setInterval without clearInterval[32m 38[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectInjectionVulnerabilities[2m > [22mshould NOT flag path traversal when path.join is used[32m 27[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectWeakCryptography[2m > [22mshould detect MD5 usage[32m 16[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectWeakCryptography[2m > [22mshould detect SHA1 usage[32m 21[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectWeakCryptography[2m > [22mshould detect Math.random in security contexts[32m 17[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectWeakCryptography[2m > [22mshould detect weak encryption algorithms[32m 16[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mStatistics Calculation[2m > [22mshould aggregate by type
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mStatistics Calculation[2m > [22mshould calculate average file size[32m 96[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mStatistics Calculation[2m > [22mshould identify largest files[32m 99[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould NOT flag setInterval with clearInterval[32m 47[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould detect setInterval in useEffect without cleanup[32m 34[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould NOT flag setInterval in useEffect with cleanup[32m 28[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould detect long setTimeout without cleanup (>5s)
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould NOT flag short setTimeout (<5s)[32m 36[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectUnsafePatterns[2m > [22mshould detect eval usage[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectUnsafePatterns[2m > [22mshould detect insecure deserialization[32m 19[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectUnsafePatterns[2m > [22mshould detect CORS wildcard misconfiguration[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude test files[32m 58[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mExclusion Patterns[2m > [22mshould exclude spec files[32m 55[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould NOT flag long setTimeout with clearTimeout[32m 27[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectMemoryLeaks - Intervals & Timeouts[2m > [22mshould detect multiple intervals without cleanup[32m 24[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould detect setState after async without mount check[32m 23[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould allow changes within max_files_per_cycle[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould block when exceeding max_files_per_cycle[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould allow exactly max_files_per_cycle[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block security/** paths[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block auth/** paths[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block test files (*.spec.*)[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block public-api/** paths[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould allow non-forbidden paths[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block nested security paths[32m 0[2mms[22m[39m
+ [31m├ù[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mRisk Budget[2m > [22mshould allow changes within risk budget[32m 9[2mms[22m[39m
+[31m   ÔåÆ expected [Function] to not throw an error but 'Error: Exceeds max_files_per_cycle: 5ÔÇª' was thrown[39m
+ [31m├ù[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mRisk Budget[2m > [22mshould block when exceeding risk budget[32m 2[2mms[22m[39m
+[31m   ÔåÆ expected [Function] to throw error matching /Exceeds risk_budget/ but got 'Exceeds max_files_per_cycle: 101 > 10'[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle empty file list[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle single file[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle files with similar names to forbidden paths[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould calculate trust from success rate[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould return default trust (0.5) for no runs[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould clamp trust between 0.1 and 1.0[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould handle single success[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould handle single failure[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mBlacklisting[2m > [22mshould blacklist after 3 consecutive failures[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mBlacklisting[2m > [22mshould not blacklist with less than 3 failures[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould increase trust on success[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould decrease trust on failure[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould reset consecutive failures on success[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mGates Configuration Loading[2m > [22mshould load gates.yml correctly[32m 16[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould NOT flag setState with AbortController[32m 33[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould NOT flag setState with isMounted flag
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould detect multiple setState after async
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould detect shared variable modification in concurrent async[32m 39[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould NOT flag const (immutable) in async operations[32m 33[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mformatError[2m > [22mshould format with severity icons
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mformatError[2m > [22mshould include fix suggestions[32m 59[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mEdge Cases[2m > [22mshould handle empty directory[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mEdge Cases[2m > [22mshould handle files with no issues[32m 56[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould have recipes directory[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould have 5 core recipes[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould have valid recipe structure[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould have trust scores initialized[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould prioritize high-priority recipes[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Recipe System Integration[2m > [22mshould have proper safety constraints[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Guardian Integration[2m > [22mshould have auth service[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Guardian Integration[2m > [22mshould have notification service[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mODAVL Guardian Integration[2m > [22mshould have monitoring endpoints[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mWeek 1-2 Completion Verification[2m > [22mshould have Logger utility[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mWeek 1-2 Completion Verification[2m > [22mshould not have duplicate files[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/week3-completion.test.ts[2m > [22mWeek 1-2 Completion Verification[2m > [22mshould have no `any` types in insight-core (spot check)[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould detect setIsLoading after async[32m 37[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectRaceConditions[2m > [22mshould detect setError after async[32m 52[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould detect WebSocket without close[32m 49[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/performance-detector.test.ts[2m > [22mPerformanceDetector[2m > [22mEdge Cases[2m > [22mshould handle very large files gracefully[32m 139[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mdetectUnsafePatterns[2m > [22mshould detect sensitive data in console logs[32m 277[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mignore patterns[2m > [22mshould ignore node_modules[32m 19[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mignore patterns[2m > [22mshould ignore test files[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mignore patterns[2m > [22mshould ignore package-lock.json[32m 13[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mignore patterns[2m > [22mshould ignore tsconfig.json[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/security-detector.test.ts[2m > [22mSecurityDetector[2m > [22mgetStatistics[2m > [22mshould correctly calculate statistics[32m 17[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould NOT flag WebSocket with close in cleanup[32m 46[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould detect database connection without cleanup
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould NOT flag database connection with finally block[32m 45[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould detect file stream without close[32m 44[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould NOT flag file stream with close handlers[32m 62[2mms[22m[39m
+ [2m[90mÔåô[39m[22m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould NOT flag pipeline (recommended pattern)
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mBasic Functionality[2m > [22mshould create detector instance[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mBasic Functionality[2m > [22mshould create detector instance[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mdetectResourceCleanupIssues[2m > [22mshould detect multiple resource leaks in same file[32m 66[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould exclude test files[32m 62[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics File Validation[2m > [22mshould validate metrics file structure[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics File Validation[2m > [22mshould generate timestamped filenames[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics File Validation[2m > [22mshould support improved filename format[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics Aggregation[2m > [22mshould calculate success rate[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics Aggregation[2m > [22mshould calculate average duration[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mMetrics Aggregation[2m > [22mshould identify oldest and newest runs[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mArchiving Logic[2m > [22mshould identify files older than retention period[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mArchiving Logic[2m > [22mshould group files by month[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mHealth Checks[2m > [22mshould warn when metrics exceed threshold[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics System[2m > [22mHealth Checks[2m > [22mshould not warn when within threshold[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/metrics-system.test.ts[2m > [22mMetrics Summary Generation[2m > [22mshould generate summary structure[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould exclude spec files[32m 60[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould exclude __tests__ directory[32m 72[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mBasic Functionality[2m > [22mshould create detector instance[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mBasic Functionality[2m > [22mshould create detector instance[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mBasic Functionality[2m > [22mshould create detector instance[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould handle empty files[32m 56[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould handle files with only comments[32m 60[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mEdge cases and exclusions[2m > [22mshould NOT flag setInterval in node.js main process (acceptable pattern)[32m 59[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mformatError[2m > [22mshould format memory leak error[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mformatError[2m > [22mshould format race condition error[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/runtime-detector-phase3.test.ts[2m > [22mRuntimeDetector - Memory Leaks & Race Conditions (Phase 3)[2m > [22mformatError[2m > [22mshould format resource cleanup error[32m 0[2mms[22m[39m
+[90mstdout[2m | apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22m[2mGuardian CLI - Integration Tests[2m > [22m[2mshould identify auto-fixable issues
+[22m[39mFound 0/1 auto-fixable issues
+
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mLaunchValidator should instantiate correctly[32m 4[2mms[22m[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould detect VS Code extension projects[32m 19[2mms[22m[39m
+[31m   ÔåÆ No inspector available for product type: nodejs-server[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould detect Next.js app projects[32m 1[2mms[22m[39m
+[31m   ÔåÆ No inspector available for product type: nodejs-server[39m
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould calculate readiness score correctly[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould group issues by severity[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould identify auto-fixable issues[32m 4[2mms[22m[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mshould scan workspace for all products[32m 5[2mms[22m[39m
+[31m   ÔåÆ expected 0 to be greater than 0[39m
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mError Handling[2m > [22mshould handle invalid product path gracefully[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mError Handling[2m > [22mshould handle malformed package.json[32m 1[2mms[22m[39m
+ [31m├ù[39m apps/studio-cli/tests/commands/guardian.integration.test.ts[2m > [22mGuardian CLI - Integration Tests[2m > [22mError Handling[2m > [22mshould handle unsupported product types[32m 1[2mms[22m[39m
+[31m   ÔåÆ No inspector available for product type: nodejs-server[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mBasic Functionality[2m > [22mshould detect security issues[33m 1366[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mBasic Functionality[2m > [22mshould detect type issues in test file[33m 1542[2mms[22m[39m
+[90mstdout[2m | tests/integration/ai-plugins.test.ts[2m > [22m[2mPlugin System Integration
+[22m[39m[INFO] Plugin React Best Practices initialized
+
+[90mstdout[2m | tests/integration/ai-plugins.test.ts[2m > [22m[2mPlugin System Integration
+[22m[39m[INFO] Registered plugin: React Best Practices v1.0.0
+
+[90mstdout[2m | tests/integration/ai-plugins.test.ts[2m > [22m[2mPlugin System Integration
+[22m[39m[INFO] Plugin Security Vulnerabilities initialized
+
+[90mstdout[2m | tests/integration/ai-plugins.test.ts[2m > [22m[2mPlugin System Integration
+[22m[39m[INFO] Registered plugin: Security Vulnerabilities v1.0.0
+
+[90mstdout[2m | tests/integration/ai-plugins.test.ts[2m > [22m[2mPlugin System Integration[2m > [22m[2mshould aggregate issues from multiple plugins
+[22m[39mReact issues: [
+  {
+    type: [32m'performance'[39m,
+    severity: [32m'low'[39m,
+    message: [32m'Inline function in JSX prop causes unnecessary re-renders.'[39m,
+    line: [33m5[39m,
+    column: [33m23[39m,
+    suggestion: [32m'Extract function outside component or use useCallback'[39m,
+    documentation: [32m'https://react.dev/reference/react/useCallback'[39m,
+    fixable: [33mtrue[39m,
+    tags: [ [32m'react'[39m, [32m'performance'[39m, [32m'optimization'[39m ],
+    source: [32m'React Best Practices'[39m
+  }
+]
+Security issues: []
+
+ [32mÔ£ô[39m tests/integration/ai-plugins.test.ts[2m > [22mPlugin System Integration[2m > [22mshould detect React anti-patterns[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/ai-plugins.test.ts[2m > [22mPlugin System Integration[2m > [22mshould detect security vulnerabilities[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/ai-plugins.test.ts[2m > [22mPlugin System Integration[2m > [22mshould aggregate issues from multiple plugins[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mFalse Positive Elimination[2m > [22mshould skip enum type names[32m 17[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mFalse Positive Elimination[2m > [22mshould skip dynamic generation with nanoid[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mFalse Positive Elimination[2m > [22mshould skip template literals with only variables[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mFalse Positive Elimination[2m > [22mshould skip JSON-LD structured data[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mReal Security Issues Detection[2m > [22mshould detect hardcoded API key[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mReal Security Issues Detection[2m > [22mshould detect hardcoded password[32m 55[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mReal Security Issues Detection[2m > [22mshould detect unsanitized dangerouslySetInnerHTML[32m 22[2mms[22m[39m
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mStudio Hub False Positives (Session 15)[2m > [22mshould not flag secrets-manager.ts enum names (MANUAL TEST)
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mStudio Hub False Positives (Session 15)[2m > [22mshould not flag api-keys/route.ts dynamic generation (MANUAL TEST)
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mContextAwareSecurityDetector v3.0[2m > [22mStudio Hub False Positives (Session 15)[2m > [22mshould not flag signin/page.tsx JSON-LD (MANUAL TEST)
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mWrapperDetectionSystem v3.0[2m > [22mWrapper Discovery[2m > [22mshould discover http.ts wrapper in studio-hub (INTEGRATION TEST)
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mWrapperDetectionSystem v3.0[2m > [22mWrapper Discovery[2m > [22mshould have high confidence for feature-rich wrappers (INTEGRATION TEST)
+ [2m[90mÔåô[39m[22m odavl-studio/insight/core/tests/detector-v3.test.ts[2m > [22mWrapperDetectionSystem v3.0[2m > [22mStudio Hub Network False Positives[2m > [22mshould recognize http.get() as using wrapper (INTEGRATION TEST)
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mshould display version information[33m 1290[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mSQL Injection Detection[2m > [22mshould detect SQL injection vulnerabilities[33m 1538[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mBasic Functionality[2m > [22mshould return array of issues with required properties[33m 1699[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mType Issue Detection[2m > [22mshould detect missing type hints[33m 1185[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mType Issue Detection[2m > [22mshould detect type mismatches[33m 1253[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mType Issue Detection[2m > [22mshould report correct severity levels[33m 1108[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mBasic Functionality[2m > [22mshould detect import issues[33m 3051[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mImport Organization[2m > [22mshould detect unsorted imports[33m 2201[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mImport Organization[2m > [22mshould detect incorrect import sections[33m 2023[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mSQL Injection Detection[2m > [22mshould flag hardcoded SQL expressions[33m 1286[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mCommand Injection Detection[2m > [22mshould detect os.system usage[33m 1171[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mCommand Injection Detection[2m > [22mshould report command injection as high severity[33m 1047[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mHardcoded Secrets Detection[2m > [22mshould detect hardcoded credentials[33m 1022[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mBasic Functionality[2m > [22mshould detect best practice violations[33m 3853[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mPEP 8 Violations[2m > [22mshould detect naming convention violations[33m 3352[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mshould display main help[33m 1145[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mshould display studio information[33m 922[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mInsight Commands[2m > [22mshould display insight help[33m 954[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mInsight Commands[2m > [22mshould display analyze help[33m 828[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mAutopilot Commands[2m > [22mshould display autopilot help[33m 898[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mBasic Functionality[2m > [22mshould detect complexity issues[33m 4323[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect high complexity functions[33m 3122[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/odavl-workflow.test.ts[2m > [22mIntegration: Full ODAVL Workflow[2m > [22mshould detect TypeScript errors in workspace[33m 5312[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/odavl-workflow.test.ts[2m > [22mIntegration: Full ODAVL Workflow[2m > [22mshould complete full cycle workflow[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/odavl-workflow.test.ts[2m > [22mIntegration: Full ODAVL Workflow[2m > [22mshould create and restore from undo snapshots[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/odavl-workflow.test.ts[2m > [22mIntegration: Full ODAVL Workflow[2m > [22mshould enforce risk budget constraints[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/odavl-workflow.test.ts[2m > [22mIntegration: Full ODAVL Workflow[2m > [22mshould generate attestation chain[32m 2[2mms[22m[39m
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run all quality checks
+[22m[39m
+ÔÜá´©Å  Note: This is a legacy v2 command
+For v3 launch validation, use: odavl guardian check <path>
+
+Target: https://example.com
+Tests: all
+
+Ô£à URL-based testing will be restored in future release
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould run specific tests when provided
+[22m[39m
+ÔÜá´©Å  Note: This is a legacy v2 command
+For v3 launch validation, use: odavl guardian check <path>
+
+Target: https://example.com
+Tests: accessibility,performance
+
+Ô£à URL-based testing will be restored in future release
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould validate URL format
+[22m[39m
+ÔÜá´©Å  Note: This is a legacy v2 command
+For v3 launch validation, use: odavl guardian check <path>
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunPreDeployTests[2m > [22m[2mshould execute without errors
+[22m[39m
+ÔÜá´©Å  Note: This is a legacy v2 command
+For v3 launch validation, use: odavl guardian check <path>
+
+Target: https://example.com
+Tests: accessibility
+
+Ô£à URL-based testing will be restored in future release
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunSingleTest[2m > [22m[2mshould run accessibility test
+[22m[39mRunning accessibility test (legacy command)...
+Use: odavl guardian check <path> instead
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunSingleTest[2m > [22m[2mshould run performance test
+[22m[39mRunning performance test (legacy command)...
+Use: odavl guardian check <path> instead
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunSingleTest[2m > [22m[2mshould run security test
+[22m[39mRunning security test (legacy command)...
+Use: odavl guardian check <path> instead
+
+
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22m[2mGuardian Commands[2m > [22m[2mrunSingleTest[2m > [22m[2mshould validate test type
+[22m[39mRunning invalid test (legacy command)...
+Use: odavl guardian check <path> instead
+
+
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould run all quality checks[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould run specific tests when provided[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould validate URL format[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunPreDeployTests[2m > [22mshould execute without errors[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run accessibility test[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run performance test[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould run security test[32m 1[2mms[22m[39m
+ [31m├ù[39m apps/studio-cli/src/commands/__tests__/guardian.test.ts[2m > [22mGuardian Commands[2m > [22mrunSingleTest[2m > [22mshould validate test type[32m 9[2mms[22m[39m
+[31m   ÔåÆ promise resolved "undefined" instead of rejecting[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mType Issue Detection[2m > [22mshould include line and column numbers[33m 1299[2mms[22m[39m
+- Running observe phase...
+- Analyzing workspace...
+Ô£ö ­ƒôÿ TypeScript: No errors
+Ô£ö ­ƒöì ESLint: No errors
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould run TypeScript and ESLint checks and handle results
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Analyzing workspace...
+ÔÜá ­ƒôÿ TypeScript: 0 errors found
+ÔÜá ­ƒöì ESLint: 0 issues found
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould handle errors gracefully
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Analyzing workspace...
+Ô£ö ­ƒôÿ TypeScript: No errors
+Ô£ö ­ƒöì ESLint: No errors
+[90mstdout[2m | apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22m[2mInsight Commands[2m > [22m[2manalyzeWorkspace[2m > [22m[2mshould run specific detectors when provided
+[22m[39m
+Analysis Summary:
+  Critical: 0
+  High: 0
+  Medium: 0
+  Low: 0
+  Total: 0
+
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze
+- Generating AI-powered fix suggestions...
+Ôä╣ Fix suggestions feature coming soon
+Ô£ö Run analysis first with: odavl insight analyze
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould run TypeScript and ESLint checks and handle results[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould handle errors gracefully[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22manalyzeWorkspace[2m > [22mshould run specific detectors when provided[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22mgetFixSuggestions[2m > [22mshould complete without returning data (feature in progress)[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m apps/studio-cli/src/commands/__tests__/insight.test.ts[2m > [22mInsight Commands[2m > [22mgetFixSuggestions[2m > [22mshould run without errors when called[32m 2[2mms[22m[39m
+ [31m├ù[39m tests/e2e/plugin-workflow.test.ts[2m > [22mE2E: Plugin Workflow[2m > [22mshould complete full plugin workflow[32m 12[2mms[22m[39m
+[31m   ÔåÆ spawnSync C:\Windows\system32\cmd.exe ENOENT[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mUnsafe Operations Detection[2m > [22mshould detect pickle usage[33m 1251[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mAutopilot Commands[2m > [22mshould display run help with options[33m 1057[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mType Issue Detection[2m > [22mshould include error codes when available[33m 1533[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mUnused Imports[2m > [22mshould detect unused imports[33m 2532[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mUnsafe Operations Detection[2m > [22mshould flag insecure random usage[33m 1385[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration
+[22m[39mÔ£à Test fixtures setup complete
+
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mPEP 8 Violations[2m > [22mshould detect line length violations[33m 3558[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mFile Path Handling[2m > [22mshould normalize file paths[33m 1160[2mms[22m[39m
+ [31m├ù[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mGuardian Commands[2m > [22mshould display guardian help[33m 1259[2mms[22m[39m
+[31m   ÔåÆ expected 'Usage: odavl guardian [options] [commÔÇª' to contain 'Pre-deploy'[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mGuardian Commands[2m > [22mshould display test help[33m 886[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould report complexity scores[33m 3558[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mSeverity Levels[2m > [22mshould categorize issues by severity[33m 1075[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mError Handling[2m > [22mshould handle invalid commands gracefully[33m 917[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mFile Path Handling[2m > [22mshould handle test_types.py specifically[33m 1204[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mSeverity Levels[2m > [22mshould assign appropriate severity[33m 2010[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mSeverity Levels[2m > [22mshould mark shell injection as error[33m 1066[2mms[22m[39m
+ [32mÔ£ô[39m tests/e2e/cli-workflow.test.ts[2m > [22mE2E: ODAVL CLI Commands[2m > [22mError Handling[2m > [22mshould handle missing arguments[33m 919[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mError Handling[2m > [22mshould handle missing mypy gracefully[33m 1100[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mSeverity Levels[2m > [22mshould provide appropriate severity for each issue[33m 998[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mPEP 8 Violations[2m > [22mshould detect docstring violations[33m 3174[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mSeverity Levels[2m > [22mshould have appropriate severity[33m 1900[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mError Handling[2m > [22mshould handle empty directories[33m 409[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect moderate complexity (>5)[33m 3055[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mCWE Mapping[2m > [22mshould map vulnerabilities to CWE[33m 1006[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mError Handling[2m > [22mshould not throw on parsing errors[33m 1109[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mRecommendations[2m > [22mshould provide security recommendations[33m 958[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mConfiguration Support[2m > [22mshould use mypy.ini if present[33m 1039[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mFile Coverage[2m > [22mshould analyze test_imports.py[33m 1804[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 1: Happy Path - Full Success Cycle[2m > [22m[2mshould complete full ODAVL loop successfully
+[22m[39m
+­ƒº¬ Testing Happy Path...
+  1´©ÅÔâú OBSERVE Phase...
+­ƒöì OBSERVE Phase: Analyzing C:\Users\sabou\dev\odavl\tests\fixtures\sample-codebase (parallel mode)...
+  ÔåÆ Running 12 detectors in parallel...
+
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mRecommendations[2m > [22mshould suggest safe alternatives[33m 930[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mCode Quality Issues[2m > [22mshould detect unused variables[33m 2814[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mRecommendation Generation[2m > [22mshould provide recommendations[33m 1056[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould categorize severity by complexity level[33m 2789[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 1: Happy Path - Full Success Cycle[2m > [22m[2mshould complete full ODAVL loop successfully
+[22m[39m    Ô£ô typescript: 0 issues
+    Ô£ô eslint: 7 issues
+    Ô£ô security: 1 issues
+    Ô£ô performance: 1 issues
+    Ô£ô imports: 0 issues
+    Ô£ô packages: 1 issues
+    Ô£ô runtime: 0 issues
+    Ô£ô build: 0 issues
+    Ô£ô circular: 0 issues
+    Ô£ô network: 0 issues
+    Ô£ô complexity: 3 issues
+    Ô£ô isolation: 0 issues
+Ô£à OBSERVE Complete: 13 total issues found (6.6s)
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 1: Happy Path - Full Success Cycle[2m > [22m[2mshould complete full ODAVL loop successfully
+[22m[39m    Ô£à Detected 13 issues
+  2´©ÅÔâú DECIDE Phase...
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 1: Happy Path - Full Success Cycle[2m > [22m[2mshould complete full ODAVL loop successfully
+[22m[39m[DECIDE] No recipes match current metrics ÔåÆ noop
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 1: Happy Path - Full Success Cycle[2m > [22m[2mshould complete full ODAVL loop successfully
+[22m[39m    Ô£à Decision: noop
+    Ôä╣´©Å  No recipes matched - skipping ACT/VERIFY
+
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mScenario 1: Happy Path - Full Success Cycle[2m > [22mshould complete full ODAVL loop successfully[33m 6587[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 2: No Issues - Noop Handling[2m > [22m[2mshould return noop when no issues detected
+[22m[39m
+­ƒº¬ Testing No Issues Scenario...
+  1´©ÅÔâú OBSERVE Phase (mocked clean codebase)...
+    Ô£à Detected 0 issues
+  2´©ÅÔâú DECIDE Phase...
+[DECIDE] No issues detected ÔåÆ noop
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 2: No Issues - Noop Handling[2m > [22m[2mshould return noop when no issues detected
+[22m[39m    Ô£à Decision: noop (no issues to fix)
+  Ô£à No Issues Scenario Complete!
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 3: No Matching Recipes[2m > [22m[2mshould return noop when no recipes match metrics
+[22m[39m
+­ƒº¬ Testing No Matching Recipes...
+  1´©ÅÔâú OBSERVE Phase (mocked)...
+    Ô£à Detected 1 issue (below recipe thresholds)
+  2´©ÅÔâú DECIDE Phase...
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 3: No Matching Recipes[2m > [22m[2mshould return noop when no recipes match metrics
+[22m[39m[DECIDE] No recipes match current metrics ÔåÆ noop
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 3: No Matching Recipes[2m > [22m[2mshould return noop when no recipes match metrics
+[22m[39m    Ô£à Decision: noop (no recipes match)
+  Ô£à No Matching Recipes Scenario Complete!
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 4: Gates Fail - Rollback[2m > [22m[2mshould rollback when quality gates fail
+[22m[39m
+­ƒº¬ Testing Gates Fail Scenario...
+  1´©ÅÔâú Before metrics: 15 issues
+  2´©ÅÔâú After metrics: 25 issues (regression!)
+  3´©ÅÔâú VERIFY Phase...
+    ÔØî ESLint delta: +5 (gate: deltaMax 0)
+    ÔØî TypeScript delta: +5 (gate: deltaMax 0)
+    Ô£à Gates would fail - rollback triggered
+  Ô£à Gates Fail Scenario Complete!
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 5: Blacklist - 3 Consecutive Failures[2m > [22m[2mshould blacklist recipe after 3 consecutive failures
+[22m[39m
+­ƒº¬ Testing Blacklist Scenario...
+  Simulating 3 consecutive failures...
+[LEARN] Updating trust for recipe: test-failing-recipe-1764719804212
+[LEARN] Ô£ù Trust Ôåô 0.50 ÔåÆ 0.10 (1 consecutive failures)
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 5: Blacklist - 3 Consecutive Failures[2m > [22m[2mshould blacklist recipe after 3 consecutive failures
+[22m[39m    1´©ÅÔâú Failure 1: trust = 0.10, blacklisted = false
+[LEARN] Updating trust for recipe: test-failing-recipe-1764719804212
+[LEARN] Ô£ù Trust ÔåÆ 0.10 ÔåÆ 0.10 (2 consecutive failures)
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 5: Blacklist - 3 Consecutive Failures[2m > [22m[2mshould blacklist recipe after 3 consecutive failures
+[22m[39m    2´©ÅÔâú Failure 2: trust = 0.10, blacklisted = false
+[LEARN] Updating trust for recipe: test-failing-recipe-1764719804212
+[LEARN] ÔÜá´©Å  Recipe test-failing-recipe-1764719804212 BLACKLISTED after 3 consecutive failures
+[LEARN] Ô£ù Trust ÔåÆ 0.10 ÔåÆ 0.10 (3 consecutive failures)
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mScenario 5: Blacklist - 3 Consecutive Failures[2m > [22m[2mshould blacklist recipe after 3 consecutive failures
+[22m[39m    3´©ÅÔâú Failure 3: trust = 0.10, blacklisted = true Ô£à
+  Ô£à Blacklist Scenario Complete!
+
+
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mFile Coverage[2m > [22mshould analyze test_security.py[33m 951[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mFile Coverage[2m > [22mshould report correct file paths[33m 1882[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mRecommendation Generation[2m > [22mshould categorize as type-safety[33m 1226[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mFile Coverage[2m > [22mshould report correct file paths[33m 1103[2mms[22m[39m
+stderr | tests/security/security-scan.test.ts > Security Scan > should have no high severity vulnerabilities
+ÔÜá´©Å  Found 2 high and 2 critical vulnerabilities
+Run: pnpm audit --fix to attempt automatic fixes
+ÔÜá´©Å  Could not parse audit output, skipping vulnerability check
+
+ [32mÔ£ô[39m tests/security/security-scan.test.ts[2m > [22mSecurity Scan[2m > [22mshould have no high severity vulnerabilities[33m 17189[2mms[22m[39m
+ [32mÔ£ô[39m tests/security/security-scan.test.ts[2m > [22mSecurity Scan[2m > [22mshould not contain hardcoded secrets[32m 248[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mPerformance[2m > [22mshould complete analysis in reasonable time[33m 1181[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mError Handling[2m > [22mshould handle missing bandit[33m 1080[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mRecommendations[2m > [22mshould provide import organization recommendations[33m 2089[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mCode Quality Issues[2m > [22mshould detect broad exception catching[33m 3211[2mms[22m[39m
+ [32mÔ£ô[39m tests/security/security-scan.test.ts[2m > [22mSecurity Scan[2m > [22mshould have secure dependencies[33m 1120[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mMaintainability Index[2m > [22mshould check maintainability[33m 3156[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mIntegration[2m > [22mshould work with multiple Python files[33m 1063[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mError Handling[2m > [22mshould not throw on execution[33m 969[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mPerformance[2m > [22mshould complete in reasonable time[33m 901[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-type-detector.test.ts[2m > [22mPythonTypeDetector[2m > [22mIntegration[2m > [22mshould skip non-Python files[33m 985[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mRecommendations[2m > [22mshould suggest isort for fixing[33m 1789[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mIntegration[2m > [22mshould detect multiple vulnerability types[33m 864[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mPerformance Tests[2m > [22m[2mshould complete full loop in under 60 seconds
+[22m[39m
+­ƒº¬ Testing Performance...
+­ƒöì OBSERVE Phase: Analyzing C:\Users\sabou\dev\odavl\tests\fixtures\sample-codebase (parallel mode)...
+  ÔåÆ Running 12 detectors in parallel...
+
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mCode Quality Issues[2m > [22mshould detect missing final newline[33m 2723[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mMaintainability Index[2m > [22mshould include maintainability index when available[33m 2657[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-security-detector.test.ts[2m > [22mPythonSecurityDetector[2m > [22mIntegration[2m > [22mshould provide actionable information[33m 866[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mError Handling[2m > [22mshould handle missing isort[33m 1662[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mScenario 2: No Issues - Noop Handling[2m > [22mshould return noop when no issues detected[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mScenario 3: No Matching Recipes[2m > [22mshould return noop when no recipes match metrics[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mScenario 4: Gates Fail - Rollback[2m > [22mshould rollback when quality gates fail[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mScenario 5: Blacklist - 3 Consecutive Failures[2m > [22mshould blacklist recipe after 3 consecutive failures[32m 18[2mms[22m[39m
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mPerformance Tests[2m > [22m[2mshould complete full loop in under 60 seconds
+[22m[39m    Ô£ô typescript: 0 issues
+    Ô£ô eslint: 7 issues
+    Ô£ô security: 1 issues
+    Ô£ô performance: 1 issues
+    Ô£ô imports: 0 issues
+    Ô£ô packages: 1 issues
+    Ô£ô runtime: 0 issues
+    Ô£ô build: 0 issues
+    Ô£ô circular: 0 issues
+    Ô£ô network: 0 issues
+    Ô£ô complexity: 3 issues
+    Ô£ô isolation: 0 issues
+Ô£à OBSERVE Complete: 13 total issues found (6.3s)
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mPerformance Tests[2m > [22m[2mshould complete full loop in under 60 seconds
+[22m[39m[DECIDE] No recipes match current metrics ÔåÆ noop
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration[2m > [22m[2mPerformance Tests[2m > [22m[2mshould complete full loop in under 60 seconds
+[22m[39m  Ô£à Full loop completed in 6.31s
+  Ô£à Performance Test Complete!
+
+
+[90mstdout[2m | tests/integration/autopilot-loop.test.ts[2m > [22m[2mODAVL Autopilot - Full Loop Integration
+[22m[39mÔ£à Test cleanup complete
+
+ [32mÔ£ô[39m tests/integration/autopilot-loop.test.ts[2m > [22mODAVL Autopilot - Full Loop Integration[2m > [22mPerformance Tests[2m > [22mshould complete full loop in under 60 seconds[33m 6315[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mError Handling[2m > [22mshould not throw on execution[33m 1604[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mSeverity Levels[2m > [22mshould categorize by severity[33m 2525[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mFunction Analysis[2m > [22mshould analyze test_complexity.py[33m 2468[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mPerformance[2m > [22mshould complete in reasonable time[33m 1646[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mFunction Analysis[2m > [22mshould identify function names[33m 2478[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mSeverity Levels[2m > [22mshould assign appropriate severity[33m 2564[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mIntegration[2m > [22mshould categorize as imports[33m 1692[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-imports-detector.test.ts[2m > [22mPythonImportsDetector[2m > [22mIntegration[2m > [22mshould provide line numbers[33m 1575[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mFunction Analysis[2m > [22mshould provide line numbers[33m 2553[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mFile Coverage[2m > [22mshould analyze test_best_practices.py[33m 2632[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mRecommendations[2m > [22mshould provide refactoring recommendations[33m 2404[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mFile Coverage[2m > [22mshould analyze multiple files[33m 2453[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mRecommendations[2m > [22mshould suggest splitting for high complexity[33m 2336[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mFile Coverage[2m > [22mshould report correct file paths[33m 2399[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mRecommendations[2m > [22mshould suggest simplification for moderate complexity[33m 2383[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mRecommendations[2m > [22mshould provide recommendations[33m 2531[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mThreshold Configuration[2m > [22mshould detect complexity above threshold (>5)[33m 2409[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mRecommendations[2m > [22mshould suggest specific fixes[33m 2426[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mError Handling[2m > [22mshould handle missing radon[33m 2472[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mRecommendations[2m > [22mshould mention PEP 8 compliance[33m 2509[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mError Handling[2m > [22mshould not throw on execution[33m 2543[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mError Codes[2m > [22mshould include message for each issue[33m 2684[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mPerformance[2m > [22mshould complete in reasonable time[33m 2472[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mError Handling[2m > [22mshould handle missing pylint[33m 2625[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mIntegration[2m > [22mshould provide actionable metrics[33m 2416[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mError Handling[2m > [22mshould not throw on execution[33m 2436[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-complexity-detector.test.ts[2m > [22mPythonComplexityDetector[2m > [22mIntegration[2m > [22mshould work with other detectors[33m 2400[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mPerformance[2m > [22mshould complete in reasonable time[33m 2416[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mIntegration[2m > [22mshould categorize as best-practices[33m 2525[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mIntegration[2m > [22mshould provide actionable information[33m 2386[2mms[22m[39m
+ [32mÔ£ô[39m odavl-studio/insight/core/tests/detector/python/python-best-practices-detector.test.ts[2m > [22mPythonBestPracticesDetector[2m > [22mIntegration[2m > [22mshould work with other detectors[33m 2413[2mms[22m[39m

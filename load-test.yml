@@ -1,0 +1,234 @@
+/**
+ * @file Artillery Load Testing Configuration
+ * @description Load and stress testing for Studio Hub
+ * 
+ * 🎯 P0 Fix: Load Testing Coverage (20% → 90%)
+ * 
+ * Run: artillery run load-test.yml
+ * Report: artillery run --output report.json load-test.yml && artillery report report.json
+ */
+
+config:
+  target: "http://localhost:3000"
+  phases:
+    # Warm-up phase: Gradual traffic increase
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm-up"
+    
+    # Ramp-up phase: Increase to production load
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp-up to 50 req/sec"
+    
+    # Sustained load: Maintain production traffic
+    - duration: 300
+      arrivalRate: 50
+      name: "Sustained load (50 req/sec)"
+    
+    # Spike test: Sudden traffic increase
+    - duration: 60
+      arrivalRate: 200
+      name: "Spike test (200 req/sec)"
+    
+    # Cool-down: Return to normal
+    - duration: 60
+      arrivalRate: 10
+      name: "Cool-down"
+  
+  # Performance thresholds
+  ensure:
+    # 95% of requests complete within 500ms
+    p95: 500
+    # 99% complete within 1000ms (1 second)
+    p99: 1000
+    # Max response time under 3 seconds
+    max: 3000
+    # Error rate below 1%
+    maxErrorRate: 1
+  
+  # Connection settings
+  http:
+    timeout: 10
+    pool: 50
+  
+  # Request payload
+  payload:
+    path: "./test-fixtures/test-data.csv"
+    fields:
+      - email
+      - name
+      - message
+  
+  # Environment variables
+  variables:
+    apiKey: "test-api-key"
+    userAgent: "Artillery Load Test"
+  
+  # Plugins for enhanced reporting
+  plugins:
+    expect: {}
+    metrics-by-endpoint: {}
+
+# Test scenarios
+scenarios:
+  # Scenario 1: Homepage & Static Pages
+  - name: "Static Page Load"
+    weight: 30
+    flow:
+      - get:
+          url: "/"
+          expect:
+            - statusCode: 200
+            - contentType: text/html
+            - hasHeader: "content-security-policy"
+      
+      - get:
+          url: "/features"
+          expect:
+            - statusCode: 200
+      
+      - get:
+          url: "/pricing"
+          expect:
+            - statusCode: 200
+      
+      - get:
+          url: "/docs"
+          expect:
+            - statusCode: 200
+      
+      - think: 2  # User reads page for 2 seconds
+
+  # Scenario 2: Health Check Monitoring
+  - name: "Health Check"
+    weight: 10
+    flow:
+      - get:
+          url: "/health"
+          expect:
+            - statusCode: 200
+            - hasProperty: "status"
+            - matchesRegexp:
+                property: "status"
+                value: "healthy|ok"
+      
+      - think: 1
+
+  # Scenario 3: API Endpoints
+  - name: "API Testing"
+    weight: 25
+    flow:
+      # Newsletter subscription
+      - post:
+          url: "/api/newsletter"
+          json:
+            email: "{{ email }}"
+          expect:
+            - statusCode: [200, 201, 409]  # 409 = duplicate
+            - hasHeader: "x-ratelimit-limit"
+            - hasHeader: "x-ratelimit-remaining"
+      
+      # Contact form
+      - post:
+          url: "/api/contact"
+          json:
+            name: "{{ name }}"
+            email: "{{ email }}"
+            subject: "Load Test"
+            message: "{{ message }}"
+          expect:
+            - statusCode: [200, 201, 429]  # 429 = rate limited
+            - hasHeader: "x-ratelimit-limit"
+      
+      - think: 3
+
+  # Scenario 4: OpenAPI Documentation
+  - name: "OpenAPI Access"
+    weight: 5
+    flow:
+      - get:
+          url: "/api/openapi"
+          expect:
+            - statusCode: 200
+            - contentType: application/json
+            - hasProperty: "openapi"
+      
+      - get:
+          url: "/api/docs"
+          expect:
+            - statusCode: 200
+
+  # Scenario 5: Authentication Flow (Partial)
+  - name: "Auth Endpoints"
+    weight: 15
+    flow:
+      # Note: Full OAuth flow requires browser interaction
+      # Testing auth endpoint availability
+      - get:
+          url: "/api/auth/signin"
+          expect:
+            - statusCode: [200, 302]  # Redirect to OAuth
+      
+      - get:
+          url: "/api/auth/session"
+          expect:
+            - statusCode: [200, 401]
+
+  # Scenario 6: Rate Limit Testing
+  - name: "Rate Limit Verification"
+    weight: 10
+    flow:
+      # Rapid-fire requests to trigger rate limit
+      - loop:
+          - post:
+              url: "/api/newsletter"
+              json:
+                email: "ratelimit-test-{{ $loopCount }}@example.com"
+              capture:
+                - json: "$.error"
+                  as: "errorMessage"
+              expect:
+                - statusCode: [200, 201, 429]
+        count: 10
+      
+      # Verify rate limit headers
+      - get:
+          url: "/api/openapi"
+          afterResponse: "checkRateLimitHeaders"
+
+  # Scenario 7: Error Handling
+  - name: "Error Responses"
+    weight: 5
+    flow:
+      # Invalid email format
+      - post:
+          url: "/api/newsletter"
+          json:
+            email: "invalid-email"
+          expect:
+            - statusCode: 400
+            - hasProperty: "error"
+      
+      # Missing required fields
+      - post:
+          url: "/api/contact"
+          json:
+            email: "test@test.com"
+            # Missing name, subject, message
+          expect:
+            - statusCode: 400
+      
+      # 404 Not Found
+      - get:
+          url: "/api/nonexistent"
+          expect:
+            - statusCode: 404
+
+# Custom functions
+processor: "./load-test-processor.js"
+
+# After-response hooks
+after:
+  response: "logResponseTime"

@@ -1,0 +1,293 @@
+{
+  "$schema": "https://json.schemastore.org/design-tokens.json",
+  "description": "ODAVL Studio Design System - Shadow Tokens",
+  "version": "2.0.0",
+  "shadows": {
+    "elevation": {
+      "none": {
+        "value": "none",
+        "type": "shadow",
+        "description": "No shadow"
+      },
+      "xs": {
+        "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "type": "shadow",
+        "description": "Extra small shadow - subtle depth"
+      },
+      "sm": {
+        "value": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+        "type": "shadow",
+        "description": "Small shadow - cards at rest"
+      },
+      "base": {
+        "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        "type": "shadow",
+        "description": "Base shadow - default elevation"
+      },
+      "md": {
+        "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+        "type": "shadow",
+        "description": "Medium shadow - hover states"
+      },
+      "lg": {
+        "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+        "type": "shadow",
+        "description": "Large shadow - dropdowns, popovers"
+      },
+      "xl": {
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "type": "shadow",
+        "description": "Extra large shadow - modals"
+      },
+      "2xl": {
+        "value": "0 30px 60px -15px rgba(0, 0, 0, 0.3)",
+        "type": "shadow",
+        "description": "2x large shadow - dialogs"
+      }
+    },
+    "inner": {
+      "sm": {
+        "value": "inset 0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "type": "shadow",
+        "description": "Small inner shadow - subtle inset"
+      },
+      "base": {
+        "value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+        "type": "shadow",
+        "description": "Base inner shadow - input fields"
+      },
+      "md": {
+        "value": "inset 0 3px 6px 0 rgba(0, 0, 0, 0.08)",
+        "type": "shadow",
+        "description": "Medium inner shadow - pressed states"
+      }
+    },
+    "outline": {
+      "default": {
+        "value": "0 0 0 3px rgba(99, 102, 241, 0.1)",
+        "type": "shadow",
+        "description": "Default outline - focus states"
+      },
+      "primary": {
+        "value": "0 0 0 3px rgba(99, 102, 241, 0.3)",
+        "type": "shadow",
+        "description": "Primary outline - focus ring"
+      },
+      "success": {
+        "value": "0 0 0 3px rgba(16, 185, 129, 0.3)",
+        "type": "shadow",
+        "description": "Success outline"
+      },
+      "warning": {
+        "value": "0 0 0 3px rgba(245, 158, 11, 0.3)",
+        "type": "shadow",
+        "description": "Warning outline"
+      },
+      "error": {
+        "value": "0 0 0 3px rgba(239, 68, 68, 0.3)",
+        "type": "shadow",
+        "description": "Error outline"
+      }
+    },
+    "colored": {
+      "primary": {
+        "sm": {
+          "value": "0 1px 3px 0 rgba(99, 102, 241, 0.2), 0 1px 2px -1px rgba(99, 102, 241, 0.2)",
+          "type": "shadow",
+          "description": "Primary small colored shadow"
+        },
+        "md": {
+          "value": "0 4px 6px -1px rgba(99, 102, 241, 0.25), 0 2px 4px -2px rgba(99, 102, 241, 0.25)",
+          "type": "shadow",
+          "description": "Primary medium colored shadow"
+        },
+        "lg": {
+          "value": "0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -4px rgba(99, 102, 241, 0.3)",
+          "type": "shadow",
+          "description": "Primary large colored shadow"
+        }
+      },
+      "success": {
+        "sm": {
+          "value": "0 1px 3px 0 rgba(16, 185, 129, 0.2), 0 1px 2px -1px rgba(16, 185, 129, 0.2)",
+          "type": "shadow",
+          "description": "Success small colored shadow"
+        },
+        "md": {
+          "value": "0 4px 6px -1px rgba(16, 185, 129, 0.25), 0 2px 4px -2px rgba(16, 185, 129, 0.25)",
+          "type": "shadow",
+          "description": "Success medium colored shadow"
+        }
+      },
+      "error": {
+        "sm": {
+          "value": "0 1px 3px 0 rgba(239, 68, 68, 0.2), 0 1px 2px -1px rgba(239, 68, 68, 0.2)",
+          "type": "shadow",
+          "description": "Error small colored shadow"
+        },
+        "md": {
+          "value": "0 4px 6px -1px rgba(239, 68, 68, 0.25), 0 2px 4px -2px rgba(239, 68, 68, 0.25)",
+          "type": "shadow",
+          "description": "Error medium colored shadow"
+        }
+      }
+    },
+    "component": {
+      "button": {
+        "default": "{shadows.elevation.sm}",
+        "hover": "{shadows.elevation.md}",
+        "active": "{shadows.elevation.xs}",
+        "description": "Button shadow states"
+      },
+      "card": {
+        "default": "{shadows.elevation.base}",
+        "hover": "{shadows.elevation.lg}",
+        "description": "Card shadow states"
+      },
+      "input": {
+        "default": "{shadows.inner.base}",
+        "focus": "{shadows.outline.primary}",
+        "error": "{shadows.outline.error}",
+        "description": "Input field shadow states"
+      },
+      "dropdown": {
+        "value": "{shadows.elevation.lg}",
+        "description": "Dropdown/popover shadow"
+      },
+      "modal": {
+        "value": "{shadows.elevation.2xl}",
+        "description": "Modal shadow"
+      },
+      "tooltip": {
+        "value": "{shadows.elevation.md}",
+        "description": "Tooltip shadow"
+      },
+      "toast": {
+        "value": "{shadows.elevation.xl}",
+        "description": "Toast notification shadow"
+      },
+      "nav": {
+        "value": "{shadows.elevation.sm}",
+        "description": "Navigation bar shadow"
+      }
+    }
+  },
+  "dark": {
+    "description": "Dark mode shadow overrides (stronger shadows for contrast)",
+    "elevation": {
+      "xs": {
+        "value": "0 1px 2px 0 rgba(0, 0, 0, 0.3)",
+        "type": "shadow"
+      },
+      "sm": {
+        "value": "0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4)",
+        "type": "shadow"
+      },
+      "base": {
+        "value": "0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5)",
+        "type": "shadow"
+      },
+      "md": {
+        "value": "0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.6)",
+        "type": "shadow"
+      },
+      "lg": {
+        "value": "0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7)",
+        "type": "shadow"
+      },
+      "xl": {
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.8)",
+        "type": "shadow"
+      },
+      "2xl": {
+        "value": "0 30px 60px -15px rgba(0, 0, 0, 0.9)",
+        "type": "shadow"
+      }
+    }
+  },
+  "borderRadius": {
+    "none": {
+      "value": "0",
+      "type": "dimension",
+      "description": "No rounding"
+    },
+    "xs": {
+      "value": "0.125rem",
+      "pixelValue": "2px",
+      "type": "dimension",
+      "description": "Extra small radius"
+    },
+    "sm": {
+      "value": "0.25rem",
+      "pixelValue": "4px",
+      "type": "dimension",
+      "description": "Small radius - buttons, inputs"
+    },
+    "base": {
+      "value": "0.375rem",
+      "pixelValue": "6px",
+      "type": "dimension",
+      "description": "Base radius - cards, panels"
+    },
+    "md": {
+      "value": "0.5rem",
+      "pixelValue": "8px",
+      "type": "dimension",
+      "description": "Medium radius - larger cards"
+    },
+    "lg": {
+      "value": "0.75rem",
+      "pixelValue": "12px",
+      "type": "dimension",
+      "description": "Large radius - modals"
+    },
+    "xl": {
+      "value": "1rem",
+      "pixelValue": "16px",
+      "type": "dimension",
+      "description": "Extra large radius"
+    },
+    "2xl": {
+      "value": "1.5rem",
+      "pixelValue": "24px",
+      "type": "dimension",
+      "description": "2x large radius"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "dimension",
+      "description": "Full rounding - circles, pills"
+    }
+  },
+  "border": {
+    "width": {
+      "none": {
+        "value": "0",
+        "description": "No border"
+      },
+      "thin": {
+        "value": "1px",
+        "description": "Thin border - default"
+      },
+      "medium": {
+        "value": "2px",
+        "description": "Medium border - emphasis"
+      },
+      "thick": {
+        "value": "4px",
+        "description": "Thick border - strong emphasis"
+      }
+    },
+    "style": {
+      "solid": {
+        "value": "solid"
+      },
+      "dashed": {
+        "value": "dashed"
+      },
+      "dotted": {
+        "value": "dotted"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "test-monorepo",
+  "version": "1.0.0",
+  "description": "Test monorepo for Guardian v5.0 validation",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

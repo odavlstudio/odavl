@@ -1,0 +1,120 @@
+# Learned Patterns (Auto-discovered)
+# These patterns have been automatically discovered through successful runs
+# Version: 1.0.0
+# Last updated: 2025-11-26
+
+patterns:
+  # Import management
+  import_cleanup:
+    pattern: "Remove unused imports one by one"
+    success_rate: 0.92
+    sample_size: 45
+    confidence: high
+    contexts:
+      - TypeScript files with <500 LOC
+      - Files with test coverage >70%
+      - Non-critical files
+    avoid_contexts:
+      - Entry points (index.ts, main.ts)
+      - Files with dynamic imports
+      - Legacy code with loose types
+  
+  # Type safety
+  explicit_types:
+    pattern: "Add explicit return types to functions"
+    success_rate: 0.88
+    sample_size: 67
+    confidence: high
+    contexts:
+      - Public API functions
+      - Exported functions
+      - Complex return types
+    avoid_contexts:
+      - Simple getters/setters
+      - Obvious return types (boolean guards)
+      - Private utility functions
+  
+  # Error handling
+  try_catch_async:
+    pattern: "Wrap async operations in try-catch"
+    success_rate: 0.95
+    sample_size: 120
+    confidence: very_high
+    contexts:
+      - File I/O operations
+      - Network requests
+      - Database queries
+      - External API calls
+    avoid_contexts:
+      - Already wrapped operations
+      - Test code (expect to throw)
+      - Error boundary components
+  
+  # Code organization
+  extract_function:
+    pattern: "Extract complex logic into named functions"
+    success_rate: 0.75
+    sample_size: 34
+    confidence: medium
+    contexts:
+      - Functions >50 LOC
+      - Nested logic >3 levels
+      - Repeated code blocks
+    avoid_contexts:
+      - Already extracted
+      - Simple sequential logic
+      - Performance-critical code
+  
+  # Security
+  input_validation:
+    pattern: "Validate all external inputs"
+    success_rate: 0.98
+    sample_size: 78
+    confidence: very_high
+    contexts:
+      - API endpoints
+      - User input handlers
+      - File uploads
+      - Environment variables
+    avoid_contexts:
+      - Internal functions
+      - Already validated
+      - Type-safe contexts
+
+  # Performance
+  cache_expensive_operations:
+    pattern: "Cache results of expensive computations"
+    success_rate: 0.82
+    sample_size: 23
+    confidence: medium_high
+    contexts:
+      - Repeated calculations
+      - File system reads
+      - Database queries
+      - API calls
+    avoid_contexts:
+      - Frequently changing data
+      - Memory-constrained environments
+      - Already cached
+
+# Pattern correlations (patterns that work well together)
+correlations:
+  - patterns: [explicit_types, input_validation]
+    correlation: 0.87
+    insight: "Type safety + validation = very safe APIs"
+  
+  - patterns: [try_catch_async, input_validation]
+    correlation: 0.91
+    insight: "Validation inside try-catch prevents unhandled errors"
+  
+  - patterns: [extract_function, explicit_types]
+    correlation: 0.79
+    insight: "Extracted functions benefit from explicit types"
+
+# Discovery metadata
+metadata:
+  total_patterns_discovered: 6
+  discovery_period: "2025-11-01 to 2025-11-26"
+  total_runs_analyzed: 450
+  confidence_threshold: 0.70
+  min_sample_size: 20

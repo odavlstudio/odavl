@@ -1,0 +1,164 @@
+{
+  "url": "https://odavl.com",
+  "timestamp": "2025-11-25T14:19:30.608Z",
+  "duration": 4960,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_ALT_TEXT",
+      "severity": "medium",
+      "message": "♿ 2 image(s) missing alt text",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Use alt=\"\" for decorative images",
+        "Use aria-label for icon buttons",
+        "Ensure alt text describes image content",
+        "Keep alt text concise (< 125 characters)"
+      ],
+      "details": {
+        "count": 2
+      }
+    },
+    {
+      "type": "MISSING_CSP",
+      "severity": "high",
+      "message": "🔒 Missing Content Security Policy",
+      "fix": [
+        "Add Content-Security-Policy header",
+        "Start with restrictive policy",
+        "Use nonce or hash for inline scripts",
+        "Avoid 'unsafe-inline' and 'unsafe-eval'",
+        "Test with report-only mode first"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_META_DESCRIPTION",
+      "severity": "high",
+      "message": "📄 Missing meta description",
+      "fix": [
+        "Add meta description tag in <head>",
+        "Keep description between 150-160 characters",
+        "Make description unique for each page",
+        "Include target keywords naturally",
+        "Write compelling, actionable description"
+      ],
+      "details": {
+        "length": 0,
+        "content": ""
+      }
+    },
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CANONICAL",
+      "severity": "medium",
+      "message": "🔗 Missing canonical URL",
+      "fix": [
+        "Add <link rel=\"canonical\"> in <head>",
+        "Point to preferred version of page",
+        "Prevent duplicate content issues",
+        "Use absolute URLs",
+        "Set canonical for paginated content"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SEO_MISSING_ALT",
+      "severity": "medium",
+      "message": "🖼️ 2 image(s) missing alt text (SEO)",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Include relevant keywords naturally",
+        "Describe image content accurately",
+        "Keep alt text concise (< 125 characters)",
+        "Use alt=\"\" for decorative images only"
+      ],
+      "details": {
+        "count": 2
+      }
+    },
+    {
+      "type": "ROBOTS_BLOCKING",
+      "severity": "high",
+      "message": "🤖 Robots meta tag blocking search engines",
+      "fix": [
+        "Remove \"noindex\" if page should be indexed",
+        "Remove \"nofollow\" if links should be followed",
+        "Check robots.txt file",
+        "Verify this is intentional",
+        "Use in staging, not production"
+      ],
+      "details": {
+        "content": "noindex"
+      }
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 1 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 1
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 10,
+    "critical": 0,
+    "high": 3,
+    "medium": 5,
+    "low": 2
+  }
+}

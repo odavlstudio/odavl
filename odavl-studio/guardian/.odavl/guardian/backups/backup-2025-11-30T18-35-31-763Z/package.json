@@ -1,0 +1,14 @@
+{
+  "name": "test-extension",
+  "version": "1.0.0",
+  "contributes": {
+    "views": {
+      "test-sidebar": [
+        {
+          "id": "test-view",
+          "name": "Test View"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,244 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Authentication Models
+model User {
+  id                    String          @id @default(cuid())
+  email                 String          @unique
+  passwordHash          String
+  name                  String?
+  role                  Role            @default(USER)
+  emailVerified         Boolean         @default(false)
+  emailVerificationToken String?        @unique
+  passwordResetToken    String?         @unique
+  passwordResetExpiry   DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+  sessions              Session[]
+  projects              Project[]
+  subscriptions         Subscription[]
+
+  @@index([email])
+  @@index([emailVerificationToken])
+  @@index([passwordResetToken])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  refreshToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+}
+
+enum Role {
+  USER
+  ADMIN
+  ENTERPRISE
+}
+
+// Billing Models
+model Subscription {
+  id                 String         @id @default(cuid())
+  userId             String         @unique
+  tier               SubscriptionTier @default(FREE)
+  status             String         @default("active") // active, cancelled, expired
+  // Limits
+  maxProjects        Int            @default(3)
+  maxAnalysesPerMonth Int           @default(100)
+  maxStorageGB       Float          @default(1.0)
+  // Current Usage
+  usedAnalysesMonth  Int            @default(0)
+  usedStorageGB      Float          @default(0.0)
+  projectsCount      Int            @default(0)
+  // Billing Period
+  currentPeriodStart DateTime       @default(now())
+  currentPeriodEnd   DateTime
+  // License
+  licenseKey         String?        @unique
+  // Timestamps
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  cancelledAt        DateTime?
+  // Relations
+  user               User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  usageRecords       UsageRecord[]
+
+  @@index([userId])
+  @@index([tier])
+  @@index([status])
+}
+
+model UsageRecord {
+  id             String       @id @default(cuid())
+  subscriptionId String
+  type           UsageType
+  amount         Int          @default(1)
+  metadata       String?      // JSON metadata (file path, detector type, etc.)
+  createdAt      DateTime     @default(now())
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@index([subscriptionId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+enum SubscriptionTier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum UsageType {
+  ANALYSIS        // Single detector run
+  PROJECT_CREATE  // New project created
+  STORAGE_WRITE   // Data written to storage
+  API_CALL        // API request
+  ML_PREDICTION   // ML model inference
+  AUTO_FIX        // Autopilot fix applied
+}
+
+model Report {
+  id        String   @id @default(uuid())
+  project   String
+  date      DateTime @default(now())
+  summary   String   // JSON stringified
+  metrics   String   // JSON stringified
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([project])
+  @@index([date])
+}
+
+model ErrorLog {
+  id        String   @id @default(uuid())
+  reportId  String
+  type      String
+  message   String
+  file      String?
+  line      Int?
+  count     Int      @default(1)
+  firstSeen DateTime @default(now())
+  lastSeen  DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+  @@index([type])
+}
+
+// Collective Intelligence Models
+model Project {
+  id        String          @id @default(cuid())
+  name      String?
+  userId    String?
+  createdAt DateTime        @default(now())
+  insights  ErrorInstance[]
+  user      User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model ErrorSignature {
+  id              String              @id @default(cuid())
+  signature       String              @unique
+  type            String
+  firstSeen       DateTime            @default(now())
+  lastSeen        DateTime            @updatedAt
+  totalHits       Int                 @default(1)
+  instances       ErrorInstance[]
+  recommendations FixRecommendation[]
+
+  @@index([signature])
+}
+
+model ErrorInstance {
+  id           String         @id @default(cuid())
+  signatureId  String
+  projectId    String
+  shortMessage String
+  timestamp    DateTime       @default(now())
+  signature    ErrorSignature @relation(fields: [signatureId], references: [id])
+  project      Project        @relation(fields: [projectId], references: [id])
+
+  @@index([projectId])
+}
+
+model FixRecommendation {
+  id           String         @id @default(cuid())
+  signatureId  String
+  hint         String
+  confidence   Float          @default(0.5)
+  source       String?
+  successCount Int            @default(0)
+  failCount    Int            @default(0)
+  signature    ErrorSignature @relation(fields: [signatureId], references: [id])
+}
+
+model BetaSignup {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  company   String?
+  useCase   String?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+model GuardianTest {
+  id        String   @id @default(cuid())
+  url       String
+  duration  Int      @default(0)
+  overallScore Float
+  passed    Boolean  @default(false)
+  
+  // Accessibility
+  accessibilityScore      Float?
+  accessibilityViolations Int?
+  accessibilityPasses     Int?
+  
+  // Performance
+  performanceScore            Float?
+  performanceAccessibility    Float?
+  performanceBestPractices    Float?
+  performanceSeo              Float?
+  performancePwa              Float?
+  performanceFcp              Float?
+  performanceLcp              Float?
+  performanceTti              Float?
+  performanceTbt              Float?
+  performanceCls              Float?
+  performanceSi               Float?
+  
+  // SEO
+  seoScore        Float?
+  seoIssues       Int?
+  seoWarnings     Int?
+  
+  // Security
+  securityScore   Float?
+  securityIssues  Int?
+  securityHeaders Json?
+  
+  // Visual
+  visualScore     Float?
+  visualDiff      Float?
+  
+  createdAt DateTime @default(now())
+
+  @@index([url])
+  @@index([createdAt])
+}

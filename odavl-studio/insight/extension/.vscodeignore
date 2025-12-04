@@ -1,0 +1,43 @@
+# Development files
+.vscode/**
+.vscode-test/**
+src/**
+tsconfig.json
+.eslintrc.json
+.prettierrc
+*.md
+!README.md
+
+# Test files
+**/*.test.ts
+**/*.spec.ts
+test/**
+tests/**
+
+# Build artifacts
+*.vsix
+*.tsbuildinfo
+
+# Dependencies
+node_modules/**
+!node_modules/@odavl-studio/insight-core/dist/**
+
+# Git
+.git/**
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/**
+.gitlab-ci.yml
+
+# Documentation (except README)
+docs/**
+*.md
+!README.md
+!CHANGELOG.md
+
+# Misc
+*.log
+.DS_Store
+Thumbs.db

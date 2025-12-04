@@ -1,0 +1,257 @@
+{
+  "path": "C:\\Users\\sabou\\AppData\\Local\\Temp\\guardian-phase3-test\\package",
+  "timestamp": "2025-12-01T15:47:47.514Z",
+  "overallScore": 49,
+  "status": "fail",
+  "publishReady": false,
+  "exports": {
+    "score": 80,
+    "hasExports": true,
+    "formats": {
+      "esm": true,
+      "cjs": true,
+      "types": false
+    },
+    "subpaths": [
+      "."
+    ],
+    "valid": true,
+    "issues": [
+      {
+        "severity": "high",
+        "category": "Exports",
+        "message": "No TypeScript types",
+        "recommendation": "Add types field or .d.ts files"
+      }
+    ]
+  },
+  "types": {
+    "score": 20,
+    "hasTypes": false,
+    "quality": 0,
+    "coverage": 0,
+    "errors": 0,
+    "warnings": 0,
+    "issues": [
+      {
+        "severity": "high",
+        "category": "Types",
+        "message": "No types field in package.json",
+        "recommendation": "Add types field pointing to .d.ts files"
+      }
+    ]
+  },
+  "bundle": {
+    "score": 40,
+    "size": 0,
+    "sizeAcceptable": true,
+    "treeshakeable": false,
+    "minified": false,
+    "gzipped": 0,
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "Bundle",
+        "message": "dist/ directory not found",
+        "recommendation": "Build package before publishing"
+      }
+    ]
+  },
+  "documentation": {
+    "score": 0,
+    "hasReadme": false,
+    "hasApiDocs": false,
+    "hasExamples": false,
+    "hasChangelog": false,
+    "readmeQuality": 0,
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "Documentation",
+        "message": "README.md not found",
+        "recommendation": "Create README with installation, usage, API docs"
+      },
+      {
+        "severity": "medium",
+        "category": "Documentation",
+        "message": "No API documentation",
+        "recommendation": "Add API.md or docs/ directory"
+      },
+      {
+        "severity": "low",
+        "category": "Documentation",
+        "message": "No examples",
+        "recommendation": "Add examples for common use cases"
+      },
+      {
+        "severity": "medium",
+        "category": "Documentation",
+        "message": "No CHANGELOG",
+        "recommendation": "Add CHANGELOG.md to track version history"
+      }
+    ]
+  },
+  "packageJson": {
+    "score": 25,
+    "complete": false,
+    "fields": {
+      "required": [
+        {
+          "field": "name",
+          "present": true,
+          "valid": true,
+          "value": "test-package"
+        },
+        {
+          "field": "version",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "description",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "main",
+          "present": true,
+          "valid": true,
+          "value": "./dist/index.js"
+        }
+      ],
+      "recommended": [
+        {
+          "field": "author",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "license",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "repository",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "keywords",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "homepage",
+          "present": false,
+          "valid": false
+        }
+      ],
+      "optional": [
+        {
+          "field": "bugs",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "funding",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "engines",
+          "present": false,
+          "valid": false
+        },
+        {
+          "field": "files",
+          "present": false,
+          "valid": false
+        }
+      ]
+    },
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: version",
+        "recommendation": "Add \"version\" to package.json"
+      },
+      {
+        "severity": "critical",
+        "category": "PackageJson",
+        "message": "Missing required field: description",
+        "recommendation": "Add \"description\" to package.json"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: author",
+        "recommendation": "Add \"author\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: license",
+        "recommendation": "Add \"license\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: repository",
+        "recommendation": "Add \"repository\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: keywords",
+        "recommendation": "Add \"keywords\" for better discoverability"
+      },
+      {
+        "severity": "medium",
+        "category": "PackageJson",
+        "message": "Missing recommended field: homepage",
+        "recommendation": "Add \"homepage\" for better discoverability"
+      }
+    ]
+  },
+  "breakingChanges": {
+    "score": 100,
+    "detected": false,
+    "changes": [],
+    "semverCompliant": true,
+    "issues": []
+  },
+  "dependencies": {
+    "score": 100,
+    "total": 0,
+    "outdated": 0,
+    "vulnerable": 0,
+    "peer": 0,
+    "issues": []
+  },
+  "publishing": {
+    "score": 80,
+    "canPublish": true,
+    "npmAuth": true,
+    "gitClean": false,
+    "testsPass": false,
+    "issues": [
+      {
+        "severity": "low",
+        "category": "Publishing",
+        "message": "No test script",
+        "recommendation": "Add test script for CI/CD"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Add TypeScript types",
+      "reason": "Better developer experience",
+      "impact": "No autocomplete in IDEs",
+      "estimatedTime": "2-3 hours"
+    }
+  ],
+  "reportPath": ""
+}

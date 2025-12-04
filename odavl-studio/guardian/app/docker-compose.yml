@@ -1,0 +1,132 @@
+version: '3.9'
+
+services:
+  # ============================================
+  # PostgreSQL Database
+  # ============================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: odavl-guardian-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-guardian}
+      POSTGRES_USER: ${POSTGRES_USER:-odavl}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme123}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-odavl} -d ${POSTGRES_DB:-guardian}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - odavl-network
+
+  # ============================================
+  # Redis Cache
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: odavl-guardian-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - odavl-network
+
+  # ============================================
+  # Guardian App (Next.js)
+  # ============================================
+  guardian:
+    build:
+      context: ../..
+      dockerfile: apps/guardian/Dockerfile
+    container_name: odavl-guardian-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # Database
+      DATABASE_URL: postgresql://${POSTGRES_USER:-odavl}:${POSTGRES_PASSWORD:-changeme123}@postgres:5432/${POSTGRES_DB:-guardian}?connection_limit=10&pool_timeout=5&connect_timeout=10
+      
+      # Redis
+      REDIS_URL: redis://redis:6379
+      REDIS_TTL: 3600
+      
+      # Next.js
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      
+      # Authentication (change in production!)
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-CHANGE_THIS_IN_PRODUCTION}
+      JWT_SECRET: ${JWT_SECRET:-CHANGE_THIS_IN_PRODUCTION}
+      
+      # Sentry (optional)
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
+      
+      # Bull Queue
+      BULL_REDIS_URL: redis://redis:6379
+      
+      # Performance
+      NODE_OPTIONS: "--max-old-space-size=2048"
+    ports:
+      - "${GUARDIAN_PORT:-3000}:3000"
+    volumes:
+      - odavl_data:/app/.odavl
+      - guardian_uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - odavl-network
+    labels:
+      - "com.odavl.service=guardian"
+      - "com.odavl.version=1.5.0"
+
+# ============================================
+# Volumes (Persistent Data)
+# ============================================
+volumes:
+  postgres_data:
+    driver: local
+    name: odavl-guardian-postgres
+  redis_data:
+    driver: local
+    name: odavl-guardian-redis
+  odavl_data:
+    driver: local
+    name: odavl-guardian-data
+  guardian_uploads:
+    driver: local
+    name: odavl-guardian-uploads
+
+# ============================================
+# Networks
+# ============================================
+networks:
+  odavl-network:
+    driver: bridge
+    name: odavl-guardian-network

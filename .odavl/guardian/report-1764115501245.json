@@ -1,0 +1,31 @@
+{
+  "url": "verify",
+  "timestamp": "2025-11-26T00:05:01.092Z",
+  "duration": 1272,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "TEST_EXECUTION_ERROR",
+      "severity": "critical",
+      "message": "Test execution failed: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  \u001b[2m- navigating to \"verify\", waiting until \"networkidle\"\u001b[22m\n",
+      "fix": [
+        "Check if URL is accessible",
+        "Verify network connection",
+        "Check browser configuration",
+        "Increase timeout if page is slow"
+      ],
+      "details": {
+        "error": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  \u001b[2m- navigating to \"verify\", waiting until \"networkidle\"\u001b[22m\n",
+        "stack": "page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL\nCall log:\n  \u001b[2m- navigating to \"verify\", waiting until \"networkidle\"\u001b[22m\n\n    at TestOrchestrator.runTests (C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\guardian\\core\\src\\test-orchestrator.ts:90:35)\n    at async main (C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\guardian\\core\\src\\guardian-cli.ts:93:20)"
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 1,
+    "critical": 1,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  }
+}

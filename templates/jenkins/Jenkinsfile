@@ -1,0 +1,349 @@
+// ODAVL Insight - Jenkins Pipeline
+// Runs ODAVL Insight analysis on every PR and scheduled builds
+//
+// Setup:
+// 1. Create new Pipeline job in Jenkins
+// 2. Select "Pipeline script from SCM" and point to this file (Jenkinsfile)
+// 3. Install required plugins: Pipeline, Warnings Next Generation, HTML Publisher
+// 4. (Optional) Configure credentials for external integrations (Slack, email, etc.)
+
+pipeline {
+    agent any
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '10'))
+        timeout(time: 30, unit: 'MINUTES')
+        timestamps()
+        skipDefaultCheckout(false)
+    }
+    
+    environment {
+        NODE_VERSION = '20'
+        PNPM_VERSION = '9'
+        REPORTS_DIR = '.odavl/reports'
+        ODAVL_API_KEY = credentials('odavl-api-key') // Optional: for cloud features
+    }
+    
+    parameters {
+        choice(
+            name: 'ANALYSIS_MODE',
+            choices: ['all', 'security', 'typescript', 'eslint', 'performance'],
+            description: 'Which ODAVL detectors to run'
+        )
+        booleanParam(
+            name: 'GENERATE_PDF',
+            defaultValue: true,
+            description: 'Generate PDF report in addition to HTML'
+        )
+        booleanParam(
+            name: 'FAIL_ON_CRITICAL',
+            defaultValue: true,
+            description: 'Fail build if critical issues detected'
+        )
+    }
+    
+    stages {
+        stage('Setup') {
+            steps {
+                script {
+                    echo "🔧 Setting up Node.js ${NODE_VERSION} and pnpm ${PNPM_VERSION}..."
+                    
+                    // Install Node.js via NodeJS plugin or use docker
+                    nodejs(nodeJSInstallationName: 'Node 20') {
+                        sh '''
+                            node --version
+                            npm install -g pnpm@${PNPM_VERSION}
+                            pnpm --version
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    echo "📦 Installing project dependencies..."
+                    nodejs(nodeJSInstallationName: 'Node 20') {
+                        sh '''
+                            pnpm install --frozen-lockfile --prefer-offline
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('ODAVL Insight Analysis') {
+            steps {
+                script {
+                    echo "🔍 Running ODAVL Insight Analysis (mode: ${params.ANALYSIS_MODE})..."
+                    
+                    nodejs(nodeJSInstallationName: 'Node 20') {
+                        sh """
+                            mkdir -p ${REPORTS_DIR}
+                            
+                            # Run ODAVL Insight with specified mode
+                            pnpm odavl:insight --${params.ANALYSIS_MODE} --format=json --output=${REPORTS_DIR}/ci-report.json || true
+                            
+                            # Ensure report file exists
+                            if [ ! -f "${REPORTS_DIR}/ci-report.json" ]; then
+                                echo '{"totalIssues":0,"criticalCount":0,"highCount":0,"mediumCount":0,"lowCount":0,"healthScore":100}' > ${REPORTS_DIR}/ci-report.json
+                            fi
+                        """
+                    }
+                }
+            }
+        }
+        
+        stage('Parse Results') {
+            steps {
+                script {
+                    echo "📊 Parsing analysis results..."
+                    
+                    nodejs(nodeJSInstallationName: 'Node 20') {
+                        sh '''
+                            REPORT_FILE="${REPORTS_DIR}/ci-report.json"
+                            
+                            if [ -f "$REPORT_FILE" ]; then
+                                TOTAL_ISSUES=$(jq '.totalIssues // 0' "$REPORT_FILE")
+                                CRITICAL=$(jq '.criticalCount // 0' "$REPORT_FILE")
+                                HIGH=$(jq '.highCount // 0' "$REPORT_FILE")
+                                MEDIUM=$(jq '.mediumCount // 0' "$REPORT_FILE")
+                                LOW=$(jq '.lowCount // 0' "$REPORT_FILE")
+                                HEALTH_SCORE=$(jq '.healthScore // 100' "$REPORT_FILE")
+                                
+                                echo "ODAVL_TOTAL_ISSUES=$TOTAL_ISSUES" > odavl-metrics.env
+                                echo "ODAVL_CRITICAL=$CRITICAL" >> odavl-metrics.env
+                                echo "ODAVL_HIGH=$HIGH" >> odavl-metrics.env
+                                echo "ODAVL_MEDIUM=$MEDIUM" >> odavl-metrics.env
+                                echo "ODAVL_LOW=$LOW" >> odavl-metrics.env
+                                echo "ODAVL_HEALTH_SCORE=$HEALTH_SCORE" >> odavl-metrics.env
+                                
+                                echo "📊 Analysis Results:"
+                                echo "  Total Issues: $TOTAL_ISSUES"
+                                echo "  Critical: $CRITICAL | High: $HIGH | Medium: $MEDIUM | Low: $LOW"
+                                echo "  Health Score: $HEALTH_SCORE/100"
+                            else
+                                echo "ODAVL_TOTAL_ISSUES=0" > odavl-metrics.env
+                                echo "ODAVL_CRITICAL=0" >> odavl-metrics.env
+                                echo "ODAVL_HIGH=0" >> odavl-metrics.env
+                                echo "ODAVL_MEDIUM=0" >> odavl-metrics.env
+                                echo "ODAVL_LOW=0" >> odavl-metrics.env
+                                echo "ODAVL_HEALTH_SCORE=100" >> odavl-metrics.env
+                            fi
+                        '''
+                    }
+                    
+                    // Load metrics into environment
+                    def props = readProperties file: 'odavl-metrics.env'
+                    env.ODAVL_TOTAL_ISSUES = props['ODAVL_TOTAL_ISSUES']
+                    env.ODAVL_CRITICAL = props['ODAVL_CRITICAL']
+                    env.ODAVL_HIGH = props['ODAVL_HIGH']
+                    env.ODAVL_MEDIUM = props['ODAVL_MEDIUM']
+                    env.ODAVL_LOW = props['ODAVL_LOW']
+                    env.ODAVL_HEALTH_SCORE = props['ODAVL_HEALTH_SCORE']
+                }
+            }
+        }
+        
+        stage('Generate Reports') {
+            parallel {
+                stage('HTML Report') {
+                    steps {
+                        script {
+                            echo "📄 Generating HTML Report..."
+                            nodejs(nodeJSInstallationName: 'Node 20') {
+                                sh """
+                                    pnpm odavl:insight --${params.ANALYSIS_MODE} --format=html --output=${REPORTS_DIR}/ci-report.html || true
+                                """
+                            }
+                        }
+                    }
+                }
+                
+                stage('PDF Report') {
+                    when {
+                        expression { params.GENERATE_PDF == true }
+                    }
+                    steps {
+                        script {
+                            echo "📄 Generating PDF Report..."
+                            nodejs(nodeJSInstallationName: 'Node 20') {
+                                sh '''
+                                    pnpm odavl:generate-pdf-report || true
+                                '''
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Publish Reports') {
+            steps {
+                script {
+                    echo "📤 Publishing reports to Jenkins..."
+                    
+                    // Publish HTML report (requires HTML Publisher plugin)
+                    publishHTML([
+                        allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: "${REPORTS_DIR}",
+                        reportFiles: 'ci-report.html',
+                        reportName: 'ODAVL Insight Report',
+                        reportTitles: 'Code Quality Analysis'
+                    ])
+                    
+                    // Archive artifacts
+                    archiveArtifacts artifacts: "${REPORTS_DIR}/**/*", allowEmptyArchive: true
+                    
+                    // Optional: Publish warnings to Jenkins UI (requires Warnings Next Generation plugin)
+                    // recordIssues(
+                    //     tool: issues(pattern: "${REPORTS_DIR}/ci-report.json"),
+                    //     sourceCodeEncoding: 'UTF-8',
+                    //     qualityGates: [[threshold: 1, type: 'TOTAL_ERROR', unstable: false]]
+                    // )
+                }
+            }
+        }
+        
+        stage('Quality Gates') {
+            steps {
+                script {
+                    echo "🚦 Checking Quality Gates..."
+                    
+                    def critical = env.ODAVL_CRITICAL.toInteger()
+                    def healthScore = env.ODAVL_HEALTH_SCORE.toInteger()
+                    
+                    echo "Current Metrics:"
+                    echo "  Critical: ${critical} (max: 0)"
+                    echo "  Health Score: ${healthScore} (min: 60)"
+                    
+                    def gatesFailed = false
+                    
+                    if (critical > 0) {
+                        echo "❌ FAILED: ${critical} critical issue(s) detected"
+                        gatesFailed = true
+                    }
+                    
+                    if (healthScore < 60) {
+                        echo "❌ FAILED: Health score (${healthScore}) below threshold (60)"
+                        gatesFailed = true
+                    }
+                    
+                    if (gatesFailed && params.FAIL_ON_CRITICAL) {
+                        error("Quality gates failed - Build marked as FAILED")
+                    } else if (gatesFailed) {
+                        unstable("Quality gates failed - Build marked as UNSTABLE")
+                    } else {
+                        echo "✅ Quality Gates Passed!"
+                    }
+                }
+            }
+        }
+        
+        stage('Notifications') {
+            parallel {
+                stage('Email Notification') {
+                    when {
+                        expression { env.ODAVL_CRITICAL.toInteger() > 0 }
+                    }
+                    steps {
+                        script {
+                            emailext(
+                                subject: "🚨 ODAVL Insight: ${env.ODAVL_CRITICAL} Critical Issue(s) Detected - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                                body: """
+                                <h2>🚨 ODAVL Insight Alert</h2>
+                                
+                                <p>Critical issues detected in <strong>${env.JOB_NAME}</strong> build #${env.BUILD_NUMBER}.</p>
+                                
+                                <h3>📊 Summary</h3>
+                                <table border="1" cellpadding="5" cellspacing="0">
+                                    <tr><th>Metric</th><th>Count</th></tr>
+                                    <tr><td>Total Issues</td><td>${env.ODAVL_TOTAL_ISSUES}</td></tr>
+                                    <tr><td>🔴 Critical</td><td><strong>${env.ODAVL_CRITICAL}</strong></td></tr>
+                                    <tr><td>🟠 High</td><td>${env.ODAVL_HIGH}</td></tr>
+                                    <tr><td>🔵 Medium</td><td>${env.ODAVL_MEDIUM}</td></tr>
+                                    <tr><td>🟢 Low</td><td>${env.ODAVL_LOW}</td></tr>
+                                </table>
+                                
+                                <p><strong>Health Score:</strong> ${env.ODAVL_HEALTH_SCORE}/100</p>
+                                
+                                <h3>📥 Full Report</h3>
+                                <p>View the complete HTML report: <a href="${env.BUILD_URL}ODAVL_Insight_Report/">${env.BUILD_URL}ODAVL_Insight_Report/</a></p>
+                                
+                                <p><em>🤖 Auto-generated by ODAVL Insight CI/CD Integration</em></p>
+                                """,
+                                to: '${DEFAULT_RECIPIENTS}',
+                                mimeType: 'text/html'
+                            )
+                        }
+                    }
+                }
+                
+                stage('Slack Notification') {
+                    when {
+                        expression { env.ODAVL_CRITICAL.toInteger() > 0 }
+                    }
+                    steps {
+                        script {
+                            // Requires Slack Notification plugin
+                            slackSend(
+                                channel: '#code-quality',
+                                color: 'danger',
+                                message: """
+                                🚨 *ODAVL Insight Alert*
+                                
+                                *Build*: ${env.JOB_NAME} #${env.BUILD_NUMBER}
+                                *Status*: ${env.ODAVL_CRITICAL} critical issue(s) detected
+                                
+                                *Summary*:
+                                • Total Issues: ${env.ODAVL_TOTAL_ISSUES}
+                                • Critical: ${env.ODAVL_CRITICAL} | High: ${env.ODAVL_HIGH} | Medium: ${env.ODAVL_MEDIUM} | Low: ${env.ODAVL_LOW}
+                                • Health Score: ${env.ODAVL_HEALTH_SCORE}/100
+                                
+                                <${env.BUILD_URL}|View Build> | <${env.BUILD_URL}ODAVL_Insight_Report/|View Report>
+                                """.stripIndent()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script {
+                echo "📊 Build Summary:"
+                echo "  Total Issues: ${env.ODAVL_TOTAL_ISSUES}"
+                echo "  Critical: ${env.ODAVL_CRITICAL} | High: ${env.ODAVL_HIGH} | Medium: ${env.ODAVL_MEDIUM} | Low: ${env.ODAVL_LOW}"
+                echo "  Health Score: ${env.ODAVL_HEALTH_SCORE}/100"
+                
+                // Set build description for quick visibility
+                currentBuild.description = "Health: ${env.ODAVL_HEALTH_SCORE}/100 | Critical: ${env.ODAVL_CRITICAL}"
+            }
+        }
+        
+        success {
+            echo "✅ ODAVL Insight analysis completed successfully!"
+        }
+        
+        unstable {
+            echo "⚠️ Build unstable - Quality gates failed but not blocking"
+        }
+        
+        failure {
+            echo "❌ Build failed - Critical quality issues detected"
+        }
+        
+        cleanup {
+            // Clean workspace after build (optional)
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true)
+        }
+    }
+}

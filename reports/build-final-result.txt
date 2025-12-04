@@ -1,0 +1,151 @@
+
+> odavl@2.0.0 build C:\Users\sabou\dev\odavl
+> pnpm -r build
+
+Scope: 21 of 22 workspace projects
+apps/studio-hub build$ next build
+github-actions build$ ncc build src/index.ts -o dist --source-map --license licenses.txt
+odavl-studio/autopilot/engine build$ tsup src/index.ts --format cjs,esm --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs
+odavl-studio/guardian/app build$ next build
+apps/studio-hub build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+odavl-studio/guardian/app build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+github-actions build: ncc: Version 0.38.4
+github-actions build: ncc: Compiling file index.js into CJS
+odavl-studio/autopilot/engine build: [34mCLI[39m Building entry: src/index.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsconfig: tsconfig.build.json
+odavl-studio/autopilot/engine build: [34mCLI[39m tsup v8.5.1
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\tsup.config.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Target: es2022
+odavl-studio/autopilot/engine build: [34mCLI[39m Cleaning output folder
+odavl-studio/autopilot/engine build: [34mCJS[39m Build start
+odavl-studio/autopilot/engine build: [34mESM[39m Build start
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:98:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...('insight.js') || (typeof [32mimport.meta[37m !== 'undefined' && import...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:129:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...t.meta !== 'undefined' && [32mimport.meta[37m.url && import.meta.url.en...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:148:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...ed' && import.meta.url && [32mimport.meta[37m.url.endsWith('/insight.ts...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [32mCJS[39m [1mdist\index.cjs [22m[32m318.88 KB[39m
+odavl-studio/autopilot/engine build: [32mCJS[39m ÔÜí´©Å Build success in 164ms
+odavl-studio/autopilot/engine build: [32mESM[39m [1mdist\index.js [22m[32m318.07 KB[39m
+odavl-studio/autopilot/engine build: [32mESM[39m ÔÜí´©Å Build success in 165ms
+odavl-studio/autopilot/engine build: Shebang already present.
+odavl-studio/autopilot/engine build: Done
+odavl-studio/guardian/core build$ tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --clean
+odavl-studio/guardian/app build:    Ôû▓ Next.js 16.0.5 (Turbopack)
+odavl-studio/guardian/app build:    - Environments: .env
+odavl-studio/guardian/app build:    - Experiments (use with caution):
+odavl-studio/guardian/app build:      ┬À optimizePackageImports
+odavl-studio/guardian/app build:      ┬À serverActions
+odavl-studio/guardian/app build:  ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+odavl-studio/guardian/app build:    Creating an optimized production build ...
+github-actions build: ncc: Using typescript@5.9.3 (local user-provided)
+odavl-studio/guardian/core build: [34mCLI[39m Building entry: src/cli.ts, src/guardian-cli.ts, src/index.ts
+odavl-studio/guardian/core build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/core build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/core build: [34mCLI[39m Target: es2022
+odavl-studio/guardian/core build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/core build: [34mESM[39m Build start
+apps/studio-hub build:    Ôû▓ Next.js 16.0.5 (Turbopack)
+apps/studio-hub build:    - Environments: .env.local
+apps/studio-hub build:    - Experiments (use with caution):
+apps/studio-hub build:      ┬À optimizePackageImports
+apps/studio-hub build:  ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+apps/studio-hub build:    Creating an optimized production build ...
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\cli.js            [22m[32m6.11 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\guardian-cli.js   [22m[32m6.86 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-7V5OQ2ML.js [22m[32m6.99 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-FKGIHOAG.js [22m[32m60.15 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\dist-EZX4ZC56.js  [22m[32m13.92 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\index.js          [22m[32m723.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-3RG5ZIWI.js [22m[32m390.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m ÔÜí´©Å Build success in 140ms
+odavl-studio/guardian/core build: [34mDTS[39m Build start
+odavl-studio/guardian/app build: Turbopack build encountered 1 warnings:
+odavl-studio/guardian/app build: ./odavl-studio/guardian/app/src/lib/logger.ts:3:1
+odavl-studio/guardian/app build: Ecmascript file had an error
+odavl-studio/guardian/app build: [0m [90m 1 |[39m [36mimport[39m winston [36mfrom[39m [32m'winston'[39m[33m;[39m
+odavl-studio/guardian/app build:  [90m 2 |[39m [36mimport[39m [33mDailyRotateFile[39m [36mfrom[39m [32m'winston-daily-rotate-file'[39m[33m;[39m
+odavl-studio/guardian/app build: [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+odavl-studio/guardian/app build:  [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/guardian/app build:  [90m 4 |[39m
+odavl-studio/guardian/app build:  [90m 5 |[39m [90m// Custom format for structured logging[39m
+odavl-studio/guardian/app build:  [90m 6 |[39m [36mconst[39m structuredFormat [33m=[39m winston[33m.[39mformat[33m.[39mcombine([0m
+odavl-studio/guardian/app build: A Node.js module is loaded ('path' at line 3) which is not supported in the Edge Runtime.
+odavl-studio/guardian/app build: Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+odavl-studio/guardian/app build: Import trace:
+odavl-studio/guardian/app build:   Edge Middleware:
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/lib/logger.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/rate-limit.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/security.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/middleware.ts
+odavl-studio/guardian/app build: > Build error occurred
+odavl-studio/guardian/app build: Error: Turbopack build failed with 3 errors:
+odavl-studio/guardian/app build: ./odavl-studio/guardian/app/src/lib/logger.ts:27:26
+odavl-studio/guardian/app build: Ecmascript file had an error
+odavl-studio/guardian/app build: [0m [90m 25 |[39m
+odavl-studio/guardian/app build:  [90m 26 |[39m [90m// Log directory[39m
+odavl-studio/guardian/app build: [31m[1m>[22m[39m[90m 27 |[39m [36mconst[39m logDir [33m=[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m [32m'logs'[39m)[33m;[39m
+odavl-studio/guardian/app build:  [90m    |[39m                          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/guardian/app build:  [90m 28 |[39m
+odavl-studio/guardian/app build:  [90m 29 |[39m [90m// Create the logger[39m
+odavl-studio/guardian/app build:  [90m 30 |[39m [36mconst[39m logger [33m=[39m winston[33m.[39mcreateLogger({[0m
+odavl-studio/guardian/app build: A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+odavl-studio/guardian/app build: Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+odavl-studio/guardian/app build: Import trace:
+odavl-studio/guardian/app build:   Edge Middleware:
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/lib/logger.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/rate-limit.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/security.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/middleware.ts
+odavl-studio/guardian/app build: ./odavl-studio/guardian/app/src/lib/redis.ts:169:13
+odavl-studio/guardian/app build: Ecmascript file had an error
+odavl-studio/guardian/app build: [0m [90m 167 |[39m             logger[33m.[39minfo([32m`Received ${signal}, closing Redis connection...`[39m)[33m;[39m
+odavl-studio/guardian/app build:  [90m 168 |[39m             [36mawait[39m closeRedis()[33m;[39m
+odavl-studio/guardian/app build: [31m[1m>[22m[39m[90m 169 |[39m             process[33m.[39mexit([35m0[39m)[33m;[39m
+odavl-studio/guardian/app build:  [90m     |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/guardian/app build:  [90m 170 |[39m         })[33m;[39m
+odavl-studio/guardian/app build:  [90m 171 |[39m     })[33m;[39m
+odavl-studio/guardian/app build:  [90m 172 |[39m }[0m
+odavl-studio/guardian/app build: A Node.js API is used (process.exit at line: 169) which is not supported in the Edge Runtime.
+odavl-studio/guardian/app build: Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+odavl-studio/guardian/app build: Import trace:
+odavl-studio/guardian/app build:   Edge Middleware:
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/lib/redis.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/rate-limit.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/security.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/middleware.ts
+odavl-studio/guardian/app build: ./odavl-studio/guardian/app/src/lib/redis.ts:166:9
+odavl-studio/guardian/app build: Ecmascript file had an error
+odavl-studio/guardian/app build: [0m [90m 164 |[39m
+odavl-studio/guardian/app build:  [90m 165 |[39m     signals[33m.[39mforEach((signal) [33m=>[39m {
+odavl-studio/guardian/app build: [31m[1m>[22m[39m[90m 166 |[39m         process[33m.[39mon(signal[33m,[39m [36masync[39m () [33m=>[39m {
+odavl-studio/guardian/app build:  [90m     |[39m         [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/guardian/app build:  [90m 167 |[39m             logger[33m.[39minfo([32m`Received ${signal}, closing Redis connection...`[39m)[33m;[39m
+odavl-studio/guardian/app build:  [90m 168 |[39m             [36mawait[39m closeRedis()[33m;[39m
+odavl-studio/guardian/app build:  [90m 169 |[39m             process[33m.[39mexit([35m0[39m)[33m;[39m[0m
+odavl-studio/guardian/app build: A Node.js API is used (process.on at line: 166) which is not supported in the Edge Runtime.
+odavl-studio/guardian/app build: Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+odavl-studio/guardian/app build: Import trace:
+odavl-studio/guardian/app build:   Edge Middleware:
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/lib/redis.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/rate-limit.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/src/middleware/security.ts
+odavl-studio/guardian/app build:     ./odavl-studio/guardian/app/middleware.ts
+odavl-studio/guardian/app build:     at <unknown> (./odavl-studio/guardian/app/src/lib/logger.ts:27:26)
+odavl-studio/guardian/app build:     at <unknown> (./odavl-studio/guardian/app/src/lib/redis.ts:169:13)
+odavl-studio/guardian/app build:     at <unknown> (./odavl-studio/guardian/app/src/lib/redis.ts:166:9)
+odavl-studio/guardian/app build: Failed
+C:\Users\sabou\dev\odavl\odavl-studio\guardian\app:
+ÔÇëERR_PNPM_RECURSIVE_RUN_FIRST_FAILÔÇë @odavl-studio/guardian-app@2.0.0 build: `next build`
+Exit status 1
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

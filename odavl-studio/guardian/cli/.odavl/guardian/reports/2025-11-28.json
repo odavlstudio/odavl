@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-11-28T10:00:00.000Z",
+  "accuracy": 75,
+  "readiness": 65,
+  "confidence": 85,
+  "issues": [
+    { "message": "Test error 1", "severity": "high" },
+    { "message": "Test error 2", "severity": "medium" }
+  ]
+}

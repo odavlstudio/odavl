@@ -1,0 +1,165 @@
+{
+  "timestamp": "2025-11-23T16:21:19.832Z",
+  "benchmarks": [
+    {
+      "language": "TypeScript",
+      "results": [
+        {
+          "name": "TypeScript Complexity",
+          "timeMs": 109,
+          "memoryMB": 0,
+          "issuesFound": 50,
+          "filesAnalyzed": 20,
+          "issuesPerSecond": 459
+        },
+        {
+          "name": "TypeScript Type Safety",
+          "timeMs": 71,
+          "memoryMB": 1,
+          "issuesFound": 36,
+          "filesAnalyzed": 20,
+          "issuesPerSecond": 507
+        },
+        {
+          "name": "TypeScript Best Practices",
+          "timeMs": 81,
+          "memoryMB": 0,
+          "issuesFound": 64,
+          "filesAnalyzed": 20,
+          "issuesPerSecond": 790
+        }
+      ],
+      "totalTimeMs": 261,
+      "avgTimeMs": 87,
+      "totalMemoryMB": 1,
+      "avgMemoryMB": 0,
+      "totalIssues": 150,
+      "targetTimeMs": 3500,
+      "targetMemoryMB": 130,
+      "meetsTimeTarget": true,
+      "meetsMemoryTarget": true
+    },
+    {
+      "language": "Python",
+      "results": [
+        {
+          "name": "Python Type Hints",
+          "timeMs": 84,
+          "memoryMB": 1,
+          "issuesFound": 45,
+          "filesAnalyzed": 10,
+          "issuesPerSecond": 536
+        },
+        {
+          "name": "Python Security",
+          "timeMs": 88,
+          "memoryMB": 0,
+          "issuesFound": 20,
+          "filesAnalyzed": 10,
+          "issuesPerSecond": 227
+        },
+        {
+          "name": "Python Best Practices",
+          "timeMs": 79,
+          "memoryMB": 0,
+          "issuesFound": 85,
+          "filesAnalyzed": 10,
+          "issuesPerSecond": 1076
+        }
+      ],
+      "totalTimeMs": 251,
+      "avgTimeMs": 84,
+      "totalMemoryMB": 1,
+      "avgMemoryMB": 0,
+      "totalIssues": 150,
+      "targetTimeMs": 5000,
+      "targetMemoryMB": 150,
+      "meetsTimeTarget": true,
+      "meetsMemoryTarget": true
+    },
+    {
+      "language": "Java",
+      "results": [
+        {
+          "name": "Java Null Safety",
+          "timeMs": 1120,
+          "memoryMB": 37,
+          "issuesFound": 146,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 130
+        },
+        {
+          "name": "Java Concurrency",
+          "timeMs": 408,
+          "memoryMB": 13,
+          "issuesFound": 53,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 130
+        },
+        {
+          "name": "Java Performance",
+          "timeMs": 540,
+          "memoryMB": 18,
+          "issuesFound": 20,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 37
+        },
+        {
+          "name": "Java Security",
+          "timeMs": 33,
+          "memoryMB": 1,
+          "issuesFound": 19,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 576
+        },
+        {
+          "name": "Java Testing",
+          "timeMs": 33,
+          "memoryMB": 1,
+          "issuesFound": 17,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 515
+        },
+        {
+          "name": "Java Architecture",
+          "timeMs": 35,
+          "memoryMB": 1,
+          "issuesFound": 18,
+          "filesAnalyzed": 7,
+          "issuesPerSecond": 514
+        }
+      ],
+      "totalTimeMs": 2169,
+      "avgTimeMs": 362,
+      "totalMemoryMB": 71,
+      "avgMemoryMB": 12,
+      "totalIssues": 273,
+      "targetTimeMs": 6000,
+      "targetMemoryMB": 180,
+      "meetsTimeTarget": true,
+      "meetsMemoryTarget": true
+    },
+    {
+      "language": "Multi-Language",
+      "results": [
+        {
+          "name": "Multi-Language Analysis",
+          "timeMs": 384,
+          "memoryMB": 0,
+          "issuesFound": 573,
+          "filesAnalyzed": 37,
+          "issuesPerSecond": 1492
+        }
+      ],
+      "totalTimeMs": 384,
+      "avgTimeMs": 384,
+      "totalMemoryMB": 0,
+      "avgMemoryMB": 0,
+      "totalIssues": 573,
+      "targetTimeMs": 10000,
+      "targetMemoryMB": 200,
+      "meetsTimeTarget": true,
+      "meetsMemoryTarget": true
+    }
+  ]
+}

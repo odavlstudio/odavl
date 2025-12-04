@@ -1,0 +1,55 @@
+{
+  "modelTopology": {
+    "class_name": "Sequential",
+    "config": {
+      "name": "recipe-predictor",
+      "layers": [
+        {
+          "class_name": "Dense",
+          "config": {
+            "units": 64,
+            "activation": "relu",
+            "inputShape": [10]
+          }
+        },
+        {
+          "class_name": "Dropout",
+          "config": {
+            "rate": 0.2
+          }
+        },
+        {
+          "class_name": "Dense",
+          "config": {
+            "units": 32,
+            "activation": "relu"
+          }
+        },
+        {
+          "class_name": "Dense",
+          "config": {
+            "units": 3,
+            "activation": "softmax"
+          }
+        }
+      ]
+    }
+  },
+  "weightsManifest": [
+    {
+      "paths": ["weights.bin"],
+      "weights": [
+        {
+          "name": "dense_1/kernel",
+          "shape": [10, 64],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense_1/bias",
+          "shape": [64],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ]
+}

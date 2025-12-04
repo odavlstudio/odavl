@@ -1,0 +1,29 @@
+{
+  "url": "http://localhost:3000/test-guardian",
+  "timestamp": "2025-11-25T18:03:15.501Z",
+  "duration": 6925,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    }
+  ],
+  "metrics": {
+    "totalIssues": 1,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 1
+  }
+}

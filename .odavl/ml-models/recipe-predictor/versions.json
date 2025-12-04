@@ -1,0 +1,12 @@
+{
+  "versions": {
+    "1.0.0": {
+      "name": "recipe-predictor",
+      "version": "1.0.0",
+      "savedAt": "2024-11-24T00:00:00Z",
+      "accuracy": 0.95,
+      "loss": 0.05,
+      "trainingDataVersion": "1.0.0"
+    }
+  }
+}

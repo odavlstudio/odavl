@@ -1,0 +1,229 @@
+{
+  "version": "1.0.0",
+  "title": "Network Packet Loss Simulation",
+  "description": "Simulates network packet loss to test application resilience under unreliable network conditions. Validates retry logic, timeout handling, and error recovery.",
+  "tags": [
+    "network",
+    "packet-loss",
+    "reliability",
+    "resilience"
+  ],
+  "configuration": {
+    "kubernetes_namespace": {
+      "type": "env",
+      "key": "CHAOS_K8S_NAMESPACE",
+      "default": "odavl-staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    },
+    "loss_percent": {
+      "type": "env",
+      "key": "LOSS_PERCENT",
+      "default": "10"
+    },
+    "duration_seconds": {
+      "type": "env",
+      "key": "DURATION_SECONDS",
+      "default": "30"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "Network is reliable with minimal packet loss",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "check-packet-loss-rate",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 1]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "rate(network_packets_dropped_total[1m]) * 100",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "application-successful-requests",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [95, 100]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "(sum(rate(http_requests_total{status=~\"2..\"}[1m])) / sum(rate(http_requests_total[1m]))) * 100",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "inject-packet-loss",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "add_packet_loss",
+        "arguments": {
+          "label_selector": "app=studio-hub",
+          "ns": "${kubernetes_namespace}",
+          "loss_percent": "${loss_percent}",
+          "duration": "${duration_seconds}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-packet-loss-active",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [5, 20]
+        },
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "rate(network_packets_dropped_total[1m]) * 100",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "test-application-resilience",
+      "tolerance": {
+        "type": "http",
+        "status": [200, 500, 502, 503, 504]
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":10}",
+        "timeout": 10,
+        "allow_redirects": true
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "monitor-retry-behavior",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(http_request_retries_total[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "check-error-handling",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(http_requests_total{status=~\"5..\"}[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "action",
+      "name": "wait-for-packet-loss-to-expire",
+      "provider": {
+        "type": "process",
+        "path": "sleep",
+        "arguments": ["${duration_seconds}"]
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-packet-loss-removed",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [0, 1]
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "rate(network_packets_dropped_total[1m]) * 100",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-success-rate-restored",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [95, 100]
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "(sum(rate(http_requests_total{status=~\"2..\"}[1m])) / sum(rate(http_requests_total[1m]))) * 100",
+          "endpoint": "${prometheus_url}"
+        }
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "remove-packet-loss",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.networking.actions",
+        "func": "remove_packet_loss",
+        "arguments": {
+          "label_selector": "app=studio-hub",
+          "ns": "${kubernetes_namespace}"
+        }
+      }
+    }
+  ]
+}

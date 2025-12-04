@@ -1,0 +1,27 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <!-- Background gradient -->
+    <defs>
+        <linearGradient id="guardianBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="guardianAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#fb923c;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Rounded square background -->
+    <rect width="128" height="128" rx="24" fill="url(#guardianBg)"/>
+
+    <!-- Shield icon -->
+    <path d="M 64 25 L 35 35 L 35 60 Q 35 85 64 105 Q 93 85 93 60 L 93 35 Z" fill="url(#guardianAccent)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+
+    <!-- Checkmark inside shield -->
+    <path d="M 50 62 L 58 72 L 78 48" stroke="#ffffff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Quality badge (small circle top-right) -->
+    <circle cx="88" cy="38" r="10" fill="#10b981"/>
+    <path d="M 84 38 L 87 41 L 92 35" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

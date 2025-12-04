@@ -1,0 +1,39 @@
+# .gitlab-ci.yml (Advanced)
+include:
+  - remote: 'https://gitlab.com/odavl-studio/insight/-/raw/main/ODAVL-Insight.gitlab-ci.yml'
+
+stages:
+  - test
+  - quality
+  - deploy
+
+variables:
+  ODAVL_TOKEN: $ODAVL_TOKEN
+  ODAVL_ERROR_THRESHOLD: "3"
+  ODAVL_COMPLEXITY_THRESHOLD: "8"
+  ODAVL_COVERAGE_THRESHOLD: "85"
+  ODAVL_SECURITY_LEVELS: "critical,high,medium"
+
+odavl-insight-typescript:
+  extends: .odavl-insight
+  stage: test
+  variables:
+    ODAVL_LANGUAGES: "typescript"
+
+odavl-insight-python:
+  extends: .odavl-insight
+  stage: test
+  variables:
+    ODAVL_LANGUAGES: "python"
+
+odavl-quality-report:
+  stage: quality
+  image: node:20-alpine
+  script:
+    - npm install -g @odavl-studio/cli
+    - odavl insight report --format html
+  artifacts:
+    paths:
+      - .odavl/reports/report.html
+  only:
+    - main

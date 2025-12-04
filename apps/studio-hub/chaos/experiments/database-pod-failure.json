@@ -1,0 +1,271 @@
+{
+  "version": "1.0.0",
+  "title": "Database Pod Failure - PostgreSQL Resilience Test",
+  "description": "Tests the system's ability to handle PostgreSQL pod failures gracefully. Validates automatic failover, connection pooling resilience, and application recovery mechanisms.",
+  "tags": [
+    "database",
+    "kubernetes",
+    "resilience",
+    "high-availability"
+  ],
+  "configuration": {
+    "kubernetes_namespace": {
+      "type": "env",
+      "key": "CHAOS_K8S_NAMESPACE",
+      "default": "odavl-staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    },
+    "prometheus_url": {
+      "type": "env",
+      "key": "PROMETHEUS_URL",
+      "default": "http://prometheus.odavl.studio:9090"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "System is healthy and responsive",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "application-responds-to-requests",
+        "tolerance": {
+          "type": "http",
+          "status": 200,
+          "timeout": 5
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/health",
+          "timeout": 5,
+          "headers": {
+            "Accept": "application/json"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "database-connections-healthy",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [1, 20]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaoslib.providers.http",
+          "func": "get",
+          "arguments": {
+            "url": "${base_url}/api/trpc/health.getDatabaseStatus",
+            "timeout": 5,
+            "headers": {
+              "Accept": "application/json"
+            }
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "postgres-pods-running",
+        "tolerance": {
+          "type": "probe",
+          "target": "status.phase",
+          "pattern": "Running"
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosk8s.pod.probes",
+          "func": "read_pod_logs",
+          "arguments": {
+            "label_selector": "app=postgres",
+            "ns": "${kubernetes_namespace}"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "error-rate-is-low",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 1]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "(sum(rate(http_requests_total{status=~\"5..\"}[1m])) / sum(rate(http_requests_total[1m]))) * 100",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "response-time-acceptable",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 500]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosprometheus.probes",
+          "func": "query_prometheus",
+          "arguments": {
+            "query": "histogram_quantile(0.95, http_request_duration_milliseconds_bucket)",
+            "endpoint": "${prometheus_url}"
+          }
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "kill-random-postgres-pod",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "terminate_pods",
+        "arguments": {
+          "label_selector": "app=postgres",
+          "ns": "${kubernetes_namespace}",
+          "rand": true,
+          "qty": 1
+        }
+      },
+      "pauses": {
+        "after": 10
+      }
+    },
+    {
+      "type": "probe",
+      "name": "check-application-still-responsive",
+      "tolerance": {
+        "type": "http",
+        "status": [200, 503]
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/health",
+        "timeout": 10
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "monitor-circuit-breaker-activation",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "circuit_breaker_state{service=\"database\"}",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "wait-for-pod-recovery",
+      "tolerance": {
+        "type": "probe",
+        "target": "status.phase",
+        "pattern": "Running"
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.probes",
+        "func": "pods_in_phase",
+        "arguments": {
+          "label_selector": "app=postgres",
+          "phase": "Running",
+          "ns": "${kubernetes_namespace}"
+        }
+      },
+      "pauses": {
+        "after": 30
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-automatic-recovery",
+      "tolerance": {
+        "type": "http",
+        "status": 200,
+        "timeout": 5
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/health",
+        "timeout": 5
+      },
+      "pauses": {
+        "after": 10
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "ensure-postgres-pods-running",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "scale_deployment",
+        "arguments": {
+          "name": "postgres",
+          "replicas": 2,
+          "ns": "${kubernetes_namespace}"
+        }
+      }
+    },
+    {
+      "type": "action",
+      "name": "restart-unhealthy-pods",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "terminate_pods",
+        "arguments": {
+          "label_selector": "app=postgres",
+          "phase_selector": "Failed",
+          "ns": "${kubernetes_namespace}"
+        }
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "before",
+      "provider": {
+        "type": "python",
+        "module": "chaoslib.controls.python",
+        "arguments": {
+          "func": "notify_slack",
+          "message": "🔥 Starting Database Pod Failure experiment in ${kubernetes_namespace}"
+        }
+      }
+    },
+    {
+      "name": "after",
+      "provider": {
+        "type": "python",
+        "module": "chaoslib.controls.python",
+        "arguments": {
+          "func": "notify_slack",
+          "message": "✅ Database Pod Failure experiment completed in ${kubernetes_namespace}"
+        }
+      }
+    }
+  ]
+}

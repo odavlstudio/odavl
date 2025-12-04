@@ -1,0 +1,28 @@
+{
+  "name": "@odavl-studio/i18n",
+  "version": "1.0.0",
+  "description": "Internationalization for ODAVL Studio",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "localization"
+  ],
+  "author": "ODAVL Team",
+  "license": "MIT",
+  "dependencies": {
+    "i18next": "^23.7.0",
+    "react-i18next": "^13.5.0",
+    "i18next-browser-languagedetector": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.1"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "workspace": "apps/studio-cli",
+  "duration": 20.1,
+  "totalIssues": 11,
+  "timestamp": "30.11.2025, 00:26:46",
+  "detectors": [
+    {
+      "name": "Complexity",
+      "icon": "🧮",
+      "count": 6,
+      "severity": {
+        "critical": 1,
+        "high": 0,
+        "medium": 5,
+        "low": 0
+      }
+    },
+    {
+      "name": "Runtime",
+      "icon": "⚙️",
+      "count": 2,
+      "severity": {
+        "critical": 2,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      }
+    },
+    {
+      "name": "Network",
+      "icon": "🌐",
+      "count": 3,
+      "severity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 3,
+        "low": 0
+      }
+    }
+  ],
+  "issues": [
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Function 'registerAICommands' has high cognitive complexity (24)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\insight-ai.ts",
+      "line": 22,
+      "suggestion": "Break down into smaller functions, reduce nesting, extract complex conditions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "Function 'registerAICommands' has high cyclomatic complexity (25)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\insight-ai.ts",
+      "line": 22,
+      "suggestion": "Split into smaller functions, use early returns, extract conditions to named functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Long function (164 lines)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\insight-ai.ts",
+      "line": 22,
+      "suggestion": "1. Extract logical blocks into separate functions"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "Excessive nesting depth (5 levels) in function 'exportResults'",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\insight-ai.ts",
+      "line": 461,
+      "suggestion": "Use early returns, extract nested logic to separate functions, flatten structure"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (11 lines, also at line 88)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\plugin.ts",
+      "line": 70,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 70,
+      "message": "Duplicate code block detected (10 lines, also at line 89)",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\plugin.ts",
+      "line": 71,
+      "suggestion": "1. Extract common code into shared function"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "File write operation without lock",
+      "file": "src\\commands\\insight-ai.ts",
+      "line": 450,
+      "suggestion": "Use file locking or queue writes:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "critical",
+      "confidence": 100,
+      "message": "File write operation without lock",
+      "file": "src\\commands\\insight-ai.ts",
+      "line": 468,
+      "suggestion": "Use file locking or queue writes:"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\plugin.ts",
+      "line": 69,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 85,
+      "message": "fetch() without timeout configuration",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\plugin.ts",
+      "line": 83,
+      "suggestion": "1. Add timeout: fetch(url, { signal: AbortSignal.timeout(5000) })"
+    },
+    {
+      "detector": "Unknown",
+      "priority": "medium",
+      "confidence": 100,
+      "message": "fetch response without status check",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli\\src\\commands\\plugin.ts",
+      "line": 83,
+      "suggestion": "Check response status:"
+    }
+  ]
+}

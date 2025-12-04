@@ -1,0 +1,231 @@
+name: Test & Lint
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+    pull_request:
+        branches:
+            - main
+            - develop
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    lint:
+        name: Lint & Type Check
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run ESLint
+              run: pnpm run lint
+              continue-on-error: false
+
+            - name: Run TypeScript Check
+              run: pnpm run typecheck
+              continue-on-error: false
+
+            - name: Upload ESLint Results
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: eslint-results
+                  path: reports/eslint-report.json
+                  retention-days: 7
+
+    test:
+        name: Test Suite
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+
+        strategy:
+            matrix:
+                node-version: ["18", "20", "22"]
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run Tests with Coverage
+              run: pnpm run test:coverage
+              env:
+                  NODE_ENV: test
+
+            - name: Upload Coverage to Codecov
+              if: matrix.node-version == '20'
+              uses: codecov/codecov-action@v4
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  files: ./coverage/coverage-final.json
+                  flags: unittests
+                  name: codecov-umbrella
+
+            - name: Upload Test Results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: test-results-node-${{ matrix.node-version }}
+                  path: |
+                      reports/test-results.json
+                      coverage/
+                  retention-days: 7
+
+    forensic:
+        name: Forensic Analysis
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run Forensic Analysis
+              run: pnpm run forensic:all
+              continue-on-error: true
+
+            - name: Upload Forensic Reports
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: forensic-reports
+                  path: reports/forensic/
+                  retention-days: 14
+
+    security:
+        name: Security Scan
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run npm Audit
+              run: pnpm audit --audit-level=moderate
+              continue-on-error: true
+
+            - name: Run Snyk Security Scan
+              if: github.event_name == 'push'
+              uses: snyk/actions/node@master
+              env:
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+              with:
+                  args: --severity-threshold=high
+              continue-on-error: true
+
+    odavl-insight:
+        name: ODAVL Insight Analysis
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  cache: "pnpm"
+
+            - name: Install Dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Run ODAVL Insight
+              run: pnpm odavl:observe
+              continue-on-error: true
+
+            - name: Upload Insight Results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: odavl-insight-results
+                  path: .odavl/problems-panel-export.json
+                  retention-days: 7
+
+    summary:
+        name: Test Summary
+        runs-on: ubuntu-latest
+        needs: [lint, test, forensic, security, odavl-insight]
+        if: always()
+
+        steps:
+            - name: Check Results
+              run: |
+                  echo "Lint Status: ${{ needs.lint.result }}"
+                  echo "Test Status: ${{ needs.test.result }}"
+                  echo "Forensic Status: ${{ needs.forensic.result }}"
+                  echo "Security Status: ${{ needs.security.result }}"
+                  echo "ODAVL Insight Status: ${{ needs.odavl-insight.result }}"
+
+            - name: Fail if Required Checks Failed
+              if: needs.lint.result == 'failure' || needs.test.result == 'failure'
+              run: exit 1

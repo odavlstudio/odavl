@@ -1,0 +1,319 @@
+# Chaos Toolkit Configuration for ODAVL Studio Hub
+# This file contains global settings for chaos engineering experiments
+
+# General settings
+settings:
+  # Notification settings
+  notifications:
+    slack:
+      enabled: true
+      webhook_url: "${SLACK_CHAOS_WEBHOOK_URL}"
+      channel: "#chaos-engineering"
+      username: "Chaos Toolkit"
+      icon_emoji: ":boom:"
+    
+    email:
+      enabled: false
+      smtp_server: "smtp.gmail.com"
+      smtp_port: 587
+      from: "chaos@odavl.com"
+      to: ["devops@odavl.com", "oncall@odavl.com"]
+  
+  # Logging configuration
+  logging:
+    level: INFO
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "./logs/chaos.log"
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+  
+  # Runtime configuration
+  runtime:
+    # Hypothesis confidence level (0.0-1.0)
+    hypothesis_confidence: 0.9
+    
+    # Rollback strategy
+    rollback_strategy: "always"  # always, on-failure, never
+    
+    # Experiment timeout (seconds)
+    experiment_timeout: 1800  # 30 minutes
+    
+    # Cool-down period between experiments (seconds)
+    cool_down_period: 300  # 5 minutes
+    
+    # Enable dry-run mode for testing
+    dry_run: false
+  
+  # Control plane configuration
+  controls:
+    # Safety controls
+    safety:
+      # Require approval before running destructive experiments
+      require_approval: true
+      
+      # Maximum concurrent experiments
+      max_concurrent: 1
+      
+      # Blackout windows (no experiments during these times)
+      blackout_windows:
+        - day: "monday"
+          start: "09:00"
+          end: "17:00"
+          timezone: "UTC"
+        - day: "friday"
+          start: "16:00"
+          end: "23:59"
+          timezone: "UTC"
+      
+      # Protected resources (never target these)
+      protected_resources:
+        namespaces:
+          - "kube-system"
+          - "kube-public"
+          - "production-critical"
+        labels:
+          - "env=production-critical"
+          - "protected=true"
+    
+    # Monitoring integration
+    monitoring:
+      prometheus:
+        enabled: true
+        url: "http://prometheus.odavl.studio:9090"
+        metrics_prefix: "chaos_"
+      
+      grafana:
+        enabled: true
+        url: "https://grafana.odavl.studio"
+        dashboard_uid: "chaos-engineering"
+      
+      sentry:
+        enabled: true
+        dsn: "${SENTRY_DSN}"
+        environment: "${CHAOS_ENVIRONMENT}"
+
+# Target environments
+environments:
+  staging:
+    kubernetes:
+      context: "staging-cluster"
+      namespace: "odavl-staging"
+    
+    database:
+      host: "postgres-staging.odavl.studio"
+      port: 5432
+      database: "odavl_studio_staging"
+    
+    services:
+      studio_hub: "https://staging.odavl.studio"
+      api: "https://api-staging.odavl.studio"
+    
+    # Staging-specific settings
+    allow_destructive: true
+    max_impact_radius: "namespace"  # pod, deployment, namespace, cluster
+  
+  production:
+    kubernetes:
+      context: "production-cluster"
+      namespace: "odavl-production"
+    
+    database:
+      host: "postgres-production.odavl.studio"
+      port: 5432
+      database: "odavl_studio_production"
+    
+    services:
+      studio_hub: "https://odavl.studio"
+      api: "https://api.odavl.studio"
+    
+    # Production-specific settings (more restrictive)
+    allow_destructive: false
+    max_impact_radius: "pod"  # Limit blast radius in production
+    require_approval: true
+    require_incident_commander: true
+
+# Experiment templates
+templates:
+  database:
+    # PostgreSQL connection settings
+    driver: "postgresql"
+    connection_timeout: 5
+    query_timeout: 30
+    
+    # Chaos actions
+    actions:
+      kill_connections:
+        enabled: true
+        max_connections_to_kill: 5
+      
+      inject_latency:
+        enabled: true
+        min_latency_ms: 100
+        max_latency_ms: 5000
+      
+      simulate_disk_full:
+        enabled: false  # Dangerous, use with caution
+      
+      corrupt_data:
+        enabled: false  # Never enable in production
+  
+  kubernetes:
+    # Pod chaos
+    pod:
+      kill_random_pod:
+        enabled: true
+        label_selector: "app=studio-hub"
+        probability: 0.5
+      
+      kill_all_pods:
+        enabled: false  # Very destructive
+      
+      inject_pod_failure:
+        enabled: true
+        duration: 60
+    
+    # Network chaos
+    network:
+      partition:
+        enabled: true
+        duration: 30
+        direction: "to"  # to, from, both
+      
+      delay:
+        enabled: true
+        latency_ms: 1000
+        jitter_ms: 500
+        duration: 60
+      
+      loss:
+        enabled: true
+        loss_percent: 10
+        duration: 30
+    
+    # Resource chaos
+    resources:
+      cpu_stress:
+        enabled: true
+        workers: 2
+        duration: 60
+      
+      memory_stress:
+        enabled: true
+        size_mb: 512
+        duration: 60
+      
+      disk_stress:
+        enabled: false  # Can affect other tenants
+
+# Health checks
+health_checks:
+  # HTTP health checks
+  http:
+    studio_hub:
+      url: "${BASE_URL}/api/health"
+      method: "GET"
+      expected_status: 200
+      timeout: 5
+      interval: 10
+      retries: 3
+    
+    api:
+      url: "${API_URL}/health"
+      method: "GET"
+      expected_status: 200
+      timeout: 5
+      interval: 10
+      retries: 3
+  
+  # Database health checks
+  database:
+    postgres:
+      query: "SELECT 1"
+      timeout: 5
+      interval: 10
+      retries: 3
+  
+  # Kubernetes health checks
+  kubernetes:
+    pods:
+      label_selector: "app=studio-hub"
+      expected_ready: 2
+      interval: 10
+    
+    services:
+      names: ["studio-hub", "postgres", "redis"]
+      interval: 10
+
+# Metrics collection
+metrics:
+  # Performance metrics
+  performance:
+    response_time:
+      p50: true
+      p95: true
+      p99: true
+    
+    error_rate: true
+    throughput: true
+  
+  # Resource metrics
+  resources:
+    cpu_usage: true
+    memory_usage: true
+    disk_io: true
+    network_io: true
+  
+  # Application metrics
+  application:
+    active_users: true
+    active_sessions: true
+    database_connections: true
+    queue_depth: true
+
+# Reporting
+reporting:
+  # Report generation
+  generate:
+    format: "html"  # html, json, markdown
+    output_dir: "./reports/chaos"
+    include_screenshots: true
+    include_logs: true
+  
+  # Report distribution
+  distribute:
+    slack:
+      enabled: true
+      channel: "#chaos-reports"
+    
+    email:
+      enabled: false
+      recipients: ["devops@odavl.com"]
+    
+    s3:
+      enabled: false
+      bucket: "odavl-chaos-reports"
+      prefix: "reports/"
+
+# Extensions
+extensions:
+  # Chaos Mesh integration
+  chaos_mesh:
+    enabled: false
+    endpoint: "http://chaos-mesh-controller-manager.chaos-mesh:10080"
+  
+  # Litmus integration
+  litmus:
+    enabled: false
+    endpoint: "http://litmus-server.litmus:9091"
+  
+  # Gremlin integration
+  gremlin:
+    enabled: false
+    api_key: "${GREMLIN_API_KEY}"
+    team_id: "${GREMLIN_TEAM_ID}"
+
+# Documentation
+documentation:
+  wiki_url: "https://wiki.odavl.com/chaos-engineering"
+  runbook_url: "https://runbook.odavl.com/chaos"
+  postmortem_template: "https://wiki.odavl.com/postmortem-template"

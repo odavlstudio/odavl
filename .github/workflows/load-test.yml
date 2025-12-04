@@ -1,0 +1,254 @@
+name: Weekly Load Testing
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC (low traffic period)
+    - cron: '0 2 * * 0'
+  
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      max_users:
+        description: 'Maximum concurrent users'
+        required: false
+        default: '1200'
+        type: string
+
+jobs:
+  load-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+      
+      - name: Verify k6 installation
+        run: k6 version
+      
+      - name: Set environment variables
+        run: |
+          echo "BASE_URL=${{ github.event.inputs.environment == 'production' && secrets.PROD_URL || secrets.STAGING_URL }}" >> $GITHUB_ENV
+          echo "ENVIRONMENT=${{ github.event.inputs.environment || 'staging' }}" >> $GITHUB_ENV
+      
+      - name: Prepare test users
+        run: |
+          echo "TEST_USERS=${{ secrets.LOAD_TEST_USERS }}" >> $GITHUB_ENV
+      
+      - name: Run k6 load test
+        run: |
+          k6 run \
+            --out json=reports/load-test-results.json \
+            --out influxdb=http://influxdb.odavl.studio:8086/k6 \
+            --env BASE_URL=${{ env.BASE_URL }} \
+            --env ENVIRONMENT=${{ env.ENVIRONMENT }} \
+            --env TEST_USERS='${{ secrets.LOAD_TEST_USERS }}' \
+            apps/studio-hub/tests/load/dashboard.js
+        continue-on-error: true
+      
+      - name: Analyze results
+        if: always()
+        shell: pwsh
+        run: |
+          cd apps/studio-hub
+          ./scripts/analyze-load-test.ps1 -ResultsFile "../../reports/load-test-results.json"
+      
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-results-${{ github.run_number }}
+          path: |
+            reports/load-test-results.json
+            reports/load-test-summary.html
+            reports/analysis/*.txt
+          retention-days: 90
+      
+      - name: Check thresholds
+        run: |
+          # Extract P95 from results
+          P95=$(jq -r '.metrics.http_req_duration.values.p95' reports/load-test-results.json)
+          ERROR_RATE=$(jq -r '.metrics.http_req_failed.values.rate' reports/load-test-results.json)
+          
+          echo "P95 Response Time: ${P95}ms"
+          echo "Error Rate: ${ERROR_RATE}"
+          
+          # Fail if thresholds exceeded
+          if (( $(echo "$P95 > 500" | bc -l) )); then
+            echo "❌ P95 response time exceeds 500ms threshold"
+            exit 1
+          fi
+          
+          if (( $(echo "$ERROR_RATE > 0.01" | bc -l) )); then
+            echo "❌ Error rate exceeds 1% threshold"
+            exit 1
+          fi
+          
+          echo "✅ All thresholds passed"
+      
+      - name: Comment on PR (if applicable)
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('reports/load-test-results.json', 'utf8'));
+            
+            const p95 = results.metrics.http_req_duration.values.p95.toFixed(2);
+            const p99 = results.metrics.http_req_duration.values.p99.toFixed(2);
+            const errorRate = (results.metrics.http_req_failed.values.rate * 100).toFixed(2);
+            const totalReqs = results.metrics.http_reqs.values.count;
+            
+            const p95Pass = p95 < 500;
+            const p99Pass = p99 < 1000;
+            const errorPass = errorRate < 1;
+            
+            const allPass = p95Pass && p99Pass && errorPass;
+            
+            const comment = `## 📊 Load Test Results
+            
+            **Environment:** ${{ env.ENVIRONMENT }}
+            **Status:** ${allPass ? '✅ PASSED' : '❌ FAILED'}
+            
+            ### Performance Metrics
+            
+            | Metric | Value | Threshold | Status |
+            |--------|-------|-----------|--------|
+            | P95 Response Time | ${p95}ms | < 500ms | ${p95Pass ? '✅' : '❌'} |
+            | P99 Response Time | ${p99}ms | < 1000ms | ${p99Pass ? '✅' : '❌'} |
+            | Error Rate | ${errorRate}% | < 1% | ${errorPass ? '✅' : '❌'} |
+            | Total Requests | ${totalReqs} | - | - |
+            
+            ### Actions Required
+            
+            ${allPass ? '✅ No action required - all thresholds passed!' : '⚠️ Performance thresholds exceeded - review bottlenecks and optimize'}
+            
+            [View detailed results](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+      
+      - name: Notify Slack on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "🚨 Load Test Failed",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🚨 Load Test Failed - ${{ env.ENVIRONMENT }}"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Weekly load test has failed on *${{ env.ENVIRONMENT }}* environment.\n\n*Repository:* ${{ github.repository }}\n*Run:* <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Action Required:*\n• Review performance bottlenecks\n• Check Grafana dashboards\n• Investigate error logs"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      
+      - name: Create GitHub Issue on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let results;
+            try {
+              results = JSON.parse(fs.readFileSync('reports/load-test-results.json', 'utf8'));
+            } catch (e) {
+              console.error('Failed to read results file:', e);
+              return;
+            }
+            
+            const p95 = results.metrics.http_req_duration.values.p95.toFixed(2);
+            const p99 = results.metrics.http_req_duration.values.p99.toFixed(2);
+            const errorRate = (results.metrics.http_req_failed.values.rate * 100).toFixed(2);
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 Load Test Failure - ${new Date().toISOString().split('T')[0]}`,
+              labels: ['performance', 'load-test', 'urgent'],
+              body: `## Load Test Failure Report
+              
+              **Environment:** ${{ env.ENVIRONMENT }}
+              **Date:** ${new Date().toISOString()}
+              **Run:** https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+              
+              ### Failed Metrics
+              
+              - **P95 Response Time:** ${p95}ms (threshold: 500ms) ${p95 > 500 ? '❌' : '✅'}
+              - **P99 Response Time:** ${p99}ms (threshold: 1000ms) ${p99 > 1000 ? '❌' : '✅'}
+              - **Error Rate:** ${errorRate}% (threshold: 1%) ${errorRate > 1 ? '❌' : '✅'}
+              
+              ### Investigation Steps
+              
+              1. Check Grafana dashboard: https://grafana.odavl.studio/d/load-testing
+              2. Review database slow query logs
+              3. Analyze error logs in Sentry
+              4. Check infrastructure metrics (CPU, memory, network)
+              5. Review recent deployments for performance regressions
+              
+              ### Recommended Actions
+              
+              - [ ] Identify slow endpoints via Grafana
+              - [ ] Run EXPLAIN ANALYZE on slow queries
+              - [ ] Add missing database indexes
+              - [ ] Review connection pool settings
+              - [ ] Check for N+1 query patterns
+              - [ ] Consider horizontal scaling
+              
+              /cc @odavl/devops @odavl/backend
+              `
+            });

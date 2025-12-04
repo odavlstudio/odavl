@@ -1,0 +1,15 @@
+{
+  "locales": ["en", "ar", "zh", "es", "fr", "de", "ja", "pt", "ru", "ko"],
+  "defaultLocale": "en",
+  "detection": {
+    "order": ["localStorage", "navigator", "htmlTag"],
+    "caches": ["localStorage"]
+  },
+  "rtl": ["ar"],
+  "interpolation": {
+    "escapeValue": false
+  },
+  "react": {
+    "useSuspense": false
+  }
+}

@@ -1,0 +1,241 @@
+
+­ƒîÉ Guardian Website Checker
+
+URL: http://localhost:3000
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+[DEBUG] URL hostname: localhost
+[DEBUG] URL port: 3000
+[DEBUG] Localhost detected, port: 3000
+[DEBUG] Mapped to: apps/studio-hub
+[DEBUG] Full path: C:\Users\sabou\dev\odavl\apps\studio-hub\apps\studio-hub
+[DEBUG] cwd: C:\Users\sabou\dev\odavl\apps\studio-hub
+[DEBUG] Path does NOT exist!
+[DEBUG] Using cwd: C:\Users\sabou\dev\odavl\apps\studio-hub
+[DEBUG] Final projectPath: C:\Users\sabou\dev\odavl\apps\studio-hub
+
+
+­ƒôü Detected Project: C:\Users\sabou\dev\odavl\apps\studio-hub
+
+­ƒöì PHASE 1: DEEP PROJECT ANALYSIS
+
+Scanning: package.json, .env, Prisma, TypeScript, Security...
+
+
+­ƒôü Analyzing Project Structure...
+
+- Analyzing package.json...
+Ô£ö package.json analyzed
+- Checking environment variables...
+Ô£ö Found 59 environment variables
+- Checking Prisma setup...
+Ô£ö Prisma setup OK (14 models)
+- Checking TypeScript...
+Ô£û TypeScript has 74 real errors
+- Checking dependencies...
+Ô£ö Dependencies installed
+- Analyzing build system...
+Ô£ö Build system: Next.js (App Router) (App Router, Hybrid (App + Pages), i18n, [locale] routing, middleware.ts, CSP headers, redirects)
+- Scanning for security vulnerabilities...
+Ôä╣ Could not run security scan
+- Analyzing code quality (ESLint)...
+ÔÜá ESLint check failed
+- Analyzing performance metrics...
+Ô£ö Performance analysis complete
+- Testing database connection...
+Ô£ö Database connection available (postgresql)
+- Analyzing SEO...
+Ô£ö SEO ready (sitemap, robots.txt, metadata export)
+- Checking dependency versions...
+ÔÜá Found 11 outdated dependencies
+
+­ƒôè PROJECT ANALYSIS REPORT
+
+­ƒôª PACKAGE.JSON:
+
+  ÔÜá´©Å Prisma installed but no generate script found (add "prisma:generate": "prisma generate")
+  ÔÜá´©Å Prisma installed but no generate script found
+
+­ƒôÿ TYPESCRIPT:
+
+  ­ƒÆÑ TypeScript compilation errors: 74
+
+  First few errors:
+    app/(dashboard)/monitoring/page.tsx(19,22): error TS2339: Property 'json' does not exist on type 'Fe
+    app/(dashboard)/monitoring/page.tsx(30,22): error TS2339: Property 'json' does not exist on type 'Fe
+    app/[locale]/api-docs/page.tsx(93,37): error TS2339: Property 'json' does not exist on type 'FetchRe
+
+­ƒöì CODE QUALITY (ESLINT):
+
+  ÔÜá´©Å ESLint execution failed
+
+ÔÜí PERFORMANCE:
+
+  ÔÜá´©Å No error monitoring (Sentry) configured
+  ­ƒÆí Consider adding bundle analyzer for optimization
+
+­ƒôª DEPENDENCY VERSIONS:
+
+  ­ƒôª 11 outdated dependencies ÔåÆ Run: pnpm update
+
+
+­ƒôï TOTAL ISSUES FOUND: 7
+
+­ƒö┤ CRITICAL issues need immediate attention
+
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 2: BROWSER RUNTIME ANALYSIS
+
+Launching browser, monitoring errors, checking performance...
+
+- Launching browser...
+Ô£ö Browser ready
+- Loading website...
+Ô£ö Page loaded in 1361ms
+
+- ­ƒöì Scanning for critical errors...
+Ô£ö No critical errors detected
+­ƒôª RESOURCE FAILURES:
+
+  404 Not Found: en
+
+- Checking HTTP status...
+Ô£û Not Found (404)
+ÔÜá´©Å Total Console Errors: 2
+  ÔÇó Failed to load resource: the server responded with a status of 404 (Not Found)
+  ÔÇó Failed to load resource: the server responded with a status of 404 (Not Found)
+
+
+­ƒôè Website Health Score: 97/100
+
+Ô£¿ EXCELLENT: Website is healthy!
+
+
+- Checking title...
+Ô£ö Title: "ODAVL Studio - Autonomous Code Quality Platform"
+- Checking meta...
+Ô£ö Meta: "ML-powered error detection, self-healing infrastru..."
+- Counting links...
+Ô£ö 0 links
+- Checking images...
+Ô£ö 0 images (all with alt)
+Ôä╣ HTTP (localhost)
+
+­ƒöì Testing API endpoints...
+
+Ô£à Found 7 API endpoints:
+  GET /api/health ÔåÆ 200 (87ms)
+  GET /api/status ÔåÆ 404 (163ms)
+  GET /api/projects ÔåÆ 404 (79ms)
+  GET /api/users ÔåÆ 404 (68ms)
+  GET /api/auth/session ÔåÆ 200 (58ms)
+  GET /api/auth/csrf ÔåÆ 401 (29ms)
+  GET /api/trpc/health ÔåÆ 404 (61ms)
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 3: ENTERPRISE SECURITY SCAN
+
+Scanning: NextAuth, CORS, XSS, CSRF, Authentication...
+
+[DEBUG] Found NEXTAUTH_SECRET in .env.local Ô£à
+
+­ƒøí´©Å SECURITY ANALYSIS
+
+Score: ÔÜá´©Å 85/100
+Issues: 3 (Critical: 0, High: 0)
+  ­ƒöÉ Strengthen authentication: Use NextAuth with secure providers
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 4: PERFORMANCE PROFILING
+
+Analyzing: Memory leaks, N+1 queries, slow operations...
+
+
+ÔÜí PERFORMANCE ANALYSIS
+
+Score: ­ƒÄ» 90/100
+Issues: 1 (Critical: 0, High: 1)
+
+­ƒôè Metrics:
+  TTFB: 98ms
+  Memory: 51MB
+  ÔÜí Optimize queries: Use Prisma include, add database indexes
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 5: ACCESSIBILITY COMPLIANCE (WCAG)
+
+Testing: WCAG A/AA/AAA, keyboard navigation, screen readers...
+
+
+­ƒÄ¿ ACCESSIBILITY ANALYSIS
+
+Score: ÔØî 0/100
+WCAG Level A: ÔØî
+WCAG Level AA: ÔØî
+WCAG Level AAA: ÔØî
+Issues: 0 (Critical: 0)
+  ÔÜá´©Å Accessibility scan failed - ensure @axe-core/puppeteer is installed
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 6: MOBILE RESPONSIVENESS
+
+Testing: iPhone, iPad, Android, Desktop HD...
+
+[DEBUG] Creating new page for mobile testing...
+
+
+­ƒô▒ MOBILE ANALYSIS
+
+Score: ÔØî 0/100
+Tested Devices: 6
+Passed: 0 | Failed: 6
+  Ô£à Great mobile responsiveness! Works well on all devices
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 7: BROWSER COMPATIBILITY
+
+Testing: Chrome, Firefox, Safari, Edge compatibility...
+
+
+­ƒîÉ COMPATIBILITY ANALYSIS
+
+Score: ­ƒÄ» 100/100
+Supported Browsers: Chrome 90+, Firefox 90+, Safari 14+, Edge 90+, Opera 76+
+Unsupported Features: 1
+  ­ƒöº IE Support: Add polyfills for core-js and regenerator-runtime
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+­ƒöì PHASE 8: BUNDLE & CODE ANALYSIS
+
+Analyzing: Bundle size, unused deps, code duplication...
+
+
+­ƒôª BUNDLE ANALYSIS
+
+Score: ÔÜá´©Å 81/100
+Bundle Size: 65130KB
+Unused Dependencies: 1
+Issues: 4
+  ­ƒôª Reduce bundle size: Enable code splitting and lazy loading
+  ­ƒùæ´©Å Remove unused dependencies: Run npx depcheck
+  ­ƒÆÇ Remove dead code: Delete unused exports and files
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+Ô£à ENTERPRISE ANALYSIS COMPLETE!
+
+Guardian analyzed 8 comprehensive phases
+Coverage: ~98% of all possible website issues detected
+
+ÔòáÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòÉÔòú
+
+Ô£à Website check complete!
+

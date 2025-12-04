@@ -1,0 +1,132 @@
+{
+  "url": "http://localhost:3000",
+  "timestamp": "2025-11-25T14:23:44.125Z",
+  "duration": 5958,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_PAGE_TITLE",
+      "severity": "high",
+      "message": "♿ Page missing title",
+      "fix": [
+        "Add <title> tag in <head>",
+        "Make title descriptive and unique",
+        "Include site name in title",
+        "Keep title under 60 characters for SEO",
+        "Update title for different pages/routes"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CSP",
+      "severity": "high",
+      "message": "🔒 Missing Content Security Policy",
+      "fix": [
+        "Add Content-Security-Policy header",
+        "Start with restrictive policy",
+        "Use nonce or hash for inline scripts",
+        "Avoid 'unsafe-inline' and 'unsafe-eval'",
+        "Test with report-only mode first"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_META_DESCRIPTION",
+      "severity": "high",
+      "message": "📄 Missing meta description",
+      "fix": [
+        "Add meta description tag in <head>",
+        "Keep description between 150-160 characters",
+        "Make description unique for each page",
+        "Include target keywords naturally",
+        "Write compelling, actionable description"
+      ],
+      "details": {
+        "length": 0,
+        "content": ""
+      }
+    },
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CANONICAL",
+      "severity": "medium",
+      "message": "🔗 Missing canonical URL",
+      "fix": [
+        "Add <link rel=\"canonical\"> in <head>",
+        "Point to preferred version of page",
+        "Prevent duplicate content issues",
+        "Use absolute URLs",
+        "Set canonical for paginated content"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 1 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 1
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 8,
+    "critical": 0,
+    "high": 3,
+    "medium": 3,
+    "low": 2
+  }
+}

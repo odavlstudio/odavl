@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "استوديو ODAVL",
+    "welcome": "مرحباً بك في استوديو ODAVL",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق"
+  },
+  "insight": {
+    "title": "ODAVL Insight",
+    "description": "كشف الأخطاء بالذكاء الاصطناعي",
+    "analyze": "تحليل",
+    "analyzing": "جاري التحليل...",
+    "issuesFound": "تم العثور على {{count}} مشكلة",
+    "noIssues": "لا توجد مشاكل",
+    "severity": {
+      "critical": "حرج",
+      "high": "عالي",
+      "medium": "متوسط",
+      "low": "منخفض"
+    },
+    "detectors": {
+      "typescript": "TypeScript",
+      "eslint": "ESLint",
+      "security": "الأمان",
+      "performance": "الأداء"
+    }
+  },
+  "autopilot": {
+    "title": "ODAVL Autopilot",
+    "description": "بنية تحتية ذاتية الإصلاح",
+    "run": "تشغيل Autopilot",
+    "running": "قيد التشغيل...",
+    "phases": {
+      "observe": "مراقبة",
+      "decide": "قرار",
+      "act": "تنفيذ",
+      "verify": "تحقق",
+      "learn": "تعلم"
+    }
+  },
+  "guardian": {
+    "title": "ODAVL Guardian",
+    "description": "بوابات الجودة قبل النشر",
+    "test": "تشغيل الاختبارات",
+    "testing": "جاري الاختبار...",
+    "passed": "نجح",
+    "failed": "فشل"
+  },
+  "plugins": {
+    "title": "سوق الإضافات",
+    "search": "البحث عن إضافات...",
+    "install": "تثبيت",
+    "uninstall": "إلغاء التثبيت",
+    "installed": "مثبت",
+    "verified": "موثق"
+  }
+}

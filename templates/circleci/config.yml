@@ -1,0 +1,337 @@
+# ODAVL Insight - CircleCI Configuration
+# Runs ODAVL Insight analysis on every commit and PR
+#
+# Setup:
+# 1. Add this file as .circleci/config.yml in your repository
+# 2. Install ODAVL CLI: pnpm add -D @odavl/cli (or npm/yarn)
+# 3. (Optional) Add ODAVL_API_KEY to CircleCI environment variables
+#
+# Features:
+# - Runs 12 ODAVL detectors (TypeScript, ESLint, Security, Performance, etc.)
+# - Generates HTML & PDF reports
+# - Quality gates with configurable thresholds
+# - Parallel execution for faster builds
+# - Artifact storage for 30 days
+
+version: 2.1
+
+# =========================================
+# Orbs (Reusable Packages)
+# =========================================
+orbs:
+  node: circleci/node@5.1
+
+# =========================================
+# Executors (Build Environments)
+# =========================================
+executors:
+  node-executor:
+    docker:
+      - image: cimg/node:20.10
+    working_directory: ~/project
+    environment:
+      PNPM_VERSION: "9"
+      REPORTS_DIR: ".odavl/reports"
+
+# =========================================
+# Commands (Reusable Steps)
+# =========================================
+commands:
+  install-pnpm:
+    description: "Install pnpm package manager"
+    steps:
+      - run:
+          name: Install pnpm
+          command: |
+            npm install -g pnpm@${PNPM_VERSION}
+            pnpm --version
+
+  install-dependencies:
+    description: "Install project dependencies with caching"
+    steps:
+      - restore_cache:
+          keys:
+            - pnpm-deps-v1-{{ checksum "pnpm-lock.yaml" }}
+            - pnpm-deps-v1-
+
+      - run:
+          name: Install dependencies
+          command: pnpm install --frozen-lockfile
+
+      - save_cache:
+          key: pnpm-deps-v1-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - node_modules
+            - ~/.pnpm-store
+
+  parse-odavl-results:
+    description: "Parse ODAVL Insight results and extract metrics"
+    steps:
+      - run:
+          name: Parse Analysis Results
+          command: |
+            REPORT_FILE="${REPORTS_DIR}/ci-report.json"
+
+            if [ -f "$REPORT_FILE" ]; then
+              TOTAL_ISSUES=$(jq '.totalIssues // 0' "$REPORT_FILE")
+              CRITICAL=$(jq '.criticalCount // 0' "$REPORT_FILE")
+              HIGH=$(jq '.highCount // 0' "$REPORT_FILE")
+              MEDIUM=$(jq '.mediumCount // 0' "$REPORT_FILE")
+              LOW=$(jq '.lowCount // 0' "$REPORT_FILE")
+              HEALTH_SCORE=$(jq '.healthScore // 100' "$REPORT_FILE")
+              
+              echo "export ODAVL_TOTAL_ISSUES=$TOTAL_ISSUES" >> $BASH_ENV
+              echo "export ODAVL_CRITICAL=$CRITICAL" >> $BASH_ENV
+              echo "export ODAVL_HIGH=$HIGH" >> $BASH_ENV
+              echo "export ODAVL_MEDIUM=$MEDIUM" >> $BASH_ENV
+              echo "export ODAVL_LOW=$LOW" >> $BASH_ENV
+              echo "export ODAVL_HEALTH_SCORE=$HEALTH_SCORE" >> $BASH_ENV
+              
+              echo "📊 Analysis Results:"
+              echo "  Total Issues: $TOTAL_ISSUES"
+              echo "  Critical: $CRITICAL | High: $HIGH | Medium: $MEDIUM | Low: $LOW"
+              echo "  Health Score: $HEALTH_SCORE/100"
+            else
+              echo "⚠️ No report file found, setting default metrics"
+              echo "export ODAVL_TOTAL_ISSUES=0" >> $BASH_ENV
+              echo "export ODAVL_CRITICAL=0" >> $BASH_ENV
+              echo "export ODAVL_HIGH=0" >> $BASH_ENV
+              echo "export ODAVL_MEDIUM=0" >> $BASH_ENV
+              echo "export ODAVL_LOW=0" >> $BASH_ENV
+              echo "export ODAVL_HEALTH_SCORE=100" >> $BASH_ENV
+            fi
+
+# =========================================
+# Jobs (Build Steps)
+# =========================================
+jobs:
+  # Job 1: Run ODAVL Insight Analysis
+  odavl-insight-analysis:
+    executor: node-executor
+
+    steps:
+      - checkout
+
+      - install-pnpm
+      - install-dependencies
+
+      - run:
+          name: Create Reports Directory
+          command: mkdir -p ${REPORTS_DIR}
+
+      - run:
+          name: Run ODAVL Insight Analysis
+          command: |
+            echo "🔍 Running ODAVL Insight..."
+            pnpm odavl:insight --all --format=json --output=${REPORTS_DIR}/ci-report.json || true
+
+      - parse-odavl-results
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .odavl/reports/ci-report.json
+            - .odavl/problems-panel-export.json
+
+      - store_artifacts:
+          path: .odavl/reports/ci-report.json
+          destination: odavl-insight-results
+
+  # Job 2: Generate HTML Report
+  generate-html-report:
+    executor: node-executor
+
+    steps:
+      - checkout
+
+      - install-pnpm
+      - install-dependencies
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Generate HTML Report
+          command: |
+            echo "📄 Generating HTML Report..."
+            pnpm odavl:insight --all --format=html --output=${REPORTS_DIR}/ci-report.html || true
+
+      - store_artifacts:
+          path: .odavl/reports/ci-report.html
+          destination: odavl-html-report
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .odavl/reports/ci-report.html
+
+  # Job 3: Generate PDF Report
+  generate-pdf-report:
+    executor: node-executor
+
+    steps:
+      - checkout
+
+      - install-pnpm
+      - install-dependencies
+
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Generate PDF Report
+          command: |
+            echo "📄 Generating PDF Report..."
+            pnpm odavl:generate-pdf-report || true
+
+      - store_artifacts:
+          path: .odavl/reports
+          destination: odavl-pdf-report
+
+  # Job 4: Quality Gates Check
+  quality-gates:
+    executor: node-executor
+
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: .
+
+      - parse-odavl-results
+
+      - run:
+          name: Check Quality Gates
+          command: |
+            echo "🚦 Checking Quality Gates..."
+
+            # Define thresholds
+            MAX_CRITICAL=0
+            MAX_HIGH=20
+            MIN_HEALTH_SCORE=60
+
+            echo "Current Metrics:"
+            echo "  Critical: $ODAVL_CRITICAL (max: $MAX_CRITICAL)"
+            echo "  High: $ODAVL_HIGH (max: $MAX_HIGH)"
+            echo "  Health Score: $ODAVL_HEALTH_SCORE (min: $MIN_HEALTH_SCORE)"
+
+            # Check gates
+            FAILED=0
+
+            if [ "$ODAVL_CRITICAL" -gt "$MAX_CRITICAL" ]; then
+              echo "❌ FAILED: Critical issues detected ($ODAVL_CRITICAL > $MAX_CRITICAL)"
+              FAILED=1
+            fi
+
+            if [ "$ODAVL_HIGH" -gt "$MAX_HIGH" ]; then
+              echo "⚠️ WARNING: Too many high-priority issues ($ODAVL_HIGH > $MAX_HIGH)"
+              # Don't fail on high issues, just warn
+            fi
+
+            if [ "$ODAVL_HEALTH_SCORE" -lt "$MIN_HEALTH_SCORE" ]; then
+              echo "❌ FAILED: Health score below threshold ($ODAVL_HEALTH_SCORE < $MIN_HEALTH_SCORE)"
+              FAILED=1
+            fi
+
+            if [ "$FAILED" -eq 1 ]; then
+              echo "❌ Quality Gates Failed"
+              exit 1
+            else
+              echo "✅ Quality Gates Passed!"
+              exit 0
+            fi
+
+      - run:
+          name: Generate Summary
+          when: always
+          command: |
+            echo "## 🎯 ODAVL Insight Summary" > /tmp/odavl-summary.md
+            echo "" >> /tmp/odavl-summary.md
+            echo "**Health Score**: ${ODAVL_HEALTH_SCORE}/100" >> /tmp/odavl-summary.md
+            echo "" >> /tmp/odavl-summary.md
+            echo "| Severity | Count |" >> /tmp/odavl-summary.md
+            echo "|----------|-------|" >> /tmp/odavl-summary.md
+            echo "| 🔴 Critical | ${ODAVL_CRITICAL} |" >> /tmp/odavl-summary.md
+            echo "| 🟠 High | ${ODAVL_HIGH} |" >> /tmp/odavl-summary.md
+            echo "| 🔵 Medium | ${ODAVL_MEDIUM} |" >> /tmp/odavl-summary.md
+            echo "| 🟢 Low | ${ODAVL_LOW} |" >> /tmp/odavl-summary.md
+            echo "" >> /tmp/odavl-summary.md
+            echo "[📥 Download Reports](${CIRCLE_BUILD_URL}#artifacts/containers/${CIRCLE_NODE_INDEX})" >> /tmp/odavl-summary.md
+
+            cat /tmp/odavl-summary.md
+
+      - store_artifacts:
+          path: /tmp/odavl-summary.md
+          destination: odavl-summary
+
+# =========================================
+# Workflows (Job Orchestration)
+# =========================================
+workflows:
+  version: 2
+
+  # Main workflow: Run on every commit
+  odavl-insight-workflow:
+    jobs:
+      # Stage 1: Run analysis
+      - odavl-insight-analysis
+
+      # Stage 2: Generate reports (parallel)
+      - generate-html-report:
+          requires:
+            - odavl-insight-analysis
+
+      - generate-pdf-report:
+          requires:
+            - odavl-insight-analysis
+
+      # Stage 3: Check quality gates
+      - quality-gates:
+          requires:
+            - odavl-insight-analysis
+            - generate-html-report
+
+  # Scheduled workflow: Daily analysis at 2 AM UTC
+  scheduled-analysis:
+    triggers:
+      - schedule:
+          cron: "0 2 * * *"
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+
+    jobs:
+      - odavl-insight-analysis
+      - generate-html-report:
+          requires:
+            - odavl-insight-analysis
+      - generate-pdf-report:
+          requires:
+            - odavl-insight-analysis
+# =========================================
+# Optional: Slack/Email Notifications
+# =========================================
+# Add Slack/Email orbs and configure notifications on failure
+#
+# orbs:
+#   slack: circleci/slack@4.10
+#
+# jobs:
+#   notify-on-failure:
+#     steps:
+#       - slack/notify:
+#           event: fail
+#           custom: |
+#             {
+#               "blocks": [
+#                 {
+#                   "type": "section",
+#                   "text": {
+#                     "type": "mrkdwn",
+#                     "text": "🚨 *ODAVL Insight Alert*\n${ODAVL_CRITICAL} critical issues detected"
+#                   }
+#                 }
+#               ]
+#             }

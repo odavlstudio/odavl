@@ -1,0 +1,43 @@
+{
+  "name": "@odavl-studio/plugin-react-best-practices",
+  "version": "1.0.0",
+  "description": "Official ODAVL plugin for detecting React anti-patterns and best practices",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch"
+  },
+  "keywords": [
+    "odavl",
+    "plugin",
+    "react",
+    "best-practices",
+    "linting"
+  ],
+  "author": "ODAVL Team",
+  "license": "MIT",
+  "dependencies": {
+    "@odavl-studio/sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@odavl-studio/sdk": "^0.1.0"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "url": "http://localhost:3000/playground",
+  "timestamp": "2025-11-25T16:23:26.066Z",
+  "duration": 6125,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 4 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 4,
+        "elements": [
+          {
+            "text": "Insight",
+            "tag": "button",
+            "width": 55,
+            "height": 21
+          },
+          {
+            "text": "Autopilot",
+            "tag": "button",
+            "width": 68,
+            "height": 21
+          },
+          {
+            "text": "Guardian",
+            "tag": "button",
+            "width": 71,
+            "height": 21
+          },
+          {
+            "text": "Dashboard → Settings → API Keys",
+            "tag": "a",
+            "width": 231,
+            "height": 17
+          }
+        ]
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 4,
+    "critical": 0,
+    "high": 0,
+    "medium": 2,
+    "low": 2
+  }
+}

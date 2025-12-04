@@ -1,0 +1,20 @@
+# ODAVL Quality Gates
+version: "1.0"
+risk_budget: 100
+forbidden_paths:
+  - "security/**"
+  - "public-api/**"
+  - "**/*.spec.*"
+  - "**/*.test.*"
+  - "auth/**"
+actions:
+  max_auto_changes: 10
+  max_files_per_cycle: 10
+enforcement:
+  - block_if_risk_exceeded
+  - rollback_on_failure
+  - require_attestation
+thresholds:
+  max_risk_per_action: 25
+  min_success_rate: 0.75
+  max_consecutive_failures: 3

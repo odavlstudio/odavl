@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-11-30T21:53:30.737Z",
+  "version": "4.0.0",
+  "path": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\guardian\\cli",
+  "readiness": 65,
+  "confidence": 95,
+  "issues": {
+    "total": 4,
+    "critical": 2,
+    "warnings": 2,
+    "info": 0
+  },
+  "phases": {
+    "staticAnalysis": {
+      "status": "complete",
+      "duration": 2162
+    },
+    "runtimeTests": {
+      "status": "complete",
+      "duration": 2
+    },
+    "aiVisualAnalysis": {
+      "status": "complete",
+      "duration": 0
+    },
+    "aiErrorAnalysis": {
+      "status": "complete",
+      "duration": 1
+    }
+  },
+  "executionTime": 3190
+}

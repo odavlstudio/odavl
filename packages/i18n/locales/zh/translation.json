@@ -1,0 +1,63 @@
+{
+  "common": {
+    "appName": "ODAVL Studio",
+    "welcome": "欢迎",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "close": "关闭"
+  },
+  "insight": {
+    "title": "ODAVL Insight",
+    "description": "AI驱动的错误检测",
+    "analyze": "分析代码库",
+    "severity": {
+      "critical": "严重",
+      "high": "高",
+      "medium": "中",
+      "low": "低"
+    },
+    "detectors": {
+      "typescript": "TypeScript检测器",
+      "eslint": "ESLint集成",
+      "security": "安全漏洞",
+      "performance": "性能问题",
+      "complexity": "复杂度分析"
+    }
+  },
+  "autopilot": {
+    "title": "ODAVL Autopilot",
+    "description": "自修复代码基础设施",
+    "phases": {
+      "observe": "观察",
+      "decide": "决策",
+      "act": "执行",
+      "verify": "验证",
+      "learn": "学习"
+    },
+    "run": "运行自修复周期",
+    "undo": "撤销更改",
+    "status": "状态"
+  },
+  "guardian": {
+    "title": "ODAVL Guardian",
+    "description": "预部署测试与监控",
+    "test": "测试应用",
+    "passed": "通过",
+    "failed": "失败",
+    "pending": "待处理"
+  },
+  "plugins": {
+    "marketplace": "插件市场",
+    "search": "搜索插件",
+    "install": "安装",
+    "uninstall": "卸载",
+    "installed": "已安装",
+    "verified": "已验证",
+    "official": "官方"
+  }
+}

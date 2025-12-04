@@ -1,0 +1,705 @@
+openapi: 3.1.0
+info:
+  title: ODAVL Studio API
+  version: 2.0.0
+  description: |
+    ODAVL Studio API - Unified API for code quality, self-healing, and pre-deploy testing.
+    
+    ## Products
+    - **ODAVL Insight**: ML-powered error detection (12 detectors)
+    - **ODAVL Autopilot**: Self-healing code infrastructure (O-D-A-V-L cycle)
+    - **ODAVL Guardian**: Pre-deploy testing and monitoring
+    
+    ## Authentication
+    All endpoints require Bearer token authentication:
+    ```
+    Authorization: Bearer <your-api-key>
+    ```
+    
+  contact:
+    name: ODAVL Support
+    email: support@odavl.dev
+    url: https://odavl.dev/support
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.odavl.dev/v2
+    description: Production server
+  - url: https://staging-api.odavl.dev/v2
+    description: Staging server
+  - url: http://localhost:3000/api
+    description: Local development
+
+tags:
+  - name: Health
+    description: System health and status endpoints
+  - name: Insight
+    description: ODAVL Insight - Error detection and analysis
+  - name: Autopilot
+    description: ODAVL Autopilot - Self-healing automation
+  - name: Guardian
+    description: ODAVL Guardian - Pre-deploy testing
+
+paths:
+  /health:
+    get:
+      summary: System health check
+      description: Returns overall system status and service availability
+      tags:
+        - Health
+      responses:
+        "200":
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, down]
+                  timestamp:
+                    type: string
+                    format: date-time
+                  services:
+                    type: object
+                    properties:
+                      insight:
+                        type: string
+                        enum: [up, down]
+                      autopilot:
+                        type: string
+                        enum: [up, down]
+                      guardian:
+                        type: string
+                        enum: [up, down]
+                  version:
+                    type: string
+              example:
+                status: healthy
+                timestamp: "2025-11-29T12:00:00Z"
+                services:
+                  insight: up
+                  autopilot: up
+                  guardian: up
+                version: "2.0.0"
+
+  # ============================================
+  # ODAVL Insight APIs
+  # ============================================
+  
+  /insight/analyze:
+    post:
+      summary: Analyze workspace for errors
+      description: Run detection analysis on a workspace using specified detectors
+      tags:
+        - Insight
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - workspacePath
+              properties:
+                workspacePath:
+                  type: string
+                  description: Absolute path to workspace directory
+                detectors:
+                  type: array
+                  items:
+                    type: string
+                    enum: [typescript, eslint, import, package, runtime, build, security, circular, network, performance, complexity, isolation]
+                  description: List of detectors to run (defaults to all)
+                language:
+                  type: string
+                  enum: [typescript, javascript, python, java]
+                  description: Primary language of the workspace
+              example:
+                workspacePath: "/home/user/project"
+                detectors: ["typescript", "security", "complexity"]
+                language: "typescript"
+      responses:
+        "200":
+          description: Analysis completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalysisResult'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+        "500":
+          $ref: '#/components/responses/InternalError'
+
+  /insight/detectors:
+    get:
+      summary: List available detectors
+      description: Get information about all available detection engines
+      tags:
+        - Insight
+      responses:
+        "200":
+          description: List of detectors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detectors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        languages:
+                          type: array
+                          items:
+                            type: string
+              example:
+                detectors:
+                  - id: typescript
+                    name: TypeScript Detector
+                    description: Detects TypeScript compilation errors and type issues
+                    languages: [typescript, javascript]
+                  - id: security
+                    name: Security Detector
+                    description: Detects security vulnerabilities and hardcoded secrets
+                    languages: [typescript, javascript, python, java]
+
+  /insight/issues/{issueId}:
+    get:
+      summary: Get issue details
+      description: Retrieve detailed information about a specific issue
+      tags:
+        - Insight
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: issueId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique issue identifier
+      responses:
+        "200":
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        "404":
+          $ref: '#/components/responses/NotFound'
+
+  # ============================================
+  # ODAVL Autopilot APIs
+  # ============================================
+  
+  /autopilot/run:
+    post:
+      summary: Run full O-D-A-V-L cycle
+      description: Execute complete self-healing cycle (Observe-Decide-Act-Verify-Learn)
+      tags:
+        - Autopilot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - workspacePath
+              properties:
+                workspacePath:
+                  type: string
+                maxFiles:
+                  type: integer
+                  default: 10
+                  description: Maximum files to modify per cycle
+                maxLOC:
+                  type: integer
+                  default: 40
+                  description: Maximum lines of code per file
+                dryRun:
+                  type: boolean
+                  default: false
+                  description: Preview changes without applying
+              example:
+                workspacePath: "/home/user/project"
+                maxFiles: 10
+                maxLOC: 40
+                dryRun: false
+      responses:
+        "200":
+          description: Cycle completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutopilotResult'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/Unauthorized'
+
+  /autopilot/phase/{phaseName}:
+    post:
+      summary: Run individual phase
+      description: Execute a single phase of the O-D-A-V-L cycle
+      tags:
+        - Autopilot
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: phaseName
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [observe, decide, act, verify, learn]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - workspacePath
+              properties:
+                workspacePath:
+                  type: string
+      responses:
+        "200":
+          description: Phase completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  phase:
+                    type: string
+                  status:
+                    type: string
+                    enum: [success, failed]
+                  duration:
+                    type: number
+                  output:
+                    type: object
+
+  /autopilot/undo:
+    post:
+      summary: Rollback last changes
+      description: Restore files to state before last Autopilot run
+      tags:
+        - Autopilot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - workspacePath
+              properties:
+                workspacePath:
+                  type: string
+                snapshotId:
+                  type: string
+                  description: Specific snapshot to restore (defaults to latest)
+      responses:
+        "200":
+          description: Rollback successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  filesRestored:
+                    type: integer
+                  snapshot:
+                    type: string
+
+  # ============================================
+  # ODAVL Guardian APIs
+  # ============================================
+  
+  /guardian/test:
+    post:
+      summary: Run pre-deploy tests
+      description: Execute comprehensive testing before deployment
+      tags:
+        - Guardian
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: URL to test
+                tests:
+                  type: array
+                  items:
+                    type: string
+                    enum: [accessibility, performance, security, quality]
+                  description: Test suites to run
+                environment:
+                  type: string
+                  enum: [staging, production]
+              example:
+                url: "https://staging.example.com"
+                tests: ["accessibility", "performance", "security"]
+                environment: "staging"
+      responses:
+        "200":
+          description: Tests completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuardianResult'
+
+  /guardian/gates:
+    get:
+      summary: Get quality gates status
+      description: Check current quality gate enforcement status
+      tags:
+        - Guardian
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: workspacePath
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Gates status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  passed:
+                    type: boolean
+                  gates:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        status:
+                          type: string
+                          enum: [passed, failed, skipped]
+                        threshold:
+                          type: number
+                        actual:
+                          type: number
+
+  /reports:
+    post:
+      summary: Submit verification report
+      description: Submit a new quality verification report
+      tags:
+        - Health
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - status
+              properties:
+                name:
+                  type: string
+                  description: Report name
+                status:
+                  type: string
+                  enum: [passed, failed, warning]
+                details:
+                  type: object
+                  description: Additional report details
+              example:
+                name: "Nightly Quality Report"
+                status: "passed"
+                details:
+                  testsRun: 563
+                  testsPassed: 536
+      responses:
+        "201":
+          description: Report accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+
+# ============================================
+# Components
+# ============================================
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for API authentication
+
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [error, warning, info]
+        severity:
+          type: string
+          enum: [critical, high, medium, low]
+        message:
+          type: string
+        file:
+          type: string
+        line:
+          type: integer
+        column:
+          type: integer
+        detector:
+          type: string
+        fixable:
+          type: boolean
+        suggestedFix:
+          type: string
+      example:
+        id: "sec-001"
+        type: "error"
+        severity: "critical"
+        message: "Hardcoded API key detected"
+        file: "src/config.ts"
+        line: 12
+        column: 15
+        detector: "security"
+        fixable: true
+        suggestedFix: "Move to environment variable"
+
+    AnalysisResult:
+      type: object
+      properties:
+        workspacePath:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        duration:
+          type: number
+          description: Analysis duration in milliseconds
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        summary:
+          type: object
+          properties:
+            total:
+              type: integer
+            critical:
+              type: integer
+            high:
+              type: integer
+            medium:
+              type: integer
+            low:
+              type: integer
+            fixable:
+              type: integer
+      example:
+        workspacePath: "/home/user/project"
+        timestamp: "2025-11-29T12:00:00Z"
+        duration: 1250
+        issues: []
+        summary:
+          total: 5
+          critical: 1
+          high: 2
+          medium: 1
+          low: 1
+          fixable: 3
+
+    AutopilotResult:
+      type: object
+      properties:
+        runId:
+          type: string
+        status:
+          type: string
+          enum: [success, failed, partial]
+        phases:
+          type: object
+          properties:
+            observe:
+              type: object
+            decide:
+              type: object
+            act:
+              type: object
+            verify:
+              type: object
+            learn:
+              type: object
+        filesModified:
+          type: integer
+        linesChanged:
+          type: integer
+        attestation:
+          type: string
+          description: Cryptographic proof of improvements
+        ledgerPath:
+          type: string
+          description: Path to detailed run ledger
+
+    GuardianResult:
+      type: object
+      properties:
+        testId:
+          type: string
+        url:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        results:
+          type: object
+          properties:
+            accessibility:
+              type: object
+              properties:
+                score:
+                  type: number
+                violations:
+                  type: integer
+            performance:
+              type: object
+              properties:
+                ttfb:
+                  type: number
+                lcp:
+                  type: number
+                fid:
+                  type: number
+                cls:
+                  type: number
+            security:
+              type: object
+              properties:
+                score:
+                  type: number
+                issues:
+                  type: integer
+        passed:
+          type: boolean
+        gatesPassed:
+          type: array
+          items:
+            type: string
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+          example:
+            error: "INVALID_REQUEST"
+            message: "workspacePath is required"
+
+    Unauthorized:
+      description: Authentication required or invalid token
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+          example:
+            error: "UNAUTHORIZED"
+            message: "Invalid or expired token"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+          example:
+            error: "NOT_FOUND"
+            message: "Issue not found"
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+              requestId:
+                type: string
+          example:
+            error: "INTERNAL_ERROR"
+            message: "An unexpected error occurred"
+            requestId: "req-123456"

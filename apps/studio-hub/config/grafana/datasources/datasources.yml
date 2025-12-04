@@ -1,0 +1,55 @@
+# Grafana Datasource Configuration
+# Prometheus for k6 metrics and custom application metrics
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    jsonData:
+      timeInterval: 5s
+      queryTimeout: 60s
+      httpMethod: POST
+    editable: false
+
+  - name: PostgreSQL - ODAVL
+    type: postgres
+    url: ${DATABASE_HOST}:5432
+    database: ${DATABASE_NAME}
+    user: ${DATABASE_USER}
+    secureJsonData:
+      password: ${DATABASE_PASSWORD}
+    jsonData:
+      sslmode: require
+      maxOpenConns: 10
+      maxIdleConns: 5
+      connMaxLifetime: 14400
+      postgresVersion: 1400
+      timescaledb: false
+    editable: false
+
+  - name: InfluxDB - k6
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    database: k6
+    jsonData:
+      httpMode: GET
+      keepCookies: []
+    editable: false
+
+  - name: Loki - Logs
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    jsonData:
+      maxLines: 1000
+      derivedFields:
+        - datasourceUid: tempo
+          matcherRegex: "traceID=(\\w+)"
+          name: TraceID
+          url: "$${__value.raw}"
+    editable: false

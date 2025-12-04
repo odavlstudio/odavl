@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-10-05T23:07:54.769Z",
+  "status": "FAIL",
+  "violations": [
+    "Too many files changed: 8 > 5",
+    "File README_ENTERPRISE.md: 55 lines > 40 limit",
+    "File tools/release.ps1: 56 lines > 40 limit"
+  ]
+}

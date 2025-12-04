@@ -1,0 +1,734 @@
+Scope: 19 of 22 workspace projects
+github-actions build$ ncc build src/index.ts -o dist --source-map --license licenses.txt
+odavl-studio/autopilot/engine build$ tsup src/index.ts --format cjs,esm --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs
+odavl-studio/guardian/core build$ tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --clean
+odavl-studio/guardian/extension build$ tsup
+github-actions build: ncc: Version 0.38.4
+github-actions build: ncc: Compiling file index.js into CJS
+odavl-studio/guardian/core build: [34mCLI[39m Building entry: src/cli.ts, src/guardian-cli.ts, src/index.ts
+odavl-studio/guardian/core build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/core build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/core build: [34mCLI[39m Target: es2022
+odavl-studio/guardian/core build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/core build: [34mESM[39m Build start
+odavl-studio/guardian/extension build: [34mCLI[39m Building entry: src/extension.ts
+odavl-studio/guardian/extension build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/extension build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/extension build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\guardian\extension\tsup.config.ts
+odavl-studio/guardian/extension build: [34mCLI[39m Target: node18
+odavl-studio/guardian/extension build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/extension build: [34mCJS[39m Build start
+odavl-studio/autopilot/engine build: [34mCLI[39m Building entry: src/index.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsconfig: tsconfig.build.json
+odavl-studio/autopilot/engine build: [34mCLI[39m tsup v8.5.1
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\tsup.config.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Target: es2022
+odavl-studio/autopilot/engine build: [34mCLI[39m Cleaning output folder
+odavl-studio/autopilot/engine build: [34mCJS[39m Build start
+odavl-studio/autopilot/engine build: [34mESM[39m Build start
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\cli.js            [22m[32m6.11 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\guardian-cli.js   [22m[32m6.86 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\index.js          [22m[32m723.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-7V5OQ2ML.js [22m[32m6.99 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-3RG5ZIWI.js [22m[32m390.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\dist-EZX4ZC56.js  [22m[32m13.92 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-FKGIHOAG.js [22m[32m60.15 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m ÔÜí´©Å Build success in 141ms
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:98:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...('insight.js') || (typeof [32mimport.meta[37m !== 'undefined' && import...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:129:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...t.meta !== 'undefined' && [32mimport.meta[37m.url && import.meta.url.en...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:148:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...ed' && import.meta.url && [32mimport.meta[37m.url.endsWith('/insight.ts...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [32mESM[39m [1mdist\index.js [22m[32m318.07 KB[39m
+odavl-studio/autopilot/engine build: [32mESM[39m ÔÜí´©Å Build success in 172ms
+odavl-studio/autopilot/engine build: [32mCJS[39m [1mdist\index.cjs [22m[32m318.88 KB[39m
+odavl-studio/autopilot/engine build: [32mCJS[39m ÔÜí´©Å Build success in 174ms
+odavl-studio/guardian/extension build: [32mCJS[39m [1mdist\extension.js [22m[32m449.96 KB[39m
+odavl-studio/guardian/extension build: [32mCJS[39m ÔÜí´©Å Build success in 240ms
+odavl-studio/guardian/extension build: Done
+odavl-studio/insight/core build$ tsup src/index.ts src/server.ts src/detector/index.ts src/learning/index.ts --format esm,cjs --dts
+odavl-studio/autopilot/engine build: Shebang already present.
+odavl-studio/autopilot/engine build: Done
+packages/email build$ tsup src/index.ts --format esm,cjs --dts
+odavl-studio/guardian/core build: [34mDTS[39m Build start
+odavl-studio/insight/core build: [34mCLI[39m Building entry: src/index.ts, src/server.ts, src/detector/index.ts, src/learning/index.ts
+odavl-studio/insight/core build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/insight/core build: [34mCLI[39m tsup v7.3.0
+odavl-studio/insight/core build: [34mCLI[39m Target: es2022
+odavl-studio/insight/core build: [34mESM[39m Build start
+odavl-studio/insight/core build: [34mCJS[39m Build start
+github-actions build: ncc: Using typescript@5.9.3 (local user-provided)
+odavl-studio/insight/core build: [32mCJS[39m [1mdist\learning\index.js [22m[32m45.94 KB[39m
+odavl-studio/insight/core build: [32mCJS[39m [1mdist\index.js          [22m[32m23.21 KB[39m
+odavl-studio/insight/core build: [32mCJS[39m [1mdist\server.js         [22m[32m7.99 KB[39m
+odavl-studio/insight/core build: [32mCJS[39m [1mdist\detector\index.js [22m[32m535.71 KB[39m
+odavl-studio/insight/core build: [32mCJS[39m ÔÜí´©Å Build success in 215ms
+odavl-studio/insight/core build: [32mESM[39m [1mdist\index.mjs          [22m[32m1.17 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\server.mjs         [22m[32m3.05 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\chunk-I4XRU6ES.mjs [22m[32m2.13 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\chunk-FLX2RJXC.mjs [22m[32m18.52 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\chunk-X2BMVUAF.mjs [22m[32m2.22 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\learning\index.mjs [22m[32m26.20 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\chunk-E6CFVSD4.mjs [22m[32m1.20 KB[39m
+odavl-studio/insight/core build: [32mESM[39m [1mdist\detector\index.mjs [22m[32m513.66 KB[39m
+odavl-studio/insight/core build: [32mESM[39m ÔÜí´©Å Build success in 217ms
+packages/email build: [34mCLI[39m Building entry: src/index.ts
+packages/email build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/email build: [34mCLI[39m tsup v8.5.1
+packages/email build: [34mCLI[39m Target: es2022
+packages/email build: [34mESM[39m Build start
+packages/email build: [34mCJS[39m Build start
+packages/email build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/email build:     package.json:10:6:
+packages/email build: [37m      10 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/email build:          ÔòÁ       [32m~~~~~~~[0m
+packages/email build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/email build:     package.json:8:6:
+packages/email build: [37m      8 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/email build:         ÔòÁ       [32m~~~~~~~~[0m
+packages/email build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/email build:     package.json:9:6:
+packages/email build: [37m      9 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/email build:         ÔòÁ       [32m~~~~~~~~~[0m
+packages/email build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/email build:     package.json:10:6:
+packages/email build: [37m      10 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/email build:          ÔòÁ       [32m~~~~~~~[0m
+packages/email build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/email build:     package.json:8:6:
+packages/email build: [37m      8 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/email build:         ÔòÁ       [32m~~~~~~~~[0m
+packages/email build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/email build:     package.json:9:6:
+packages/email build: [37m      9 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/email build:         ÔòÁ       [32m~~~~~~~~~[0m
+packages/email build: [32mESM[39m [1mdist\index.js [22m[32m16.69 KB[39m
+packages/email build: [32mESM[39m ÔÜí´©Å Build success in 97ms
+packages/email build: [32mCJS[39m [1mdist\index.cjs [22m[32m18.30 KB[39m
+packages/email build: [32mCJS[39m ÔÜí´©Å Build success in 99ms
+odavl-studio/insight/core build: [34mDTS[39m Build start
+packages/email build: [34mDTS[39m Build start
+github-actions build:    0kB  dist\index.d.ts
+github-actions build:    0kB  dist\index.d.ts.map
+github-actions build:   32kB  dist\licenses.txt
+github-actions build:   40kB  dist\sourcemap-register.js
+github-actions build: 1116kB  dist\index.js
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 2488kB  [6242ms] - ncc 0.38.4
+github-actions build: Done
+packages/github-integration build$ tsup src/index.ts src/app.ts src/webhooks.ts --format esm,cjs --dts
+packages/email build: [32mDTS[39m ÔÜí´©Å Build success in 3882ms
+packages/email build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m2.82 KB[39m
+packages/email build: [32mDTS[39m [1mdist\index.d.cts [22m[32m2.82 KB[39m
+packages/email build: Done
+packages/insight-core build$ tsup src/index.ts src/server.ts src/detector/index.ts src/learning/index.ts --format esm,cjs --dts
+packages/github-integration build: [34mCLI[39m Building entry: src/app.ts, src/index.ts, src/webhooks.ts
+packages/github-integration build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/github-integration build: [34mCLI[39m tsup v8.5.1
+packages/github-integration build: [34mCLI[39m Target: es2022
+packages/github-integration build: [34mESM[39m Build start
+packages/github-integration build: [34mCJS[39m Build start
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:12:6:
+packages/github-integration build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:10:6:
+packages/github-integration build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:11:6:
+packages/github-integration build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:17:6:
+packages/github-integration build: [37m      17 Ôöé       [32m"types"[37m: "./dist/app.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:15:6:
+packages/github-integration build: [37m      15 Ôöé       [32m"import"[37m: "./dist/app.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:16:6:
+packages/github-integration build: [37m      16 Ôöé       [32m"require"[37m: "./dist/app.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:22:6:
+packages/github-integration build: [37m      22 Ôöé       [32m"types"[37m: "./dist/webhooks.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:20:6:
+packages/github-integration build: [37m      20 Ôöé       [32m"import"[37m: "./dist/webhooks.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:21:6:
+packages/github-integration build: [37m      21 Ôöé       [32m"require"[37m: "./dist/webhooks.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:12:6:
+packages/github-integration build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:10:6:
+packages/github-integration build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:11:6:
+packages/github-integration build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:17:6:
+packages/github-integration build: [37m      17 Ôöé       [32m"types"[37m: "./dist/app.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:15:6:
+packages/github-integration build: [37m      15 Ôöé       [32m"import"[37m: "./dist/app.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:16:6:
+packages/github-integration build: [37m      16 Ôöé       [32m"require"[37m: "./dist/app.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:22:6:
+packages/github-integration build: [37m      22 Ôöé       [32m"types"[37m: "./dist/webhooks.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:20:6:
+packages/github-integration build: [37m      20 Ôöé       [32m"import"[37m: "./dist/webhooks.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:21:6:
+packages/github-integration build: [37m      21 Ôöé       [32m"require"[37m: "./dist/webhooks.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [32mESM[39m [1mdist\app.js            [22m[32m89.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\webhooks.js       [22m[32m99.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\index.js          [22m[32m177.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\chunk-Q22UZN2W.js [22m[32m8.50 KB[39m
+packages/github-integration build: [32mESM[39m [1mdist\chunk-CQGBG3F6.js [22m[32m9.83 KB[39m
+packages/github-integration build: [32mESM[39m ÔÜí´©Å Build success in 118ms
+packages/github-integration build: [32mCJS[39m [1mdist\index.cjs    [22m[32m20.01 KB[39m
+packages/github-integration build: [32mCJS[39m [1mdist\webhooks.cjs [22m[32m11.44 KB[39m
+packages/github-integration build: [32mCJS[39m [1mdist\app.cjs      [22m[32m10.10 KB[39m
+packages/github-integration build: [32mCJS[39m ÔÜí´©Å Build success in 120ms
+packages/insight-core build: [34mCLI[39m Building entry: src/index.ts, src/server.ts, src/detector/index.ts, src/learning/index.ts
+packages/insight-core build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/insight-core build: [34mCLI[39m tsup v7.3.0
+packages/insight-core build: [34mCLI[39m Target: es2022
+packages/insight-core build: [34mESM[39m Build start
+packages/insight-core build: [34mCJS[39m Build start
+packages/insight-core build: [32mCJS[39m [1mdist\learning\index.js [22m[32m17.14 KB[39m
+packages/insight-core build: [32mCJS[39m [1mdist\detector\index.js [22m[32m356.72 KB[39m
+packages/insight-core build: [32mCJS[39m [1mdist\server.js         [22m[32m7.99 KB[39m
+packages/insight-core build: [32mCJS[39m [1mdist\index.js          [22m[32m20.19 KB[39m
+packages/insight-core build: [32mCJS[39m ÔÜí´©Å Build success in 194ms
+packages/insight-core build: [32mESM[39m [1mdist\detector\index.mjs          [22m[32m333.93 KB[39m
+packages/insight-core build: [32mESM[39m [1mdist\index.mjs                   [22m[32m518.00 B[39m
+packages/insight-core build: [32mESM[39m [1mdist\learning\index.mjs          [22m[32m414.00 B[39m
+packages/insight-core build: [32mESM[39m [1mdist\chunk-I4XRU6ES.mjs          [22m[32m2.13 KB[39m
+packages/insight-core build: [32mESM[39m [1mdist\server.mjs                  [22m[32m3.02 KB[39m
+packages/insight-core build: [32mESM[39m [1mdist\chunk-7PCAID24.mjs          [22m[32m801.00 B[39m
+packages/insight-core build: [32mESM[39m [1mdist\chunk-DRUQON4V.mjs          [22m[32m17.99 KB[39m
+packages/insight-core build: [32mESM[39m [1mdist\chunk-HEBXNMVQ.mjs          [22m[32m2.06 KB[39m
+packages/insight-core build: [32mESM[39m [1mdist\pattern-memory-G5HASD32.mjs [22m[32m245.00 B[39m
+packages/insight-core build: [32mESM[39m ÔÜí´©Å Build success in 196ms
+packages/github-integration build: [34mDTS[39m Build start
+packages/insight-core build: [34mDTS[39m Build start
+odavl-studio/guardian/core build: [32mDTS[39m ÔÜí´©Å Build success in 7805ms
+odavl-studio/guardian/core build: [32mDTS[39m [1mdist\cli.d.ts          [22m[32m20.00 B[39m
+odavl-studio/guardian/core build: [32mDTS[39m [1mdist\index.d.ts        [22m[32m8.13 KB[39m
+odavl-studio/guardian/core build: [32mDTS[39m [1mdist\guardian-cli.d.ts [22m[32m20.00 B[39m
+odavl-studio/guardian/core build: Done
+packages/sales build$ tsup src/index.ts src/github-prospecting.ts src/stripe-integration.ts --format esm,cjs --dts
+packages/sales build: [34mCLI[39m Building entry: src/github-prospecting.ts, src/stripe-integration.ts
+packages/sales build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/sales build: [34mCLI[39m tsup v8.5.1
+packages/sales build: [34mCLI[39m Target: es2022
+packages/sales build: [34mESM[39m Build start
+packages/sales build: [34mCJS[39m Build start
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:27:6:
+packages/sales build: [37m      27 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:25:6:
+packages/sales build: [37m      25 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:26:6:
+packages/sales build: [37m      26 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:32:6:
+packages/sales build: [37m      32 Ôöé       [32m"types"[37m: "./dist/github-prospecting.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:30:6:
+packages/sales build: [37m      30 Ôöé       [32m"import"[37m: "./dist/github-prospecting.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:31:6:
+packages/sales build: [37m      31 Ôöé       [32m"require"[37m: "./dist/github-prospecting.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:37:6:
+packages/sales build: [37m      37 Ôöé       [32m"types"[37m: "./dist/stripe-integration.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:35:6:
+packages/sales build: [37m      35 Ôöé       [32m"import"[37m: "./dist/stripe-integration.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:36:6:
+packages/sales build: [37m      36 Ôöé       [32m"require"[37m: "./dist/stripe-integration.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:27:6:
+packages/sales build: [37m      27 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:25:6:
+packages/sales build: [37m      25 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:26:6:
+packages/sales build: [37m      26 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:32:6:
+packages/sales build: [37m      32 Ôöé       [32m"types"[37m: "./dist/github-prospecting.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:30:6:
+packages/sales build: [37m      30 Ôöé       [32m"import"[37m: "./dist/github-prospecting.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:31:6:
+packages/sales build: [37m      31 Ôöé       [32m"require"[37m: "./dist/github-prospecting.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/sales build:     package.json:37:6:
+packages/sales build: [37m      37 Ôöé       [32m"types"[37m: "./dist/stripe-integration.d.ts"
+packages/sales build:          ÔòÁ       [32m~~~~~~~[0m
+packages/sales build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/sales build:     package.json:35:6:
+packages/sales build: [37m      35 Ôöé       [32m"import"[37m: "./dist/stripe-integration.js",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/sales build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/sales build:     package.json:36:6:
+packages/sales build: [37m      36 Ôöé       [32m"require"[37m: "./dist/stripe-integration.cjs",
+packages/sales build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/sales build: [32mESM[39m [1mdist\chunk-Y6FXYEAI.mjs     [22m[32m390.00 B[39m
+packages/sales build: [32mESM[39m [1mdist\github-prospecting.mjs [22m[32m12.96 KB[39m
+packages/sales build: [32mESM[39m [1mdist\stripe-integration.mjs [22m[32m11.09 KB[39m
+packages/sales build: [32mESM[39m ÔÜí´©Å Build success in 126ms
+packages/sales build: [32mCJS[39m [1mdist\github-prospecting.js [22m[32m14.56 KB[39m
+packages/sales build: [32mCJS[39m [1mdist\stripe-integration.js [22m[32m12.86 KB[39m
+packages/sales build: [32mCJS[39m ÔÜí´©Å Build success in 127ms
+packages/sales build: [34mDTS[39m Build start
+odavl-studio/insight/core build: [32mDTS[39m ÔÜí´©Å Build success in 9567ms
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\index.d.mts                  [22m[32m442.00 B[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\server.d.mts                 [22m[32m1.11 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\learning\index.d.mts         [22m[32m10.62 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\detector\index.d.mts         [22m[32m55.42 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\training-CLa5wrx0.d.ts       [22m[32m343.00 B[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\pattern-memory-Ar0vH-Nr.d.ts [22m[32m10.33 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\index.d.ts                   [22m[32m442.00 B[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\server.d.ts                  [22m[32m1.11 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\learning\index.d.ts          [22m[32m10.62 KB[39m
+odavl-studio/insight/core build: [32mDTS[39m [1mdist\detector\index.d.ts          [22m[32m55.42 KB[39m
+odavl-studio/insight/core build: Done
+packages/types build$ tsup src/index.ts --format esm,cjs --dts
+packages/types build: [34mCLI[39m Building entry: src/index.ts
+packages/types build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/types build: [34mCLI[39m tsup v8.5.1
+packages/types build: [34mCLI[39m Target: es2022
+packages/types build: [34mESM[39m Build start
+packages/types build: [34mCJS[39m Build start
+packages/types build: [32mESM[39m [1mdist\index.js [22m[32m1.88 KB[39m
+packages/types build: [32mESM[39m ÔÜí´©Å Build success in 87ms
+packages/types build: [32mCJS[39m [1mdist\index.cjs [22m[32m2.87 KB[39m
+packages/types build: [32mCJS[39m ÔÜí´©Å Build success in 88ms
+packages/types build: [34mDTS[39m Build start
+packages/types build: [32mDTS[39m ÔÜí´©Å Build success in 1326ms
+packages/types build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m1.87 KB[39m
+packages/types build: [32mDTS[39m [1mdist\index.d.cts [22m[32m1.87 KB[39m
+packages/types build: Done
+packages/sales build: [32mDTS[39m ÔÜí´©Å Build success in 5822ms
+packages/sales build: [32mDTS[39m [1mdist\github-prospecting.d.mts [22m[32m2.54 KB[39m
+packages/sales build: [32mDTS[39m [1mdist\stripe-integration.d.mts [22m[32m4.60 KB[39m
+packages/sales build: [32mDTS[39m [1mdist\github-prospecting.d.ts  [22m[32m2.54 KB[39m
+packages/sales build: [32mDTS[39m [1mdist\stripe-integration.d.ts  [22m[32m4.60 KB[39m
+packages/insight-core build: [32mDTS[39m ÔÜí´©Å Build success in 8727ms
+packages/insight-core build: [32mDTS[39m [1mdist\index.d.mts            [22m[32m364.00 B[39m
+packages/insight-core build: [32mDTS[39m [1mdist\server.d.mts           [22m[32m1.11 KB[39m
+packages/insight-core build: [32mDTS[39m [1mdist\detector\index.d.mts   [22m[32m44.21 KB[39m
+packages/insight-core build: [32mDTS[39m [1mdist\learning\index.d.mts   [22m[32m10.26 KB[39m
+packages/insight-core build: [32mDTS[39m [1mdist\training-CLa5wrx0.d.ts [22m[32m343.00 B[39m
+packages/insight-core build: [32mDTS[39m [1mdist\index.d.ts             [22m[32m363.00 B[39m
+packages/insight-core build: [32mDTS[39m [1mdist\server.d.ts            [22m[32m1.11 KB[39m
+packages/insight-core build: [32mDTS[39m [1mdist\detector\index.d.ts    [22m[32m44.21 KB[39m
+packages/insight-core build: [32mDTS[39m [1mdist\learning\index.d.ts    [22m[32m10.26 KB[39m
+packages/sales build: Done
+packages/insight-core build: Done
+packages/github-integration build: [32mDTS[39m ÔÜí´©Å Build success in 9748ms
+packages/github-integration build: [32mDTS[39m [1mdist\app.d.ts       [22m[32m67.49 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\webhooks.d.ts  [22m[32m2.18 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\index.d.ts     [22m[32m225.00 B[39m
+packages/github-integration build: [32mDTS[39m [1mdist\app.d.cts      [22m[32m67.49 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\webhooks.d.cts [22m[32m2.18 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\index.d.cts    [22m[32m227.00 B[39m
+packages/github-integration build: Done
+apps/studio-cli build$ tsup src/index.ts --format esm --dts && node scripts/add-shebang.cjs
+odavl-studio/guardian/workers build$ tsup
+packages/auth build$ tsup src/index.ts --format esm,cjs --dts
+packages/sdk build$ tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts --format esm,cjs --dts
+apps/studio-cli build: [34mCLI[39m Building entry: src/index.ts
+apps/studio-cli build: [34mCLI[39m Using tsconfig: tsconfig.json
+apps/studio-cli build: [34mCLI[39m tsup v8.5.1
+packages/auth build: [34mCLI[39m Building entry: src/index.ts
+apps/studio-cli build: [34mCLI[39m Target: es2022
+packages/auth build: [34mCLI[39m Using tsconfig: tsconfig.json
+apps/studio-cli build: [34mESM[39m Build start
+packages/auth build: [34mCLI[39m tsup v8.5.1
+packages/auth build: [34mCLI[39m Target: es2022
+packages/auth build: [34mESM[39m Build start
+packages/auth build: [34mCJS[39m Build start
+packages/sdk build: [34mCLI[39m Building entry: src/autopilot.ts, src/guardian.ts, src/index.ts, src/insight.ts
+packages/sdk build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/sdk build: [34mCLI[39m tsup v8.5.1
+packages/sdk build: [34mCLI[39m Target: es2022
+packages/sdk build: [34mESM[39m Build start
+packages/sdk build: [34mCJS[39m Build start
+apps/studio-cli build: [32mESM[39m [1mdist\index.js [22m[32m38.54 KB[39m
+apps/studio-cli build: [32mESM[39m ÔÜí´©Å Build success in 113ms
+packages/sdk build: [32mESM[39m [1mdist\guardian.js       [22m[32m357.00 B[39m
+packages/sdk build: [32mESM[39m [1mdist\autopilot.js      [22m[32m263.00 B[39m
+packages/sdk build: [32mESM[39m [1mdist\index.js          [22m[32m1.32 KB[39m
+packages/sdk build: [32mESM[39m [1mdist\chunk-LTZRIHTF.js [22m[32m3.21 KB[39m
+packages/sdk build: [32mESM[39m [1mdist\chunk-KNSFI5PC.js [22m[32m4.36 KB[39m
+packages/sdk build: [32mESM[39m [1mdist\chunk-PNKVD2UK.js [22m[32m953.00 B[39m
+packages/sdk build: [32mESM[39m [1mdist\chunk-UW4D5EWC.js [22m[32m3.95 KB[39m
+packages/sdk build: [32mESM[39m [1mdist\insight.js        [22m[32m263.00 B[39m
+packages/sdk build: [32mESM[39m ÔÜí´©Å Build success in 111ms
+packages/sdk build: [32mCJS[39m [1mdist\guardian.cjs  [22m[32m4.64 KB[39m
+packages/sdk build: [32mCJS[39m [1mdist\autopilot.cjs [22m[32m3.64 KB[39m
+packages/sdk build: [32mCJS[39m [1mdist\insight.cjs   [22m[32m4.32 KB[39m
+packages/sdk build: [32mCJS[39m [1mdist\index.cjs     [22m[32m13.50 KB[39m
+packages/sdk build: [32mCJS[39m ÔÜí´©Å Build success in 113ms
+packages/auth build: [32mCJS[39m [1mdist\index.cjs [22m[32m243.25 KB[39m
+packages/auth build: [32mCJS[39m ÔÜí´©Å Build success in 178ms
+packages/auth build: [32mESM[39m [1mdist\index.js [22m[32m241.42 KB[39m
+packages/auth build: [32mESM[39m ÔÜí´©Å Build success in 180ms
+odavl-studio/guardian/workers build: [34mCLI[39m Building entry: src/index.ts, src/worker.ts
+odavl-studio/guardian/workers build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/workers build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/workers build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\guardian\workers\tsup.config.ts
+odavl-studio/guardian/workers build: [34mCLI[39m Target: es2022
+odavl-studio/guardian/workers build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/workers build: [34mESM[39m Build start
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\index.js              [22m[32m190.00 B[39m
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\worker.js             [22m[32m603.00 B[39m
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\chunk-TQAHWA4I.js     [22m[32m37.94 KB[39m
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\index.js.map          [22m[32m71.00 B[39m
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\worker.js.map         [22m[32m1.08 KB[39m
+odavl-studio/guardian/workers build: [32mESM[39m [1mdist\chunk-TQAHWA4I.js.map [22m[32m72.33 KB[39m
+odavl-studio/guardian/workers build: [32mESM[39m ÔÜí´©Å Build success in 45ms
+odavl-studio/guardian/workers build: Done
+apps/studio-cli build: [34mDTS[39m Build start
+packages/auth build: [34mDTS[39m Build start
+packages/sdk build: [34mDTS[39m Build start
+apps/studio-cli build: [32mDTS[39m ÔÜí´©Å Build success in 2674ms
+apps/studio-cli build: [32mDTS[39m [1mdist\index.d.ts [22m[32m20.00 B[39m
+apps/studio-cli build: Done
+packages/auth build: [32mDTS[39m ÔÜí´©Å Build success in 3477ms
+packages/auth build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m5.31 KB[39m
+packages/auth build: [32mDTS[39m [1mdist\index.d.cts [22m[32m5.31 KB[39m
+packages/auth build: Done
+packages/sdk build: [32mDTS[39m ÔÜí´©Å Build success in 3978ms
+packages/sdk build: [32mDTS[39m [1mdist\index.d.ts      [22m[32m1.22 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\autopilot.d.ts  [22m[32m2.46 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\guardian.d.ts   [22m[32m3.14 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\insight.d.ts    [22m[32m2.38 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\index.d.cts     [22m[32m1.22 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\autopilot.d.cts [22m[32m2.46 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\guardian.d.cts  [22m[32m3.14 KB[39m
+packages/sdk build: [32mDTS[39m [1mdist\insight.d.cts   [22m[32m2.38 KB[39m
+packages/sdk build: Done
+odavl-studio/guardian/api build$ tsup
+packages/core build$ tsup src/index.ts --format esm,cjs --dts
+odavl-studio/insight/cloud build$ next build
+odavl-studio/insight/cloud build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+packages/core build: [34mCLI[39m Building entry: src/index.ts
+packages/core build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/core build: [34mCLI[39m tsup v8.5.1
+packages/core build: [34mCLI[39m Target: es2022
+packages/core build: [34mESM[39m Build start
+packages/core build: [34mCJS[39m Build start
+odavl-studio/guardian/api build: [34mCLI[39m Building entry: src/index.ts, src/server.ts
+odavl-studio/guardian/api build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/api build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/api build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\guardian\api\tsup.config.ts
+odavl-studio/guardian/api build: [34mCLI[39m Target: node20
+odavl-studio/guardian/api build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/api build: [34mESM[39m Build start
+packages/core build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/core build:     package.json:13:6:
+packages/core build: [37m      13 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/core build:          ÔòÁ       [32m~~~~~~~[0m
+packages/core build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/core build:     package.json:11:6:
+packages/core build: [37m      11 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/core build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/core build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/core build:     package.json:12:6:
+packages/core build: [37m      12 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/core build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/core build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/core build:     package.json:13:6:
+packages/core build: [37m      13 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/core build:          ÔòÁ       [32m~~~~~~~[0m
+packages/core build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/core build:     package.json:11:6:
+packages/core build: [37m      11 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/core build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/core build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/core build:     package.json:12:6:
+packages/core build: [37m      12 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/core build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/core build: [32mESM[39m [1mdist\index.js [22m[32m349.00 B[39m
+packages/core build: [32mESM[39m ÔÜí´©Å Build success in 104ms
+packages/core build: [32mCJS[39m [1mdist\index.cjs [22m[32m1.43 KB[39m
+packages/core build: [32mCJS[39m ÔÜí´©Å Build success in 105ms
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\index.js              [22m[32m658.00 B[39m
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\server.js             [22m[32m139.00 B[39m
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\chunk-IIFVYDG2.js     [22m[32m14.32 KB[39m
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\index.js.map          [22m[32m71.00 B[39m
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\server.js.map         [22m[32m71.00 B[39m
+odavl-studio/guardian/api build: [32mESM[39m [1mdist\chunk-IIFVYDG2.js.map [22m[32m31.96 KB[39m
+odavl-studio/guardian/api build: [32mESM[39m ÔÜí´©Å Build success in 51ms
+odavl-studio/guardian/api build: Done
+packages/core build: [34mDTS[39m Build start
+odavl-studio/insight/cloud build:  ÔÜá `skipMiddlewareUrlNormalize` is deprecated. Please use `skipProxyUrlNormalize` instead in next.config.js.
+odavl-studio/insight/cloud build:  ÔÜá `eslint` configuration in next.config.js is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+odavl-studio/insight/cloud build:  ÔÜá Invalid next.config.js options detected: 
+odavl-studio/insight/cloud build:  ÔÜá     Unrecognized key(s) in object: 'eslint', 'swcMinify', 'optimizeFonts'
+odavl-studio/insight/cloud build:  ÔÜá See more info here: https://nextjs.org/docs/messages/invalid-next-config
+odavl-studio/insight/cloud build:    Ôû▓ Next.js 16.0.5 (Turbopack)
+odavl-studio/insight/cloud build:    - Environments: .env
+odavl-studio/insight/cloud build:  ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+odavl-studio/insight/cloud build:    Creating an optimized production build ...
+packages/core build: [32mDTS[39m ÔÜí´©Å Build success in 2723ms
+packages/core build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m326.00 B[39m
+packages/core build: [32mDTS[39m [1mdist\index.d.cts [22m[32m326.00 B[39m
+packages/core build: Done
+odavl-studio/insight/cloud build: Turbopack build encountered 5 warnings:
+odavl-studio/insight/cloud build: ./packages/auth/dist
+odavl-studio/insight/cloud build: Package bcryptjs can't be external
+odavl-studio/insight/cloud build: The request bcryptjs matches serverExternalPackages (or the default list).
+odavl-studio/insight/cloud build: The request could not be resolved by Node.js from the project directory.
+odavl-studio/insight/cloud build: Packages that should be external need to be installed in the project directory, so they can be resolved from the output files.
+odavl-studio/insight/cloud build: Try to install it into the project directory by running npm install bcryptjs from the project directory.
+odavl-studio/insight/cloud build: ./packages/auth/dist
+odavl-studio/insight/cloud build: Package jsonwebtoken can't be external
+odavl-studio/insight/cloud build: The request jsonwebtoken matches serverExternalPackages (or the default list).
+odavl-studio/insight/cloud build: The request could not be resolved by Node.js from the project directory.
+odavl-studio/insight/cloud build: Packages that should be external need to be installed in the project directory, so they can be resolved from the output files.
+odavl-studio/insight/cloud build: Try to install it into the project directory by running npm install jsonwebtoken from the project directory.
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/auth/request-password-reset/route.ts:52:38
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@odavl-studio/email'
+odavl-studio/insight/cloud build: [0m [90m 50 |[39m     [90m// Send password reset email[39m
+odavl-studio/insight/cloud build:  [90m 51 |[39m     [36mtry[39m {
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m 52 |[39m       [36mconst[39m { [33mEmailService[39m } [33m=[39m [36mawait[39m [36mimport[39m([32m'@odavl-studio/email'[39m)[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 53 |[39m       
+odavl-studio/insight/cloud build:  [90m 54 |[39m       [36mconst[39m emailService [33m=[39m [36mnew[39m [33mEmailService[39m({
+odavl-studio/insight/cloud build:  [90m 55 |[39m         host[33m:[39m process[33m.[39menv[33m.[39m[33mSMTP_HOST[39m [33m||[39m [32m'smtp.gmail.com'[39m[33m,[39m[0m
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/auth/verify-email/route.ts:51:38
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@odavl-studio/email'
+odavl-studio/insight/cloud build: [0m [90m 49 |[39m     [90m// Send welcome email (optional - can be done in background)[39m
+odavl-studio/insight/cloud build:  [90m 50 |[39m     [36mtry[39m {
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m 51 |[39m       [36mconst[39m { [33mEmailService[39m } [33m=[39m [36mawait[39m [36mimport[39m([32m'@odavl-studio/email'[39m)[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 52 |[39m       
+odavl-studio/insight/cloud build:  [90m 53 |[39m       [36mconst[39m emailService [33m=[39m [36mnew[39m [33mEmailService[39m({
+odavl-studio/insight/cloud build:  [90m 54 |[39m         host[33m:[39m process[33m.[39menv[33m.[39m[33mSMTP_HOST[39m [33m||[39m [32m'smtp.gmail.com'[39m[33m,[39m[0m
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/components/ExportButton.tsx:66:31
+odavl-studio/insight/cloud build: Module not found: Can't resolve 'jspdf'
+odavl-studio/insight/cloud build: [0m [90m 64 |[39m     [36mtry[39m {
+odavl-studio/insight/cloud build:  [90m 65 |[39m       [90m// @ts-ignore - jsPDF provides its own types but Next.js build struggles[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m 66 |[39m       [36mconst[39m { jsPDF } [33m=[39m [36mawait[39m [36mimport[39m([32m'jspdf'[39m)[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m                               [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 67 |[39m       [36mconst[39m doc [33m=[39m [36mnew[39m jsPDF()[33m;[39m
+odavl-studio/insight/cloud build:  [90m 68 |[39m
+odavl-studio/insight/cloud build:  [90m 69 |[39m       [90m// Title[39m[0m
+odavl-studio/insight/cloud build: Import traces:
+odavl-studio/insight/cloud build:   Client Component Browser:
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/components/ExportButton.tsx [Client Component Browser]
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/app/guardian/page.tsx [Client Component Browser]
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/app/guardian/page.tsx [Server Component]
+odavl-studio/insight/cloud build:   Client Component SSR:
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/components/ExportButton.tsx [Client Component SSR]
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/app/guardian/page.tsx [Client Component SSR]
+odavl-studio/insight/cloud build:     ./odavl-studio/insight/cloud/app/guardian/page.tsx [Server Component]
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: > Build error occurred
+odavl-studio/insight/cloud build: Error: Turbopack build failed with 11 errors:
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/activity/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m [36mimport[39m { [33mActivityService[39m } [36mfrom[39m [32m'@/lib/activity/service'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36masync[39m [36mfunction[39m handleGetActivity(req[33m:[39m [33mNextRequest[39m) {[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/analysis/[analysisId]/cancel/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m [36mimport[39m { cancelAnalysis } [36mfrom[39m [32m'@/lib/analysis/event-emitter'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36masync[39m [36mfunction[39m handleCancel([0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/analysis/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m [36mimport[39m { withRateLimit } [36mfrom[39m [32m'@/lib/middleware/rate-limit'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [36mimport[39m { analysisLimiter } [36mfrom[39m [32m'@/lib/rate-limit/limiters'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36mimport[39m { withValidation } [36mfrom[39m [32m'@/lib/middleware/validation'[39m[33m;[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/comments/[commentId]/resolve/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m [36mimport[39m { [33mCommentsService[39m } [36mfrom[39m [32m'@/lib/comments/service'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36masync[39m [36mfunction[39m handleResolveComment([0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/comments/route.ts:8:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  6 |[39m
+odavl-studio/insight/cloud build:  [90m  7 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [36mimport[39m { [33mCommentsService[39m } [36mfrom[39m [32m'@/lib/comments/service'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36mimport[39m { z } [36mfrom[39m [32m'zod'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 11 |[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/notifications/[notificationId]/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [36masync[39m [36mfunction[39m handleMarkRead(
+odavl-studio/insight/cloud build:  [90m 10 |[39m   req[33m:[39m [33mNextRequest[39m[33m,[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/notifications/route.ts:7:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/auth'
+odavl-studio/insight/cloud build: [0m [90m  5 |[39m
+odavl-studio/insight/cloud build:  [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [90m// Mock notification storage (replace with database in production)[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36mconst[39m notificationsStore [33m=[39m [36mnew[39m [33mMap[39m[33m<[39m[33mstring[39m[33m,[39m [33mArray[39m[33m<[39m{[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/auth' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/analysis/route.ts:8:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/rate-limit'
+odavl-studio/insight/cloud build: [0m [90m  6 |[39m [36mimport[39m { [33mNextRequest[39m[33m,[39m [33mNextResponse[39m } [36mfrom[39m [32m'next/server'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { withRateLimit } [36mfrom[39m [32m'@/lib/middleware/rate-limit'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [36mimport[39m { analysisLimiter } [36mfrom[39m [32m'@/lib/rate-limit/limiters'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36mimport[39m { withValidation } [36mfrom[39m [32m'@/lib/middleware/validation'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 11 |[39m [36mimport[39m { z } [36mfrom[39m [32m'zod'[39m[33m;[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/rate-limit' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/rate-limit' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/analysis/route.ts:10:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/middleware/validation'
+odavl-studio/insight/cloud build: [0m [90m  8 |[39m [36mimport[39m { withRateLimit } [36mfrom[39m [32m'@/lib/middleware/rate-limit'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  9 |[39m [36mimport[39m { analysisLimiter } [36mfrom[39m [32m'@/lib/rate-limit/limiters'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { withValidation } [36mfrom[39m [32m'@/lib/middleware/validation'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 11 |[39m [36mimport[39m { z } [36mfrom[39m [32m'zod'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 12 |[39m [36mimport[39m { createAnalysisEmitter[33m,[39m removeAnalysisEmitter } [36mfrom[39m [32m'@/lib/analysis/event-emitter'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 13 |[39m [36mimport[39m { randomUUID } [36mfrom[39m [32m'crypto'[39m[33m;[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/middleware/validation' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/middleware/validation' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/analysis/route.ts:9:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@/lib/rate-limit/limiters'
+odavl-studio/insight/cloud build: [0m [90m  7 |[39m [36mimport[39m { withAuth } [36mfrom[39m [32m'@/lib/middleware/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m  8 |[39m [36mimport[39m { withRateLimit } [36mfrom[39m [32m'@/lib/middleware/rate-limit'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { analysisLimiter } [36mfrom[39m [32m'@/lib/rate-limit/limiters'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 10 |[39m [36mimport[39m { withValidation } [36mfrom[39m [32m'@/lib/middleware/validation'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 11 |[39m [36mimport[39m { z } [36mfrom[39m [32m'zod'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 12 |[39m [36mimport[39m { createAnalysisEmitter[33m,[39m removeAnalysisEmitter } [36mfrom[39m [32m'@/lib/analysis/event-emitter'[39m[33m;[39m[0m
+odavl-studio/insight/cloud build: Import map: aliased to relative './src/lib/rate-limit/limiters' inside of [project]/odavl-studio/insight/cloud | aliased to relative './lib/rate-limit/limiters' inside of [project]/odavl-studio/insight/cloud
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build: ./odavl-studio/insight/cloud/app/api/auth/register/route.ts:5:1
+odavl-studio/insight/cloud build: Module not found: Can't resolve '@odavl-studio/email'
+odavl-studio/insight/cloud build: [0m [90m 3 |[39m [36mimport[39m { [33mAuthService[39m[33m,[39m validatePassword } [36mfrom[39m [32m'@odavl-studio/auth'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 4 |[39m [36mimport[39m { createPrismaAdapter } [36mfrom[39m [32m'@/lib/auth-adapter'[39m[33m;[39m
+odavl-studio/insight/cloud build: [31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mEmailService[39m } [36mfrom[39m [32m'@odavl-studio/email'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+odavl-studio/insight/cloud build:  [90m 6 |[39m [36mimport[39m crypto [36mfrom[39m [32m'crypto'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 7 |[39m [36mimport[39m { withValidation } [36mfrom[39m [32m'@/lib/validation/middleware'[39m[33m;[39m
+odavl-studio/insight/cloud build:  [90m 8 |[39m [36mimport[39m { registerSchema } [36mfrom[39m [32m'@/lib/validation/schemas'[39m[33m;[39m[0m
+odavl-studio/insight/cloud build: https://nextjs.org/docs/messages/module-not-found
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/activity/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/analysis/[analysisId]/cancel/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/analysis/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/comments/[commentId]/resolve/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/comments/route.ts:8:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/notifications/[notificationId]/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/notifications/route.ts:7:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/analysis/route.ts:8:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/analysis/route.ts:10:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/analysis/route.ts:9:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build:     at <unknown> (./odavl-studio/insight/cloud/app/api/auth/register/route.ts:5:1)
+odavl-studio/insight/cloud build:     at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+odavl-studio/insight/cloud build: Failed
+C:\Users\sabou\dev\odavl\odavl-studio\insight\cloud:
+ÔÇëERR_PNPM_RECURSIVE_RUN_FIRST_FAILÔÇë @odavl-studio/insight-cloud@2.0.0 build: `next build`
+Exit status 1

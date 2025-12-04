@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "trainedAt": "2025-11-29T14:53:38.168Z",
+  "threshold": 0.6870833333333333,
+  "accuracy": 0.7894736842105263,
+  "truePositiveRate": 0.7894736842105263,
+  "falsePositiveRate": 0.21052631578947367,
+  "trainingSize": 19,
+  "metadata": {
+    "framework": "simplified-demo",
+    "note": "Real implementation will use TensorFlow.js"
+  }
+}

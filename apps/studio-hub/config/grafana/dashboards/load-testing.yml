@@ -1,0 +1,424 @@
+# Grafana Dashboard Configuration for ODAVL Studio Hub
+# Load Testing & Performance Monitoring
+#
+# This dashboard provides real-time visibility into:
+# - Load test metrics (response times, error rates, throughput)
+# - Database performance (query duration, connection pool)
+# - API endpoint performance
+# - Web Vitals (LCP, CLS, FID)
+# - Resource utilization (CPU, memory, network)
+
+apiVersion: 1
+
+providers:
+  - name: 'ODAVL Load Testing'
+    orgId: 1
+    folder: 'Load Testing'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: true
+
+# Dashboard JSON
+dashboard:
+  title: ODAVL Studio Hub - Load Testing & Performance
+  tags:
+    - load-testing
+    - k6
+    - performance
+    - odavl
+  timezone: browser
+  editable: true
+  refresh: 5s
+  
+  # Variables
+  templating:
+    list:
+      - name: environment
+        type: query
+        label: Environment
+        query: prometheus
+        datasource: Prometheus
+        multi: false
+        includeAll: false
+        options:
+          - text: Staging
+            value: staging
+          - text: Production
+            value: production
+        current:
+          text: Staging
+          value: staging
+      
+      - name: endpoint
+        type: query
+        label: Endpoint
+        query: label_values(http_req_duration, endpoint)
+        datasource: Prometheus
+        multi: true
+        includeAll: true
+        current:
+          text: All
+          value: $__all
+  
+  # Panels
+  panels:
+    # ========================================================================
+    # Row 1: Overview Metrics
+    # ========================================================================
+    - title: Total Requests
+      type: stat
+      gridPos: { h: 6, w: 6, x: 0, y: 0 }
+      targets:
+        - expr: sum(http_reqs)
+          refId: A
+      fieldConfig:
+        defaults:
+          unit: short
+          color:
+            mode: thresholds
+          thresholds:
+            mode: absolute
+            steps:
+              - value: 0
+                color: blue
+              - value: 10000
+                color: green
+              - value: 100000
+                color: yellow
+    
+    - title: Error Rate
+      type: stat
+      gridPos: { h: 6, w: 6, x: 6, y: 0 }
+      targets:
+        - expr: (sum(http_req_failed) / sum(http_reqs)) * 100
+          refId: A
+      fieldConfig:
+        defaults:
+          unit: percent
+          color:
+            mode: thresholds
+          thresholds:
+            mode: absolute
+            steps:
+              - value: 0
+                color: green
+              - value: 1
+                color: yellow
+              - value: 5
+                color: red
+    
+    - title: P95 Response Time
+      type: stat
+      gridPos: { h: 6, w: 6, x: 12, y: 0 }
+      targets:
+        - expr: histogram_quantile(0.95, http_req_duration)
+          refId: A
+      fieldConfig:
+        defaults:
+          unit: ms
+          color:
+            mode: thresholds
+          thresholds:
+            mode: absolute
+            steps:
+              - value: 0
+                color: green
+              - value: 500
+                color: yellow
+              - value: 1000
+                color: red
+    
+    - title: Requests/Second
+      type: stat
+      gridPos: { h: 6, w: 6, x: 18, y: 0 }
+      targets:
+        - expr: rate(http_reqs[1m])
+          refId: A
+      fieldConfig:
+        defaults:
+          unit: reqps
+          color:
+            mode: thresholds
+          thresholds:
+            mode: absolute
+            steps:
+              - value: 0
+                color: blue
+              - value: 100
+                color: green
+              - value: 1000
+                color: yellow
+    
+    # ========================================================================
+    # Row 2: Response Time Graph
+    # ========================================================================
+    - title: Response Time Distribution
+      type: graph
+      gridPos: { h: 8, w: 24, x: 0, y: 6 }
+      targets:
+        - expr: histogram_quantile(0.50, http_req_duration)
+          legendFormat: P50 (Median)
+          refId: A
+        - expr: histogram_quantile(0.95, http_req_duration)
+          legendFormat: P95
+          refId: B
+        - expr: histogram_quantile(0.99, http_req_duration)
+          legendFormat: P99
+          refId: C
+        - expr: histogram_quantile(1.0, http_req_duration)
+          legendFormat: Max
+          refId: D
+      yaxes:
+        - format: ms
+          label: Response Time
+        - format: short
+      xaxis:
+        mode: time
+      legend:
+        show: true
+        alignAsTable: true
+        values: true
+        current: true
+        avg: true
+        max: true
+    
+    # ========================================================================
+    # Row 3: Endpoint Performance
+    # ========================================================================
+    - title: Endpoint Response Times (P95)
+      type: graph
+      gridPos: { h: 8, w: 12, x: 0, y: 14 }
+      targets:
+        - expr: histogram_quantile(0.95, sum by(endpoint) (http_req_duration{endpoint=~"$endpoint"}))
+          legendFormat: "{{ endpoint }}"
+          refId: A
+      yaxes:
+        - format: ms
+          label: P95 Response Time
+        - format: short
+      thresholds:
+        - value: 500
+          colorMode: critical
+          op: gt
+          line: true
+    
+    - title: Requests by Endpoint
+      type: graph
+      gridPos: { h: 8, w: 12, x: 12, y: 14 }
+      targets:
+        - expr: sum by(endpoint) (rate(http_reqs{endpoint=~"$endpoint"}[1m]))
+          legendFormat: "{{ endpoint }}"
+          refId: A
+      yaxes:
+        - format: reqps
+          label: Requests/Second
+        - format: short
+    
+    # ========================================================================
+    # Row 4: Database Performance
+    # ========================================================================
+    - title: Database Query Duration (P95)
+      type: graph
+      gridPos: { h: 8, w: 12, x: 0, y: 22 }
+      targets:
+        - expr: histogram_quantile(0.95, db_query_duration)
+          legendFormat: P95
+          refId: A
+        - expr: histogram_quantile(0.99, db_query_duration)
+          legendFormat: P99
+          refId: B
+      yaxes:
+        - format: ms
+          label: Query Duration
+        - format: short
+      thresholds:
+        - value: 100
+          colorMode: critical
+          op: gt
+          line: true
+    
+    - title: Database Queries by Type
+      type: graph
+      gridPos: { h: 8, w: 12, x: 12, y: 22 }
+      targets:
+        - expr: sum by(query) (rate(db_query_duration[1m]))
+          legendFormat: "{{ query }}"
+          refId: A
+      yaxes:
+        - format: ops
+          label: Queries/Second
+        - format: short
+    
+    # ========================================================================
+    # Row 5: Web Vitals
+    # ========================================================================
+    - title: Largest Contentful Paint (LCP)
+      type: graph
+      gridPos: { h: 8, w: 8, x: 0, y: 30 }
+      targets:
+        - expr: histogram_quantile(0.95, web_vitals_lcp)
+          legendFormat: LCP P95
+          refId: A
+      yaxes:
+        - format: ms
+          label: LCP (ms)
+        - format: short
+      thresholds:
+        - value: 2500
+          colorMode: critical
+          op: gt
+          line: true
+    
+    - title: Cumulative Layout Shift (CLS)
+      type: graph
+      gridPos: { h: 8, w: 8, x: 8, y: 30 }
+      targets:
+        - expr: histogram_quantile(0.95, web_vitals_cls)
+          legendFormat: CLS P95
+          refId: A
+      yaxes:
+        - format: short
+          label: CLS Score
+        - format: short
+      thresholds:
+        - value: 0.1
+          colorMode: critical
+          op: gt
+          line: true
+    
+    - title: First Input Delay (FID)
+      type: graph
+      gridPos: { h: 8, w: 8, x: 16, y: 30 }
+      targets:
+        - expr: histogram_quantile(0.95, web_vitals_fid)
+          legendFormat: FID P95
+          refId: A
+      yaxes:
+        - format: ms
+          label: FID (ms)
+        - format: short
+      thresholds:
+        - value: 100
+          colorMode: critical
+          op: gt
+          line: true
+    
+    # ========================================================================
+    # Row 6: Error Analysis
+    # ========================================================================
+    - title: Error Rate Over Time
+      type: graph
+      gridPos: { h: 8, w: 12, x: 0, y: 38 }
+      targets:
+        - expr: rate(http_req_failed[1m]) * 100
+          legendFormat: Error Rate %
+          refId: A
+      yaxes:
+        - format: percent
+          label: Error Rate
+        - format: short
+      alert:
+        name: High Error Rate
+        conditions:
+          - evaluator:
+              type: gt
+              params: [1]
+            operator:
+              type: and
+            query:
+              params: [A, 5m, now]
+            reducer:
+              type: avg
+    
+    - title: Failed Requests by Endpoint
+      type: table
+      gridPos: { h: 8, w: 12, x: 12, y: 38 }
+      targets:
+        - expr: topk(10, sum by(endpoint) (http_req_failed))
+          refId: A
+          format: table
+      transformations:
+        - id: organize
+          options:
+            excludeByName: {}
+            indexByName:
+              endpoint: 0
+              Value: 1
+            renameByName:
+              endpoint: Endpoint
+              Value: Failed Requests
+    
+    # ========================================================================
+    # Row 7: Virtual Users & Throughput
+    # ========================================================================
+    - title: Active Virtual Users
+      type: graph
+      gridPos: { h: 8, w: 12, x: 0, y: 46 }
+      targets:
+        - expr: vus
+          legendFormat: Virtual Users
+          refId: A
+      yaxes:
+        - format: short
+          label: VUs
+        - format: short
+    
+    - title: Data Transferred
+      type: graph
+      gridPos: { h: 8, w: 12, x: 12, y: 46 }
+      targets:
+        - expr: rate(data_received[1m])
+          legendFormat: Received
+          refId: A
+        - expr: rate(data_sent[1m])
+          legendFormat: Sent
+          refId: B
+      yaxes:
+        - format: Bps
+          label: Bytes/Second
+        - format: short
+    
+    # ========================================================================
+    # Row 8: Success vs Failure
+    # ========================================================================
+    - title: Request Success vs Failure
+      type: piechart
+      gridPos: { h: 8, w: 12, x: 0, y: 54 }
+      targets:
+        - expr: sum(successful_requests)
+          legendFormat: Success
+          refId: A
+        - expr: sum(failed_requests)
+          legendFormat: Failed
+          refId: B
+      options:
+        legend:
+          displayMode: list
+          placement: bottom
+        pieType: pie
+        displayLabels: [name, percent]
+    
+    - title: Authentication Failures
+      type: stat
+      gridPos: { h: 8, w: 12, x: 12, y: 54 }
+      targets:
+        - expr: sum(auth_failures)
+          refId: A
+      fieldConfig:
+        defaults:
+          unit: short
+          color:
+            mode: thresholds
+          thresholds:
+            mode: absolute
+            steps:
+              - value: 0
+                color: green
+              - value: 10
+                color: yellow
+              - value: 100
+                color: red

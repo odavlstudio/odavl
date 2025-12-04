@@ -1,0 +1,80 @@
+
+> odavl@2.0.0 test C:\Users\sabou\dev\odavl
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv4.0.14 [39m[90mC:/Users/sabou/dev/odavl[39m
+      [2mCoverage enabled with [22m[33mistanbul[39m
+
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect high cognitive complexity (nested if statements)[32m 25[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect cognitive complexity from logical operators[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould detect cognitive complexity from nested loops[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCognitive Complexity Detection[2m > [22mshould NOT flag low cognitive complexity functions[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect high cyclomatic complexity (many decision points)[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect cyclomatic complexity from switch statements[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould detect cyclomatic complexity from ternary operators[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCyclomatic Complexity Detection[2m > [22mshould NOT flag low cyclomatic complexity functions[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect excessively long functions (>100 lines)[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect critically long functions (>200 lines)[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould detect extremely long functions (>300 lines)[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mFunction Length Detection[2m > [22mshould NOT flag short functions[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect excessive nesting (>4 levels)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect critical nesting depth (>6 levels)[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould detect extreme nesting (>8 levels)[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mNesting Depth Detection[2m > [22mshould NOT flag shallow nesting[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect exact code duplication (>10 lines)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect large duplication (>20 lines)[32m 7[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould detect critical duplication (>50 lines)[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mCode Duplication Detection[2m > [22mshould NOT flag small duplications (<10 lines)[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mStatistics Calculation[2m > [22mshould calculate aggregate statistics correctly[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mStatistics Calculation[2m > [22mshould track severity distribution[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mError Formatting[2m > [22mshould format errors with all required fields[32m 6[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mError Formatting[2m > [22mshould include severity icon in formatted output[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle empty files[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle files with only comments[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould skip node_modules directory[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould skip test files[32m 4[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle arrow functions[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/complexity-detector.test.ts[2m > [22mComplexityDetector[2m > [22mEdge Cases[2m > [22mshould handle async functions[32m 3[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 named imports[32m 68[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 default imports[32m 17[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect fetch without .catch() handler[32m 38[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with try/catch[32m 9[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with .catch() handler[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect fetch without timeout configuration[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould NOT flag fetch with AbortController timeout[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/network-detector.test.ts[2m > [22mNetworkDetector[2m > [22mdetectFetchIssues[2m > [22mshould detect hardcoded production URLs[32m 15[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould allow changes within max_files_per_cycle[32m 5[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould block when exceeding max_files_per_cycle[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mFile Count Validation[2m > [22mshould allow exactly max_files_per_cycle[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block security/** paths[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block auth/** paths[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block test files (*.spec.*)[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block public-api/** paths[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould allow non-forbidden paths[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mForbidden Paths[2m > [22mshould block nested security paths[32m 1[2mms[22m[39m
+ [31m├ù[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mRisk Budget[2m > [22mshould allow changes within risk budget[32m 15[2mms[22m[39m
+[31m   ÔåÆ expected [Function] to not throw an error but 'Error: Exceeds max_files_per_cycle: 5ÔÇª' was thrown[39m
+ [31m├ù[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mRisk Budget[2m > [22mshould block when exceeding risk budget[32m 4[2mms[22m[39m
+[31m   ÔåÆ expected [Function] to throw error matching /Exceeds risk_budget/ but got 'Exceeds max_files_per_cycle: 101 > 10'[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle empty file list[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle single file[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mRiskBudgetGuard[2m > [22mEdge Cases[2m > [22mshould handle files with similar names to forbidden paths[32m 2[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould calculate trust from success rate[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould return default trust (0.5) for no runs[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould clamp trust between 0.1 and 1.0[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould handle single success[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Calculation[2m > [22mshould handle single failure[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mBlacklisting[2m > [22mshould blacklist after 3 consecutive failures[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mBlacklisting[2m > [22mshould not blacklist with less than 3 failures[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould increase trust on success[32m 1[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould decrease trust on failure[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mTrust Scoring System[2m > [22mTrust Update Logic[2m > [22mshould reset consecutive failures on success[32m 0[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/governance/risk-budget.test.ts[2m > [22mGates Configuration Loading[2m > [22mshould load gates.yml correctly[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect ES6 namespace imports[32m 14[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect dynamic imports[32m 11[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect CommonJS require[32m 10[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect export-from statements[32m 8[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mImport Pattern Detection[2m > [22mshould detect multiple import patterns in one file[32m 20[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect simple 2-file cycle[32m 12[2mms[22m[39m
+ [32mÔ£ô[39m tests/unit/packages/insight-core/detector/circular-detector.test.ts[2m > [22mCircularDependencyDetector[2m > [22mCycle Detection[2m > [22mshould detect 3-file cycle[32m 15[2mms[22m[39m

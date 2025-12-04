@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-11-30T21:15:34.171Z",
+  "version": "4.0.0",
+  "path": "C:\\Users\\sabou\\dev\\odavl",
+  "readiness": 65,
+  "confidence": 95,
+  "issues": {
+    "total": 1,
+    "critical": 1,
+    "warnings": 0,
+    "info": 0
+  },
+  "phases": {
+    "staticAnalysis": {
+      "status": "complete",
+      "duration": 11897
+    },
+    "runtimeTests": {
+      "status": "complete",
+      "duration": 2010
+    },
+    "aiVisualAnalysis": {
+      "status": "complete",
+      "duration": 3018
+    },
+    "aiErrorAnalysis": {
+      "status": "complete",
+      "duration": 2016
+    }
+  },
+  "executionTime": 19964
+}

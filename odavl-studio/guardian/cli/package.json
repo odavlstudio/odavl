@@ -1,0 +1,56 @@
+{
+  "name": "@odavl-studio/guardian-cli",
+  "version": "4.1.0",
+  "description": "Guardian v4.1 CLI - Modular AI-powered launch guardian with fallback support",
+  "main": "dist/guardian-modular.js",
+  "bin": {
+    "guardian": "./dist/guardian-modular.js"
+  },
+  "scripts": {
+    "build": "tsup guardian-modular.ts real-tests.ts --format esm,cjs --dts && tsup src/**/*.ts --format esm,cjs --dts --out-dir dist/src",
+    "build:old": "tsup guardian.ts dashboard-service.ts real-tests.ts --format esm,cjs --dts",
+    "dev": "tsx guardian-modular.ts",
+    "dev:old": "tsx guardian.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:watch": "vitest --watch",
+    "test:run": "vitest run",
+    "test:integration": "vitest run __tests__/guardian-integration.test.ts"
+  },
+  "keywords": [
+    "guardian",
+    "testing",
+    "ai",
+    "pre-deploy",
+    "quality"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "depcheck": "^1.4.7",
+    "fastest-levenshtein": "^1.0.16",
+    "js-yaml": "^4.1.1",
+    "ora": "^8.1.1",
+    "playwright": ">=1.55.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@axe-core/puppeteer": "^4.11.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.10.2",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/ui": "^2.1.8",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

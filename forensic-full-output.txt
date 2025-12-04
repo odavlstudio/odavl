@@ -1,0 +1,61 @@
+
+> odavl@2.0.0 forensic:all C:\Users\sabou\dev\odavl
+> pnpm lint && pnpm typecheck && pnpm test:coverage && echo 'Forensic: All checks complete'
+
+
+> odavl@2.0.0 lint C:\Users\sabou\dev\odavl
+> eslint .
+
+
+C:\Users\sabou\dev\odavl\github-actions\dist\index.js
+    174:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+    274:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+    408:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+    490:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+   1077:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+   1270:1   error    Definition for rule '@typescript-eslint/unbound-method' was not found                       @typescript-eslint/unbound-method
+   2200:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                      @typescript-eslint/no-explicit-any
+   3055:17  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+   3083:21  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+   3101:25  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  11157:7   warning  Unused eslint-disable directive (no problems were reported from 'camelcase')
+  11326:9   warning  Unused eslint-disable directive (no problems were reported from 'no-useless-catch')
+  16498:63  warning  Unused eslint-disable directive (no problems were reported)
+  16502:74  warning  Unused eslint-disable directive (no problems were reported)
+  16894:65  warning  Unused eslint-disable directive (no problems were reported)
+  17163:5   warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  17170:11  warning  Unused eslint-disable directive (no problems were reported from 'no-labels')
+  20017:59  warning  Unused eslint-disable directive (no problems were reported from 'no-unused-vars')
+  22533:27  warning  Unused eslint-disable directive (no problems were reported)
+  22540:40  warning  Unused eslint-disable directive (no problems were reported)
+  22548:14  warning  Unused eslint-disable directive (no problems were reported)
+  27098:1   warning  Unused eslint-disable directive (no problems were reported)
+  29053:56  warning  Unused eslint-disable directive (no problems were reported from 'new-cap')
+  30408:50  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+  30470:35  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+  30590:48  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+  30748:35  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+  31189:63  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+  31434:48  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+  31598:1   warning  Unused eslint-disable directive (no problems were reported from 'object-property-newline')
+  31724:35  warning  Unused eslint-disable directive (no problems were reported from 'no-var')
+
+C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\dist\index.cjs
+  3476:25  error  Definition for rule '@typescript-eslint/prefer-nullish-coalescing' was not found  @typescript-eslint/prefer-nullish-coalescing
+  3499:11  error  Definition for rule '@typescript-eslint/prefer-nullish-coalescing' was not found  @typescript-eslint/prefer-nullish-coalescing
+
+C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\dist\index.js
+  3480:25  error  Definition for rule '@typescript-eslint/prefer-nullish-coalescing' was not found  @typescript-eslint/prefer-nullish-coalescing
+  3503:11  error  Definition for rule '@typescript-eslint/prefer-nullish-coalescing' was not found  @typescript-eslint/prefer-nullish-coalescing
+
+C:\Users\sabou\dev\odavl\odavl-studio\guardian\extension\dist\extension.js
+   9685:7   warning  Unused eslint-disable directive (no problems were reported from 'no-eval')
+  12126:3   warning  Unused eslint-disable directive (no problems were reported from 'func-names')
+  12222:13  warning  Unused eslint-disable directive (no problems were reported from 'no-nested-ternary')
+  12455:54  warning  Unused eslint-disable directive (no problems were reported from 'no-undef')
+
+Ô£û 39 problems (11 errors, 28 warnings)
+  0 errors and 28 warnings potentially fixable with the `--fix` option.
+
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

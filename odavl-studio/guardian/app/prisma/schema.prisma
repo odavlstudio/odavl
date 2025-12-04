@@ -1,0 +1,307 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // Connection pooling configuration
+  // Add to DATABASE_URL: ?connection_limit=10&pool_timeout=5
+}
+
+// ===== MULTI-TENANCY MODELS =====
+
+// Organization represents a multi-tenant entity
+model Organization {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique // URL-friendly identifier
+  
+  // Subscription & Billing
+  tier        String   @default("free") // "free" | "pro" | "enterprise"
+  status      String   @default("active") // "active" | "suspended" | "cancelled"
+  
+  // Usage Tracking
+  testRunsUsed     Int      @default(0)
+  monitorChecksUsed Int     @default(0)
+  apiCallsUsed     Int      @default(0)
+  
+  // Quotas (based on tier)
+  testRunsQuota    Int      @default(100)
+  monitorChecksQuota Int    @default(1000)
+  apiCallsQuota    Int      @default(10000)
+  
+  // Billing cycle reset date
+  billingResetAt   DateTime @default(now())
+  
+  // Notification Settings
+  notificationEmail String?  // Email for alerts
+  slackWebhook      String?  // Slack webhook URL
+  discordWebhook    String?  // Discord webhook URL
+  customWebhook     String?  // Custom webhook URL
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  members     Member[]
+  teams       Team[]
+  projects    Project[]
+  apiKeys     ApiKey[]
+
+  @@index([slug])
+  @@index([tier, status])
+  @@index([status, tier]) // For filtering active orgs by tier
+  @@index([createdAt]) // For chronological queries
+  @@map("organizations")
+}
+
+// Team represents a group within an organization
+model Team {
+  id             String   @id @default(cuid())
+  name           String
+  description    String?
+  
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  members        Member[]
+  projects       Project[] // Teams can own projects
+
+  @@index([organizationId])
+  @@map("teams")
+}
+
+// Member represents a user's membership in an organization
+model Member {
+  id        String   @id @default(cuid())
+  email     String
+  role      String   // "owner" | "admin" | "member" | "viewer"
+  
+  // User details
+  name      String?
+  avatarUrl String?
+  password  String?  // Hashed password for authentication
+  
+  // Two-Factor Authentication (Week 12)
+  twoFactorEnabled      Boolean  @default(false)
+  twoFactorSecret       String?  // TOTP secret (Base32-encoded)
+  twoFactorBackupCodes  String[] // Hashed backup codes for account recovery
+  
+  // Account Security (Week 12)
+  failedLoginAttempts   Int      @default(0)
+  lockedUntil           DateTime? // Account lockout timestamp
+  passwordChangedAt     DateTime? // Track password changes
+  
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  teamId    String?
+  team      Team?    @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  
+  invitedAt DateTime @default(now())
+  joinedAt  DateTime?
+  lastActive DateTime?
+
+  @@unique([organizationId, email])
+  @@index([organizationId, role])
+  @@index([email]) // For user lookups across organizations
+  @@index([lastActive]) // For activity tracking queries
+  @@index([twoFactorEnabled]) // For 2FA user queries
+  @@map("members")
+}
+
+// ApiKey for programmatic access with rate limiting
+model ApiKey {
+  id        String   @id @default(cuid())
+  name      String
+  keyHash   String   @unique // SHA-256 hash of API key (never store plaintext)
+  
+  // Permissions
+  scopes    String[] // ["read:tests", "write:tests", "read:monitors", "*"]
+  
+  // Rate limiting (requests per minute)
+  rateLimit Int      @default(60)
+  
+  // Usage tracking
+  lastUsedAt DateTime?
+  usageCount Int      @default(0)
+  
+  // Revocation support
+  revoked   Boolean  @default(false)
+  
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  expiresAt DateTime?
+  enabled   Boolean  @default(true)
+
+  @@index([organizationId, enabled])
+  @@index([keyHash]) // Fast lookup by hash
+  @@index([lastUsedAt]) // For cleanup queries
+  @@index([revoked, expiresAt]) // For filtering active keys
+  @@map("api_keys")
+}
+
+// ===== CORE APPLICATION MODELS =====
+
+// Project represents a monitored application
+model Project {
+  id        String    @id @default(cuid())
+  name      String
+  url       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Multi-tenancy support
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  teamId    String?
+  team      Team?    @relation(fields: [teamId], references: [id], onDelete: SetNull)
+
+  testRuns  TestRun[]
+  monitors  Monitor[]
+  alerts    Alert[] // Alerts for this project
+
+  @@index([organizationId])
+  @@index([teamId])
+  @@index([createdAt]) // For chronological queries
+  @@index([organizationId, createdAt]) // For org-specific time-based queries
+  @@map("projects")
+}
+
+// TestRun represents a single test execution
+model TestRun {
+  id          String    @id @default(cuid())
+  name        String?   // Test name for ML insights
+  type        String    // "e2e" | "visual" | "a11y" | "i18n" | "performance"
+  status      String    // "pending" | "running" | "passed" | "failed"
+  error       String?   // Error message for failed tests
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  duration    Int?      // milliseconds
+  createdAt   DateTime  @default(now()) // Added for analytics queries
+
+  // Test results as JSON (flexible schema per test type)
+  results     Json
+
+  // Screenshots/artifacts
+  screenshots String[]
+
+  // Metrics
+  errorCount  Int       @default(0)
+  warningCount Int      @default(0)
+  passedCount Int       @default(0)
+  failedCount Int       @default(0)
+
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, type, status])
+  @@index([startedAt])
+  @@index([status, startedAt]) // For filtering by status with time
+  @@index([completedAt]) // For completed tests queries
+  @@index([projectId, createdAt]) // For project analytics queries
+  @@index([projectId, status, createdAt]) // For project status filtering
+  @@map("test_runs")
+}
+
+// Monitor represents a monitoring configuration
+model Monitor {
+  id          String   @id @default(cuid())
+  name        String
+  type        String   // "health" | "uptime" | "performance"
+  endpoint    String
+  interval    Int      // minutes
+  enabled     Boolean  @default(true)
+  
+  // Current status (for monitor-worker.ts)
+  status      String   @default("pending") // "up" | "down" | "degraded" | "pending"
+  lastCheckedAt DateTime? // Last check timestamp
+  uptime      Float?   // Uptime percentage (0-100)
+  lastResponseTime Int? // Last response time in ms
+  
+  // Thresholds
+  responseTimeThreshold Int? // milliseconds
+  uptimeThreshold       Float? // percentage (0-100)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  checks      MonitorCheck[]
+  alerts      Alert[] // Alerts triggered by this monitor
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, enabled])
+  @@index([type, enabled]) // For filtering active monitors by type
+  @@index([updatedAt]) // For recent changes queries
+  @@index([projectId, status]) // For project monitor status queries
+  @@index([status, lastCheckedAt]) // For monitoring dashboard
+  @@map("monitors")
+}
+
+// MonitorCheck represents a single health/uptime check result
+model MonitorCheck {
+  id           String   @id @default(cuid())
+  status       String   // "up" | "down" | "degraded"
+  checkedAt    DateTime @default(now())
+  timestamp    DateTime @default(now()) // Alias for checkedAt (analytics compatibility)
+  success      Boolean  @default(false) // Computed: true if status === "up"
+  responseTime Int?     // milliseconds
+  
+  // Error details (if check failed)
+  error        String?
+  statusCode   Int?
+  
+  // Response metadata
+  headers      Json?
+  
+  monitorId    String
+  monitor      Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+
+  @@index([monitorId, checkedAt])
+  @@index([status])
+  @@index([status, checkedAt]) // For filtering by status with time
+  @@index([responseTime]) // For performance analysis queries
+  @@map("monitor_checks")
+}
+
+// Alert represents a notification triggered by failed checks
+model Alert {
+  id          String   @id @default(cuid())
+  type        String   // "test_failure" | "monitor_down" | "performance_degraded"
+  severity    String   // "critical" | "warning" | "info"
+  message     String
+  resolved    Boolean  @default(false)
+  resolvedAt  DateTime?
+  createdAt   DateTime @default(now())
+  
+  // Metadata (flexible schema)
+  metadata    Json?
+  
+  // Relations
+  monitorId   String?
+  monitor     Monitor? @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+  
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([resolved, severity])
+  @@index([createdAt])
+  @@index([type, resolved]) // For filtering unresolved alerts by type
+  @@index([severity, createdAt]) // For critical alerts chronologically
+  @@index([monitorId])
+  @@index([projectId])
+  @@index([projectId, resolved, createdAt]) // For project alert dashboard
+  @@index([projectId, severity, resolved]) // For critical project alerts
+  @@map("alerts")
+}

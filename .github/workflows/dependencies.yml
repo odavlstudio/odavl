@@ -1,0 +1,302 @@
+name: 📦 Dependency Monitoring
+
+on:
+  schedule:
+    # Run every Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # Allow manual trigger
+  pull_request:
+    paths:
+      - '**/package.json'
+      - 'pnpm-lock.yaml'
+      - '.package-versions.json'
+
+jobs:
+  audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: 🔒 Security Audit (High/Critical only)
+        id: audit
+        run: |
+          pnpm audit --audit-level=high --json > audit-report.json || true
+          
+          # Parse audit results
+          CRITICAL=$(cat audit-report.json | jq -r '.metadata.vulnerabilities.critical // 0')
+          HIGH=$(cat audit-report.json | jq -r '.metadata.vulnerabilities.high // 0')
+          
+          echo "critical=$CRITICAL" >> $GITHUB_OUTPUT
+          echo "high=$HIGH" >> $GITHUB_OUTPUT
+          
+          echo "### 🔒 Security Audit Results" >> $GITHUB_STEP_SUMMARY
+          echo "- **Critical**: $CRITICAL" >> $GITHUB_STEP_SUMMARY
+          echo "- **High**: $HIGH" >> $GITHUB_STEP_SUMMARY
+      
+      - name: 📊 Upload Audit Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: audit-report.json
+          retention-days: 30
+      
+      - name: 🚨 Create Issue if Critical Vulnerabilities
+        if: steps.audit.outputs.critical > 0 || steps.audit.outputs.high > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const critical = ${{ steps.audit.outputs.critical }};
+            const high = ${{ steps.audit.outputs.high }};
+            
+            const title = `🚨 Security vulnerabilities detected (Critical: ${critical}, High: ${high})`;
+            const body = `
+            ## 🔒 Security Audit Alert
+            
+            **Critical vulnerabilities**: ${critical}
+            **High vulnerabilities**: ${high}
+            
+            ### 📋 Action Required
+            
+            1. Review the [audit report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            2. Run \`pnpm audit\` locally for details
+            3. Update affected packages: \`pnpm update <package>@latest\`
+            4. Test thoroughly after updates
+            
+            ### 🔗 Links
+            - [Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - [Package Lock File](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/pnpm-lock.yaml)
+            `;
+            
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'security,dependencies',
+            });
+            
+            const existingIssue = issues.data.find(issue => 
+              issue.title.includes('Security vulnerabilities detected')
+            );
+            
+            if (existingIssue) {
+              // Update existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: `### 🔄 Updated Scan Results\n\n${body}`,
+              });
+            } else {
+              // Create new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['security', 'dependencies', 'automated'],
+              });
+            }
+
+  outdated:
+    name: Check Outdated Packages
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: 📋 Check for Outdated Packages
+        id: outdated
+        run: |
+          pnpm outdated --json > outdated-report.json || true
+          
+          # Count outdated packages
+          OUTDATED_COUNT=$(cat outdated-report.json | jq 'length')
+          echo "count=$OUTDATED_COUNT" >> $GITHUB_OUTPUT
+          
+          echo "### 📦 Outdated Packages" >> $GITHUB_STEP_SUMMARY
+          echo "Found **$OUTDATED_COUNT** outdated packages" >> $GITHUB_STEP_SUMMARY
+      
+      - name: 📊 Upload Outdated Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: outdated-report
+          path: outdated-report.json
+          retention-days: 30
+      
+      - name: 📝 Comment on PR (if applicable)
+        if: github.event_name == 'pull_request' && steps.outdated.outputs.count > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const count = ${{ steps.outdated.outputs.count }};
+            const body = `
+            ## 📦 Package Update Check
+            
+            This PR modifies package dependencies. **${count}** packages could be updated.
+            
+            ### 🔍 Review Checklist
+            - [ ] Security vulnerabilities addressed
+            - [ ] Breaking changes reviewed
+            - [ ] Tests pass with new versions
+            - [ ] Documentation updated if needed
+            
+            Run \`pnpm outdated\` locally for details.
+            `;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+  version-check:
+    name: Validate Package Versions
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: ✅ Validate Package Versions
+        run: tsx scripts/check-package-versions.ts
+      
+      - name: 📊 Summary
+        if: success()
+        run: |
+          echo "### ✅ Package Version Validation" >> $GITHUB_STEP_SUMMARY
+          echo "All packages comply with .package-versions.json" >> $GITHUB_STEP_SUMMARY
+
+  auto-update:
+    name: Auto-Update Minor/Patch
+    runs-on: ubuntu-latest
+    needs: [audit, outdated]
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: 🔄 Update Minor/Patch Versions
+        id: update
+        run: |
+          # Update only minor/patch versions (safe updates)
+          pnpm update --latest \
+            @changesets/cli \
+            @prisma/client \
+            @typescript-eslint/eslint-plugin \
+            @typescript-eslint/parser \
+            typescript-eslint \
+            @vitest/coverage-istanbul \
+            @vitest/coverage-v8 \
+            vitest \
+            knip
+          
+          # Check if there are changes
+          if git diff --quiet pnpm-lock.yaml; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: 🧪 Run Tests
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          pnpm typecheck
+          pnpm lint
+          pnpm test
+      
+      - name: 📤 Create Pull Request
+        if: steps.update.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(deps): update dependencies (automated)'
+          title: '📦 Weekly dependency updates (automated)'
+          body: |
+            ## 🤖 Automated Dependency Updates
+            
+            This PR updates minor and patch versions of dependencies.
+            
+            ### ✅ Checks Passed
+            - [x] TypeScript compilation
+            - [x] Linting
+            - [x] Unit tests
+            
+            ### 📋 Changed Packages
+            See commit for details.
+            
+            ---
+            *This PR was automatically generated by the dependency monitoring workflow.*
+          branch: deps/weekly-auto-update-${{ github.run_number }}
+          labels: dependencies, automated, minor-update
+          delete-branch: true

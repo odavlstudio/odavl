@@ -1,0 +1,49 @@
+npm warn Unknown user config "always-auth" (//localhost:4873/:always-auth). This will stop working in the next major version of npm.
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.3
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244
+            throw new Error('Failed to patch ESLint because the calling module was not recognized.\n' +
+                  ^
+
+Error: Failed to patch ESLint because the calling module was not recognized.
+If you are using a newer ESLint version that may be unsupported, please create a GitHub issue:
+https://github.com/microsoft/rushstack/issues
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\modern-module-resolution.js:11:23)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+
+Node.js v20.19.5
+   Collecting page data ...
+ ÔÜá Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/263) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\9959.js:6:1263)
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Y (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@15.1.3_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_wdgfbnwcyda2dopt7utl4vj4ze\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5469)
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\9959.js:6:1263)
+    at Object.react_stack_bottom_frame (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:10313:18)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5399:19)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5834:23)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5820:11)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6765:31)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.2.0_react@19.2.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:6715:11)
+Export encountered an error on /_error: /404, exiting the build.
+ Ô¿» Static worker exited with code: 1 and signal: null

@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@odavl-studio/insight-core": ["./insight/core/src"],
+      "@odavl-studio/insight-cloud": ["./insight/cloud/src"],
+      "@odavl-studio/autopilot-engine": ["./autopilot/engine/src"],
+      "@odavl-studio/guardian-app": ["./guardian/app/src"],
+      "@/*": ["*/src"]
+    },
+    "typeRoots": [
+      "../node_modules/@types",
+      "../types"
+    ],
+    "types": ["node"],
+    "incremental": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": ["ES2023", "DOM"]
+  },
+  "include": [
+    "insight/**/*",
+    "autopilot/**/*",
+    "guardian/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".next",
+    "out",
+    ".turbo",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}

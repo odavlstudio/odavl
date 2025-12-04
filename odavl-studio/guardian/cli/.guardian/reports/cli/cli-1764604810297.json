@@ -1,0 +1,203 @@
+{
+  "path": "C:\\Users\\sabou\\AppData\\Local\\Temp\\guardian-phase3-test\\cli",
+  "timestamp": "2025-12-01T16:00:10.296Z",
+  "overallScore": 27,
+  "status": "fail",
+  "productionReady": false,
+  "commands": {
+    "score": 20,
+    "helpWorks": false,
+    "versionWorks": false,
+    "total": 1,
+    "documented": 0,
+    "tested": 0,
+    "issues": [
+      {
+        "severity": "high",
+        "category": "Commands",
+        "message": "--help command not working",
+        "recommendation": "Implement --help flag with usage information"
+      },
+      {
+        "severity": "high",
+        "category": "Commands",
+        "message": "--version command not working",
+        "recommendation": "Implement --version flag showing current version"
+      }
+    ]
+  },
+  "autoCompletion": {
+    "score": 0,
+    "hasCompletions": false,
+    "shells": {
+      "bash": false,
+      "zsh": false,
+      "fish": false,
+      "powershell": false
+    },
+    "quality": 0,
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "AutoCompletion",
+        "message": "No auto-completion scripts found",
+        "recommendation": "Add completion scripts for bash, zsh, fish, PowerShell"
+      }
+    ]
+  },
+  "updateMechanism": {
+    "score": 0,
+    "hasUpdateCheck": false,
+    "hasNotification": false,
+    "updateCommand": false,
+    "frequency": "never",
+    "issues": [
+      {
+        "severity": "medium",
+        "category": "Update",
+        "message": "No update check mechanism",
+        "recommendation": "Add update-notifier to notify users of new versions"
+      },
+      {
+        "severity": "low",
+        "category": "Update",
+        "message": "No update command",
+        "recommendation": "Add command to update CLI (e.g., cli update)"
+      }
+    ]
+  },
+  "errorHandling": {
+    "score": 0,
+    "hasGoodMessages": false,
+    "exitCodesCorrect": false,
+    "hasStackTraces": false,
+    "hasDebugMode": false,
+    "issues": [
+      {
+        "severity": "high",
+        "category": "ErrorHandling",
+        "message": "Error messages not clear",
+        "recommendation": "Add descriptive error messages with actionable suggestions"
+      },
+      {
+        "severity": "medium",
+        "category": "ErrorHandling",
+        "message": "Exit codes not properly set",
+        "recommendation": "Use exit(0) for success, exit(1) for errors"
+      },
+      {
+        "severity": "low",
+        "category": "ErrorHandling",
+        "message": "No debug mode",
+        "recommendation": "Add --debug or --verbose flag for troubleshooting"
+      }
+    ]
+  },
+  "crossPlatform": {
+    "score": 30,
+    "platforms": {
+      "windows": true,
+      "linux": false,
+      "macos": false
+    },
+    "pathHandling": false,
+    "lineEndings": false,
+    "issues": [
+      {
+        "severity": "high",
+        "category": "CrossPlatform",
+        "message": "Unix platforms not supported",
+        "recommendation": "Add shebang for Linux/macOS support"
+      }
+    ]
+  },
+  "package": {
+    "score": 75,
+    "size": 53,
+    "sizeAcceptable": true,
+    "hasShebang": false,
+    "hasBin": true,
+    "dependenciesSecure": true,
+    "issues": []
+  },
+  "documentation": {
+    "score": 0,
+    "hasReadme": false,
+    "hasExamples": false,
+    "hasManPages": false,
+    "hasTroubleshooting": false,
+    "readmeQuality": 0,
+    "issues": [
+      {
+        "severity": "critical",
+        "category": "Documentation",
+        "message": "README.md not found",
+        "recommendation": "Create README with installation, usage, examples"
+      },
+      {
+        "severity": "medium",
+        "category": "Documentation",
+        "message": "No examples",
+        "recommendation": "Add examples/ directory with common use cases"
+      },
+      {
+        "severity": "low",
+        "category": "Documentation",
+        "message": "No man pages",
+        "recommendation": "Add man pages for Unix users"
+      }
+    ]
+  },
+  "performance": {
+    "score": 150,
+    "startupTime": 0,
+    "acceptable": false,
+    "responsive": true,
+    "issues": [
+      {
+        "severity": "low",
+        "category": "Performance",
+        "message": "Cannot measure startup time",
+        "recommendation": "Test performance manually"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "action": "Implement basic commands",
+      "reason": "--help or --version not working",
+      "impact": "Users cannot get help or version info",
+      "estimatedTime": "30 minutes"
+    },
+    {
+      "priority": "high",
+      "action": "Add Unix support",
+      "reason": "Missing shebang for Linux/macOS",
+      "impact": "CLI won't work on Unix systems",
+      "estimatedTime": "15 minutes"
+    },
+    {
+      "priority": "medium",
+      "action": "Add auto-completion scripts",
+      "reason": "No shell completions",
+      "impact": "Poor developer experience",
+      "estimatedTime": "2-3 hours"
+    },
+    {
+      "priority": "medium",
+      "action": "Add update notifications",
+      "reason": "Users won't know about new versions",
+      "impact": "Users stay on old versions",
+      "estimatedTime": "1 hour"
+    },
+    {
+      "priority": "medium",
+      "action": "Improve documentation",
+      "reason": "README missing or incomplete",
+      "impact": "Users won't understand CLI",
+      "estimatedTime": "1-2 hours"
+    }
+  ],
+  "reportPath": ""
+}

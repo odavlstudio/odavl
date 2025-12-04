@@ -1,0 +1,65 @@
+{
+  "$schema": "./schemas/package-versions.schema.json",
+  "version": "2.0.0",
+  "lockDate": "2025-11-27",
+  "lastUpdated": "2025-11-27T00:00:00.000Z",
+  "core": {
+    "node": ">=18.18",
+    "pnpm": "9.12.2",
+    "typescript": "5.9.3"
+  },
+  "frameworks": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "next": "14.2.25",
+    "vite": "7.2.4"
+  },
+  "testing": {
+    "vitest": "4.0.14",
+    "playwright": "1.57.0",
+    "@vitest/coverage-v8": "4.0.14",
+    "@vitest/coverage-istanbul": "4.0.14"
+  },
+  "linting": {
+    "eslint": "9.39.1",
+    "@typescript-eslint/eslint-plugin": "8.48.0",
+    "@typescript-eslint/parser": "8.48.0",
+    "typescript-eslint": "8.48.0"
+  },
+  "database": {
+    "@prisma/client": "7.0.1",
+    "prisma": "7.0.1"
+  },
+  "security": {
+    "minimumVersions": {
+      "next": ">=14.2.25",
+      "playwright": ">=1.55.1",
+      "esbuild": ">=0.25.0",
+      "hono": ">=4.10.2"
+    },
+    "vulnerabilitiesFixed": [
+      {
+        "package": "next",
+        "cve": "GHSA-f82v-jwr5-mffw",
+        "severity": "critical",
+        "fixedIn": "14.2.25",
+        "fixedDate": "2025-11-27"
+      },
+      {
+        "package": "playwright",
+        "severity": "high",
+        "fixedIn": "1.55.1",
+        "fixedDate": "2025-11-27"
+      }
+    ]
+  },
+  "deprecated": {
+    "packages": [],
+    "alternatives": {}
+  },
+  "notes": {
+    "securityAudit": "Last full security audit: 2025-11-27",
+    "majorUpdates": "Check for major updates monthly",
+    "peerDependencies": "React 19 requires peer dependency overrides"
+  }
+}

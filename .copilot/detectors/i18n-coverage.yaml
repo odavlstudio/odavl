@@ -1,0 +1,12 @@
+id: i18n-coverage
+area: i18n
+priority: Medium
+match:
+  files: ["**/*.{ts,tsx,js,jsx}"]
+check:
+  rules:
+    - name: missing-i18n
+      fail_if_regex: "['\"](Hello|Welcome|Error|Success)['\"]"
+propose:
+  playbook: i18n-extract
+  rationale: "Extract literals for translation."

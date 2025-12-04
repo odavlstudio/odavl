@@ -1,0 +1,15 @@
+{
+  "url": "http://localhost:3000/playground",
+  "timestamp": "2025-11-25T17:55:06.356Z",
+  "duration": 6896,
+  "browserType": "chromium",
+  "status": "passed",
+  "issues": [],
+  "metrics": {
+    "totalIssues": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  }
+}

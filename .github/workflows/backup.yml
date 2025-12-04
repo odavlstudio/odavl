@@ -1,0 +1,228 @@
+name: Automated Database Backup
+
+on:
+  schedule:
+    # Daily backup at 2:00 AM UTC
+    - cron: '0 2 * * *'
+    
+    # Weekly backup on Sunday at 3:00 AM UTC
+    - cron: '0 3 * * 0'
+    
+    # Monthly backup on 1st at 4:00 AM UTC
+    - cron: '0 4 1 * *'
+  
+  workflow_dispatch:
+    inputs:
+      backup_type:
+        description: 'Backup type'
+        required: true
+        default: 'manual'
+        type: choice
+        options:
+          - manual
+          - daily
+          - weekly
+          - monthly
+
+jobs:
+  determine-backup-type:
+    name: Determine Backup Type
+    runs-on: ubuntu-latest
+    outputs:
+      backup_type: ${{ steps.set-type.outputs.type }}
+    
+    steps:
+      - name: Set backup type
+        id: set-type
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "type=${{ github.event.inputs.backup_type }}" >> $GITHUB_OUTPUT
+          elif [ "$(date +%d)" = "01" ]; then
+            echo "type=monthly" >> $GITHUB_OUTPUT
+          elif [ "$(date +%u)" = "7" ]; then
+            echo "type=weekly" >> $GITHUB_OUTPUT
+          else
+            echo "type=daily" >> $GITHUB_OUTPUT
+          fi
+
+  backup-production:
+    name: Backup Production Database
+    runs-on: ubuntu-latest
+    needs: determine-backup-type
+    environment: production
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Create backup directory
+        run: mkdir -p backups/postgres/${{ needs.determine-backup-type.outputs.backup_type }}
+
+      - name: Generate backup
+        env:
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+        run: |
+          TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)
+          TYPE=${{ needs.determine-backup-type.outputs.backup_type }}
+          BACKUP_FILE="backups/postgres/$TYPE/odavl-$TYPE-$TIMESTAMP.sql"
+          
+          echo "Creating $TYPE backup..."
+          
+          # Extract connection details from DATABASE_URL
+          DB_USER=$(echo $DATABASE_URL | sed -n 's/.*\/\/\([^:]*\):.*/\1/p')
+          DB_PASS=$(echo $DATABASE_URL | sed -n 's/.*:\/\/[^:]*:\([^@]*\)@.*/\1/p')
+          DB_HOST=$(echo $DATABASE_URL | sed -n 's/.*@\([^:]*\):.*/\1/p')
+          DB_PORT=$(echo $DATABASE_URL | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
+          DB_NAME=$(echo $DATABASE_URL | sed -n 's/.*\/\([^?]*\).*/\1/p')
+          
+          # Create backup
+          export PGPASSWORD=$DB_PASS
+          pg_dump -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -F p -f $BACKUP_FILE
+          
+          # Compress backup
+          gzip -9 $BACKUP_FILE
+          
+          echo "Backup created: $BACKUP_FILE.gz"
+          echo "BACKUP_FILE=$BACKUP_FILE.gz" >> $GITHUB_ENV
+          echo "BACKUP_SIZE=$(du -h $BACKUP_FILE.gz | cut -f1)" >> $GITHUB_ENV
+
+      - name: Create backup metadata
+        run: |
+          BACKUP_FILE=${{ env.BACKUP_FILE }}
+          TIMESTAMP=$(date -Iseconds)
+          TYPE=${{ needs.determine-backup-type.outputs.backup_type }}
+          
+          cat > $BACKUP_FILE.json << EOF
+          {
+            "type": "$TYPE",
+            "timestamp": "$TIMESTAMP",
+            "size": "$(stat -f%z $BACKUP_FILE 2>/dev/null || stat -c%s $BACKUP_FILE)",
+            "compressed": true,
+            "database": "production",
+            "workflow_run_id": "${{ github.run_id }}",
+            "workflow_run_number": "${{ github.run_number }}",
+            "actor": "${{ github.actor }}"
+          }
+          EOF
+
+      - name: Upload to AWS S3
+        if: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          aws s3 cp ${{ env.BACKUP_FILE }} s3://odavl-backups/postgres/${{ needs.determine-backup-type.outputs.backup_type }}/ --storage-class STANDARD_IA
+          aws s3 cp ${{ env.BACKUP_FILE }}.json s3://odavl-backups/postgres/${{ needs.determine-backup-type.outputs.backup_type }}/
+          
+          echo "✅ Backup uploaded to S3"
+
+      - name: Upload to Azure Blob Storage
+        if: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        run: |
+          az storage blob upload \
+            --connection-string "$AZURE_STORAGE_CONNECTION_STRING" \
+            --container-name odavl-backups \
+            --name "postgres/${{ needs.determine-backup-type.outputs.backup_type }}/$(basename ${{ env.BACKUP_FILE }})" \
+            --file ${{ env.BACKUP_FILE }} \
+            --tier Cool
+          
+          echo "✅ Backup uploaded to Azure Blob Storage"
+
+      - name: Verify backup integrity
+        run: |
+          echo "Verifying backup integrity..."
+          
+          # Test gzip integrity
+          gzip -t ${{ env.BACKUP_FILE }}
+          
+          if [ $? -eq 0 ]; then
+            echo "✅ Backup integrity verified"
+          else
+            echo "❌ Backup integrity check failed"
+            exit 1
+          fi
+
+      - name: Cleanup old backups
+        run: |
+          TYPE=${{ needs.determine-backup-type.outputs.backup_type }}
+          
+          # Set retention based on backup type
+          case $TYPE in
+            daily)
+              RETENTION=7
+              ;;
+            weekly)
+              RETENTION=28
+              ;;
+            monthly)
+              RETENTION=365
+              ;;
+            *)
+              RETENTION=90
+              ;;
+          esac
+          
+          echo "Cleaning up $TYPE backups older than $RETENTION days..."
+          
+          # Cleanup S3 (if configured)
+          if [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ]; then
+            aws s3 ls s3://odavl-backups/postgres/$TYPE/ | while read -r line; do
+              BACKUP_DATE=$(echo $line | awk '{print $1}')
+              BACKUP_FILE=$(echo $line | awk '{print $4}')
+              
+              DAYS_OLD=$(( ($(date +%s) - $(date -d $BACKUP_DATE +%s)) / 86400 ))
+              
+              if [ $DAYS_OLD -gt $RETENTION ]; then
+                echo "Deleting old backup: $BACKUP_FILE (${DAYS_OLD} days old)"
+                aws s3 rm s3://odavl-backups/postgres/$TYPE/$BACKUP_FILE
+                aws s3 rm s3://odavl-backups/postgres/$TYPE/${BACKUP_FILE}.json 2>/dev/null || true
+              fi
+            done
+          fi
+
+      - name: Send success notification
+        if: success()
+        uses: slackapi/slack-github-action@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "✅ Database Backup Successful",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Database Backup Successful* :white_check_mark:\n\nType: `${{ needs.determine-backup-type.outputs.backup_type }}`\nSize: `${{ env.BACKUP_SIZE }}`\nWorkflow: ${{ github.run_id }}"
+                  }
+                }
+              ]
+            }
+
+      - name: Send failure notification
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "❌ Database Backup Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Database Backup Failed* :x:\n\nType: `${{ needs.determine-backup-type.outputs.backup_type }}`\nWorkflow: ${{ github.run_id }}\nActor: ${{ github.actor }}"
+                  }
+                }
+              ]
+            }

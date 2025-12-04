@@ -1,0 +1,76 @@
+name: Guardian Pre-Deploy Tests
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  guardian-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Guardian Core
+        run: |
+          cd odavl-studio/guardian/core
+          pnpm build
+
+      - name: Install Playwright browsers
+        run: |
+          cd odavl-studio/guardian/core
+          pnpm exec playwright install chromium
+
+      - name: Start application
+        run: |
+          npm start &
+          sleep 10
+        env:
+          NODE_ENV: production
+
+      - name: Run Guardian tests
+        run: |
+          cd odavl-studio/guardian/core
+          tsx examples/ci-integration.ts
+        env:
+          GUARDIAN_FAIL_ON_CRITICAL: 'true'
+          GUARDIAN_FAIL_ON_HIGH: 'false'
+          GUARDIAN_MAX_ISSUES: '20'
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: guardian-reports
+          path: .odavl/guardian/ci/
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('.odavl/guardian/ci/summary.md', 'utf8');
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });

@@ -1,0 +1,188 @@
+{
+  "project": "odavl",
+  "languages": [
+    "typescript",
+    "python"
+  ],
+  "timestamp": "2025-11-23T16:04:23.266Z",
+  "summary": {
+    "totalIssues": 5,
+    "errors": 2,
+    "warnings": 2,
+    "info": 1,
+    "autoFixable": 4,
+    "totalTimeMs": 1,
+    "filesAnalyzed": 5
+  },
+  "byLanguage": {
+    "typescript": {
+      "language": "typescript",
+      "issueCount": 3,
+      "errors": 1,
+      "warnings": 1,
+      "info": 1,
+      "autoFixable": 2,
+      "timeMs": 0.27130000000011023,
+      "files": 3
+    },
+    "python": {
+      "language": "python",
+      "issueCount": 2,
+      "errors": 1,
+      "warnings": 1,
+      "info": 0,
+      "autoFixable": 2,
+      "timeMs": 0.34730000000013206,
+      "files": 2
+    }
+  },
+  "byCategory": {
+    "complexity": {
+      "category": "complexity",
+      "issueCount": 1,
+      "languages": [
+        "typescript"
+      ],
+      "severity": {
+        "error": 0,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "type-safety": {
+      "category": "type-safety",
+      "issueCount": 2,
+      "languages": [
+        "typescript",
+        "python"
+      ],
+      "severity": {
+        "error": 1,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "best-practices": {
+      "category": "best-practices",
+      "issueCount": 1,
+      "languages": [
+        "typescript"
+      ],
+      "severity": {
+        "error": 0,
+        "warning": 0,
+        "info": 1
+      }
+    },
+    "security": {
+      "category": "security",
+      "issueCount": 1,
+      "languages": [
+        "python"
+      ],
+      "severity": {
+        "error": 1,
+        "warning": 0,
+        "info": 0
+      }
+    }
+  },
+  "bySeverity": {
+    "warning": {
+      "severity": "warning",
+      "issueCount": 2,
+      "byLanguage": {
+        "typescript": 1,
+        "python": 1,
+        "java": 0,
+        "unknown": 0
+      },
+      "byCategory": {
+        "complexity": 1,
+        "type-safety": 1
+      }
+    },
+    "error": {
+      "severity": "error",
+      "issueCount": 2,
+      "byLanguage": {
+        "typescript": 1,
+        "python": 1,
+        "java": 0,
+        "unknown": 0
+      },
+      "byCategory": {
+        "type-safety": 1,
+        "security": 1
+      }
+    },
+    "info": {
+      "severity": "info",
+      "issueCount": 1,
+      "byLanguage": {
+        "typescript": 1,
+        "python": 0,
+        "java": 0,
+        "unknown": 0
+      },
+      "byCategory": {
+        "best-practices": 1
+      }
+    }
+  },
+  "issues": [
+    {
+      "language": "typescript",
+      "detector": "typescript-complexity",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\src\\components\\UserList.tsx",
+      "line": 45,
+      "severity": "warning",
+      "message": "Function complexity too high (15, max 10)",
+      "category": "complexity",
+      "autoFixable": false
+    },
+    {
+      "language": "typescript",
+      "detector": "typescript-type-safety",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\src\\api\\client.ts",
+      "line": 23,
+      "severity": "error",
+      "message": "Unsafe type assertion (any)",
+      "category": "type-safety",
+      "autoFixable": true,
+      "suggestion": "Use proper type instead of any"
+    },
+    {
+      "language": "typescript",
+      "detector": "typescript-best-practices",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\src\\utils\\helpers.ts",
+      "line": 12,
+      "severity": "info",
+      "message": "Consider using const instead of let",
+      "category": "best-practices",
+      "autoFixable": true
+    },
+    {
+      "language": "python",
+      "detector": "python-type-hints",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\backend\\api\\routes.py",
+      "line": 34,
+      "severity": "warning",
+      "message": "Missing type hint for function parameter",
+      "category": "type-safety",
+      "autoFixable": true,
+      "suggestion": "Add type hint: def process_data(data: dict) -> list:"
+    },
+    {
+      "language": "python",
+      "detector": "python-security",
+      "file": "C:\\Users\\sabou\\dev\\odavl\\backend\\db\\queries.py",
+      "line": 67,
+      "severity": "error",
+      "message": "Potential SQL injection vulnerability",
+      "category": "security",
+      "autoFixable": true,
+      "suggestion": "Use parameterized query"
+    }
+  ]
+}

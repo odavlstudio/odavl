@@ -1,0 +1,40 @@
+{
+  "name": "@odavl-studio/autopilot-engine",
+  "version": "2.0.0",
+  "description": "ODAVL – Self-Healing Code Infrastructure CLI",
+  "main": "dist/index.js",
+  "bin": {
+    "odavl": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs",
+    "prepublishOnly": "pnpm run build"
+  },
+  "author": "Mohammad Nawlo",
+  "license": "MIT",
+  "keywords": [
+    "self-healing",
+    "automation",
+    "lint",
+    "devops",
+    "ai"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "@odavl-studio/insight-core": "workspace:*",
+    "chalk": "^5.6.2",
+    "js-yaml": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.4",
+    "@types/node": "^24.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Monawlo812/odavl"
+  }
+}

@@ -1,0 +1,221 @@
+# Dependabot configuration for automated dependency updates and security scanning
+# See https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+
+updates:
+  # Root workspace dependencies (highest priority)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "00:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "automated"
+      - "workspace-root"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    versioning-strategy: increase-if-necessary
+    
+    # Security-critical packages - auto-update immediately
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "production"
+    
+    # Don't auto-update major versions (needs manual review)
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    
+    # Group updates to reduce PR noise
+    groups:
+      typescript-ecosystem:
+        patterns:
+          - "@typescript-eslint/*"
+          - "typescript-eslint"
+          - "typescript"
+      testing-framework:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "@playwright/test"
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+      prisma-ecosystem:
+        patterns:
+          - "@prisma/*"
+          - "prisma"
+      security-patches:
+        patterns:
+          - "next"
+          - "playwright"
+          - "esbuild"
+
+  # Monitor npm dependencies for the Guardian app
+  - package-ecosystem: "npm"
+    directory: "/apps/guardian"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "guardian"
+      - "security"
+    commit-message:
+      prefix: "chore(deps):"
+      include: "scope"
+    versioning-strategy: increase
+    groups:
+      # Group major version updates together
+      major-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
+      # Group minor and patch updates
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Ignore experimental packages
+      - dependency-name: "*-alpha*"
+      - dependency-name: "*-beta*"
+      - dependency-name: "*-rc*"
+
+  # Monitor npm dependencies for the CLI
+  - package-ecosystem: "npm"
+    directory: "/apps/cli"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "cli"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor npm dependencies for VS Code extension
+  - package-ecosystem: "npm"
+    directory: "/apps/vscode-ext"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "vscode-ext"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor npm dependencies for Insight Cloud
+  - package-ecosystem: "npm"
+    directory: "/apps/insight-cloud"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "insight-cloud"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor shared packages
+  - package-ecosystem: "npm"
+    directory: "/packages/insight-core"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "packages"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor ODAVL Studio - Insight Core
+  - package-ecosystem: "npm"
+    directory: "/odavl-studio/insight/core"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "insight"
+      - "odavl-studio"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor ODAVL Studio - Autopilot Engine
+  - package-ecosystem: "npm"
+    directory: "/odavl-studio/autopilot/engine"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "autopilot"
+      - "odavl-studio"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor ODAVL Studio - Guardian Core
+  - package-ecosystem: "npm"
+    directory: "/odavl-studio/guardian/core"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "guardian"
+      - "odavl-studio"
+    commit-message:
+      prefix: "chore(deps):"
+
+  # Monitor root workspace dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "root"
+    commit-message:
+      prefix: "chore(deps)"
+    rebase-strategy: "auto"
+    allow:
+      - dependency-type: "all"
+    ignore:
+      - dependency-name: "eslint"
+        versions: ["*"]
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(ci):"

@@ -1,0 +1,19 @@
+apiVersion: v2
+name: odavl-guardian
+description: ODAVL Guardian - Automated Testing & Monitoring Helm Chart
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - odavl
+  - testing
+  - monitoring
+  - quality
+home: https://odavl.com
+sources:
+  - https://github.com/odavl/odavl
+maintainers:
+  - name: ODAVL Team
+    email: support@odavl.com
+    url: https://odavl.com
+dependencies: []

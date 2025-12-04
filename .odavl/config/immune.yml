@@ -1,0 +1,232 @@
+# ODAVL Immune System Configuration
+# Project-level protection system like human immune system
+# Version: 1.0.0
+# Created: 2025-11-26
+
+immunity_system:
+  # Protected resources - files that need extra protection
+  protected_paths:
+    # Critical paths - NEVER auto-edit without explicit approval
+    critical:
+      - security/**                # Security-sensitive code
+      - auth/**                    # Authentication logic
+      - payment/**                 # Payment processing
+      - billing/**                 # Billing logic
+      - "**/*.key"                 # Private keys
+      - "**/*.cert"                # Certificates
+      - "**/*.pem"                 # PEM files
+      - .env                       # Environment variables
+      - .env.production            # Production env
+    
+    # Sensitive paths - Edit with extreme caution
+    sensitive:
+      - config/database.ts         # Database configuration
+      - config/secrets.ts          # Secrets management
+      - packages/auth/**           # Auth package
+      - "**/.env*"                 # All env files
+      - prisma/schema.prisma       # Database schema
+      - docker-compose.yml         # Docker config
+      - kubernetes/**              # K8s configs
+    
+    # Read-only paths - NEVER modify
+    readonly:
+      - LICENSE                    # License file
+      - package.json.name          # Package name
+      - package.json.version       # Package version (use release script)
+      - CHANGELOG.md               # Changelog (use automation)
+      - "**/*.md.license"          # License headers
+      - .github/CODEOWNERS         # Code owners
+
+  # Blocked operations - specific operations that are forbidden
+  blocked_operations:
+    # Package.json operations
+    package_json:
+      - remove_dependencies        # Never remove deps automatically
+      - downgrade_major            # Never downgrade major versions
+      - change_engine              # Never change Node version requirement
+      - modify_scripts_security    # Don't touch security-related scripts
+    
+    # TypeScript config operations
+    tsconfig_json:
+      - disable_strict             # Never disable strict mode
+      - change_target              # Don't change compilation target
+      - allow_js                   # Keep TypeScript-only
+      - disable_noImplicitAny      # Keep type safety
+    
+    # Prisma schema operations
+    prisma_schema:
+      - drop_tables                # Never drop tables
+      - remove_fields              # Don't remove fields (breaking)
+      - change_id_type             # Don't change ID types
+      - remove_indexes             # Don't remove indexes
+    
+    # Git operations
+    git:
+      - force_push                 # Never force push
+      - delete_branches            # Don't auto-delete branches
+      - modify_history             # Don't rewrite history
+    
+    # Security operations
+    security:
+      - disable_https              # Always use HTTPS
+      - expose_secrets             # Never expose secrets
+      - weaken_permissions         # Don't weaken file permissions
+      - disable_cors               # CORS must stay enabled
+
+  # Threat response - how to respond to threats
+  threat_response:
+    # When protected file is modified
+    on_protected_file_change:
+      action: block                # Block the operation
+      notify: admin                # Notify admin
+      log: security_audit          # Log to security audit
+      require_manual_review: true  # Require human approval
+    
+    # When blocked operation is attempted
+    on_blocked_operation:
+      action: block                # Block immediately
+      suggest_alternative: true    # Suggest safer alternative
+      require_manual_approval: true # Need explicit approval
+      escalate_severity: high      # Escalate to high priority
+    
+    # When suspicious pattern detected
+    on_suspicious_pattern:
+      action: warn                 # Warn but don't block
+      log: threat_log              # Log the attempt
+      escalate_after_attempts: 3   # Block after 3 attempts
+      notify_after_attempts: 2     # Notify after 2 attempts
+    
+    # When anomaly detected
+    on_anomaly:
+      action: warn                 # Warn first
+      collect_diagnostics: true    # Save diagnostic dump
+      require_explanation: true    # Ask for reason
+
+  # Anomaly detection - detect unusual behavior
+  anomaly_detection:
+    enabled: true
+    
+    # File count anomalies
+    unusual_file_count: 20         # >20 files modified = suspicious
+    unusual_new_files: 10          # >10 new files = suspicious
+    unusual_deletions: 5           # >5 deletions = suspicious
+    
+    # Code change anomalies
+    unusual_loc_change: 500        # >500 lines changed = suspicious
+    unusual_file_size: 10000       # >10KB file = suspicious
+    unusual_complexity_increase: 20 # +20 complexity = suspicious
+    
+    # Time-based anomalies
+    unusual_time: 2000             # >2000ms operation = suspicious
+    unusual_frequency: 10          # >10 operations/min = suspicious
+    
+    # Pattern anomalies
+    repeated_failures: 3           # 3 consecutive failures = stop
+    high_risk_score: 80            # Risk score >80 = block
+    
+    # Security anomalies
+    secret_exposure: true          # Detect exposed secrets
+    sql_injection_patterns: true   # Detect SQL injection
+    xss_patterns: true             # Detect XSS attempts
+    path_traversal: true           # Detect path traversal
+
+  # Risk scoring system
+  risk_scoring:
+    enabled: true
+    
+    # Risk factors (weights)
+    factors:
+      file_criticality: 0.30       # 30% weight
+      operation_danger: 0.25       # 25% weight
+      change_magnitude: 0.20       # 20% weight
+      historical_failures: 0.15    # 15% weight
+      test_coverage: 0.10          # 10% weight
+    
+    # Risk thresholds
+    thresholds:
+      low: 30                      # 0-30 = low risk
+      medium: 60                   # 31-60 = medium risk
+      high: 80                     # 61-80 = high risk
+      critical: 100                # 81-100 = critical risk
+    
+    # Actions per risk level
+    actions:
+      low: allow                   # Allow automatically
+      medium: warn                 # Warn but allow
+      high: require_approval       # Require approval
+      critical: block              # Block completely
+
+  # Quarantine system - isolate suspicious changes
+  quarantine:
+    enabled: true
+    quarantine_path: .odavl/quarantine/
+    
+    # What to quarantine
+    criteria:
+      - high_risk_score            # Risk >80
+      - blocked_operation          # Attempted blocked op
+      - repeated_failures          # 3+ failures
+      - security_threat            # Security issue detected
+    
+    # Quarantine actions
+    actions:
+      - save_original              # Save original file
+      - create_diff                # Create diff
+      - block_commit               # Prevent committing
+      - require_review             # Need manual review
+
+  # Whitelist - trusted operations
+  whitelist:
+    enabled: true
+    
+    # Trusted patterns (bypass protection)
+    patterns:
+      - docs/**                    # Documentation changes safe
+      - "**/*.test.ts"             # Test changes safe
+      - "**/*.spec.ts"             # Spec changes safe
+      - examples/**                # Example changes safe
+      - "**/*.md"                  # Markdown changes safe (except LICENSE)
+    
+    # Trusted operations
+    operations:
+      - add_dependencies           # Adding deps is safe
+      - update_docs                # Updating docs is safe
+      - add_tests                  # Adding tests is safe
+      - format_code                # Formatting is safe
+
+# Backward compatibility with existing ODAVL systems
+legacy_integration:
+  # Import gates.yml rules
+  gates:
+    import_from: .odavl/gates.yml
+    merge_strategy: strict_union  # Union of both (strictest)
+    respect_existing: true        # Never weaken existing gates
+  
+  # Import protected paths from gates
+  protected_paths:
+    import_from: .odavl/gates.yml
+    field: forbidden_paths
+    merge_strategy: union
+
+# Performance tuning
+performance:
+  cache_risk_scores: true
+  cache_ttl: 600                   # 10 minutes
+  async_checks: true               # Check in background
+  parallel_validation: true        # Validate in parallel
+
+# Logging and monitoring
+monitoring:
+  log_threats: true
+  log_path: .odavl/logs/immune.log
+  track_blocked_attempts: true
+  attempts_path: .odavl/immune/blocked-attempts.json
+  alert_on_critical: true
+  alert_threshold: 3               # Alert after 3 critical threats
+
+# Safety mechanisms
+safety:
+  fail_safe: true                  # On error, block (not allow)
+  require_verification: true       # Always verify
+  emergency_shutdown: true         # Allow emergency stop
+  emergency_threshold: 10          # Stop after 10 blocks in 1 minute

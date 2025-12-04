@@ -1,0 +1,1 @@
+$process = Start-Process pwsh -ArgumentList "-NoProfile", "-Command", "cd C:\Users\sabou\dev\odavl ; pnpm odavl:guardian" -PassThru -RedirectStandardInput test-input.txt -RedirectStandardOutput guardian-output.txt -RedirectStandardError guardian-errors.txt -Wait

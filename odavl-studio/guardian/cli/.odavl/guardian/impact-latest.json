@@ -1,0 +1,177 @@
+{
+  "source": "insight-core",
+  "affected": [
+    {
+      "product": "insight-cloud",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on insight-core",
+      "confidence": 90,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": []
+    },
+    {
+      "product": "insight-extension",
+      "severity": "high",
+      "relationshipType": "api-consumer",
+      "reason": "Uses insight-core API for core functionality",
+      "confidence": 90,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": [
+        "Run full test suite for insight-extension",
+        "Verify insight-extension builds without errors",
+        "Test in VS Code Extension Development Host"
+      ]
+    },
+    {
+      "product": "autopilot-engine",
+      "severity": "high",
+      "relationshipType": "workflow-trigger",
+      "reason": "Triggered by insight-core workflow",
+      "confidence": 80,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": [
+        "Run full test suite for autopilot-engine",
+        "Verify autopilot-engine builds without errors"
+      ]
+    },
+    {
+      "product": "autopilot-extension",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on autopilot-engine",
+      "confidence": 90,
+      "path": [
+        "insight-core",
+        "autopilot-engine"
+      ],
+      "suggestedActions": [
+        "Test in VS Code Extension Development Host"
+      ]
+    },
+    {
+      "product": "guardian-cli",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on autopilot-engine",
+      "confidence": 90,
+      "path": [
+        "insight-core",
+        "autopilot-engine"
+      ],
+      "suggestedActions": [
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "studio-cli",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on guardian-cli",
+      "confidence": 90,
+      "path": [
+        "insight-core",
+        "autopilot-engine",
+        "guardian-cli"
+      ],
+      "suggestedActions": [
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "studio-cli",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on autopilot-engine",
+      "confidence": 90,
+      "path": [
+        "insight-core",
+        "autopilot-engine"
+      ],
+      "suggestedActions": [
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "guardian-cli",
+      "severity": "high",
+      "relationshipType": "api-consumer",
+      "reason": "Uses insight-core API for core functionality",
+      "confidence": 90,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": [
+        "Run full test suite for guardian-cli",
+        "Verify guardian-cli builds without errors",
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "studio-cli",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on guardian-cli",
+      "confidence": 90,
+      "path": [
+        "insight-core",
+        "guardian-cli"
+      ],
+      "suggestedActions": [
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "studio-cli",
+      "severity": "high",
+      "relationshipType": "api-consumer",
+      "reason": "Uses insight-core API for core functionality",
+      "confidence": 90,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": [
+        "Run full test suite for studio-cli",
+        "Verify studio-cli builds without errors",
+        "Test CLI commands with real workspace"
+      ]
+    },
+    {
+      "product": "sdk",
+      "severity": "medium",
+      "relationshipType": "direct-dependency",
+      "reason": "Directly depends on insight-core",
+      "confidence": 90,
+      "path": [
+        "insight-core"
+      ],
+      "suggestedActions": []
+    }
+  ],
+  "cascadeDepth": 4,
+  "overallSeverity": "critical",
+  "recommendations": [
+    "🎯 Fix error in insight-core first",
+    "⚠️ Test high-impact products: insight-extension, autopilot-engine, guardian-cli, studio-cli",
+    "🔄 Run cascade test plan (11 products affected)",
+    "📦 Rebuild dependent packages after fixing insight-core",
+    "👀 Manual code review recommended (critical component)"
+  ],
+  "visualTree": "└─ 🔴 insight-core (CRITICAL)\n   Source of error\n   ├─ 🔵 insight-cloud (MEDIUM)\n   │  Directly depends on insight-core\n   ├─ 🟡 insight-extension (HIGH)\n   │  Uses insight-core API for core functionality\n   ├─ 🟡 autopilot-engine (HIGH)\n   │  Triggered by insight-core workflow\n   │  ├─ 🔵 autopilot-extension (MEDIUM)\n   │  │  Directly depends on autopilot-engine\n   │  ├─ 🔵 guardian-cli (MEDIUM)\n   │  │  Directly depends on autopilot-engine\n   │  │  └─ 🔵 studio-cli (MEDIUM)\n   │  │     Directly depends on guardian-cli\n   │  └─ 🔵 studio-cli (MEDIUM)\n   │     Directly depends on autopilot-engine\n   ├─ 🟡 guardian-cli (HIGH)\n   │  Uses insight-core API for core functionality\n   │  └─ 🔵 studio-cli (MEDIUM)\n   │     Directly depends on guardian-cli\n   ├─ 🟡 studio-cli (HIGH)\n   │  Uses insight-core API for core functionality\n   └─ 🔵 sdk (MEDIUM)\n      Directly depends on insight-core\n",
+  "testPlan": [
+    "1. Test insight-core (source)",
+    "2. Test autopilot-extension (medium impact)",
+    "3. Test guardian-cli (medium impact)",
+    "4. Test studio-cli (medium impact)",
+    "5. Test studio-cli (medium impact)",
+    "6. Run full ODAVL integration tests"
+  ],
+  "confidence": 89,
+  "timestamp": "2025-12-01T00:17:16.034Z"
+}

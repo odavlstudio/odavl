@@ -1,0 +1,199 @@
+{
+  "url": "https://www.amazon.com",
+  "timestamp": "2025-11-25T14:27:51.200Z",
+  "duration": 5275,
+  "browserType": "chromium",
+  "status": "failed",
+  "issues": [
+    {
+      "type": "UNCAUGHT_EXCEPTION",
+      "severity": "critical",
+      "message": "🚨 1 uncaught exception(s) detected",
+      "fix": [
+        "Add try-catch blocks around error-prone code",
+        "Check error boundaries in React",
+        "Add global error handler",
+        "Fix the underlying JavaScript error"
+      ],
+      "details": {
+        "errors": [
+          "a.ue.log is not a function"
+        ],
+        "count": 1,
+        "url": "https://www.amazon.com/"
+      }
+    },
+    {
+      "type": "MISSING_ALT_TEXT",
+      "severity": "medium",
+      "message": "♿ 1 image(s) missing alt text",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Use alt=\"\" for decorative images",
+        "Use aria-label for icon buttons",
+        "Ensure alt text describes image content",
+        "Keep alt text concise (< 125 characters)"
+      ],
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "type": "MISSING_H1",
+      "severity": "medium",
+      "message": "♿ Page missing <h1> heading",
+      "fix": [
+        "Add one <h1> element per page",
+        "Make h1 the main page heading",
+        "Use h1 for page title/topic",
+        "Follow logical heading hierarchy (h1 → h2 → h3)",
+        "Don't skip heading levels"
+      ],
+      "details": {
+        "noH1": true,
+        "multipleH1": false,
+        "total": 1
+      }
+    },
+    {
+      "type": "MISSING_CSP",
+      "severity": "high",
+      "message": "🔒 Missing Content Security Policy",
+      "fix": [
+        "Add Content-Security-Policy header",
+        "Start with restrictive policy",
+        "Use nonce or hash for inline scripts",
+        "Avoid 'unsafe-inline' and 'unsafe-eval'",
+        "Test with report-only mode first"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_META_DESCRIPTION",
+      "severity": "high",
+      "message": "📄 Missing meta description",
+      "fix": [
+        "Add meta description tag in <head>",
+        "Keep description between 150-160 characters",
+        "Make description unique for each page",
+        "Include target keywords naturally",
+        "Write compelling, actionable description"
+      ],
+      "details": {
+        "length": 0,
+        "content": ""
+      }
+    },
+    {
+      "type": "MISSING_OG_TAGS",
+      "severity": "medium",
+      "message": "📱 Missing 4 Open Graph tag(s)",
+      "fix": [
+        "Add Open Graph meta tags for social sharing",
+        "Include og:title, og:description, og:image, og:url",
+        "Use high-quality og:image (1200x630px)",
+        "Test with Facebook Sharing Debugger",
+        "Add og:type for content classification"
+      ],
+      "details": {
+        "missing": [
+          "title",
+          "description",
+          "image",
+          "url"
+        ]
+      }
+    },
+    {
+      "type": "MISSING_TWITTER_CARD",
+      "severity": "low",
+      "message": "🐦 Missing Twitter Card tags",
+      "fix": [
+        "Add Twitter Card meta tags",
+        "Use twitter:card=\"summary_large_image\"",
+        "Include twitter:title and twitter:description",
+        "Add twitter:image for preview",
+        "Test with Twitter Card Validator"
+      ],
+      "details": {}
+    },
+    {
+      "type": "MISSING_CANONICAL",
+      "severity": "medium",
+      "message": "🔗 Missing canonical URL",
+      "fix": [
+        "Add <link rel=\"canonical\"> in <head>",
+        "Point to preferred version of page",
+        "Prevent duplicate content issues",
+        "Use absolute URLs",
+        "Set canonical for paginated content"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SEO_MISSING_ALT",
+      "severity": "medium",
+      "message": "🖼️ 1 image(s) missing alt text (SEO)",
+      "fix": [
+        "Add descriptive alt text to all images",
+        "Include relevant keywords naturally",
+        "Describe image content accurately",
+        "Keep alt text concise (< 125 characters)",
+        "Use alt=\"\" for decorative images only"
+      ],
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "type": "MISSING_STRUCTURED_DATA",
+      "severity": "low",
+      "message": "📊 Missing structured data (Schema.org)",
+      "fix": [
+        "Add JSON-LD structured data",
+        "Use Schema.org vocabulary",
+        "Implement appropriate types (Article, Product, etc.)",
+        "Test with Google Rich Results Test",
+        "Enable rich snippets in search results"
+      ],
+      "details": {}
+    },
+    {
+      "type": "SMALL_TAP_TARGETS",
+      "severity": "medium",
+      "message": "👆 3 tap target(s) too small (< 48x48px)",
+      "fix": [
+        "Increase button/link size to minimum 48x48px",
+        "Add padding to clickable elements",
+        "Increase spacing between tap targets",
+        "Follow Material Design guidelines",
+        "Test on actual touch devices"
+      ],
+      "details": {
+        "count": 3
+      }
+    },
+    {
+      "type": "SMALL_TEXT",
+      "severity": "medium",
+      "message": "📝 6 element(s) with text < 12px",
+      "fix": [
+        "Increase font size to minimum 14-16px for body text",
+        "Use rem units for scalability",
+        "Avoid px units for font sizes",
+        "Ensure good readability on mobile",
+        "Test with different zoom levels"
+      ],
+      "details": {
+        "count": 6
+      }
+    }
+  ],
+  "metrics": {
+    "totalIssues": 12,
+    "critical": 1,
+    "high": 2,
+    "medium": 7,
+    "low": 2
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "updated": "2025-11-26",
+  "description": "Python code quality issues for ML training",
+  "totalSamples": 5,
+  "categories": [
+    "type-hint-missing",
+    "pep8-violation",
+    "security-issue",
+    "complexity-high",
+    "import-cycle"
+  ],
+  "samples": [
+    {
+      "id": "py-001",
+      "issueType": "type-hint-missing",
+      "severity": "warning",
+      "category": "type-safety",
+      "codeContext": {
+        "before": "",
+        "issue": "def calculate_total(items):",
+        "after": "    return sum(item.price for item in items)"
+      },
+      "suggestedFix": {
+        "type": "add-type-hints",
+        "code": "def calculate_total(items: list[Item]) -> float:",
+        "confidence": 0.88
+      },
+      "metadata": {
+        "pythonVersion": "3.11",
+        "detector": "mypy",
+        "frequency": 89,
+        "successRate": 0.88,
+        "autoFixable": true
+      }
+    },
+    {
+      "id": "py-002",
+      "issueType": "pep8-violation",
+      "severity": "info",
+      "category": "style",
+      "codeContext": {
+        "before": "",
+        "issue": "def MyFunction( x,y ):",
+        "after": "    return x+y"
+      },
+      "suggestedFix": {
+        "type": "format-code",
+        "code": "def my_function(x, y):\n    return x + y",
+        "confidence": 1.0
+      },
+      "metadata": {
+        "pythonVersion": "3.11",
+        "detector": "flake8",
+        "frequency": 234,
+        "successRate": 1.0,
+        "autoFixable": true
+      }
+    },
+    {
+      "id": "py-003",
+      "issueType": "sql-injection",
+      "severity": "critical",
+      "category": "security",
+      "codeContext": {
+        "before": "def get_user(user_id):",
+        "issue": "    query = f\"SELECT * FROM users WHERE id = {user_id}\"",
+        "after": "    return db.execute(query)"
+      },
+      "suggestedFix": {
+        "type": "parameterized-query",
+        "code": "    query = \"SELECT * FROM users WHERE id = ?\"\n    return db.execute(query, (user_id,))",
+        "confidence": 0.95
+      },
+      "metadata": {
+        "pythonVersion": "3.11",
+        "detector": "bandit",
+        "frequency": 12,
+        "successRate": 0.95,
+        "autoFixable": true
+      }
+    }
+  ]
+}

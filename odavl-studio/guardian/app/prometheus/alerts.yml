@@ -1,0 +1,234 @@
+groups:
+  - name: guardian_performance
+    interval: 30s
+    rules:
+      # ============================================
+      # Memory Alerts
+      # ============================================
+      - alert: HighMemoryUsage
+        expr: (nodejs_heap_size_used_bytes / nodejs_heap_size_total_bytes) * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: performance
+        annotations:
+          summary: "High memory usage detected"
+          description: "Heap usage is above 90% for 5 minutes (current: {{ $value | humanizePercentage }})"
+          runbook_url: "https://docs.odavl.com/runbooks/high-memory-usage"
+
+      - alert: CriticalMemoryUsage
+        expr: (nodejs_heap_size_used_bytes / nodejs_heap_size_total_bytes) * 100 > 95
+        for: 2m
+        labels:
+          severity: critical
+          service: guardian
+          category: performance
+        annotations:
+          summary: "CRITICAL: Memory usage above 95%"
+          description: "Heap usage is critically high ({{ $value | humanizePercentage }}). Potential OOM risk."
+          runbook_url: "https://docs.odavl.com/runbooks/critical-memory-usage"
+
+      - alert: MemoryLeak
+        expr: rate(nodejs_heap_size_used_bytes[10m]) > 10485760
+        for: 15m
+        labels:
+          severity: warning
+          service: guardian
+          category: performance
+        annotations:
+          summary: "Potential memory leak detected"
+          description: "Memory growing by >10MB/min for 15 minutes (rate: {{ $value | humanize1024 }}/s)"
+          runbook_url: "https://docs.odavl.com/runbooks/memory-leak"
+
+      # ============================================
+      # CPU Alerts
+      # ============================================
+      - alert: HighCPUUsage
+        expr: (rate(nodejs_cpu_user_seconds_total[5m]) + rate(nodejs_cpu_system_seconds_total[5m])) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: performance
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is above 80% for 5 minutes (current: {{ $value | humanizePercentage }})"
+          runbook_url: "https://docs.odavl.com/runbooks/high-cpu-usage"
+
+      - alert: CriticalCPUUsage
+        expr: (rate(nodejs_cpu_user_seconds_total[5m]) + rate(nodejs_cpu_system_seconds_total[5m])) * 100 > 95
+        for: 2m
+        labels:
+          severity: critical
+          service: guardian
+          category: performance
+        annotations:
+          summary: "CRITICAL: CPU usage above 95%"
+          description: "CPU usage is critically high ({{ $value | humanizePercentage }})"
+          runbook_url: "https://docs.odavl.com/runbooks/critical-cpu-usage"
+
+  - name: guardian_connectivity
+    interval: 30s
+    rules:
+      # ============================================
+      # Database Alerts
+      # ============================================
+      - alert: DatabaseDisconnected
+        expr: odavl_database_connected == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: guardian
+          category: connectivity
+        annotations:
+          summary: "Database connection lost"
+          description: "Guardian cannot connect to PostgreSQL database for 1 minute"
+          runbook_url: "https://docs.odavl.com/runbooks/database-disconnected"
+
+      - alert: DatabaseConnectionFlapping
+        expr: changes(odavl_database_connected[5m]) > 3
+        for: 1m
+        labels:
+          severity: warning
+          service: guardian
+          category: connectivity
+        annotations:
+          summary: "Database connection flapping"
+          description: "Database connection changed state {{ $value }} times in 5 minutes"
+          runbook_url: "https://docs.odavl.com/runbooks/database-flapping"
+
+      # ============================================
+      # Redis Alerts
+      # ============================================
+      - alert: RedisDisconnected
+        expr: odavl_redis_connected == 0
+        for: 1m
+        labels:
+          severity: warning
+          service: guardian
+          category: connectivity
+        annotations:
+          summary: "Redis connection lost"
+          description: "Guardian cannot connect to Redis cache for 1 minute"
+          runbook_url: "https://docs.odavl.com/runbooks/redis-disconnected"
+
+      - alert: LowCacheHitRate
+        expr: odavl_redis_cache_hit_rate < 70
+        for: 10m
+        labels:
+          severity: warning
+          service: guardian
+          category: performance
+        annotations:
+          summary: "Low Redis cache hit rate"
+          description: "Cache hit rate is below 70% for 10 minutes (current: {{ $value | humanizePercentage }})"
+          runbook_url: "https://docs.odavl.com/runbooks/low-cache-hit-rate"
+
+      - alert: VeryLowCacheHitRate
+        expr: odavl_redis_cache_hit_rate < 50
+        for: 5m
+        labels:
+          severity: critical
+          service: guardian
+          category: performance
+        annotations:
+          summary: "CRITICAL: Cache hit rate below 50%"
+          description: "Cache hit rate is critically low ({{ $value | humanizePercentage }}). Check cache configuration."
+          runbook_url: "https://docs.odavl.com/runbooks/very-low-cache-hit-rate"
+
+  - name: guardian_application
+    interval: 30s
+    rules:
+      # ============================================
+      # Application Health Alerts
+      # ============================================
+      - alert: ApplicationDown
+        expr: up{job="guardian"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: guardian
+          category: availability
+        annotations:
+          summary: "Guardian application is down"
+          description: "Cannot scrape metrics from Guardian for 2 minutes"
+          runbook_url: "https://docs.odavl.com/runbooks/application-down"
+
+      - alert: SlowMetricsCollection
+        expr: odavl_metrics_collection_duration_ms > 5000
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: performance
+        annotations:
+          summary: "Slow metrics collection"
+          description: "Metrics collection taking >5s (current: {{ $value }}ms). Possible database/Redis slowness."
+          runbook_url: "https://docs.odavl.com/runbooks/slow-metrics-collection"
+
+      - alert: HighDatabaseRecordCount
+        expr: odavl_database_records_total{table="test_runs"} > 1000000
+        for: 1h
+        labels:
+          severity: info
+          service: guardian
+          category: capacity
+        annotations:
+          summary: "High test run count"
+          description: "Test runs table has over 1M records ({{ $value }}). Consider archiving old data."
+          runbook_url: "https://docs.odavl.com/runbooks/high-record-count"
+
+  - name: guardian_slo_violations
+    interval: 15s
+    rules:
+      # ============================================
+      # SLO Violation Alerts (Week 3 Targets)
+      # ============================================
+      - alert: P95ResponseTimeSLOViolation
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.2
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: slo
+        annotations:
+          summary: "P95 response time SLO violation"
+          description: "P95 response time is above 200ms target (current: {{ $value | humanizeDuration }})"
+          runbook_url: "https://docs.odavl.com/runbooks/p95-slo-violation"
+
+      - alert: P99ResponseTimeSLOViolation
+        expr: histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: slo
+        annotations:
+          summary: "P99 response time SLO violation"
+          description: "P99 response time is above 500ms target (current: {{ $value | humanizeDuration }})"
+          runbook_url: "https://docs.odavl.com/runbooks/p99-slo-violation"
+
+      - alert: ErrorRateSLOViolation
+        expr: (rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m])) * 100 > 1
+        for: 5m
+        labels:
+          severity: critical
+          service: guardian
+          category: slo
+        annotations:
+          summary: "Error rate SLO violation"
+          description: "Error rate is above 1% target (current: {{ $value | humanizePercentage }})"
+          runbook_url: "https://docs.odavl.com/runbooks/error-rate-slo-violation"
+
+      - alert: AvgResponseTimeSLOViolation
+        expr: rate(http_request_duration_seconds_sum[5m]) / rate(http_request_duration_seconds_count[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          service: guardian
+          category: slo
+        annotations:
+          summary: "Average response time SLO violation"
+          description: "Average response time is above 100ms target (current: {{ $value | humanizeDuration }})"
+          runbook_url: "https://docs.odavl.com/runbooks/avg-response-time-slo-violation"

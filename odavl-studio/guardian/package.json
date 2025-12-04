@@ -1,0 +1,120 @@
+{
+  "name": "@odavl-studio/guardian",
+  "version": "4.0.0",
+  "description": "AI-powered pre-deploy testing and launch guardian for web applications and VS Code extensions",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "guardian": "./cli/dist/guardian.js"
+  },
+  "files": [
+    "dist/**/*",
+    "cli/dist/**/*",
+    "lib/**/*",
+    "agents/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./agents": {
+      "types": "./dist/agents/index.d.ts",
+      "import": "./dist/agents/index.mjs",
+      "require": "./dist/agents/index.js"
+    },
+    "./cli": {
+      "import": "./cli/dist/guardian.mjs",
+      "require": "./cli/dist/guardian.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm build:core && pnpm build:cli",
+    "build:core": "tsup src/index.ts --format esm,cjs --dts",
+    "build:cli": "cd cli && tsup guardian.ts --format esm,cjs --dts",
+    "build:dashboard": "cd app && pnpm build",
+    "dev": "pnpm dev:dashboard",
+    "dev:dashboard": "cd app && pnpm dev",
+    "test": "vitest",
+    "test:integration": "vitest tests/integration",
+    "test:watch": "vitest --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist cli/dist",
+    "prepublishOnly": "pnpm build && pnpm lint",
+    "publish:npm": "npm publish --access public",
+    "publish:dry-run": "npm publish --dry-run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "micromatch": "^4.0.5",
+    "playwright": "^1.57.0",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@octokit/rest": "^22.0.1",
+    "@playwright/test": "^1.57.0",
+    "@types/micromatch": "^4.0.6",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "eslint": "^9.18.0",
+    "ora": "^8.2.0",
+    "tsup": "^8.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  },
+  "peerDependencies": {
+    "@odavl-studio/autopilot": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@odavl-studio/autopilot": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "guardian",
+    "testing",
+    "pre-deploy",
+    "ai",
+    "playwright",
+    "runtime-testing",
+    "visual-regression",
+    "error-detection",
+    "quality-assurance",
+    "launch-guardian",
+    "odavl"
+  ],
+  "author": {
+    "name": "ODAVL Studio",
+    "email": "hello@odavl.com",
+    "url": "https://odavl.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavl-studio/odavl.git",
+    "directory": "odavl-studio/guardian"
+  },
+  "homepage": "https://github.com/odavl-studio/odavl/tree/main/odavl-studio/guardian#readme",
+  "bugs": {
+    "url": "https://github.com/odavl-studio/odavl/issues"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,7 @@
+{
+  "dsn": "https://examplePublicKey@o0.ingest.sentry.io/0",
+  "environment": "production",
+  "tracesSampleRate": 0.1,
+  "enabled": false,
+  "_comment": "Sentry monitoring placeholder. Replace DSN and enable in production."
+}

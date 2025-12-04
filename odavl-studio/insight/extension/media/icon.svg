@@ -1,0 +1,33 @@
+<svg width="128" height="128"
+    xmlns="http://www.w3.org/2000/svg">
+    <!-- Background gradient -->
+    <defs>
+        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="64" cy="64" r="60" fill="url(#bgGradient)"/>
+
+    <!-- Magnifying glass handle -->
+    <rect x="70" y="70" width="8" height="30" rx="4" fill="url(#iconGradient)" transform="rotate(45 74 85)"/>
+
+    <!-- Magnifying glass circle -->
+    <circle cx="50" cy="50" r="24" fill="none" stroke="url(#iconGradient)" stroke-width="6"/>
+
+    <!-- Code brackets inside magnifying glass -->
+    <text x="42" y="58" font-family="monospace" font-size="24" font-weight="bold" fill="#fff">&lt;/&gt;</text>
+
+    <!-- ML brain dots -->
+    <circle cx="84" cy="24" r="3" fill="#fbbf24"/>
+    <circle cx="92" cy="28" r="2.5" fill="#f59e0b"/>
+    <circle cx="100" cy="24" r="2" fill="#fbbf24"/>
+    <line x1="84" y1="24" x2="92" y2="28" stroke="#fbbf24" stroke-width="1.5"/>
+    <line x1="92" y1="28" x2="100" y2="24" stroke="#f59e0b" stroke-width="1.5"/>
+</svg>

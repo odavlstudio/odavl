@@ -1,0 +1,287 @@
+# ODAVL Insight - Automated Code Quality Analysis
+#
+# This workflow runs ODAVL Insight on every pull request and posts
+# results as a comment with interactive charts and detailed findings.
+#
+# Setup:
+# 1. Add this file to .github/workflows/odavl-insight.yml
+# 2. Install ODAVL CLI: pnpm add -D @odavl/cli
+# 3. (Optional) Set GITHUB_TOKEN in secrets (auto-provided)
+
+name: ODAVL Insight Analysis
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch: # Manual trigger
+
+permissions:
+  contents: read
+  pull-requests: write # Required for posting comments
+  issues: write # Required for creating issues
+
+jobs:
+  odavl-analysis:
+    name: Code Quality & Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for better analysis
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm" # Use 'npm' or 'yarn' if not using pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ODAVL Insight Analysis
+        id: odavl-insight
+        run: |
+          echo "::group::Running ODAVL Insight"
+          pnpm odavl:insight --all --format=json --output=.odavl/reports/ci-report.json
+          echo "::endgroup::"
+        continue-on-error: true # Don't fail workflow, report in comment instead
+
+      - name: Generate HTML Report
+        if: always()
+        run: |
+          pnpm odavl:insight --all --format=html --output=.odavl/reports/ci-report.html
+
+      - name: Upload Report Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: odavl-insight-report
+          path: |
+            .odavl/reports/ci-report.json
+            .odavl/reports/ci-report.html
+          retention-days: 30
+
+      - name: Parse Analysis Results
+        id: parse-results
+        if: always()
+        run: |
+          # Extract key metrics from JSON report
+          REPORT_FILE=".odavl/reports/ci-report.json"
+
+          if [ -f "$REPORT_FILE" ]; then
+            TOTAL_ISSUES=$(jq '.totalIssues // 0' "$REPORT_FILE")
+            CRITICAL=$(jq '.criticalCount // 0' "$REPORT_FILE")
+            HIGH=$(jq '.highCount // 0' "$REPORT_FILE")
+            MEDIUM=$(jq '.mediumCount // 0' "$REPORT_FILE")
+            LOW=$(jq '.lowCount // 0' "$REPORT_FILE")
+            HEALTH_SCORE=$(jq '.healthScore // 100' "$REPORT_FILE")
+            
+            echo "total_issues=$TOTAL_ISSUES" >> $GITHUB_OUTPUT
+            echo "critical=$CRITICAL" >> $GITHUB_OUTPUT
+            echo "high=$HIGH" >> $GITHUB_OUTPUT
+            echo "medium=$MEDIUM" >> $GITHUB_OUTPUT
+            echo "low=$LOW" >> $GITHUB_OUTPUT
+            echo "health_score=$HEALTH_SCORE" >> $GITHUB_OUTPUT
+          else
+            echo "total_issues=0" >> $GITHUB_OUTPUT
+            echo "critical=0" >> $GITHUB_OUTPUT
+            echo "high=0" >> $GITHUB_OUTPUT
+            echo "medium=0" >> $GITHUB_OUTPUT
+            echo "low=0" >> $GITHUB_OUTPUT
+            echo "health_score=100" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate Quality Badge
+        id: badge
+        if: always()
+        run: |
+          HEALTH_SCORE=${{ steps.parse-results.outputs.health_score }}
+
+          if [ "$HEALTH_SCORE" -ge 80 ]; then
+            BADGE_COLOR="success"
+            BADGE_EMOJI="🟢"
+          elif [ "$HEALTH_SCORE" -ge 60 ]; then
+            BADGE_COLOR="yellow"
+            BADGE_EMOJI="🟡"
+          else
+            BADGE_COLOR="critical"
+            BADGE_EMOJI="🔴"
+          fi
+
+          echo "badge_color=$BADGE_COLOR" >> $GITHUB_OUTPUT
+          echo "badge_emoji=$BADGE_EMOJI" >> $GITHUB_OUTPUT
+
+      - name: Post PR Comment with Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const totalIssues = ${{ steps.parse-results.outputs.total_issues }};
+            const critical = ${{ steps.parse-results.outputs.critical }};
+            const high = ${{ steps.parse-results.outputs.high }};
+            const medium = ${{ steps.parse-results.outputs.medium }};
+            const low = ${{ steps.parse-results.outputs.low }};
+            const healthScore = ${{ steps.parse-results.outputs.health_score }};
+            const badgeEmoji = '${{ steps.badge.outputs.badge_emoji }}';
+            const badgeColor = '${{ steps.badge.outputs.badge_color }}';
+
+            // Generate comment body
+            const commentBody = `
+            ## ${badgeEmoji} ODAVL Insight Report
+
+            ![Health Score](https://img.shields.io/badge/Health_Score-${healthScore}%25-${badgeColor}?style=for-the-badge&logo=checkmarx)
+
+            ### 📊 Summary
+
+            | Metric | Count |
+            |--------|-------|
+            | **Total Issues** | ${totalIssues} |
+            | 🔴 **Critical** | ${critical} |
+            | 🟠 **High** | ${high} |
+            | 🔵 **Medium** | ${medium} |
+            | 🟢 **Low** | ${low} |
+
+            ### 📈 Health Score: ${healthScore}/100
+
+            ${healthScore >= 80 ? '✅ **Excellent!** Your code quality is world-class.' : ''}
+            ${healthScore >= 60 && healthScore < 80 ? '⚠️ **Good, but room for improvement.** Consider addressing high-priority issues.' : ''}
+            ${healthScore < 60 ? '🚨 **Action required!** Critical issues detected. Please review before merging.' : ''}
+
+            ### 🔍 Detailed Findings
+
+            ${critical > 0 ? `⚠️ **${critical} Critical Issue${critical !== 1 ? 's' : ''}** - Must be fixed before merge` : ''}
+            ${high > 0 ? `⚠️ **${high} High-Priority Issue${high !== 1 ? 's' : ''}** - Should be addressed soon` : ''}
+            ${medium > 0 ? `ℹ️ **${medium} Medium-Priority Issue${medium !== 1 ? 's' : ''}** - Consider addressing` : ''}
+            ${low > 0 ? `💡 **${low} Low-Priority Issue${low !== 1 ? 's' : ''}** - Optional improvements` : ''}
+
+            ### 📥 Full Report
+
+            Download the complete HTML report from the [workflow artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            ---
+
+            <sub>🤖 Generated by [ODAVL Insight](https://odavl.dev) • [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})</sub>
+            `;
+
+            // Find existing comment to update or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && comment.body.includes('ODAVL Insight Report')
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
+
+      - name: Check Quality Gates
+        if: always()
+        run: |
+          CRITICAL=${{ steps.parse-results.outputs.critical }}
+          HIGH=${{ steps.parse-results.outputs.high }}
+          HEALTH_SCORE=${{ steps.parse-results.outputs.health_score }}
+
+          # Fail workflow if quality gates not met
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "❌ Quality Gate Failed: $CRITICAL critical issue(s) detected"
+            exit 1
+          fi
+
+          if [ "$HEALTH_SCORE" -lt 60 ]; then
+            echo "❌ Quality Gate Failed: Health score ($HEALTH_SCORE) below threshold (60)"
+            exit 1
+          fi
+
+          echo "✅ Quality Gates Passed!"
+
+      - name: Create Issue for Critical Findings
+        if: failure() && steps.parse-results.outputs.critical > 0
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const critical = ${{ steps.parse-results.outputs.critical }};
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 ODAVL Insight: ${critical} Critical Issue${critical !== 1 ? 's' : ''} Detected`,
+              body: `
+              ## Critical Security/Quality Issues Detected
+              
+              ODAVL Insight has detected **${critical} critical issue${critical !== 1 ? 's' : ''}** in the latest code analysis.
+              
+              ### 🔥 Action Required
+              
+              Critical issues **must** be addressed before merging to production. These may include:
+              - Security vulnerabilities (hardcoded secrets, XSS, SQL injection)
+              - Critical TypeScript errors preventing builds
+              - Import cycle issues causing runtime failures
+              
+              ### 📥 View Full Report
+              
+              Check the [latest workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for the complete HTML report.
+              
+              ### 🛠️ Next Steps
+              
+              1. Download the HTML report from workflow artifacts
+              2. Review each critical issue with detailed explanations
+              3. Apply suggested fixes or use ODAVL's Quick Fix feature in VS Code
+              4. Re-run analysis to verify fixes
+              
+              ---
+              
+              <sub>🤖 Auto-generated by ODAVL Insight CI/CD Integration</sub>
+              `,
+              labels: ['security', 'critical', 'odavl-insight']
+            });
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 🎯 ODAVL Insight Analysis Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Health Score:** ${{ steps.parse-results.outputs.health_score }}/100 ${{ steps.badge.outputs.badge_emoji }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Severity | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔴 Critical | ${{ steps.parse-results.outputs.critical }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟠 High | ${{ steps.parse-results.outputs.high }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔵 Medium | ${{ steps.parse-results.outputs.medium }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟢 Low | ${{ steps.parse-results.outputs.low }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[📥 Download Full Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY

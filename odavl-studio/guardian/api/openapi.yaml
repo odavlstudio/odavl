@@ -1,0 +1,447 @@
+openapi: 3.0.3
+info:
+  title: Guardian API
+  description: REST API for ODAVL Guardian - Pre-Deploy Testing & Monitoring
+  version: 2.0.0
+  contact:
+    name: ODAVL Studio
+    url: https://odavl.studio
+
+servers:
+  - url: http://localhost:3003
+    description: Development server
+  - url: https://api.odavl.studio
+    description: Production server
+
+security:
+  - BearerAuth: []
+  - ApiKeyAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    Test:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        schedule:
+          type: string
+          description: Cron expression
+        enabled:
+          type: boolean
+        detectors:
+          type: array
+          items:
+            type: string
+            enum: [white-screen, 404, console-error, react-error, performance, accessibility, security, seo, mobile]
+        lastRun:
+          type: string
+          format: date-time
+          nullable: true
+
+    CreateTest:
+      type: object
+      required: [name, url, schedule]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        url:
+          type: string
+          format: uri
+        schedule:
+          type: string
+          description: Cron expression (e.g., "*/5 * * * *")
+        enabled:
+          type: boolean
+          default: true
+        detectors:
+          type: array
+          items:
+            type: string
+            enum: [white-screen, 404, console-error, react-error, performance, accessibility, security, seo, mobile]
+
+    TestExecution:
+      type: object
+      properties:
+        id:
+          type: string
+        testId:
+          type: string
+          format: uuid
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          enum: [running, completed, failed]
+        result:
+          type: object
+          nullable: true
+
+    AlertRule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        testId:
+          type: string
+          format: uuid
+        name:
+          type: string
+        enabled:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [score_below, score_above, issues_above, duration_above, failure_rate, trend_degrading]
+              threshold:
+                type: number
+              duration:
+                type: number
+        channels:
+          type: array
+          items:
+            type: string
+            enum: [email, slack, discord, webhook, pagerduty, sms]
+        severity:
+          type: string
+          enum: [critical, high, medium, low, info]
+        cooldown:
+          type: number
+          default: 60
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        ruleId:
+          type: string
+          format: uuid
+        testId:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum: [critical, high, medium, low, info]
+        title:
+          type: string
+        message:
+          type: string
+        channels:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [pending, sent, acknowledged, resolved, failed]
+        createdAt:
+          type: string
+          format: date-time
+        acknowledgedAt:
+          type: string
+          format: date-time
+          nullable: true
+        acknowledgedBy:
+          type: string
+          nullable: true
+
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      security: []
+      responses:
+        '200':
+          description: API is healthy
+
+  /api/tests:
+    post:
+      summary: Create scheduled test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTest'
+      responses:
+        '201':
+          description: Test created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Test'
+    get:
+      summary: List all tests
+      responses:
+        '200':
+          description: List of tests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Test'
+
+  /api/tests/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      summary: Get test by ID
+      responses:
+        '200':
+          description: Test details
+        '404':
+          description: Test not found
+    patch:
+      summary: Update test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTest'
+      responses:
+        '200':
+          description: Test updated
+    delete:
+      summary: Delete test
+      responses:
+        '200':
+          description: Test deleted
+
+  /api/tests/{id}/execute:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      summary: Execute test immediately
+      responses:
+        '200':
+          description: Test executed
+
+  /api/tests/{id}/executions:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+    get:
+      summary: Get test execution history
+      responses:
+        '200':
+          description: Execution list
+
+  /api/tests/{id}/trends:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: days
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 365
+          default: 30
+    get:
+      summary: Get trend analysis
+      responses:
+        '200':
+          description: Trend data
+
+  /api/alerts/rules:
+    post:
+      summary: Create alert rule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [testId, name, conditions, channels, severity]
+              properties:
+                testId:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                enabled:
+                  type: boolean
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                channels:
+                  type: array
+                  items:
+                    type: string
+                severity:
+                  type: string
+                cooldown:
+                  type: number
+      responses:
+        '201':
+          description: Rule created
+    get:
+      summary: List alert rules
+      parameters:
+        - name: testId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Rule list
+
+  /api/alerts:
+    get:
+      summary: List alerts
+      parameters:
+        - name: testId
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, sent, acknowledged, resolved, failed]
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [critical, high, medium, low, info]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+      responses:
+        '200':
+          description: Alert list
+
+  /api/alerts/{id}/acknowledge:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      summary: Acknowledge alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [acknowledgedBy]
+              properties:
+                acknowledgedBy:
+                  type: string
+      responses:
+        '200':
+          description: Alert acknowledged
+
+  /api/webhooks/subscribe:
+    post:
+      summary: Subscribe to webhook events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url, events]
+              properties:
+                url:
+                  type: string
+                  format: uri
+                events:
+                  type: array
+                  items:
+                    type: string
+                secret:
+                  type: string
+      responses:
+        '201':
+          description: Subscription created

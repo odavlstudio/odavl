@@ -1,0 +1,57 @@
+{
+  "name": "@odavl-studio/guardian-core",
+  "version": "0.1.0",
+  "description": "ODAVL Guardian - Pre-deploy testing and quality gates",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "guardian": "./dist/cli.js",
+    "guardian-test": "./dist/guardian-cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --clean",
+    "dev": "tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:real-world": "tsx examples/test-real-world.ts",
+    "test:white-screen": "tsx examples/test-white-screen.ts",
+    "test:integration": "tsx examples/integration-test.ts",
+    "benchmark": "tsx examples/benchmark.ts",
+    "ci": "tsx examples/ci-integration.ts"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.2",
+    "jspdf": "^3.0.3",
+    "lighthouse": "^12.2.1",
+    "lucide-react": "^0.545.0",
+    "playwright": "^1.55.1",
+    "playwright-core": "^1.55.1",
+    "puppeteer": "^23.10.4"
+  },
+  "devDependencies": {
+    "@axe-core/puppeteer": "^4.11.0",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "testing",
+    "accessibility",
+    "performance",
+    "security",
+    "quality-gates"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT"
+}

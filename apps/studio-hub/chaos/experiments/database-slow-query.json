@@ -1,0 +1,243 @@
+{
+  "version": "1.0.0",
+  "title": "Database Slow Query Injection",
+  "description": "Injects artificially slow queries to test the system's ability to handle database performance degradation. Validates query timeouts, circuit breakers, and monitoring alerts.",
+  "tags": [
+    "database",
+    "performance",
+    "timeout",
+    "resilience"
+  ],
+  "configuration": {
+    "database_host": {
+      "type": "env",
+      "key": "DATABASE_HOST",
+      "default": "postgres-staging.odavl.studio"
+    },
+    "database_port": {
+      "type": "env",
+      "key": "DATABASE_PORT",
+      "default": "5432"
+    },
+    "database_name": {
+      "type": "env",
+      "key": "DATABASE_NAME",
+      "default": "odavl_studio_staging"
+    },
+    "base_url": {
+      "type": "env",
+      "key": "BASE_URL",
+      "default": "https://staging.odavl.studio"
+    },
+    "slow_query_duration_seconds": {
+      "type": "env",
+      "key": "SLOW_QUERY_DURATION",
+      "default": "10"
+    }
+  },
+  "steady-state-hypothesis": {
+    "title": "Database queries complete within acceptable timeframes",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "check-average-query-time",
+        "tolerance": {
+          "type": "range",
+          "target": "value",
+          "range": [0, 100]
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosdb.postgresql.probes",
+          "func": "query",
+          "arguments": {
+            "host": "${database_host}",
+            "port": "${database_port}",
+            "database": "${database_name}",
+            "query": "SELECT COALESCE(AVG(mean_exec_time), 0) as avg_time FROM pg_stat_statements WHERE mean_exec_time > 0;"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "check-no-long-running-queries",
+        "tolerance": {
+          "type": "equals",
+          "target": "value",
+          "value": 0
+        },
+        "provider": {
+          "type": "python",
+          "module": "chaosdb.postgresql.probes",
+          "func": "query",
+          "arguments": {
+            "host": "${database_host}",
+            "port": "${database_port}",
+            "database": "${database_name}",
+            "query": "SELECT count(*) FROM pg_stat_activity WHERE state = 'active' AND now() - query_start > interval '5 seconds';"
+          }
+        }
+      },
+      {
+        "type": "probe",
+        "name": "application-responds-quickly",
+        "tolerance": {
+          "type": "http",
+          "status": 200,
+          "timeout": 2
+        },
+        "provider": {
+          "type": "http",
+          "url": "${base_url}/api/health",
+          "timeout": 2
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "inject-slow-query",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "execute_query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT pg_sleep(${slow_query_duration_seconds});",
+          "async": true
+        }
+      },
+      "pauses": {
+        "after": 2
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-slow-query-running",
+      "tolerance": {
+        "type": "range",
+        "target": "value",
+        "range": [1, 10]
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.probes",
+        "func": "query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT count(*) FROM pg_stat_activity WHERE query LIKE '%pg_sleep%';"
+        }
+      },
+      "pauses": {
+        "after": 3
+      }
+    },
+    {
+      "type": "probe",
+      "name": "test-application-with-slow-database",
+      "tolerance": {
+        "type": "http",
+        "status": [200, 504, 503]
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/trpc/insight.getIssues?input={\"limit\":50}",
+        "timeout": 15
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "check-timeout-metrics",
+      "tolerance": true,
+      "provider": {
+        "type": "python",
+        "module": "chaosprometheus.probes",
+        "func": "query_prometheus",
+        "arguments": {
+          "query": "increase(database_query_timeouts_total[1m])",
+          "endpoint": "${prometheus_url}"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "action",
+      "name": "cancel-slow-queries",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "execute_query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT pg_cancel_backend(pid) FROM pg_stat_activity WHERE query LIKE '%pg_sleep%' AND state = 'active';"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-queries-cancelled",
+      "tolerance": {
+        "type": "equals",
+        "target": "value",
+        "value": 0
+      },
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.probes",
+        "func": "query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT count(*) FROM pg_stat_activity WHERE query LIKE '%pg_sleep%';"
+        }
+      }
+    },
+    {
+      "type": "probe",
+      "name": "verify-recovery",
+      "tolerance": {
+        "type": "http",
+        "status": 200,
+        "timeout": 3
+      },
+      "provider": {
+        "type": "http",
+        "url": "${base_url}/api/health",
+        "timeout": 3
+      }
+    }
+  ],
+  "rollbacks": [
+    {
+      "type": "action",
+      "name": "terminate-all-slow-queries",
+      "provider": {
+        "type": "python",
+        "module": "chaosdb.postgresql.actions",
+        "func": "execute_query",
+        "arguments": {
+          "host": "${database_host}",
+          "port": "${database_port}",
+          "database": "${database_name}",
+          "query": "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE now() - query_start > interval '5 seconds' AND state = 'active' AND application_name NOT LIKE 'psql%';"
+        }
+      }
+    }
+  ]
+}

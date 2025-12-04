@@ -1,0 +1,89 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: odavl-cli-autopilot
+  namespace: production
+  labels:
+    app: odavl-cli
+    component: autopilot
+spec:
+  # Run every 6 hours
+  schedule: "0 */6 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata:
+          labels:
+            app: odavl-cli
+            component: autopilot
+        spec:
+          serviceAccountName: odavl-cli
+          restartPolicy: OnFailure
+          containers:
+            - name: odavl-cli
+              image: ghcr.io/odavl/odavl-cli:latest
+              imagePullPolicy: Always
+              command:
+                - node
+                - dist/index.js
+                - run
+              env:
+                - name: NODE_ENV
+                  value: "production"
+                - name: ODAVL_TARGET_DIR
+                  value: "/workspace"
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "200m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+              volumeMounts:
+                - name: workspace
+                  mountPath: /workspace
+                - name: odavl-data
+                  mountPath: /app/.odavl
+          volumes:
+            - name: workspace
+              persistentVolumeClaim:
+                claimName: odavl-workspace-pvc
+            - name: odavl-data
+              persistentVolumeClaim:
+                claimName: odavl-cli-pvc
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: odavl-cli
+  namespace: production
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: odavl-cli-pvc
+  namespace: production
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard-rwo
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: odavl-workspace-pvc
+  namespace: production
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: standard-rwo

@@ -1,0 +1,14 @@
+id: perf-hotpaths
+area: all
+priority: Medium
+match:
+  files: ["**/*.{ts,tsx}"]
+check:
+  rules:
+    - name: await-in-loop
+      fail_if_regex: "for\\s*\\([^)]*\\)\\s*\\{[^}]*await\\s+"
+    - name: excessive-json-parse
+      fail_if_regex: "JSON\\.parse\\("
+propose:
+  playbook: micro-perf-tweaks
+  rationale: "Defer IO, avoid await in loops, batch operations."

@@ -1,0 +1,10 @@
+{
+  "version": "2.0",
+  "trainedAt": "2025-11-22T20:35:55.367Z",
+  "architecture": "12 → 128 → 64 → 32 → 16 → 1",
+  "features": 12,
+  "balancingApplied": true,
+  "regularization": "L2 (0.001) + Dropout + Batch Norm",
+  "optimizer": "Adam (lr=0.0005)",
+  "earlyStoppingPatience": 15
+}

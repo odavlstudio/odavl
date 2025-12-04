@@ -1,0 +1,14 @@
+id: config-drift
+area: config
+priority: Medium
+match:
+  files: ["**/*.{json,yaml,yml}"]
+check:
+  rules:
+    - name: config-mismatch
+      fail_if_regex: "(dev|prod|test)[\s\-_:]*:"
+    - name: hardcoded-path
+      fail_if_regex: "/(Users|home|etc|var)/"
+propose:
+  playbook: unify-engines-types
+  rationale: "Unify config, avoid drift, use env vars."

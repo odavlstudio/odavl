@@ -1,0 +1,88 @@
+
+> odavl@0.1.0 build C:\Users\sabou\dev\odavl
+> pnpm -r build
+
+Scope: 19 of 20 workspace projects
+apps/studio-hub build$ next build
+odavl-studio/autopilot/engine build$ tsup src/index.ts --format cjs,esm --dts --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs
+github-actions build$ ncc build src/index.ts -o dist --source-map --license licenses.txt
+odavl-studio/guardian/app build$ next build
+apps/studio-hub build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+odavl-studio/guardian/app build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+github-actions build: ncc: Version 0.38.4
+github-actions build: ncc: Compiling file index.js into CJS
+odavl-studio/autopilot/engine build: [34mCLI[39m Building entry: src/index.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsconfig: tsconfig.build.json
+odavl-studio/autopilot/engine build: [34mCLI[39m tsup v8.5.1
+odavl-studio/autopilot/engine build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\tsup.config.ts
+odavl-studio/autopilot/engine build: [34mCLI[39m Target: es2022
+odavl-studio/autopilot/engine build: [34mCLI[39m Cleaning output folder
+odavl-studio/autopilot/engine build: [34mCJS[39m Build start
+odavl-studio/autopilot/engine build: [34mESM[39m Build start
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:98:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...('insight.js') || (typeof [32mimport.meta[37m !== 'undefined' && import...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:129:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...t.meta !== 'undefined' && [32mimport.meta[37m.url && import.meta.url.en...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+odavl-studio/autopilot/engine build:     src/insight.ts:55:148:
+odavl-studio/autopilot/engine build: [37m      55 Ôöé ...ed' && import.meta.url && [32mimport.meta[37m.url.endsWith('/insight.ts...
+odavl-studio/autopilot/engine build:          ÔòÁ                              [32m~~~~~~~~~~~[0m
+odavl-studio/autopilot/engine build:   You need to set the output format to "esm" for "import.meta" to work correctly.
+odavl-studio/autopilot/engine build: [32mCJS[39m [1mdist\index.cjs [22m[32m827.57 KB[39m
+odavl-studio/autopilot/engine build: [32mCJS[39m ÔÜí´©Å Build success in 113ms
+odavl-studio/autopilot/engine build: [32mESM[39m [1mdist\index.js [22m[32m826.57 KB[39m
+odavl-studio/autopilot/engine build: [32mESM[39m ÔÜí´©Å Build success in 113ms
+odavl-studio/guardian/app build:    Ôû▓ Next.js 15.5.6
+odavl-studio/guardian/app build:    - Environments: .env
+odavl-studio/guardian/app build:    - Experiments (use with caution):
+odavl-studio/guardian/app build:      ┬À serverActions
+odavl-studio/guardian/app build:      ┬À optimizePackageImports
+odavl-studio/guardian/app build:    Creating an optimized production build ...
+odavl-studio/autopilot/engine build: [34mDTS[39m Build start
+apps/studio-hub build:    Ôû▓ Next.js 16.0.3 (Turbopack)
+github-actions build: ncc: Using typescript@5.9.3 (local user-provided)
+apps/studio-hub build:    Creating an optimized production build ...
+odavl-studio/autopilot/engine build: [32mDTS[39m ÔÜí´©Å Build success in 2130ms
+odavl-studio/autopilot/engine build: [32mDTS[39m [1mdist\index.d.cts [22m[32m6.37 KB[39m
+odavl-studio/autopilot/engine build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m6.37 KB[39m
+github-actions build:    0kB  dist\index.d.ts
+github-actions build:    0kB  dist\index.d.ts.map
+github-actions build:   32kB  dist\licenses.txt
+github-actions build:   40kB  dist\sourcemap-register.js
+github-actions build: 1116kB  dist\index.js
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 2488kB  [3819ms] - ncc 0.38.4
+github-actions build: Done
+odavl-studio/guardian/core build$ tsup src/index.ts src/cli.ts --format esm --dts --clean
+odavl-studio/autopilot/engine build: Shebang already present.
+odavl-studio/autopilot/engine build: Done
+odavl-studio/guardian/workers build$ tsc
+apps/studio-hub build:  Ô£ô Compiled successfully in 3.1s
+apps/studio-hub build:    Running TypeScript ...
+odavl-studio/guardian/core build: [34mCLI[39m Building entry: src/cli.ts, src/index.ts
+odavl-studio/guardian/core build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/core build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/core build: [34mCLI[39m Target: es2022
+odavl-studio/guardian/core build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/core build: [34mESM[39m Build start
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\cli.js            [22m[32m6.08 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\index.js          [22m[32m191.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-FCOMETOA.js [22m[32m6.99 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\chunk-3RG5ZIWI.js [22m[32m390.00 B[39m
+odavl-studio/guardian/core build: [32mESM[39m [1mdist\dist-EZX4ZC56.js  [22m[32m13.92 KB[39m
+odavl-studio/guardian/core build: [32mESM[39m ÔÜí´©Å Build success in 203ms
+odavl-studio/guardian/core build: [34mDTS[39m Build start
+odavl-studio/guardian/workers build: tsconfig.json(3,3): error TS5096: Option 'allowImportingTsExtensions' can only be used when either 'noEmit' or 'emitDeclarationOnly' is set.
+odavl-studio/guardian/workers build: Failed
+C:\Users\sabou\dev\odavl\odavl-studio\guardian\workers:
+ÔÇëERR_PNPM_RECURSIVE_RUN_FIRST_FAILÔÇë @odavl-studio/guardian-workers@2.0.0 build: `tsc`
+Exit status 2
+odavl-studio/insight/cloud build$ next build
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 2.

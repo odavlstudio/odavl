@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardian Test Report - http://localhost:8080/demo.html</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .header { background: #10b981; color: white; padding: 30px; border-radius: 8px 8px 0 0; }
+    .header h1 { font-size: 24px; margin-bottom: 10px; }
+    .header .status { font-size: 48px; font-weight: bold; text-transform: uppercase; }
+    .meta { padding: 20px 30px; border-bottom: 1px solid #e5e5e5; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .meta-item { display: flex; flex-direction: column; }
+    .meta-label { font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 5px; }
+    .meta-value { font-size: 16px; font-weight: 600; }
+    .metrics { padding: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+    .metric { background: #f9fafb; padding: 20px; border-radius: 6px; text-align: center; }
+    .metric-value { font-size: 32px; font-weight: bold; }
+    .metric-label { font-size: 14px; color: #666; margin-top: 5px; }
+    .metric.critical .metric-value { color: #ef4444; }
+    .metric.high .metric-value { color: #f59e0b; }
+    .metric.medium .metric-value { color: #3b82f6; }
+    .metric.low .metric-value { color: #6b7280; }
+    .issues { padding: 30px; }
+    .issues h2 { font-size: 20px; margin-bottom: 20px; }
+    .issue { background: #f9fafb; border-left: 4px solid; padding: 20px; margin-bottom: 20px; border-radius: 4px; }
+    .issue.critical { border-color: #ef4444; }
+    .issue.high { border-color: #f59e0b; }
+    .issue.medium { border-color: #3b82f6; }
+    .issue.low { border-color: #6b7280; }
+    .issue-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; }
+    .issue-type { font-weight: 600; font-size: 16px; }
+    .issue-severity { padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+    .issue-severity.critical { background: #fee2e2; color: #991b1b; }
+    .issue-severity.high { background: #fef3c7; color: #92400e; }
+    .issue-severity.medium { background: #dbeafe; color: #1e40af; }
+    .issue-severity.low { background: #f3f4f6; color: #374151; }
+    .issue-message { color: #374151; margin-bottom: 15px; }
+    .fix-suggestions { background: white; padding: 15px; border-radius: 4px; }
+    .fix-suggestions h4 { font-size: 14px; margin-bottom: 10px; color: #374151; }
+    .fix-suggestions ol { padding-left: 20px; }
+    .fix-suggestions li { margin-bottom: 8px; color: #6b7280; }
+    .no-issues { padding: 60px 30px; text-align: center; color: #10b981; }
+    .no-issues-icon { font-size: 64px; margin-bottom: 20px; }
+    .no-issues-text { font-size: 24px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Guardian Test Report</h1>
+      <div class="status">passed</div>
+    </div>
+
+    <div class="meta">
+      <div class="meta-item">
+        <div class="meta-label">URL</div>
+        <div class="meta-value">http://localhost:8080/demo.html</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Timestamp</div>
+        <div class="meta-value">25.11.2025, 16:20:53</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Duration</div>
+        <div class="meta-value">6.34s</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Browser</div>
+        <div class="meta-value">chromium</div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-value">0</div>
+        <div class="metric-label">Total Issues</div>
+      </div>
+      <div class="metric critical">
+        <div class="metric-value">0</div>
+        <div class="metric-label">Critical</div>
+      </div>
+      <div class="metric high">
+        <div class="metric-value">0</div>
+        <div class="metric-label">High</div>
+      </div>
+      <div class="metric medium">
+        <div class="metric-value">0</div>
+        <div class="metric-label">Medium</div>
+      </div>
+      <div class="metric low">
+        <div class="metric-value">0</div>
+        <div class="metric-label">Low</div>
+      </div>
+    </div>
+
+    <div class="issues">
+      
+        <div class="no-issues">
+          <div class="no-issues-icon">✅</div>
+          <div class="no-issues-text">No issues detected!</div>
+        </div>
+      
+    </div>
+  </div>
+</body>
+</html>

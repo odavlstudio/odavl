@@ -1,0 +1,457 @@
+[
+  {
+    "id": "typescript-fixer",
+    "runs": 10,
+    "success": 8,
+    "trust": 0.85,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "import-cleaner",
+    "runs": 10,
+    "success": 5,
+    "trust": 0.5,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "security-hardening",
+    "runs": 10,
+    "success": 9,
+    "trust": 0.95,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "remove-unused",
+    "runs": 10,
+    "success": 7,
+    "trust": 0.7,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "esm-hygiene",
+    "runs": 10,
+    "success": 8,
+    "trust": 0.8,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "r1",
+    "runs": 3,
+    "success": 3,
+    "trust": 1,
+    "blacklisted": false
+  },
+  {
+    "id": "foo",
+    "runs": 3,
+    "success": 3,
+    "trust": 1,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "test-recipe",
+    "runs": 6,
+    "success": 6,
+    "trust": 1,
+    "consecutiveFailures": 0,
+    "blacklisted": false
+  },
+  {
+    "id": "test-failing-recipe-1763289225194",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763289688148",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763289733417",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763803688392",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763803736563",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763803788095",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763803961717",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763805209729",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763805316269",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763805367372",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763805422922",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763805557816",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763824617862",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763827918107",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763827983920",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763839919471",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763839964147",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840044352",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840090319",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840134358",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840293758",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840338889",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763840391082",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841632148",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841685371",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841727966",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841770078",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841816404",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841928184",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1763841997845",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764175851563",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764186066276",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764266525130",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764268485140",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764285177946",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764453950338",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764454035049",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764456548881",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764468662199",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764470320366",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764502715466",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764715830694",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764717443482",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764717651927",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764717973777",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764718387546",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764719550213",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764719804212",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  },
+  {
+    "id": "test-failing-recipe-1764722181768",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
+  }
+]

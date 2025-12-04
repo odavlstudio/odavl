@@ -1,0 +1,8 @@
+{
+  "total_fixes": 2,
+  "successful_fixes": 2,
+  "false_positives": 0,
+  "accuracy_improvement": 17.647058823529417,
+  "patterns_learned": 0,
+  "confidence_adjustment": []
+}

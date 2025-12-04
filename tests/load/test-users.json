@@ -1,0 +1,32 @@
+[
+  {
+    "email": "test-user-1@odavl.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test1",
+    "orgId": "org-test-1",
+    "projectId": "project-test-1"
+  },
+  {
+    "email": "test-user-2@odavl.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test2",
+    "orgId": "org-test-2",
+    "projectId": "project-test-2"
+  },
+  {
+    "email": "test-user-3@odavl.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test3",
+    "orgId": "org-test-3",
+    "projectId": "project-test-3"
+  },
+  {
+    "email": "test-user-4@odavl.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test4",
+    "orgId": "org-test-4",
+    "projectId": "project-test-4"
+  },
+  {
+    "email": "test-user-5@odavl.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test5",
+    "orgId": "org-test-5",
+    "projectId": "project-test-5"
+  }
+]

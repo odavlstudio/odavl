@@ -1,0 +1,173 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Ôû▓ Next.js 14.2.18
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+
+[317.55ms] [@tailwindcss/postcss] app\globals.css
+[  0.19ms]   Ôå│ Quick bail check
+[ 34.55ms]   Ôå│ Setup compiler
+[  1.03ms]     Ôå│ PostCSS AST -> Tailwind CSS AST
+[ 33.44ms]     Ôå│ Create compiler
+[  0.41ms]   Ôå│ Register full rebuild paths
+[  2.33ms]   Ôå│ Setup scanner
+[ 92.11ms]   Ôå│ Scan for candidates
+[126.11ms]   Ôå│ Register dependency messages
+[ 54.27ms]   Ôå│ Build utilities
+[  3.44ms]   Ôå│ Transform Tailwind CSS AST into PostCSS AST
+[  2.64ms]   Ôå│ Update PostCSS AST
+
+
+[1.64ms] [@tailwindcss/postcss] ..\..\node_modules\.pnpm\swagger-ui-react@5.30.2_@types+react@19.2.6_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\swagger-ui-react\swagger-ui.css
+[1.62ms]   Ôå│ Quick bail check
+
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+ ÔÜá Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/132) ...
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '1724355953'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\1285.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\1285.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\1285.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/500". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\1285.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+   Generating static pages (33/132) 
+   Generating static pages (66/132) 
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '1724355953'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/playground". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109363)
+    at f (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:42071)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4562.js:1:33974)
+    at au (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.18_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.56.1_react-dom@18_vvd3yfwzi3uizwuxjwypp2dviu\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+   Generating static pages (99/132) 
+ Ô£ô Generating static pages (132/132)
+
+> Export encountered errors on following paths:
+	/_error: /404
+	/_error: /500
+	/_not-found/page: /_not-found
+	/playground/page: /playground
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

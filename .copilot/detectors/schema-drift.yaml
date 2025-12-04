@@ -1,0 +1,12 @@
+id: schema-drift
+area: schema
+priority: Medium
+match:
+  files: ["**/*.{ts,js,json}"]
+check:
+  rules:
+    - name: schema-mismatch
+      fail_if_regex: "type\s+[_a-zA-Z0-9]+\s*=|interface\s+[_a-zA-Z0-9]+\s+\{"
+propose:
+  playbook: schema-align
+  rationale: "Align types/interfaces with schema."

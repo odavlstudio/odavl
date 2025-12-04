@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# ODAVL Post-Commit Hook - Run health checks after commit
+echo "🏥 Running ODAVL post-commit health check..."
+
+pnpm monitor:health
+
+# Non-blocking: Don't fail commit if health check has warnings
+exit 0
