@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { invitationService } from '@odavl-studio/core/services/invitation';
+import { invitationService } from '../../../../../../packages/core/src/services/invitation';
 
 export async function GET(
   req: NextRequest,
