@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { nanoid } from 'nanoid';
 import bcrypt from 'bcryptjs';
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
       return NextResponse.json(
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
-      select: { id: true, organizationId: true },
+      select: { id: true, orgId: true },
     });
 
     if (!user) {
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest) {
         key: hashedKey,
         scopes,
         userId: user.id,
-        orgId: user.organizationId || '',
+        orgId: user.orgId || '',
         expiresAt: null,
       },
     });
@@ -63,6 +64,7 @@ export async function POST(request: NextRequest) {
       scopes: apiKey.scopes,
       createdAt: apiKey.createdAt,
       expiresAt: apiKey.expiresAt,
+      message: 'Save this key securely. It will not be shown again.',
     });
   } catch (error) {
     console.error('Failed to create API key:', error);
@@ -75,7 +77,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
       return NextResponse.json(
@@ -102,7 +104,6 @@ export async function GET(request: NextRequest) {
       select: {
         id: true,
         name: true,
-        key: true,
         scopes: true,
         lastUsedAt: true,
         createdAt: true,
@@ -110,7 +111,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    return NextResponse.json(apiKeys);
+    return NextResponse.json({ keys: apiKeys });
   } catch (error) {
     console.error('Failed to fetch API keys:', error);
     return NextResponse.json(
@@ -120,67 +121,52 @@ export async function GET(request: NextRequest) {
   }
 }
 
-    );
-  }
+export async function DELETE(request: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
 
-  const { key, id } = await generateApiKey(session.user.id, name, scopes);
+    if (!session?.user?.email) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
 
-  return NextResponse.json({
-    id,
-    key,
-    message: 'Save this key securely. It will not be shown again.',
-  });
-}
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+      select: { id: true },
+    });
 
-export async function GET() {
-  const session = await getServerSession(authOptions);
+    if (!user) {
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: 404 }
+      );
+    }
 
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+    const { searchParams } = new URL(request.url);
+    const keyId = searchParams.get('id');
 
-  const keys = await prisma.apiKey.findMany({
-    where: {
-      userId: session.user.id,
-    },
-    select: {
-      id: true,
-      name: true,
-      scopes: true,
-      createdAt: true,
-      lastUsedAt: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  });
+    if (!keyId) {
+      return NextResponse.json(
+        { error: 'Key ID required' },
+        { status: 400 }
+      );
+    }
 
-  return NextResponse.json({
-    keys: keys,
-  });
-}
+    await prisma.apiKey.delete({
+      where: {
+        id: keyId,
+        userId: user.id,
+      },
+    });
 
-export async function DELETE(req: Request) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { searchParams } = new URL(req.url);
-  const keyId = searchParams.get('id');
-
-  if (!keyId) {
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Failed to delete API key:', error);
     return NextResponse.json(
-      { error: 'Key ID required' },
-      { status: 400 }
+      { error: 'Internal server error' },
+      { status: 500 }
     );
   }
-
-  await prisma.apiKey.delete({
-    where: {
-      id: keyId,
-      userId: session.user.id,
-    },
-  });
-
-  return NextResponse.json({ success: true });
 }

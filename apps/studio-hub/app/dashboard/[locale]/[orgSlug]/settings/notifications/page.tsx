@@ -22,9 +22,9 @@ interface Preferences {
   usageLimitThreshold: number;
 }
 
-export default function NotificationSettingsPage() {
+export default function NotificationsPage() {
   const params = useParams();
-  const orgSlug = params.orgSlug as string;
+  const orgSlug = params?.orgSlug as string;
 
   const [preferences, setPreferences] = useState<Preferences | null>(null);
   const [loading, setLoading] = useState(true);

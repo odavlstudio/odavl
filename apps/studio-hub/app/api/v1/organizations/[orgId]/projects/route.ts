@@ -6,9 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { projectService } from '@odavl-studio/core/services/project';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../packages/core/src/services/organization';
+import { projectService } from '../../../../../../../../packages/core/src/services/project';
 import { z } from 'zod';
 
 const createProjectSchema = z.object({
@@ -20,7 +20,7 @@ const createProjectSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -32,7 +32,7 @@ export async function GET(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -68,7 +68,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -80,7 +80,7 @@ export async function POST(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(

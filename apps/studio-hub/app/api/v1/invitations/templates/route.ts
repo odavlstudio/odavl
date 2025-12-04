@@ -7,8 +7,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
-import { invitationsService } from '@odavl-studio/core/services/invitations';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { invitationsService } from '../../../../../../../packages/core/src/services/invitations';
+import { authOptions } from '@/lib/auth';
 
 const createTemplateSchema = z.object({
   name: z.string(),

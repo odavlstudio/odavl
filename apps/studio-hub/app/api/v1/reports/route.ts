@@ -10,8 +10,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
-import { sharedReportsService, ReportType, ReportFormat } from '@odavl-studio/core/services/shared-reports';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { sharedReportsService, ReportType, ReportFormat } from "../../../../../../packages/core/src/services/shared-reports";
+import { authOptions } from '@/lib/auth';
 
 const generateReportSchema = z.object({
   templateId: z.string().optional(),
@@ -71,6 +71,8 @@ export async function POST(request: NextRequest) {
 
     const report = await sharedReportsService.generateReport({
       ...validated,
+      type: validated.type as ReportType,
+      format: validated.format as ReportFormat,
       dateRange: {
         start: new Date(validated.dateRange.start),
         end: new Date(validated.dateRange.end),

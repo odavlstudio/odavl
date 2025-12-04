@@ -58,21 +58,21 @@ export async function GET() {
       id: `insight-${issue.id}`,
       type: 'insight' as const,
       message: `New ${issue.severity} issue detected: ${issue.message.substring(0, 50)}...`,
-      user: issue.project.name,
+      user: issue.project?.name || 'Unknown',
       timestamp: issue.createdAt.toISOString(),
     })),
     ...recentRuns.map((run) => ({
       id: `autopilot-${run.id}`,
       type: 'autopilot' as const,
-      message: `Autopilot run completed for ${run.project.name}`,  // Removed phase reference
-      user: run.project.name,
+      message: `Autopilot run completed for ${run.project?.name || 'Unknown'}`,  // Removed phase reference
+      user: run.project?.name || 'Unknown',
       timestamp: run.createdAt.toISOString(),
     })),
     ...recentTests.map((test) => ({
       id: `guardian-${test.id}`,
       type: 'guardian' as const,
       message: `Guardian test ${test.status} for ${test.url}`,
-      user: test.project.name,
+      user: test.project?.name || 'Unknown',
       timestamp: test.createdAt.toISOString(),
     })),
   ];

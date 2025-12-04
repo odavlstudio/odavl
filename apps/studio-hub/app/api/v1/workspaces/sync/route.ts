@@ -3,66 +3,70 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyApiKey } from '@/lib/api-key';
+import { verifyApiKey } from '@/lib/auth/api-key';
 import { prisma } from '@/lib/prisma';
-import { StorageService } from '@odavl-studio/storage';
-import { S3Provider, AzureBlobProvider, LocalProvider } from '@odavl-studio/storage';
+import { StorageService } from '../../../../../../../packages/storage/src';
+import type { StorageConfig } from '../../../../../../../packages/storage/src';
 
 /**
- * Get storage provider
+ * Get storage config
  */
-function getStorageProvider() {
+function getStorageConfig(): StorageConfig {
   const provider = process.env.STORAGE_PROVIDER || 'local';
 
   if (provider === 's3') {
-    return new S3Provider({
+    return {
+      provider: 's3',
       region: process.env.AWS_REGION!,
       bucket: process.env.S3_BUCKET!,
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-    });
+      credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+      },
+    };
   }
 
   if (provider === 'azure') {
-    return new AzureBlobProvider({
-      accountName: process.env.AZURE_STORAGE_ACCOUNT!,
-      accountKey: process.env.AZURE_STORAGE_KEY!,
+    return {
+      provider: 'azure',
       container: process.env.AZURE_CONTAINER!,
-    });
+      credentials: {
+        accountName: process.env.AZURE_STORAGE_ACCOUNT!,
+        accountKey: process.env.AZURE_STORAGE_KEY!,
+      },
+    };
   }
 
-  return new LocalProvider({ bucket: '.odavl-storage' });
+  return { provider: 'local', bucket: '.odavl-storage' };
 }
 
 /**
  * Create storage service
  */
 function createStorageService(userId: string) {
-  const provider = getStorageProvider();
-  return new StorageService(provider, userId, {
-    enableCompression: true,
-    enableEncryption: process.env.ENABLE_ENCRYPTION === 'true',
-    encryptionKey: process.env.ENCRYPTION_KEY,
-  });
+  const config = getStorageConfig();
+  return new StorageService(config);
 }
 
 /**
  * Track usage
  */
+/**
+ * Track usage
+ */
 async function trackUsage(
+  userId: string,
   apiKeyId: string,
-  endpoint: string,
-  durationMs: number,
-  bytesTransferred: number
+  endpoint: string
 ) {
   await prisma.usageRecord.create({
     data: {
+      userId,
       apiKeyId,
+      product: 'storage',
+      action: 'sync',
       endpoint,
       timestamp: new Date(),
-      responseTime: durationMs,
-      statusCode: 200,
-      metadata: { bytesTransferred },
     },
   });
 }
@@ -72,8 +76,6 @@ async function trackUsage(
  * Sync workspace (push/pull/both)
  */
 export async function POST(req: NextRequest) {
-  const startTime = Date.now();
-
   try {
     // Verify API key
     const apiKey = req.headers.get('x-api-key');
@@ -81,9 +83,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing API key' }, { status: 401 });
     }
 
-    const verification = await verifyApiKey(apiKey, 'workspace:write');
-    if (!verification.valid) {
-      return NextResponse.json({ error: verification.error }, { status: 401 });
+    const verification = await verifyApiKey(apiKey);
+    if (!verification.valid || !verification.userId || !verification.apiKeyId) {
+      return NextResponse.json({ error: 'Invalid API key' }, { status: 401 });
     }
 
     const { userId, apiKeyId } = verification;
@@ -91,36 +93,29 @@ export async function POST(req: NextRequest) {
     // Get sync options
     const body = await req.json();
     const {
-      workspaceName,
       workspacePath,
       direction = 'both',
       conflictResolution = 'prompt',
       incremental = true,
     } = body;
 
-    if (!workspaceName || !workspacePath) {
+    if (!workspacePath) {
       return NextResponse.json(
-        { error: 'Missing workspaceName or workspacePath' },
+        { error: 'Missing workspacePath' },
         { status: 400 }
       );
     }
 
     // Sync workspace
     const storage = createStorageService(userId);
-    const result = await storage.syncWorkspace(workspaceName, workspacePath, {
+    const result = await storage.syncWorkspace(workspacePath, userId, {
       direction,
       conflictResolution,
       incremental,
     });
 
-    // Calculate bytes transferred
-    const bytesTransferred =
-      result.uploaded.reduce((sum, f) => sum + f.size, 0) +
-      result.downloaded.reduce((sum, f) => sum + f.size, 0);
-
     // Track usage
-    const durationMs = Date.now() - startTime;
-    await trackUsage(apiKeyId, '/api/v1/workspaces/sync', durationMs, bytesTransferred);
+    await trackUsage(userId, apiKeyId, '/api/v1/workspaces/sync');
 
     return NextResponse.json({
       success: true,
@@ -130,11 +125,10 @@ export async function POST(req: NextRequest) {
         deleted: result.deleted.length,
         conflicts: result.conflicts.length,
         duration: result.duration,
-        bytesTransferred,
       },
       details: {
-        uploadedFiles: result.uploaded.map((f) => f.path),
-        downloadedFiles: result.downloaded.map((f) => f.path),
+        uploadedFiles: result.uploaded,
+        downloadedFiles: result.downloaded,
         deletedFiles: result.deleted,
         conflicts: result.conflicts.map((c) => ({
           path: c.path,

@@ -7,15 +7,15 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { invitationService } from '../../../../../../packages/core/src/services/invitation';
+import { authOptions } from '@/lib/auth';
+import { invitationService } from '../../../../../../../packages/core/src/services/invitation';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { token: string } }
+  { params }: { params: Promise<{ token: string }> }
 ) {
   try {
-    const { token } = params;
+    const { token } = await params;
 
     const invitation = await invitationService.getInvitationByToken(token);
 

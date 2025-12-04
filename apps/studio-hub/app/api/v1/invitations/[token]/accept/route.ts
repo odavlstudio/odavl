@@ -5,12 +5,12 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { invitationService } from '../../../../../../../packages/core/src/services/invitation';
+import { authOptions } from '@/lib/auth';
+import { invitationsService } from '../../../../../../../../packages/core/src/services/invitations';
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { token: string } }
+  { params }: { params: Promise<{ token: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -22,9 +22,9 @@ export async function POST(
       );
     }
 
-    const { token } = params;
+    const { token } = await params;
 
-    const invitation = await invitationService.acceptInvitation(
+    const invitation = await invitationsService.acceptInvitation(
       token,
       session.user.id
     );

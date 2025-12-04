@@ -6,13 +6,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { stripeService } from '@odavl-studio/core/services/stripe';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../../packages/core/src/services/organization';
+import { stripeService } from '../../../../../../../../../packages/core/src/services/stripe';
+import { SubscriptionPlan } from '../../../../../../../../../packages/types/src/multi-tenant';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -24,7 +25,7 @@ export async function GET(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -74,7 +75,7 @@ export async function GET(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -86,7 +87,7 @@ export async function DELETE(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission (only OWNER can cancel subscription)
     const role = await organizationService.getMemberRole(orgId, session.user.id);
@@ -123,7 +124,7 @@ export async function DELETE(
     // Update organization status
     await organizationService.updateSubscriptionPlan(
       orgId,
-      'FREE'
+      SubscriptionPlan.FREE
     );
 
     return NextResponse.json({

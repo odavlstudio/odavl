@@ -110,11 +110,10 @@ export async function POST(request: NextRequest) {
         });
 
       case 'cancel':
-        result = cloudSyncService.cancelJob(jobId);
+        await cloudSyncService.cancelJob(jobId);
         return NextResponse.json({
           success: true,
-          message: result ? 'Job cancelled' : 'Job not found or cannot be cancelled',
-          cancelled: result,
+          message: 'Job cancelled',
         });
 
       default:

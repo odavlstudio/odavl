@@ -7,9 +7,10 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { projectService } from '@odavl-studio/core/services/project';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../packages/core/src/services/organization';
+import { projectService } from '../../../../../../../packages/core/src/services/project';
+import { ProjectStatus } from '../../../../../../../packages/types/src/multi-tenant';
 import { z } from 'zod';
 
 const updateProjectSchema = z.object({
@@ -22,7 +23,7 @@ const updateProjectSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { projectId: string } }
+  { params }: { params: Promise<{ projectId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -34,7 +35,7 @@ export async function GET(
       );
     }
 
-    const { projectId } = params;
+    const { projectId } = await params;
 
     const project = await projectService.getProject(projectId);
 
@@ -80,7 +81,7 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { projectId: string } }
+  { params }: { params: Promise<{ projectId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -92,7 +93,7 @@ export async function PATCH(
       );
     }
 
-    const { projectId } = params;
+    const { projectId } = await params;
 
     const existingProject = await projectService.getProject(projectId);
 
@@ -120,7 +121,10 @@ export async function PATCH(
     const body = await req.json();
     const validatedData = updateProjectSchema.parse(body);
 
-    const project = await projectService.updateProject(projectId, validatedData);
+    const project = await projectService.updateProject(projectId, {
+      ...validatedData,
+      status: validatedData.status as ProjectStatus | undefined,
+    });
 
     return NextResponse.json({
       success: true,
@@ -144,7 +148,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { projectId: string } }
+  { params }: { params: Promise<{ projectId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -156,7 +160,7 @@ export async function DELETE(
       );
     }
 
-    const { projectId } = params;
+    const { projectId } = await params;
 
     const project = await projectService.getProject(projectId);
 

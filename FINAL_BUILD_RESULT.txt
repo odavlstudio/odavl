@@ -1,0 +1,523 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+ ÔÜá Compiled with warnings
+
+./app/api/api-keys/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/api-keys/route.ts
+
+./app/api/api-keys/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/api-keys/route.ts
+
+./app/api/api-keys/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/api-keys/route.ts
+
+./app/api/v1/analytics/compare/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/compare/route.ts
+
+./app/api/v1/analytics/quality-score/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/quality-score/route.ts
+
+./app/api/v1/analytics/quality-score/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/quality-score/route.ts
+
+./app/api/v1/analytics/trends/autopilot/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/trends/autopilot/route.ts
+
+./app/api/v1/analytics/trends/errors/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/trends/errors/route.ts
+
+./app/api/v1/analytics/trends/guardian/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/trends/guardian/route.ts
+
+./app/api/v1/analytics/trends/quality/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/analytics/trends/quality/route.ts
+
+./app/api/v1/audit/compliance/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/audit/compliance/route.ts
+
+./app/api/v1/audit/export/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/audit/export/route.ts
+
+./app/api/v1/audit/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/audit/route.ts
+
+./app/api/v1/audit/stats/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/audit/stats/route.ts
+
+./app/api/v1/invitations/[token]/accept/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/[token]/accept/route.ts
+
+./app/api/v1/invitations/bulk/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/bulk/route.ts
+
+./app/api/v1/invitations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/route.ts
+
+./app/api/v1/invitations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/route.ts
+
+./app/api/v1/invitations/stats/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/stats/route.ts
+
+./app/api/v1/invitations/templates/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/templates/route.ts
+
+./app/api/v1/invitations/templates/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/invitations/templates/route.ts
+
+./app/api/v1/observability/alerts/[alertId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/observability/alerts/[alertId]/route.ts
+
+./app/api/v1/observability/alerts/[alertId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/observability/alerts/[alertId]/route.ts
+
+./app/api/v1/observability/alerts/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/observability/alerts/route.ts
+
+./app/api/v1/observability/alerts/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/observability/alerts/route.ts
+
+./app/api/v1/organizations/[orgId]/analytics/export/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/analytics/export/route.ts
+
+./app/api/v1/organizations/[orgId]/analytics/realtime/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/analytics/realtime/route.ts
+
+./app/api/v1/organizations/[orgId]/analytics/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/analytics/route.ts
+
+./app/api/v1/organizations/[orgId]/billing/checkout/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/billing/checkout/route.ts
+
+./app/api/v1/organizations/[orgId]/billing/invoices/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/billing/invoices/route.ts
+
+./app/api/v1/organizations/[orgId]/billing/portal/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/billing/portal/route.ts
+
+./app/api/v1/organizations/[orgId]/billing/subscription/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/billing/subscription/route.ts
+
+./app/api/v1/organizations/[orgId]/billing/subscription/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/billing/subscription/route.ts
+
+./app/api/v1/organizations/[orgId]/invitations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/invitations/route.ts
+
+./app/api/v1/organizations/[orgId]/invitations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/invitations/route.ts
+
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+
+./app/api/v1/organizations/[orgId]/members/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/route.ts
+
+./app/api/v1/organizations/[orgId]/members/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/route.ts
+
+./app/api/v1/organizations/[orgId]/projects/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/projects/route.ts
+
+./app/api/v1/organizations/[orgId]/projects/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/projects/route.ts
+
+./app/api/v1/organizations/[orgId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/route.ts
+
+./app/api/v1/organizations/[orgId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/route.ts
+
+./app/api/v1/organizations/[orgId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/route.ts
+
+./app/api/v1/organizations/[orgId]/usage/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/usage/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/route.ts
+
+./app/api/v1/organizations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/route.ts
+
+./app/api/v1/organizations/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/organizations/route.ts
+
+./app/api/v1/projects/[projectId]/analytics/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/projects/[projectId]/analytics/route.ts
+
+./app/api/v1/projects/[projectId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/projects/[projectId]/route.ts
+
+./app/api/v1/projects/[projectId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/projects/[projectId]/route.ts
+
+./app/api/v1/projects/[projectId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/projects/[projectId]/route.ts
+
+./app/api/v1/reports/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/route.ts
+
+./app/api/v1/reports/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/route.ts
+
+./app/api/v1/reports/scheduled/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/scheduled/route.ts
+
+./app/api/v1/reports/scheduled/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/scheduled/route.ts
+
+./app/api/v1/reports/shared/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/shared/route.ts
+
+./app/api/v1/reports/shared/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/shared/route.ts
+
+./app/api/v1/reports/stats/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/reports/stats/route.ts
+
+./app/api/v1/settings/api-keys/[keyId]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/settings/api-keys/[keyId]/route.ts
+
+./app/api/v1/settings/api-keys/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/settings/api-keys/route.ts
+
+./app/api/v1/settings/api-keys/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/settings/api-keys/route.ts
+
+./app/api/v1/storage/download-url/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/storage/download-url/route.ts
+
+./app/api/v1/storage/files/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/storage/files/route.ts
+
+./app/api/v1/storage/files/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/storage/files/route.ts
+
+./app/api/v1/storage/stats/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/storage/stats/route.ts
+
+./app/api/v1/storage/upload-url/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/storage/upload-url/route.ts
+
+./app/api/v1/usage/history/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/usage/history/route.ts
+
+./app/api/v1/usage/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/usage/route.ts
+
+./app/api/v1/users/me/notifications/[id]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/notifications/[id]/route.ts
+
+./app/api/v1/users/me/notifications/[id]/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/notifications/[id]/route.ts
+
+./app/api/v1/users/me/notifications/read-all/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/notifications/read-all/route.ts
+
+./app/api/v1/users/me/notifications/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/notifications/route.ts
+
+./app/api/v1/users/me/preferences/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/preferences/route.ts
+
+./app/api/v1/users/me/preferences/route.ts
+Attempted import error: 'authOptions' is not exported from '@/app/api/auth/[...nextauth]/route' (imported as 'authOptions').
+
+Import trace for requested module:
+./app/api/v1/users/me/preferences/route.ts
+
+../../packages/storage/src/providers/azure.ts
+Module not found: Can't resolve '@azure/storage-blob' in 'C:\Users\sabou\dev\odavl\packages\storage\src\providers'
+
+Import trace for requested module:
+../../packages/storage/src/providers/azure.ts
+../../packages/storage/src/index.ts
+./app/api/v1/workspaces/route.ts
+
+   Linting and checking validity of types ...
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+Failed to compile.
+
+.next/types/app/api/api-keys/[id]/route.ts:244:7
+Type error: Type '{ __tag__: "DELETE"; __param_position__: "second"; __param_type__: { params: { id: string; }; }; }' does not satisfy the constraint 'ParamCheck<RouteContext>'.
+  The types of '__param_type__.params' are incompatible between these types.
+    Type '{ id: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+
+  242 |     Diff<
+  243 |       ParamCheck<RouteContext>,
+> 244 |       {
+      |       ^
+  245 |         __tag__: 'DELETE'
+  246 |         __param_position__: 'second'
+  247 |         __param_type__: SecondArg<MaybeField<TEntry, 'DELETE'>>
+Static worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

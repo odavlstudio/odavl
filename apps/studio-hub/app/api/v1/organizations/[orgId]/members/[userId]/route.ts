@@ -6,9 +6,10 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../../packages/core/src/services/organization';
 import { z } from 'zod';
+import { MemberRole } from '../../../../../../../../../packages/types/src/multi-tenant';
 
 const updateMemberSchema = z.object({
   role: z.enum(['OWNER', 'ADMIN', 'MEMBER', 'VIEWER']),
@@ -16,9 +17,10 @@ const updateMemberSchema = z.object({
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { orgId: string; userId: string } }
+  { params }: { params: Promise<{ orgId: string; userId: string }> }
 ) {
   try {
+    const { userId, orgId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -27,8 +29,6 @@ export async function PATCH(
         { status: 401 }
       );
     }
-
-    const { orgId, userId } = params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -58,7 +58,7 @@ export async function PATCH(
     const member = await organizationService.updateMemberRole(
       orgId,
       userId,
-      validatedData.role
+      validatedData.role as MemberRole
     );
 
     return NextResponse.json({
@@ -83,9 +83,10 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { orgId: string; userId: string } }
+  { params }: { params: Promise<{ orgId: string; userId: string }> }
 ) {
   try {
+    const { orgId, userId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -94,8 +95,6 @@ export async function DELETE(
         { status: 401 }
       );
     }
-
-    const { orgId, userId } = params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(

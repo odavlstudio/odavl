@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: 'Manage your organization and view analytics',
 };
 
-export default function OrgLayout({
+export default async function OrgLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string; orgSlug: string };
+  params: Promise<{ locale: string; orgSlug: string }>;
 }) {
-  const { locale, orgSlug } = params;
+  const { locale, orgSlug } = await params;
 
   return (
     <div className="min-h-screen bg-gray-50">

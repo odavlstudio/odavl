@@ -6,9 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { webhookService } from '@odavl-studio/core/services/webhook';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../packages/core/src/services/organization';
+import { webhookService } from '../../../../../../../../packages/core/src/services/webhook';
 import { z } from 'zod';
 
 const createWebhookSchema = z.object({
@@ -19,7 +19,7 @@ const createWebhookSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -31,7 +31,7 @@ export async function GET(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -65,7 +65,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -77,7 +77,7 @@ export async function POST(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission (only OWNER/ADMIN can create webhooks)
     const role = await organizationService.getMemberRole(orgId, session.user.id);

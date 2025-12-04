@@ -1,0 +1,56 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+ ÔÜá Compiled with warnings
+
+../../packages/storage/src/providers/azure.ts
+Module not found: Can't resolve '@azure/storage-blob' in 'C:\Users\sabou\dev\odavl\packages\storage\src\providers'
+
+Import trace for requested module:
+../../packages/storage/src/providers/azure.ts
+../../packages/storage/src/index.ts
+./app/api/v1/workspaces/route.ts
+
+   Linting and checking validity of types ...
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244
+            throw new Error('Failed to patch ESLint because the calling module was not recognized.\n' +
+                  ^
+
+Error: Failed to patch ESLint because the calling module was not recognized.
+If you are using a newer ESLint version that may be unsupported, please create a GitHub issue:
+https://github.com/microsoft/rushstack/issues
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\_patch-base.js:244:19)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+    at Module.require (node:internal/modules/cjs/loader:1289:19)
+    at require (node:internal/modules/helpers:182:18)
+    at Object.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@rushstack+eslint-patch@1.15.0\node_modules\@rushstack\eslint-patch\lib\modern-module-resolution.js:11:23)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+
+Node.js v20.19.5
+Failed to compile.
+
+.next/types/app/api/v1/invitations/[token]/accept/route.ts:166:7
+Type error: Type '{ __tag__: "POST"; __param_position__: "second"; __param_type__: { params: { token: string; }; }; }' does not satisfy the constraint 'ParamCheck<RouteContext>'.
+  The types of '__param_type__.params' are incompatible between these types.
+    Type '{ token: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+
+  164 |     Diff<
+  165 |       ParamCheck<RouteContext>,
+> 166 |       {
+      |       ^
+  167 |         __tag__: 'POST'
+  168 |         __param_position__: 'second'
+  169 |         __param_type__: SecondArg<MaybeField<TEntry, 'POST'>>
+Static worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

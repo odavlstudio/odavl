@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       userId: apiKeyRecord.user.id,
       email: apiKeyRecord.user.email,
-      organizationId: apiKeyRecord.user.organizationId,
+      organizationId: apiKeyRecord.user.orgId,
       expiresAt: apiKeyRecord.expiresAt || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(), // 1 year
     });
   } catch (error) {

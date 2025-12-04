@@ -5,11 +5,15 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { cloudStorage, CloudStorageService } from '@odavl-studio/core/services/cloud-storage';
-import { requireQuota } from '@odavl-studio/core/middleware/quota-check';
-import { usageTrackingService } from '@odavl-studio/core/services/usage-tracking';
+import { authOptions } from '@/lib/auth';
+// Lazy import to avoid AWS initialization at build time
+// import { cloudStorage, CloudStorageService } from "../../../../../../../packages/core/src/services/cloud-storage";
+import { requireQuota } from '../../../../../../../packages/core/src/middleware/quota-check';
+import { usageTrackingService } from "../../../../../../../packages/core/src/services/usage-tracking";
 import { prisma } from '@/lib/prisma';
+
+// Add runtime config to skip static generation
+export const dynamic = 'force-dynamic';
 
 interface GenerateUploadUrlRequest {
   product: 'insight' | 'autopilot' | 'guardian';
@@ -24,9 +28,13 @@ interface GenerateUploadUrlRequest {
  */
 export async function POST(request: NextRequest) {
   try {
+    // Lazy import cloudStorage at runtime
+    const { cloudStorage, CloudStorageService } = await import("../../../../../../../packages/core/src/services/cloud-storage");
+
     // Authenticate user
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Get user and org

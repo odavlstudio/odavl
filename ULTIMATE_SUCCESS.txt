@@ -1,0 +1,90 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+Error:   x Expected ';', got '>'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\members\[userId]\route.ts:19:1]
+ 16 | 
+ 17 | export async function PATCH(
+ 18 |   req: NextRequest,
+ 19 |   { params }: { params: Promise<{ orgId>: string; userId: string } }
+    :                                        ^
+ 20 | ) {
+ 21 |   try {
+ 21 |     const { userId } = await params;
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+Error:   x Expected ';', got '>'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\webhooks\[webhookId]\deliveries\route.ts:14:1]
+ 11 | 
+ 12 | export async function GET(
+ 13 |   req: NextRequest,
+ 14 |   { params }: { params: Promise<{ orgId>: string; webhookId: string } }
+    :                                        ^
+ 15 | ) {
+ 16 |   try {
+ 16 |     const { webhookId } = await params;
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+Error:   x Expected ';', got '>'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\webhooks\[webhookId]\route.ts:23:1]
+ 20 | 
+ 21 | export async function GET(
+ 22 |   req: NextRequest,
+ 23 |   { params }: { params: Promise<{ orgId>: string; webhookId: string } }
+    :                                        ^
+ 24 | ) {
+ 25 |   try {
+ 25 |     const { webhookId } = await params;
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+Error:   x Expected ';', got '>'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\webhooks\[webhookId]\test\route.ts:14:1]
+ 11 | 
+ 12 | export async function POST(
+ 13 |   req: NextRequest,
+ 14 |   { params }: { params: Promise<{ orgId>: string; webhookId: string } }
+    :                                        ^
+ 15 | ) {
+ 16 |   try {
+ 16 |     const { webhookId } = await params;
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+
+
+> Build failed because of webpack errors
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

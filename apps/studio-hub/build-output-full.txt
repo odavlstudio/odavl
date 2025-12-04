@@ -1,0 +1,39 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/api/v1/organizations/[orgId]/analytics/export/route.ts
+Module not found: Package path ./services/organization is not exported from package C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core (see exports field in C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core\package.json)
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/v1/organizations/[orgId]/analytics/export/route.ts
+Module not found: Package path ./services/analytics is not exported from package C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core (see exports field in C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core\package.json)
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/v1/organizations/[orgId]/analytics/realtime/route.ts
+Module not found: Package path ./services/organization is not exported from package C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core (see exports field in C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core\package.json)
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/v1/organizations/[orgId]/analytics/realtime/route.ts
+Module not found: Package path ./services/analytics is not exported from package C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core (see exports field in C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core\package.json)
+
+https://nextjs.org/docs/messages/module-not-found
+
+./app/api/v1/organizations/[orgId]/analytics/route.ts
+Module not found: Package path ./services/organization is not exported from package C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core (see exports field in C:\Users\sabou\dev\odavl\node_modules\.pnpm\node_modules\@odavl-studio\core\package.json)
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check scopes (requires insight:write)
-    if (!verification.scopes.includes('insight:write')) {
+    if (!verification.scopes?.includes('insight:write')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: insight:write' },
         { status: 403 }
@@ -65,8 +65,8 @@ export async function POST(request: NextRequest) {
     // Store result in database
     const result = await prisma.insightResult.create({
       data: {
-        userId: verification.userId,
-        orgId: verification.orgId,
+        userId: verification.userId || 'unknown',
+        orgId: verification.orgId || '',
         workspacePath,
         workspaceName,
         issues,
@@ -78,13 +78,13 @@ export async function POST(request: NextRequest) {
 
     // Track usage for billing
     await trackUsage({
-      userId: verification.userId,
-      orgId: verification.orgId,
+      userId: verification.userId || 'unknown',
+      orgId: verification.orgId || '',
       product: 'insight',
       action: 'analyze',
       endpoint: '/api/v1/insight/results',
       ipAddress: request.headers.get('x-forwarded-for') || 'unknown',
-      apiKeyId: verification.apiKeyId,
+      apiKeyId: verification.apiKeyId || 'unknown',
       credits: 1,
     });
 
@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check scopes (requires insight:read)
-    if (!verification.scopes.includes('insight:read')) {
+    if (!verification.scopes?.includes('insight:read')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: insight:read' },
         { status: 403 }
@@ -139,7 +139,7 @@ export async function GET(request: NextRequest) {
     // Fetch results
     const results = await prisma.insightResult.findMany({
       where: {
-        userId: verification.userId,
+        userId: verification.userId || 'unknown',
       },
       orderBy: {
         timestamp: 'desc',

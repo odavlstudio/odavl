@@ -51,7 +51,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 export default function AnalyticsPage() {
   const params = useParams();
-  const orgSlug = params.orgSlug as string;
+  const orgSlug = params?.orgSlug as string;
 
   const [metrics, setMetrics] = useState<AnalyticsMetrics | null>(null);
   const [realTimeMetrics, setRealTimeMetrics] = useState<RealTimeMetrics | null>(null);

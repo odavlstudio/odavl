@@ -36,6 +36,10 @@ export async function POST(
 
   // Rerun test logic
   try {
+    // Generate unique testRunId
+    const { nanoid } = await import('nanoid');
+    const testRunId = nanoid(16);
+
     // Create new test record with same configuration
     const newTest = await prisma.guardianTest.create({
       data: {
@@ -43,18 +47,19 @@ export async function POST(
         environment: test.environment,
         status: 'RUNNING',
         projectId: test.projectId,
+        testRunId,
       },
     });
 
     // Import and run Guardian test runner
     const { runGuardianTests } = await import('@/lib/guardian/test-runner');
-    
+
     // Run test asynchronously (don't await - let it run in background)
     runGuardianTests(newTest.id).catch((error) => {
       logger.error('Test execution failed', error as Error);
     });
-    
-    return NextResponse.json({ 
+
+    return NextResponse.json({
       success: true,
       testId: newTest.id,
       message: 'Test rerun initiated successfully',

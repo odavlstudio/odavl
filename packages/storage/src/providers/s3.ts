@@ -2,11 +2,28 @@
  * S3 Storage Provider
  */
 
-import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
+// Optional dependency - install @aws-sdk/client-s3 if using S3 provider
+let S3Client: any;
+let PutObjectCommand: any;
+let GetObjectCommand: any;
+let DeleteObjectCommand: any;
+let ListObjectsV2Command: any;
+
+try {
+  const aws = require('@aws-sdk/client-s3');
+  S3Client = aws.S3Client;
+  PutObjectCommand = aws.PutObjectCommand;
+  GetObjectCommand = aws.GetObjectCommand;
+  DeleteObjectCommand = aws.DeleteObjectCommand;
+  ListObjectsV2Command = aws.ListObjectsV2Command;
+} catch {
+  console.warn('[S3Provider] @aws-sdk/client-s3 not installed - S3 storage provider will not work');
+}
+
 import type { StorageConfig } from '../types';
 
 export class S3Provider {
-  private client: S3Client;
+  private client: any; // S3Client not available without @aws-sdk/client-s3
   private bucket: string;
 
   constructor(config: StorageConfig) {
@@ -71,7 +88,7 @@ export class S3Provider {
       })
     );
 
-    return response.Contents?.map((obj) => obj.Key!) || [];
+    return response.Contents?.map((obj: any) => obj.Key!) || [];
   }
 
   async deletePrefix(prefix: string): Promise<void> {

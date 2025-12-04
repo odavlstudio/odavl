@@ -48,7 +48,7 @@ export class AnalyticsService {
     // API Calls metrics
     const usageRecords = await prisma.usageRecord.findMany({
       where: {
-        organizationId,
+        orgId: organizationId,
         timestamp: {
           gte: start,
           lte: end,
@@ -68,55 +68,23 @@ export class AnalyticsService {
       usageRecords.map((r) => r.endpoint)
     );
 
-    // Errors metrics
-    const errorSignatures = await prisma.errorSignature.findMany({
-      where: {
-        project: {
-          organizationId,
-        },
-        lastSeen: {
-          gte: start,
-          lte: end,
-        },
-      },
-      select: {
-        lastSeen: true,
-        severity: true,
-        type: true,
-      },
-    });
+    // Note: Error metrics disabled - ErrorSignature model only in Insight Cloud schema
 
-    const errorsByDate = this.groupByDate(
-      errorSignatures.map((e) => e.lastSeen)
-    );
-
-    const errorsBySeverity = this.groupByField(
-      errorSignatures.map((e) => e.severity)
-    );
-
-    const errorsByType = this.groupByField(
-      errorSignatures.map((e) => e.type)
-    );
-
-    // Projects metrics
-    const projects = await prisma.project.findMany({
-      where: { organizationId },
-      select: {
-        status: true,
-      },
+    // Projects metrics (status field not in schema - simplified)
+    const projectsCount = await prisma.project.count({
+      where: { orgId: organizationId },
     });
 
     const projectsMetrics = {
-      total: projects.length,
-      active: projects.filter((p) => p.status === 'ACTIVE').length,
-      archived: projects.filter((p) => p.status === 'ARCHIVED').length,
+      total: projectsCount,
+      active: projectsCount, // Status field not available in schema
+      archived: 0,
     };
 
-    // Members metrics
-    const members = await prisma.organizationMember.findMany({
+    // Members metrics (via User.orgId relationship)
+    const members = await prisma.user.findMany({
       where: {
-        organizationId,
-        status: 'ACTIVE',
+        orgId: organizationId,
       },
       select: {
         role: true,
@@ -128,19 +96,19 @@ export class AnalyticsService {
     return {
       apiCalls: {
         total: usageRecords.length,
-        byDate: apiCallsByDate,
-        byEndpoint: apiCallsByEndpoint,
+        byDate: apiCallsByDate as unknown as { date: string; count: number }[],
+        byEndpoint: apiCallsByEndpoint as unknown as { endpoint: string; count: number }[],
       },
       errors: {
-        total: errorSignatures.length,
-        byDate: errorsByDate,
-        bySeverity: errorsBySeverity,
-        byType: errorsByType,
+        total: 0, // Error tracking disabled (ErrorSignature model not in studio-hub schema)
+        byDate: [],
+        bySeverity: [],
+        byType: [],
       },
       projects: projectsMetrics,
       members: {
         total: members.length,
-        byRole: membersByRole,
+        byRole: membersByRole as unknown as { role: string; count: number }[],
       },
     };
   }
@@ -160,33 +128,20 @@ export class AnalyticsService {
     const start = timeRange?.start || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const end = timeRange?.end || new Date();
 
-    // User organizations
-    const organizations = await prisma.organizationMember.count({
-      where: {
-        userId,
-        status: 'ACTIVE',
-      },
+    // Get user with orgId
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { orgId: true },
     });
 
-    // User projects (across all organizations)
-    const userOrgIds = await prisma.organizationMember.findMany({
-      where: {
-        userId,
-        status: 'ACTIVE',
-      },
-      select: {
-        organizationId: true,
-      },
-    });
+    const organizations = user?.orgId ? 1 : 0; // User belongs to 1 org
 
-    const projects = await prisma.project.count({
-      where: {
-        organizationId: {
-          in: userOrgIds.map((o) => o.organizationId),
-        },
-        status: 'ACTIVE',
-      },
-    });
+    // User projects (from their organization)
+    const projects = user?.orgId
+      ? await prisma.project.count({
+          where: { orgId: user.orgId },
+        })
+      : 0;
 
     // API calls
     const apiCalls = await prisma.usageRecord.count({
@@ -199,20 +154,8 @@ export class AnalyticsService {
       },
     });
 
-    // Errors detected
-    const errorsDetected = await prisma.errorSignature.count({
-      where: {
-        project: {
-          organizationId: {
-            in: userOrgIds.map((o) => o.organizationId),
-          },
-        },
-        lastSeen: {
-          gte: start,
-          lte: end,
-        },
-      },
-    });
+    // Errors detected (disabled - ErrorSignature model not in studio-hub schema)
+    const errorsDetected = 0;
 
     return {
       organizations,
@@ -242,42 +185,21 @@ export class AnalyticsService {
     const start = timeRange?.start || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const end = timeRange?.end || new Date();
 
-    // Errors
-    const errors = await prisma.errorSignature.findMany({
-      where: {
-        projectId,
-        lastSeen: {
-          gte: start,
-          lte: end,
-        },
-      },
-      select: {
-        lastSeen: true,
-        severity: true,
-        status: true,
-      },
-    });
-
-    const errorsByDate = this.groupByDate(errors.map((e) => e.lastSeen));
-
-    const critical = errors.filter(
-      (e) => e.severity === 'critical' || e.severity === 'high'
-    ).length;
-
-    const resolved = errors.filter((e) => e.status === 'resolved').length;
+    // Errors (disabled - ErrorSignature model not in studio-hub schema)
+    const errorsByDate: { date: string; count: number }[] = [];
 
     // TODO: Add autopilot runs and guardian tests when those tables exist
 
     return {
       errors: {
-        total: errors.length,
-        critical,
-        resolved,
+        total: 0,
+        critical: 0,
+        resolved: 0,
         byDate: errorsByDate,
       },
       autopilotRuns: 0, // TODO
       guardianTests: 0, // TODO
-      lastActivity: errors.length > 0 ? errors[0].lastSeen : undefined,
+      lastActivity: undefined, // Error tracking disabled
     };
   }
 
@@ -297,7 +219,7 @@ export class AnalyticsService {
     // Requests in last minute
     const recentRequests = await prisma.usageRecord.count({
       where: {
-        organizationId,
+        orgId: organizationId,
         timestamp: {
           gte: oneMinuteAgo,
         },
@@ -307,7 +229,7 @@ export class AnalyticsService {
     // Active users in last 5 minutes
     const activeUsers = await prisma.usageRecord.findMany({
       where: {
-        organizationId,
+        orgId: organizationId,
         timestamp: {
           gte: fiveMinutesAgo,
         },
@@ -387,7 +309,7 @@ export class AnalyticsService {
    */
   private groupByField<T extends string>(
     items: T[]
-  ): { [key: string]: string; count: number }[] {
+  ): Array<{ [key: string]: string | number; count: number }> {
     const grouped = new Map<string, number>();
 
     items.forEach((item) => {

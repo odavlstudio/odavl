@@ -5,14 +5,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { projectService } from '@odavl-studio/core/services/project';
-import { analyticsService } from '@odavl-studio/core/services/analytics';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../packages/core/src/services/organization';
+import { projectService } from '../../../../../../../../packages/core/src/services/project';
+import { analyticsService } from '../../../../../../../../packages/core/src/services/analytics';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { projectId: string } }
+  { params }: { params: Promise<{ projectId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -24,7 +24,7 @@ export async function GET(
       );
     }
 
-    const { projectId } = params;
+    const { projectId } = await params;
 
     // Get project to verify organization access
     const project = await projectService.getProject(projectId);

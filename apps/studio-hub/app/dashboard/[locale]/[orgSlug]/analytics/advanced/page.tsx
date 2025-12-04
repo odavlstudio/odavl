@@ -109,7 +109,7 @@ interface GuardianTrend {
 
 export default function AdvancedAnalyticsPage() {
   const params = useParams();
-  const projectId = params.projectId as string;
+  const projectId = params?.projectId as string;
 
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'errors' | 'quality' | 'autopilot' | 'guardian'>('overview');

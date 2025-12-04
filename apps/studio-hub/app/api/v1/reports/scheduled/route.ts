@@ -7,8 +7,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
-import { sharedReportsService, ReportSchedule, ReportFormat } from '@odavl-studio/core/services/shared-reports';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { sharedReportsService, ReportSchedule, ReportFormat } from "../../../../../../../packages/core/src/services/shared-reports";
+import { authOptions } from '@/lib/auth';
 
 const scheduleReportSchema = z.object({
   templateId: z.string(),
@@ -64,6 +64,8 @@ export async function POST(request: NextRequest) {
 
     const report = await sharedReportsService.scheduleReport({
       ...validated,
+      schedule: validated.schedule as ReportSchedule,
+      format: validated.format as ReportFormat,
       createdBy: session.user.id!,
     });
 

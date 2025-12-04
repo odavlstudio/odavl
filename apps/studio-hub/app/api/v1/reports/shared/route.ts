@@ -7,8 +7,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { z } from 'zod';
-import { sharedReportsService } from '@odavl-studio/core/services/shared-reports';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { sharedReportsService } from "../../../../../../../packages/core/src/services/shared-reports";
+import { authOptions } from '@/lib/auth';
 
 const shareReportSchema = z.object({
   reportId: z.string(),

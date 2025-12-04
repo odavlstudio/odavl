@@ -14,17 +14,16 @@
  * @see https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
  */
 
-import DOMPurify from "isomorphic-dompurify";
-
 /**
  * Sanitize HTML to prevent XSS attacks
- * Removes all dangerous tags and attributes
+ * Removes script tags and event handlers
+ * Note: Basic implementation - consider DOMPurify for production
  */
 export function sanitizeHtml(html: string): string {
-  return DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: ["b", "i", "em", "strong", "code", "pre", "p", "br"],
-    ALLOWED_ATTR: [],
-  });
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/on\w+="[^"]*"/gi, "")
+    .replace(/on\w+='[^']*'/gi, "");
 }
 
 /**

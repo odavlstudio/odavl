@@ -10,9 +10,12 @@ import { prisma } from '@/lib/prisma';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Next.js 15: await params
+    const { id } = await params;
+
     const session = await getServerSession();
 
     if (!session?.user?.email) {
@@ -37,7 +40,7 @@ export async function DELETE(
     // Verify ownership before deleting
     const apiKey = await prisma.apiKey.findFirst({
       where: {
-        id: params.id,
+        id,
         userId: user.id,
       },
     });
@@ -51,7 +54,7 @@ export async function DELETE(
 
     // Delete the API key
     await prisma.apiKey.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });

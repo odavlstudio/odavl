@@ -2,11 +2,23 @@
  * Azure Blob Storage Provider
  */
 
-import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
+// Optional dependency - install @azure/storage-blob if using Azure provider
+let BlobServiceClient: any;
+let StorageSharedKeyCredential: any;
+
+try {
+  // Dynamic require to make it optional
+  BlobServiceClient = require('@azure/storage-blob').BlobServiceClient;
+  StorageSharedKeyCredential = require('@azure/storage-blob').StorageSharedKeyCredential;
+} catch {
+  // @azure/storage-blob not installed
+  console.warn('[AzureBlobProvider] @azure/storage-blob not installed - Azure storage provider will not work');
+}
+
 import type { StorageConfig } from '../types';
 
 export class AzureBlobProvider {
-  private client: BlobServiceClient;
+  private client: any; // BlobServiceClient not available without @azure/storage-blob
   private containerName: string;
 
   constructor(config: StorageConfig) {

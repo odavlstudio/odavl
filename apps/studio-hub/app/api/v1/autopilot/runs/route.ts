@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check scopes (requires autopilot:write)
-    if (!verification.scopes.includes('autopilot:write')) {
+    if (!verification.scopes?.includes('autopilot:write')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: autopilot:write' },
         { status: 403 }
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
     const run = await prisma.autopilotCliRun.create({
       data: {
         userId: verification.userId!,
-        orgId: verification.orgId,
+        orgId: verification.orgId || '',
         runId,
         workspacePath,
         workspaceName,
@@ -79,13 +79,13 @@ export async function POST(request: NextRequest) {
 
     // Track usage
     await trackUsage({
-      userId: verification.userId,
-      orgId: verification.orgId,
+      userId: verification.userId || 'unknown',
+      orgId: verification.orgId || '',
       product: 'autopilot',
       action: 'run',
       endpoint: '/api/v1/autopilot/runs',
       ipAddress: request.headers.get('x-forwarded-for') || 'unknown',
-      apiKeyId: verification.apiKeyId,
+      apiKeyId: verification.apiKeyId || 'unknown',
       credits: 1,
     });
 
@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check scopes
-    if (!verification.scopes.includes('autopilot:read')) {
+    if (!verification.scopes?.includes('autopilot:read')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: autopilot:read' },
         { status: 403 }
@@ -140,7 +140,7 @@ export async function GET(request: NextRequest) {
     // Fetch runs
     const runs = await prisma.autopilotCliRun.findMany({
       where: {
-        userId: verification.userId,
+        userId: verification.userId || 'unknown',
       },
       orderBy: {
         timestamp: 'desc',

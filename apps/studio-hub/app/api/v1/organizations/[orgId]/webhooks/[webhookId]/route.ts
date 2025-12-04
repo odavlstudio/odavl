@@ -7,9 +7,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { webhookService } from '@odavl-studio/core/services/webhook';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../../packages/core/src/services/organization';
+import { webhookService } from '../../../../../../../../../packages/core/src/services/webhook';
 import { z } from 'zod';
 
 const updateWebhookSchema = z.object({
@@ -20,9 +20,10 @@ const updateWebhookSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string; webhookId: string } }
+  { params }: { params: Promise<{ orgId: string; webhookId: string }> }
 ) {
   try {
+    const { webhookId, orgId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -31,8 +32,6 @@ export async function GET(
         { status: 401 }
       );
     }
-
-    const { orgId, webhookId } = params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -73,9 +72,10 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { orgId: string; webhookId: string } }
+  { params }: { params: Promise<{ orgId: string; webhookId: string }> }
 ) {
   try {
+    const { orgId, webhookId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -84,8 +84,6 @@ export async function PUT(
         { status: 401 }
       );
     }
-
-    const { orgId, webhookId } = params;
 
     // Check permission
     const role = await organizationService.getMemberRole(orgId, session.user.id);
@@ -123,9 +121,10 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { orgId: string; webhookId: string } }
+  { params }: { params: Promise<{ orgId: string; webhookId: string }> }
 ) {
   try {
+    const { orgId, webhookId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -134,8 +133,6 @@ export async function DELETE(
         { status: 401 }
       );
     }
-
-    const { orgId, webhookId } = params;
 
     // Check permission
     const role = await organizationService.getMemberRole(orgId, session.user.id);

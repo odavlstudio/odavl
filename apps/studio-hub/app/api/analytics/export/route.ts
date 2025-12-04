@@ -54,13 +54,13 @@ export const GET = withErrorHandler(async (req: Request) => {
     const csv = [
       'Type,Project,Date,Details',
       ...issues.map((i) =>
-        `Issue,${i.project.name},${i.createdAt.toISOString()},${i.severity}: ${i.message.replace(/,/g, ';')}`
+        `Issue,${i.project?.name || 'Unknown'},${i.createdAt.toISOString()},${i.severity}: ${i.message.replace(/,/g, ';')}`
       ),
       ...runs.map((r) =>
-        `Autopilot,${r.project.name},${r.createdAt.toISOString()},Status: ${r.status}`
+        `Autopilot,${r.project?.name || 'Unknown'},${r.createdAt.toISOString()},Status: ${r.status}`
       ),
       ...tests.map((t) =>
-        `Guardian,${t.project.name},${t.createdAt.toISOString()},Status: ${t.status} (${t.url})`
+        `Guardian,${t.project?.name || 'Unknown'},${t.createdAt.toISOString()},Status: ${t.status} (${t.url})`
       ),
     ].join('\n');
 

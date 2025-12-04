@@ -7,8 +7,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../packages/core/src/services/organization';
 import { z } from 'zod';
 
 const updateOrgSchema = z.object({
@@ -21,7 +21,7 @@ const updateOrgSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -33,7 +33,7 @@ export async function GET(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check membership
     const isMember = await organizationService.isMember(orgId, session.user.id);
@@ -68,7 +68,7 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -80,7 +80,7 @@ export async function PATCH(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -126,7 +126,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -138,7 +138,7 @@ export async function DELETE(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission (only OWNER can delete)
     const role = await organizationService.getMemberRole(orgId, session.user.id);

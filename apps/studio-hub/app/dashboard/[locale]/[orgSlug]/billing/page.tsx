@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import { PLAN_LIMITS } from '@odavl/types/multi-tenant';
+import { PLAN_LIMITS } from '../../../../../../../packages/types/src/multi-tenant';
 
 interface Subscription {
   plan: string;
@@ -24,7 +24,7 @@ interface Invoice {
 export default function BillingPage() {
   const params = useParams();
   const searchParams = useSearchParams();
-  const orgSlug = params.orgSlug as string;
+  const orgSlug = params?.orgSlug as string;
 
   const [organization, setOrganization] = useState<any>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
@@ -45,7 +45,7 @@ export default function BillingPage() {
 
   useEffect(() => {
     // Handle successful checkout
-    const sessionId = searchParams.get('session_id');
+    const sessionId = searchParams?.get('session_id');
     if (sessionId) {
       // Refresh subscription after successful checkout
       setTimeout(() => {

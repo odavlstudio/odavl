@@ -6,14 +6,15 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { notificationService } from '@odavl-studio/core/services/notification';
+import { authOptions } from '@/lib/auth';
+import { notificationService } from '../../../../../../../../../packages/core/src/services/notification';
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -23,7 +24,7 @@ export async function PUT(
       );
     }
 
-    await notificationService.markAsRead(params.id, session.user.id);
+    await notificationService.markAsRead(id, session.user.id);
 
     return NextResponse.json({
       success: true,
@@ -40,9 +41,10 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -52,7 +54,7 @@ export async function DELETE(
       );
     }
 
-    await notificationService.deleteNotification(params.id, session.user.id);
+    await notificationService.deleteNotification(id, session.user.id);
 
     return NextResponse.json({
       success: true,

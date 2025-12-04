@@ -4,7 +4,7 @@
  */
 
 import { organizationService } from '../services/organization';
-import { MemberRole } from '@odavl/types/multi-tenant';
+import { MemberRole } from '../../../types/src/multi-tenant';
 
 /**
  * Check if user has required role
@@ -47,7 +47,7 @@ export async function getUserPermissions(
     return [];
   }
 
-  const { ROLE_PERMISSIONS } = await import('@odavl/types/multi-tenant');
+  const { ROLE_PERMISSIONS } = await import('../../../types/src/multi-tenant');
   return ROLE_PERMISSIONS[member] || [];
 }
 

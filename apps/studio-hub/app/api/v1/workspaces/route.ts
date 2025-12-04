@@ -3,64 +3,67 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyApiKey } from '@/lib/api-key';
+import { verifyApiKey } from '@/lib/auth/api-key';
 import { prisma } from '@/lib/prisma';
-import { StorageService } from '@odavl-studio/storage';
-import { S3Provider, AzureBlobProvider, LocalProvider } from '@odavl-studio/storage';
+import { StorageService } from '../../../../../../packages/storage/src';
+import type { StorageConfig } from '../../../../../../packages/storage/src';
 
 /**
- * Get storage provider
+ * Get storage config
  */
-function getStorageProvider() {
+function getStorageConfig(): StorageConfig {
   const provider = process.env.STORAGE_PROVIDER || 'local';
 
   if (provider === 's3') {
-    return new S3Provider({
+    return {
+      provider: 's3',
       region: process.env.AWS_REGION!,
       bucket: process.env.S3_BUCKET!,
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-    });
+      credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+      },
+    };
   }
 
   if (provider === 'azure') {
-    return new AzureBlobProvider({
-      accountName: process.env.AZURE_STORAGE_ACCOUNT!,
-      accountKey: process.env.AZURE_STORAGE_KEY!,
+    return {
+      provider: 'azure',
       container: process.env.AZURE_CONTAINER!,
-    });
+      credentials: {
+        accountName: process.env.AZURE_STORAGE_ACCOUNT!,
+        accountKey: process.env.AZURE_STORAGE_KEY!,
+      },
+    };
   }
 
-  return new LocalProvider({ bucket: '.odavl-storage' });
+  return { provider: 'local', bucket: '.odavl-storage' };
 }
 
 /**
  * Create storage service
  */
 function createStorageService(userId: string) {
-  const provider = getStorageProvider();
-  return new StorageService(provider, userId, {
-    enableCompression: true,
-    enableEncryption: process.env.ENABLE_ENCRYPTION === 'true',
-    encryptionKey: process.env.ENCRYPTION_KEY,
-  });
+  const config = getStorageConfig();
+  return new StorageService(config);
 }
 
 /**
  * Track usage
  */
 async function trackUsage(
+  userId: string,
   apiKeyId: string,
-  endpoint: string,
-  durationMs: number
+  endpoint: string
 ) {
   await prisma.usageRecord.create({
     data: {
+      userId,
       apiKeyId,
+      product: 'storage',
+      action: 'api',
       endpoint,
       timestamp: new Date(),
-      responseTime: durationMs,
-      statusCode: 200,
     },
   });
 }
@@ -70,8 +73,6 @@ async function trackUsage(
  * List all user workspaces
  */
 export async function GET(req: NextRequest) {
-  const startTime = Date.now();
-
   try {
     // Verify API key
     const apiKey = req.headers.get('x-api-key');
@@ -79,31 +80,30 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Missing API key' }, { status: 401 });
     }
 
-    const verification = await verifyApiKey(apiKey, 'workspace:read');
-    if (!verification.valid) {
-      return NextResponse.json({ error: verification.error }, { status: 401 });
+    const verification = await verifyApiKey(apiKey);
+    if (!verification.valid || !verification.userId || !verification.apiKeyId) {
+      return NextResponse.json({ error: 'Invalid API key' }, { status: 401 });
     }
 
     const { userId, apiKeyId } = verification;
 
     // List workspaces
     const storage = createStorageService(userId);
-    const workspaces = await storage.listWorkspaces();
+    const workspaces = await storage.listWorkspaces(userId);
 
     // Track usage
-    const durationMs = Date.now() - startTime;
-    await trackUsage(apiKeyId, '/api/v1/workspaces', durationMs);
+    await trackUsage(userId, apiKeyId, '/api/v1/workspaces');
 
     return NextResponse.json({
       success: true,
       workspaces: workspaces.map((w) => ({
-        name: w.name,
+        name: w.workspaceName,
         totalSize: w.totalSize,
         fileCount: w.files.length,
         version: w.version,
         checksum: w.checksum,
         lastSyncAt: w.lastSyncAt,
-        createdAt: w.createdAt,
+        createdAt: w.files[0]?.lastModified,
       })),
       totalCount: workspaces.length,
     });
@@ -122,35 +122,34 @@ export async function GET(req: NextRequest) {
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { name: string } }
+  { params }: { params: Promise<{ name: string }> }
 ) {
-  const startTime = Date.now();
-
   try {
+    const { name } = await params;
+
     // Verify API key
     const apiKey = req.headers.get('x-api-key');
     if (!apiKey) {
       return NextResponse.json({ error: 'Missing API key' }, { status: 401 });
     }
 
-    const verification = await verifyApiKey(apiKey, 'workspace:write');
-    if (!verification.valid) {
-      return NextResponse.json({ error: verification.error }, { status: 401 });
+    const verification = await verifyApiKey(apiKey);
+    if (!verification.valid || !verification.userId || !verification.apiKeyId) {
+      return NextResponse.json({ error: 'Invalid API key' }, { status: 401 });
     }
 
     const { userId, apiKeyId } = verification;
 
     // Delete workspace
     const storage = createStorageService(userId);
-    await storage.deleteWorkspace(params.name);
+    await storage.deleteWorkspace(name, userId);
 
     // Track usage
-    const durationMs = Date.now() - startTime;
-    await trackUsage(apiKeyId, '/api/v1/workspaces/delete', durationMs);
+    await trackUsage(userId, apiKeyId, '/api/v1/workspaces/delete');
 
     return NextResponse.json({
       success: true,
-      message: `Workspace '${params.name}' deleted successfully`,
+      message: `Workspace '${name}' deleted successfully`,
     });
   } catch (error) {
     console.error('Delete workspace error:', error);

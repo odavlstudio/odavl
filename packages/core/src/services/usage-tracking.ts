@@ -3,7 +3,7 @@
  * Track API usage and enforce plan quotas
  */
 
-import { prisma } from '@odavl-studio/studio-hub/lib/prisma';
+import { prisma } from '@/lib/prisma';
 
 export interface UsageMetrics {
   period: string; // 'YYYY-MM'

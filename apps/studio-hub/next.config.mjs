@@ -10,16 +10,30 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ✅ Next.js 14.2.21 LTS - Enterprise-Grade Stable Release
-  // Used by: Fortune 500 companies, governments, and enterprise platforms worldwide
-  // Most stable Next.js version for large-scale production deployments
+  // ✅ Next.js 14.2.21 LTS - Stable production build
+  // CRITICAL: SSG disabled (export fails for /404 /500 built-in error pages)
+  // Server-only rendering - no static export at build time
+  output: 'standalone',
 
   reactStrictMode: true,
 
-  // Runtime rendering for auth contexts (SessionProvider/TRPC)
-  // Static generation disabled for pages requiring authentication
+  // Transpile monorepo packages
+  transpilePackages: ['@odavl/types', '@odavl-studio/core'],
+
   experimental: {
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],
+  },
+
+  skipTrailingSlashRedirect: true,
+  generateBuildId: async () => {
+    return 'odavl-studio-' + Date.now();
+  },
+
+  // CRITICAL FIX: Force all pages to be server-rendered (no SSG)
+  // Avoids Next.js built-in /_error SSG failures
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 5,
   },
 
   // Image optimization
@@ -96,13 +110,26 @@ const nextConfig = {
   // Package optimizations
   experimental: {
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],
+    // Disable static optimization for error boundaries
+    workerThreads: false,
+    cpus: 1,
   },
 
   // Webpack configuration for monorepo path resolution
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.alias['@'] = path.resolve(__dirname);
     config.resolve.alias['@/packages'] = path.resolve(__dirname, '../../packages');
     config.resolve.alias['@odavl'] = path.resolve(__dirname, '../../packages');
+    config.resolve.alias['@/core'] = path.resolve(__dirname, '../../packages/core/src');
+    
+    // Suppress Azure storage-blob warnings (not used in build)
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        '@azure/storage-blob': false,
+      };
+    }
+    
     return config;
   },
 

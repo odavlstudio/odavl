@@ -6,9 +6,10 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { invitationService } from '../../../../../../../packages/core/src/services/invitation';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../packages/core/src/services/organization';
+import { invitationService } from '../../../../../../../../packages/core/src/services/invitation';
+import { MemberRole } from '../../../../../../../../packages/types/src/multi-tenant';
 import { z } from 'zod';
 
 const createInvitationSchema = z.object({
@@ -19,7 +20,7 @@ const createInvitationSchema = z.object({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -31,7 +32,7 @@ export async function GET(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check membership
     const isMember = await organizationService.isMember(orgId, session.user.id);
@@ -65,7 +66,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -77,7 +78,7 @@ export async function POST(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission
     const hasPermission = await organizationService.hasPermission(
@@ -111,7 +112,7 @@ export async function POST(
     const invitation = await invitationService.createInvitation({
       organizationId: orgId,
       email: validatedData.email,
-      role: validatedData.role,
+      role: validatedData.role as MemberRole,
       invitedById: session.user.id,
       expiresInDays: validatedData.expiresInDays,
     });

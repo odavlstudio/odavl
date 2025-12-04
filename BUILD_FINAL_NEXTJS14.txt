@@ -1,0 +1,332 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Ôû▓ Next.js 14.2.21
+  - Environments: .env.local, .env
+  - Experiments (use with caution):
+    ┬À cpus
+
+   Creating an optimized production build ...
+ ÔÜá Compiled with warnings
+
+../../packages/storage/src/providers/azure.ts
+Module not found: Can't resolve '@azure/storage-blob' in 'C:\Users\sabou\dev\odavl\packages\storage\src\providers'
+
+Import trace for requested module:
+../../packages/storage/src/providers/azure.ts
+../../packages/storage/src/index.ts
+./app/api/v1/workspaces/route.ts
+
+   Linting and checking validity of types ...
+   Collecting page data ...
+ ÔÜá Using edge runtime on a page currently disables static generation for that page
+­ƒÅÑ Health check service initialized
+­ƒôè Metrics collection service initialized
+[AzureBlobProvider] @azure/storage-blob not installed - Azure storage provider will not work
+   Generating static pages (0/334) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\566.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\566.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\566.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/500". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\566.js:6:1263)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+[2025-12-04T19:07:25.570Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/analytics/trends couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/analytics/trends couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\analytics\\trends\\route.js:1:1311\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/analytics/trends
+[2025-12-04T19:07:25.584Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/analytics/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/analytics/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\analytics\\export\\route.js:1:1311\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/analytics/export
+[2025-12-04T19:07:25.600Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/autopilot/runs couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/autopilot/runs couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\autopilot\\runs\\route.js:1:1311\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/autopilot/runs
+[2025-12-04T19:07:25.634Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/autopilot/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/autopilot/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\autopilot\\stats\\route.js:1:1328\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/autopilot/stats
+[2025-12-04T19:07:28.324Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/guardian/tests couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/guardian/tests couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\guardian\\tests\\route.js:1:1311\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/guardian/tests
+[2025-12-04T19:07:28.393Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/guardian/web-vitals couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/guardian/web-vitals couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\guardian\\web-vitals\\route.js:1:1327\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/guardian/web-vitals
+[2025-12-04T19:07:28.508Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/insight/issues couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/insight/issues couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\insight\\issues\\route.js:1:1309\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/insight/issues
+[2025-12-04T19:07:28.537Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/insight/trend couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/insight/trend couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\insight\\trend\\route.js:1:1328\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/insight/trend
+prisma:error 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+[2025-12-04T19:07:32.860Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/stripe/invoices couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/stripe/invoices couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\stripe\\invoices\\route.js:1:1435\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/stripe/invoices
+[2025-12-04T19:07:33.273Z] [ERROR] {"error":{"message":"Dynamic server usage: Route /api/usage couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error","stack":"Error: Dynamic server usage: Route /api/usage couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error\n    at l (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\4563.js:1:56266)\n    at d (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:27726)\n    at s (C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\8113.js:25:20866)\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\app\\api\\usage\\route.js:1:2483\n    at C:\\Users\\sabou\\dev\\odavl\\apps\\studio-hub\\.next\\server\\chunks\\1828.js:1:367\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\compiled\\next-server\\app-route.runtime.prod.js:6:38417\n    at C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\\node_modules\\next\\dist\\server\\lib\\trace\\tracer.js:140:36\n    at NoopContextManager.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\context\\NoopContextManager.js:25:19)\n    at ContextAPI.with (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\api\\context.js:60:46)\n    at NoopTracer.startActiveSpan (C:\\Users\\sabou\\dev\\odavl\\node_modules\\.pnpm\\@opentelemetry+api@1.9.0\\node_modules\\@opentelemetry\\api\\build\\src\\trace\\NoopTracer.js:65:31)","name":"Error"}} API Error in GET /api/usage
+Error comparing projects: n [Error]: Dynamic server usage: Route /api/v1/analytics/compare couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\analytics\compare\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/analytics/compare couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching autopilot trends: n [Error]: Dynamic server usage: Route /api/v1/analytics/trends/autopilot couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\analytics\trends\autopilot\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/analytics/trends/autopilot couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching error trends: n [Error]: Dynamic server usage: Route /api/v1/analytics/trends/errors couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\analytics\trends\errors\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/analytics/trends/errors couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching quality trends: n [Error]: Dynamic server usage: Route /api/v1/analytics/trends/quality couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\analytics\trends\quality\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/analytics/trends/quality couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching guardian trends: n [Error]: Dynamic server usage: Route /api/v1/analytics/trends/guardian couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\analytics\trends\guardian\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/analytics/trends/guardian couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error generating compliance report: n [Error]: Dynamic server usage: Route /api/v1/audit/compliance couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\audit\compliance\route.js:1:1348)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/audit/compliance couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error exporting audit logs: n [Error]: Dynamic server usage: Route /api/v1/audit/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at x (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\audit\export\route.js:1:1358)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/audit/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching audit logs: n [Error]: Dynamic server usage: Route /api/v1/audit couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at c (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\audit\route.js:1:1348)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/audit couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching audit stats: n [Error]: Dynamic server usage: Route /api/v1/audit/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at c (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\audit\stats\route.js:1:1348)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/audit/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching invitation stats: n [Error]: Dynamic server usage: Route /api/v1/invitations/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at x (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\invitations\stats\route.js:1:1346)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/invitations/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error checking health: B [Error]: Dynamic server usage: Route /api/v1/observability/health couldn't be rendered statically because it used `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at V (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:21778)
+    at Object.get (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:29137)
+    at c (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\observability\health\route.js:1:5091)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:122:103 {
+  description: "Route /api/v1/observability/health couldn't be rendered statically because it used `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching metrics: B [Error]: Dynamic server usage: Route /api/v1/observability/metrics couldn't be rendered statically because it used `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at V (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:21778)
+    at Object.get (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:29137)
+    at h (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\observability\metrics\route.js:1:5660)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:122:103 {
+  description: "Route /api/v1/observability/metrics couldn't be rendered statically because it used `nextUrl.searchParams`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching report stats: n [Error]: Dynamic server usage: Route /api/v1/reports/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at x (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\reports\stats\route.js:1:1348)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/reports/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Failed to get usage history: n [Error]: Dynamic server usage: Route /api/v1/usage/history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\usage\history\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/usage/history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching notifications: n [Error]: Dynamic server usage: Route /api/v1/users/me/notifications couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\users\me\notifications\route.js:1:1305)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/users/me/notifications couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+Error fetching preferences: n [Error]: Dynamic server usage: Route /api/v1/users/me/preferences couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at l (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\4563.js:1:56266)
+    at d (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:27726)
+    at s (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\8113.js:25:20866)
+    at x (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\app\api\v1\users\me\preferences\route.js:1:1937)
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:38417
+    at C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@14.2.21_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_react-dom@18_fs5atglueissfqmtlthwssdzkq\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\context\NoopContextManager.js:25:19)
+    at ContextAPI.with (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\api\context.js:60:46)
+    at NoopTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\NoopTracer.js:65:31)
+    at ProxyTracer.startActiveSpan (C:\Users\sabou\dev\odavl\node_modules\.pnpm\@opentelemetry+api@1.9.0\node_modules\@opentelemetry\api\build\src\trace\ProxyTracer.js:36:24) {
+  description: "Route /api/v1/users/me/preferences couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (83/334) 
+   Generating static pages (166/334) 
+   Generating static pages (250/334) 
+ Ô£ô Generating static pages (334/334)
+
+> Export encountered errors on following paths:
+	/_error: /404
+	/_error: /500
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

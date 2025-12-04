@@ -1,0 +1,37 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+ ÔÜá Compiled with warnings
+
+../../packages/storage/src/providers/azure.ts
+Module not found: Can't resolve '@azure/storage-blob' in 'C:\Users\sabou\dev\odavl\packages\storage\src\providers'
+
+Import trace for requested module:
+../../packages/storage/src/providers/azure.ts
+../../packages/storage/src/index.ts
+./app/api/v1/workspaces/route.ts
+
+   Linting and checking validity of types ...
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+Failed to compile.
+
+.next/types/app/api/auth/[...nextauth]/route.ts:12:13
+Type error: Type 'OmitWithTag<typeof import("C:/Users/sabou/dev/odavl/apps/studio-hub/app/api/auth/[...nextauth]/route"), "dynamic" | "config" | "generateStaticParams" | "revalidate" | "dynamicParams" | ... 10 more ... | "PATCH", "">' does not satisfy the constraint '{ [x: string]: never; }'.
+  Property 'authOptions' is incompatible with index signature.
+    Type 'AuthOptions' is not assignable to type 'never'.
+
+  10 |
+  11 | // Check that the entry is a valid entry
+> 12 | checkFields<Diff<{
+     |             ^
+  13 |   GET?: Function
+  14 |   HEAD?: Function
+  15 |   OPTIONS?: Function
+Static worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

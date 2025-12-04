@@ -6,8 +6,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { notificationService } from '@odavl-studio/core/services/notification';
+import { authOptions } from '@/lib/auth';
+import { notificationService } from "../../../../../../../../packages/core/src/services/notification";
 import { z } from 'zod';
 
 const preferencesSchema = z.object({

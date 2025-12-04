@@ -661,5 +661,3 @@ model GuardianReport {
   @@index([type])
 }
 
-}
-

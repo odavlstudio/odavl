@@ -116,6 +116,7 @@ async function createAutopilotRun(projectId: string): Promise<void> {
   await prisma.autopilotRun.create({
     data: {
       projectId,
+      runId: `run-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       status: 'COMPLETED',
       observeDuration: 2341,
       decideDuration: 456,
@@ -139,16 +140,17 @@ async function createGuardianTest(projectId: string): Promise<void> {
   await prisma.guardianTest.create({
     data: {
       projectId,
+      testRunId: `test-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       url: 'https://demo.odavl.studio',
       environment: 'production',
-      status: 'PASSED',
-      passed: true,
+      status: 'passed',
+      passed: 47, // Number of passed tests
+      failed: 3,  // Number of failed tests
       score: 94,
       ttfb: 180,
       lcp: 2200,
       fid: 45,
       cls: 0.08,
-      duration: 15420,
     },
   });
 

@@ -6,14 +6,15 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { alertService } from '@/packages/core/src/services/alerts';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { alertId: string } }
+  { params }: { params: Promise<{ alertId: string }> }
 ) {
   try {
+    const { alertId } = await params;
     const session = await getServerSession(authOptions);
     if (!session?.user) {
       return NextResponse.json(
@@ -22,7 +23,7 @@ export async function GET(
       );
     }
 
-    const alert = alertService.getAlert(params.alertId);
+    const alert = alertService.getAlert(alertId);
 
     if (!alert) {
       return NextResponse.json(
@@ -47,9 +48,10 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { alertId: string } }
+  { params }: { params: Promise<{ alertId: string }> }
 ) {
   try {
+    const { alertId } = await params;
     const session = await getServerSession(authOptions);
     if (!session?.user) {
       return NextResponse.json(
@@ -59,7 +61,7 @@ export async function POST(
     }
 
     await alertService.resolveAlert(
-      params.alertId,
+      alertId,
       session.user.id || session.user.email || undefined
     );
 

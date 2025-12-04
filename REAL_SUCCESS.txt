@@ -1,0 +1,82 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+Error:   x Expected ',', got '}'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\members\[userId]\route.ts:88:1]
+ 85 | 
+ 86 | export async function DELETE(
+ 87 |   req: NextRequest,
+ 88 |   { params }: { params: Promise<{ orgId: string; userId: string } }
+    :                                                                   ^
+ 89 | ) {
+ 90 |   try {
+ 90 |     const session = await getServerSession(authOptions);
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/members/[userId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+Module parse failed: Identifier 'orgId' has already been declared (21:16)
+File was processed with these loaders:
+ * ../../node_modules/.pnpm/next@15.1.6_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_yh4slvrshmpvhhrunjrrynblfq/node_modules/next/dist/build/webpack/loaders/next-flight-loader/index.js
+ * ../../node_modules/.pnpm/next@15.1.6_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_yh4slvrshmpvhhrunjrrynblfq/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+You may need an additional loader to handle the result of these loaders.
+|             });
+|         }
+>         const { orgId, webhookId } = params;
+|         // Check permission
+|         const hasPermission = await organizationService.hasPermission(orgId, session.user.id, 'org:settings');
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/deliveries/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+Error:   x Expected ',', got '}'
+    ,-[C:\Users\sabou\dev\odavl\apps\studio-hub\app\api\v1\organizations\[orgId]\webhooks\[webhookId]\route.ts:78:1]
+ 75 | 
+ 76 | export async function PUT(
+ 77 |   req: NextRequest,
+ 78 |   { params }: { params: Promise<{ orgId: string; webhookId: string } }
+    :                                                                      ^
+ 79 | ) {
+ 80 |   try {
+ 80 |     const session = await getServerSession(authOptions);
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/route.ts
+
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+Module parse failed: Identifier 'orgId' has already been declared (21:16)
+File was processed with these loaders:
+ * ../../node_modules/.pnpm/next@15.1.6_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_yh4slvrshmpvhhrunjrrynblfq/node_modules/next/dist/build/webpack/loaders/next-flight-loader/index.js
+ * ../../node_modules/.pnpm/next@15.1.6_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_yh4slvrshmpvhhrunjrrynblfq/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+You may need an additional loader to handle the result of these loaders.
+|             });
+|         }
+>         const { orgId, webhookId } = params;
+|         // Check permission
+|         const role = await organizationService.getMemberRole(orgId, session.user.id);
+
+Import trace for requested module:
+./app/api/v1/organizations/[orgId]/webhooks/[webhookId]/test/route.ts
+
+
+> Build failed because of webpack errors
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

@@ -1,7 +1,9 @@
 import { z } from 'zod';
-import { AutopilotStatus } from '@prisma/client';
 import { router, protectedProcedure } from '../trpc';
 import { requireOrgAccess } from '../context';
+
+// AutopilotRun status values (from Prisma schema - stored as String)
+const AutopilotStatusEnum = z.enum(['running', 'completed', 'failed', 'rolled_back']);
 
 export const autopilotRouter = router({
   /**
@@ -11,7 +13,7 @@ export const autopilotRouter = router({
     .input(
       z.object({
         projectId: z.string().optional(),
-        status: z.nativeEnum(AutopilotStatus).optional(),
+        status: AutopilotStatusEnum.optional(),
         limit: z.number().min(1).max(100).default(50),
       })
     )

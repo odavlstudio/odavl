@@ -6,13 +6,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { keyId: string } }
+  { params }: { params: Promise<{ keyId: string }> }
 ) {
   try {
+    const { keyId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
@@ -30,7 +31,7 @@ export async function DELETE(
 
     // Find API key
     const apiKey = await prisma.apiKey.findUnique({
-      where: { id: params.keyId },
+      where: { id: keyId },
     });
 
     if (!apiKey) {
@@ -44,7 +45,7 @@ export async function DELETE(
 
     // Revoke (soft delete)
     await prisma.apiKey.update({
-      where: { id: params.keyId },
+      where: { id: keyId },
       data: { revokedAt: new Date() },
     });
 

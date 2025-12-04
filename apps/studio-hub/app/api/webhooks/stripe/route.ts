@@ -4,8 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { stripeService } from '@odavl-studio/core/services/stripe';
-import { organizationService } from '@odavl-studio/core/services/organization';
+import { stripeService } from "../../../../../../packages/core/src/services/stripe";
+import { organizationService } from "../../../../../../packages/core/src/services/organization";
 import Stripe from 'stripe';
 
 export async function POST(req: NextRequest) {

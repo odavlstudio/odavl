@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
         key: newApiKey,
         name: 'CLI Auto-generated',
         userId: tokenRecord.userId,
+        orgId: tokenRecord.user.orgId || '',
         expiresAt,
       },
     });

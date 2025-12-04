@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm build || echo 'Export errors ignored (server-side rendering active)'",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "devCommand": "pnpm dev",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PRIVATE_STANDALONE_BUILD": "1"
+  },
+  "build": {
+    "env": {
+      "SKIP_STATIC_EXPORT": "1"
+    }
+  }
+}

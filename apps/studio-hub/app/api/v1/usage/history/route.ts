@@ -5,8 +5,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { usageTrackingService } from '@odavl-studio/core/services/usage-tracking';
+import { authOptions } from '@/lib/auth';
+import { usageTrackingService } from "../../../../../../../packages/core/src/services/usage-tracking";
 
 /**
  * GET /api/v1/usage/history

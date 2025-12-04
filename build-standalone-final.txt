@@ -1,0 +1,48 @@
+
+> @odavl-studio/hub@1.0.0 build C:\Users\sabou\dev\odavl\apps\studio-hub
+> next build
+
+ ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+   Ôû▓ Next.js 15.1.6
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     ┬À cpus
+
+   Creating an optimized production build ...
+ ÔÜá Compiled with warnings
+
+../../packages/storage/src/providers/azure.ts
+Module not found: Can't resolve '@azure/storage-blob' in 'C:\Users\sabou\dev\odavl\packages\storage\src\providers'
+
+Import trace for requested module:
+../../packages/storage/src/providers/azure.ts
+../../packages/storage/src/index.ts
+./app/api/v1/workspaces/route.ts
+
+   Linting and checking validity of types ...
+ Ô¿» ESLint: Failed to patch ESLint because the calling module was not recognized. If you are using a newer ESLint version that may be unsupported, please create a GitHub issue: https://github.com/microsoft/rushstack/issues
+   Collecting page data ...
+ ÔÜá Using edge runtime on a page currently disables static generation for that page
+­ƒôè Metrics collection service initialized
+­ƒÅÑ Health check service initialized
+[AzureBlobProvider] @azure/storage-blob not installed - Azure storage provider will not work
+   Generating static pages (0/319) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\183.js:6:1263)
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Y (C:\Users\sabou\dev\odavl\node_modules\.pnpm\next@15.1.6_@babel+core@7.28.5_@opentelemetry+api@1.9.0_@playwright+test@1.57.0_babel-plugin-_yh4slvrshmpvhhrunjrrynblfq\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5469)
+    at O (C:\Users\sabou\dev\odavl\apps\studio-hub\.next\server\chunks\183.js:6:1263)
+    at react-stack-bottom-frame (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:8798:18)
+    at renderWithHooks (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:4722:19)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5157:23)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5805:22)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5631:11)
+    at renderElement (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5143:11)
+    at retryNode (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5805:22)
+    at renderNodeDestructive (C:\Users\sabou\dev\odavl\node_modules\.pnpm\react-dom@19.0.0_react@19.0.0\node_modules\react-dom\cjs\react-dom-server.edge.development.js:5631:11)
+Export encountered an error on /_error: /404, exiting the build.
+ Ô¿» Static worker exited with code: 1 and signal: null
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

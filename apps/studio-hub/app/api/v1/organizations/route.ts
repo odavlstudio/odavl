@@ -6,8 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from "../../../../../../packages/core/src/services/organization";
+import { SubscriptionPlan } from "../../../../../../packages/types/src/multi-tenant";
 import { z } from 'zod';
 
 const createOrgSchema = z.object({
@@ -71,7 +72,7 @@ export async function POST(req: NextRequest) {
       slug: validatedData.slug,
       description: validatedData.description,
       ownerId: session.user.id,
-      plan: validatedData.plan,
+      plan: validatedData.plan as SubscriptionPlan | undefined,
     });
 
     return NextResponse.json({

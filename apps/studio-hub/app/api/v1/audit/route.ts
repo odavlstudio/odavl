@@ -8,8 +8,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { auditLogsService, AuditCategory, AuditSeverity, AuditAction } from '@odavl-studio/core/services/audit-logs';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { auditLogsService, AuditCategory, AuditSeverity, AuditAction } from "../../../../../../packages/core/src/services/audit-logs";
+import { authOptions } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {

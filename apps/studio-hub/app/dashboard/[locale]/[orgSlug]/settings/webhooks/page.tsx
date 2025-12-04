@@ -29,7 +29,7 @@ interface AvailableEvent {
 
 export default function WebhooksPage() {
   const params = useParams();
-  const orgSlug = params.orgSlug as string;
+  const orgSlug = params?.orgSlug as string;
 
   const [organization, setOrganization] = useState<any>(null);
   const [webhooks, setWebhooks] = useState<Webhook[]>([]);

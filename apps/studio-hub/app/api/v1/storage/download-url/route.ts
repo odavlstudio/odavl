@@ -5,9 +5,13 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { cloudStorage } from '@odavl-studio/core/services/cloud-storage';
+import { authOptions } from '@/lib/auth';
+// Lazy import to avoid AWS initialization at build time
+// import { cloudStorage, CloudStorageService } from "../../../../../../../packages/core/src/services/cloud-storage";
 import { prisma } from '@/lib/prisma';
+
+// Add runtime config to skip static generation
+export const dynamic = 'force-dynamic';
 
 /**
  * GET /api/v1/storage/download-url?key={s3Key}&expiresIn={seconds}
@@ -15,6 +19,9 @@ import { prisma } from '@/lib/prisma';
  */
 export async function GET(request: NextRequest) {
   try {
+    // Lazy import cloudStorage at runtime
+    const { cloudStorage, CloudStorageService } = await import("../../../../../../../packages/core/src/services/cloud-storage");
+
     // Authenticate user
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) {
@@ -41,7 +48,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Parse S3 key to verify ownership
-    const keyMetadata = cloudStorage.constructor.parseKey(s3Key);
+    const keyMetadata = CloudStorageService.parseKey(s3Key);
     if (!keyMetadata) {
       return NextResponse.json({ error: 'Invalid S3 key format' }, { status: 400 });
     }

@@ -100,8 +100,8 @@ interface GuardianResult {
 
 export default function SyncDashboardPage() {
   const params = useParams();
-  const locale = params.locale as string;
-  const orgSlug = params.orgSlug as string;
+  const locale = params?.locale as string;
+  const orgSlug = params?.orgSlug as string;
 
   const [activeTab, setActiveTab] = useState<'jobs' | 'insight' | 'autopilot' | 'guardian'>('jobs');
   const [syncJobs, setSyncJobs] = useState<SyncJob[]>([]);

@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check scopes (requires guardian:write)
-    if (!verification.scopes.includes('guardian:write')) {
+    if (!verification.scopes?.includes('guardian:write')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: guardian:write' },
         { status: 403 }
@@ -65,8 +65,8 @@ export async function POST(request: NextRequest) {
     // Store test result in database
     const test = await prisma.guardianCliTest.create({
       data: {
-        userId: verification.userId,
-        orgId: verification.orgId,
+        userId: verification.userId || 'unknown',
+        orgId: verification.orgId || '',
         productPath,
         productName,
         productType,
@@ -80,13 +80,13 @@ export async function POST(request: NextRequest) {
 
     // Track usage
     await trackUsage({
-      userId: verification.userId,
-      orgId: verification.orgId,
+      userId: verification.userId || 'unknown',
+      orgId: verification.orgId || '',
       product: 'guardian',
       action: 'test',
       endpoint: '/api/v1/guardian/tests',
       ipAddress: request.headers.get('x-forwarded-for') || 'unknown',
-      apiKeyId: verification.apiKeyId,
+      apiKeyId: verification.apiKeyId || 'unknown',
       credits: 1,
     });
 
@@ -126,7 +126,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check scopes
-    if (!verification.scopes.includes('guardian:read')) {
+    if (!verification.scopes?.includes('guardian:read')) {
       return NextResponse.json(
         { error: 'Insufficient permissions. Required scope: guardian:read' },
         { status: 403 }
@@ -141,7 +141,7 @@ export async function GET(request: NextRequest) {
     // Fetch tests
     const tests = await prisma.guardianCliTest.findMany({
       where: {
-        userId: verification.userId,
+        userId: verification.userId || 'unknown',
       },
       orderBy: {
         timestamp: 'desc',

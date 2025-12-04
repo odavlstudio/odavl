@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { trendsAnalysisService } from '@/packages/core/src/services/trends-analysis';
 import { qualityScoreCalculator, QualityMetrics } from '@/packages/core/src/services/quality-score';
 

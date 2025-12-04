@@ -4,7 +4,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { webhookService } from '@odavl-studio/core/services/webhook';
+import { webhookService } from "../../../../../../../packages/core/src/services/webhook";
 
 export async function GET() {
   try {

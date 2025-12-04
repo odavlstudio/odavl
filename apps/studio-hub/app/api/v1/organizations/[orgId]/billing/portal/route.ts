@@ -5,13 +5,13 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { organizationService } from '@odavl-studio/core/services/organization';
-import { stripeService } from '@odavl-studio/core/services/stripe';
+import { authOptions } from '@/lib/auth';
+import { organizationService } from '../../../../../../../../../packages/core/src/services/organization';
+import { stripeService } from '../../../../../../../../../packages/core/src/services/stripe';
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { orgId: string } }
+  { params }: { params: Promise<{ orgId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -23,7 +23,7 @@ export async function POST(
       );
     }
 
-    const { orgId } = params;
+    const { orgId } = await params;
 
     // Check permission (only OWNER can manage billing)
     const role = await organizationService.getMemberRole(orgId, session.user.id);
