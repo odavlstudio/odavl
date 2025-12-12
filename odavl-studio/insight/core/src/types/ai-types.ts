@@ -1,7 +1,12 @@
 /**
  * ODAVL Insight - AI Detection Types
  * TypeScript interfaces for AI-powered detection
+ * 
+ * Phase P5: Added file-type metadata to Issue interface
  */
+
+// Phase P5: Import file-type system
+import type { FileType, FileTypeMetadata } from '../engine/file-type-analysis.js';
 
 // ============================================================
 // Core Issue Types
@@ -20,6 +25,11 @@ export interface Issue {
   autopilotHandoff: boolean; // Can be fixed by Autopilot?
   codeSnippet?: string;
   fixComplexity?: 'simple' | 'medium' | 'complex';
+  
+  // Phase P5: File-type metadata (added December 2025)
+  fileType?: FileType;                           // Universal file type (sourceCode, config, env, etc.)
+  risk?: FileTypeMetadata['risk'];              // Risk level (critical, high, medium, low)
+  usedByProducts?: string[];                    // Which ODAVL products use this file type
 }
 
 // ============================================================

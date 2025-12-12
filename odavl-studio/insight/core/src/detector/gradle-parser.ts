@@ -139,7 +139,7 @@ export class GradleParser {
     if (dslType === 'groovy') {
       // Groovy DSL: id 'plugin-id' version 'version'
       const pluginRegex = /id\s+['"]([^'"]+)['"]\s*(?:version\s+['"]([^'"]+)['"])?/g;
-      let match;
+      let match: RegExpExecArray | null;
       while ((match = pluginRegex.exec(content)) !== null) {
         plugins.push({
           id: match[1],
@@ -149,15 +149,16 @@ export class GradleParser {
 
       // Also check for apply plugin: pattern
       const applyPluginRegex = /apply\s+plugin:\s*['"]([^'"]+)['"]/g;
-      while ((match = applyPluginRegex.exec(content)) !== null) {
-        if (!plugins.some(p => p.id === match[1])) {
-          plugins.push({ id: match[1] });
+      let applyMatch: RegExpExecArray | null;
+      while ((applyMatch = applyPluginRegex.exec(content)) !== null) {
+        if (!plugins.some(p => p.id === applyMatch![1])) {
+          plugins.push({ id: applyMatch[1] });
         }
       }
     } else {
       // Kotlin DSL: id("plugin-id") version "version"
       const pluginRegex = /id\s*\(\s*"([^"]+)"\s*\)\s*(?:version\s+"([^"]+)")?/g;
-      let match;
+      let match: RegExpExecArray | null;
       while ((match = pluginRegex.exec(content)) !== null) {
         plugins.push({
           id: match[1],

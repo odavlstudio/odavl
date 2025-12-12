@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { PerformanceErrorType } from '../performance-detector';
+import { safeReadFile } from '../../utils/safe-file-reader.js';
 
 export interface AssetIssue {
     file: string;
@@ -160,8 +161,8 @@ export class AssetOptimizer {
 
         // Check if file imports next/image (already optimized)
         const fileDir = path.dirname(file);
-        const fileContent = fs.readFileSync(file, 'utf-8');
-        if (fileContent.includes('next/image')) return null;
+        const fileContent = safeReadFile(file);
+        if (fileContent && fileContent.includes('next/image')) return null;
 
         return {
             file,

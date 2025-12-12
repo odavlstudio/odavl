@@ -19,6 +19,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 import {
     calculateAdaptiveConfidence,
     PatternStrength,
@@ -154,7 +155,11 @@ export class ContextAwarePerformanceDetector {
      */
     private async analyzeFile(filePath: string): Promise<PerformanceIssue[]> {
         const issues: PerformanceIssue[] = [];
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = safeReadFile(filePath);
+        if (!content) {
+            return issues; // Skip unreadable files
+        }
+        
         const lines = content.split('\n');
 
         // Step 1: Determine file context

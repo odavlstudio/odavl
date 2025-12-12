@@ -87,7 +87,7 @@ export class StorageService {
 
       // Encrypt if enabled
       if (options.encrypt !== false && this.config.encryption?.enabled) {
-        processedContent = await this.encrypt(processedContent);
+        processedContent = await this.encrypt(processedContent) as any;
         encrypted = true;
       }
 
@@ -401,11 +401,11 @@ export class StorageService {
 
   private resolveConflicts(
     conflicts: Conflict[],
-    strategy: 'local' | 'remote' | 'skip'
+    strategy: 'local' | 'remote' | 'skip' | 'prompt'
   ): Conflict[] {
     return conflicts.map((conflict) => ({
       ...conflict,
-      resolution: strategy === 'skip' ? undefined : strategy,
+      resolution: (strategy === 'skip' || strategy === 'prompt') ? undefined : strategy,
     }));
   }
 

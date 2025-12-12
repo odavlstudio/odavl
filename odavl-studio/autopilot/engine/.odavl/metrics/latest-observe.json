@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-12-10T19:46:00.133Z",
+  "workspaceRoot": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\autopilot\\engine",
+  "metrics": {
+    "timestamp": "2025-12-10T19:46:00.119Z",
+    "runId": "2025-12-10T19-46-00",
+    "targetDir": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\autopilot\\engine",
+    "typescript": 0,
+    "eslint": 0,
+    "security": 0,
+    "performance": 0,
+    "imports": 0,
+    "packages": 0,
+    "runtime": 0,
+    "build": 0,
+    "circular": 0,
+    "network": 0,
+    "complexity": 0,
+    "isolation": 0,
+    "totalIssues": 0,
+    "fixableIssues": 0,
+    "details": {}
+  },
+  "issues": [],
+  "detectorStats": {
+    "quick-scan": {
+      "issues": 0,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "source": "insight"
+}

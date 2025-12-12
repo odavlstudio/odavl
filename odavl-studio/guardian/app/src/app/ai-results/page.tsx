@@ -7,7 +7,11 @@ import { HandoffViewer } from '@/components/HandoffViewer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlayCircle, Download, RefreshCw, CheckCircle2 } from 'lucide-react';
-import { GuardianAutopilotHandoff } from '@/lib/handoff-schema';
+// ❌ REMOVED: handoff-schema violated Guardian boundaries
+// import { GuardianAutopilotHandoff } from '@/lib/handoff-schema';
+
+// Placeholder type until refactored
+type GuardianAutopilotHandoff = any;
 
 // ============================================================================
 // Types

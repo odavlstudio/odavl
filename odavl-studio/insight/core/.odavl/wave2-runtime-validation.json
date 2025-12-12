@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-12-11T11:14:41.328Z",
+  "summary": {
+    "projectsTested": 7,
+    "projectsPassed": 4,
+    "totalIssues": 39,
+    "totalErrors": 3
+  },
+  "results": {
+    "react-sample": {
+      "success": true,
+      "issues": 10,
+      "errors": []
+    },
+    "nextjs-sample": {
+      "success": true,
+      "issues": 4,
+      "errors": []
+    },
+    "node-api-sample": {
+      "success": true,
+      "issues": 7,
+      "errors": []
+    },
+    "python-sample": {
+      "success": true,
+      "issues": 12,
+      "errors": []
+    },
+    "go-sample": {
+      "success": false,
+      "issues": 3,
+      "errors": [
+        "Expected at least 5 issues, but found only 3"
+      ]
+    },
+    "java-sample": {
+      "success": false,
+      "issues": 0,
+      "errors": [
+        "Expected at least 4 issues, but found only 0"
+      ]
+    },
+    "rust-sample": {
+      "success": false,
+      "issues": 3,
+      "errors": [
+        "Expected at least 6 issues, but found only 3"
+      ]
+    }
+  }
+}

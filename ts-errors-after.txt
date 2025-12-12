@@ -1,0 +1,24 @@
+src/detector/kotlin/interop-detector.ts(49,35): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(49,37): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(49,38): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(49,83): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(49,84): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(49,113): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(49,115): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(50,1): error TS1005: '}' expected.
+src/detector/kotlin/nullability-detector.ts(49,45): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(49,46): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/nullability-detector.ts(49,75): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(49,77): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(50,1): error TS1005: '}' expected.
+src/detector/swift/concurrency-detector.ts(51,45): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(51,46): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/concurrency-detector.ts(51,75): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(51,77): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(52,1): error TS1005: '}' expected.
+src/detector/swift/memory-detector.ts(53,29): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(53,31): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(54,1): error TS1005: '}' expected.
+src/detector/swift/optionals-detector.ts(52,29): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(52,31): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(53,1): error TS1005: '}' expected.

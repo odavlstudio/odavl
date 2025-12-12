@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface CircularDependency {
     cycle: string[];           // Array of file paths forming the cycle
@@ -100,8 +101,12 @@ export class CircularDependencyDetector {
      * Extract import statements from a file
      */
     private extractImports(filePath: string): string[] {
+        const content = safeReadFile(filePath);
+        if (!content) {
+            return []; // Skip unreadable files or directories
+        }
+        
         try {
-            const content = fs.readFileSync(filePath, 'utf-8');
             const imports: string[] = [];
 
             // Match ES6 import statements: import { x } from '...'

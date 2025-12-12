@@ -1,0 +1,31 @@
+{
+  "id": "remove-unused-imports",
+  "name": "Remove Unused Imports",
+  "description": "Automatically removes unused import statements detected by ESLint and TypeScript",
+  "trust": 0.5,
+  "priority": 8,
+  "condition": {
+    "type": "threshold",
+    "rules": [
+      {
+        "metric": "imports",
+        "operator": ">=",
+        "value": 1
+      }
+    ]
+  },
+  "actions": [
+    {
+      "type": "shell",
+      "command": "pnpm exec eslint --fix .",
+      "description": "Remove unused imports via ESLint auto-fix"
+    }
+  ],
+  "metadata": {
+    "created": "2025-12-07T15:30:00.000Z",
+    "lastRun": null,
+    "successCount": 0,
+    "failureCount": 0,
+    "avgExecutionTime": 0
+  }
+}

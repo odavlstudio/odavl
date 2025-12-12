@@ -1,0 +1,18 @@
+{
+  "*.ts": [
+    "eslint --fix --config eslint.config.mjs",
+    "git add"
+  ],
+  "*.tsx": [
+    "eslint --fix --config eslint.config.mjs",
+    "git add"
+  ],
+  "odavl-studio/**/*.ts": [
+    "eslint --fix --config eslint.config.mjs --rule 'odavl-boundaries/no-cross-product-imports: error'",
+    "git add"
+  ],
+  "*.{json,yaml,yml,md}": [
+    "prettier --write",
+    "git add"
+  ]
+}

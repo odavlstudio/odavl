@@ -1,0 +1,24 @@
+{
+  "name": "@odavl-studio/sdk-marketplace",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup index.ts publisher.ts validator.ts manifest-builder.ts --format esm --dts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.7.2",
+    "tsup": "^8.0.1"
+  },
+  "keywords": ["odavl", "marketplace", "sdk", "publishing"],
+  "author": "ODAVL Studio",
+  "license": "MIT"
+}

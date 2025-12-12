@@ -1,13 +1,45 @@
 #!/usr/bin/env node
 
+// Phase P1: Manifest configuration (read-only wiring)
+export * from './config/manifest-config.js';
+
 import { decide } from "./phases/decide";
 import { act } from "./phases/act";
 import { verify } from "./phases/verify";
 import { observe } from "./phases/observe";
 import { learn, initializeTrustScores } from "./phases/learn";
 import { saveMetrics, formatMetrics } from "./utils/metrics";
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
+import { AnalysisProtocol } from '@odavl/oplayer/protocols';
+import { InsightCoreAnalysisAdapter } from '@odavl/oplayer';
 
 type CommandHandler = () => void | Promise<void>;
+
+// ============================================================================
+// Bootstrap: Register OPLayer Adapters
+// ============================================================================
+
+/**
+ * Initialize AnalysisProtocol with InsightCore adapter
+ * MUST be called before any OBSERVE/DECIDE/ACT operations
+ */
+function bootstrap() {
+    try {
+        // Register Insight adapter if not already registered
+        if (!AnalysisProtocol.isAdapterRegistered()) {
+            const adapter = new InsightCoreAnalysisAdapter();
+            AnalysisProtocol.registerAdapter(adapter);
+            console.log('[Bootstrap] ✅ AnalysisProtocol adapter registered');
+        } else {
+            console.log('[Bootstrap] ℹ️ AnalysisProtocol adapter already registered');
+        }
+    } catch (error) {
+        console.error('[Bootstrap] ❌ Failed to register AnalysisProtocol adapter:', error);
+        console.error('Make sure @odavl/oplayer is installed: pnpm install @odavl/oplayer');
+        process.exit(1);
+    }
+}
 
 const commands: Record<string, CommandHandler> = {
     observe: async () => {
@@ -160,8 +192,123 @@ const commands: Record<string, CommandHandler> = {
     run: () => {
         console.log("[ODAVL] runCycle not implemented in this entry point.");
     },
-    undo: () => {
-        console.log("[ODAVL] undoLast not implemented in this entry point.");
+    undo: async () => {
+        try {
+            console.log('⏪ ODAVL UNDO - Rollback System\n');
+
+            // List available snapshots
+            const ROOT = process.cwd();
+            const undoDir = path.join(ROOT, ".odavl", "undo");
+            
+            try {
+                await fs.access(undoDir);
+            } catch {
+                console.log('❌ No undo snapshots found. Run autopilot first to create snapshots.');
+                return;
+            }
+
+            const files = await fs.readdir(undoDir);
+            const snapshots = files
+                .filter(f => f.endsWith('.json') && f !== 'latest.json')
+                .sort()
+                .reverse(); // Most recent first
+
+            if (snapshots.length === 0) {
+                console.log('❌ No undo snapshots available.');
+                return;
+            }
+
+            // Check for --list flag
+            if (process.argv.includes('--list')) {
+                console.log('📋 Available Undo Snapshots:\n');
+                for (let i = 0; i < Math.min(snapshots.length, 10); i++) {
+                    const timestamp = snapshots[i].replace('.json', '');
+                    console.log(`  ${i + 1}. ${timestamp}`);
+                }
+                console.log(`\nUse: odavl autopilot undo <timestamp>`);
+                return;
+            }
+
+            // Check for specific timestamp
+            const timestampArg = process.argv[process.argv.length - 1];
+            let targetSnapshot = '';
+            
+            if (timestampArg && timestampArg.endsWith('.json')) {
+                targetSnapshot = timestampArg;
+            } else if (timestampArg && timestampArg !== 'undo') {
+                targetSnapshot = timestampArg + '.json';
+            } else {
+                // Default: Use latest snapshot
+                targetSnapshot = snapshots[0];
+            }
+
+            const snapshotPath = path.join(undoDir, targetSnapshot);
+            
+            try {
+                await fs.access(snapshotPath);
+            } catch {
+                console.log(`❌ Snapshot not found: ${targetSnapshot}`);
+                console.log(`\nAvailable snapshots:`);
+                for (let i = 0; i < Math.min(snapshots.length, 5); i++) {
+                    console.log(`  - ${snapshots[i].replace('.json', '')}`);
+                }
+                return;
+            }
+
+            // Load snapshot
+            const snapshotContent = await fs.readFile(snapshotPath, 'utf-8');
+            const snapshot = JSON.parse(snapshotContent);
+
+            console.log(`📦 Snapshot: ${targetSnapshot.replace('.json', '')}`);
+            console.log(`📅 Created: ${snapshot.timestamp}`);
+            console.log(`📁 Files to restore: ${snapshot.modifiedFiles.length}\n`);
+
+            // Restore files
+            let restored = 0;
+            let skipped = 0;
+            const errors: string[] = [];
+
+            for (const filePath of snapshot.modifiedFiles) {
+                const originalContent = snapshot.data[filePath];
+                
+                if (originalContent === null) {
+                    // File didn't exist before, delete it
+                    try {
+                        await fs.unlink(filePath);
+                        console.log(`🗑️  Deleted: ${filePath}`);
+                        restored++;
+                    } catch (error) {
+                        console.log(`⚠️  Could not delete: ${filePath}`);
+                        skipped++;
+                    }
+                } else {
+                    // Restore original content
+                    try {
+                        await fs.writeFile(filePath, originalContent, 'utf-8');
+                        console.log(`✅ Restored: ${filePath}`);
+                        restored++;
+                    } catch (error) {
+                        console.log(`❌ Failed to restore: ${filePath}`);
+                        errors.push(`${filePath}: ${error}`);
+                        skipped++;
+                    }
+                }
+            }
+
+            console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+            console.log(`✅ Rollback Complete`);
+            console.log(`   Restored: ${restored} files`);
+            if (skipped > 0) console.log(`   Skipped: ${skipped} files`);
+            if (errors.length > 0) {
+                console.log(`   Errors: ${errors.length}`);
+                errors.forEach(err => console.log(`     - ${err}`));
+            }
+            console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+
+        } catch (error) {
+            console.error('❌ UNDO command failed:', error);
+            process.exit(1);
+        }
     },
     dashboard: () => {
         console.log("[ODAVL] launchDashboard not implemented in this entry point.");
@@ -245,6 +392,9 @@ function showHelp() {
 }
 
 function main() {
+    // Bootstrap: Register protocol adapters BEFORE executing commands
+    bootstrap();
+    
     const cmd = process.argv[2] ?? "help";
 
     try {
@@ -270,9 +420,11 @@ export { main };
 
 // Re-export phase functions for backwards compatibility with tests
 export { observe } from "./phases/observe";
+export { observeQuick } from "./phases/observe-quick";
 export { decide } from "./phases/decide";
 export { act } from "./phases/act";
 export { verify } from "./phases/verify";
+export { learn } from "./phases/learn";
 
 if (process.argv[1]?.endsWith('index.ts') || process.argv[1]?.endsWith('index.js')) {
     main();

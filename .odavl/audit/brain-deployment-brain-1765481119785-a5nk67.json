@@ -1,0 +1,24 @@
+{
+  "runId": "brain-1765481119785-a5nk67",
+  "timestamp": "2025-12-11T19:25:19.785Z",
+  "entries": [
+    {
+      "timestamp": "2025-12-11T19:25:19.785Z",
+      "type": "riskAnalysis",
+      "details": {
+        "category": "medium",
+        "weight": 0.3,
+        "dominantFileTypes": [
+          "sourceCode"
+        ]
+      }
+    }
+  ],
+  "stats": {
+    "totalEntries": 1,
+    "riskAnalyses": 1,
+    "testImpacts": 0,
+    "baselineStabilities": 0,
+    "finalScores": 0
+  }
+}

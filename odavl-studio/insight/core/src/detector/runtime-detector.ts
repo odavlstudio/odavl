@@ -3,11 +3,18 @@
  * Detects runtime errors from logs: unhandled promises, crashes, exceptions
  * 
  * Refactored: Uses modular detectors for better maintainability
+ * 
+ * WAVE 7 FIX (2025-12-08):
+ * - Runtime helper detectors (memory-leak, race-condition, resource-cleanup) are now SYNCHRONOUS
+ * - They use globSync instead of await glob to avoid async/sync mismatch
+ * - This prevents esbuild from inlining readFileSync calls during CJS bundling
+ * - All helpers internally use safeReadFile() for safe file reading
  */
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 import { logger } from '../utils/logger';
 import { EnhancedDBDetector, DBConnectionIssue } from './enhanced-db-detector';
 import { 
@@ -48,6 +55,7 @@ export class RuntimeDetector {
 
     /**
      * Detects runtime errors from log files
+     * PHASE 7 ENHANCEMENT: Handle malformed logs, validate file integrity
      */
     async detect(targetDir?: string): Promise<RuntimeError[]> {
         const dir = targetDir || this.workspaceRoot;
@@ -69,6 +77,23 @@ export class RuntimeDetector {
 
             for (const logFile of logFiles) {
                 const logPath = path.join(dir, logFile);
+                
+                // PHASE 7 ENHANCEMENT: Validate log file before parsing
+                try {
+                    const stats = fs.statSync(logPath);
+                    if (!stats.isFile() || stats.size === 0) {
+                        logger.debug(`[RuntimeDetector] Skipping invalid log: ${logPath}`);
+                        continue;
+                    }
+                    if (stats.size > 50 * 1024 * 1024) { // Skip logs > 50MB
+                        logger.warn(`[RuntimeDetector] Log file too large, skipping: ${logPath}`);
+                        continue;
+                    }
+                } catch (err) {
+                    logger.warn(`[RuntimeDetector] Cannot access log file: ${logPath}`);
+                    continue;
+                }
+                
                 const logErrors = await this.parseLogFile(logPath);
                 errors.push(...logErrors);
             }
@@ -82,16 +107,16 @@ export class RuntimeDetector {
         const dbLeaks = await this.detectDBConnectionLeaks(dir);
         errors.push(...dbLeaks);
 
-        // Check for memory leaks using modular detector
-        const memoryLeakIssues = await this.memoryLeakDetector.detect(dir);
+        // Check for memory leaks using modular detector (WAVE 7: now synchronous)
+        const memoryLeakIssues = this.memoryLeakDetector.detect(dir);
         errors.push(...this.convertMemoryLeaksToRuntimeErrors(memoryLeakIssues));
 
-        // Check for race conditions using modular detector
-        const raceConditionIssues = await this.raceConditionDetector.detect(dir);
+        // Check for race conditions using modular detector (WAVE 7: now synchronous)
+        const raceConditionIssues = this.raceConditionDetector.detect(dir);
         errors.push(...this.convertRaceConditionsToRuntimeErrors(raceConditionIssues));
 
-        // Check for resource cleanup issues using modular detector
-        const resourceIssues = await this.resourceCleanupDetector.detect(dir);
+        // Check for resource cleanup issues using modular detector (WAVE 7: now synchronous)
+        const resourceIssues = this.resourceCleanupDetector.detect(dir);
         errors.push(...this.convertResourceIssuesToRuntimeErrors(resourceIssues));
 
         return errors;
@@ -127,6 +152,7 @@ export class RuntimeDetector {
     /**
      * Detect memory leaks: event listeners, intervals, timeouts without cleanup
      * Phase 3 Enhancement
+     * PHASE 2 FIX: Added safe file reading
      */
     private async detectMemoryLeaks(dir: string): Promise<RuntimeError[]> {
         const errors: RuntimeError[] = [];
@@ -146,8 +172,15 @@ export class RuntimeDetector {
 
         for (const file of files) {
             const filePath = path.join(dir, file);
-            const content = fs.readFileSync(filePath, 'utf8');
-            const lines = content.split('\n');
+            
+            // Use safeReadFile to prevent EISDIR errors
+            const content = safeReadFile(filePath);
+            if (!content) {
+                continue; // Skip directories/unreadable files
+            }
+            
+            try {
+                const lines = content.split('\n');
 
             // 1. Event listener leaks
             for (let i = 0; i < lines.length; i++) {
@@ -282,6 +315,15 @@ componentWillUnmount() {
                     }
                 }
             }
+            
+            } catch (error: any) {
+                // PHASE 2 FIX: Catch EISDIR and other file system errors
+                if (error.code === 'EISDIR') {
+                    console.log(`[RuntimeDetector/detectMemoryLeaks] Skipped directory: ${filePath}`);
+                } else {
+                    console.error(`[RuntimeDetector/detectMemoryLeaks] Error reading ${filePath}:`, error.message);
+                }
+            }
         }
 
         return errors;
@@ -309,7 +351,8 @@ componentWillUnmount() {
 
         for (const file of files) {
             const filePath = path.join(dir, file);
-            const content = fs.readFileSync(filePath, 'utf8');
+            const content = safeReadFile(filePath);
+            if (!content) continue; // Skip directories/unreadable files
             const lines = content.split('\n');
 
             for (let i = 0; i < lines.length; i++) {
@@ -459,7 +502,8 @@ await mutex.runExclusive(async () => {
 
         for (const file of files) {
             const filePath = path.join(dir, file);
-            const content = fs.readFileSync(filePath, 'utf8');
+            const content = safeReadFile(filePath);
+            if (!content) continue; // Skip directories/unreadable files
             const lines = content.split('\n');
 
             for (let i = 0; i < lines.length; i++) {
@@ -545,7 +589,8 @@ await pipeline(
 
         if (!fs.existsSync(logPath)) return errors;
 
-        const content = fs.readFileSync(logPath, 'utf8');
+        const content = safeReadFile(logPath);
+        if (!content) return errors; // Skip if unreadable
         const lines = content.split('\n');
 
         // Common error patterns
@@ -661,7 +706,8 @@ await pipeline(
 
         for (const file of files) {
             const filePath = path.join(dir, file);
-            const content = fs.readFileSync(filePath, 'utf8');
+            const content = safeReadFile(filePath);
+            if (!content) continue; // Skip directories/unreadable files
 
             // Only check if file has top-level async without proper error handling
             const criticalAsyncIssues = this.findCriticalAsyncIssues(content, filePath);

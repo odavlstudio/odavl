@@ -14,11 +14,17 @@
  * - Input: 10 features (normalized)
  * - Hidden layers: 2 dense layers (64 → 32 units)
  * - Output: 1 sigmoid unit (success probability 0-1)
+ * 
+ * TEMP FIX: TensorFlow.js disabled due to native binding issues in web environments
+ * Falling back to heuristic prediction until ML model loading is fixed
  */
 
-import * as tf from '@tensorflow/tfjs-node';
+// import * as tf from '@tensorflow/tfjs-node'; // DISABLED: Native binding conflicts
 import * as fs from 'fs/promises';
 import * as path from 'path';
+
+// Type stub for tf.LayersModel (avoid import)
+type LayersModel = any;
 
 export interface RecipeFeatures {
   // Historical features
@@ -50,7 +56,7 @@ export interface TrustPrediction {
  * ML Trust Predictor
  */
 export class MLTrustPredictor {
-  private model: tf.LayersModel | null = null;
+  private model: LayersModel | null = null;
   private modelPath: string;
   private featureStats: {
     maxRuns: number;
@@ -71,16 +77,19 @@ export class MLTrustPredictor {
 
   /**
    * Load trained model from disk
+   * TEMP: Always fails gracefully until TensorFlow.js native binding issue resolved
    */
   async loadModel(): Promise<void> {
-    try {
-      const modelJsonPath = path.join(this.modelPath, 'model.json');
-      this.model = await tf.loadLayersModel(`file://${this.modelPath}/model.json`);
-      console.log('[ML] ✅ Trust prediction model loaded');
-    } catch (error) {
-      console.warn('[ML] ⚠️  Model not found, using heuristic fallback');
-      this.model = null;
-    }
+    console.warn('[ML] ⚠️  TensorFlow.js disabled (native binding conflict), using heuristic fallback');
+    this.model = null;
+    // try {
+    //   const modelJsonPath = path.join(this.modelPath, 'model.json');
+    //   this.model = await tf.loadLayersModel(`file://${this.modelPath}/model.json`);
+    //   console.log('[ML] ✅ Trust prediction model loaded');
+    // } catch (error) {
+    //   console.warn('[ML] ⚠️  Model not found, using heuristic fallback');
+    //   this.model = null;
+    // }
   }
 
   /**
@@ -136,40 +145,163 @@ export class MLTrustPredictor {
 
   /**
    * Predict trust score using ML model
+   * Enhanced with confidence scoring and better heuristics
    */
   async predict(features: RecipeFeatures): Promise<TrustPrediction> {
-    if (!this.model) {
-      // Fallback to heuristic if model not loaded
-      return this.heuristicPredict(features);
+    // Try ML model first (if available)
+    if (this.model) {
+      try {
+        return await this.predictWithModel(features);
+      } catch (error) {
+        console.warn('ML prediction failed, falling back to heuristic:', error);
+      }
     }
 
-    try {
-      const inputTensor = tf.tensor2d([this.normalizeFeatures(features)]);
-      const predictionTensor = this.model.predict(inputTensor) as tf.Tensor;
-      const predictionArray = await predictionTensor.array() as number[][];
-      const predictedTrust = predictionArray[0][0];
+    // Enhanced heuristic fallback with confidence estimation
+    return this.predictHeuristic(features);
+  }
 
-      // Cleanup tensors
-      inputTensor.dispose();
-      predictionTensor.dispose();
+  /**
+   * Enhanced heuristic prediction with confidence scoring
+   */
+  private predictHeuristic(features: RecipeFeatures): TrustPrediction {
+    let trust = 0.5; // Start neutral
+    let confidence = 0.7; // Base confidence for heuristics
 
-      // Calculate confidence (inverse of variance in prediction)
-      const confidence = this.calculateConfidence(features, predictedTrust);
-
-      // Determine recommendation
-      const recommendation = this.getRecommendation(predictedTrust, confidence);
-
-      return {
-        predictedTrust,
-        confidence,
-        features,
-        explanation: this.generateExplanation(features, predictedTrust),
-        recommendation,
-      };
-    } catch (error) {
-      console.error('[ML] Prediction error, falling back to heuristic:', error);
-      return this.heuristicPredict(features);
+    // Historical performance (40% weight)
+    trust += features.historicalSuccessRate * 0.4;
+    
+    // Penalize consecutive failures (20% weight)
+    trust -= features.consecutiveFailures * 0.2;
+    
+    // Complexity penalty (15% weight)
+    const complexityPenalty = (features.complexityScore * 0.15);
+    trust -= complexityPenalty;
+    
+    // File count penalty (10% weight)
+    const filesPenalty = (features.filesAffectedCount * 0.1);
+    trust -= filesPenalty;
+    
+    // LOC penalty (10% weight)
+    const locPenalty = (features.linesOfCodeChanged * 0.1);
+    trust -= locPenalty;
+    
+    // TypeScript bonus (5% weight - safer changes)
+    if (features.isTypescriptFile === 1) {
+      trust += 0.05;
+      confidence += 0.1;
     }
+    
+    // Test file caution
+    if (features.isTestFile === 1) {
+      trust -= 0.05; // More critical, be cautious
+      confidence += 0.05;
+    }
+    
+    // Breaking changes penalty
+    if (features.hasBreakingChanges === 1) {
+      trust -= 0.15;
+      confidence += 0.1; // We're more certain this is risky
+    }
+    
+    // Recency bonus (recently successful = higher trust)
+    if (features.daysSinceLastRun < 0.1) { // Recent run
+      trust += 0.05;
+    }
+
+    // Normalize trust to 0-1 range
+    trust = Math.max(0.1, Math.min(1.0, trust));
+    confidence = Math.max(0.5, Math.min(1.0, confidence));
+
+    // Determine recommendation based on trust and confidence
+    let recommendation: 'execute' | 'review' | 'skip';
+    if (trust >= 0.8 && confidence >= 0.7) {
+      recommendation = 'execute';
+    } else if (trust >= 0.6) {
+      recommendation = 'review';
+    } else {
+      recommendation = 'skip';
+    }
+
+    const explanation = this.generateExplanation(features, trust, confidence);
+
+    return {
+      predictedTrust: trust,
+      confidence,
+      features,
+      explanation,
+      recommendation,
+    };
+  }
+
+  /**
+   * Generate human-readable explanation
+   */
+  private generateExplanation(features: RecipeFeatures, trust: number, confidence: number): string {
+    const factors: string[] = [];
+    
+    if (features.historicalSuccessRate > 0.8) {
+      factors.push('high historical success rate');
+    } else if (features.historicalSuccessRate < 0.5) {
+      factors.push('low historical success rate');
+    }
+    
+    if (features.consecutiveFailures > 0.4) {
+      factors.push(`${Math.round(features.consecutiveFailures * 5)} consecutive failures`);
+    }
+    
+    if (features.complexityScore > 0.7) {
+      factors.push('high complexity');
+    }
+    
+    if (features.filesAffectedCount > 0.5) {
+      factors.push('many files affected');
+    }
+    
+    if (features.isTypescriptFile === 1) {
+      factors.push('TypeScript file (safer)');
+    }
+    
+    if (features.hasBreakingChanges === 1) {
+      factors.push('previous breaking changes');
+    }
+
+    return factors.length > 0
+      ? `Trust: ${(trust * 100).toFixed(1)}% (Confidence: ${(confidence * 100).toFixed(1)}%) - ${factors.join(', ')}`
+      : `Trust: ${(trust * 100).toFixed(1)}% (Confidence: ${(confidence * 100).toFixed(1)}%)`;
+  }
+
+  /**
+   * ML model prediction (if model loaded)
+   */
+  private async predictWithModel(features: RecipeFeatures): Promise<TrustPrediction> {
+    // TEMP FIX: Always use heuristic (TensorFlow disabled)
+    return this.heuristicPredict(features);
+
+    // Original ML prediction code (disabled):
+    // if (!this.model) {
+    //   return this.heuristicPredict(features);
+    // }
+    // try {
+    //   const inputTensor = tf.tensor2d([this.normalizeFeatures(features)]);
+    //   const predictionTensor = this.model.predict(inputTensor) as tf.Tensor;
+    //   const predictionArray = await predictionTensor.array() as number[][];
+    //   const predictedTrust = predictionArray[0][0];
+    //   inputTensor.dispose();
+    //   predictionTensor.dispose();
+    //   const confidence = this.calculateConfidence(features, predictedTrust);
+    //   const recommendation = this.getRecommendation(predictedTrust, confidence);
+    //   return {
+    //     predictedTrust,
+    //     confidence,
+    //     features,
+    //     explanation: this.generateExplanation(features, predictedTrust),
+    //     recommendation,
+    //   };
+    // } catch (error) {
+    //   console.error('[ML] Prediction error, falling back to heuristic:', error);
+    //   return this.heuristicPredict(features);
+    // }
   }
 
   /**

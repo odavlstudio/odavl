@@ -1,0 +1,49 @@
+{
+  "name": "@odavl/insight-sdk",
+  "version": "1.0.0",
+  "description": "ODAVL Insight SDK - Production-ready API for ML-powered error detection with 25 detectors",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs",
+    "dev": "tsup src/index.ts --format esm,cjs --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "odavl",
+    "insight",
+    "sdk",
+    "analysis",
+    "detectors",
+    "error-detection",
+    "code-quality",
+    "ml-powered",
+    "typescript"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavlstudio/odavl.git",
+    "directory": "packages/insight-sdk"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "@odavl-studio/insight-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

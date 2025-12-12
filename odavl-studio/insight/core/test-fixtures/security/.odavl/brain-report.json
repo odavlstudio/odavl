@@ -1,0 +1,6815 @@
+{
+  "timestamp": "2025-12-08T22:15:19.953Z",
+  "projectRoot": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\test-fixtures\\security",
+  "insight": {
+    "timestamp": "2025-12-08T22:15:19.948Z",
+    "projectRoot": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\test-fixtures\\security",
+    "totalIssues": 751,
+    "issues": [
+      {
+        "file": "nanoid-generation.ts",
+        "line": 5,
+        "column": 8,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: apiKey = `odavl_${nanoid(16)}_..."
+      },
+      {
+        "file": "hardcoded-password.ts",
+        "line": 2,
+        "column": 6,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: password = 'MySecretPass123'..."
+      },
+      {
+        "file": "hardcoded-key.ts",
+        "line": 2,
+        "column": 6,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: apiKey = 'sk-1234567890abcdef'..."
+      },
+      {
+        "file": "enum-false-positive.ts",
+        "line": 3,
+        "column": 2,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: TOKEN = 'third_party_token'..."
+      },
+      {
+        "file": "enum-false-positive.ts",
+        "line": 4,
+        "column": 2,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: SECRET = 'webhook_secret'..."
+      },
+      {
+        "file": "enum-false-positive.ts",
+        "line": 6,
+        "column": 2,
+        "severity": "critical",
+        "type": "HARDCODED_PASSWORD",
+        "detector": "security",
+        "message": "Hardcoded Credential detected: PASSWORD = 'user_password'..."
+      },
+      {
+        "file": "xss-danger.tsx",
+        "line": 6,
+        "severity": "high",
+        "type": "XSS_VULNERABILITY",
+        "detector": "security",
+        "message": "Potential XSS: Using dangerouslySetInnerHTML"
+      },
+      {
+        "file": "jsonld-safe.tsx",
+        "line": 14,
+        "severity": "high",
+        "type": "XSS_VULNERABILITY",
+        "detector": "security",
+        "message": "Potential XSS: Using dangerouslySetInnerHTML"
+      },
+      {
+        "file": "unknown",
+        "line": 0,
+        "severity": "high",
+        "type": "generic",
+        "detector": "build",
+        "message": "package.json not found"
+      },
+      {
+        "file": "unknown",
+        "line": 37,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (147 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 69,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 61,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 61,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (192 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 61,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (107 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 123,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (116 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (116 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 10,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (104 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (31)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (155 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (41)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (248 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (119 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 152,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 226,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (29)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 31,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (39)"
+      },
+      {
+        "file": "unknown",
+        "line": 31,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (169 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 75,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Large array allocation (1.000.000 elements)"
+      },
+      {
+        "file": "unknown",
+        "line": 29,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 29,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (243 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (137 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 59,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 904,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (114 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 1360,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (125 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 1327,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 795,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 823,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 813,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 699,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (27)"
+      },
+      {
+        "file": "unknown",
+        "line": 699,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (216 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 619,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (119 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 556,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 556,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (147 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 704,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (170 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 487,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 487,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (187 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 675,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (156 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 498,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 498,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (162 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 661,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (157 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 427,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 427,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (160 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 588,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (152 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 390,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 390,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (175 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 566,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (152 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 345,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 345,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (133 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 479,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 479,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (148 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 225,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 282,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (113 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 151,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 114,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 114,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (119 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 58,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (105 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 188,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 199,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 69,
+        "column": 1,
+        "severity": "high",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Full lodash import (72KB+ gzipped)"
+      },
+      {
+        "file": "unknown",
+        "line": 76,
+        "column": 1,
+        "severity": "high",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Importing entire large library"
+      },
+      {
+        "file": "unknown",
+        "line": 144,
+        "column": 1,
+        "severity": "high",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Importing entire large library"
+      },
+      {
+        "file": "unknown",
+        "line": 46,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 293,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 66,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 65,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (208 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 83,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (185 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 404,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (248 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 654,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (37)"
+      },
+      {
+        "file": "unknown",
+        "line": 654,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (170 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 777,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 826,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (282 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 36,
+        "column": 1,
+        "severity": "medium",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Large array allocation (50.000 elements)"
+      },
+      {
+        "file": "unknown",
+        "line": 265,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 86,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (131 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 10,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 10,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 27,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 10,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 62,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 62,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (112 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 39,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 87,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 22,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 18,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 18,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (289 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 128,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 125,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 229,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (147 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 136,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (272 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (32)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (188 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (212 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 405,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 458,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 278,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 149,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (32)"
+      },
+      {
+        "file": "unknown",
+        "line": 149,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (102 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 326,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (139)"
+      },
+      {
+        "file": "unknown",
+        "line": 326,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (833 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 603,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 726,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 726,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (110 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 429,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 201,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1123,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (129)"
+      },
+      {
+        "file": "unknown",
+        "line": 1123,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (769 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 1893,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (131 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 1249,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 1249,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (358 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 2159,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (131 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 323,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (461 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 232,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 283,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 294,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 350,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 363,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 381,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 437,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 449,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (101 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (111 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 108,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 171,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 196,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 221,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 103,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 22,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 45,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 172,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 375,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 433,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 296,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 85,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 132,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 230,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 367,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 383,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 401,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 514,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 582,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 491,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 499,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 434,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 496,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 626,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 660,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 687,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 431,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 607,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 437,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 460,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 611,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 93,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 185,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 295,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 248,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 361,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 365,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 432,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 586,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 679,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 224,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 480,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 528,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 537,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 553,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 494,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 510,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 539,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 380,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 382,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 398,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 400,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 417,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 957,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 958,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1076,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 338,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 509,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 620,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 783,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 814,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 850,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 884,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1146,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1158,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1102,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 763,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 784,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 977,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1006,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1051,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1252,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1293,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1303,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1305,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 775,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 812,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 105,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 529,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 611,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 611,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (102 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 278,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 929,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1061,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1181,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1310,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1314,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 2016,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 2022,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 2054,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 2116,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 2165,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 3201,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 5329,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 5622,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 7233,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 7848,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 7849,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 8277,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 9629,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 9888,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 9889,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 8476,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 10558,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 1084,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 1103,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 6870,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 6899,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 6953,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 6973,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 7095,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 7202,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 9068,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 10689,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 10695,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 184,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 275,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 279,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 227,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 242,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 358,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 114,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (162 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (312 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 512,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 534,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 391,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (30)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (121 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 91,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (101 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 291,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 279,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 138,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 271,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 431,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 59,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 3,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 6,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 6,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 10,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "low",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline style object in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 212,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (141 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 164,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (26)"
+      },
+      {
+        "file": "unknown",
+        "line": 164,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (121 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (259 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (161 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (256 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (31)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (318 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (153 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (30)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (226 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (272 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 375,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 433,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 367,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 383,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 401,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 514,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 582,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 491,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 499,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 434,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 496,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 626,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 660,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 687,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 431,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 607,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 437,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 460,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 611,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 313,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 317,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 385,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 435,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 437,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 465,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 469,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 482,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 554,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 93,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 185,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 295,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 248,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 361,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 365,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 432,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 586,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 679,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 224,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 401,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 328,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 262,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 272,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 282,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 139,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 137,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 480,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 528,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 67,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 518,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 453,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 332,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 300,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 307,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 340,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 406,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 458,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 358,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 509,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 628,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 633,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 387,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 406,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 143,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 291,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 428,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 535,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 540,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 318,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 337,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 236,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 621,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 172,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 203,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 267,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 289,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 446,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 504,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 584,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 558,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 150,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 180,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 237,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 258,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "axios call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 400,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 452,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 525,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 260,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 369,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 767,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 996,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 200,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 206,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 22,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 162,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 168,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 78,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 493,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 412,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 173,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 174,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 159,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 160,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 119,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 659,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 660,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 226,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 437,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 708,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 268,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 537,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 553,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 494,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 510,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 539,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 380,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 382,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 398,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 400,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 417,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 957,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 958,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1076,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 509,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 620,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 783,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 814,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 850,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 884,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1146,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1158,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1102,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 763,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 784,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 977,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1006,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1051,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1252,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1293,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1303,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1305,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 775,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 812,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 114,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 36,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 18,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 18,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (102 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 27,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (102 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 19,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (111 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (154 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (128 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 40,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (46)"
+      },
+      {
+        "file": "unknown",
+        "line": 40,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (274 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 6,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (192 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 384,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 102,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 392,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 513,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1063,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1068,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 411,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 1,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Large file (615KB)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 5,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (23)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (31)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (45)"
+      },
+      {
+        "file": "unknown",
+        "line": 9,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (30)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (35)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (35)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (32)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (314)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (47)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 17,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (36)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (35)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (65)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (39)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (22)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (30)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (52)"
+      },
+      {
+        "file": "unknown",
+        "line": 27,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (43)"
+      },
+      {
+        "file": "unknown",
+        "line": 27,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (27)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (39)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (33)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (33)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (46)"
+      },
+      {
+        "file": "unknown",
+        "line": 31,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 31,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 31,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (38)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (35)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (32)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 32,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (31)"
+      },
+      {
+        "file": "unknown",
+        "line": 35,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 35,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (159)"
+      },
+      {
+        "file": "unknown",
+        "line": 35,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (47)"
+      },
+      {
+        "file": "unknown",
+        "line": 39,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 39,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 39,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (33)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (49)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (38)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (31)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (37)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (21)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (80)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (47)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (63)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (132)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (29)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (93)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (18)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (30)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (26)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (32)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (34)"
+      },
+      {
+        "file": "unknown",
+        "line": 44,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 48,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (58)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (20)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (41)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (47)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (27)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (102)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 52,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 21,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 47,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 199,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (119 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 263,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 192,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 77,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 138,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 200,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 454,
+        "column": 1,
+        "severity": "high",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Full lodash import (72KB+ gzipped)"
+      },
+      {
+        "file": "unknown",
+        "line": 462,
+        "column": 1,
+        "severity": "high",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Moment.js is large (67KB+)"
+      },
+      {
+        "file": "unknown",
+        "line": 73,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 237,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 79,
+        "column": 1,
+        "severity": "medium",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline arrow function in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 82,
+        "column": 1,
+        "severity": "medium",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline arrow function in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 15,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (164 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 43,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 43,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (329 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 185,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 427,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 151,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 238,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 203,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (16)"
+      },
+      {
+        "file": "unknown",
+        "line": 182,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 100,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 305,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 331,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 167,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 287,
+        "column": 1,
+        "severity": "high",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "fetch call inside loop (N+1 HTTP requests)"
+      },
+      {
+        "file": "unknown",
+        "line": 79,
+        "column": 1,
+        "severity": "medium",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline arrow function in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 82,
+        "column": 1,
+        "severity": "medium",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline arrow function in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 88,
+        "column": 1,
+        "severity": "medium",
+        "type": "memory-leak",
+        "detector": "performance",
+        "message": "Inline arrow function in JSX"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (198 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 8,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (149 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 7,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (181 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 157,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 165,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 126,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 166,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 64,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 93,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 130,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 167,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 207,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 115,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 120,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 167,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 203,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 216,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 214,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 188,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 92,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 111,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 60,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 78,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 97,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 110,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 117,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 163,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 168,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 156,
+        "column": 1,
+        "severity": "medium",
+        "type": "large-bundle",
+        "detector": "performance",
+        "message": "Image without lazy loading"
+      },
+      {
+        "file": "unknown",
+        "line": 173,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 187,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 236,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 245,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 288,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 296,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 341,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 344,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 352,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 129,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 140,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 150,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 195,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 268,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 278,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 332,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 90,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 217,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 130,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 199,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 213,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 261,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 298,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 117,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 206,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 263,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 331,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 70,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 101,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 386,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 435,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 58,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 111,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 153,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 73,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 225,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 61,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 172,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 82,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 131,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 136,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 191,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 195,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 118,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 130,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 206,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 197,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 102,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 184,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 237,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (156 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 24,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (373 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (24)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (290 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (36)"
+      },
+      {
+        "file": "unknown",
+        "line": 26,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (273 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (28)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (215 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (23)"
+      },
+      {
+        "file": "unknown",
+        "line": 14,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (301 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (187 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 30,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (242 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 12,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (26)"
+      },
+      {
+        "file": "unknown",
+        "line": 12,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (290 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (173 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 50,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 34,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 35,
+        "column": 1,
+        "severity": "critical",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Triple nested loop (O(n³) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 256,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 277,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 300,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 119,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 80,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (26)"
+      },
+      {
+        "file": "unknown",
+        "line": 80,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (458 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 51,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (19)"
+      },
+      {
+        "file": "unknown",
+        "line": 51,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (445 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 155,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (17)"
+      },
+      {
+        "file": "unknown",
+        "line": 155,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (241 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 33,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (263 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 25,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (214 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 3,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (119 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 12,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (108 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 35,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (241 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 13,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (236 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 11,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (101 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (101 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 43,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (34)"
+      },
+      {
+        "file": "unknown",
+        "line": 43,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (170 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 65,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 109,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 150,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 20,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (121 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 116,
+        "column": 1,
+        "severity": "high",
+        "type": "inefficient-loop",
+        "detector": "performance",
+        "message": "Nested loop detected (O(n²) complexity)"
+      },
+      {
+        "file": "unknown",
+        "line": 16,
+        "column": 1,
+        "severity": "critical",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (27)"
+      },
+      {
+        "file": "unknown",
+        "line": 16,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (151 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 16,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "High cyclomatic complexity (25)"
+      },
+      {
+        "file": "unknown",
+        "line": 16,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (165 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 73,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      },
+      {
+        "file": "unknown",
+        "line": 19,
+        "column": 1,
+        "severity": "high",
+        "type": "slow-function",
+        "detector": "performance",
+        "message": "Long function (110 lines)"
+      },
+      {
+        "file": "unknown",
+        "line": 104,
+        "column": 1,
+        "severity": "critical",
+        "type": "n-plus-one-query",
+        "detector": "performance",
+        "message": "Prisma query inside loop (N+1 problem)"
+      }
+    ],
+    "detectors": [
+      "typescript",
+      "eslint",
+      "security",
+      "build",
+      "circular",
+      "import",
+      "package",
+      "runtime",
+      "performance",
+      "complexity",
+      "network",
+      "isolation"
+    ],
+    "duration": 21508
+  },
+  "autopilot": {
+    "timestamp": "2025-12-08T22:15:19.951Z",
+    "projectRoot": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\test-fixtures\\security",
+    "totalFixes": 0,
+    "fixes": [],
+    "changedFiles": [],
+    "diffSummary": "No fixes applied",
+    "attestationHash": "",
+    "duration": 0,
+    "errors": []
+  },
+  "guardian": {
+    "timestamp": "2025-12-08T22:15:19.952Z",
+    "projectRoot": "C:\\Users\\sabou\\dev\\odavl\\odavl-studio\\insight\\core\\test-fixtures\\security",
+    "tests": [],
+    "totalTests": 0,
+    "passedTests": 0,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "launchReady": false,
+    "duration": 0,
+    "recommendations": [
+      "Guardian verification was skipped"
+    ]
+  },
+  "launchScore": 70,
+  "readyForRelease": false,
+  "recommendations": [
+    "🚨 Fix 180 critical issues before deployment",
+    "⚠️ Address 546 high-severity issues",
+    "Guardian verification was skipped"
+  ],
+  "totalDuration": 21519
+}

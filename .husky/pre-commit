@@ -2,6 +2,15 @@
 
 echo "🔍 Running pre-commit checks..."
 
+# Run lint-staged for boundary enforcement (priority: check staged files first)
+echo "🛡️  Enforcing product boundaries on staged files..."
+pnpm exec lint-staged
+
+if [ $? -ne 0 ]; then
+  echo "❌ Boundary enforcement failed (staged files violate product boundaries)"
+  exit 1
+fi
+
 # Package versions check
 echo "📦 Validating package versions..."
 tsx scripts/check-package-versions.ts

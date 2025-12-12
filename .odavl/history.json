@@ -894,5 +894,37 @@
     "timestamp": "2025-12-03T00:36:21.789Z",
     "recipeId": "test-failing-recipe-1764722181768",
     "success": false
+  },
+  {
+    "timestamp": "2025-12-07T15:32:24.298Z",
+    "recipeId": "remove-unused-imports",
+    "success": true,
+    "improvement": {
+      "imports": -1
+    }
+  },
+  {
+    "timestamp": "2025-12-07T15:40:41.694Z",
+    "recipeId": "remove-unused-imports",
+    "success": true,
+    "improvement": {
+      "imports": -1
+    }
+  },
+  {
+    "timestamp": "2025-12-07T15:42:23.958Z",
+    "recipeId": "remove-unused-imports",
+    "success": true,
+    "improvement": {
+      "imports": -1
+    }
+  },
+  {
+    "timestamp": "2025-12-07T15:45:35.924Z",
+    "recipeId": "remove-unused-imports",
+    "success": true,
+    "improvement": {
+      "imports": -1
+    }
   }
 ]

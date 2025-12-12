@@ -38,6 +38,11 @@ interface Project {
     updatedAt: Date;
 }
 type Severity = 'critical' | 'high' | 'medium' | 'low';
+/**
+ * Detector names used across ODAVL products
+ * Shared type to avoid cross-product imports
+ */
+type DetectorName = string;
 interface Issue {
     id: string;
     type: string;
@@ -73,4 +78,4 @@ interface PaginatedResponse<T> {
     };
 }
 
-export { type Analysis, type ApiResponse, type Issue, PRODUCT_TIERS, type PaginatedResponse, type ProductTier, type Project, type Severity, type SubscriptionTier, type UsageType, type User, type UserRole };
+export { type Analysis, type ApiResponse, type DetectorName, type Issue, PRODUCT_TIERS, type PaginatedResponse, type ProductTier, type Project, type Severity, type SubscriptionTier, type UsageType, type User, type UserRole };

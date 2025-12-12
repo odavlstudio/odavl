@@ -1,7 +1,7 @@
 {
-  "name": "@odavl-studio/cli",
-  "version": "0.1.0",
-  "description": "Unified CLI for ODAVL Studio - Insight, Autopilot, and Guardian",
+  "name": "@odavl/cli",
+  "version": "1.0.0",
+  "description": "ODAVL Studio CLI - Production-ready ML-powered code analysis with Insight, Autopilot, and Guardian (Wave 4)",
   "main": "dist/index.js",
   "bin": {
     "odavl": "dist/index.js"
@@ -11,8 +11,11 @@
     "README.md",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs --dts --external @odavl-studio/core --external @odavl-studio/guardian-core --external @odavl-studio/insight-core --external @odavl-studio/autopilot-engine && node scripts/add-shebang.cjs",
+    "build": "tsup && node scripts/add-shebang.cjs",
     "dev": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -22,37 +25,52 @@
     "odavl",
     "cli",
     "code-quality",
+    "error-detection",
+    "ml-powered",
+    "static-analysis",
     "self-healing",
     "deployment",
     "typescript",
+    "python",
+    "java",
+    "go",
+    "rust",
     "automation",
-    "testing"
+    "testing",
+    "cicd"
   ],
   "author": "ODAVL Studio Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Monawlo812/odavl.git",
+    "url": "https://github.com/odavlstudio/odavl.git",
     "directory": "apps/studio-cli"
   },
   "bugs": {
-    "url": "https://github.com/Monawlo812/odavl/issues"
+    "url": "https://github.com/odavlstudio/odavl/issues"
   },
-  "homepage": "https://github.com/Monawlo812/odavl#readme",
+  "homepage": "https://github.com/odavlstudio/odavl#readme",
   "publishConfig": {
     "access": "public",
-    "registry": "http://localhost:4873"
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@odavl-studio/autopilot-engine": "workspace:^",
-    "@odavl-studio/insight-core": "workspace:^",
-    "@odavl-studio/guardian-core": "workspace:^",
-    "@odavl-studio/cloud-client": "workspace:^",
+    "@odavl-studio/brain": "workspace:*",
+    "@odavl-studio/guardian-core": "workspace:*",
+    "@odavl-studio/cloud-client": "workspace:*",
+    "@odavl-studio/oms": "workspace:*",
+    "@odavl-studio/sdk": "workspace:*",
+    "@odavl-studio/auth": "workspace:*",
+    "@odavl/core": "workspace:*",
+    "@odavl/insight-sdk": "workspace:*",
+    "@odavl/autopilot-core": "workspace:*",
     "chalk": "^5.6.2",
     "commander": "^12.1.0",
     "ora": "^8.2.0",
     "boxen": "^8.0.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "open": "^10.1.0",
+    "date-fns": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.6.2",
@@ -60,8 +78,5 @@
     "tsup": "^8.5.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
-  },
-  "engines": {
-    "node": ">=18.18"
   }
 }

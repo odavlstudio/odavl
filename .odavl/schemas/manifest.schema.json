@@ -1,0 +1,703 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://odavl.studio/schemas/manifest.v1.schema.json",
+  "title": "ODAVL Manifest Schema",
+  "description": "Official schema for .odavl/manifest.yml - governs Insight, Autopilot, Guardian, and Brain configuration",
+  "type": "object",
+  "required": ["version", "schemaVersion", "project", "fileTaxonomy"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Manifest version (semantic versioning)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0", "1.2.3"]
+    },
+    "schemaVersion": {
+      "type": "string",
+      "description": "OMS schema version this manifest conforms to",
+      "pattern": "^v\\d+\\.\\d+$",
+      "examples": ["v1.0", "v1.1"]
+    },
+    "project": {
+      "type": "object",
+      "description": "Project-level metadata",
+      "required": ["id", "name", "languages", "riskProfile", "criticality"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique project identifier (UUID or slug)",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "examples": ["odavl-studio", "my-project-123"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable project name",
+          "minLength": 1,
+          "maxLength": 100,
+          "examples": ["ODAVL Studio", "My Project"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional project description",
+          "maxLength": 500
+        },
+        "languages": {
+          "type": "array",
+          "description": "Primary programming languages used",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["typescript", "javascript", "python", "java", "go", "rust", "kotlin", "swift", "php", "ruby", "csharp", "cpp", "other"]
+          },
+          "examples": [["typescript", "python"]]
+        },
+        "riskProfile": {
+          "type": "string",
+          "description": "Project risk classification (determines autopilot aggressiveness)",
+          "enum": ["low", "medium", "high", "critical"],
+          "default": "medium"
+        },
+        "criticality": {
+          "type": "string",
+          "description": "Business criticality (affects guardian thresholds)",
+          "enum": ["low", "medium", "high"],
+          "default": "medium"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Optional project tags for organization",
+          "items": {
+            "type": "string"
+          },
+          "examples": [["monorepo", "microservices", "next.js"]]
+        }
+      }
+    },
+    "fileTaxonomy": {
+      "type": "object",
+      "description": "File categorization for products to discover resources",
+      "required": ["tests", "fixtures", "logs", "reports"],
+      "additionalProperties": false,
+      "properties": {
+        "tests": {
+          "type": "object",
+          "description": "Test file locations",
+          "required": ["unit", "integration", "e2e"],
+          "properties": {
+            "unit": {
+              "type": "array",
+              "items": { "type": "string" },
+              "examples": [["tests/unit/**/*.test.ts", "**/__tests__/**/*.test.ts"]]
+            },
+            "integration": {
+              "type": "array",
+              "items": { "type": "string" },
+              "examples": [["tests/integration/**/*.test.ts"]]
+            },
+            "e2e": {
+              "type": "array",
+              "items": { "type": "string" },
+              "examples": [["tests/e2e/**/*.spec.ts"]]
+            },
+            "snapshots": {
+              "type": "array",
+              "items": { "type": "string" },
+              "examples": [["tests/__snapshots__/**/*.snap"]]
+            }
+          }
+        },
+        "fixtures": {
+          "type": "array",
+          "description": "Test fixture locations",
+          "items": { "type": "string" },
+          "examples": [["test-fixtures/**/*", "tests/fixtures/**/*"]]
+        },
+        "logs": {
+          "type": "array",
+          "description": "Log file patterns (usually gitignored)",
+          "items": { "type": "string" },
+          "examples": [[".odavl/logs/**/*.log", "*.log"]]
+        },
+        "reports": {
+          "type": "array",
+          "description": "Report output locations",
+          "items": { "type": "string" },
+          "examples": [["reports/**/*.{json,md,html}", ".odavl/reports/**/*"]]
+        },
+        "schemas": {
+          "type": "array",
+          "description": "JSON/YAML schema definitions",
+          "items": { "type": "string" },
+          "examples": [[".odavl/schemas/**/*.schema.json"]]
+        },
+        "recipes": {
+          "type": "array",
+          "description": "Autopilot improvement recipes",
+          "items": { "type": "string" },
+          "examples": [[".odavl/recipes/**/*.json"]]
+        },
+        "mlModels": {
+          "type": "array",
+          "description": "TensorFlow.js or other ML models",
+          "items": { "type": "string" },
+          "examples": [[".odavl/ml-models/**/*", "ml-data/models/**/*"]]
+        },
+        "uiSnapshots": {
+          "type": "array",
+          "description": "Visual regression baseline images",
+          "items": { "type": "string" },
+          "examples": [["tests/visual-regression/baseline/**/*.png"]]
+        },
+        "migrations": {
+          "type": "array",
+          "description": "Database migration files",
+          "items": { "type": "string" },
+          "examples": [["prisma/migrations/**/*", "migrations/**/*.sql"]]
+        },
+        "coverage": {
+          "type": "array",
+          "description": "Code coverage output",
+          "items": { "type": "string" },
+          "examples": [["coverage/**/*", ".nyc_output/**/*"]]
+        },
+        "diagnostics": {
+          "type": "array",
+          "description": "Diagnostic dumps (crash reports, heap snapshots)",
+          "items": { "type": "string" },
+          "examples": [[".odavl/diagnostics/**/*"]]
+        },
+        "trainingData": {
+          "type": "array",
+          "description": "ML training datasets",
+          "items": { "type": "string" },
+          "examples": [["ml-data/datasets/**/*", ".odavl/datasets/**/*"]]
+        },
+        "overrides": {
+          "type": "object",
+          "description": "Per-product taxonomy overrides",
+          "additionalProperties": false,
+          "properties": {
+            "insight": {
+              "type": "object",
+              "description": "Insight-specific file patterns",
+              "additionalProperties": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "autopilot": {
+              "type": "object",
+              "description": "Autopilot-specific file patterns",
+              "additionalProperties": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "guardian": {
+              "type": "object",
+              "description": "Guardian-specific file patterns",
+              "additionalProperties": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "insight": {
+      "type": "object",
+      "description": "Insight detector configuration",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "array",
+          "description": "Explicitly enabled detectors (empty = all stable detectors)",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "examples": [["typescript", "security", "performance"]]
+        },
+        "disabled": {
+          "type": "array",
+          "description": "Explicitly disabled detectors",
+          "items": { "type": "string" },
+          "uniqueItems": true,
+          "examples": [["cve-scanner", "nextjs"]]
+        },
+        "minSeverity": {
+          "type": "string",
+          "description": "Minimum severity level to report",
+          "enum": ["low", "medium", "high", "critical"],
+          "default": "low"
+        },
+        "maxFiles": {
+          "type": "integer",
+          "description": "Maximum files to analyze per run (performance limit)",
+          "minimum": 1,
+          "maximum": 100000,
+          "default": 10000
+        },
+        "fileGlobs": {
+          "type": "object",
+          "description": "File patterns for each language/detector",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "falsePositiveRules": {
+          "type": "array",
+          "description": "Rules to suppress known false positives",
+          "items": {
+            "type": "object",
+            "required": ["detector", "pattern"],
+            "properties": {
+              "detector": { "type": "string" },
+              "pattern": { "type": "string", "description": "Regex pattern to match" },
+              "reason": { "type": "string" },
+              "expires": { "type": "string", "format": "date", "description": "ISO 8601 date" }
+            }
+          }
+        },
+        "detectorCapabilityMap": {
+          "type": "object",
+          "description": "Maps detectors to file types they can analyze",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "extensions": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "priority": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              }
+            }
+          }
+        }
+      }
+    },
+    "autopilot": {
+      "type": "object",
+      "description": "Autopilot self-healing configuration",
+      "additionalProperties": false,
+      "properties": {
+        "riskBudget": {
+          "type": "object",
+          "description": "Safety constraints per cycle",
+          "required": ["maxLoc", "maxFiles"],
+          "properties": {
+            "maxLoc": {
+              "type": "integer",
+              "description": "Maximum lines of code changed per cycle",
+              "minimum": 1,
+              "maximum": 10000,
+              "default": 40
+            },
+            "maxFiles": {
+              "type": "integer",
+              "description": "Maximum files modified per cycle",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 10
+            },
+            "maxRecipes": {
+              "type": "integer",
+              "description": "Maximum recipes executed per cycle",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 5
+            }
+          }
+        },
+        "protectedPaths": {
+          "type": "array",
+          "description": "Glob patterns for files that must never be auto-modified",
+          "items": { "type": "string" },
+          "examples": [["security/**", "auth/**", "**/*.spec.*", "public-api/**"]]
+        },
+        "avoidChanges": {
+          "type": "array",
+          "description": "Paths to avoid unless explicitly targeted (softer than protected)",
+          "items": { "type": "string" },
+          "examples": [["docs/**", "README.md"]]
+        },
+        "trust": {
+          "type": "object",
+          "description": "Trust scoring rules for recipes",
+          "properties": {
+            "min": {
+              "type": "number",
+              "description": "Minimum trust score to execute (0.1-1.0)",
+              "minimum": 0.1,
+              "maximum": 1.0,
+              "default": 0.2
+            },
+            "max": {
+              "type": "number",
+              "description": "Maximum trust score (clamp ceiling)",
+              "minimum": 0.1,
+              "maximum": 1.0,
+              "default": 1.0
+            },
+            "approveIf": {
+              "type": "array",
+              "description": "Expressions that auto-approve recipes",
+              "items": {
+                "type": "object",
+                "required": ["condition"],
+                "properties": {
+                  "condition": {
+                    "type": "string",
+                    "description": "Expression: 'trust >= 0.8', 'successRate > 0.9'",
+                    "examples": ["trust >= 0.8 && consecutiveFailures == 0"]
+                  },
+                  "reason": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "recipeSelection": {
+          "type": "object",
+          "description": "Recipe selection algorithm configuration",
+          "properties": {
+            "strategies": {
+              "type": "array",
+              "description": "Ordered list of selection strategies",
+              "items": {
+                "type": "string",
+                "enum": ["ml-predictor", "trust-score", "success-rate", "random"]
+              },
+              "default": ["ml-predictor", "trust-score"]
+            },
+            "modelVersion": {
+              "type": "string",
+              "description": "ML model version to use for prediction",
+              "examples": ["trust-predictor-v2", "recipe-predictor"]
+            },
+            "dependencyRules": {
+              "type": "object",
+              "description": "Recipe dependency and conflict resolution",
+              "properties": {
+                "allowParallel": {
+                  "type": "boolean",
+                  "description": "Enable parallel recipe execution",
+                  "default": true
+                },
+                "maxParallelWorkers": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 16,
+                  "default": 4
+                },
+                "conflictResolution": {
+                  "type": "string",
+                  "enum": ["sequential", "highest-trust", "fail"],
+                  "default": "sequential"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "guardian": {
+      "type": "object",
+      "description": "Guardian pre-deploy testing configuration",
+      "additionalProperties": false,
+      "properties": {
+        "suites": {
+          "type": "object",
+          "description": "Test suite configurations",
+          "properties": {
+            "performance": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "tools": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["lighthouse", "webpagetest", "custom"]
+                  },
+                  "default": ["lighthouse"]
+                }
+              }
+            },
+            "accessibility": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "tools": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["axe-core", "lighthouse", "pa11y"]
+                  },
+                  "default": ["axe-core", "lighthouse"]
+                },
+                "wcagLevel": {
+                  "type": "string",
+                  "enum": ["A", "AA", "AAA"],
+                  "default": "AA"
+                }
+              }
+            },
+            "security": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "checks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["csp", "ssl", "headers", "owasp-top-10"]
+                  },
+                  "default": ["csp", "ssl", "headers"]
+                }
+              }
+            },
+            "visual": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": false },
+                "tool": {
+                  "type": "string",
+                  "enum": ["playwright", "percy", "chromatic"],
+                  "default": "playwright"
+                },
+                "threshold": {
+                  "type": "number",
+                  "description": "Pixel difference threshold (0-1)",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "default": 0.01
+                }
+              }
+            },
+            "e2e": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": false },
+                "framework": {
+                  "type": "string",
+                  "enum": ["playwright", "cypress", "puppeteer"],
+                  "default": "playwright"
+                }
+              }
+            }
+          }
+        },
+        "thresholds": {
+          "type": "object",
+          "description": "Quality gate thresholds",
+          "properties": {
+            "lighthouse": {
+              "type": "object",
+              "properties": {
+                "performance": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "accessibility": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "bestPractices": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "seo": { "type": "integer", "minimum": 0, "maximum": 100, "default": 90 },
+                "pwa": { "type": "integer", "minimum": 0, "maximum": 100, "default": 0 }
+              }
+            },
+            "webVitals": {
+              "type": "object",
+              "properties": {
+                "lcp": { "type": "number", "description": "Largest Contentful Paint (seconds)", "default": 2.5 },
+                "fid": { "type": "number", "description": "First Input Delay (milliseconds)", "default": 100 },
+                "cls": { "type": "number", "description": "Cumulative Layout Shift", "default": 0.1 }
+              }
+            }
+          }
+        },
+        "environments": {
+          "type": "array",
+          "description": "Test environments",
+          "items": {
+            "type": "object",
+            "required": ["name", "url"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": ["staging", "production", "preview"]
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "examples": ["https://staging.example.com"]
+              },
+              "skipSuites": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Suites to skip for this environment"
+              }
+            }
+          }
+        },
+        "baselinePolicy": {
+          "type": "object",
+          "description": "How to handle baseline comparisons",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": ["strict", "adaptive", "disabled"],
+              "default": "adaptive",
+              "description": "strict: fail if worse, adaptive: warn if regression, disabled: no comparison"
+            },
+            "updateOn": {
+              "type": "string",
+              "enum": ["manual", "auto-improve", "auto-degrade", "never"],
+              "default": "manual"
+            }
+          }
+        }
+      }
+    },
+    "brain": {
+      "type": "object",
+      "description": "Brain intelligence layer configuration",
+      "additionalProperties": false,
+      "properties": {
+        "learningMode": {
+          "type": "string",
+          "description": "Brain learning behavior",
+          "enum": ["adaptive", "conservative", "disabled"],
+          "default": "adaptive"
+        },
+        "memory": {
+          "type": "object",
+          "description": "Memory system limits",
+          "properties": {
+            "shortTermLimit": {
+              "type": "integer",
+              "description": "Max runs in short-term memory",
+              "minimum": 10,
+              "maximum": 1000,
+              "default": 100
+            },
+            "longTermLimit": {
+              "type": "integer",
+              "description": "Max aggregated patterns in long-term memory",
+              "minimum": 100,
+              "maximum": 100000,
+              "default": 10000
+            }
+          }
+        },
+        "confidenceThresholds": {
+          "type": "object",
+          "description": "Confidence levels required for product actions",
+          "properties": {
+            "insight": {
+              "type": "number",
+              "description": "Min confidence to report detection (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.6
+            },
+            "autopilot": {
+              "type": "number",
+              "description": "Min confidence to auto-fix (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.8
+            },
+            "guardian": {
+              "type": "number",
+              "description": "Min confidence to block deployment (0-1)",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.9
+            }
+          }
+        },
+        "decisionPolicy": {
+          "type": "object",
+          "description": "Rules for Brain decision-making",
+          "properties": {
+            "allowDeployIf": {
+              "type": "array",
+              "description": "Conditions that permit deployment",
+              "items": {
+                "type": "object",
+                "required": ["condition"],
+                "properties": {
+                  "condition": {
+                    "type": "string",
+                    "description": "Expression: 'allTestsPassed && noHighSeverity'",
+                    "examples": [
+                      "guardian.score >= 90 && insight.criticalIssues == 0",
+                      "autopilot.trustScore > 0.8"
+                    ]
+                  },
+                  "reason": { "type": "string" }
+                }
+              }
+            },
+            "autoApproveRecipesIf": {
+              "type": "array",
+              "description": "Conditions for recipe auto-approval",
+              "items": {
+                "type": "object",
+                "required": ["condition"],
+                "properties": {
+                  "condition": { "type": "string" },
+                  "reason": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "overrides": {
+      "type": "object",
+      "description": "Directory or file-specific configuration overrides",
+      "properties": {
+        "byDirectory": {
+          "type": "object",
+          "description": "Override settings per directory",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "insight": { "$ref": "#/properties/insight" },
+              "autopilot": { "$ref": "#/properties/autopilot" },
+              "guardian": { "$ref": "#/properties/guardian" }
+            }
+          }
+        },
+        "byFileType": {
+          "type": "object",
+          "description": "Override settings per file extension",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "insight": { "$ref": "#/properties/insight" },
+              "autopilot": { "$ref": "#/properties/autopilot" }
+            }
+          }
+        },
+        "byProduct": {
+          "type": "object",
+          "description": "Product-specific global overrides",
+          "properties": {
+            "insight": { "$ref": "#/properties/insight" },
+            "autopilot": { "$ref": "#/properties/autopilot" },
+            "guardian": { "$ref": "#/properties/guardian" },
+            "brain": { "$ref": "#/properties/brain" }
+          }
+        }
+      }
+    }
+  }
+}

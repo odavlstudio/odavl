@@ -9,6 +9,8 @@
  * - Enhanced error handling
  * - Better dependency management
  * - Improved maintainability
+ * 
+ * Phase 3A: Decoupled from Insight via @odavl/oplayer
  */
 
 import { Command } from 'commander';
@@ -16,6 +18,23 @@ import chalk from 'chalk';
 import { executeTests, quickTest, fullTest, aiTest, type TestOptions } from './src/commands/test-command.js';
 import { getAIService } from './src/services/ai-service.js';
 import { getReportService } from './src/services/report-service.js';
+
+// Phase 3A: Bootstrap OPLayer adapter for Guardian audits
+import { GuardianProtocol, GuardianPlaywrightAdapter } from '@odavl/oplayer';
+
+// Register Guardian adapter (singleton pattern)
+try {
+  if (!GuardianProtocol.isAdapterRegistered()) {
+    GuardianProtocol.registerAdapter(new GuardianPlaywrightAdapter());
+  }
+} catch (error) {
+  console.error(
+    chalk.yellow(
+      `\n⚠️  Failed to register GuardianPlaywrightAdapter: ${error instanceof Error ? error.message : String(error)}\n` +
+      `   Guardian will run in legacy mode without OPLayer integration.\n`
+    )
+  );
+}
 
 const program = new Command();
 

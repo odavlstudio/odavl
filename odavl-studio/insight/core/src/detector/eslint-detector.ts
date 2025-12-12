@@ -34,15 +34,31 @@ export class ESLintDetector {
 
         try {
             // Run ESLint with JSON format, ignoring .next, dist-test, out directories
+            // WAVE 8 PHASE 1: Add timeout protection
             const output = execSync(`eslint . --format json --ignore-pattern ".next/**" --ignore-pattern "dist-test/**" --ignore-pattern "out/**"`, {
                 cwd: dir,
                 stdio: 'pipe',
-                encoding: 'utf8'
+                encoding: 'utf8',
+                timeout: 120000, // 2 minutes timeout
             });
 
             return this.parseESLintOutput(output);
 
         } catch (error: any) {
+            // Check if timeout occurred
+            if (error.killed && error.signal === 'SIGTERM') {
+                return [{
+                    file: '',
+                    line: 0,
+                    column: 0,
+                    message: 'ESLint detector exceeded timeout (2 minutes)',
+                    ruleId: 'timeout',
+                    severity: 2,
+                    rootCause: 'Large project or complex linting rules',
+                    suggestedFix: 'Optimize ESLint configuration or reduce scope'
+                }];
+            }
+            
             // ESLint throws exception if errors found
             const output = error.stdout?.toString() || '[]';
             return this.parseESLintOutput(output);
@@ -51,14 +67,45 @@ export class ESLintDetector {
 
     /**
      * Parse JSON output from ESLint
+     * PHASE 2 FIX: Sanitize output before parsing to prevent JSON errors
+     * PHASE 7 ENHANCEMENT: Handle multi-line output, multiple arrays, truncated JSON
      */
     private parseESLintOutput(output: string): ESLintError[] {
         const errors: ESLintError[] = [];
 
         try {
-            const results = JSON.parse(output);
+            // PHASE 2 FIX: Clean output - remove ANSI codes and trim
+            let cleanOutput = output.replace(/\x1b\[[0-9;]*m/g, '').trim();
+            
+            // PHASE 7 ENHANCEMENT: Remove non-JSON prefix lines (e.g., "Linting...")
+            const jsonStart = cleanOutput.indexOf('[');
+            if (jsonStart > 0) {
+                cleanOutput = cleanOutput.substring(jsonStart);
+            }
+            
+            // PHASE 7 ENHANCEMENT: Extract first complete JSON array if multiple present
+            const jsonEnd = cleanOutput.lastIndexOf(']');
+            if (jsonEnd > 0 && jsonEnd < cleanOutput.length - 1) {
+                cleanOutput = cleanOutput.substring(0, jsonEnd + 1);
+            }
+            
+            // PHASE 2 FIX: If output is empty or not JSON, return empty array
+            if (!cleanOutput || !cleanOutput.startsWith('[')) {
+                logger.warn('[ESLintDetector] No valid JSON output from ESLint');
+                return errors;
+            }
+            
+            // PHASE 2 FIX: Validate JSON structure before parsing
+            const results = JSON.parse(cleanOutput);
+            
+            if (!Array.isArray(results)) {
+                logger.warn('[ESLintDetector] ESLint output is not an array');
+                return errors;
+            }
 
             for (const result of results) {
+                if (!result || typeof result !== 'object') continue;
+                
                 const filePath = result.filePath;
 
                 // Skip build artifacts and compiled files
@@ -83,8 +130,13 @@ export class ESLintDetector {
                     errors.push(error);
                 }
             }
-        } catch (parseError) {
-            logger.error('Failed to parse ESLint output:', parseError);
+        } catch (parseError: any) {
+            // PHASE 2 FIX: More detailed error logging
+            logger.error('[ESLintDetector] Failed to parse ESLint output:', {
+                error: parseError.message,
+                outputLength: output.length,
+                outputPreview: output.substring(0, 200)
+            });
         }
 
         return errors;

@@ -31,7 +31,7 @@ export class TSDetector {
         const dir = targetDir || this.workspaceRoot;
 
         try {
-            // Run TypeScript compiler in noEmit mode
+            // Run TypeScript compiler in noEmit mode with TIMEOUT PROTECTION
             // Try with tsconfig.json first, fall back to no config
             const tsconfigPath = path.join(dir, 'tsconfig.json');
             let cmd = `tsc --noEmit --project "${tsconfigPath}"`;
@@ -47,13 +47,28 @@ export class TSDetector {
             execSync(cmd, {
                 cwd: dir,
                 stdio: 'pipe',
-                encoding: 'utf8'
+                encoding: 'utf8',
+                timeout: 120000, // 2 minutes timeout
             });
 
             // If no exception occurred, no errors found
             return [];
 
         } catch (error: any) {
+            // Check if timeout occurred
+            if (error.killed && error.signal === 'SIGTERM') {
+                return [{
+                    file: '',
+                    line: 0,
+                    column: 0,
+                    message: 'TypeScript detector exceeded timeout (2 minutes)',
+                    code: 'TIMEOUT',
+                    severity: 'error',
+                    rootCause: 'Large project or complex type checking',
+                    suggestedFix: 'Optimize tsconfig.json or split into smaller projects'
+                }];
+            }
+            
             // Parse output from TypeScript compiler
             const output = error.stdout?.toString() || error.stderr?.toString() || '';
             return this.parseTypeScriptOutput(output);

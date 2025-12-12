@@ -51,13 +51,13 @@ async function loadModules(): Promise<void> {
       cache,
       memory
     ] = await Promise.all([
-      import('@odavl-studio/insight-core'),
-      import('@odavl-studio/insight-core/detector').then(m => m.TypeScriptDetector),
-      import('@odavl-studio/insight-core/detector').then(m => m.ESLintDetector),
-      import('@odavl-studio/insight-core').then(m => m.ParallelExecutor),
-      import('@odavl-studio/insight-core').then(m => m.IncrementalAnalyzer),
-      import('@odavl-studio/insight-core').then(m => m.ResultCache),
-      import('@odavl-studio/insight-core').then(m => m.MemoryManager)
+      import('@odavl/insight-core'),
+      import('@odavl/insight-core/detector').then(m => m.TypeScriptDetector),
+      import('@odavl/insight-core/detector').then(m => m.ESLintDetector),
+      import('@odavl/insight-core').then(m => m.ParallelExecutor),
+      import('@odavl/insight-core').then(m => m.IncrementalAnalyzer),
+      import('@odavl/insight-core').then(m => m.ResultCache),
+      import('@odavl/insight-core').then(m => m.MemoryManager)
     ]);
 
     modules = {

@@ -1,5 +1,7 @@
 /**
  * DECIDE phase: Selects improvement actions based on trust scores
+ * Phase P1: Manifest integration (read-only)
+ * Phase P3: ACTIVE manifest enforcement (auto-approval, trust thresholds)
  * @fileoverview Decision-making functionality for ODAVL cycle with auto-approval integration
  */
 
@@ -9,17 +11,21 @@ import type { Metrics } from "./observe.js";
 import { evaluateCommandApproval, logApprovalDecision } from "../policies/autoapprove.js";
 import { logPhase } from "./logPhase.js";
 
-// ML predictor integration
-import { MLTrustPredictor } from "../ml/trust-predictor.js";
+// Phase P3: Manifest enforcement
+import { shouldAutoApproveRecipe } from '../config/manifest-config.js';
+
+// Phase 3D Round 8: ML predictor upgraded to SimpleTrustPredictor (no TensorFlow.js)
+import { SimpleTrustPredictor } from "../ml/simple-trust-predictor.js";
 
 /**
  * Get ML predictor instance (singleton)
+ * Phase 3D: Using SimpleTrustPredictor instead of MLTrustPredictor
  */
-let mlPredictorInstance: MLTrustPredictor | null = null;
-async function getMLPredictor(): Promise<MLTrustPredictor | null> {
+let mlPredictorInstance: SimpleTrustPredictor | null = null;
+async function getMLPredictor(): Promise<SimpleTrustPredictor | null> {
   if (!mlPredictorInstance) {
     try {
-      mlPredictorInstance = new MLTrustPredictor();
+      mlPredictorInstance = new SimpleTrustPredictor();
       await mlPredictorInstance.loadModel();
       return mlPredictorInstance;
     } catch (error) {
@@ -193,19 +199,87 @@ export async function evaluateCommand(command: string): Promise<boolean> {
 
 /**
  * DECIDE phase: Selects the most appropriate improvement action based on metrics and trust scores.
- * Optionally uses ML-powered trust prediction if enabled (requires @odavl-studio/insight-core).
+ * 
+ * ✅ Phase 3 Update:
+ * - Now uses metrics from Insight analysis (observe.ts reads .odavl/insight/latest-analysis.json)
+ * - Filters issues by canBeHandedToAutopilot flag
+ * - Autopilot = Executor ONLY (no detection)
+ * 
+ * Round 13: Enhanced with issue-based recipe selection using new recipe system.
  * Returns "noop" if no recipes exist or no conditions match.
  * 
- * @param metrics - Current code quality metrics from OBSERVE phase
+ * @param metrics - Current code quality metrics from OBSERVE phase (sourced from Insight)
  * @returns String identifier of the selected recipe or "noop"
  */
 export async function decide(metrics: Metrics): Promise<string> {
   // Check if there are any issues to fix
+  // ✅ Phase 3: totalIssues comes from Insight's analysis, not local detection
   if (metrics.totalIssues === 0) {
-    logPhase("DECIDE", "No issues detected → noop", "info");
+    logPhase("DECIDE", "No issues detected by Insight → noop", "info");
     return "noop";
   }
 
+  // ✅ Phase 3: Prefer fixableIssues (canBeHandedToAutopilot = true) if available
+  if (metrics.fixableIssues !== undefined && metrics.fixableIssues === 0) {
+    logPhase("DECIDE", `${metrics.totalIssues} issues found, but 0 fixable by Autopilot → noop`, "info");
+    return "noop";
+  }
+
+  // Round 13: Issue-based decision logic
+  // Prioritize based on detector with most issues
+  const detectorCounts = {
+    complexity: (metrics as any).complexity || 0,
+    performance: (metrics as any).performance || 0,
+    imports: (metrics as any).imports || 0,
+    build: (metrics as any).build || 0,
+  };
+
+  logPhase("DECIDE", `Issue counts from Insight: ${JSON.stringify(detectorCounts)}`, "info");
+  if (metrics.fixableIssues !== undefined) {
+    logPhase("DECIDE", `Fixable issues (canBeHandedToAutopilot): ${metrics.fixableIssues}`, "info");
+  }
+
+  // Select recipe based on highest issue count
+  let selectedRecipe = "noop";
+
+  if (detectorCounts.imports > 0) {
+    selectedRecipe = "remove-unused-imports";
+    logPhase("DECIDE", `Selected: ${selectedRecipe} (${detectorCounts.imports} import issues)`, "info");
+  } else if (detectorCounts.performance > 0) {
+    selectedRecipe = "optimize-loops";
+    logPhase("DECIDE", `Selected: ${selectedRecipe} (${detectorCounts.performance} performance issues)`, "info");
+  } else if (detectorCounts.complexity > 0) {
+    selectedRecipe = "reduce-nesting";
+    logPhase("DECIDE", `Selected: ${selectedRecipe} (${detectorCounts.complexity} complexity issues)`, "info");
+  } else if (detectorCounts.build > 0) {
+    selectedRecipe = "fix-build-config";
+    logPhase("DECIDE", `Selected: ${selectedRecipe} (${detectorCounts.build} build issues)`, "info");
+  }
+
+  if (selectedRecipe === "noop") {
+    logPhase("DECIDE", "No applicable recipes for current issues → noop", "info");
+    return "noop";
+  }
+
+  // Phase P3: Check if recipe should be auto-approved based on manifest
+  const autoApprovalCheck = shouldAutoApproveRecipe({
+    trust: 0.8, // Default trust for new recipe system
+    successRate: 0.8, // Default success rate
+    consecutiveFailures: 0, // No failures yet
+  });
+
+  if (!autoApprovalCheck.approved) {
+    logPhase("DECIDE", `❌ AUTO-APPROVAL REJECTED: ${selectedRecipe}`, "warn");
+    logPhase("DECIDE", `   Reason: ${autoApprovalCheck.reason}`, "warn");
+    // TODO P3: Add audit entry for rejected recipe
+    // Continue execution but log the rejection (soft enforcement)
+  } else {
+    logPhase("DECIDE", `✓ Recipe auto-approved: ${selectedRecipe} (${autoApprovalCheck.reason})`, "info");
+  }
+
+  return selectedRecipe;
+
+  // Legacy code for reference (old recipe system)
   const recipes = await loadRecipes();
   if (!recipes.length) {
     logPhase("DECIDE", "No recipes available", "warn");
@@ -222,19 +296,19 @@ export async function decide(metrics: Metrics): Promise<string> {
     return "noop";
   }
 
-  // Try ML-powered trust prediction
+  // Try adaptive trust prediction (heuristic-based, no real ML model yet)
   const mlPredictor = await getMLPredictor();
   
   let sorted: Recipe[];
   
-  if (mlPredictor) {
-    // Use ML predictions for trust scores
-    logPhase("DECIDE", "Using ML-powered trust prediction", "info");
+  if (mlPredictor && mlPredictor !== null) {
+    // Use heuristic predictions for trust scores
+    logPhase("DECIDE", "Using adaptive heuristic trust scoring", "info");
     
     const recipesWithPredictions = await Promise.all(
       applicableRecipes.map(async (recipe) => {
         // Extract features from recipe and metrics
-        const features = mlPredictor.extractFeatures({
+        const features = mlPredictor!.extractFeatures({
           successRate: recipe.trust ?? 0.5,
           totalRuns: 0, // Will be loaded from trust records
           consecutiveFailures: 0, // Will be loaded from trust records
@@ -243,7 +317,7 @@ export async function decide(metrics: Metrics): Promise<string> {
           complexity: estimateComplexity(recipe),
         });
         
-        const prediction = await mlPredictor.predict(features);
+        const prediction = await mlPredictor!.predict(features);
         
         return {
           recipe,

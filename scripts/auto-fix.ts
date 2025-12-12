@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { AutoFixEngine } from '../packages/insight-core/src/lib/autofix/AutoFixEngine';
+import { AutoFixEngine } from '../odavl-studio/insight/core/src/lib/autofix/AutoFixEngine';
 import { writeFile } from 'node:fs/promises';
 
 interface CliArgs {

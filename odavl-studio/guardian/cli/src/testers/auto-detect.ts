@@ -41,10 +41,17 @@ export async function autoTest(projectPath: string): Promise<AutoTestResult | nu
     // Run test
     const result = await tester.test(projectPath);
 
+    // Extract score from result (handle different result types)
+    const score = 'overallScore' in result 
+      ? result.overallScore 
+      : 'score' in result 
+        ? (result as any).score 
+        : 0;
+
     const returnValue = {
       tested: true,
       type,
-      score: result.overallScore || result.score || 0,
+      score,
       status: result.status,
       info: result,
     };

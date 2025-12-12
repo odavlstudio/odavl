@@ -1,0 +1,19 @@
+{
+  "name": "eslint-plugin-odavl-boundaries",
+  "version": "1.0.0",
+  "description": "ESLint plugin to enforce ODAVL product boundaries (Insight = Detection, Autopilot = Fixing, Guardian = Website Testing)",
+  "main": "index.js",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "odavl",
+    "boundaries",
+    "architecture"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}

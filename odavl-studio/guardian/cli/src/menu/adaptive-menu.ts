@@ -7,7 +7,7 @@
 
 import chalk from 'chalk';
 import type { SuiteInfo, SuiteProduct } from '../detectors/suite-detector.js';
-import type { ProjectType } from '../detectors/project-detector.js';
+import { ProjectType } from '../detectors/project-detector.js';
 
 /**
  * Menu mode based on project detection
@@ -116,7 +116,7 @@ export class AdaptiveMenuGenerator {
           emoji: '🌐',
           description: 'Enter URL · Accessibility · Performance · Security · SEO',
           type: 'test' as const,
-          projectType: 'website' as const,
+          projectType: ProjectType.WEBSITE,
         },
       ],
     });
@@ -134,7 +134,7 @@ export class AdaptiveMenuGenerator {
             emoji: '⚙️',
             description: `Run comprehensive tests on all ${grouped.cli.length} CLI tools`,
             type: 'test' as const,
-            projectType: 'cli' as const,
+            projectType: ProjectType.CLI,
           },
           ...grouped.cli.map((product, index) => ({
             id: `product-${product.name}`,
@@ -153,7 +153,7 @@ export class AdaptiveMenuGenerator {
             emoji: '🔍',
             description: 'Performance profiling · Memory usage · Command parsing · Benchmarks',
             type: 'test' as const,
-            projectType: 'cli' as const,
+            projectType: ProjectType.CLI,
           },
         ],
       });
@@ -192,7 +192,7 @@ export class AdaptiveMenuGenerator {
             emoji: '📦',
             description: `Validate all ${grouped.packages.length} packages · Build · Types · Exports · Dependencies`,
             type: 'test' as const,
-            projectType: 'package' as const,
+            projectType: ProjectType.PACKAGE,
           },
           {
             id: 'test-packages-by-category',
@@ -201,7 +201,7 @@ export class AdaptiveMenuGenerator {
             emoji: '📋',
             description: `Core (${pkgCategories.core.length}) · Integration (${pkgCategories.integration.length}) · Utils (${pkgCategories.utils.length}) · UI (${pkgCategories.ui.length})`,
             type: 'test' as const,
-            projectType: 'package' as const,
+            projectType: ProjectType.PACKAGE,
           },
           {
             id: 'test-packages-interactive',
@@ -210,7 +210,7 @@ export class AdaptiveMenuGenerator {
             emoji: '✅',
             description: 'Choose specific packages to test with checkboxes',
             type: 'test' as const,
-            projectType: 'package' as const,
+            projectType: ProjectType.PACKAGE,
           },
         ],
       });
@@ -469,23 +469,6 @@ export class AdaptiveMenuGenerator {
     };
 
     return labelMap[type] || 'Project';
-  }
-
-  /**
-   * Group products by type for organized display
-   */
-  private groupProductsByType(products: SuiteProduct[]): {
-    websites: SuiteProduct[];
-    cli: SuiteProduct[];
-    extensions: SuiteProduct[];
-    packages: SuiteProduct[];
-  } {
-    return {
-      websites: products.filter(p => p.type === 'website'),
-      cli: products.filter(p => p.type === 'cli'),
-      extensions: products.filter(p => p.type === 'extension'),
-      packages: products.filter(p => p.type === 'package'),
-    };
   }
 
   /**

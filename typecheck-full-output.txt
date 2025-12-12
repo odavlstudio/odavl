@@ -1,0 +1,190 @@
+
+> odavl@2.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc --noEmit
+
+apps/studio-cli/src/commands/auth.ts(9,32): error TS2307: Cannot find module '../../../packages/core/src/services/cli-auth' or its corresponding type declarations.
+apps/studio-cli/src/commands/autopilot.ts(256,17): error TS2339: Property 'text' does not exist on type 'Spinner'.
+apps/studio-cli/src/commands/autopilot.ts(262,17): error TS2339: Property 'text' does not exist on type 'Spinner'.
+apps/studio-cli/src/commands/autopilot.ts(268,17): error TS2339: Property 'text' does not exist on type 'Spinner'.
+apps/studio-cli/src/commands/autopilot.ts(323,27): error TS2552: Cannot find name 'CredentialStore'. Did you mean 'Credential'?
+apps/studio-cli/src/commands/autopilot.ts(333,24): error TS2304: Cannot find name 'ODAVLCloudClient'.
+apps/studio-cli/src/commands/brain.ts(22,52): error TS2307: Cannot find module '@odavl-studio/brain/learning' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(45,62): error TS2307: Cannot find module '@odavl-studio/brain/runtime' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(69,35): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/brain.ts(112,71): error TS2307: Cannot find module '../../../odavl-studio/brain/telemetry/telemetry-aggregator.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(169,71): error TS2307: Cannot find module '../../../odavl-studio/brain/telemetry/telemetry-aggregator.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(170,57): error TS2307: Cannot find module '../../../odavl-studio/brain/learning/global-learning-signals.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(205,71): error TS2307: Cannot find module '../../../odavl-studio/brain/telemetry/telemetry-aggregator.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(206,57): error TS2307: Cannot find module '../../../odavl-studio/brain/learning/global-learning-signals.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(207,62): error TS2307: Cannot find module '../../../odavl-studio/brain/learning/meta-learning-engine.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(229,36): error TS7006: Parameter 'reason' implicitly has an 'any' type.
+apps/studio-cli/src/commands/brain.ts(244,59): error TS2307: Cannot find module '../../../odavl-studio/brain/adaptive/adaptive-brain.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(298,57): error TS2307: Cannot find module '../../../odavl-studio/brain/telemetry/autopilot-telemetry.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(299,65): error TS2307: Cannot find module '../../../odavl-studio/brain/history/recipe-trust-manager.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(340,47): error TS2307: Cannot find module '../../../odavl-studio/brain/fusion/fusion-engine.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/brain.ts(341,57): error TS2307: Cannot find module '../../../odavl-studio/brain/telemetry/autopilot-telemetry.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/deploy.ts(24,64): error TS2307: Cannot find module '@odavl-studio/brain/runtime' or its corresponding type declarations.
+apps/studio-cli/src/commands/deploy.ts(25,50): error TS2307: Cannot find module '@odavl-studio/guardian/runtime/guardian-ci' or its corresponding type declarations.
+apps/studio-cli/src/commands/deploy.ts(66,41): error TS7006: Parameter 'gate' implicitly has an 'any' type.
+apps/studio-cli/src/commands/deploy.ts(76,45): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/deploy.ts(102,62): error TS2307: Cannot find module '@odavl-studio/brain/runtime' or its corresponding type declarations.
+apps/studio-cli/src/commands/deploy.ts(124,35): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(10,33): error TS2307: Cannot find module '@odavl-studio/guardian-core' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(11,34): error TS2307: Cannot find module '@odavl-studio/guardian-core' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(12,70): error TS2307: Cannot find module '@odavl-studio/core' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(13,34): error TS2307: Cannot find module '@odavl-studio/cloud-client' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(14,33): error TS2307: Cannot find module '@odavl-studio/cloud-client' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(104,64): error TS2307: Cannot find module '../../../oms/oms-context.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(105,53): error TS2307: Cannot find module '../../../oms/risk/file-risk-index.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/guardian.ts(107,50): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(109,43): error TS7006: Parameter 's' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(109,46): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(110,48): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(120,52): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(121,48): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(122,50): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(123,47): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(127,26): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(136,22): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(145,24): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(154,21): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(161,60): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(207,35): error TS7006: Parameter 'fix' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(236,33): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(277,22): error TS7006: Parameter 'result' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(277,30): error TS7006: Parameter 'index' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(294,54): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(295,50): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(305,34): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(306,37): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(307,36): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(309,23): error TS7006: Parameter 'sum' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(309,28): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(320,8): error TS7006: Parameter 'sum' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(320,13): error TS7006: Parameter 'r' implicitly has an 'any' type.
+apps/studio-cli/src/commands/guardian.ts(320,48): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(22,8): error TS2307: Cannot find module '@odavl-studio/insight-core/detector' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(34,34): error TS2307: Cannot find module '@odavl-studio/insight-core/detector' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(35,32): error TS2307: Cannot find module '@odavl-studio/insight-core/detector' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(36,40): error TS2307: Cannot find module '@odavl-studio/insight-core/detector' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(81,70): error TS2307: Cannot find module '../../../oms/oms-context.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(82,59): error TS2307: Cannot find module '../../../oms/risk/file-risk-index.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(190,51): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(191,53): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(212,53): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(213,50): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(234,51): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(235,53): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(236,50): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(257,55): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(258,51): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(259,53): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(260,50): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(286,53): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(287,50): error TS7006: Parameter 'e' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(321,31): error TS2552: Cannot find name 'CredentialStore'. Did you mean 'Credential'?
+apps/studio-cli/src/commands/insight.ts(332,28): error TS2304: Cannot find name 'ODAVLCloudClient'.
+apps/studio-cli/src/commands/insight.ts(416,36): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(437,52): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(437,59): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(534,36): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(558,52): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(558,59): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(660,36): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(705,52): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(705,59): error TS7006: Parameter 'i' implicitly has an 'any' type.
+apps/studio-cli/src/commands/insight.ts(960,64): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(961,60): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(962,62): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(963,59): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(971,55): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(972,55): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(978,52): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(979,56): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(979,72): error TS2339: Property 'message' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(980,78): error TS2339: Property 'file' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(981,55): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(982,50): error TS2339: Property 'line' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(982,67): error TS2339: Property 'line' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(983,27): error TS2339: Property 'suggestion' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(984,50): error TS2339: Property 'suggestion' does not exist on type 'CICDIssue'.
+apps/studio-cli/src/commands/insight.ts(1047,31): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1047,54): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1061,59): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1062,59): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1068,60): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1068,76): error TS2339: Property 'message' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1069,59): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1071,31): error TS2339: Property 'suggestion' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1072,54): error TS2339: Property 'suggestion' does not exist on type 'MLModelIssue'.
+apps/studio-cli/src/commands/insight.ts(1107,13): error TS2353: Object literal may only specify known properties, and 'checkMemoryLeaks' does not exist in type 'AdvancedRuntimeDetectorConfig'.
+apps/studio-cli/src/commands/insight.ts(1137,31): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1137,54): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1151,59): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1152,59): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1158,60): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1158,76): error TS2339: Property 'message' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1159,59): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1160,47): error TS2339: Property 'file' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1161,31): error TS2339: Property 'suggestion' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1162,54): error TS2339: Property 'suggestion' does not exist on type 'RuntimeIssue'.
+apps/studio-cli/src/commands/insight.ts(1194,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1246,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1247,51): error TS2307: Cannot find module '@odavl-studio/core/utils/file-filter.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1309,26): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1373,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/publish.ts(7,63): error TS2307: Cannot find module '@odavl-studio/sdk-marketplace' or its corresponding type declarations.
+apps/studio-cli/src/commands/security.ts(7,71): error TS2307: Cannot find module '@odavl-studio/security' or its corresponding type declarations.
+apps/studio-cli/src/commands/sync.ts(10,36): error TS2307: Cannot find module '@odavl-studio/core/services/cli-cloud-upload' or its corresponding type declarations.
+apps/studio-cli/src/commands/sync.ts(195,34): error TS7006: Parameter 'w' implicitly has an 'any' type.
+apps/studio-cli/src/commands/telemetry.ts(7,57): error TS2307: Cannot find module '@odavl-studio/telemetry' or its corresponding type declarations.
+apps/studio-cli/tests/commands/guardian.integration.test.ts(7,33): error TS2307: Cannot find module '@odavl-studio/guardian-core' or its corresponding type declarations.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(17,44): error TS2307: Cannot find module '../types.js' or its corresponding type declarations.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(192,7): error TS2353: Object literal may only specify known properties, and 'enableCache' does not exist in type 'Required<AdvancedRuntimeDetectorConfig>'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(192,27): error TS2339: Property 'enableCache' does not exist on type 'AdvancedRuntimeDetectorConfig'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(193,24): error TS2339: Property 'cacheDir' does not exist on type 'AdvancedRuntimeDetectorConfig'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(273,13): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'RuntimeIssue'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(336,15): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'RuntimeIssue'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(369,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'RuntimeIssue'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(385,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'RuntimeIssue'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(477,53): error TS2339: Property 'severity' does not exist on type 'RuntimeIssue'.
+odavl-studio/insight/core/src/detector/architecture-detector.ts(80,18): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(203,14): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(393,45): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(424,12): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(476,34): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(511,48): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(574,35): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(614,33): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(617,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+odavl-studio/insight/core/src/detector/architecture-detector.ts(625,52): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(765,12): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/cicd-detector.ts(17,44): error TS2307: Cannot find module '../types.js' or its corresponding type declarations.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(127,7): error TS2353: Object literal may only specify known properties, and 'enableCache' does not exist in type 'Required<CICDDetectorConfig>'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(127,27): error TS2339: Property 'enableCache' does not exist on type 'CICDDetectorConfig'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(128,24): error TS2339: Property 'cacheDir' does not exist on type 'CICDDetectorConfig'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(227,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(250,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(271,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(311,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(328,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(353,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(368,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(390,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(406,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(435,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(447,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(461,15): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(491,53): error TS2339: Property 'severity' does not exist on type 'CICDIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(16,44): error TS2307: Cannot find module '../types.js' or its corresponding type declarations.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(95,7): error TS2353: Object literal may only specify known properties, and 'enableCache' does not exist in type 'Required<MLModelDetectorConfig>'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(95,27): error TS2339: Property 'enableCache' does not exist on type 'MLModelDetectorConfig'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(96,24): error TS2339: Property 'cacheDir' does not exist on type 'MLModelDetectorConfig'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(181,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(207,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(219,9): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(331,15): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(355,13): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(386,11): error TS2353: Object literal may only specify known properties, and 'type' does not exist in type 'MLModelIssue'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(453,53): error TS2339: Property 'severity' does not exist on type 'MLModelIssue'.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

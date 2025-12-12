@@ -18,6 +18,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { safeReadFile as utilSafeReadFile } from '../utils/safe-file-reader.js';
 import { glob } from 'glob';
 import {
     calculateAdaptiveConfidence,
@@ -226,15 +227,10 @@ export class SmartSecurityScanner {
 
     /**
      * Safe file read with EISDIR protection (tsup-compatible)
+     * Uses centralized utility to prevent directory read errors
      */
     private safeReadFile(filePath: string): string | null {
-        try {
-            const stats = fs.statSync(filePath);
-            if (stats.isDirectory()) return null;
-            return fs.readFileSync(filePath, 'utf8');
-        } catch (e: any) {
-            return null;
-        }
+        return utilSafeReadFile(filePath);
     }
 
     /**

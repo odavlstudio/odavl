@@ -1,0 +1,37 @@
+{
+  "name": "@odavl-studio/pricing",
+  "version": "1.0.0",
+  "description": "ODAVL Studio pricing system - shared package for pricing logic",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./calculator": {
+      "import": "./dist/calculator.mjs",
+      "require": "./dist/calculator.js",
+      "types": "./dist/calculator.d.ts"
+    },
+    "./usage": {
+      "import": "./dist/usage.mjs",
+      "require": "./dist/usage.js",
+      "types": "./dist/usage.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/calculator.ts src/usage.ts --format esm,cjs --dts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "keywords": ["pricing", "billing", "saas"],
+  "author": "ODAVL Studio Team",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.1"
+  }
+}

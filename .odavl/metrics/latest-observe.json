@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-12-10T20:21:22.576Z",
+  "workspaceRoot": "C:\\Users\\sabou\\dev\\odavl",
+  "metrics": {
+    "timestamp": "2025-12-10T20:21:22.566Z",
+    "runId": "2025-12-10T20-21-22",
+    "targetDir": "C:\\Users\\sabou\\dev\\odavl",
+    "typescript": 0,
+    "eslint": 0,
+    "security": 0,
+    "performance": 0,
+    "imports": 0,
+    "packages": 0,
+    "runtime": 0,
+    "build": 0,
+    "circular": 0,
+    "network": 0,
+    "complexity": 0,
+    "isolation": 0,
+    "totalIssues": 0,
+    "fixableIssues": 0,
+    "details": {}
+  },
+  "issues": [],
+  "detectorStats": {
+    "quick-scan": {
+      "issues": 0,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "source": "insight"
+}

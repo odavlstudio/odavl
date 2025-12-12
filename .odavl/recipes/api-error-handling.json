@@ -1,0 +1,21 @@
+{
+  "id": "api-error-handling",
+  "name": "API Route Error Handling Standardization",
+  "description": "Add try-catch with proper HTTP status codes to API routes",
+  "trust": 0.88,
+  "category": "nextjs",
+  "targetFiles": [
+    "**/api/**/route.ts",
+    "**/api/**/*.ts"
+  ],
+  "pattern": {
+    "detect": "export async function (GET|POST|PUT|DELETE)",
+    "suggestion": "Add try-catch error handling"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/api-error-handling.ts",
+  "impact": {
+    "filesAffected": 6,
+    "locChanged": 30,
+    "complexity": 3
+  }
+}

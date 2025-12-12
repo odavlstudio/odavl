@@ -1,0 +1,21 @@
+{
+  "id": "security-env-validation",
+  "name": "Environment Variable Validation",
+  "description": "Add runtime validation for required environment variables",
+  "trust": 0.92,
+  "category": "security",
+  "targetFiles": [
+    "**/env.ts",
+    "**/config.ts"
+  ],
+  "pattern": {
+    "detect": "process\\.env\\.[A-Z_]+",
+    "suggestion": "Validate and type environment variables"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/env-validation.ts",
+  "impact": {
+    "filesAffected": 2,
+    "locChanged": 25,
+    "complexity": 2
+  }
+}

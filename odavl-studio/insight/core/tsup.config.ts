@@ -1,4 +1,4 @@
-// tsup.config.ts - ODAVL Insight Core Build Configuration
+// tsup.config.ts - ODAVL Insight Core Build Configuration (Pure CJS)
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
@@ -6,6 +6,11 @@ export default defineConfig({
     // Main exports
     'index': 'src/index.ts',
     'server': 'src/server.ts',
+    'learn': 'src/learn.ts',
+    'training': 'src/training.ts',
+    
+    // Wave 8 Phase 2: Worker script for process isolation
+    'core/detector-worker': 'src/core/detector-worker.ts',
     
     // Detector exports (individual + combined)
     'detector/index': 'src/detector/index.ts',
@@ -22,47 +27,58 @@ export default defineConfig({
     'learning/index': 'src/learning/index.ts',
   },
   
-  format: ['esm', 'cjs'],
-  dts: true,
+  format: ['cjs'],  // CJS ONLY - no ESM
+  dts: false,       // Phase 5: Kotlin detector has invalid characters, skip .d.ts
   
-  // Code splitting configuration - DISABLED for CLI compatibility
+  platform: 'node',
+  bundle: true,     // MUST bundle internal files, externalize dependencies
   splitting: false,
-  
-  // Disable tree shaking to preserve error handling code
   treeshake: false,
   
-  // Externalize Node.js built-ins
+  // Externalize all dependencies to avoid bundling CJS modules
   external: [
-    'fs',
-    'path',
-    'child_process',
-    'node:child_process',  // Both with and without node: prefix
-    'node:fs',
-    'node:path',
-    'node:util',
-    'util',
-    'stream',
-    'events',
-    'crypto',
-    'typescript',  // External TypeScript package to avoid bundling issues
-  ],
-  
-  // Minification for smaller bundles
-  minify: false, // Keep readable for debugging
-  
-  // Source maps for debugging
-  sourcemap: false,
-  
-  // Clean dist before build
-  clean: true,
-  
-  // Target modern Node.js
-  target: 'node18',
-  
-  // Bundle all dependencies except externals
-  noExternal: [
+    // Node.js built-ins (both with and without node: prefix)
+    'fs', 'path', 'child_process', 'util', 'stream', 'events', 'crypto', 'tty', 'os', 'module',
+    'node:fs', 'node:path', 'node:child_process', 'node:util', 'node:stream', 
+    'node:events', 'node:crypto', 'node:tty', 'node:os', 'node:module',
+    'node:fs/promises', 'node:worker_threads', 'node:perf_hooks',
+    // Problematic CJS dependencies that cause ESM/CJS interop issues
+    'graphlib',
+    'debug',
+    'supports-color',  // Transitive dep of debug
+    'ms',              // Transitive dep of debug
+    'typescript',
+    'eslint',
+    '@typescript-eslint/parser',
+    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint/typescript-estree',
+    '@typescript-eslint/utils',
+    '@typescript-eslint/types',
+    // Other npm dependencies
     'glob',
+    'minimatch',
+    'madge',
+    'dependency-cruiser',
     'jspdf',
     'jspdf-autotable',
+    'sql-query-identifier',
+    'pg',
+    '@anthropic-ai/sdk',
+    '@next/mdx',
+    '@prisma/client',
+    'prisma',
+    // Workspace packages
+    '@odavl-studio/telemetry',
+    '@odavl-studio/oms',  // Phase 5: External OMS package
   ],
+  
+  minify: false,
+  sourcemap: false,
+  clean: true,
+  target: 'node18',
+  
+  // CJS output only - no extension customization needed
+  outExtension() {
+    return { js: '.cjs' };
+  },
 });

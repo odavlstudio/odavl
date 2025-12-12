@@ -1,12 +1,80 @@
-odavl_version: "0.1.0"
+# ODAVL Studio Governance Policy v2.0
+# Enforces architectural boundaries and operational constraints
+# Last updated: 2025-01-09 (Phase 4 - Boundary Enforcement)
+
+version: "2.0"
+schema: "https://odavl.studio/schemas/policy/v2.0"
+odavl_version: "2.0.0"
+
 governance:
   strictness_level: "high"
 
-# ODAVL Policy Metadata
+# Policy Metadata
 policy_metadata:
-  updated_by: copilot
-  updated_on: 2025-10-13
-  reason: streamline safe developer workflow
+  updated_by: "ODAVL Phase 4 - Boundary Enforcement"
+  updated_on: "2025-01-09"
+  reason: "Enforce product boundaries (Insight=Detection, Autopilot=Fixing, Guardian=Website Testing)"
+
+# === PRODUCT DEFINITIONS ===
+products:
+  insight:
+    name: "ODAVL Insight"
+    role: "Detection & Analysis ONLY"
+    tagline: "The Brain - Detects, Analyzes, Reports (Never Fixes)"
+    responsibilities:
+      - "Error detection across 16+ categories"
+      - "ML-powered pattern recognition"
+      - "Export to .odavl/insight/latest-analysis.json"
+      - "VS Code Problems Panel integration"
+    forbidden:
+      - "Auto-fix code modifications"
+      - "Recipe execution"
+      - "File writes outside .odavl/insight/"
+      - "Website testing"
+    
+  autopilot:
+    name: "ODAVL Autopilot"
+    role: "Execution & Fixing ONLY"
+    tagline: "The Executor - Fixes Code Safely (Never Detects)"
+    responsibilities:
+      - "Read Insight JSON (.odavl/insight/latest-analysis.json)"
+      - "Execute fixing recipes with O-D-A-V-L cycle"
+      - "Maintain undo snapshots and attestation chain"
+      - "ML trust prediction for recipe selection"
+    forbidden:
+      - "Code analysis/detection"
+      - "Running TypeScript compiler or ESLint"
+      - "Import from insight-core/detector/"
+      - "Website testing"
+    
+  guardian:
+    name: "ODAVL Guardian"
+    role: "Website Testing ONLY"
+    tagline: "The Shield - Tests Websites (Never Code)"
+    responsibilities:
+      - "Accessibility testing (axe-core, Lighthouse)"
+      - "Performance monitoring (Core Web Vitals)"
+      - "Visual regression testing"
+      - "Multi-browser/device testing"
+      - "Quality gates enforcement"
+    forbidden:
+      - "Code analysis (TypeScript, ESLint)"
+      - "File modifications"
+      - "Import from insight-core/detector/"
+      - "Import from autopilot/engine/"
+
+# === RISK BUDGETS (from existing config) ===
+risk_management:
+  max_files_per_cycle: 10  # Updated from 5 (Phase 3 governance)
+  max_lines_changed_per_file: 40
+  max_total_lines_changed: 400  # 10 files * 40 LOC
+  protected_file_patterns:
+    - "**/security/**"
+    - "**/*.spec.*"
+    - "**/public-api/**"
+    - "**/auth/**"
+    - "**/package.json"
+    - "**/tsconfig.json"
 
 # Explicit allowlist for safe developer commands
 autoApprove:
@@ -20,6 +88,8 @@ autoApprove:
     - "vsce show"
     - "vsce verify"
     - "code --install-extension *.vsix"
+    - "pnpm test"
+    - "pnpm lint"
   deny:
     - "Remove-Item*"
     - "rm -rf*"
@@ -28,26 +98,109 @@ autoApprove:
     - "pnpm publish*"
     - "yarn publish*"
   
-risk_management:
-  max_files_per_cycle: 5
-  max_lines_changed_per_file: 40
-  max_total_lines_changed: 150
-  protected_file_patterns:
-    - "**/security/**"
-    - "**/*.spec.*"
-    - "**/public-api/**"
-    - "**/package.json"
-    - "**/tsconfig.json"
-  
 safety_gates:
   zero_tolerance:
     - "type_errors"
     - "syntax_errors" 
     - "security_vulnerabilities"
+    - "boundary_violations"  # NEW: Phase 4 enforcement
   warning_limits:
     eslint_warnings: 0
     complexity_score: 10
+
+# === BOUNDARY ENFORCEMENT (ESLint Rules) ===
+boundaries:
+  insight:
+    allowed_imports:
+      - "@odavl/types"
+      - "@odavl/core"
+      - "@odavl-studio/sdk"
+      - "typescript"
+      - "eslint"
+      - "node:*"
+    forbidden_imports:
+      - "@odavl-studio/autopilot-*"
+      - "@odavl-studio/guardian-*"
+      - "**/fixer/**"
+      - "**/recipes/**"
+      - "puppeteer"
+      - "playwright"
     
+  autopilot:
+    allowed_imports:
+      - "@odavl/types"
+      - "@odavl/core"
+      - "@odavl-studio/sdk"
+      - "node:*"
+    forbidden_imports:
+      - "@odavl-studio/insight-core/detector"
+      - "@odavl-studio/guardian-*"
+      - "@odavl/oplayer/protocols"
+      - "typescript"
+      - "eslint"
+      - "puppeteer"
+      - "playwright"
+    
+  guardian:
+    allowed_imports:
+      - "@odavl/types"
+      - "@odavl/core"
+      - "@odavl-studio/sdk"
+      - "puppeteer"
+      - "playwright"
+      - "@axe-core/*"
+      - "lighthouse"
+      - "node:*"
+    forbidden_imports:
+      - "@odavl-studio/insight-core/detector"
+      - "@odavl-studio/autopilot-*"
+      - "typescript"
+      - "eslint"
+      - "@typescript-eslint/*"
+
+# === QUALITY GATES ===
+gates:
+  pre_commit:
+    - name: "Boundary Enforcement"
+      command: "pnpm exec lint-staged"
+      severity: "error"
+      blocking: true
+    
+    - name: "TypeScript Check"
+      command: "pnpm typecheck"
+      severity: "error"
+      blocking: true
+  
+  pre_merge:
+    - name: "Architecture Gate"
+      workflow: ".github/workflows/odavl-boundaries.yml"
+      severity: "error"
+      blocking: true
+
+# === ATTESTATION ===
+attestation:
+  enabled: true
+  algorithm: "SHA-256"
+  chain_validation: true
+  storage: ".odavl/attestation/"
+
+# === MONITORING ===
+monitoring:
+  health_checks:
+    interval_seconds: 300
+    command: "pnpm monitor:health"
+  
+  metrics_collection:
+    enabled: true
+    location: ".odavl/metrics/"
+    max_files: 500
+
+# === ENFORCEMENT ===
+enforcement:
+  mode: "strict"
+  auto_rollback: true
+  block_on_violation: true
+
 telemetry:
   collect_metrics: true
   anonymize_file_paths: true

@@ -1,0 +1,21 @@
+{
+  "id": "prisma-query-optimization",
+  "name": "Prisma Query Performance Optimization",
+  "description": "Add select and include optimizations to reduce data transfer",
+  "trust": 0.78,
+  "category": "prisma",
+  "targetFiles": [
+    "**/*.ts",
+    "!**/node_modules/**"
+  ],
+  "pattern": {
+    "detect": "prisma\\.[a-zA-Z]+\\.findMany\\(\\{\\s*where",
+    "suggestion": "Add 'select' or 'include' to optimize query"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/prisma-optimize.ts",
+  "impact": {
+    "filesAffected": 5,
+    "locChanged": 20,
+    "complexity": 3
+  }
+}

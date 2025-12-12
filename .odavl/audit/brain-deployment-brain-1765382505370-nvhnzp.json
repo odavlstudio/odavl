@@ -1,0 +1,24 @@
+{
+  "runId": "brain-1765382505370-nvhnzp",
+  "timestamp": "2025-12-10T16:01:45.371Z",
+  "entries": [
+    {
+      "timestamp": "2025-12-10T16:01:45.370Z",
+      "type": "riskAnalysis",
+      "details": {
+        "category": "medium",
+        "weight": 0.3,
+        "dominantFileTypes": [
+          "sourceCode"
+        ]
+      }
+    }
+  ],
+  "stats": {
+    "totalEntries": 1,
+    "riskAnalyses": 1,
+    "testImpacts": 0,
+    "baselineStabilities": 0,
+    "finalScores": 0
+  }
+}

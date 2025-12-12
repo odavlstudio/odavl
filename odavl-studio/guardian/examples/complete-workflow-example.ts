@@ -1,20 +1,15 @@
 /**
  * ODAVL Guardian v4.0 - Complete 4-Phase Workflow Example
  * 
- * Demonstrates the full detection pipeline:
- * Phase 1: Runtime Testing (Playwright) → 
- * Phase 2: Visual Inspection (AI) →
- * Phase 3: Error Analysis (AI) →
- * Phase 4: Handoff Generation (JSON)
+ * ⚠️ DEPRECATED - BOUNDARY VIOLATION
+ * This example violated Guardian boundaries (code analysis + fixing).
+ * Guardian = Website Testing ONLY.
  * 
- * Usage:
- *   export ANTHROPIC_API_KEY=your_key
- *   pnpm tsx examples/complete-workflow-example.ts
- * 
- * @module examples/complete-workflow
+ * TODO: Refactor to website testing workflow or remove.
  */
 
-import { GuardianAutopilotHandoff } from '../lib/handoff-schema.js';
+// ❌ REMOVED: handoff-schema.ts violated Guardian boundaries
+// import { GuardianAutopilotHandoff } from '../lib/handoff-schema.js';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 

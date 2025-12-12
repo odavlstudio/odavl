@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developers.cloudflare.com/waf/schemas/waf-config.json",
+  "name": "ODAVL Production WAF",
+  "description": "Production-grade Cloudflare WAF rules for ODAVL Cloud Console",
+  "rules": [
+    {
+      "id": "rate_limit_api",
+      "action": "challenge",
+      "expression": "(http.request.uri.path contains \"/api/v1/\") and (rate(5m) > 100)",
+      "description": "Rate limit Public API v1 to 100 requests per 5 minutes"
+    },
+    {
+      "id": "block_sql_injection",
+      "action": "block",
+      "expression": "(http.request.uri.query contains \"' OR 1=1\" or http.request.uri.query contains \"UNION SELECT\")",
+      "description": "Block SQL injection attempts"
+    },
+    {
+      "id": "block_xss",
+      "action": "block",
+      "expression": "(http.request.uri.query contains \"<script\" or http.request.body contains \"<script\")",
+      "description": "Block XSS attempts"
+    },
+    {
+      "id": "block_path_traversal",
+      "action": "block",
+      "expression": "(http.request.uri.path contains \"../\" or http.request.uri.path contains \"..\\\\\")",
+      "description": "Block path traversal attacks"
+    },
+    {
+      "id": "allow_known_bots",
+      "action": "allow",
+      "expression": "(cf.client.bot and cf.verified_bot_category in {\"Search Engine Crawler\"})",
+      "description": "Allow verified search engine crawlers"
+    },
+    {
+      "id": "challenge_unknown_bots",
+      "action": "challenge",
+      "expression": "(cf.client.bot and not cf.verified_bot_category)",
+      "description": "Challenge unknown bots"
+    },
+    {
+      "id": "block_bad_reputation",
+      "action": "block",
+      "expression": "(cf.threat_score > 50)",
+      "description": "Block requests from high threat score IPs"
+    }
+  ]
+}

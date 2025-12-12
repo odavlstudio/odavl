@@ -5,6 +5,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface BundleAnalysis {
     totalSize: number;
@@ -77,17 +78,19 @@ export class BundleAnalyzer {
         const rollupPath = path.join(this.workspaceRoot, 'rollup.config.js');
 
         if (fs.existsSync(webpackPath)) {
-            const content = fs.readFileSync(webpackPath, 'utf-8');
+            const content = safeReadFile(webpackPath);
+            if (!content) return { type: 'unknown', configPath: '', hasTreeShaking: false, hasCodeSplitting: false };
             return {
                 type: 'webpack',
                 configPath: webpackPath,
-                hasTreeShaking: /mode:\s*['"]production['"]/.test(content),
+                hasTreeShaking: /mode:\s*['"']production['"']/.test(content),
                 hasCodeSplitting: /splitChunks/.test(content),
             };
         }
 
         if (fs.existsSync(vitePath)) {
-            const content = fs.readFileSync(vitePath, 'utf-8');
+            const content = safeReadFile(vitePath);
+            if (!content) return { type: 'unknown', configPath: '', hasTreeShaking: false, hasCodeSplitting: false };
             return {
                 type: 'vite',
                 configPath: vitePath,
@@ -97,7 +100,8 @@ export class BundleAnalyzer {
         }
 
         if (fs.existsSync(rollupPath)) {
-            const content = fs.readFileSync(rollupPath, 'utf-8');
+            const content = safeReadFile(rollupPath);
+            if (!content) return { type: 'unknown', configPath: '', hasTreeShaking: false, hasCodeSplitting: false };
             return {
                 type: 'rollup',
                 configPath: rollupPath,
@@ -130,7 +134,9 @@ export class BundleAnalyzer {
             return modules;
         }
 
-        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+        const content = safeReadFile(packageJsonPath);
+        if (!content) return modules;
+        const packageJson = JSON.parse(content);
         const dependencies = {
             ...packageJson.dependencies,
             ...packageJson.devDependencies,
@@ -158,7 +164,8 @@ export class BundleAnalyzer {
      */
     checkImportPatterns(filePath: string): string[] {
         const issues: string[] = [];
-        const content = fs.readFileSync(filePath, 'utf-8');
+        const content = safeReadFile(filePath);
+        if (!content) return issues;
 
         // Full lodash import
         if (/import\s+_\s+from\s+['"]lodash['"]/.test(content)) {

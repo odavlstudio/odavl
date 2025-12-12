@@ -193,8 +193,14 @@ model TestRun {
   // Test results as JSON (flexible schema per test type)
   results     Json
 
-  // Screenshots/artifacts
+  // Screenshots/artifacts/videos
   screenshots String[]
+  videos      String[]  @default([]) // Video recordings of test runs
+  traces      String[]  @default([]) // Playwright trace files
+  
+  // Storage metadata
+  artifactsUrl String?  // CDN/S3 URL for artifacts
+  artifactsSize Int?    // Total size in bytes
 
   // Metrics
   errorCount  Int       @default(0)

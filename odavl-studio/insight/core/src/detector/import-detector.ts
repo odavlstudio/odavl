@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface ImportError {
     file: string;
@@ -59,11 +60,37 @@ export class ImportDetector {
 
     /**
      * Check imports in a single file
+     * PHASE 2 FIX: Add isFile() check to prevent EISDIR errors
+     * PHASE 7 ENHANCEMENT: Handle symlinks, check readability, validate encoding
      */
     private async checkFileImports(filePath: string): Promise<ImportError[]> {
         const errors: ImportError[] = [];
-        const content = fs.readFileSync(filePath, 'utf8');
-        const lines = content.split('\n');
+        
+        try {
+            // PHASE 2 FIX: Check if path is a file before reading
+            const stats = fs.statSync(filePath);
+            if (!stats.isFile()) {
+                console.log(`[ImportDetector] Skipping directory: ${filePath}`);
+                return errors;
+            }
+            
+            // PHASE 7 ENHANCEMENT: Check for symlinks and validate target
+            if (stats.isSymbolicLink()) {
+                const realPath = fs.realpathSync(filePath);
+                const realStats = fs.statSync(realPath);
+                if (!realStats.isFile()) {
+                    console.log(`[ImportDetector] Symlink target is not a file: ${filePath}`);
+                    return errors;
+                }
+            }
+            
+            // Use safeReadFile to handle directories and unreadable files
+            const content = safeReadFile(filePath);
+            if (!content) {
+                console.log(`[ImportDetector] Skipping unreadable or directory: ${filePath}`);
+                return errors;
+            }
+            const lines = content.split('\n');
 
         // Import pattern:
         // import { x } from './path'
@@ -113,6 +140,16 @@ export class ImportDetector {
         }
 
         return errors;
+        
+        } catch (error: any) {
+            // PHASE 2 FIX: Catch EISDIR and other file system errors
+            if (error.code === 'EISDIR') {
+                console.log(`[ImportDetector] Skipped directory: ${filePath}`);
+            } else {
+                console.error(`[ImportDetector] Error reading ${filePath}:`, error.message);
+            }
+            return errors;
+        }
     }
 
     /**

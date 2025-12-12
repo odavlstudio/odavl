@@ -7,7 +7,7 @@
     "odavl": "dist/index.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs",
+    "build": "tsup && node scripts/add-shebang.cjs",
     "prepublishOnly": "pnpm run build"
   },
   "author": "Mohammad Nawlo",
@@ -23,13 +23,19 @@
     "node": ">=18.18"
   },
   "dependencies": {
+    "@odavl/core": "workspace:*",
+    "@odavl-studio/brain": "workspace:*",
     "@odavl-studio/insight-core": "workspace:*",
+    "@odavl-studio/telemetry": "workspace:*",
+    "@odavl/oplayer": "workspace:*",
     "chalk": "^5.6.2",
     "js-yaml": "^4.1.1"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.4",
     "@types/node": "^24.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "tsup": "^8.5.0",
     "typescript": "^5.6.3"
   },

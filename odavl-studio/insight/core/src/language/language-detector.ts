@@ -11,6 +11,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { safeReadFile } from '../utils/safe-file-reader';
 
 export enum Language {
   TypeScript = 'typescript',
@@ -113,7 +114,11 @@ export class LanguageDetector {
       confidence += 50;
 
       try {
-        const content = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
+        const fileContent = safeReadFile(packageJson);
+        if (!fileContent) {
+          return { language: 'typescript', confidence, indicators };
+        }
+        const content = JSON.parse(fileContent);
         
         // Check for TypeScript dependencies (30 points)
         const deps = { ...content.dependencies, ...content.devDependencies };

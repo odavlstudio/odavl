@@ -1,9 +1,9 @@
 # 🧠 ODAVL Insight Report
 
 **Workspace:** `odavl-studio/insight`  
-**Generated:** 28.11.2025, 21:33:10  
-**Duration:** 43.6s  
-**Total Issues:** 464
+**Generated:** 6.12.2025, 13:32:27  
+**Duration:** 66.5s  
+**Total Issues:** 1286
 
 ---
 
@@ -11,9 +11,9 @@
 
 | Severity | Count | Percentage |
 |----------|-------|------------|
-| 🚨 Critical | 65 | 14.0% |
+| 🚨 Critical | 106 | 8.2% |
 | ⚠️ High | 0 | 0.0% |
-| 📊 Medium | 399 | 86.0% |
+| 📊 Medium | 1180 | 91.8% |
 | ℹ️ Low | 0 | 0.0% |
 
 ---
@@ -22,20 +22,23 @@
 
 | Detector | Critical | High | Medium | Low | Total |
 |----------|----------|------|--------|-----|-------|
-| ⚡ Performance | 58 | 0 | 73 | 0 | **131** |
-| 🧮 Complexity | 2 | 0 | 277 | 0 | **279** |
+| ⚡ Performance | 63 | 0 | 193 | 0 | **256** |
+| 🧮 Complexity | 6 | 0 | 491 | 0 | **497** |
+| 🔄 Circular Deps | 0 | 0 | 4 | 0 | **4** |
+| 📦 Imports | 0 | 0 | 35 | 0 | **35** |
 | 🏗️ Build | 0 | 0 | 1 | 0 | **1** |
-| 🔐 Isolation | 5 | 0 | 48 | 0 | **53** |
+| 🌐 Network | 7 | 0 | 371 | 0 | **378** |
+| 🔐 Isolation | 30 | 0 | 85 | 0 | **115** |
 
 ---
 
 ## 🚨 Top 10 Priority Issues
 
-### 1. 🚨 **CRITICAL** Long function (326 lines)
+### 1. 🚨 **CRITICAL** Long function (102 lines)
 
 - **Detector:** Unknown
 - **Confidence:** 100%
-- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\scripts\interactive-cli.ts:336`
+- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\scripts\interactive-cli.ts:611`
 - **💡 Suggestion:** 1. Extract logical blocks into separate functions
 
 ### 2. 🚨 **CRITICAL** Long function (162 lines)
@@ -56,14 +59,14 @@
 
 - **Detector:** Unknown
 - **Confidence:** 100%
-- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\src\detector\network-detector.ts:253`
+- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\src\detector\network-detector.ts:271`
 - **💡 Suggestion:** Review and refactor this code section.
 
 ### 5. 🚨 **CRITICAL** axios call inside loop (N+1 HTTP requests)
 
 - **Detector:** Unknown
 - **Confidence:** 100%
-- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\src\detector\network-detector.ts:275`
+- **Location:** `C:\Users\sabou\dev\odavl\odavl-studio\insight\core\src\detector\network-detector.ts:293`
 - **💡 Suggestion:** Review and refactor this code section.
 
 ### 6. 🚨 **CRITICAL** axios call inside loop (N+1 HTTP requests)
@@ -107,7 +110,7 @@
 
 ### Immediate Actions (Next 24 hours)
 
-- Fix 65 critical Unknown issues
+- Fix 106 critical Unknown issues
 
 ### Short-term (This Week)
 
@@ -115,7 +118,7 @@
 
 ### Long-term (This Month)
 
-- Review and refactor 399 medium-priority issues
+- Review and refactor 1180 medium-priority issues
 - Implement automated testing for resolved issues
 - Update coding standards and documentation
 
@@ -123,17 +126,17 @@
 
 ## 📈 Progress Tracking
 
-- [ ] Fix 65 critical issues
+- [ ] Fix 106 critical issues
 - [ ] Fix 0 high-priority issues
-- [ ] Review 399 medium-priority issues
+- [ ] Review 1180 medium-priority issues
 - [ ] Address 0 low-priority issues
 
 ---
 
 ## 📊 Quality Metrics
 
-- **Critical Issues Density:** 14.0%
-- **High Confidence Issues:** 200
+- **Critical Issues Density:** 8.2%
+- **High Confidence Issues:** 509
 - **Code Health Score:** 0/100
 
 ---

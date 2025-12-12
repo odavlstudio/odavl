@@ -46,13 +46,8 @@ export async function initCI(options: InitCIOptions = {}): Promise<void> {
 
     console.log(`✅ Selected platform: ${platform}\n`);
 
-    // Locate template file
-    const templatePath = getTemplatePath(platform);
-    if (!fs.existsSync(templatePath)) {
-        console.error(`❌ Template not found: ${templatePath}`);
-        console.error('   Please ensure ODAVL CLI is installed correctly.');
-        process.exit(1);
-    }
+    // Get template content
+    const templateContent = getTemplateContent(platform);
 
     // Determine destination path
     const destinationPath = getDestinationPath(platform, workspaceRoot);
@@ -67,12 +62,12 @@ export async function initCI(options: InitCIOptions = {}): Promise<void> {
         }
     }
 
-    // Copy template
+    // Write template
     try {
-        copyTemplate(templatePath, destinationPath);
+        writeTemplate(destinationPath, templateContent);
         console.log(`✅ Created: ${destinationPath}\n`);
     } catch (error) {
-        console.error(`❌ Failed to copy template: ${error instanceof Error ? error.message : String(error)}`);
+        console.error(`❌ Failed to write template: ${error instanceof Error ? error.message : String(error)}`);
         process.exit(1);
     }
 
@@ -134,17 +129,53 @@ async function promptOverwrite(): Promise<boolean> {
 }
 
 /**
- * Get absolute path to template file
+ * Get template content for platform
+ */
+function getTemplateContent(platform: Platform): string {
+    if (platform === 'github') {
+        return `name: ODAVL CI
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm odavl observe
+      - run: pnpm odavl verify
+`;
+    }
+    return `# GitLab CI for ODAVL
+odavl-validate:
+  image: node:20
+  before_script:
+    - npm install -g pnpm@9
+    - pnpm install
+  script:
+    - pnpm odavl observe
+    - pnpm odavl verify
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+`;
+}
+
+/**
+ * Get template path for platform (legacy - now generates inline)
  */
 function getTemplatePath(platform: Platform): string {
-    // In production, templates are bundled with CLI
-    // For monorepo development, use relative path
-    const templatesDir = path.resolve(__dirname, '../../../../templates');
-
-    if (platform === 'github') {
-        return path.join(templatesDir, 'github-actions', 'odavl-insight.yml');
-    }
-    return path.join(templatesDir, 'gitlab-ci', 'odavl-insight.yml');
+    return ''; // Not used anymore - content generated inline
 }
 
 /**
@@ -165,11 +196,9 @@ function getDestinationPath(platform: Platform, workspaceRoot: string): string {
 }
 
 /**
- * Copy template file to destination
+ * Write template to destination
  */
-function copyTemplate(sourcePath: string, destinationPath: string): void {
-    const content = fs.readFileSync(sourcePath, 'utf8');
-
+function writeTemplate(destinationPath: string, content: string): void {
     // For GitLab, check if .gitlab-ci.yml exists with other jobs
     if (destinationPath.endsWith('.gitlab-ci.yml')) {
         if (fs.existsSync(destinationPath)) {
@@ -177,8 +206,8 @@ function copyTemplate(sourcePath: string, destinationPath: string): void {
             const existing = fs.readFileSync(destinationPath, 'utf8');
 
             // Check if ODAVL already configured
-            if (existing.includes('odavl-insight-analysis')) {
-                console.warn('⚠️  ODAVL Insight already configured in .gitlab-ci.yml');
+            if (existing.includes('odavl-validate')) {
+                console.warn('⚠️  ODAVL already configured in .gitlab-ci.yml');
                 console.log('   Overwriting existing configuration...\n');
             }
 

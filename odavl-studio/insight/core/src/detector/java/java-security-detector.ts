@@ -1,4 +1,4 @@
-import { Detector } from '../base-detector.js';
+// import { Detector } from '../base-detector.js'; // TODO: Create base detector
 import { JavaParser } from '../../parsers/java-parser.js';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
@@ -31,7 +31,7 @@ export interface JavaIssue {
  * Target performance: < 150ms per file (slower than other detectors due to complexity)
  * Target accuracy: 95%+
  */
-export class JavaSecurityDetector implements Detector {
+export class JavaSecurityDetector {
   name = 'java-security';
   language = 'java';
   private parser: JavaParser;

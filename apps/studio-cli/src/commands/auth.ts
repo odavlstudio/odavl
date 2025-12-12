@@ -1,97 +1,305 @@
 /**
  * ODAVL CLI Authentication Commands
- * Interactive login flow for CLI authentication
+ * Unified ODAVL ID authentication via device code flow
+ * 
+ * Commands:
+ * - odavl auth login  - Device code flow (browser-based OAuth)
+ * - odavl auth status - Show current ODAVL ID session
+ * - odavl auth logout - Clear local credentials
+ * - odavl auth key    - Legacy API key login (deprecated)
  */
 
 import { Command } from 'commander';
 import * as readline from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
-import { cliAuthService } from '../../../packages/core/src/services/cli-auth';
+import { CLIAuthService } from '@odavl/core/services/cli-auth';
+import chalk from 'chalk';
+import ora from 'ora';
+import open from 'open';
+import type { DeviceCodeResponse } from '@odavl-studio/auth/device-code-flow';
+import { verifyOdavlToken } from '@odavl-studio/auth/odavl-id';
+import { formatDistance } from 'date-fns';
+import { trackInsightEvent, InsightTelemetryClient } from '@odavl-studio/telemetry';
 
+const API_BASE_URL = process.env.ODAVL_API_URL || 'https://api.odavl.com';
+
+/**
+ * Device code flow login command
+ */
 export const loginCommand = new Command('login')
-  .description('Authenticate with ODAVL Studio')
-  .option('-k, --api-key <key>', 'API key for authentication')
-  .option('-p, --profile <name>', 'Profile name', 'default')
-  .option('--api-url <url>', 'Override API URL')
+  .description('Sign in to your ODAVL account (browser-based OAuth)')
+  .option('--api-url <url>', 'Override API base URL')
   .action(async (options) => {
+    const apiUrl = options.apiUrl || API_BASE_URL;
+    const authService = CLIAuthService.getInstance();
+    
+    console.log(chalk.cyan.bold('\n🔐 ODAVL Authentication\n'));
+    console.log(chalk.white('Initiating device authorization flow...\n'));
+    
+    const spinner = ora('Requesting device code...').start();
+    
     try {
-      const rl = readline.createInterface({ input, output });
+      // Step 1: Request device code
+      const response = await fetch(`${apiUrl}/auth/device/code`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId: 'odavl-cli' }),
+      });
       
-      console.log('\n🔐 ODAVL Studio Authentication\n');
-      
-      // Get API key
-      let apiKey = options.apiKey;
-      
-      if (!apiKey) {
-        console.log('📝 You can create an API key at: https://studio.odavl.com/settings/api-keys\n');
-        apiKey = await rl.question('Enter your API key: ');
+      if (!response.ok) {
+        throw new Error(`Failed to request device code: ${response.statusText}`);
       }
       
-      if (!apiKey) {
-        console.error('❌ API key is required');
-        process.exit(1);
+      const deviceData: DeviceCodeResponse = await response.json();
+      spinner.succeed('Device code obtained\n');
+      
+      // Step 2: Display instructions
+      console.log(chalk.cyan('Please complete authentication in your browser:\n'));
+      console.log(chalk.white('  URL:  ') + chalk.green.bold(deviceData.verificationUri));
+      console.log(chalk.white('  Code: ') + chalk.yellow.bold(deviceData.userCode) + '\n');
+      
+      console.log(chalk.gray(`Opening browser automatically...\n`));
+      
+      // Step 3: Open browser
+      try {
+        await open(deviceData.verificationUriComplete || deviceData.verificationUri);
+      } catch (error) {
+        console.log(chalk.yellow('⚠️  Could not open browser automatically.'));
+        console.log(chalk.white('Please open the URL manually.\n'));
       }
       
-      // Set API URL if provided
-      if (options.apiUrl) {
-        process.env.ODAVL_API_URL = options.apiUrl;
+      // Step 4: Poll for authorization
+      const pollSpinner = ora({
+        text: 'Waiting for authorization...',
+        color: 'cyan',
+      }).start();
+      
+      let attempts = 0;
+      const maxAttempts = Math.ceil(deviceData.expiresIn / deviceData.interval);
+      
+      while (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, deviceData.interval * 1000));
+        
+        try {
+          const tokenResponse = await fetch(`${apiUrl}/auth/device/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ deviceCode: deviceData.deviceCode }),
+          });
+          
+          if (tokenResponse.ok) {
+            const tokens = await tokenResponse.json();
+            
+            // Verify token and extract session
+            const session = verifyOdavlToken(tokens.accessToken);
+            if (!session) {
+              throw new Error('Invalid token received from server');
+            }
+            
+            // Save credentials
+            await authService.login({
+              apiKey: tokens.accessToken,
+              userId: session.userId,
+              email: session.email,
+              organizationId: session.organizationId || '',
+              expiresAt: session.expiresAt?.toISOString() || '',
+              refreshToken: tokens.refreshToken,
+            });
+            
+            pollSpinner.succeed('Authentication successful!\n');
+            
+            // Track login event
+            const isFirstLogin = !await authService.hasSessionHistory();
+            await trackInsightEvent('insight.cli_login', {
+              authMethod: 'device_code',
+              isFirstLogin,
+            }, {
+              userId: InsightTelemetryClient.hashUserId(session.email),
+              planId: session.insightPlanId || 'INSIGHT_FREE',
+              source: 'cli',
+            });
+            
+            // Display welcome message
+            console.log(chalk.green.bold('✅ Welcome to ODAVL!\n'));
+            console.log(chalk.white('  Name:  ') + chalk.cyan(session.name));
+            console.log(chalk.white('  Email: ') + chalk.cyan(session.email));
+            console.log(chalk.white('  Plan:  ') + chalk.yellow(session.insightPlanId));
+            
+            if (session.organizationId) {
+              console.log(chalk.white('  Org:   ') + chalk.magenta(session.organizationId));
+            }
+            
+            console.log();
+            console.log(chalk.gray('Your credentials have been saved locally.'));
+            console.log(chalk.gray('Run `odavl auth status` to view your account.\n'));
+            
+            return;
+          }
+          
+          // Check for specific errors
+          const error = await tokenResponse.json();
+          
+          if (error.error === 'authorization_pending') {
+            // Still waiting, continue polling
+            attempts++;
+            pollSpinner.text = `Waiting for authorization... (${attempts}/${maxAttempts})`;
+            continue;
+          }
+          
+          if (error.error === 'slow_down') {
+            // Server asked to slow down
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            continue;
+          }
+          
+          // Other error
+          throw new Error(error.message || 'Authentication failed');
+          
+        } catch (error) {
+          if (error instanceof Error && error.message.includes('fetch')) {
+            // Network error, continue trying
+            attempts++;
+            continue;
+          }
+          throw error;
+        }
       }
       
-      console.log('\n⏳ Validating API key...');
+      // Timeout
+      pollSpinner.fail('Authentication timed out\n');
+      console.log(chalk.red('❌ Device code expired. Please try again.\n'));
+      console.log(chalk.gray(`Run: ${chalk.cyan('odavl auth login')}\n`));
+      process.exit(1);
       
-      // Login
-      await cliAuthService.login(apiKey.trim(), options.profile);
-      
-      // Get user info
-      const user = await cliAuthService.getCurrentUser();
-      
-      console.log('\n✅ Successfully authenticated!');
-      console.log(`\n👤 User: ${user?.email}`);
-      console.log(`🏢 Organization: ${user?.organizationId}`);
-      console.log(`📁 Profile: ${user?.profileName}`);
-      console.log('\n💡 You can now use all ODAVL CLI commands.\n');
-      
-      rl.close();
     } catch (error) {
-      console.error(`\n❌ Authentication failed: ${error instanceof Error ? error.message : 'Unknown error'}\n`);
+      spinner.fail('Authentication failed\n');
+      
+      if (error instanceof Error) {
+        console.log(chalk.red(`❌ Error: ${error.message}\n`));
+      } else {
+        console.log(chalk.red('❌ An unexpected error occurred\n'));
+      }
+      
       process.exit(1);
     }
   });
 
-export const logoutCommand = new Command('logout')
-  .description('Sign out from ODAVL Studio')
-  .option('-p, --profile <name>', 'Profile name to logout')
-  .action(async (options) => {
-    try {
-      await cliAuthService.logout(options.profile);
-      console.log('\n✅ Successfully logged out!\n');
-    } catch (error) {
-      console.error(`\n❌ Logout failed: ${error instanceof Error ? error.message : 'Unknown error'}\n`);
-      process.exit(1);
-    }
-  });
-
-export const whoamiCommand = new Command('whoami')
+/**
+ * Show auth status command
+ */
+export const statusCommand = new Command('status')
   .description('Show current authentication status')
   .action(async () => {
+    const authService = CLIAuthService.getInstance();
+    
+    console.log(chalk.cyan.bold('\n👤 ODAVL Account Status\n'));
+    
     try {
-      const user = await cliAuthService.getCurrentUser();
+      const credentials = await authService.getCredentials();
       
-      if (!user) {
-        console.log('\n❌ Not authenticated');
-        console.log('💡 Run "odavl login" to authenticate\n');
-        process.exit(1);
+      if (!credentials) {
+        console.log(chalk.yellow('⚠️  Not authenticated\n'));
+        console.log(chalk.gray('Sign in to your ODAVL account:\n'));
+        console.log(chalk.white(`  ${chalk.cyan('odavl auth login')}\n`));
+        return;
       }
       
-      console.log('\n✅ Authenticated as:');
-      console.log(`\n👤 Email: ${user.email}`);
-      console.log(`🆔 User ID: ${user.userId}`);
-      console.log(`🏢 Organization: ${user.organizationId}`);
-      console.log(`📁 Profile: ${user.profileName}\n`);
+      // Verify token is still valid
+      const session = verifyOdavlToken(credentials.apiKey);
+      
+      if (!session) {
+        console.log(chalk.red('❌ Token expired\n'));
+        console.log(chalk.gray('Your session has expired. Please sign in again:\n'));
+        console.log(chalk.white(`  ${chalk.cyan('odavl auth login')}\n`));
+        return;
+      }
+      
+      // Display account info
+      console.log(chalk.white('  Status: ') + chalk.green.bold('✅ Authenticated'));
+      console.log(chalk.white('  Name:   ') + chalk.cyan(session.name));
+      console.log(chalk.white('  Email:  ') + chalk.cyan(session.email));
+      console.log(chalk.white('  Plan:   ') + chalk.yellow.bold(session.insightPlanId));
+      
+      if (session.organizationId) {
+        console.log(chalk.white('  Org ID: ') + chalk.magenta(session.organizationId));
+      }
+      
+      // Display token expiry
+      if (session.expiresAt) {
+        const now = new Date();
+        const isExpiringSoon = session.expiresAt.getTime() - now.getTime() < 5 * 60 * 1000;
+        
+        console.log(
+          chalk.white('  Expires:') + 
+          (isExpiringSoon ? chalk.red.bold(' Soon') : chalk.gray(' ' + formatDistance(session.expiresAt, now, { addSuffix: true })))
+        );
+        
+        if (isExpiringSoon) {
+          console.log();
+          console.log(chalk.yellow('⚠️  Your session is expiring soon.'));
+          console.log(chalk.gray('Run `odavl auth login` to refresh.\n'));
+        }
+      }
+      
+      console.log();
+      
     } catch (error) {
-      console.error(`\n❌ Error: ${error instanceof Error ? error.message : 'Unknown error'}\n`);
+      console.log(chalk.red('❌ Error checking authentication status\n'));
+      
+      if (error instanceof Error) {
+        console.log(chalk.gray(error.message + '\n'));
+      }
+      
       process.exit(1);
     }
+  });
+
+/**
+ * Logout command
+ */
+export const logoutCommand = new Command('logout')
+  .description('Sign out of your ODAVL account')
+  .action(async () => {
+    const authService = CLIAuthService.getInstance();
+    
+    console.log(chalk.cyan.bold('\n👋 ODAVL Logout\n'));
+    
+    try {
+      const credentials = await authService.getCredentials();
+      
+      if (!credentials) {
+        console.log(chalk.yellow('⚠️  Not currently authenticated\n'));
+        return;
+      }
+      
+      const spinner = ora('Signing out...').start();
+      
+      // Clear local credentials
+      await authService.logout();
+      
+      spinner.succeed('Signed out successfully\n');
+      
+      console.log(chalk.green('✅ You have been logged out.'));
+      console.log(chalk.gray('Your credentials have been removed from this device.\n'));
+      
+    } catch (error) {
+      console.log(chalk.red('❌ Error during logout\n'));
+      
+      if (error instanceof Error) {
+        console.log(chalk.gray(error.message + '\n'));
+      }
+      
+      process.exit(1);
+    }
+  });
+
+/**
+ * Legacy whoami command (alias for status)
+ */
+export const whoamiCommand = new Command('whoami')
+  .description('Show current authentication status (alias for status)')
+  .action(async () => {
+    await statusCommand.parseAsync(['status'], { from: 'user' });
   });
 
 export const profilesCommand = new Command('profiles')

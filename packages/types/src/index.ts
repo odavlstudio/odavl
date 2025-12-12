@@ -162,6 +162,12 @@ export interface Project {
 
 export type Severity = 'critical' | 'high' | 'medium' | 'low';
 
+/**
+ * Detector names used across ODAVL products
+ * Shared type to avoid cross-product imports
+ */
+export type DetectorName = string;
+
 export interface Issue {
   id: string;
   type: string;

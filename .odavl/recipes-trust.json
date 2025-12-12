@@ -453,5 +453,13 @@
     "trust": 0.1,
     "consecutiveFailures": 3,
     "blacklisted": true
+  },
+  {
+    "id": "remove-unused-imports",
+    "runs": 4,
+    "success": 4,
+    "trust": 1,
+    "consecutiveFailures": 0,
+    "blacklisted": false
   }
 ]

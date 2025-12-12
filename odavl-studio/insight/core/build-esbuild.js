@@ -15,11 +15,18 @@ const entryPoints = [
   'src/learning/index.ts'
 ];
 
-// External Node.js built-ins (don't bundle these)
+// External Node.js built-ins and problematic CJS packages
 const external = [
   'fs', 'path', 'child_process', 'util', 'stream', 'events', 'crypto',
   'node:fs', 'node:path', 'node:child_process', 'node:util', 'node:stream', 'node:events', 'node:crypto',
-  'typescript', 'eslint', '@typescript-eslint/parser', '@typescript-eslint/eslint-plugin'
+  'typescript', 'eslint', '@typescript-eslint/parser', '@typescript-eslint/eslint-plugin',
+  '@odavl-studio/telemetry',  // Workspace dependency - must be external
+  'graphlib',  // CommonJS module with ESM/CJS interop issues
+  // Vue compiler optional template engines (not needed for our use case)
+  'velocityjs', 'dustjs-linkedin', 'atpl', 'liquor', 'twig', 'ejs', 'eco', 'jazz', 'jqtpl',
+  'hamljs', 'hamlet', 'whiskers', 'haml-coffee', 'hogan.js', 'templayed', 'walrus', 'just',
+  'ect', 'mote', 'toffee', 'dot', 'bracket-template', 'ractive', 'htmling', 'babel-core',
+  'plates', 'vash', 'slm', 'marko', 'teacup/lib/express', 'coffee-script', 'squirrelly', 'twing'
 ];
 
 async function build() {
@@ -31,15 +38,14 @@ async function build() {
   }
 
   try {
-    // Build ESM with bundling but keep node: imports external
+    // Build ESM - DON'T bundle, keep all imports external
     await esbuild.build({
       entryPoints,
       outdir: 'dist',
-      bundle: true,  // ← Bundle dependencies
+      bundle: false,  // No bundling - preserve imports
       format: 'esm',
       platform: 'node',
       target: 'node18',
-      external: external,  // Keep Node.js built-ins external
       splitting: false,
       outExtension: { '.js': '.mjs' },
       sourcemap: false,
@@ -48,15 +54,14 @@ async function build() {
     });
     console.log('✅ ESM build complete');
 
-    // Build CJS with bundling
+    // Build CJS - DON'T bundle, keep all imports external
     await esbuild.build({
       entryPoints,
       outdir: 'dist',
-      bundle: true,  // ← Bundle dependencies
+      bundle: false,  // No bundling - preserve imports
       format: 'cjs',
       platform: 'node',
       target: 'node18',
-      external: external,  // Keep Node.js built-ins external
       splitting: false,
       outExtension: { '.js': '.js' },
       sourcemap: false,

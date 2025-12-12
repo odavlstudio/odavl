@@ -1,0 +1,1 @@
+{"timestamp":"2025-12-11T11:46:04.845Z","workspaceRoot":"C:\\Users\\sabou\\dev\\odavl\\apps\\studio-cli","filesAnalyzed":17,"detectorsRun":["eslint","performance","complexity"],"issuesFound":999,"issuesBySeverity":{"critical":36,"high":53,"medium":888,"low":22},"fileRiskSummary":{"avgRisk":0.3399999999999999,"criticalCount":0}}

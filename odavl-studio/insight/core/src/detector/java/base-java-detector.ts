@@ -24,18 +24,17 @@ export interface JavaIssue {
 }
 
 export abstract class BaseJavaDetector {
-    protected workspaceRoot: string;
     protected detectorName: string;
 
-    constructor(workspaceRoot: string, detectorName: string) {
-        this.workspaceRoot = workspaceRoot;
-        this.detectorName = detectorName;
+    constructor(detectorName?: string) {
+        this.detectorName = detectorName || 'java-detector';
     }
 
     /**
      * Main detection method - must be implemented by subclasses
+     * @param targetDir - Workspace root directory to analyze
      */
-    abstract detect(): Promise<JavaIssue[]>;
+    abstract detect(targetDir?: string): Promise<JavaIssue[]>;
 
     /**
      * Find all Java files in workspace (skip build directories)

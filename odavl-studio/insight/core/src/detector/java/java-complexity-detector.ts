@@ -19,26 +19,27 @@ interface PMDViolation {
 }
 
 export class JavaComplexityDetector extends BaseJavaDetector {
-    constructor(workspaceRoot: string) {
-        super(workspaceRoot, 'java-complexity');
+    constructor() {
+        super('java-complexity');
     }
 
-    async detect(): Promise<JavaIssue[]> {
+    async detect(targetDir?: string): Promise<JavaIssue[]> {
+        const workspaceRoot = targetDir || process.cwd();
         const issues: JavaIssue[] = [];
 
         try {
             // Check if this is a Java project
-            const isJava = await this.isJavaProject(this.workspaceRoot);
+            const isJava = await this.isJavaProject(workspaceRoot);
             if (!isJava) return [];
 
             // Find all Java files
-            const javaFiles = await this.findJavaFiles(this.workspaceRoot);
+            const javaFiles = await this.findJavaFiles(workspaceRoot);
             if (javaFiles.length === 0) return [];
 
             console.log(`[JavaComplexityDetector] Found ${javaFiles.length} Java files`);
 
             // Try PMD first (if available)
-            const pmdIssues = await this.runPMD(this.workspaceRoot);
+            const pmdIssues = await this.runPMD(workspaceRoot);
             if (pmdIssues.length > 0) {
                 issues.push(...pmdIssues);
                 return issues;
@@ -46,7 +47,7 @@ export class JavaComplexityDetector extends BaseJavaDetector {
 
             // Fallback: Pattern-based analysis (simple heuristics)
             for (const file of javaFiles) {
-                const fileIssues = await this.analyzeFileComplexity(file);
+                const fileIssues = await this.analyzeFileComplexity(file, workspaceRoot);
                 issues.push(...fileIssues);
             }
 
@@ -99,9 +100,10 @@ export class JavaComplexityDetector extends BaseJavaDetector {
                 const violations = fileData.violations || [];
                 
                 for (const violation of violations) {
+                    const workspaceRoot = process.cwd(); // Use current directory for relative paths in parsing context
                     issues.push({
                         id: `pmd-${violation.rule}-${violation.beginline}`,
-                        file: path.relative(this.workspaceRoot, fileData.filename),
+                        file: path.relative(workspaceRoot, fileData.filename),
                         line: violation.beginline,
                         column: violation.begincolumn || 0,
                         severity: this.getPrioritySeverity(violation.priority),

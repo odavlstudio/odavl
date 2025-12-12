@@ -15,6 +15,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface NetworkError {
     file: string;
@@ -65,6 +66,7 @@ export interface NetworkStatistics {
 export class NetworkDetector {
     private workspaceRoot: string;
     private ignorePatterns: string[];
+    private readonly MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB - skip large files
 
     constructor(workspaceRoot: string) {
         this.workspaceRoot = workspaceRoot;
@@ -100,7 +102,19 @@ export class NetworkDetector {
 
         for (const file of files) {
             const filePath = path.join(dir, file);
-            const content = fs.readFileSync(filePath, 'utf8');
+            
+            // Use safeReadFile to handle directories and errors gracefully
+            const content = safeReadFile(filePath);
+            if (!content) {
+                // Skip directories, unreadable files, or errors
+                continue;
+            }
+                
+            // PHASE 7 ENHANCEMENT: Detect binary files (null bytes indicate binary)
+            if (content.includes('\0')) {
+                console.log(`[NetworkDetector] Skipping binary file: ${filePath}`);
+                continue;
+            }
 
             // Skip if file is likely false positive (config, types, etc.)
             if (this.shouldExclude(filePath, content)) {

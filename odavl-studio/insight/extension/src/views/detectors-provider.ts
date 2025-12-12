@@ -1,4 +1,7 @@
 import * as vscode from 'vscode';
+import { getLicenseManager } from '../extension.js';
+import { DetectorRegistry, type DetectorInfo as RegistryDetectorInfo } from '../detector-registry.js';
+import { SubscriptionTier } from '../license/license-manager.js';
 
 export interface DetectorInfo {
   id: string;
@@ -6,6 +9,8 @@ export interface DetectorInfo {
   enabled: boolean;
   language: string;
   description: string;
+  locked?: boolean; // NEW: Indicates if detector requires upgrade
+  requiredTier?: SubscriptionTier; // NEW: Required tier
 }
 
 export class DetectorTreeItem extends vscode.TreeItem {
@@ -17,16 +22,32 @@ export class DetectorTreeItem extends vscode.TreeItem {
     super(label, collapsibleState);
     
     if (detector) {
-      this.tooltip = detector.description;
+      this.tooltip = detector.locked 
+        ? `${detector.description}\n\n🔒 Requires ${detector.requiredTier} tier - Click to upgrade`
+        : detector.description;
       this.description = detector.language;
-      this.contextValue = 'detector';
+      this.contextValue = detector.locked ? 'detector-locked' : 'detector';
       
-      this.iconPath = new vscode.ThemeIcon(
-        detector.enabled ? 'check' : 'close',
-        detector.enabled ? 
-          new vscode.ThemeColor('terminal.ansiGreen') : 
-          new vscode.ThemeColor('terminal.ansiRed')
-      );
+      // Icon based on lock status
+      if (detector.locked) {
+        this.iconPath = new vscode.ThemeIcon(
+          'lock',
+          new vscode.ThemeColor('editorWarning.foreground')
+        );
+        // Make locked detectors clickable
+        this.command = {
+          command: 'odavl-insight.showUpgradePrompt',
+          title: 'Upgrade',
+          arguments: [detector]
+        };
+      } else {
+        this.iconPath = new vscode.ThemeIcon(
+          detector.enabled ? 'check' : 'close',
+          detector.enabled ? 
+            new vscode.ThemeColor('terminal.ansiGreen') : 
+            new vscode.ThemeColor('terminal.ansiRed')
+        );
+      }
     }
   }
 }
@@ -35,38 +56,85 @@ export class DetectorsProvider implements vscode.TreeDataProvider<DetectorTreeIt
   private _onDidChangeTreeData = new vscode.EventEmitter<DetectorTreeItem | undefined | null | void>();
   readonly onDidChangeTreeData = this._onDidChangeTreeData.event;
 
-  private detectors: DetectorInfo[] = [
-    // TypeScript/JavaScript
-    { id: 'typescript', name: 'TypeScript', enabled: true, language: 'TypeScript', description: 'TypeScript compiler errors and type issues' },
-    { id: 'eslint', name: 'ESLint', enabled: true, language: 'TypeScript', description: 'ESLint rule violations' },
-    { id: 'import', name: 'Import', enabled: true, language: 'TypeScript', description: 'Import/export issues' },
-    { id: 'circular', name: 'Circular', enabled: true, language: 'TypeScript', description: 'Circular dependency detection' },
-    { id: 'complexity', name: 'Complexity', enabled: true, language: 'TypeScript', description: 'Code complexity analysis' },
-    
-    // Security
-    { id: 'security', name: 'Security', enabled: true, language: 'All', description: 'Security vulnerabilities (XSS, SQL injection, secrets)' },
-    
-    // Performance
-    { id: 'performance', name: 'Performance', enabled: true, language: 'All', description: 'Performance bottlenecks' },
-    { id: 'network', name: 'Network', enabled: true, language: 'All', description: 'Network request issues' },
-    
-    // Python
-    { id: 'python-type', name: 'Python Type', enabled: true, language: 'Python', description: 'Type hint violations' },
-    { id: 'python-security', name: 'Python Security', enabled: true, language: 'Python', description: 'Python security issues' },
-    { id: 'python-complexity', name: 'Python Complexity', enabled: true, language: 'Python', description: 'Python code complexity' },
-    
-    // Java
-    { id: 'java-exception', name: 'Java Exception', enabled: true, language: 'Java', description: 'Exception handling patterns' },
-    { id: 'java-stream', name: 'Java Stream', enabled: true, language: 'Java', description: 'Stream API usage' },
-    { id: 'java-complexity', name: 'Java Complexity', enabled: true, language: 'Java', description: 'Java code complexity' },
-  ];
+  private detectors: DetectorInfo[] = [];
 
   constructor(private context: vscode.ExtensionContext) {
-    this.loadDetectorStates();
+    this.loadDetectors();
   }
 
-  refresh(): void {
+  /**
+   * Load detectors based on current license tier
+   */
+  private async loadDetectors(): Promise<void> {
     try {
+      const licenseManager = getLicenseManager();
+      const license = await licenseManager.checkLicense();
+      
+      // Get available detectors from registry
+      const availableDetectors = DetectorRegistry.getAvailableDetectors(license.tier);
+      const lockedDetectors = DetectorRegistry.getLockedDetectors(license.tier);
+
+      // Map language categories
+      const languageMap: Record<string, string> = {
+        'typescript': 'TypeScript',
+        'eslint': 'TypeScript',
+        'import': 'TypeScript',
+        'security': 'All',
+        'performance': 'All',
+        'circular': 'TypeScript',
+        'package': 'All',
+        'build': 'All',
+        'network': 'All',
+        'complexity': 'All',
+        'isolation': 'TypeScript',
+        'python': 'Python',
+        'java': 'Java',
+        'go': 'Go',
+        'rust': 'Rust',
+        'ml-prediction': 'All',
+        'auto-fix': 'All',
+        'custom-rules': 'Enterprise',
+        'audit-logs': 'Enterprise',
+        'compliance': 'Enterprise'
+      };
+
+      // Convert to DetectorInfo format (available)
+      this.detectors = [
+        ...availableDetectors.map(d => ({
+          id: d.id,
+          name: d.name,
+          enabled: true,
+          language: languageMap[d.id] || 'All',
+          description: d.description,
+          locked: false
+        })),
+        // Add locked detectors (grayed out)
+        ...lockedDetectors.map(d => ({
+          id: d.id,
+          name: d.name,
+          enabled: false,
+          language: languageMap[d.id] || 'All',
+          description: d.description,
+          locked: true,
+          requiredTier: d.requiredTier
+        }))
+      ];
+
+      this.saveDetectorStates();
+    } catch (error) {
+      console.error('Failed to load detectors:', error);
+      // Fallback to FREE tier detectors
+      this.detectors = [
+        { id: 'typescript', name: 'TypeScript', enabled: true, language: 'TypeScript', description: 'TypeScript compiler errors' },
+        { id: 'eslint', name: 'ESLint', enabled: true, language: 'TypeScript', description: 'ESLint violations' },
+        { id: 'import', name: 'Import', enabled: true, language: 'TypeScript', description: 'Import issues' }
+      ];
+    }
+  }
+
+  async refresh(): Promise<void> {
+    try {
+      await this.loadDetectors();
       this._onDidChangeTreeData.fire();
     } catch (error) {
       console.error('ODAVL: Failed to refresh detectors', error);
@@ -111,6 +179,19 @@ export class DetectorsProvider implements vscode.TreeDataProvider<DetectorTreeIt
     if (item.detector) {
       const detector = this.detectors.find(d => d.id === item.detector!.id);
       if (detector) {
+        // Prevent toggling locked detectors
+        if (detector.locked) {
+          vscode.window.showWarningMessage(
+            `${detector.name} detector is locked. Upgrade to ${detector.requiredTier} to unlock.`,
+            'Upgrade Now'
+          ).then(selection => {
+            if (selection === 'Upgrade Now') {
+              vscode.commands.executeCommand('odavl.showUpgradePrompt');
+            }
+          });
+          return;
+        }
+
         detector.enabled = !detector.enabled;
         this.saveDetectorStates();
         this.refresh();

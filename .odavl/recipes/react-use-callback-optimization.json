@@ -1,0 +1,21 @@
+{
+  "id": "react-use-callback-optimization",
+  "name": "React useCallback Optimization",
+  "description": "Add useCallback to prevent unnecessary re-renders",
+  "trust": 0.81,
+  "category": "react",
+  "targetFiles": [
+    "**/*.tsx",
+    "!**/node_modules/**"
+  ],
+  "pattern": {
+    "detect": "const handle[A-Z][a-zA-Z]+ = \\(",
+    "suggestion": "Wrap event handlers with useCallback"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/react-callback.ts",
+  "impact": {
+    "filesAffected": 4,
+    "locChanged": 12,
+    "complexity": 2
+  }
+}

@@ -294,18 +294,18 @@ export class ODAVLContextDetector {
               affectedBy = ['@odavl-studio/core', '@odavl-studio/types'];
               affects = [
                 '@odavl-studio/autopilot-engine',
-                '@odavl-studio/guardian-cli',
+                // Guardian is decoupled via @odavl/oplayer (Phase 3A)
               ];
             } else if (productKey === 'autopilot') {
               affectedBy = [
-                '@odavl-studio/insight-core',
+                // Decoupled from Insight via @odavl/oplayer (Phase 2)
                 '@odavl-studio/core',
               ];
-              affects = ['@odavl-studio/guardian-cli'];
+              affects = [];
             } else if (productKey === 'guardian') {
               affectedBy = [
-                '@odavl-studio/insight-core',
-                '@odavl-studio/autopilot-engine',
+                // Decoupled from Insight via @odavl/oplayer (Phase 3A)
+                '@odavl/oplayer', // Guardian uses OPLayer protocols
               ];
               affects = [];
             }

@@ -16,6 +16,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
 import { logger } from '../utils/logger';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 import { filterFalsePositives, type CodeContext } from './false-positive-filters';
 import {
     BundleSizeAnalyzer,
@@ -166,9 +167,14 @@ export class PerformanceDetector {
         }
 
         for (const file of files) {
-            // Check file size first (before reading content)
+            // WAVE 8 PHASE 1: Check file size and skip very large files (>50MB)
             const stats = fs.statSync(file);
             const sizeKB = stats.size / 1024;
+            
+            // Skip files larger than 50MB to prevent memory exhaustion
+            if (sizeKB > 50 * 1024) {
+                continue;
+            }
 
             if (sizeKB > 500) {
                 let severity: 'critical' | 'high' | 'medium' = 'medium';
@@ -196,7 +202,10 @@ export class PerformanceDetector {
                 });
             }
 
-            const content = fs.readFileSync(file, 'utf-8');
+            const content = safeReadFile(file);
+            if (!content) {
+                continue; // Skip unreadable files or directories
+            }
 
             // Delegate to specialized analyzers
             const bundleIssues = this.bundleSizeAnalyzer.detect(file, content);
@@ -1094,12 +1103,8 @@ export class PerformanceDetector {
         const fileSizes = new Map<string, number>();
         for (const issue of issues) {
             if (!fileSizes.has(issue.filePath)) {
-                try {
-                    const content = fs.readFileSync(issue.filePath, 'utf-8');
-                    fileSizes.set(issue.filePath, content.length);
-                } catch {
-                    fileSizes.set(issue.filePath, 0);
-                }
+                const content = safeReadFile(issue.filePath);
+                fileSizes.set(issue.filePath, content ? content.length : 0);
             }
         }
 

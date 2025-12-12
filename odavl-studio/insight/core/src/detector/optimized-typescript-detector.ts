@@ -13,7 +13,7 @@
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { Issue } from '../../types';
+import type { Issue } from '../types.js';
 
 export interface TypeScriptDetectorOptions {
   incremental?: boolean; // Use --incremental mode (default: true)
@@ -122,10 +122,10 @@ export class OptimizedTypeScriptDetector {
         }
 
         issues.push({
-          severity: 'error',
+          type: 'typescript',
+          severity: 'critical',
           message: `${code}: ${message}`,
-          source: 'typescript',
-          filePath,
+          file: filePath,
           line: parseInt(line, 10),
           column: parseInt(column, 10),
           code,

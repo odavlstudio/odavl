@@ -1,6 +1,6 @@
 {
   "name": "@odavl-studio/sdk",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Official SDK for ODAVL Studio - Integrate Insight, Autopilot, and Guardian into your applications",
   "type": "module",
   "main": "dist/index.js",
@@ -31,6 +31,21 @@
       "types": "./dist/plugin-sdk.d.ts",
       "import": "./dist/plugin-sdk.js",
       "require": "./dist/plugin-sdk.cjs"
+    },
+    "./smart-client": {
+      "types": "./dist/smart-client.d.ts",
+      "import": "./dist/smart-client.js",
+      "require": "./dist/smart-client.cjs"
+    },
+    "./cloud-client": {
+      "types": "./dist/cloud-client.d.ts",
+      "import": "./dist/cloud-client.js",
+      "require": "./dist/cloud-client.cjs"
+    },
+    "./insight-cloud": {
+      "types": "./dist/insight-cloud.d.ts",
+      "import": "./dist/insight-cloud.js",
+      "require": "./dist/insight-cloud.cjs"
     }
   },
   "files": [
@@ -39,8 +54,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts --format esm,cjs --dts",
-    "dev": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts --format esm,cjs --dts --watch",
+    "build": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts src/smart-client.ts src/cloud-client.ts src/insight-cloud.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts src/insight.ts src/autopilot.ts src/guardian.ts src/plugin-sdk.ts src/smart-client.ts src/cloud-client.ts src/insight-cloud.ts --format esm,cjs --dts --watch",
     "test": "vitest",
     "prepublishOnly": "pnpm run build"
   },
@@ -70,7 +85,16 @@
     "registry": "http://localhost:4873"
   },
   "dependencies": {
-    "@odavl-studio/insight-core": "workspace:^"
+    "@odavl-studio/insight-core": "workspace:^",
+    "@odavl/oplayer": "workspace:*"
+  },
+  "peerDependencies": {
+    "@odavl/oplayer": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@odavl/oplayer": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^24.6.2",

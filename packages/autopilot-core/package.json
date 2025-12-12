@@ -1,0 +1,43 @@
+{
+  "name": "@odavl/autopilot-core",
+  "version": "1.0.0",
+  "description": "ODAVL Autopilot Core - Deterministic code fix engine for self-healing infrastructure",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs",
+    "dev": "tsup src/index.ts --format esm,cjs --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "odavl",
+    "autopilot",
+    "self-healing",
+    "code-fixes",
+    "automation"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavlstudio/odavl.git",
+    "directory": "packages/autopilot-core"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "dependencies": {
+    "@odavl/insight-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

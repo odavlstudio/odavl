@@ -13,7 +13,9 @@ export default defineConfig({
         include: [
             'apps/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
             'tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-            'odavl-studio/insight/core/tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'
+            'odavl-studio/insight/core/tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+            'odavl-studio/insight/core/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+            'odavl-studio/brain/runtime/__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'
         ],
         exclude: [
             '**/node_modules/**',
@@ -48,6 +50,7 @@ export default defineConfig({
                 'odavl-studio/autopilot/engine/src/**/*.ts',
                 'odavl-studio/guardian/core/src/**/*.ts',
                 'odavl-studio/guardian/workers/src/**/*.ts',
+                'odavl-studio/brain/runtime/**/*.ts',
                 
                 // Apps
                 'apps/studio-cli/src/**/*.ts',

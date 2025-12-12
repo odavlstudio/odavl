@@ -3,9 +3,9 @@
  * Detects missing cleanup for resources (streams, connections, etc.)
  */
 
-import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import { glob } from 'glob';
+import { globSync } from 'glob';
+import { safeReadFile } from '../../utils/safe-file-reader.js';
 
 export interface ResourceCleanupIssue {
     file: string;
@@ -24,18 +24,19 @@ export class ResourceCleanupDetector {
     /**
      * Detect missing resource cleanup
      */
-    async detect(targetDir?: string): Promise<ResourceCleanupIssue[]> {
+    detect(targetDir?: string): ResourceCleanupIssue[] {
         const dir = targetDir || this.workspaceRoot;
         const errors: ResourceCleanupIssue[] = [];
 
-        const tsFiles = await glob('**/*.{ts,tsx,js,jsx}', {
+        const tsFiles = globSync('**/*.{ts,tsx,js,jsx}', {
             cwd: dir,
             ignore: ['node_modules/**', 'dist/**', '.next/**']
         });
 
         for (const file of tsFiles) {
             const filePath = path.join(dir, file);
-            const content = await fs.readFile(filePath, 'utf8');
+            const content = safeReadFile(filePath);
+            if (!content) continue;
             const lines = content.split('\n');
 
             // Check for stream cleanup

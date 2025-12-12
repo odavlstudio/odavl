@@ -1,0 +1,100 @@
+
+> odavl@2.0.0 typecheck C:\Users\sabou\dev\odavl
+> tsc --noEmit
+
+apps/studio-cli/src/commands/auth.ts(43,34): error TS2554: Expected 0 arguments, but got 2.
+apps/studio-cli/src/commands/auth.ts(46,41): error TS2339: Property 'getCurrentUser' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/auth.ts(66,35): error TS2554: Expected 0 arguments, but got 1.
+apps/studio-cli/src/commands/auth.ts(78,41): error TS2339: Property 'getCurrentUser' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/auth.ts(101,45): error TS2339: Property 'listProfiles' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/auth.ts(130,28): error TS2339: Property 'switchProfile' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/auth.ts(142,48): error TS2339: Property 'isAuthenticated' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/auth.ts(164,39): error TS2339: Property 'getApiUrl' does not exist on type 'CLIAuthService'.
+apps/studio-cli/src/commands/brain.ts(22,17): error TS2339: Property 'BrainHistoryStore' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(45,17): error TS2339: Property 'computeDeploymentConfidence' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/runtime/index"); makeRuntimeDecision(config: RuntimeConfig): Promise<RuntimeDecision>; getDeploymentConfidence(data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(115,17): error TS2339: Property 'loadAllTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(115,35): error TS2339: Property 'aggregateTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(172,17): error TS2339: Property 'loadAllTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(172,35): error TS2339: Property 'aggregateTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(172,55): error TS2339: Property 'computeLearningSignals' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(207,17): error TS2339: Property 'loadAllTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(207,35): error TS2339: Property 'aggregateTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(207,55): error TS2339: Property 'computeLearningSignals' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(207,79): error TS2339: Property 'computeMetaLearningDecision' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(244,17): error TS2339: Property 'evolveAdaptiveBrainState' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(298,17): error TS2339: Property 'readAutopilotTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(298,41): error TS2339: Property 'updateRecipeTrustFromTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(339,17): error TS2339: Property 'FusionEngine' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(339,31): error TS2339: Property 'readAutopilotTelemetry' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/learning/index"); train(config: LearningConfig): Promise<TrainingResult>; evaluate(model: any, data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/brain.ts(407,47): error TS2345: Argument of type '{ projectRoot: string; skipAutopilot: any; skipGuardian: any; maxFixes: number; detectors: any; verbose: any; }' is not assignable to parameter of type 'BrainConfig'.
+  Property 'workspacePath' is missing in type '{ projectRoot: string; skipAutopilot: any; skipGuardian: any; maxFixes: number; detectors: any; verbose: any; }' but required in type 'BrainConfig'.
+apps/studio-cli/src/commands/deploy.ts(24,19): error TS2339: Property 'computeDeploymentConfidence' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/runtime/index"); makeRuntimeDecision(config: RuntimeConfig): Promise<RuntimeDecision>; getDeploymentConfidence(data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/deploy.ts(25,50): error TS2307: Cannot find module '@odavl-studio/guardian/runtime/guardian-ci' or its corresponding type declarations.
+apps/studio-cli/src/commands/deploy.ts(105,17): error TS2339: Property 'computeDeploymentConfidence' does not exist on type '{ default: typeof import("C:/Users/sabou/dev/odavl/packages/odavl-brain/dist/runtime/index"); makeRuntimeDecision(config: RuntimeConfig): Promise<RuntimeDecision>; getDeploymentConfidence(data: any): Promise<...>; }'.
+apps/studio-cli/src/commands/guardian.ts(10,33): error TS7016: Could not find a declaration file for module '@odavl-studio/guardian-core'. 'C:/Users/sabou/dev/odavl/odavl-studio/guardian/core/dist/index.js' implicitly has an 'any' type.
+  There are types at 'C:/Users/sabou/dev/odavl/apps/studio-cli/node_modules/@odavl-studio/guardian-core/index.ts', but this result could not be resolved when respecting package.json "exports". The '@odavl-studio/guardian-core' library may need to update its package.json or typings.
+apps/studio-cli/src/commands/guardian.ts(11,34): error TS7016: Could not find a declaration file for module '@odavl-studio/guardian-core'. 'C:/Users/sabou/dev/odavl/odavl-studio/guardian/core/dist/index.js' implicitly has an 'any' type.
+  There are types at 'C:/Users/sabou/dev/odavl/apps/studio-cli/node_modules/@odavl-studio/guardian-core/index.ts', but this result could not be resolved when respecting package.json "exports". The '@odavl-studio/guardian-core' library may need to update its package.json or typings.
+apps/studio-cli/src/commands/guardian.ts(206,13): error TS2341: Property 'stop' is private and only accessible within class 'Spinner'.
+apps/studio-cli/src/commands/guardian.ts(395,35): error TS2339: Property 'get' does not exist on type 'CredentialStore'.
+apps/studio-cli/src/commands/insight.ts(234,43): error TS2554: Expected 1 arguments, but got 0.
+apps/studio-cli/src/commands/insight.ts(285,53): error TS2554: Expected 0 arguments, but got 1.
+apps/studio-cli/src/commands/insight.ts(286,43): error TS2554: Expected 1 arguments, but got 0.
+apps/studio-cli/src/commands/insight.ts(341,13): error TS2353: Object literal may only specify known properties, and 'workspacePath' does not exist in type 'DatabaseConfig'.
+apps/studio-cli/src/commands/insight.ts(365,67): error TS2339: Property 'databaseType' does not exist on type 'DatabaseMetrics'.
+apps/studio-cli/src/commands/insight.ts(407,76): error TS2339: Property 'analysisTime' does not exist on type 'DatabaseMetrics'.
+apps/studio-cli/src/commands/insight.ts(451,13): error TS2353: Object literal may only specify known properties, and 'workspaceRoot' does not exist in type 'NextJSConfig'.
+apps/studio-cli/src/commands/insight.ts(476,85): error TS2339: Property 'nextVersion' does not exist on type 'NextJSMetrics'.
+apps/studio-cli/src/commands/insight.ts(477,66): error TS2339: Property 'hasAppRouter' does not exist on type 'NextJSMetrics'.
+apps/studio-cli/src/commands/insight.ts(540,76): error TS2339: Property 'analysisTime' does not exist on type 'NextJSMetrics'.
+apps/studio-cli/src/commands/insight.ts(579,13): error TS2353: Object literal may only specify known properties, and 'workspaceRoot' does not exist in type 'InfrastructureConfig'.
+apps/studio-cli/src/commands/insight.ts(599,42): error TS2339: Property 'detectedTools' does not exist on type 'InfrastructureMetrics'.
+apps/studio-cli/src/commands/insight.ts(688,76): error TS2339: Property 'analysisTime' does not exist on type 'InfrastructureMetrics'.
+apps/studio-cli/src/commands/insight.ts(1151,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1203,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1204,51): error TS2307: Cannot find module '@odavl-studio/core/utils/file-filter.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1266,26): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/insight.ts(1330,56): error TS2307: Cannot find module '@odavl-studio/core/cache/redis-layer.js' or its corresponding type declarations.
+apps/studio-cli/src/commands/publish.ts(7,63): error TS2307: Cannot find module '@odavl-studio/sdk-marketplace' or its corresponding type declarations.
+apps/studio-cli/src/commands/security.ts(7,71): error TS2307: Cannot find module '@odavl-studio/security' or its corresponding type declarations.
+apps/studio-cli/src/commands/sync.ts(10,36): error TS2307: Cannot find module '@odavl-studio/core/services/cli-cloud-upload' or its corresponding type declarations.
+apps/studio-cli/src/commands/telemetry.ts(7,57): error TS2307: Cannot find module '@odavl-studio/telemetry' or its corresponding type declarations.
+apps/studio-cli/tests/commands/guardian.integration.test.ts(7,33): error TS7016: Could not find a declaration file for module '@odavl-studio/guardian-core'. 'C:/Users/sabou/dev/odavl/odavl-studio/guardian/core/dist/index.js' implicitly has an 'any' type.
+  There are types at 'C:/Users/sabou/dev/odavl/apps/studio-cli/node_modules/@odavl-studio/guardian-core/index.ts', but this result could not be resolved when respecting package.json "exports". The '@odavl-studio/guardian-core' library may need to update its package.json or typings.
+apps/studio-cli/tests/commands/guardian.test.ts(69,56): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(106,55): error TS2345: Argument of type '"nextjs-app"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(138,57): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(186,51): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(230,51): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(243,61): error TS2345: Argument of type '"auto"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(295,53): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(363,53): error TS2345: Argument of type '"nextjs-app"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(427,49): error TS2345: Argument of type '"vscode-extension"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tests/commands/guardian.test.ts(443,51): error TS2345: Argument of type '"auto"' is not assignable to parameter of type 'ProductType | undefined'.
+apps/studio-cli/tmp/import-brain-test.ts(1,10): error TS2305: Module '"@odavl-studio/brain/learning"' has no exported member 'BrainHistoryStore'.
+apps/studio-cli/tmp/import-brain-test.ts(2,10): error TS2724: '"@odavl-studio/brain/runtime"' has no exported member named 'computeDeploymentConfidence'. Did you mean 'getDeploymentConfidence'?
+odavl-studio/insight/core/src/config/manifest-config.ts(215,5): error TS2322: Type 'FalsePositiveRule[]' is not assignable to type '{ detector: string; pattern: string; reason: string; expires?: string | undefined; }[]'.
+  Type 'FalsePositiveRule' is not assignable to type '{ detector: string; pattern: string; reason: string; expires?: string | undefined; }'.
+    Types of property 'reason' are incompatible.
+      Type 'string | undefined' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'.
+odavl-studio/insight/core/src/detector/advanced-runtime-detector.ts(191,5): error TS2739: Type '{ enableCache: {}; cacheDir: {}; checkStackOverflow: boolean; checkDivisionByZero: boolean; checkMemoryExhaustion: boolean; checkResourceLeaks: boolean; maxRecursionDepth: number; maxArraySize: number; }' is missing the following properties from type 'Required<AdvancedRuntimeDetectorConfig>': enabled, severity, exclude, include
+odavl-studio/insight/core/src/detector/architecture-detector.ts(80,18): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(203,14): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(393,45): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(424,12): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(476,34): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(511,48): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(574,35): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(614,33): error TS2749: 'Graph' refers to a value, but is being used as a type here. Did you mean 'typeof Graph'?
+odavl-studio/insight/core/src/detector/architecture-detector.ts(617,32): error TS7006: Parameter 'e' implicitly has an 'any' type.
+odavl-studio/insight/core/src/detector/cicd-detector.ts(126,5): error TS2739: Type '{ enableCache: {}; cacheDir: {}; checkGitHubActions: boolean; checkVercel: boolean; checkSecurity: boolean; checkPerformance: boolean; minCacheHitRate: number; maxWorkflowDuration: number; }' is missing the following properties from type 'Required<CICDDetectorConfig>': enabled, severity, exclude, include
+odavl-studio/insight/core/src/detector/gradle-parser.ts(142,11): error TS7034: Variable 'match' implicitly has type 'any' in some locations where its type cannot be determined.
+odavl-studio/insight/core/src/detector/gradle-parser.ts(153,41): error TS7005: Variable 'match' implicitly has an 'any' type.
+odavl-studio/insight/core/src/detector/maven-parser.ts(95,9): error TS18048: 'project.properties' is possibly 'undefined'.
+odavl-studio/insight/core/src/detector/maven-parser.ts(96,9): error TS18048: 'project.properties' is possibly 'undefined'.
+odavl-studio/insight/core/src/detector/maven-parser.ts(97,9): error TS18048: 'project.properties' is possibly 'undefined'.
+odavl-studio/insight/core/src/detector/ml-model-detector.ts(94,5): error TS2739: Type '{ enableCache: {}; cacheDir: {}; checkTensorFlow: boolean; checkONNX: boolean; minConfidence: number; overfittingThreshold: number; }' is missing the following properties from type 'Required<MLModelDetectorConfig>': enabled, severity, exclude, include
+odavl-studio/insight/core/src/detector/security-detector.ts(92,16): error TS2488: Type 'Promise<string[]>' must have a '[Symbol.iterator]()' method that returns an iterator.
+odavl-studio/insight/core/src/detector/security-detector.ts(333,46): error TS2339: Property 'getLineNumber' does not exist on type 'SecurityDetector'.
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

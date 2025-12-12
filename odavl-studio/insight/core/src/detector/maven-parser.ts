@@ -92,9 +92,9 @@ export class MavenParser {
 
       // Extract Java version
       project.javaVersion = 
-        project.properties['java.version'] ||
-        project.properties['maven.compiler.source'] ||
-        project.properties['maven.compiler.target'];
+        project.properties?.['java.version'] ||
+        project.properties?.['maven.compiler.source'] ||
+        project.properties?.['maven.compiler.target'];
 
       // Extract dependencies
       const dependenciesSection = this.extractSection(content, 'dependencies');

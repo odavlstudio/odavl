@@ -9,9 +9,38 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { LaunchValidator } from '@odavl-studio/guardian-core';
 import type { ProductType } from '@odavl-studio/guardian-core';
-import { displayError, displaySuccess, ErrorMessages, Spinner } from '@odavl-studio/core';
+import { displayError, displaySuccess, ErrorMessages, Spinner } from '@odavl/core';
 import { ODAVLCloudClient } from '@odavl-studio/cloud-client';
 import { CredentialStore } from '@odavl-studio/cloud-client';
+
+// Type definitions for Guardian issues and results
+interface GuardianIssue {
+  message: string;
+  severity: 'critical' | 'high' | 'medium' | 'low';
+  file?: string;
+  autoFixable?: boolean;
+}
+
+interface InspectionReport {
+  productName: string;
+  readinessScore: number;
+  status: 'ready' | 'unstable' | 'blocked';
+  issues: GuardianIssue[];
+}
+
+interface FixResult {
+  success: boolean;
+  fixType: string;
+  details?: string;
+  error?: string;
+}
+
+interface ValidationResultType {
+  productType: ProductType;
+  report: InspectionReport;
+  fixesApplied?: FixResult[];
+  verificationReport?: InspectionReport;
+}
 
 /**
  * Validate product path exists
@@ -39,7 +68,7 @@ function validateProductPath(productPath: string): string {
  * Handle CLI errors gracefully
  */
 function handleError(error: any, operation: string): never {
-  let errorCode = 'GUARDIAN_001';
+  const errorCode = 'GUARDIAN_001';
   let suggestion = error.message;
   
   if (error.code === 'EACCES') {
@@ -99,19 +128,34 @@ export async function checkProduct(productPath: string, productType: ProductType
 
     console.log(scoreColor.bold(`${statusEmoji} Readiness: ${score}% (${result.report.status})`));
 
+    // OMEGA-P5 Phase 4 Commit 5: Display OMS file risk summary
+    try {
+      const { loadOMSContext, resolveFileType, computeFileRiskScore } = await import('@odavl-studio/oms');
+      await loadOMSContext();
+      const fileRisks = result.report.issues.map((i: GuardianIssue) => {
+        const fileType = resolveFileType(i.file || '');
+        return fileType ? computeFileRiskScore({ type: fileType }) : 0;
+      });
+      if (fileRisks.length > 0) {
+        const avgRisk = fileRisks.reduce((s: number, r: number) => s + r, 0) / fileRisks.length;
+        const criticalFiles = fileRisks.filter((r: number) => r >= 0.7).length;
+        console.log(chalk.white(`\n📊 File Risk (OMS): Avg ${(avgRisk * 100).toFixed(1)}%, ${criticalFiles} critical`));
+      }
+    } catch { /* OMS unavailable */ }
+
     // Display issues
     if (result.report.issues.length > 0) {
       console.log(chalk.bold(`\n📋 Issues found: ${result.report.issues.length}\n`));
 
       // Group by severity
-      const critical = result.report.issues.filter(i => i.severity === 'critical');
-      const high = result.report.issues.filter(i => i.severity === 'high');
-      const medium = result.report.issues.filter(i => i.severity === 'medium');
-      const low = result.report.issues.filter(i => i.severity === 'low');
+      const critical = result.report.issues.filter((i: GuardianIssue) => i.severity === 'critical');
+      const high = result.report.issues.filter((i: GuardianIssue) => i.severity === 'high');
+      const medium = result.report.issues.filter((i: GuardianIssue) => i.severity === 'medium');
+      const low = result.report.issues.filter((i: GuardianIssue) => i.severity === 'low');
 
       if (critical.length > 0) {
-        console.log(chalk.red.bold(`🔴 Critical (${critical.length}):`));
-        critical.forEach(issue => {
+        console.log(chalk.red.bold(`🔴 Critical (${critical.length}):` ));
+        critical.forEach((issue: GuardianIssue) => {
           console.log(chalk.red(`  • ${issue.message}`));
           if (issue.autoFixable) console.log(chalk.gray('    (auto-fixable)'));
         });
@@ -119,8 +163,8 @@ export async function checkProduct(productPath: string, productType: ProductType
       }
 
       if (high.length > 0) {
-        console.log(chalk.yellow.bold(`🟡 High (${high.length}):`));
-        high.forEach(issue => {
+        console.log(chalk.yellow.bold(`🟡 High (${high.length}):` ));
+        high.forEach((issue: GuardianIssue) => {
           console.log(chalk.yellow(`  • ${issue.message}`));
           if (issue.autoFixable) console.log(chalk.gray('    (auto-fixable)'));
         });
@@ -128,8 +172,8 @@ export async function checkProduct(productPath: string, productType: ProductType
       }
 
       if (medium.length > 0) {
-        console.log(chalk.blue.bold(`🔵 Medium (${medium.length}):`));
-        medium.forEach(issue => {
+        console.log(chalk.blue.bold(`🔵 Medium (${medium.length}):` ));
+        medium.forEach((issue: GuardianIssue) => {
           console.log(chalk.blue(`  • ${issue.message}`));
           if (issue.autoFixable) console.log(chalk.gray('    (auto-fixable)'));
         });
@@ -137,15 +181,15 @@ export async function checkProduct(productPath: string, productType: ProductType
       }
 
       if (low.length > 0) {
-        console.log(chalk.gray.bold(`⚪ Low (${low.length}):`));
-        low.forEach(issue => {
+        console.log(chalk.gray.bold(`⚪ Low (${low.length}):` ));
+        low.forEach((issue: GuardianIssue) => {
           console.log(chalk.gray(`  • ${issue.message}`));
         });
         console.log();
       }
 
       // Show auto-fix suggestion
-      const autoFixableCount = result.report.issues.filter(i => i.autoFixable).length;
+      const autoFixableCount = result.report.issues.filter((i: GuardianIssue) => i.autoFixable).length;
       if (autoFixableCount > 0) {
         console.log(chalk.green(`💡 ${autoFixableCount} issues can be auto-fixed`));
         console.log(chalk.gray(`Run: ${chalk.cyan(`odavl guardian fix ${productPath}`)}\n`));
@@ -191,7 +235,7 @@ export async function fixProduct(productPath: string, productType: ProductType =
     // Display fixes applied
     if (result.fixesApplied && result.fixesApplied.length > 0) {
       console.log(chalk.bold('🔧 Fixes applied:\n'));
-      result.fixesApplied.forEach(fix => {
+      result.fixesApplied.forEach((fix: FixResult) => {
         if (fix.success) {
           console.log(chalk.green(`  ✅ ${fix.fixType}`));
           if (fix.details) console.log(chalk.gray(`     ${fix.details}`));
@@ -220,7 +264,7 @@ export async function fixProduct(productPath: string, productType: ProductType =
       const remainingIssues = result.verificationReport.issues;
       if (remainingIssues.length > 0) {
         console.log(chalk.yellow(`⚠️  ${remainingIssues.length} issues remaining:`));
-        remainingIssues.forEach(issue => {
+        remainingIssues.forEach((issue: GuardianIssue) => {
           console.log(chalk.gray(`  • ${issue.message}`));
         });
         console.log();
@@ -261,7 +305,7 @@ export async function checkAllProducts() {
     console.log(chalk.gray(`Found ${reports.length} products\n`));
 
     // Display each product
-    reports.forEach((result, index) => {
+    reports.forEach((result: ValidationResultType, index: number) => {
       const score = result.report.readinessScore;
       let scoreColor = chalk.green;
       let statusEmoji = '✅';
@@ -278,8 +322,8 @@ export async function checkAllProducts() {
       console.log(`     ${scoreColor(`${statusEmoji} ${score}% (${result.report.status})`)}`);
       
       if (result.report.issues.length > 0) {
-        const critical = result.report.issues.filter(i => i.severity === 'critical').length;
-        const high = result.report.issues.filter(i => i.severity === 'high').length;
+        const critical = result.report.issues.filter((i: GuardianIssue) => i.severity === 'critical').length;
+        const high = result.report.issues.filter((i: GuardianIssue) => i.severity === 'high').length;
         
         if (critical > 0) console.log(chalk.red(`     🔴 ${critical} critical issues`));
         if (high > 0) console.log(chalk.yellow(`     🟡 ${high} high issues`));
@@ -289,11 +333,11 @@ export async function checkAllProducts() {
     });
 
     // Summary
-    const ready = reports.filter(r => r.report.status === 'ready').length;
-    const unstable = reports.filter(r => r.report.status === 'unstable').length;
-    const blocked = reports.filter(r => r.report.status === 'blocked').length;
+    const ready = reports.filter((r: ValidationResultType) => r.report.status === 'ready').length;
+    const unstable = reports.filter((r: ValidationResultType) => r.report.status === 'unstable').length;
+    const blocked = reports.filter((r: ValidationResultType) => r.report.status === 'blocked').length;
     const avgScore = Math.round(
-      reports.reduce((sum, r) => sum + r.report.readinessScore, 0) / reports.length
+      reports.reduce((sum: number, r: ValidationResultType) => sum + r.report.readinessScore, 0) / reports.length
     );
 
     console.log(chalk.bold('━━━━━━━━━━━━━━━━━━━━━━━'));
@@ -304,7 +348,7 @@ export async function checkAllProducts() {
     console.log(chalk.gray(`Average: ${avgScore}%\n`));
 
     const totalAutoFixable = reports.reduce(
-      (sum, r) => sum + r.report.issues.filter(i => i.autoFixable).length,
+      (sum: number, r: ValidationResultType) => sum + r.report.issues.filter((i: GuardianIssue) => i.autoFixable).length,
       0
     );
 

@@ -5,7 +5,8 @@
 import { Command } from 'commander';
 import ora from 'ora';
 import chalk from 'chalk';
-import { CloudClient } from '@odavl-studio/cloud-client';
+// Cloud features temporarily disabled
+// import { CloudClient } from '@odavl-studio/cloud-client';
 import { cloudUploadService } from '@odavl-studio/core/services/cli-cloud-upload';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -15,25 +16,12 @@ import prompts from 'prompts';
 const program = new Command();
 
 /**
- * Get cloud client
+ * Get cloud client - DISABLED
  */
-function getCloudClient(): CloudClient {
-  try {
-    const configPath = join(homedir(), '.odavl', 'cloud-config.json');
-    const config = JSON.parse(readFileSync(configPath, 'utf-8'));
-
-    if (!config.apiKey) {
-      throw new Error('Not authenticated. Run "odavl login" first.');
-    }
-
-    return new CloudClient({
-      apiUrl: config.apiUrl || 'https://odavl.studio/api/v1',
-      apiKey: config.apiKey,
-    });
-  } catch (error) {
-    console.error(chalk.red('Failed to initialize cloud client:'), error);
-    process.exit(1);
-  }
+function getCloudClient(): any {
+  console.error(chalk.red('Cloud sync features are temporarily disabled in this version.'));
+  console.log(chalk.yellow('Local analysis still works with: odavl insight analyze'));
+  process.exit(1);
 }
 
 /**
@@ -204,7 +192,7 @@ program
 
       console.log(chalk.cyan(`\n${result.totalCount} workspaces:\n`));
 
-      result.workspaces.forEach((w) => {
+      result.workspaces.forEach((w: any) => {
         console.log(chalk.white(`  ${w.name}`));
         console.log(chalk.gray(`    Files: ${w.fileCount}`));
         console.log(chalk.gray(`    Size: ${formatBytes(w.totalSize)}`));

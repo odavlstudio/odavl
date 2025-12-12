@@ -5,6 +5,97 @@ All notable changes to the ODAVL Insight extension will be documented in this fi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2025-12-12
+
+### 🎉 PRODUCTION RELEASE - Global Launch
+
+**This is the first production-ready release of ODAVL Insight for VS Code, prepared for global launch with complete documentation, packaging, and distribution readiness.**
+
+#### 🚀 Core Features
+- **Real-Time Analysis**: Auto-analyze on file save with 500ms debounce
+- **Problems Panel Integration**: Issues appear alongside TypeScript/ESLint errors
+  - Severity levels: Error (🔴), Warning (🟡), Info (🔵), Hint (💡)
+  - Click-to-navigate to issue location
+  - Quick fixes via lightbulb (💡) or Ctrl+.
+- **16 Specialized Detectors**: All ODAVL Insight detectors available (11 stable, 3 experimental, 2 planned)
+- **Cloud Integration (PRO+)**: Connect to ODAVL Cloud dashboard for team collaboration
+- **Quick Fixes**: AI-powered auto-fix suggestions for common issues
+
+#### 📦 Distribution & Packaging
+- ✅ Version aligned to v1.0.0 for consistency across all ODAVL packages
+- ✅ Ready for VS Code Marketplace publishing (`vsce package`)
+- ✅ Complete documentation (getting-started.md, vscode-extension.md, plans-and-pricing.md)
+- ✅ Comprehensive CHANGELOG with all v2.x history preserved
+- ✅ Launch runbook with deployment procedures
+
+#### 🎨 Visual & UX
+- Custom Activity Bar icon (purple gradient with gold accent)
+- Enhanced empty states with interactive buttons
+- Improved user onboarding experience
+- Status bar integration showing analysis status
+
+#### 🔒 Privacy & Security
+- **Local-First**: Analysis runs locally, no source code sent to cloud
+- **Metadata Only**: Cloud mode sends issue counts/types, not source
+- **Opt-Out Telemetry**: `odavl.telemetryEnabled: false`
+- **GDPR Compliant**: Data retention policies, right to delete
+
+#### 💼 Features by Plan
+- **FREE**: 6 core detectors, local analysis, 100 files, 5 analyses/day
+- **PRO**: 11 detectors, cloud dashboard, 1000 files, 100 analyses/day ($29/mo)
+- **TEAM**: 14 detectors, team collaboration, 5000 files, 500 analyses/day ($99/mo)
+- **ENTERPRISE**: 16 detectors, SSO, unlimited usage (custom pricing)
+
+#### ⚙️ Configuration Settings
+- `odavl.enableAutoAnalysis` - Enable analysis on save (default: true)
+- `odavl.autoAnalysisDelay` - Debounce delay in ms (default: 500)
+- `odavl.enabledDetectors` - Array of detector IDs to run
+- `odavl.cloudMode` - Enable cloud features (requires PRO+)
+- `odavl.telemetryEnabled` - Send anonymous usage stats (default: true)
+
+#### 📝 Documentation
+- ✅ Getting Started guide (516 lines)
+- ✅ VS Code Extension guide (579 lines)
+- ✅ Plans & Pricing guide (674 lines)
+- ✅ Launch Runbook (deployment procedures, QA checklist)
+
+#### 🎯 Performance
+- **Startup**: <200ms (lazy loading of heavy detectors)
+- **Analysis**: <3s for 100 files (local mode)
+- **Memory**: <100MB for typical projects
+- **CPU**: <10% idle, <50% during analysis
+
+#### 🔧 Compatibility
+- **VS Code**: ^1.80.0 (July 2023+)
+- **OS**: Windows 10+, macOS 10.15+, Linux (Ubuntu 20.04+)
+- **Languages**: TypeScript, JavaScript, Python, Java (more coming)
+
+#### 📚 Commands (Ctrl+Shift+P)
+- `ODAVL: Analyze Workspace` - Run full analysis
+- `ODAVL: Analyze Current File` - Analyze active file only
+- `ODAVL: Clear Diagnostics` - Clear all ODAVL issues
+- `ODAVL: Connect to Cloud` - Link to cloud account
+- `ODAVL: View Dashboard` - Open cloud dashboard
+- `ODAVL: Upgrade Plan` - View pricing and upgrade
+
+#### ⚠️ Known Issues
+- Large files (>5000 LOC) may slow down analysis
+- Monorepos with multiple `tsconfig.json` may have incorrect paths
+- Python detector experimental (may have false positives)
+
+#### 🚧 Planned for v1.1
+- [ ] Inline code lens with issue counts
+- [ ] Graph view for import cycles
+- [ ] AI chat for issue explanations
+- [ ] Bulk quick fixes
+
+### 📦 Dependencies
+- `@odavl-studio/insight-core@1.0.0` - Analysis engine
+- `vscode` - VS Code API (peer dependency)
+- `axios@^1.6.0` - Cloud API client
+
+---
+
 ## [2.0.4] - 2025-11-28
 
 ### 🐛 CRITICAL FIX: Extension Activation

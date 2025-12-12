@@ -11,11 +11,26 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./odavl-id": {
+      "types": "./dist/odavl-id.d.ts",
+      "import": "./dist/odavl-id.js",
+      "require": "./dist/odavl-id.cjs"
+    },
+    "./device-code-flow": {
+      "types": "./dist/device-code-flow.d.ts",
+      "import": "./dist/device-code-flow.js",
+      "require": "./dist/device-code-flow.cjs"
+    },
+    "./insight-middleware": {
+      "types": "./dist/insight-middleware.d.ts",
+      "import": "./dist/insight-middleware.js",
+      "require": "./dist/insight-middleware.cjs"
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
-    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "build": "tsup src/index.ts src/odavl-id.ts src/device-code-flow.ts src/insight-middleware.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts src/odavl-id.ts src/device-code-flow.ts src/insight-middleware.ts --format esm,cjs --dts --watch",
     "test": "vitest"
   },
   "keywords": [

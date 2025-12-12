@@ -3500,5 +3500,37 @@
     "runs": 3,
     "success": 0,
     "consecutiveFailures": 3
+  },
+  {
+    "timestamp": "2025-12-07T15:32:24.296Z",
+    "recipeId": "remove-unused-imports",
+    "trust": 1,
+    "runs": 1,
+    "success": 1,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-12-07T15:40:41.693Z",
+    "recipeId": "remove-unused-imports",
+    "trust": 1,
+    "runs": 2,
+    "success": 2,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-12-07T15:42:23.957Z",
+    "recipeId": "remove-unused-imports",
+    "trust": 1,
+    "runs": 3,
+    "success": 3,
+    "consecutiveFailures": 0
+  },
+  {
+    "timestamp": "2025-12-07T15:45:35.923Z",
+    "recipeId": "remove-unused-imports",
+    "trust": 1,
+    "runs": 4,
+    "success": 4,
+    "consecutiveFailures": 0
   }
 ]

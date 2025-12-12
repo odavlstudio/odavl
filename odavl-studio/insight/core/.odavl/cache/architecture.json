@@ -1,0 +1,2082 @@
+{
+  "issues": [
+    {
+      "type": "high-coupling",
+      "severity": "high",
+      "file": "scripts/interactive-cli.ts",
+      "message": "High coupling detected: 22 dependencies (max: 10)",
+      "suggestion": "Consider refactoring to reduce dependencies. Split into smaller modules.",
+      "details": {
+        "fanIn": 0,
+        "fanOut": 22,
+        "coupling": 22,
+        "threshold": 10
+      }
+    },
+    {
+      "type": "high-coupling",
+      "severity": "medium",
+      "file": "scripts/lib/detector-runner.ts",
+      "message": "High coupling detected: 17 dependencies (max: 10)",
+      "suggestion": "Consider refactoring to reduce dependencies. Split into smaller modules.",
+      "details": {
+        "fanIn": 0,
+        "fanOut": 17,
+        "coupling": 17,
+        "threshold": 10
+      }
+    },
+    {
+      "type": "high-coupling",
+      "severity": "medium",
+      "file": "src/utils/safe-file-reader.js",
+      "message": "High coupling detected: 20 dependencies (max: 10)",
+      "suggestion": "Consider refactoring to reduce dependencies. Split into smaller modules.",
+      "details": {
+        "fanIn": 20,
+        "fanOut": 0,
+        "coupling": 20,
+        "threshold": 10
+      }
+    },
+    {
+      "type": "high-coupling",
+      "severity": "high",
+      "file": "src/types",
+      "message": "High coupling detected: 42 dependencies (max: 10)",
+      "suggestion": "Consider refactoring to reduce dependencies. Split into smaller modules.",
+      "details": {
+        "fanIn": 42,
+        "fanOut": 0,
+        "coupling": 42,
+        "threshold": 10
+      }
+    }
+  ],
+  "metrics": {
+    "totalModules": 548,
+    "circularDeps": 0,
+    "avgCoupling": 1.33,
+    "layerHealth": 100,
+    "architectureScore": 70,
+    "analysisTime": 5527,
+    "filesAnalyzed": 157,
+    "cacheHitRate": 0
+  },
+  "graph": {
+    "nodes": [
+      "auth/auth-middleware.ts",
+      "auth/sso-integration",
+      "auth/azure-ad-connector.ts",
+      "auth/google-workspace-connector.ts",
+      "auth/index.ts",
+      "auth/okta-connector.ts",
+      "auth/sso-integration.ts",
+      "auth/user-provisioning.ts",
+      "auth/white-label-branding.ts",
+      "build-esbuild.js",
+      "coverage/block-navigation.js",
+      "coverage/lcov-report/block-navigation.js",
+      "coverage/lcov-report/prettify.js",
+      "coverage/lcov-report/sorter.js",
+      "coverage/prettify.js",
+      "coverage/sorter.js",
+      "devops/ci-cd/github-actions-generator.ts",
+      "devops/ci-cd/gitlab-ci-generator.ts",
+      "devops/ci-cd/index.ts",
+      "devops/ci-cd/jenkins-generator.ts",
+      "devops/docker/docker-build-generator.ts",
+      "devops/docker/docker-compose-generator.ts",
+      "devops/docker/index.ts",
+      "devops/docker/multi-arch-builder.ts",
+      "devops/docker/security-scanner.ts",
+      "devops/index.ts",
+      "devops/kubernetes/deployment-generator.ts",
+      "devops/kubernetes/helm-chart-generator.ts",
+      "devops/kubernetes/hpa-generator.ts",
+      "devops/kubernetes/index.ts",
+      "devops/kubernetes/monitoring-generator.ts",
+      "devops/kubernetes/service-generator.ts",
+      "devops/terraform/aws-eks-module.ts",
+      "devops/terraform/azure-aks-module.ts",
+      "devops/terraform/gcp-gke-module.ts",
+      "devops/terraform/index.ts",
+      "devops/terraform/module-generator.ts",
+      "dist-test/index.js",
+      "scripts/analyze-stack.ts",
+      "src/lib/analyzer/StackAnalyzer",
+      "src/lib/analyzer/StackReporter",
+      "src/error-parser",
+      "scripts/cli/analysisExecutor.ts",
+      "scripts/interactive-cli.js",
+      "scripts/cli/analysisTypeSelector.js",
+      "scripts/cli/analysisTypeSelector.ts",
+      "scripts/cli/workspaceSelector.ts",
+      "scripts/detect-root.ts",
+      "src/lib/root/ChangeHistoryReader",
+      "src/lib/root/CorrelationEngine",
+      "src/lib/root/RootCauseDetector",
+      "scripts/interactive-cli.ts",
+      "src/detector/ts-detector.js",
+      "src/detector/eslint-detector.js",
+      "src/detector/security-detector.js",
+      "src/detector/performance-detector.js",
+      "src/detector/complexity-detector.js",
+      "src/detector/circular-detector.js",
+      "src/detector/import-detector.js",
+      "src/detector/package-detector.js",
+      "src/detector/runtime-detector.js",
+      "src/detector/build-detector.js",
+      "src/detector/network-detector.js",
+      "src/detector/isolation-detector.js",
+      "src/detector/cve-scanner-detector.js",
+      "src/detector/python-type-detector.js",
+      "src/detector/python-security-detector.js",
+      "src/detector/python-complexity-detector.js",
+      "src/analyzer/enhanced-analyzer.js",
+      "src/reporter/html-reporter.js",
+      "src/reporter/markdown-reporter.js",
+      "src/reports/enhanced-formatter.js",
+      "src/utils/ignore-patterns.js",
+      "src/utils/performance.js",
+      "scripts/lib/colors.ts",
+      "scripts/lib/detector-runner.ts",
+      "scripts/lib/colors.js",
+      "scripts/lib/report-printer.ts",
+      "scripts/lib/detector-runner.js",
+      "scripts/live-notifier.ts",
+      "src/lib/notifier/LiveNotifier",
+      "src/lib/notifier/NotifierCLI",
+      "scripts/run-insight.ts",
+      "scripts/run-learning.ts",
+      "src/lib/learning/LearningEngine",
+      "src/lib/learning/ReportGenerator",
+      "src/lib/memory/MemoryManager",
+      "scripts/suggest-fixes.ts",
+      "src/lib/fix/FixAdvisor",
+      "scripts/test-error-parser.ts",
+      "src/InsightNotifier",
+      "src/LogWriter",
+      "scripts/train-memory.ts",
+      "src/lib/memory/InsightMemory",
+      "src/lib/memory/PatternRecognizer",
+      "scripts/train-tensorflow-v2.ts",
+      "learning/data-collection.js",
+      "learning/ml-trust-predictor.js",
+      "scripts/watch-errors.ts",
+      "src/error-watcher",
+      "src/ai/ai-detector-engine.ts",
+      "src/types/ai-types.js",
+      "src/ai/auto-fix-engine.ts",
+      "src/ai/churn-predictor.ts",
+      "src/ai/code-analyzer.ts",
+      "src/ai/code-embedding-generator.ts",
+      "src/ai/custom-pattern-detector.ts",
+      "src/ai/code-analyzer",
+      "src/ai/defect-predictor.ts",
+      "src/ai/fix-strategy-selector.ts",
+      "src/ai/auto-fix-engine",
+      "src/ai/fix-suggester.ts",
+      "src/ai/fix-validator.ts",
+      "src/ai/hotspot-analyzer.ts",
+      "src/ai/defect-predictor",
+      "src/ai/insight-recommender.ts",
+      "src/ai/pattern-evolution.ts",
+      "src/ai/pattern-library",
+      "src/ai/pattern-library.ts",
+      "src/ai/quality-predictor.ts",
+      "src/ai/similarity-detector.ts",
+      "src/ai/code-embedding-generator",
+      "src/analysis/incremental-analyzer.ts",
+      "src/analysis/incremental.ts",
+      "src/analysis/smart-file-filter.ts",
+      "src/analysis-context.ts",
+      "../../oms/oms-context.js",
+      "src/analysis-engine.ts",
+      "src/detector-router.js",
+      "src/severity-scaler.js",
+      "src/detector/detector-loader.js",
+      "../telemetry/insight-telemetry.js",
+      "src/analyzer/bundle-analyzer.js",
+      "src/analyzer/bundle-analyzer.ts",
+      "src/utils/safe-file-reader.js",
+      "src/analyzer/enhanced-analyzer.ts",
+      "src/cache/redis-cache.test.ts",
+      "src/cache/redis-cache",
+      "src/cache/redis-cache.ts",
+      "src/cache/redis-layer.ts",
+      "src/cli/cache-cli.ts",
+      "src/analysis/incremental-analyzer",
+      "src/analysis/smart-file-filter",
+      "src/collaboration/activity-feed.ts",
+      "src/collaboration/collaboration-hub",
+      "src/collaboration/code-review.ts",
+      "src/collaboration/collaboration-hub.ts",
+      "src/compliance/gdpr-checker.ts",
+      "src/compliance/hipaa-validator.ts",
+      "src/compliance/soc2-auditor.ts",
+      "src/concurrency-limiter.ts",
+      "src/concurrent/concurrent-repository-analyzer.ts",
+      "src/performance/worker-pool",
+      "src/config/manifest-config.ts",
+      "src/config/__tests__/manifest-config.test.ts",
+      "src/config/manifest-config",
+      "src/core/detector-worker-pool.ts",
+      "src/core/worker-protocol.js",
+      "src/core/error-aggregator.js",
+      "src/core/detector-worker.ts",
+      "src/core/error-aggregator.ts",
+      "src/core/worker-protocol.ts",
+      "src/dashboard/enterprise-dashboard-manager.ts",
+      "src/dashboard/theme-manager.ts",
+      "src/dashboard/widget-library.ts",
+      "src/detector/accuracy-enhancements.spec.ts",
+      "src/detector/eslint-detector",
+      "src/detector/import-detector",
+      "src/detector/network-detector",
+      "src/detector/runtime-detector",
+      "src/detector/advanced-runtime-detector.test.ts",
+      "src/detector/advanced-runtime-detector.js",
+      "src/detector/advanced-runtime-detector.ts",
+      "src/types.js",
+      "src/detector/architecture-detector.test.ts",
+      "src/detector/architecture-detector",
+      "src/detector/architecture-detector.ts",
+      "src/detector/build-detector.test.ts",
+      "src/detector/build-detector",
+      "src/detector/build-detector.ts",
+      "src/detector/cicd-detector.test.ts",
+      "src/detector/cicd-detector.js",
+      "src/detector/cicd-detector.ts",
+      "src/detector/circular-detector.test.ts",
+      "src/detector/circular-detector",
+      "src/detector/circular-detector.ts",
+      "src/detector/complexity-detector.ts",
+      "src/detector/false-positive-filters",
+      "src/detector/complexity.ts",
+      "src/detector/confidence-scoring.js",
+      "src/detector/confidence-scoring.ts",
+      "src/learning/pattern-learning-schema.js",
+      "src/detector/context-aware-performance.js",
+      "src/detector/context-aware-performance.ts",
+      "src/detector/context-aware-security-v3.ts",
+      "src/detector/smart-security-scanner.js",
+      "src/detector/csharp/async-await-detector.ts",
+      "src/detector/csharp/csharp-base-detector",
+      "src/types",
+      "src/detector/csharp/csharp-base-detector.ts",
+      "src/detector/csharp/index.ts",
+      "src/detector/csharp/linq-performance-detector.ts",
+      "src/detector/csharp/memory-leak-detector.ts",
+      "src/detector/csharp/nullable-detector.ts",
+      "src/detector/cve-scanner-detector.ts",
+      "src/security/cve-scanner.js",
+      "src/detector/database-detector.test.ts",
+      "src/detector/database-detector",
+      "src/detector/database-detector.ts",
+      "src/detector/detector-fixes.spec.ts",
+      "src/detector/detector-loader.ts",
+      "src/config/manifest-config.js",
+      "src/detector/enhanced-db-detector.js",
+      "src/detector/enhanced-db-detector.ts",
+      "src/detector/eslint-detector.test.ts",
+      "src/detector/eslint-detector.ts",
+      "src/utils/logger",
+      "src/detector/eslint.ts",
+      "src/detector/false-positive-filters.ts",
+      "src/detector/framework-rules.js",
+      "src/detector/framework-rules.ts",
+      "src/detector/go/channel-misuse-detector.ts",
+      "src/detector/go/go-base-detector",
+      "src/detector/go/context-misuse-detector.ts",
+      "src/detector/go/error-handling-detector.ts",
+      "src/detector/go/go-base-detector.ts",
+      "src/detector/go/golangci-lint-detector.ts",
+      "src/detector/go/goroutine-leak-detector.ts",
+      "src/detector/go/index.ts",
+      "src/detector/go/staticcheck-detector.ts",
+      "src/detector/go-detector.ts",
+      "src/detector/gradle-parser.ts",
+      "src/detector/import-detector.test.ts",
+      "src/detector/import-detector.ts",
+      "src/detector/import.ts",
+      "src/detector/index.js",
+      "src/detector/index.ts",
+      "src/detector/infrastructure-detector.test.ts",
+      "src/detector/infrastructure-detector",
+      "src/detector/infrastructure-detector.ts",
+      "src/detector/isolation-detector.test.ts",
+      "src/detector/isolation-detector",
+      "src/detector/isolation-detector.ts",
+      "src/detector/java/base-java-detector.ts",
+      "src/detector/java/index.ts",
+      "src/detector/java/java-architecture-detector.ts",
+      "src/detector/base-detector.js",
+      "src/parsers/java-parser.js",
+      "src/detector/java/java-complexity-detector.ts",
+      "src/detector/java/base-java-detector.js",
+      "src/detector/java/java-concurrency-detector.ts",
+      "src/detector/java/java-exception-detector.ts",
+      "src/detector/java/java-memory-detector.ts",
+      "src/detector/maven-parser.js",
+      "src/detector/gradle-parser.js",
+      "src/detector/java/java-null-safety-detector.ts",
+      "src/detector/java/java-performance-detector.ts",
+      "src/detector/java/java-security-detector.ts",
+      "src/detector/java/java-spring-detector.ts",
+      "src/detector/java/java-stream-detector.ts",
+      "src/detector/java/java-testing-detector.ts",
+      "src/detector/java.ts",
+      "src/detector/kotlin/coroutines-detector.ts",
+      "src/detector/kotlin/detekt-detector.ts",
+      "src/detector/kotlin/kotlin-base-detector",
+      "src/detector/kotlin/index.ts",
+      "src/detector/kotlin/interop-detector.ts",
+      "src/detector/kotlin/kotlin-base-detector.ts",
+      "src/detector/kotlin/nullability-detector.ts",
+      "src/detector/maven-parser.ts",
+      "src/detector/ml-model-detector.test.ts",
+      "src/detector/ml-model-detector.js",
+      "src/detector/ml-model-detector.ts",
+      "src/detector/network-detector.test.ts",
+      "src/detector/network-detector.ts",
+      "src/detector/new-language-detectors.spec.ts",
+      "src/detector/go-detector",
+      "src/detector/rust-detector",
+      "src/detector/nextjs-detector.test.ts",
+      "src/detector/nextjs-detector",
+      "src/detector/nextjs-detector.ts",
+      "src/detector/optimized-eslint-detector.ts",
+      "types",
+      "src/detector/optimized-typescript-detector.ts",
+      "src/detector/package-detector.test.ts",
+      "src/detector/package-detector",
+      "src/detector/package-detector.ts",
+      "src/detector/performance/asset-optimizer.ts",
+      "src/detector/performance-detector",
+      "src/detector/performance/bundle-size-analyzer.ts",
+      "src/detector/performance/index.ts",
+      "src/detector/performance/loop-complexity-analyzer.ts",
+      "src/detector/performance/react-render-optimizer.ts",
+      "src/detector/performance-detector.test.ts",
+      "src/detector/performance-detector.ts",
+      "src/detector/performance/index",
+      "src/detector/performance-profiler-detector.ts",
+      "src/profiler/performance-profiler.js",
+      "src/detector/performance.ts",
+      "src/detector/phase1-enhanced.js",
+      "src/detector/phase1-enhanced.ts",
+      "src/detector/php/index.ts",
+      "src/detector/php/performance-detector.ts",
+      "src/detector/php/php-base-detector",
+      "src/detector/php/php-base-detector.ts",
+      "src/detector/php/phpstan-detector.ts",
+      "src/detector/php/security-detector.ts",
+      "src/detector/python/index.ts",
+      "src/detector/python/python-best-practices-detector.ts",
+      "src/detector/python/python-complexity-detector.ts",
+      "src/detector/python/python-imports-detector.ts",
+      "src/detector/python/python-security-detector.ts",
+      "src/detector/python/python-type-detector.ts",
+      "src/detector/python-complexity-detector.ts",
+      "src/python/python-parser.js",
+      "src/detector/python-security-detector.ts",
+      "src/detector/python-type-detector.ts",
+      "src/detector/python.ts",
+      "src/detector/ruby/index.ts",
+      "src/detector/ruby/rails-detector.ts",
+      "src/detector/ruby/ruby-base-detector",
+      "src/detector/ruby/rubocop-detector.ts",
+      "src/detector/ruby/ruby-base-detector.ts",
+      "src/detector/ruby/security-detector.ts",
+      "src/detector/runtime/index.ts",
+      "src/detector/runtime/memory-leak-detector.ts",
+      "src/detector/runtime/race-condition-detector.ts",
+      "src/detector/runtime/resource-cleanup-detector.ts",
+      "src/detector/runtime-detector.test.ts",
+      "src/detector/runtime-detector.ts",
+      "src/detector/enhanced-db-detector",
+      "src/detector/runtime/index",
+      "src/detector/rust/clippy-detector.ts",
+      "src/detector/rust/rust-base-detector",
+      "src/detector/rust/index.ts",
+      "src/detector/rust/lifetime-detector.ts",
+      "src/detector/rust/ownership-detector.ts",
+      "src/detector/rust/panic-detector.ts",
+      "src/detector/rust/rust-base-detector.ts",
+      "src/detector/rust/unsafe-detector.ts",
+      "src/detector/rust-detector.ts",
+      "src/detector/security-detector.test.ts",
+      "src/detector/security-detector",
+      "src/detector/security-detector.ts",
+      "src/detector/smart-security-scanner",
+      "src/utils/ignore-patterns",
+      "src/detector/security.ts",
+      "src/detector/smart-security-scanner.ts",
+      "src/detector/swift/concurrency-detector.ts",
+      "src/detector/swift/index.ts",
+      "src/detector/swift/memory-detector.ts",
+      "src/detector/swift/optionals-detector.ts",
+      "src/detector/swift/swift-base-detector.ts",
+      "src/detector/swift/swiftlint-detector.ts",
+      "src/detector/swift/swift-base-detector",
+      "src/detector/ts-detector.test.ts",
+      "src/detector/ts-detector",
+      "src/detector/ts-detector.ts",
+      "src/detector/typescript.ts",
+      "src/detector/wrapper-detection-v3.ts",
+      "src/detector-router.ts",
+      "src/engine/file-type-analysis.ts",
+      "../packages/odavl-core/src/filetypes/file-type-detection.js",
+      "src/engine/__tests__/file-type-analysis.test.ts",
+      "src/engine/engine/file-type-analysis",
+      "src/error-parser.ts",
+      "src/error-watcher.ts",
+      "src/filtering/filter-analytics.ts",
+      "src/filtering/filter-builder",
+      "src/filtering/filter-presets",
+      "src/filtering/filter-builder.ts",
+      "src/filtering/filter-presets.ts",
+      "src/incremental-analyzer.ts",
+      "src/index.ts",
+      "src/InsightNotifier.ts",
+      "src/integration.spec.ts",
+      "src/utils/performance",
+      "src/integrations/azure-boards.ts",
+      "src/integrations/discord-webhooks.ts",
+      "src/integrations/github-actions.ts",
+      "src/integrations/github-issues.ts",
+      "src/integrations/gitlab-ci.ts",
+      "src/integrations/jenkins.ts",
+      "src/integrations/jira.ts",
+      "src/integrations/microsoft-teams.ts",
+      "src/integrations/slack.ts",
+      "src/language/language-detector.ts",
+      "src/utils/safe-file-reader",
+      "src/language/multi-language-aggregator.ts",
+      "src/language/language-detector.js",
+      "src/learn.ts",
+      "src/utils/getRepoRoot",
+      "src/learning/data-collection.ts",
+      "src/learning/github-api-client.js",
+      "src/learning/github-api-client.ts",
+      "src/learning/index.ts",
+      "src/learning/ml-recipe-integration.ts",
+      "src/learning/ml-trust-predictor.js",
+      "src/learning/ml-trust-predictor.ts",
+      "src/learning/pattern-learning-schema.ts",
+      "src/learning/pattern-memory.js",
+      "src/learning/pattern-memory.ts",
+      "src/learning/__tests__/ml-trust-predictor.test.ts",
+      "src/lib/analyzer/StackAnalyzer.ts",
+      "src/lib/analyzer/StackModel",
+      "src/lib/analyzer/StackModel.ts",
+      "src/lib/analyzer/StackReporter.ts",
+      "src/lib/bridge/BridgeProtocol.ts",
+      "src/lib/bridge/GuardianBridge.ts",
+      "src/lib/bridge/BridgeProtocol",
+      "src/lib/bridge/GuardianSync.ts",
+      "src/lib/bridge/VerifyAttestation.ts",
+      "src/lib/fix/FixAdvisor.ts",
+      "src/lib/fix/SuggestionEngine",
+      "src/lib/fix/FixPatterns.ts",
+      "src/lib/fix/SuggestionEngine.ts",
+      "src/lib/fix/FixPatterns",
+      "src/lib/learning/LearningEngine.ts",
+      "src/lib/learning/Predictor",
+      "src/lib/learning/LearningTrainer",
+      "src/lib/learning/LearningTrainer.ts",
+      "src/lib/learning/Predictor.ts",
+      "src/lib/learning/ReportGenerator.ts",
+      "src/lib/memory/InsightMemory.ts",
+      "src/lib/memory/MemoryManager.ts",
+      "src/lib/memory/PatternRecognizer.ts",
+      "src/lib/notifier/LiveNotifier.ts",
+      "src/lib/notifier/NotifierBridge.ts",
+      "src/lib/notifier/NotifierCLI.ts",
+      "src/lib/root/ChangeHistoryReader.ts",
+      "src/lib/root/CorrelationEngine.ts",
+      "src/lib/root/RootCauseDetector.ts",
+      "src/licensing/license-compatibility.ts",
+      "src/licensing/license-scanner",
+      "src/licensing/license-scanner.ts",
+      "src/licensing/sbom-generator.ts",
+      "src/LogWriter.ts",
+      "src/memory-manager.ts",
+      "src/memory.ts",
+      "src/learn",
+      "src/ml/learning-system.ts",
+      "src/ml/ml-enhanced-detector.ts",
+      "src/ml/learning-system.js",
+      "src/ml/predictive-analysis.js",
+      "src/ml/predictive-analysis.ts",
+      "src/monorepo/monorepo-detector.ts",
+      "src/monorepo/project-graph-analyzer.ts",
+      "src/monorepo/monorepo-detector",
+      "src/parallel-executor.ts",
+      "src/parsers/java-parser.ts",
+      "src/performance/stream-analyzer.test.ts",
+      "src/performance/stream-analyzer",
+      "src/performance/stream-analyzer.ts",
+      "src/performance/worker-pool.test.ts",
+      "src/performance/worker-pool.ts",
+      "src/performance/worker.ts",
+      "src/profiler/performance-profiler.ts",
+      "src/python/python-parser.ts",
+      "src/realtime/event-stream.ts",
+      "src/realtime/websocket-manager",
+      "src/realtime/sse-manager.ts",
+      "src/realtime/websocket-manager.ts",
+      "src/reporter/html-reporter.ts",
+      "src/reporter/markdown-reporter.ts",
+      "src/reporter.ts",
+      "src/memory",
+      "src/reporting/advanced-dashboard.ts",
+      "src/reporting/trend-analysis",
+      "src/reporting/historical-comparison",
+      "src/reporting/compliance-reporter.ts",
+      "src/reporting/export-engine.ts",
+      "src/reporting/historical-comparison.ts",
+      "src/reporting/multi-repo-dashboard.ts",
+      "src/concurrent/concurrent-repository-analyzer",
+      "src/reporting/report-generator.ts",
+      "src/reporting/report-scheduler.ts",
+      "src/reporting/report-generator",
+      "src/reporting/export-engine",
+      "src/reporting/security-dashboard.ts",
+      "src/reporting/trend-analysis.ts",
+      "src/reporting/vulnerability-reporter.ts",
+      "src/reports/enhanced-formatter.ts",
+      "src/reports/html-generator.ts",
+      "src/reports/pdf-generator.ts",
+      "src/result-cache.ts",
+      "src/search/query-parser.ts",
+      "src/search/semantic-search",
+      "src/search/search-index.ts",
+      "src/search/semantic-search.ts",
+      "src/security/cve-scanner.ts",
+      "src/security/sast-engine.ts",
+      "src/security/secret-detector.ts",
+      "src/server.ts",
+      "src/severity-scaler.ts",
+      "src/stream-analyzer.ts",
+      "src/training.ts",
+      "src/trending/historical-store.ts",
+      "src/trending/trend-analysis",
+      "src/trending/prediction-model.ts",
+      "src/trending/trend-analysis.ts",
+      "src/types/ai-types.ts",
+      "src/engine/file-type-analysis.js",
+      "src/types/index.ts",
+      "src/types.ts",
+      "src/utils/file-filter.ts",
+      "src/utils/getRepoRoot.ts",
+      "src/utils/ignore-patterns.spec.ts",
+      "src/utils/ignore-patterns.ts",
+      "src/utils/logger.js",
+      "src/utils/logger.ts",
+      "src/utils/performance.spec.ts",
+      "src/utils/performance.ts",
+      "src/utils/safe-file-reader.ts",
+      "src/widgets/widget-builder.ts",
+      "src/dashboard/theme-manager",
+      "src/widgets/widget-marketplace.ts",
+      "src/widgets/widget-builder",
+      "src/widgets/widget-sdk.ts",
+      "test-fixtures/security/enum-false-positive.ts",
+      "test-fixtures/security/hardcoded-key.ts",
+      "test-fixtures/security/hardcoded-password.ts",
+      "test-fixtures/security/jsonld-safe.tsx",
+      "test-fixtures/security/nanoid-generation.ts",
+      "test-fixtures/security/template-variables.ts",
+      "test-fixtures/security/xss-danger.tsx",
+      "tests/ai-detector-engine.test.ts",
+      "src/ai/ai-detector-engine",
+      "src/types/ai-types",
+      "tests/debug-jsonld.ts",
+      "src/detector/context-aware-security-v3.js",
+      "tests/detector/python/python-best-practices-detector.test.ts",
+      "src/detector/python/python-best-practices-detector.js",
+      "tests/detector/python/python-complexity-detector.test.ts",
+      "src/detector/python/python-complexity-detector.js",
+      "tests/detector/python/python-imports-detector.test.ts",
+      "src/detector/python/python-imports-detector.js",
+      "tests/detector/python/python-security-detector.test.ts",
+      "src/detector/python/python-security-detector.js",
+      "tests/detector/python/python-type-detector.test.ts",
+      "src/detector/python/python-type-detector.js",
+      "tests/detector-v3.test.ts",
+      "tests/integration-brain.test.ts",
+      "tests/integration-full-pipeline.test.ts",
+      "src/core/detector-worker-pool.js",
+      "tests/worker-pool.smoke.test.ts",
+      "src/core/detector-worker-pool",
+      "tsup.config.ts",
+      "__test-fixtures__/ml-score-shape/predict.ts"
+    ],
+    "edges": [
+      {
+        "from": "auth/auth-middleware.ts",
+        "to": "auth/sso-integration"
+      },
+      {
+        "from": "auth/azure-ad-connector.ts",
+        "to": "auth/sso-integration"
+      },
+      {
+        "from": "auth/google-workspace-connector.ts",
+        "to": "auth/sso-integration"
+      },
+      {
+        "from": "auth/okta-connector.ts",
+        "to": "auth/sso-integration"
+      },
+      {
+        "from": "scripts/analyze-stack.ts",
+        "to": "src/lib/analyzer/StackAnalyzer"
+      },
+      {
+        "from": "scripts/analyze-stack.ts",
+        "to": "src/lib/analyzer/StackReporter"
+      },
+      {
+        "from": "scripts/analyze-stack.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "scripts/cli/analysisExecutor.ts",
+        "to": "scripts/interactive-cli.js"
+      },
+      {
+        "from": "scripts/cli/analysisExecutor.ts",
+        "to": "scripts/cli/analysisTypeSelector.js"
+      },
+      {
+        "from": "scripts/cli/analysisTypeSelector.ts",
+        "to": "scripts/interactive-cli.js"
+      },
+      {
+        "from": "scripts/cli/workspaceSelector.ts",
+        "to": "scripts/interactive-cli.js"
+      },
+      {
+        "from": "scripts/detect-root.ts",
+        "to": "src/lib/root/ChangeHistoryReader"
+      },
+      {
+        "from": "scripts/detect-root.ts",
+        "to": "src/lib/root/CorrelationEngine"
+      },
+      {
+        "from": "scripts/detect-root.ts",
+        "to": "src/lib/root/RootCauseDetector"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/ts-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/eslint-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/security-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/performance-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/complexity-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/circular-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/import-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/package-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/runtime-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/build-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/network-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/isolation-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/cve-scanner-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/python-type-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/python-security-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/detector/python-complexity-detector.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/analyzer/enhanced-analyzer.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/reporter/html-reporter.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/reporter/markdown-reporter.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/reports/enhanced-formatter.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/utils/ignore-patterns.js"
+      },
+      {
+        "from": "scripts/interactive-cli.ts",
+        "to": "src/utils/performance.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/ts-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/eslint-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/security-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/performance-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/complexity-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/circular-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/import-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/package-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/runtime-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/build-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/network-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/isolation-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/cve-scanner-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/python-type-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/python-security-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "src/detector/python-complexity-detector.js"
+      },
+      {
+        "from": "scripts/lib/detector-runner.ts",
+        "to": "scripts/lib/colors.js"
+      },
+      {
+        "from": "scripts/lib/report-printer.ts",
+        "to": "scripts/lib/colors.js"
+      },
+      {
+        "from": "scripts/lib/report-printer.ts",
+        "to": "src/analyzer/enhanced-analyzer.js"
+      },
+      {
+        "from": "scripts/lib/report-printer.ts",
+        "to": "scripts/lib/detector-runner.js"
+      },
+      {
+        "from": "scripts/live-notifier.ts",
+        "to": "src/lib/notifier/LiveNotifier"
+      },
+      {
+        "from": "scripts/live-notifier.ts",
+        "to": "src/lib/notifier/NotifierCLI"
+      },
+      {
+        "from": "scripts/run-learning.ts",
+        "to": "src/lib/learning/LearningEngine"
+      },
+      {
+        "from": "scripts/run-learning.ts",
+        "to": "src/lib/learning/ReportGenerator"
+      },
+      {
+        "from": "scripts/run-learning.ts",
+        "to": "src/lib/memory/MemoryManager"
+      },
+      {
+        "from": "scripts/suggest-fixes.ts",
+        "to": "src/lib/fix/FixAdvisor"
+      },
+      {
+        "from": "scripts/test-error-parser.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "scripts/test-error-parser.ts",
+        "to": "src/InsightNotifier"
+      },
+      {
+        "from": "scripts/test-error-parser.ts",
+        "to": "src/LogWriter"
+      },
+      {
+        "from": "scripts/train-memory.ts",
+        "to": "src/lib/memory/InsightMemory"
+      },
+      {
+        "from": "scripts/train-memory.ts",
+        "to": "src/lib/memory/PatternRecognizer"
+      },
+      {
+        "from": "scripts/train-memory.ts",
+        "to": "src/lib/memory/MemoryManager"
+      },
+      {
+        "from": "scripts/train-tensorflow-v2.ts",
+        "to": "learning/data-collection.js"
+      },
+      {
+        "from": "scripts/train-tensorflow-v2.ts",
+        "to": "learning/ml-trust-predictor.js"
+      },
+      {
+        "from": "scripts/watch-errors.ts",
+        "to": "src/error-watcher"
+      },
+      {
+        "from": "src/ai/ai-detector-engine.ts",
+        "to": "src/types/ai-types.js"
+      },
+      {
+        "from": "src/ai/custom-pattern-detector.ts",
+        "to": "src/ai/code-analyzer"
+      },
+      {
+        "from": "src/ai/fix-strategy-selector.ts",
+        "to": "src/ai/auto-fix-engine"
+      },
+      {
+        "from": "src/ai/fix-suggester.ts",
+        "to": "src/ai/code-analyzer"
+      },
+      {
+        "from": "src/ai/hotspot-analyzer.ts",
+        "to": "src/ai/defect-predictor"
+      },
+      {
+        "from": "src/ai/pattern-evolution.ts",
+        "to": "src/ai/pattern-library"
+      },
+      {
+        "from": "src/ai/pattern-library.ts",
+        "to": "src/ai/code-analyzer"
+      },
+      {
+        "from": "src/ai/quality-predictor.ts",
+        "to": "src/ai/code-analyzer"
+      },
+      {
+        "from": "src/ai/similarity-detector.ts",
+        "to": "src/ai/code-embedding-generator"
+      },
+      {
+        "from": "src/analysis-context.ts",
+        "to": "../../oms/oms-context.js"
+      },
+      {
+        "from": "src/analysis-engine.ts",
+        "to": "src/detector-router.js"
+      },
+      {
+        "from": "src/analysis-engine.ts",
+        "to": "src/severity-scaler.js"
+      },
+      {
+        "from": "src/analysis-engine.ts",
+        "to": "src/detector/detector-loader.js"
+      },
+      {
+        "from": "src/analysis-engine.ts",
+        "to": "../telemetry/insight-telemetry.js"
+      },
+      {
+        "from": "src/analyzer/bundle-analyzer.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/cache/redis-cache.test.ts",
+        "to": "src/cache/redis-cache"
+      },
+      {
+        "from": "src/cli/cache-cli.ts",
+        "to": "src/cache/redis-cache"
+      },
+      {
+        "from": "src/cli/cache-cli.ts",
+        "to": "src/analysis/incremental-analyzer"
+      },
+      {
+        "from": "src/cli/cache-cli.ts",
+        "to": "src/analysis/smart-file-filter"
+      },
+      {
+        "from": "src/collaboration/activity-feed.ts",
+        "to": "src/collaboration/collaboration-hub"
+      },
+      {
+        "from": "src/collaboration/code-review.ts",
+        "to": "src/collaboration/collaboration-hub"
+      },
+      {
+        "from": "src/concurrent/concurrent-repository-analyzer.ts",
+        "to": "src/performance/worker-pool"
+      },
+      {
+        "from": "src/concurrent/concurrent-repository-analyzer.ts",
+        "to": "src/cache/redis-cache"
+      },
+      {
+        "from": "src/concurrent/concurrent-repository-analyzer.ts",
+        "to": "src/analysis/incremental-analyzer"
+      },
+      {
+        "from": "src/config/manifest-config.ts",
+        "to": "src/detector/detector-loader.js"
+      },
+      {
+        "from": "src/config/__tests__/manifest-config.test.ts",
+        "to": "src/config/manifest-config"
+      },
+      {
+        "from": "src/core/detector-worker-pool.ts",
+        "to": "src/core/worker-protocol.js"
+      },
+      {
+        "from": "src/core/detector-worker-pool.ts",
+        "to": "src/core/error-aggregator.js"
+      },
+      {
+        "from": "src/core/detector-worker.ts",
+        "to": "src/core/worker-protocol.js"
+      },
+      {
+        "from": "src/core/detector-worker.ts",
+        "to": "src/detector/detector-loader.js"
+      },
+      {
+        "from": "src/detector/accuracy-enhancements.spec.ts",
+        "to": "src/detector/eslint-detector"
+      },
+      {
+        "from": "src/detector/accuracy-enhancements.spec.ts",
+        "to": "src/detector/import-detector"
+      },
+      {
+        "from": "src/detector/accuracy-enhancements.spec.ts",
+        "to": "src/detector/network-detector"
+      },
+      {
+        "from": "src/detector/accuracy-enhancements.spec.ts",
+        "to": "src/detector/runtime-detector"
+      },
+      {
+        "from": "src/detector/advanced-runtime-detector.test.ts",
+        "to": "src/detector/advanced-runtime-detector.js"
+      },
+      {
+        "from": "src/detector/advanced-runtime-detector.ts",
+        "to": "src/types.js"
+      },
+      {
+        "from": "src/detector/architecture-detector.test.ts",
+        "to": "src/detector/architecture-detector"
+      },
+      {
+        "from": "src/detector/build-detector.test.ts",
+        "to": "src/detector/build-detector"
+      },
+      {
+        "from": "src/detector/build-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/cicd-detector.test.ts",
+        "to": "src/detector/cicd-detector.js"
+      },
+      {
+        "from": "src/detector/cicd-detector.ts",
+        "to": "src/types.js"
+      },
+      {
+        "from": "src/detector/circular-detector.test.ts",
+        "to": "src/detector/circular-detector"
+      },
+      {
+        "from": "src/detector/circular-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/complexity-detector.ts",
+        "to": "src/detector/false-positive-filters"
+      },
+      {
+        "from": "src/detector/complexity-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/confidence-scoring.ts",
+        "to": "src/learning/pattern-learning-schema.js"
+      },
+      {
+        "from": "src/detector/context-aware-performance.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/context-aware-performance.ts",
+        "to": "src/detector/confidence-scoring.js"
+      },
+      {
+        "from": "src/detector/context-aware-performance.ts",
+        "to": "src/learning/pattern-learning-schema.js"
+      },
+      {
+        "from": "src/detector/context-aware-security-v3.ts",
+        "to": "src/detector/smart-security-scanner.js"
+      },
+      {
+        "from": "src/detector/csharp/async-await-detector.ts",
+        "to": "src/detector/csharp/csharp-base-detector"
+      },
+      {
+        "from": "src/detector/csharp/async-await-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/csharp/csharp-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/csharp/linq-performance-detector.ts",
+        "to": "src/detector/csharp/csharp-base-detector"
+      },
+      {
+        "from": "src/detector/csharp/linq-performance-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/csharp/memory-leak-detector.ts",
+        "to": "src/detector/csharp/csharp-base-detector"
+      },
+      {
+        "from": "src/detector/csharp/memory-leak-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/csharp/nullable-detector.ts",
+        "to": "src/detector/csharp/csharp-base-detector"
+      },
+      {
+        "from": "src/detector/csharp/nullable-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/cve-scanner-detector.ts",
+        "to": "src/security/cve-scanner.js"
+      },
+      {
+        "from": "src/detector/database-detector.test.ts",
+        "to": "src/detector/database-detector"
+      },
+      {
+        "from": "src/detector/detector-fixes.spec.ts",
+        "to": "src/detector/eslint-detector"
+      },
+      {
+        "from": "src/detector/detector-fixes.spec.ts",
+        "to": "src/detector/import-detector"
+      },
+      {
+        "from": "src/detector/detector-fixes.spec.ts",
+        "to": "src/detector/network-detector"
+      },
+      {
+        "from": "src/detector/detector-fixes.spec.ts",
+        "to": "src/detector/runtime-detector"
+      },
+      {
+        "from": "src/detector/detector-loader.ts",
+        "to": "src/config/manifest-config.js"
+      },
+      {
+        "from": "src/detector/enhanced-db-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/enhanced-db-detector.ts",
+        "to": "src/detector/confidence-scoring.js"
+      },
+      {
+        "from": "src/detector/enhanced-db-detector.ts",
+        "to": "src/learning/pattern-learning-schema.js"
+      },
+      {
+        "from": "src/detector/eslint-detector.test.ts",
+        "to": "src/detector/eslint-detector"
+      },
+      {
+        "from": "src/detector/eslint-detector.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/detector/go/channel-misuse-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/channel-misuse-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/context-misuse-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/context-misuse-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/error-handling-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/error-handling-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/go-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/golangci-lint-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/golangci-lint-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/goroutine-leak-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/goroutine-leak-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go/staticcheck-detector.ts",
+        "to": "src/detector/go/go-base-detector"
+      },
+      {
+        "from": "src/detector/go/staticcheck-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/go-detector.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/detector/go-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/import-detector.test.ts",
+        "to": "src/detector/import-detector"
+      },
+      {
+        "from": "src/detector/import-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/infrastructure-detector.test.ts",
+        "to": "src/detector/infrastructure-detector"
+      },
+      {
+        "from": "src/detector/isolation-detector.test.ts",
+        "to": "src/detector/isolation-detector"
+      },
+      {
+        "from": "src/detector/isolation-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/java/java-architecture-detector.ts",
+        "to": "src/detector/base-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-architecture-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-complexity-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-concurrency-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-exception-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-memory-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-memory-detector.ts",
+        "to": "src/detector/maven-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-memory-detector.ts",
+        "to": "src/detector/gradle-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-null-safety-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-null-safety-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-performance-detector.ts",
+        "to": "src/detector/base-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-performance-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-security-detector.ts",
+        "to": "src/detector/base-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-security-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-spring-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-spring-detector.ts",
+        "to": "src/detector/maven-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-spring-detector.ts",
+        "to": "src/detector/gradle-parser.js"
+      },
+      {
+        "from": "src/detector/java/java-stream-detector.ts",
+        "to": "src/detector/java/base-java-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-testing-detector.ts",
+        "to": "src/detector/base-detector.js"
+      },
+      {
+        "from": "src/detector/java/java-testing-detector.ts",
+        "to": "src/parsers/java-parser.js"
+      },
+      {
+        "from": "src/detector/kotlin/detekt-detector.ts",
+        "to": "src/detector/kotlin/kotlin-base-detector"
+      },
+      {
+        "from": "src/detector/kotlin/detekt-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/kotlin/kotlin-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/ml-model-detector.test.ts",
+        "to": "src/detector/ml-model-detector.js"
+      },
+      {
+        "from": "src/detector/ml-model-detector.ts",
+        "to": "src/types.js"
+      },
+      {
+        "from": "src/detector/network-detector.test.ts",
+        "to": "src/detector/network-detector"
+      },
+      {
+        "from": "src/detector/network-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/new-language-detectors.spec.ts",
+        "to": "src/detector/go-detector"
+      },
+      {
+        "from": "src/detector/new-language-detectors.spec.ts",
+        "to": "src/detector/rust-detector"
+      },
+      {
+        "from": "src/detector/nextjs-detector.test.ts",
+        "to": "src/detector/nextjs-detector"
+      },
+      {
+        "from": "src/detector/optimized-eslint-detector.ts",
+        "to": "types"
+      },
+      {
+        "from": "src/detector/optimized-typescript-detector.ts",
+        "to": "types"
+      },
+      {
+        "from": "src/detector/package-detector.test.ts",
+        "to": "src/detector/package-detector"
+      },
+      {
+        "from": "src/detector/package-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/performance/asset-optimizer.ts",
+        "to": "src/detector/performance-detector"
+      },
+      {
+        "from": "src/detector/performance/asset-optimizer.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/performance/bundle-size-analyzer.ts",
+        "to": "src/detector/performance-detector"
+      },
+      {
+        "from": "src/detector/performance/loop-complexity-analyzer.ts",
+        "to": "src/detector/performance-detector"
+      },
+      {
+        "from": "src/detector/performance/loop-complexity-analyzer.ts",
+        "to": "src/detector/false-positive-filters"
+      },
+      {
+        "from": "src/detector/performance/react-render-optimizer.ts",
+        "to": "src/detector/performance-detector"
+      },
+      {
+        "from": "src/detector/performance-detector.test.ts",
+        "to": "src/detector/performance-detector"
+      },
+      {
+        "from": "src/detector/performance-detector.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/detector/performance-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/performance-detector.ts",
+        "to": "src/detector/false-positive-filters"
+      },
+      {
+        "from": "src/detector/performance-detector.ts",
+        "to": "src/detector/performance/index"
+      },
+      {
+        "from": "src/detector/performance-profiler-detector.ts",
+        "to": "src/profiler/performance-profiler.js"
+      },
+      {
+        "from": "src/detector/php/performance-detector.ts",
+        "to": "src/detector/php/php-base-detector"
+      },
+      {
+        "from": "src/detector/php/performance-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/php/php-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/php/phpstan-detector.ts",
+        "to": "src/detector/php/php-base-detector"
+      },
+      {
+        "from": "src/detector/php/phpstan-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/php/security-detector.ts",
+        "to": "src/detector/php/php-base-detector"
+      },
+      {
+        "from": "src/detector/php/security-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/python-complexity-detector.ts",
+        "to": "src/python/python-parser.js"
+      },
+      {
+        "from": "src/detector/python-security-detector.ts",
+        "to": "src/python/python-parser.js"
+      },
+      {
+        "from": "src/detector/python-type-detector.ts",
+        "to": "src/python/python-parser.js"
+      },
+      {
+        "from": "src/detector/ruby/rails-detector.ts",
+        "to": "src/detector/ruby/ruby-base-detector"
+      },
+      {
+        "from": "src/detector/ruby/rails-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/ruby/rubocop-detector.ts",
+        "to": "src/detector/ruby/ruby-base-detector"
+      },
+      {
+        "from": "src/detector/ruby/rubocop-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/ruby/ruby-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/ruby/security-detector.ts",
+        "to": "src/detector/ruby/ruby-base-detector"
+      },
+      {
+        "from": "src/detector/ruby/security-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/runtime/memory-leak-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/runtime/race-condition-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/runtime/resource-cleanup-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/runtime-detector.test.ts",
+        "to": "src/detector/runtime-detector"
+      },
+      {
+        "from": "src/detector/runtime-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/runtime-detector.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/detector/runtime-detector.ts",
+        "to": "src/detector/enhanced-db-detector"
+      },
+      {
+        "from": "src/detector/runtime-detector.ts",
+        "to": "src/detector/runtime/index"
+      },
+      {
+        "from": "src/detector/rust/clippy-detector.ts",
+        "to": "src/detector/rust/rust-base-detector"
+      },
+      {
+        "from": "src/detector/rust/clippy-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust/lifetime-detector.ts",
+        "to": "src/detector/rust/rust-base-detector"
+      },
+      {
+        "from": "src/detector/rust/lifetime-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust/ownership-detector.ts",
+        "to": "src/detector/rust/rust-base-detector"
+      },
+      {
+        "from": "src/detector/rust/ownership-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust/panic-detector.ts",
+        "to": "src/detector/rust/rust-base-detector"
+      },
+      {
+        "from": "src/detector/rust/panic-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust/rust-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust/unsafe-detector.ts",
+        "to": "src/detector/rust/rust-base-detector"
+      },
+      {
+        "from": "src/detector/rust/unsafe-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/rust-detector.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/detector/rust-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/security-detector.test.ts",
+        "to": "src/detector/security-detector"
+      },
+      {
+        "from": "src/detector/security-detector.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/security-detector.ts",
+        "to": "src/detector/smart-security-scanner"
+      },
+      {
+        "from": "src/detector/security-detector.ts",
+        "to": "src/utils/ignore-patterns"
+      },
+      {
+        "from": "src/detector/smart-security-scanner.ts",
+        "to": "src/utils/safe-file-reader.js"
+      },
+      {
+        "from": "src/detector/smart-security-scanner.ts",
+        "to": "src/detector/confidence-scoring.js"
+      },
+      {
+        "from": "src/detector/smart-security-scanner.ts",
+        "to": "src/learning/pattern-learning-schema.js"
+      },
+      {
+        "from": "src/detector/swift/swift-base-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/swift/swiftlint-detector.ts",
+        "to": "src/detector/swift/swift-base-detector"
+      },
+      {
+        "from": "src/detector/swift/swiftlint-detector.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/detector/ts-detector.test.ts",
+        "to": "src/detector/ts-detector"
+      },
+      {
+        "from": "src/detector-router.ts",
+        "to": "src/detector/detector-loader.js"
+      },
+      {
+        "from": "src/engine/file-type-analysis.ts",
+        "to": "../packages/odavl-core/src/filetypes/file-type-detection.js"
+      },
+      {
+        "from": "src/engine/__tests__/file-type-analysis.test.ts",
+        "to": "src/engine/engine/file-type-analysis"
+      },
+      {
+        "from": "src/error-watcher.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "src/error-watcher.ts",
+        "to": "src/InsightNotifier"
+      },
+      {
+        "from": "src/error-watcher.ts",
+        "to": "src/LogWriter"
+      },
+      {
+        "from": "src/error-watcher.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/filtering/filter-analytics.ts",
+        "to": "src/filtering/filter-builder"
+      },
+      {
+        "from": "src/filtering/filter-analytics.ts",
+        "to": "src/filtering/filter-presets"
+      },
+      {
+        "from": "src/filtering/filter-presets.ts",
+        "to": "src/filtering/filter-builder"
+      },
+      {
+        "from": "src/InsightNotifier.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "src/InsightNotifier.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/integration.spec.ts",
+        "to": "src/utils/performance"
+      },
+      {
+        "from": "src/integration.spec.ts",
+        "to": "src/utils/ignore-patterns"
+      },
+      {
+        "from": "src/integrations/azure-boards.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/discord-webhooks.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/github-actions.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/github-issues.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/gitlab-ci.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/jenkins.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/jira.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/microsoft-teams.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/integrations/slack.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/language/language-detector.ts",
+        "to": "src/utils/safe-file-reader"
+      },
+      {
+        "from": "src/language/multi-language-aggregator.ts",
+        "to": "src/language/language-detector.js"
+      },
+      {
+        "from": "src/learn.ts",
+        "to": "src/utils/getRepoRoot"
+      },
+      {
+        "from": "src/learning/data-collection.ts",
+        "to": "src/learning/github-api-client.js"
+      },
+      {
+        "from": "src/learning/ml-recipe-integration.ts",
+        "to": "src/learning/ml-trust-predictor.js"
+      },
+      {
+        "from": "src/learning/pattern-memory.ts",
+        "to": "src/learning/pattern-learning-schema.js"
+      },
+      {
+        "from": "src/learning/__tests__/ml-trust-predictor.test.ts",
+        "to": "src/learning/ml-trust-predictor.js"
+      },
+      {
+        "from": "src/lib/analyzer/StackAnalyzer.ts",
+        "to": "src/lib/analyzer/StackModel"
+      },
+      {
+        "from": "src/lib/analyzer/StackAnalyzer.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "src/lib/analyzer/StackReporter.ts",
+        "to": "src/lib/analyzer/StackModel"
+      },
+      {
+        "from": "src/lib/analyzer/StackReporter.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/lib/bridge/GuardianBridge.ts",
+        "to": "src/lib/bridge/BridgeProtocol"
+      },
+      {
+        "from": "src/lib/bridge/GuardianSync.ts",
+        "to": "src/lib/bridge/BridgeProtocol"
+      },
+      {
+        "from": "src/lib/bridge/VerifyAttestation.ts",
+        "to": "src/lib/bridge/BridgeProtocol"
+      },
+      {
+        "from": "src/lib/fix/FixAdvisor.ts",
+        "to": "src/lib/root/RootCauseDetector"
+      },
+      {
+        "from": "src/lib/fix/FixAdvisor.ts",
+        "to": "src/lib/fix/SuggestionEngine"
+      },
+      {
+        "from": "src/lib/fix/SuggestionEngine.ts",
+        "to": "src/lib/root/RootCauseDetector"
+      },
+      {
+        "from": "src/lib/fix/SuggestionEngine.ts",
+        "to": "src/lib/fix/FixPatterns"
+      },
+      {
+        "from": "src/lib/learning/LearningEngine.ts",
+        "to": "src/lib/learning/Predictor"
+      },
+      {
+        "from": "src/lib/learning/LearningEngine.ts",
+        "to": "src/lib/learning/LearningTrainer"
+      },
+      {
+        "from": "src/lib/learning/LearningEngine.ts",
+        "to": "src/lib/memory/InsightMemory"
+      },
+      {
+        "from": "src/lib/learning/LearningTrainer.ts",
+        "to": "src/lib/memory/InsightMemory"
+      },
+      {
+        "from": "src/lib/learning/LearningTrainer.ts",
+        "to": "src/lib/learning/Predictor"
+      },
+      {
+        "from": "src/lib/learning/ReportGenerator.ts",
+        "to": "src/lib/learning/Predictor"
+      },
+      {
+        "from": "src/lib/memory/MemoryManager.ts",
+        "to": "src/lib/memory/InsightMemory"
+      },
+      {
+        "from": "src/lib/memory/PatternRecognizer.ts",
+        "to": "src/lib/memory/InsightMemory"
+      },
+      {
+        "from": "src/lib/notifier/NotifierBridge.ts",
+        "to": "src/lib/notifier/LiveNotifier"
+      },
+      {
+        "from": "src/lib/notifier/NotifierCLI.ts",
+        "to": "src/lib/notifier/LiveNotifier"
+      },
+      {
+        "from": "src/lib/notifier/NotifierCLI.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/lib/root/CorrelationEngine.ts",
+        "to": "src/lib/root/ChangeHistoryReader"
+      },
+      {
+        "from": "src/lib/root/RootCauseDetector.ts",
+        "to": "src/lib/root/CorrelationEngine"
+      },
+      {
+        "from": "src/licensing/license-compatibility.ts",
+        "to": "src/licensing/license-scanner"
+      },
+      {
+        "from": "src/licensing/sbom-generator.ts",
+        "to": "src/licensing/license-scanner"
+      },
+      {
+        "from": "src/LogWriter.ts",
+        "to": "src/error-parser"
+      },
+      {
+        "from": "src/memory.ts",
+        "to": "src/learn"
+      },
+      {
+        "from": "src/memory.ts",
+        "to": "src/utils/getRepoRoot"
+      },
+      {
+        "from": "src/ml/learning-system.ts",
+        "to": "src/analyzer/enhanced-analyzer.js"
+      },
+      {
+        "from": "src/ml/ml-enhanced-detector.ts",
+        "to": "src/analyzer/enhanced-analyzer.js"
+      },
+      {
+        "from": "src/ml/ml-enhanced-detector.ts",
+        "to": "src/ml/learning-system.js"
+      },
+      {
+        "from": "src/ml/ml-enhanced-detector.ts",
+        "to": "src/ml/predictive-analysis.js"
+      },
+      {
+        "from": "src/ml/predictive-analysis.ts",
+        "to": "src/analyzer/enhanced-analyzer.js"
+      },
+      {
+        "from": "src/monorepo/project-graph-analyzer.ts",
+        "to": "src/monorepo/monorepo-detector"
+      },
+      {
+        "from": "src/parallel-executor.ts",
+        "to": "types"
+      },
+      {
+        "from": "src/parallel-executor.ts",
+        "to": "src/config/manifest-config.js"
+      },
+      {
+        "from": "src/performance/stream-analyzer.test.ts",
+        "to": "src/performance/stream-analyzer"
+      },
+      {
+        "from": "src/performance/worker-pool.test.ts",
+        "to": "src/performance/worker-pool"
+      },
+      {
+        "from": "src/realtime/event-stream.ts",
+        "to": "src/realtime/websocket-manager"
+      },
+      {
+        "from": "src/reporter/markdown-reporter.ts",
+        "to": "src/reporter/html-reporter.js"
+      },
+      {
+        "from": "src/reporter.ts",
+        "to": "src/memory"
+      },
+      {
+        "from": "src/reporter.ts",
+        "to": "src/utils/getRepoRoot"
+      },
+      {
+        "from": "src/reporter.ts",
+        "to": "src/utils/logger"
+      },
+      {
+        "from": "src/reporting/advanced-dashboard.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/reporting/advanced-dashboard.ts",
+        "to": "src/reporting/trend-analysis"
+      },
+      {
+        "from": "src/reporting/advanced-dashboard.ts",
+        "to": "src/reporting/historical-comparison"
+      },
+      {
+        "from": "src/reporting/historical-comparison.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/reporting/multi-repo-dashboard.ts",
+        "to": "src/concurrent/concurrent-repository-analyzer"
+      },
+      {
+        "from": "src/reporting/report-scheduler.ts",
+        "to": "src/reporting/report-generator"
+      },
+      {
+        "from": "src/reporting/report-scheduler.ts",
+        "to": "src/reporting/export-engine"
+      },
+      {
+        "from": "src/reporting/trend-analysis.ts",
+        "to": "src/types"
+      },
+      {
+        "from": "src/result-cache.ts",
+        "to": "types"
+      },
+      {
+        "from": "src/search/query-parser.ts",
+        "to": "src/search/semantic-search"
+      },
+      {
+        "from": "src/stream-analyzer.ts",
+        "to": "types"
+      },
+      {
+        "from": "src/training.ts",
+        "to": "src/utils/getRepoRoot"
+      },
+      {
+        "from": "src/trending/historical-store.ts",
+        "to": "src/trending/trend-analysis"
+      },
+      {
+        "from": "src/trending/prediction-model.ts",
+        "to": "src/trending/trend-analysis"
+      },
+      {
+        "from": "src/types/ai-types.ts",
+        "to": "src/engine/file-type-analysis.js"
+      },
+      {
+        "from": "src/utils/file-filter.ts",
+        "to": "src/config/manifest-config.js"
+      },
+      {
+        "from": "src/utils/ignore-patterns.spec.ts",
+        "to": "src/utils/ignore-patterns"
+      },
+      {
+        "from": "src/utils/performance.spec.ts",
+        "to": "src/utils/performance"
+      },
+      {
+        "from": "src/utils/performance.ts",
+        "to": "src/utils/safe-file-reader"
+      },
+      {
+        "from": "src/widgets/widget-builder.ts",
+        "to": "src/dashboard/theme-manager"
+      },
+      {
+        "from": "src/widgets/widget-marketplace.ts",
+        "to": "src/widgets/widget-builder"
+      },
+      {
+        "from": "src/widgets/widget-sdk.ts",
+        "to": "src/widgets/widget-builder"
+      },
+      {
+        "from": "src/widgets/widget-sdk.ts",
+        "to": "src/dashboard/theme-manager"
+      },
+      {
+        "from": "tests/ai-detector-engine.test.ts",
+        "to": "src/ai/ai-detector-engine"
+      },
+      {
+        "from": "tests/ai-detector-engine.test.ts",
+        "to": "src/types/ai-types"
+      },
+      {
+        "from": "tests/debug-jsonld.ts",
+        "to": "src/detector/context-aware-security-v3.js"
+      },
+      {
+        "from": "tests/detector/python/python-best-practices-detector.test.ts",
+        "to": "src/detector/python/python-best-practices-detector.js"
+      },
+      {
+        "from": "tests/detector/python/python-complexity-detector.test.ts",
+        "to": "src/detector/python/python-complexity-detector.js"
+      },
+      {
+        "from": "tests/detector/python/python-imports-detector.test.ts",
+        "to": "src/detector/python/python-imports-detector.js"
+      },
+      {
+        "from": "tests/detector/python/python-security-detector.test.ts",
+        "to": "src/detector/python/python-security-detector.js"
+      },
+      {
+        "from": "tests/detector/python/python-type-detector.test.ts",
+        "to": "src/detector/python/python-type-detector.js"
+      },
+      {
+        "from": "tests/detector-v3.test.ts",
+        "to": "src/detector/context-aware-security-v3.js"
+      },
+      {
+        "from": "tests/integration-full-pipeline.test.ts",
+        "to": "src/core/detector-worker-pool.js"
+      },
+      {
+        "from": "tests/worker-pool.smoke.test.ts",
+        "to": "src/core/detector-worker-pool"
+      }
+    ],
+    "cycles": []
+  },
+  "timestamp": "2025-12-10T16:52:56.382Z"
+}

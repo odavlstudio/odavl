@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { execSync } from 'node:child_process';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface BuildError {
     type: 'webpack' | 'vite' | 'rollup' | 'tsc' | 'esbuild' | 'next' | 'generic';
@@ -44,7 +45,29 @@ export class BuildDetector {
             }];
         }
 
-        const pkgJson = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+        const pkgContent = safeReadFile(pkgPath);
+        if (!pkgContent) {
+            return [{
+                type: 'generic',
+                message: 'Cannot read package.json',
+                rootCause: 'package.json file is unreadable or is a directory',
+                suggestedFix: 'Check file permissions',
+                severity: 'error'
+            }];
+        }
+        
+        let pkgJson;
+        try {
+            pkgJson = JSON.parse(pkgContent);
+        } catch {
+            return [{
+                type: 'generic',
+                message: 'Invalid package.json',
+                rootCause: 'package.json contains invalid JSON',
+                suggestedFix: 'Validate JSON syntax',
+                severity: 'error'
+            }];
+        }
 
         // Detect build tool
         const buildTool = this.detectBuildTool(pkgJson);
@@ -57,8 +80,20 @@ export class BuildDetector {
             const buildErrors = this.parseBuildOutput(buildOutput, buildTool, false);
             errors.push(...buildErrors);
         } catch (err: unknown) {
-            // Build failed - extract errors from stderr/stdout
             const error = err as { stderr?: string; stdout?: string; message?: string };
+            
+            // Check for timeout error
+            if (error.message?.includes('BUILD_TIMEOUT')) {
+                return [{
+                    type: buildTool,
+                    message: 'Build exceeded timeout (5 minutes)',
+                    rootCause: 'Large project or complex build process',
+                    suggestedFix: 'Optimize build configuration or split into smaller builds',
+                    severity: 'error'
+                }];
+            }
+            
+            // Build failed - extract errors from stderr/stdout
             const output = error.stderr || error.stdout || error.message || '';
             const buildErrors = this.parseBuildOutput(output, buildTool, true);
             errors.push(...buildErrors);
@@ -101,14 +136,21 @@ export class BuildDetector {
         const cmd = commands[buildTool];
 
         try {
+            // WAVE 8 PHASE 1: Increase timeout to 5 minutes for builds
             const output = execSync(cmd, {
                 cwd: dir,
                 stdio: 'pipe',
                 encoding: 'utf8',
-                timeout: 60000 // 1 minute timeout
+                timeout: 300000 // 5 minutes timeout
             });
             return output;
         } catch (err: unknown) {
+            // Check if timeout occurred
+            const error = err as { killed?: boolean; signal?: string };
+            if (error.killed && error.signal === 'SIGTERM') {
+                throw new Error('BUILD_TIMEOUT: Build exceeded timeout (5 minutes)');
+            }
+            
             // Re-throw to handle in detect()
             throw err;
         }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { GuardianBridge } from '../packages/insight-core/src/lib/bridge/GuardianBridge';
-import { GuardianSync } from '../packages/insight-core/src/lib/bridge/GuardianSync';
-import { VerifyAttestation } from '../packages/insight-core/src/lib/bridge/VerifyAttestation';
+import { GuardianBridge } from '../odavl-studio/insight/core/src/lib/bridge/GuardianBridge';
+import { GuardianSync } from '../odavl-studio/insight/core/src/lib/bridge/GuardianSync';
+import { VerifyAttestation } from '../odavl-studio/insight/core/src/lib/bridge/VerifyAttestation';
 
 const workspaceRoot = process.cwd();
 

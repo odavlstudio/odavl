@@ -560,7 +560,8 @@ export class PatternMemory {
      * Get database snapshot (for inspection/debugging)
      */
     getDatabaseSnapshot(): PatternDatabase {
-        return JSON.parse(JSON.stringify(this.database));
+        // Phase 3B: Use structuredClone() for database export
+        return structuredClone(this.database);
     }
 
     /**

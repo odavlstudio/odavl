@@ -4,7 +4,20 @@
  * 
  * Week 1: Browser Automation & Error Detection
  * Week 12: Launch Validator v3.0
+ * Phase P1: Manifest integration (read-only)
  */
+
+// Phase P1: Manifest configuration (read-only wiring)
+export * from './config/manifest-config.js';
+
+// Phase 5: Telemetry integration (TEMPORARILY DISABLED - Phase 4 Build Fix)
+// import { EventEmitter, ODAVLEvent } from '@odavl-studio/telemetry';
+// const telemetry = new EventEmitter();
+export function emitGuardianEvent(type: string, data?: Record<string, unknown>): void {
+    // telemetry.emit(type, 'guardian', data);
+    // Stub implementation for Phase 4 build success
+    console.log('[Guardian Event]', type, data);
+}
 
 // Browser automation
 export { BrowserManager } from './browser-manager';

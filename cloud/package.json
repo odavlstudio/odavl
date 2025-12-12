@@ -1,0 +1,37 @@
+{
+  "name": "@odavl-studio/cloud",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ODAVL Cloud Platform - Global deployment infrastructure",
+  "scripts": {
+    "gateway:dev": "cd infra/api-gateway && pnpm dev",
+    "telemetry:dev": "cd services/telemetry-proxy && pnpm dev",
+    "autopilot:dev": "cd services/autopilot-runner && pnpm dev",
+    "guardian:dev": "cd services/guardian-runner && pnpm dev"
+  },
+  "workspaces": [
+    "infra/api-gateway",
+    "services/telemetry-proxy"
+  ],
+  "keywords": [
+    "odavl",
+    "cloud",
+    "infrastructure",
+    "deployment"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^14.7.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.7"
+  }
+}

@@ -29,6 +29,11 @@
       "import": "./dist/agents/index.mjs",
       "require": "./dist/agents/index.js"
     },
+    "./runtime/guardian-ci": {
+      "types": "./runtime/guardian-ci.d.ts",
+      "import": "./runtime/guardian-ci.js",
+      "require": "./runtime/guardian-ci.cjs"
+    },
     "./cli": {
       "import": "./cli/dist/guardian.mjs",
       "require": "./cli/dist/guardian.js"

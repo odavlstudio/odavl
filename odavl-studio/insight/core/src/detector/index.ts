@@ -1,8 +1,26 @@
 /**
  * ODAVL Insight - Unified Detector System
  * Unified system to detect all types of errors
+ * 
+ * Phase 3B: Lazy Loading Support
+ * Use loadDetector() for on-demand loading to optimize cold start
  */
 
+// Phase 3B: Lazy Loading System
+export {
+  loadDetector,
+  loadDetectors,
+  preloadCommonDetectors,
+  getLoadStats,
+  getAverageLoadTime,
+  getCacheHitRatio,
+  clearCache,
+  getCacheSize,
+  type DetectorName,
+  type DetectorLoadStats,
+} from './detector-loader.js';
+
+// Static imports (legacy support - will be tree-shaken if unused)
 export { TSDetector } from './ts-detector.js';
 export { ESLintDetector } from './eslint-detector.js';
 export { ImportDetector } from './import-detector.js';
@@ -15,6 +33,64 @@ export { ComponentIsolationDetector } from './isolation-detector.js';
 export { PerformanceDetector, PerformanceErrorType } from './performance-detector.js';
 export { NetworkDetector } from './network-detector.js';
 export { ComplexityDetector, ComplexityErrorType } from './complexity-detector.js';
+
+// NEW: Go Detector (Phase 8 - Dec 2025)
+export {
+  GoDetector,
+  type GoError,
+  GoErrorCategory,
+  type GoStatistics,
+} from './go-detector.js';
+
+// NEW: Rust Detector (Phase 8 - Dec 2025)
+export {
+  RustDetector,
+  type RustError,
+  RustErrorCategory,
+  type RustStatistics,
+} from './rust-detector.js';
+
+// NEW: Architecture Detector (MVP Month 1)
+export { 
+  ArchitectureDetector, 
+  analyzeArchitecture,
+  type ArchitectureIssue,
+  type ArchitectureMetrics,
+  type ArchitectureAnalysisResult,
+  type DependencyGraph,
+  type LayerConfig,
+  type ArchitectureConfig,
+} from './architecture-detector.js';
+
+// NEW: Database Detector (MVP Month 1 - Week 3)
+export {
+  DatabaseDetector,
+  analyzeDatabase,
+  type DatabaseIssue,
+  type DatabaseMetrics,
+  type DatabaseAnalysisResult,
+  type DatabaseConfig,
+} from './database-detector.js';
+
+// NEW: Next.js Detector (MVP Month 2 - Week 5-6)
+export {
+  NextJSDetector,
+  analyzeNextJS,
+  type NextJSIssue,
+  type NextJSMetrics,
+  type NextJSAnalysisResult,
+  type NextJSConfig,
+} from './nextjs-detector.js';
+
+// NEW: Infrastructure Detector (MVP Month 2 - Week 7-8)
+export {
+  InfrastructureDetector,
+  analyzeInfrastructure,
+  type InfrastructureIssue,
+  type InfrastructureMetrics,
+  type InfrastructureAnalysisResult,
+  type InfrastructureConfig,
+} from './infrastructure-detector.js';
 
 // Python Language Support (Phase 2 - Week 7)
 export {

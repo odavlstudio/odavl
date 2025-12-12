@@ -1,6 +1,18 @@
-# Allow all crawlers
 User-agent: *
-Allow: /
 
-# Sitemap (update with your domain)
-# Sitemap: https://yourdomain.com/sitemap.xml
+# Allow public pages
+Allow: /
+Allow: /pricing
+Allow: /docs
+Allow: /blog
+Allow: /features
+Allow: /about
+Allow: /contact
+
+# Block admin and auth
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://odavl.com/sitemap.xml

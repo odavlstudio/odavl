@@ -1,0 +1,109 @@
+
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(50,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(66,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(81,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(94,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(98,24): error TS2339: Property 'suggestion' does not exist on type 'CircularDependency'.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(99,24): error TS2339: Property 'suggestion' does not exist on type 'CircularDependency'.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(108,55): error TS2345: Argument of type '{ exclude: string[]; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/circular-detector.test.ts(122,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/csharp/csharp-base-detector.ts(135,7): error TS2353: Object literal may only specify known properties, and 'source' does not exist in type 'CSharpIssue'.
+odavl-studio/insight/core/src/detector/go/go-base-detector.ts(98,7): error TS2353: Object literal may only specify known properties, and 'source' does not exist in type 'GoIssue'.
+odavl-studio/insight/core/src/detector/gradle-parser.ts(153,41): error TS18047: 'match' is possibly 'null'.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(54,38): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"import-cycle"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(67,38): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"import-cycle"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(82,45): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"unused-import"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(96,45): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"unused-import"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(110,46): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"missing-import"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(126,55): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"import-optimization"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(139,44): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"large-import"' have no overlap.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(141,27): error TS2339: Property 'suggestion' does not exist on type 'ImportError'.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(150,43): error TS2345: Argument of type '{ ignoreCycles: boolean; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/import-detector.test.ts(156,38): error TS2367: This comparison appears to be unintentional because the types '"circular" | "not-found" | "no-export" | "syntax-error"' and '"import-cycle"' have no overlap.
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(48,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(64,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(78,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(92,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(104,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(121,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(134,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(148,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/isolation-detector.test.ts(161,28): error TS2552: Cannot find name 'ComponentComponentIsolationDetector'. Did you mean 'ComponentIsolationDetector'?
+odavl-studio/insight/core/src/detector/java/java-architecture-detector.ts(32,50): error TS2304: Cannot find name 'Detector'.
+odavl-studio/insight/core/src/detector/java/java-performance-detector.ts(31,49): error TS2304: Cannot find name 'Detector'.
+odavl-studio/insight/core/src/detector/java/java-performance-detector.ts(246,61): error TS18047: 'match' is possibly 'null'.
+odavl-studio/insight/core/src/detector/java/java-security-detector.ts(34,46): error TS2304: Cannot find name 'Detector'.
+odavl-studio/insight/core/src/detector/java/java-testing-detector.ts(32,45): error TS2304: Cannot find name 'Detector'.
+odavl-studio/insight/core/src/detector/kotlin/detekt-detector.ts(29,9): error TS2416: Property 'detect' in type 'DetektDetector' is not assignable to the same property in base type 'KotlinBaseDetector'.
+odavl-studio/insight/core/src/detector/kotlin/kotlin-base-detector.ts(112,7): error TS2353: Object literal may only specify known properties, and 'source' does not exist in type 'KotlinIssue'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(49,51): error TS2304: Cannot find name 'NetworkErrorType'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(64,51): error TS2304: Cannot find name 'NetworkErrorType'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(78,57): error TS2304: Cannot find name 'NetworkErrorType'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(95,57): error TS2304: Cannot find name 'NetworkErrorType'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(126,38): error TS2367: This comparison appears to be unintentional because the types 'NetworkErrorType' and '"missing-retry"' have no overlap.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(137,44): error TS2345: Argument of type '{ ignoreTimeouts: boolean; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/network-detector.test.ts(143,51): error TS2304: Cannot find name 'NetworkErrorType'.
+odavl-studio/insight/core/src/detector/optimized-eslint-detector.ts(142,11): error TS2322: Type '"error" | "warning"' is not assignable to type 'Severity'.
+odavl-studio/insight/core/src/detector/optimized-typescript-detector.ts(125,11): error TS2322: Type '"error"' is not assignable to type 'Severity'.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(51,41): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"outdated-dependency"' have no overlap.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(66,41): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"outdated-dependency"' have no overlap.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(66,79): error TS2339: Property 'package' does not exist on type 'PackageError'.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(82,37): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"vulnerable-package"' have no overlap.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(117,41): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"peer-dependency-conflict"' have no overlap.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(136,42): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"duplicate-dependency"' have no overlap.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(149,44): error TS2345: Argument of type '{ ignoreOutdated: boolean; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/package-detector.test.ts(155,41): error TS2367: This comparison appears to be unintentional because the types '"missing-dependency" | "version-mismatch" | "peer-conflict" | "invalid-json" | "unused-dependency"' and '"outdated-dependency"' have no overlap.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(50,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(66,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(82,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(86,27): error TS2339: Property 'suggestedFix' does not exist on type 'OldPerformanceIssue'.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(97,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(101,22): error TS2339: Property 'suggestedFix' does not exist on type 'OldPerformanceIssue'.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(110,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(126,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(130,18): error TS2339: Property 'suggestedFix' does not exist on type 'OldPerformanceIssue'.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(142,37): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/performance-detector.test.ts(155,29): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/php/php-base-detector.ts(131,7): error TS2353: Object literal may only specify known properties, and 'filePath' does not exist in type 'PhpIssue'.
+odavl-studio/insight/core/src/detector/php/phpstan-detector.ts(125,7): error TS2345: Argument of type '"error" | "warning"' is not assignable to parameter of type 'Severity'.
+odavl-studio/insight/core/src/detector/ruby/rubocop-detector.ts(184,9): error TS2322: Type '"error"' is not assignable to type 'Severity'.
+odavl-studio/insight/core/src/detector/ruby/rubocop-detector.ts(186,9): error TS2322: Type '"warning"' is not assignable to type 'Severity'.
+odavl-studio/insight/core/src/detector/ruby/rubocop-detector.ts(193,9): error TS2322: Type '"warning"' is not assignable to type 'Severity'.
+odavl-studio/insight/core/src/detector/ruby/ruby-base-detector.ts(148,7): error TS2353: Object literal may only specify known properties, and 'filePath' does not exist in type 'RubyIssue'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(50,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(53,44): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(63,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(66,44): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(80,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(83,45): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(99,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(102,45): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(115,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(118,45): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(131,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(134,45): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(147,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(150,45): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(161,44): error TS2345: Argument of type '{ ignoreUnhandledRejections: boolean; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(167,44): error TS2339: Property 'type' does not exist on type 'RuntimeError'.
+odavl-studio/insight/core/src/detector/runtime-detector.test.ts(176,24): error TS2554: Expected 1 arguments, but got 0.
+odavl-studio/insight/core/src/detector/rust/rust-base-detector.ts(124,7): error TS2353: Object literal may only specify known properties, and 'source' does not exist in type 'RustIssue'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(50,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(65,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(78,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(92,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(105,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(117,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(132,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(146,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(158,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(170,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(186,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(199,45): error TS2345: Argument of type '{ enableSecretScanning: boolean; enableSqlInjectionCheck: boolean; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(204,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(216,45): error TS2345: Argument of type '{ exclude: string[]; }' is not assignable to parameter of type 'string'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(220,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(232,29): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/security-detector.test.ts(240,37): error TS2339: Property 'analyze' does not exist on type 'SecurityDetector'.
+odavl-studio/insight/core/src/detector/swift/swift-base-detector.ts(114,7): error TS2353: Object literal may only specify known properties, and 'detector' does not exist in type 'SwiftIssue'.
+

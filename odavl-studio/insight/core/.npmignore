@@ -1,0 +1,47 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Tests
+**/*.test.*
+**/*.spec.*
+__tests__/
+tests/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Config files
+tsconfig*.json
+vitest.config.*
+eslint.config.*
+.prettierrc
+
+# Build artifacts
+*.tsbuildinfo
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+.temp/
+
+# Reports
+reports/
+coverage/

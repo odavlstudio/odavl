@@ -1,0 +1,17 @@
+{
+  "name": "benchmark-suite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "benchmark": "tsx benchmark-runner.ts",
+    "benchmark:small": "tsx benchmark-runner.ts --size small",
+    "benchmark:medium": "tsx benchmark-runner.ts --size medium",
+    "benchmark:large": "tsx benchmark-runner.ts --size large",
+    "benchmark:compare": "tsx compare-results.ts",
+    "fixtures:create": "tsx create-fixtures.ts",
+    "fixtures:clean": "rm -rf ../../fixtures/benchmark"
+  },
+  "dependencies": {
+    "tsx": "^4.7.0"
+  }
+}

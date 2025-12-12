@@ -1,4 +1,8 @@
-# ODAVL Studio v2.0 - AI Coding Agent Instructions
+# ODAVL v2.0 - AI Coding Agent Instructions
+
+> **Last Updated**: December 10, 2025  
+> **For**: GitHub Copilot, Cursor, Windsurf, Cline, and other AI coding agents  
+> **Codebase**: ODAVL - Autonomous Code Quality Platform (pnpm monorepo)
 
 ## 🔒 CRITICAL: Product Boundaries (READ FIRST)
 
@@ -7,13 +11,15 @@
 ### **Product Separation Philosophy**
 
 ```
-ODAVL Studio = Suite of 3 INDEPENDENT Products
+ODAVL Studio = Suite of 4 INDEPENDENT Products + Infrastructure
 Each product has ONE job. Do it PERFECTLY. Never mix.
 ```
 
 #### **1️⃣ ODAVL Insight - The Brain 🧠**
 
 **"يفكر، يحلل، يكشف — لا يلمس الكود أبداً"**
+
+**Real Status**: 16 detectors total (11 stable ✅, 3 experimental ⚠️, 2 broken ❌)
 
 ✅ **Allowed:**
 
@@ -58,27 +64,96 @@ Each product has ONE job. Do it PERFECTLY. Never mix.
 
 ---
 
-#### **3️⃣ ODAVL Guardian - The Shield 🛡️**
+#### **3️⃣ ODAVL Guardian - Website Testing Specialist 🛡️**
 
-**"يحمي، يمنع — لا يصلح ولا يحلل"**
+**"يختبر المواقع فقط — أذكى من Vercel وPlaywright"**
 
 ✅ **Allowed:**
 
-- Policy enforcement (risk budget, protected paths)
-- Quality gates (block bad deployments)
-- Attestation verification (cryptographic proofs)
-- Production monitoring (error rates, availability)
-- Compliance checks (security, governance)
+- Website testing ONLY (accessibility, performance, security, SEO)
+- Visual regression testing (pixel-perfect comparison)
+- E2E flows (Playwright integration)
+- Multi-browser/device testing (Chrome, Firefox, Safari, Edge)
+- Production monitoring (uptime, errors, RUM)
+- Quality gates (block deployments based on test scores)
+- Lighthouse audits
+- WCAG 2.1 compliance
+
+❌ **FORBIDDEN:**
+
+- ❌ Code analysis (use Insight)
+- ❌ Error detection in code (use Insight)
+- ❌ TypeScript/ESLint checking (use Insight)
+- ❌ Import cycle detection (use Insight)
+- ❌ Auto-fix (use Autopilot)
+- ❌ File modifications (use Autopilot)
+
+**Integration:** Tests websites deployed by Autopilot, uses Insight for code validation
+
+---
+
+#### **4️⃣ ODAVL Brain - Intelligence Layer 🧠**
+
+**"Orchestrates Everything - Multi-Agent Coordination"**
+
+✅ **Allowed:**
+
+- Cross-product orchestration and coordination
+- Multi-agent workflow management (Insight → Autopilot → Guardian)
+- Decision intelligence and optimization
+- Memory and learning across products
+- Context sharing and state management
+
+❌ **FORBIDDEN:**
+
+- ❌ Direct code modification (delegate to Autopilot)
+- ❌ Direct detection (delegate to Insight)
+- ❌ Direct testing (delegate to Guardian)
+
+**Integration:** Coordinates all products via OPLayer protocol, maintains shared state
+
+---
+
+#### **5️⃣ OMS (Operational Management System) - Risk Intelligence 📊**
+
+**"Understands File Risk - Scores Everything"**
+
+✅ **Allowed:**
+
+- File risk scoring and categorization
+- Risk calculation algorithms
+- Protected path intelligence
+- File type classification
+- Risk metadata management
 
 ❌ **FORBIDDEN:**
 
 - ❌ Detection (use Insight)
-- ❌ Code analysis (use Insight)
-- ❌ Auto-fix (use Autopilot)
-- ❌ File modifications (use Autopilot)
-- ❌ Refactoring (use Autopilot)
+- ❌ Fixing (use Autopilot)
+- ❌ Testing (use Guardian)
 
-**Integration:** Uses Insight for validation, blocks until Autopilot fixes
+**Integration:** Provides risk scores to all products via OPLayer
+
+---
+
+#### **6️⃣ OPLayer (Protocol Layer) - Communication Hub 🔌**
+
+**"Enables Clean Product Separation"**
+
+✅ **Allowed:**
+
+- Protocol definitions for inter-product communication
+- Message passing between products
+- Data serialization/deserialization
+- Type-safe product boundaries
+- Event broadcasting
+
+❌ **FORBIDDEN:**
+
+- ❌ Business logic (belongs in products)
+- ❌ File I/O (products handle their own)
+
+**Integration:** Connects all products without creating dependencies
 
 ---
 
@@ -86,21 +161,63 @@ Each product has ONE job. Do it PERFECTLY. Never mix.
 
 **Before touching ANY file, ask yourself:**
 
-1. ✅ Which product directory am I in? (insight/autopilot/guardian)
+1. ✅ Which product directory am I in? (insight/autopilot/guardian/brain/oms)
 2. ✅ What is this product allowed to do?
 3. ✅ Am I about to violate a boundary?
 4. ✅ Should this feature be in a different product?
 5. ✅ Am I duplicating functionality?
+6. ✅ Should I use OPLayer for communication instead of direct imports?
 
 **Golden Rules:**
 
 ```
-Insight  = Detects, analyzes, explains  (NEVER fixes)
-Autopilot = Fixes, refactors, updates   (NEVER detects)
-Guardian = Enforces, blocks, validates  (NEVER fixes or detects)
+Insight   = Detects ALL errors (100% coverage goal)  (NEVER fixes, NEVER tests websites)
+Autopilot = Fixes code ONLY                          (NEVER detects, NEVER tests)
+Guardian  = Tests websites ONLY                      (NEVER analyzes code, NEVER fixes)
+Brain     = Orchestrates ONLY                        (NEVER directly modifies, detects, or tests)
+OMS       = Scores file risk ONLY                    (NEVER modifies, detects, tests, or fixes)
+OPLayer   = Connects products ONLY                   (NEVER contains business logic)
 ```
 
 **If you're unsure, STOP and ask the user.**
+
+### **🔥 Architecture Reality Check (December 2025):**
+
+```yaml
+Current Structure:
+  Products (6):
+    - Insight (detection)
+    - Autopilot (fixing)
+    - Guardian (website testing)
+    - Brain (orchestration) - NEWER component
+    - OMS (risk scoring) - NEWER component
+    - OPLayer (protocols) - NEWER component
+
+  Apps (4):
+    - studio-cli (unified CLI)
+    - studio-hub (marketing website)
+    - cloud-console (dashboard & management)
+    - marketing-website (public portal)
+
+  Packages (23+):
+    - auth, billing, core, types, email, telemetry
+    - github-integration, logger, marketplace-api
+    - odavl-brain, odavl-core, op-layer
+    - pricing, sales, sdk, security, storage
+    - compliance, cloud-client, i18n, plugins
+    - ui, vscode-shared
+
+Workspace Config:
+  - pnpm-workspace.yaml defines all workspace packages
+  - Includes: odavl-studio/*, apps/*, packages/*, services/*, internal/*
+```
+
+**Key Architectural Patterns:**
+
+1. **ESLint Plugin Enforcement**: `eslint-plugin-odavl-boundaries/index.js` enforces product boundaries at lint time
+2. **Protocol-Based Communication**: OPLayer enables type-safe cross-product communication without direct dependencies
+3. **Brain Orchestration**: Brain package coordinates multi-product workflows (e.g., Insight → Autopilot → Guardian)
+4. **Risk-Aware Operations**: OMS provides file risk intelligence to all products for safety decisions
 
 ---
 
@@ -188,8 +305,12 @@ packages:
   - "odavl-studio/insight/*" # 3 packages: core, cloud, extension
   - "odavl-studio/autopilot/*" # 3 packages: engine, recipes, extension
   - "odavl-studio/guardian/*" # 4 packages: app, workers, extension, core
-  - "apps/*" # 2 apps: studio-cli, studio-hub
-  - "packages/*" # 7 packages: sdk, auth, core, types, email, github-integration, plugins
+  - "odavl-studio/oms" # OMS - Operational Management System
+  - "apps/*" # 4 apps: studio-cli, studio-hub, cloud-console, marketing-website
+  - "packages/*" # 23+ packages: sdk, auth, core, types, email, github-integration, plugins, etc.
+  - "packages/op-layer" # OPLayer - Protocol Layer for product separation
+  - "packages/plugins/*"
+  - "services/*" # Standalone services (autopilot-service)
   - "tools/*" # PowerShell automation scripts
   - "internal/*" # Internal packages (not published)
   - "github-actions" # GitHub Actions composite actions
@@ -201,22 +322,32 @@ Use `pnpm` exclusively (NOT npm/yarn/bun) - enforced by `packageManager: "pnpm@9
 
 **Key directories:**
 
-- `apps/` - Deployable applications (CLI, marketing hub)
-- `odavl-studio/` - Three products (insight, autopilot, guardian), each with core + cloud + extension
-- `packages/` - Shared libraries for cross-product use
+- `apps/` - Deployable applications (CLI, marketing hub, cloud console)
+- `odavl-studio/` - Six product components (insight, autopilot, guardian, brain, oms, each with subpackages)
+- `packages/` - Shared libraries for cross-product use (23+ packages)
 - `scripts/` - Root automation (ML training, diagnostics, KPI reports)
 - `tools/` - PowerShell scripts (security-scan.ps1, policy-guard.ps1, release automation)
 - `docs/` - Comprehensive documentation (160+ markdown files)
 - `reports/` - Gitignored, local-only test/coverage reports
+- `eslint-plugin-odavl-boundaries/` - Custom ESLint plugin for architectural enforcement
 
 **Three Product Architecture:**
 
 Each product follows the same structure: `odavl-studio/{product}/{core|cloud|app|engine|workers|extension}/`
 
+**Critical Supporting Components:**
+
+- **OMS** (`odavl-studio/oms/`) - File risk scoring system
+- **OPLayer** (`packages/op-layer/`) - Inter-product communication protocols
+- **Brain** (`odavl-studio/brain/`) - Multi-agent orchestration runtime
+
 #### 1. ODAVL Insight - ML-Powered Error Detection
 
 - **odavl-studio/insight/core/** - `@odavl-studio/insight-core` - Shared error analysis engine
-  - 12 detectors: TypeScript, ESLint, Import, Package, Runtime, Build, Security, Circular, Network, Performance, Complexity, Isolation
+  - **16 detectors** (11 stable, 3 experimental, 2 broken):
+    - ✅ **Stable** (11): TypeScript, Security, Performance, Complexity, Circular, Import, Package, Runtime, Build, Network, Isolation
+    - ⚠️ **Experimental** (3): Python Types, Python Security, Python Complexity
+    - ❌ **Broken** (2): CVE Scanner, Next.js (not implemented)
   - Dual exports: Four subpaths (`.`, `./server`, `./detector`, `./learning`)
     - Main: `dist/index.{mjs,js}` (ESM import/CJS require)
     - Server: `dist/server.{mjs,js}` (Node-only features)
@@ -224,6 +355,7 @@ Each product follows the same structure: `odavl-studio/{product}/{core|cloud|app
     - Learning: `dist/learning/index.{mjs,js}` (ML training utilities)
   - Build: `tsup src/index.ts src/server.ts src/detector/index.ts src/learning/index.ts --format esm,cjs --dts`
   - ML training: `pnpm ml:train` or `tsx scripts/train-tensorflow-v2.ts` - Uses TensorFlow.js
+  - **Multi-language detection**: Each language has 4-5 specialized detectors with external tool integration (PHPStan, RuboCop, SwiftLint, Detekt, mypy, etc.)
 - **odavl-studio/insight/cloud/** - `@odavl-studio/insight-cloud` - Next.js 15 dashboard
   - Prisma ORM with PostgreSQL for error signatures
   - Singleton pattern: Global `prisma` instance prevents connection leaks
@@ -239,11 +371,14 @@ Each product follows the same structure: `odavl-studio/{product}/{core|cloud|app
   - Build: `tsup src/index.ts --format cjs,esm --tsconfig tsconfig.build.json && node scripts/add-shebang.cjs`
   - Phases: `src/phases/{observe,decide,act,verify,learn}.ts`
   - Observe: Executes `eslint . -f json` and `tsc --noEmit`, parses into `Metrics`
-  - Decide: Loads recipes from `.odavl/recipes/`, sorts by trust score
-  - Act: Calls `sh()` wrapper (never throws), saves undo snapshot before edits via `saveUndoSnapshot()`
+  - Decide: Loads recipes from `.odavl/recipes/`, sorts by ML-predicted trust score (TensorFlow.js model)
+  - Act: **Parallel execution** with dependency graph analysis, saves undo snapshot before edits via `saveUndoSnapshot()`
   - Verify: Re-runs quality checks, enforces `.odavl/gates.yml` rules
-  - Learn: Updates `.odavl/recipes-trust.json` with success/failure (0.1–1.0 range)
+  - Learn: Updates `.odavl/recipes-trust.json` with ML-enhanced trust scores (0.1–1.0 range)
   - Wrappers: `src/phases/fs-wrapper.ts` and `src/phases/cp-wrapper.ts` for testable I/O
+  - **Parallel Executor**: `src/parallel/executor.ts` - Runs independent recipes concurrently (2-4x faster)
+  - **ML Trust Predictor**: `src/ml/trust-predictor.ts` - Neural network for recipe success prediction
+  - **Smart Rollback**: `src/undo/rollback-manager.ts` - Diff-based snapshots (85% space savings)
 - **odavl-studio/autopilot/recipes/** - Improvement recipes (JSON with trust scores)
 - **odavl-studio/autopilot/extension/** - VS Code extension for autopilot monitoring
   - FileSystemWatcher on `.odavl/ledger/run-*.json` (500ms debounce, auto-opens ledgers)
@@ -350,23 +485,95 @@ commands.learn   → learn() → trust scores
 ```
 
 **Observe Phase**: Executes `eslint . -f json` and `tsc --noEmit`, parses warnings/errors into `Metrics` object  
-**Decide Phase**: Loads recipes from `.odavl/recipes/`, sorts by trust score, selects highest-trust action  
-**Act Phase**: Calls `sh()` wrapper (never throws, captures stdout/stderr), saves undo snapshot before edits  
+**Decide Phase**: Loads recipes from `.odavl/recipes/`, uses ML predictor for trust scores (TensorFlow.js neural network with 10 features), selects highest-trust action  
+**Act Phase**: Parallel execution with dependency graph analysis, calls `sh()` wrapper (never throws, captures stdout/stderr), saves diff-based undo snapshot before edits (85% space savings)  
 **Verify Phase**: Re-runs quality checks, enforces gates (`.odavl/gates.yml`), writes attestation if improved  
-**Learn Phase**: Updates `.odavl/recipes-trust.json` with success/failure, adjusts trust scores (0.1–1.0 range)
+**Learn Phase**: Updates `.odavl/recipes-trust.json` with ML-enhanced success/failure, adjusts trust scores (0.1–1.0 range)
+
+### Enhanced Autopilot Features (2025)
+
+#### Parallel Recipe Execution
+
+Autopilot now runs **independent recipes concurrently** (2-4x faster):
+
+```typescript
+// odavl-studio/autopilot/engine/src/parallel/executor.ts
+const executor = new ParallelExecutor({
+  maxWorkers: 4, // CPU cores / 2 (prevents system overload)
+  failFast: false, // Continue on failure
+  timeout: 300000, // 5 min per recipe
+});
+
+// Dependency graph automatically groups recipes into batches
+// Batch 1 (parallel): Recipes with no file conflicts
+// Batch 2 (parallel): Recipes depending on Batch 1
+// etc.
+```
+
+**File Conflict Detection**: Two recipes modifying the same file run sequentially, not in parallel  
+**Topological Sort**: Recipes with dependencies grouped into batches for optimal parallelism  
+**Worker Pool**: Default workers = CPU cores / 2 (avoids system overload during shell command execution)
+
+#### ML Trust Prediction
+
+Currently uses **heuristic-based prediction** (SimpleTrustPredictor, no real ML model yet):
+
+```typescript
+// odavl-studio/autopilot/engine/src/ml/trust-predictor.ts
+const predictor = new MLTrustPredictor();
+await predictor.loadModel(); // .odavl/ml-models/trust-predictor-v2/
+
+// 10 Features: success rate, total runs, consecutive failures,
+// days since last run, files affected, LOC changed, complexity,
+// TypeScript flag, test flag, breaking changes flag
+
+const prediction = await predictor.predict(features);
+// { predictedTrust: 0.87, confidence: 0.92, recommendation: 'execute' }
+```
+
+**Training**: `pnpm ml:train` - Uses TensorFlow.js with 2 hidden layers (64→32 units), dropout (0.2)  
+**Fallback**: If model unavailable, uses rule-based heuristic (40% success rate, 20% inverse failures, complexity penalties)  
+**Recommendations**: `execute` (≥0.8), `review` (≥0.6), `skip` (<0.3)
+
+#### Smart Rollback System
+
+**Diff-based snapshots** (85% space savings vs full file copies):
+
+```typescript
+// odavl-studio/autopilot/engine/src/undo/rollback-manager.ts
+// Before: Full file snapshots (~2MB per run)
+// After: Diff-only snapshots (~300KB per run)
+
+// Undo snapshot structure:
+{
+  "timestamp": "2025-12-06T...",
+  "files": {
+    "src/index.ts": {
+      "original": "...",  // Only if <5KB
+      "diff": "...",      // Unified diff format
+      "hash": "sha256..." // Integrity check
+    }
+  }
+}
+```
+
+**Batch Rollback**: If any recipe in parallel batch fails, all recipes in batch are rolled back  
+**Integrity Checks**: SHA-256 hashes verify snapshot integrity before restoration  
+**Compression**: Diffs stored with gzip compression, 10x smaller than full copies
 
 ### ODAVL Insight Analysis Flow
 
 ```typescript
-// odavl-studio/insight/core/src/detector/ - 12 specialized detectors
+// odavl-studio/insight/core/src/detector/ - 20+ specialized detectors
 import { TypeScriptDetector } from "./detector/typescript-detector.js";
 const detector = new TypeScriptDetector();
 const issues = await detector.analyze(workspace);
 // → exports to .odavl/problems-panel-export.json
 ```
 
-**Detectors**: typescript | eslint | import | package | runtime | build | security | circular | network | performance | complexity | isolation
-**CLI Access**: `pnpm odavl:insight` (interactive menu) or via unified CLI `odavl insight analyze`
+**Core Detectors**: typescript | eslint | import | package | runtime | build | security | circular | network | performance | complexity | isolation | nextjs | database | infrastructure | cicd  
+**Language-Specific**: php (PHPStan, security, performance) | ruby (RuboCop, Rails, security) | swift (SwiftLint, memory, patterns) | kotlin (Detekt, patterns, coroutines) | python (mypy, flake8, bandit) | java (compilation, streams, exceptions) | go (vet, staticcheck) | rust (clippy, ownership)  
+**CLI Access**: `pnpm odavl:insight` (interactive menu) or via unified CLI `odavl insight analyze`  
 **VS Code**: Auto-runs on file save, displays in Problems Panel with click-to-navigate
 
 ### Multi-Language Support
@@ -970,7 +1177,10 @@ ODAVL integrates with VS Code's native Problems Panel for real-time issue detect
 ### Features
 
 - **Real-time Analysis**: Auto-runs on file save, displays issues alongside TypeScript/ESLint errors
-- **12 Detectors**: TypeScript | ESLint | Import | Package | Runtime | Build | Security | Circular | Network | Performance | Complexity | Isolation
+- **16 Detectors** (11 stable ✅, 3 experimental ⚠️, 2 broken ❌):
+  - ✅ Stable: TypeScript | Security | Performance | Complexity | Circular | Import | Package | Runtime | Build | Network | Isolation
+  - ⚠️ Experimental: Python Types | Python Security | Python Complexity
+  - ❌ Broken: CVE Scanner | Next.js
 - **Severity Mapping**: Critical→Error, High→Warning, Medium→Info, Low→Hint
 - **Click-to-Navigate**: Jump directly to error locations from Problems Panel
 - **Export/Import**: Extension exports to `.odavl/problems-panel-export.json`, CLI imports for fast analysis

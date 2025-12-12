@@ -1,0 +1,14 @@
+Scope: all 37 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+ÔÇëWARNÔÇë Failed to create bin at C:\Users\sabou\dev\odavl\odavl-studio\autopilot\extension\node_modules\.bin\odavl. ENOENT: no such file or directory, stat 'C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\dist\index.js.EXE'
+ÔÇëWARNÔÇë Failed to create bin at C:\Users\sabou\dev\odavl\packages\odavl-brain\node_modules\.bin\odavl. ENOENT: no such file or directory, stat 'C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\dist\index.js.EXE'
+ÔÇëWARNÔÇë Failed to create bin at C:\Users\sabou\dev\odavl\services\autopilot-service\node_modules\.bin\odavl. ENOENT: no such file or directory, stat 'C:\Users\sabou\dev\odavl\odavl-studio\autopilot\engine\dist\index.js.EXE'
+
+. prepare$ husky || true
+. prepare: Der Befehl "husky" ist entweder falsch geschrieben oder
+. prepare: konnte nicht gefunden werden.
+. prepare: Der Befehl "true" ist entweder falsch geschrieben oder
+. prepare: konnte nicht gefunden werden.
+. prepare: Failed
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

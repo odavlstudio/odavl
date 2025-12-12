@@ -1,24 +1,19 @@
 /**
  * ODAVL Guardian v4.0 - Complete Integration Example
  * 
- * Purpose: Demonstrate full Guardian→Autopilot workflow
+ * ⚠️ DEPRECATED - BOUNDARY VIOLATION
+ * This example violated Guardian boundaries (code analysis + fixing).
+ * Guardian = Website Testing ONLY.
  * 
- * Workflow:
- * 1. RuntimeTestingAgent detects runtime error
- * 2. SmartErrorAnalyzer diagnoses error with AI
- * 3. Generate Autopilot handoff JSON
- * 4. Save handoff file for Autopilot consumption
- * 5. User runs Autopilot to apply fixes safely
- * 
- * ⚠️ CRITICAL: Guardian detects + suggests ONLY (NEVER executes)
- * Autopilot executes fixes with O-D-A-V-L cycle (safe with undo)
+ * TODO: Refactor to website testing workflow or remove.
  */
 
 import { RuntimeTestingAgent } from '../agents/runtime-tester';
 import { AIVisualInspector } from '../agents/ai-visual-inspector';
 import { SmartErrorAnalyzer } from '../agents/smart-error-analyzer';
-import type { GuardianAutopilotHandoff } from '../agents/handoff-schema';
-import { getHandoffFilePath, isValidHandoff } from '../agents/handoff-schema';
+// ❌ REMOVED: handoff-schema violated Guardian boundaries
+// import type { GuardianAutopilotHandoff } from '../agents/handoff-schema';
+// import { getHandoffFilePath, isValidHandoff } from '../agents/handoff-schema';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 

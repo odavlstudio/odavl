@@ -2,22 +2,22 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: ['src/index.ts'],
-  format: ['esm'],
-  dts: false,
+  format: ['esm', 'cjs'],
+  dts: true, // Re-enabled: fixableIssues property added to observe-quick.ts
   splitting: false,
   sourcemap: false,
   clean: true,
   tsconfig: 'tsconfig.build.json',
-  
-  // Mark problematic deps as external (will be required at runtime)
   external: [
     'minimatch',
     'glob',
+    'mock-aws-s3',
+    'nock',
+    '@mapbox/node-pre-gyp',
     '@odavl-studio/insight-core',
-    '@odavl-studio/insight-core/server',
+    '@odavl/oplayer',
+    // '@odavl-studio/telemetry' removed - now bundled with engine
   ],
-  
-  // esbuild options
   esbuildOptions(options) {
     options.platform = 'node';
     options.target = 'node18';

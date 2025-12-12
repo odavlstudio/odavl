@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Block authenticated areas
+Disallow: /app/
+Disallow: /api/
+Disallow: /auth/
+
+# Allow public pages
+Allow: /$
+Allow: /pricing
+Allow: /docs
+Allow: /blog
+
+# Sitemap
+Sitemap: https://odavl.com/sitemap.xml

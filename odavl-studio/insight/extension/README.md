@@ -1,38 +1,54 @@
-# 🔍 ODAVL Insight - ML-Powered Multi-Language Code Analysis
+# 🔍 ODAVL Insight - VS Code Extension
 
-> **Intelligent error detection for TypeScript, JavaScript, Python, and Java**  
-> 28+ specialized detectors powered by machine learning and confidence scoring
+> **ML-powered real-time error detection with 25+ specialized detectors**  
+> Wave 5 - Production SDK integration with unified schema
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=odavl.odavl-insight-vscode)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=odavl.odavl-insight-vscode)
 [![VS Code](https://img.shields.io/badge/VS%20Code-1.80.0+-007ACC?style=flat-square&logo=visual-studio-code)](https://code.visualstudio.com/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
-[![Languages](https://img.shields.io/badge/languages-4-orange?style=flat-square)](https://github.com/Soliancy/odavl)
+[![SDK](https://img.shields.io/badge/SDK-1.0.0-orange?style=flat-square)](https://www.npmjs.com/package/@odavl/insight-sdk)
 
 ---
 
 ## What Is ODAVL Insight?
 
-**ODAVL Insight** is an advanced VS Code extension that transforms your development workflow with intelligent, real-time code analysis across multiple programming languages. Unlike traditional linters, ODAVL Insight combines **28+ specialized detectors** with **machine learning** to catch not just syntax errors, but security vulnerabilities, performance issues, architectural flaws, and framework-specific anti-patterns.
+**ODAVL Insight** is a production-grade VS Code extension that provides real-time code analysis powered by the ODAVL Insight SDK. It integrates seamlessly with VS Code's Problems panel to deliver instant feedback on security vulnerabilities, performance issues, complexity problems, and more across TypeScript, JavaScript, Python, and Java.
 
-### Why ODAVL Insight?
+### Key Features (Wave 5)
 
-Traditional development tools catch obvious errors. **ODAVL Insight finds the problems others miss:**
-
-- **Security vulnerabilities** before they reach production (hardcoded secrets, SQL injection, XSS)
-- **Performance bottlenecks** in async patterns, memory management, and network calls
-- **Architectural issues** like circular dependencies, tight coupling, and isolation breaches
-- **Framework-specific problems** in React, Express, Next.js, Spring, and Node.js
-- **Language-specific anti-patterns** across TypeScript, Python, and Java codebases
-
-**All in real-time, as you code.**
+✨ **Real-Time Analysis** - Auto-analyze on save with 5-minute caching  
+🎯 **25+ Detectors** - TypeScript, security, performance, complexity, and more  
+🎨 **Rich UX** - Status bar integration, hover tooltips, codicons  
+⚙️ **Full Configuration** - Control detectors, severity, and behavior  
+⚡ **Performance** - Child process execution, timeout protection, cancellation support  
 
 ---
 
-## ✨ Core Features
+## ✨ Features
 
-### 🎯 **28+ Specialized Detectors**
+### Real-Time Analysis
+- **Auto-analyze on save** - Instant feedback as you code
+- **VS Code Problems Panel** - Issues appear alongside TypeScript/ESLint
+- **Smart caching** - 5-minute cache for rapid iteration
 
-#### **Core Analysis (12 Detectors)**
+### Enhanced UX
+- **Status bar integration** - Live issue count: "$(flame) Insight: 7 issues"
+- **Rich hover tooltips** - Detector info, rule IDs, suggested fixes
+- **Codicons** - Visual severity (🔥 critical, ⚠️ warning, 💡 hint)
+- **Progress notifications** - "Running Insight analysis..."
+
+### Full Configuration
+```json
+{
+  "odavl-insight.autoAnalyzeOnSave": true,
+  "odavl-insight.enabledDetectors": ["typescript", "security", "performance"],
+  "odavl-insight.severityMinimum": "info"
+}
+```
+
+### 25+ Specialized Detectors
+
+#### **Stable Detectors (11)**
 
 - ✅ **TypeScript Detector** - Type checking, strict mode validation, `never` type detection
 - ✅ **ESLint Detector** - Code quality rules with JSON parsing

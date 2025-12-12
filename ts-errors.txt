@@ -1,0 +1,97 @@
+src/detector/kotlin/coroutines-detector.ts(72,4): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,6): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,73): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,74): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/coroutines-detector.ts(72,110): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,116): error TS1005: ',' expected.
+src/detector/kotlin/coroutines-detector.ts(72,132): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,138): error TS1005: ',' expected.
+src/detector/kotlin/coroutines-detector.ts(72,155): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,161): error TS1005: ',' expected.
+src/detector/kotlin/coroutines-detector.ts(72,182): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,195): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,196): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/coroutines-detector.ts(72,241): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,242): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/coroutines-detector.ts(72,271): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(72,273): error TS1127: Invalid character.
+src/detector/kotlin/coroutines-detector.ts(73,1): error TS1005: '}' expected.
+src/detector/kotlin/interop-detector.ts(41,45): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,46): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(41,80): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,86): error TS1005: ',' expected.
+src/detector/kotlin/interop-detector.ts(41,102): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,108): error TS1005: ',' expected.
+src/detector/kotlin/interop-detector.ts(41,125): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,131): error TS1005: ',' expected.
+src/detector/kotlin/interop-detector.ts(41,152): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,165): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,166): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(41,201): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,203): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,204): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(41,249): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,250): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/interop-detector.ts(41,279): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(41,281): error TS1127: Invalid character.
+src/detector/kotlin/interop-detector.ts(42,1): error TS1005: '}' expected.
+src/detector/kotlin/nullability-detector.ts(41,53): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,54): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/nullability-detector.ts(41,88): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,94): error TS1005: ',' expected.
+src/detector/kotlin/nullability-detector.ts(41,110): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,116): error TS1005: ',' expected.
+src/detector/kotlin/nullability-detector.ts(41,133): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,139): error TS1005: ',' expected.
+src/detector/kotlin/nullability-detector.ts(41,160): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,173): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,174): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/nullability-detector.ts(41,219): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,220): error TS1434: Unexpected keyword or identifier.
+src/detector/kotlin/nullability-detector.ts(41,249): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(41,251): error TS1127: Invalid character.
+src/detector/kotlin/nullability-detector.ts(42,1): error TS1005: '}' expected.
+src/detector/swift/concurrency-detector.ts(43,55): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,56): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/concurrency-detector.ts(43,86): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,92): error TS1005: ',' expected.
+src/detector/swift/concurrency-detector.ts(43,108): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,114): error TS1005: ',' expected.
+src/detector/swift/concurrency-detector.ts(43,131): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,137): error TS1005: ',' expected.
+src/detector/swift/concurrency-detector.ts(43,157): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,170): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,171): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/concurrency-detector.ts(43,216): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,217): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/concurrency-detector.ts(43,246): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(43,248): error TS1127: Invalid character.
+src/detector/swift/concurrency-detector.ts(44,1): error TS1005: '}' expected.
+src/detector/swift/memory-detector.ts(47,30): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,36): error TS1005: ',' expected.
+src/detector/swift/memory-detector.ts(47,52): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,58): error TS1005: ',' expected.
+src/detector/swift/memory-detector.ts(47,75): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,81): error TS1005: ',' expected.
+src/detector/swift/memory-detector.ts(47,101): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,114): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,115): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/memory-detector.ts(47,160): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,161): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/memory-detector.ts(47,190): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(47,192): error TS1127: Invalid character.
+src/detector/swift/memory-detector.ts(48,1): error TS1005: '}' expected.
+src/detector/swift/optionals-detector.ts(46,29): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,35): error TS1005: ',' expected.
+src/detector/swift/optionals-detector.ts(46,51): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,57): error TS1005: ',' expected.
+src/detector/swift/optionals-detector.ts(46,74): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,80): error TS1005: ',' expected.
+src/detector/swift/optionals-detector.ts(46,100): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,113): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,114): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/optionals-detector.ts(46,159): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,160): error TS1434: Unexpected keyword or identifier.
+src/detector/swift/optionals-detector.ts(46,189): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(46,191): error TS1127: Invalid character.
+src/detector/swift/optionals-detector.ts(47,1): error TS1005: '}' expected.

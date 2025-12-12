@@ -9,10 +9,8 @@
 import * as readline from 'node:readline';
 import * as path from 'node:path';
 import * as fsp from 'node:fs/promises';
-// @ts-expect-error - Insight Core built with esbuild (runtime types unavailable)
-import { getPatternMemory } from '@odavl-studio/insight-core/learning';
-// @ts-expect-error - Insight Core built with esbuild (runtime types unavailable)
-import type { PatternSignature } from '@odavl-studio/insight-core/learning';
+import { PatternMemoryProtocol } from '@odavl/oplayer/protocols';
+import type { PatternSignature } from '@odavl/oplayer/types';
 
 interface FeedbackOptions {
     file?: string;
@@ -39,15 +37,17 @@ interface IssueRecord {
  */
 export async function runFeedback(options: FeedbackOptions = {}): Promise<void> {
     const workspaceRoot = process.cwd();
-    const memory = getPatternMemory({
-        databasePath: path.resolve(workspaceRoot, '.odavl/learning/patterns.json'),
-    });
+    
+    // Check if adapter is registered
+    if (!PatternMemoryProtocol.isAdapterRegistered()) {
+        throw new Error('PatternMemoryProtocol adapter not registered. Call PatternMemoryProtocol.registerAdapter() at bootstrap.');
+    }
 
     console.log('📝 ODAVL Pattern Learning - User Feedback\n');
 
     // Interactive mode: show recent issues and let user mark them
     if (options.interactive || !options.file) {
-        await runInteractiveFeedback(memory, workspaceRoot);
+        await runInteractiveFeedback(workspaceRoot);
         return;
     }
 
@@ -64,13 +64,20 @@ export async function runFeedback(options: FeedbackOptions = {}): Promise<void> 
         signatureHash: '',
         filePath: path.resolve(workspaceRoot, options.file),
         line: options.line,
+        confidence: 0.75, // Default confidence
+        occurrences: 1,
     };
 
     const isValid = options.isValid ?? await askIsValid();
     const reason = options.reason ?? await askReason(isValid);
-    const confidence = 75; // Default confidence
+    const confidence = 0.75; // Default confidence (0-1 range)
 
-    memory.learnFromCorrection(signature, isValid, confidence, reason);
+    await PatternMemoryProtocol.recordFeedback({
+        signature,
+        isValid,
+        confidence,
+        reason,
+    });
 
     console.log(`✅ Feedback recorded for ${options.detector}/${options.patternType} in ${options.file}:${options.line}`);
     console.log(`   Marked as: ${isValid ? '✓ True Positive' : '✗ False Positive'}`);
@@ -78,13 +85,13 @@ export async function runFeedback(options: FeedbackOptions = {}): Promise<void> 
         console.log(`   Reason: ${reason}`);
     }
 
-    memory.flush();
+    await PatternMemoryProtocol.flush();
 }
 
 /**
  * Interactive feedback mode
  */
-async function runInteractiveFeedback(memory: any, workspaceRoot: string): Promise<void> {
+async function runInteractiveFeedback(workspaceRoot: string): Promise<void> {
     console.log('🔍 Looking for recent detections...\n');
 
     const lastRunPath = path.resolve(workspaceRoot, '.odavl/insight/logs/latest.json');
@@ -101,7 +108,7 @@ async function runInteractiveFeedback(memory: any, workspaceRoot: string): Promi
                 detector: issue.detector || issue.source || 'unknown',
                 patternType: issue.patternType || issue.code || 'unknown',
                 message: issue.message || '',
-                confidence: issue.confidence || 75,
+                confidence: (issue.confidence || 75) / 100, // Convert to 0-1 range
                 timestamp: issue.timestamp || new Date().toISOString(),
             }));
         }
@@ -110,7 +117,7 @@ async function runInteractiveFeedback(memory: any, workspaceRoot: string): Promi
         console.log(`💡 Run \`pnpm odavl:insight\` first to detect issues\n`);
         console.log(`   Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
 
-        await showLearnedPatterns(memory);
+        await showLearnedPatterns();
         return;
     }
 
@@ -133,7 +140,7 @@ async function runInteractiveFeedback(memory: any, workspaceRoot: string): Promi
             const issue = detectorIssues[i];
             console.log(`\n${i + 1}. ${path.relative(workspaceRoot, issue.file)}:${issue.line}`);
             console.log(`   ${issue.message}`);
-            console.log(`   Confidence: ${issue.confidence}% | Pattern: ${issue.patternType}`);
+            console.log(`   Confidence: ${(issue.confidence * 100).toFixed(0)}% | Pattern: ${issue.patternType}`);
 
             const shouldProvide = await askYesNo(`   Provide feedback for this issue? (y/n)`);
 
@@ -147,50 +154,49 @@ async function runInteractiveFeedback(memory: any, workspaceRoot: string): Promi
                     signatureHash: '',
                     filePath: path.resolve(workspaceRoot, issue.file),
                     line: issue.line,
+                    confidence: issue.confidence,
+                    occurrences: 1,
                 };
 
-                memory.learnFromCorrection(signature, isValid, issue.confidence, reason);
+                await PatternMemoryProtocol.recordFeedback({
+                    signature,
+                    isValid,
+                    confidence: issue.confidence,
+                    reason,
+                });
 
                 console.log(`   ✅ Feedback recorded: ${isValid ? '✓ True Positive' : '✗ False Positive'}\n`);
             }
         }
     }
 
-    memory.flush();
+    await PatternMemoryProtocol.flush();
 
     console.log('\n═'.repeat(60));
     console.log('📊 Updated Pattern Statistics:\n');
-
-    const stats = memory.getGlobalStats();
-    console.log(`   Total Patterns: ${stats.totalPatterns}`);
-    console.log(`   Active Patterns: ${stats.activePatterns}`);
-    console.log(`   Total Corrections: ${stats.totalCorrections}`);
-    console.log(`   Overall Success Rate: ${(stats.overallSuccessRate * 100).toFixed(1)}%`);
-    console.log(`   Overall False Positive Rate: ${(stats.overallFalsePositiveRate * 100).toFixed(1)}%`);
+    console.log('   (Statistics available via PatternMemoryProtocol.getPatternMemory())');
     console.log('');
 }
 
 /**
  * Show learned patterns from database
  */
-async function showLearnedPatterns(memory: any): Promise<void> {
-    const patterns = memory.queryPatterns({
-        activeOnly: true,
-        sortBy: 'detectionCount',
-        sortOrder: 'desc',
+async function showLearnedPatterns(): Promise<void> {
+    const result = await PatternMemoryProtocol.getPatternMemory({
         limit: 20,
+        minOccurrences: 1,
     });
 
-    if (patterns.length === 0) {
+    if (result.patterns.length === 0) {
         console.log('📚 Pattern database is empty');
         console.log('💡 Patterns will be learned as you use ODAVL Insight\n');
         return;
     }
 
-    console.log(`📚 Top ${patterns.length} Learned Patterns:\n`);
+    console.log(`📚 Top ${result.patterns.length} Learned Patterns:\n`);
     console.log('═'.repeat(60));
 
-    for (const pattern of patterns) {
+    for (const pattern of result.patterns) {
         const perf = pattern.performance;
         let successEmoji = '🔴';
         if (perf.successRate >= 0.9) {

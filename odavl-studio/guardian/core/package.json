@@ -16,11 +16,15 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./runtime/guardian-ci": {
+      "import": "./dist/runtime/guardian-ci.js",
+      "types": "./dist/runtime/guardian-ci.d.ts"
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --clean",
-    "dev": "tsup src/index.ts src/cli.ts src/guardian-cli.ts --format esm --dts --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:real-world": "tsx examples/test-real-world.ts",
@@ -30,6 +34,8 @@
     "ci": "tsx examples/ci-integration.ts"
   },
   "dependencies": {
+    "@odavl/core": "workspace:*",
+    "@odavl-studio/brain": "workspace:*",
     "axe-core": "^4.10.2",
     "jspdf": "^3.0.3",
     "lighthouse": "^12.2.1",

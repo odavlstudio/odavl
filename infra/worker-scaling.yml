@@ -1,0 +1,57 @@
+# BullMQ Worker Scaling Configuration
+# For Guardian background jobs and Insight analysis queues
+
+workers:
+  guardian:
+    concurrency: 4 # Parallel test runs
+    limiter:
+      max: 10 # Max 10 jobs per second
+      duration: 1000 # 1 second window
+    settings:
+      maxStalledCount: 3
+      stalledInterval: 30000 # 30 seconds
+      lockDuration: 60000 # 1 minute
+    scaling:
+      min: 2
+      max: 10
+      targetCPU: 70 # Scale up at 70% CPU
+      targetMemory: 80 # Scale up at 80% memory
+
+  insight:
+    concurrency: 2 # ML analysis is CPU-intensive
+    limiter:
+      max: 5
+      duration: 1000
+    settings:
+      maxStalledCount: 2
+      stalledInterval: 60000 # 1 minute
+      lockDuration: 300000 # 5 minutes (ML training)
+    scaling:
+      min: 1
+      max: 5
+      targetCPU: 80
+      targetMemory: 85
+
+  autopilot:
+    concurrency: 1 # Sequential for safety
+    limiter:
+      max: 3
+      duration: 1000
+    settings:
+      maxStalledCount: 1
+      stalledInterval: 120000 # 2 minutes
+      lockDuration: 600000 # 10 minutes (large codebases)
+    scaling:
+      min: 1
+      max: 3
+      targetCPU: 60
+      targetMemory: 75
+
+# Redis Queue Configuration
+redis:
+  maxRetriesPerRequest: 3
+  enableOfflineQueue: false
+  retryStrategy:
+    times: 3
+    delay: 1000 # 1 second base delay
+    maxDelay: 5000 # Max 5 seconds

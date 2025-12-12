@@ -1,7 +1,9 @@
 "use strict";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -15,6 +17,14 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // src/index.ts
@@ -23,6 +33,8 @@ __export(index_exports, {
   CLIHelp: () => CLIHelp,
   EnhancedError: () => EnhancedError,
   ErrorMessages: () => ErrorMessages,
+  FEATURES: () => FEATURES,
+  ManifestValidationError: () => ManifestValidationError,
   MultiProgress: () => MultiProgress,
   ODAVLHelp: () => ODAVLHelp,
   ODAVL_API_URL: () => ODAVL_API_URL,
@@ -30,12 +42,19 @@ __export(index_exports, {
   Progress: () => Progress,
   ProgressHelpers: () => ProgressHelpers,
   Spinner: () => Spinner,
+  clearManifestCache: () => clearManifestCache,
   displayError: () => displayError,
   displayInfo: () => displayInfo,
   displaySuccess: () => displaySuccess,
   displayWarning: () => displayWarning,
   formatDate: () => formatDate,
-  generateId: () => generateId
+  generateId: () => generateId,
+  getManifestPath: () => getManifestPath,
+  getSchemaPath: () => getSchemaPath,
+  getWorkspaceRoot: () => getWorkspaceRoot,
+  loadManifest: () => loadManifest,
+  loadManifestSync: () => loadManifestSync,
+  manifest: () => manifest
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -499,13 +518,13 @@ var ProgressHelpers = {
    * Show progress for file operations
    */
   showFileProgress(files, operation) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve2, reject) => {
       const bar = new Progress({
         total: files.length,
         width: 40,
         callback: (progress) => {
           if (progress.isComplete()) {
-            resolve();
+            resolve2();
           }
         }
       });
@@ -563,7 +582,7 @@ var ProgressHelpers = {
    * Show estimated time remaining
    */
   showETAProgress(total, operation) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve2, reject) => {
       const startTime = Date.now();
       let current = 0;
       const bar = new Progress({
@@ -582,7 +601,7 @@ var ProgressHelpers = {
             console.log(`
 \u2705 Completed in ${totalTime}s
 `);
-            resolve();
+            resolve2();
           }
         }
       });
@@ -907,6 +926,191 @@ var ODAVLHelp = {
   }
 };
 
+// src/feature-flags.ts
+var FEATURES = {
+  /** CVE Scanner - Not yet implemented (stub only) */
+  CVE_SCANNER: false,
+  /** Brain ML Coordination - All functions are stubs */
+  BRAIN_ML_ENABLED: false,
+  /** OMS Risk Scoring - Package missing */
+  OMS_RISK_SCORING: false,
+  /** Python Detection - Experimental (mypy/bandit/radon) */
+  PYTHON_DETECTION: false,
+  /** Next.js Detector - Not implemented */
+  NEXTJS_DETECTOR: false
+};
+
+// src/manifest/loader.ts
+var import_node_fs = require("fs");
+var import_node_path = require("path");
+var import_yaml = require("yaml");
+var import_ajv = __toESM(require("ajv"), 1);
+var import_ajv_formats = __toESM(require("ajv-formats"), 1);
+function findWorkspaceRoot() {
+  let currentDir = process.cwd();
+  for (let i = 0; i < 10; i++) {
+    const odavlPath = (0, import_node_path.resolve)(currentDir, ".odavl");
+    if ((0, import_node_fs.existsSync)(odavlPath)) {
+      return currentDir;
+    }
+    const parentDir = (0, import_node_path.resolve)(currentDir, "..");
+    if (parentDir === currentDir) {
+      break;
+    }
+    currentDir = parentDir;
+  }
+  throw new Error(
+    "Could not find workspace root. Expected .odavl/ directory in project root."
+  );
+}
+var WORKSPACE_ROOT = findWorkspaceRoot();
+var MANIFEST_PATH = (0, import_node_path.resolve)(WORKSPACE_ROOT, ".odavl", "manifest.yml");
+var SCHEMA_PATH = (0, import_node_path.resolve)(WORKSPACE_ROOT, ".odavl", "schemas", "manifest.schema.json");
+var cachedManifest = null;
+var validator = null;
+var ManifestValidationError = class extends Error {
+  constructor(message, errors) {
+    super(message);
+    this.errors = errors;
+    this.name = "ManifestValidationError";
+  }
+  toString() {
+    const errorList = this.errors.map((err) => `  - ${err.path}: ${err.message}${err.value !== void 0 ? ` (got: ${JSON.stringify(err.value)})` : ""}`).join("\n");
+    return `${this.message}
+${errorList}`;
+  }
+};
+function getValidator() {
+  if (validator) {
+    return validator;
+  }
+  if (!(0, import_node_fs.existsSync)(SCHEMA_PATH)) {
+    throw new Error(
+      `Manifest schema not found at ${SCHEMA_PATH}. Run 'pnpm build' to generate schemas.`
+    );
+  }
+  const schemaContent = (0, import_node_fs.readFileSync)(SCHEMA_PATH, "utf-8");
+  const schema = JSON.parse(schemaContent);
+  const ajv = new import_ajv.default({
+    allErrors: true,
+    verbose: true,
+    strict: false
+  });
+  (0, import_ajv_formats.default)(ajv);
+  validator = ajv.compile(schema);
+  return validator;
+}
+function formatValidationErrors(errors) {
+  return errors.map((err) => ({
+    path: err.instancePath || err.schemaPath || "root",
+    message: err.message || "validation failed",
+    value: err.data
+  }));
+}
+async function loadManifest(options = {}) {
+  if (cachedManifest && !options.force) {
+    return cachedManifest;
+  }
+  if (!(0, import_node_fs.existsSync)(MANIFEST_PATH)) {
+    throw new Error(
+      `Manifest not found at ${MANIFEST_PATH}. Create .odavl/manifest.yml to configure ODAVL products.`
+    );
+  }
+  const manifestContent = (0, import_node_fs.readFileSync)(MANIFEST_PATH, "utf-8");
+  const manifestData = (0, import_yaml.parse)(manifestContent);
+  const validate = getValidator();
+  const isValid = validate(manifestData);
+  if (!isValid && validate.errors) {
+    const formattedErrors = formatValidationErrors(validate.errors);
+    throw new ManifestValidationError(
+      "Manifest validation failed against OMS v1.0 schema",
+      formattedErrors
+    );
+  }
+  cachedManifest = manifestData;
+  return cachedManifest;
+}
+function loadManifestSync(options = {}) {
+  if (cachedManifest && !options.force) {
+    return cachedManifest;
+  }
+  if (!(0, import_node_fs.existsSync)(MANIFEST_PATH)) {
+    throw new Error(
+      `Manifest not found at ${MANIFEST_PATH}. Create .odavl/manifest.yml to configure ODAVL products.`
+    );
+  }
+  const manifestContent = (0, import_node_fs.readFileSync)(MANIFEST_PATH, "utf-8");
+  const manifestData = (0, import_yaml.parse)(manifestContent);
+  const validate = getValidator();
+  const isValid = validate(manifestData);
+  if (!isValid && validate.errors) {
+    const formattedErrors = formatValidationErrors(validate.errors);
+    throw new ManifestValidationError(
+      "Manifest validation failed against OMS v1.0 schema",
+      formattedErrors
+    );
+  }
+  cachedManifest = manifestData;
+  return cachedManifest;
+}
+function clearManifestCache() {
+  cachedManifest = null;
+  validator = null;
+}
+var ManifestAccessor = class {
+  _manifest = null;
+  get value() {
+    if (!this._manifest) {
+      this._manifest = loadManifestSync();
+    }
+    return this._manifest;
+  }
+  // Proxy all manifest properties
+  get project() {
+    return this.value.project;
+  }
+  get fileTaxonomy() {
+    return this.value.fileTaxonomy;
+  }
+  get insight() {
+    return this.value.insight;
+  }
+  get autopilot() {
+    return this.value.autopilot;
+  }
+  get guardian() {
+    return this.value.guardian;
+  }
+  get brain() {
+    return this.value.brain;
+  }
+  get overrides() {
+    return this.value.overrides;
+  }
+  get version() {
+    return this.value.version;
+  }
+  get schemaVersion() {
+    return this.value.schemaVersion;
+  }
+  /**
+   * Reload manifest from disk
+   */
+  reload() {
+    this._manifest = loadManifestSync({ force: true });
+  }
+};
+var manifest = new ManifestAccessor();
+function getWorkspaceRoot() {
+  return WORKSPACE_ROOT;
+}
+function getManifestPath() {
+  return MANIFEST_PATH;
+}
+function getSchemaPath() {
+  return SCHEMA_PATH;
+}
+
 // src/index.ts
 var ODAVL_VERSION = "1.0.0";
 var ODAVL_API_URL = process.env.ODAVL_API_URL || "https://api.odavl.studio";
@@ -921,6 +1125,8 @@ function generateId() {
   CLIHelp,
   EnhancedError,
   ErrorMessages,
+  FEATURES,
+  ManifestValidationError,
   MultiProgress,
   ODAVLHelp,
   ODAVL_API_URL,
@@ -928,10 +1134,17 @@ function generateId() {
   Progress,
   ProgressHelpers,
   Spinner,
+  clearManifestCache,
   displayError,
   displayInfo,
   displaySuccess,
   displayWarning,
   formatDate,
-  generateId
+  generateId,
+  getManifestPath,
+  getSchemaPath,
+  getWorkspaceRoot,
+  loadManifest,
+  loadManifestSync,
+  manifest
 });

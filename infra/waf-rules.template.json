@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Web Application Firewall (WAF) rules for ODAVL Cloud Console - OWASP Top 10 Protection"
+  },
+  "parameters": {
+    "wafPolicyName": {
+      "type": "string",
+      "defaultValue": "odavl-waf-policy",
+      "metadata": {
+        "description": "Name of the WAF policy"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/applicationGatewayWebApplicationFirewallPolicies",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('wafPolicyName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "policySettings": {
+          "requestBodyCheck": true,
+          "maxRequestBodySizeInKb": 128,
+          "fileUploadLimitInMb": 100,
+          "state": "Enabled",
+          "mode": "Prevention"
+        },
+        "managedRules": {
+          "managedRuleSets": [
+            {
+              "ruleSetType": "OWASP",
+              "ruleSetVersion": "3.2",
+              "ruleGroupOverrides": []
+            },
+            {
+              "ruleSetType": "Microsoft_BotManagerRuleSet",
+              "ruleSetVersion": "1.0"
+            }
+          ]
+        },
+        "customRules": [
+          {
+            "name": "BlockSQLInjection",
+            "priority": 100,
+            "ruleType": "MatchRule",
+            "action": "Block",
+            "matchConditions": [
+              {
+                "matchVariables": [
+                  {
+                    "variableName": "RequestUri"
+                  },
+                  {
+                    "variableName": "QueryString"
+                  }
+                ],
+                "operator": "Contains",
+                "negationConditon": false,
+                "matchValues": [
+                  "union select",
+                  "drop table",
+                  "exec(",
+                  "execute("
+                ]
+              }
+            ]
+          },
+          {
+            "name": "BlockXSS",
+            "priority": 110,
+            "ruleType": "MatchRule",
+            "action": "Block",
+            "matchConditions": [
+              {
+                "matchVariables": [
+                  {
+                    "variableName": "RequestUri"
+                  },
+                  {
+                    "variableName": "QueryString"
+                  }
+                ],
+                "operator": "Contains",
+                "negationConditon": false,
+                "matchValues": [
+                  "<script",
+                  "javascript:",
+                  "onerror=",
+                  "onload="
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

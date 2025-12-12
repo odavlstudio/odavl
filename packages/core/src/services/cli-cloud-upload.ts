@@ -15,7 +15,20 @@ import { join } from 'path';
 import { homedir } from 'os';
 import { createGzip } from 'zlib';
 import { pipeline } from 'stream/promises';
-import { cliAuthService, authenticatedFetch } from './cli-auth';
+import { cliAuthService } from './cli-auth';
+// import { authenticatedFetch } from './cli-auth'; // Phase 5: Function doesn't exist
+
+// Phase 5: Stub for missing authenticatedFetch
+async function authenticatedFetch(url: string, options?: any): Promise<Response> {
+  const credentials = await cliAuthService.getCredentials();
+  return fetch(url, {
+    ...options,
+    headers: {
+      ...options?.headers,
+      'Authorization': `Bearer ${credentials?.apiKey || ''}`,
+    },
+  });
+}
 
 export interface UploadOptions {
   compress?: boolean;

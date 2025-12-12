@@ -29,6 +29,7 @@
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",
+    "@odavl/oplayer": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^12.1.0",
     "depcheck": "^1.4.7",

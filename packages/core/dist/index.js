@@ -1,3 +1,14 @@
+import {
+  ManifestValidationError,
+  clearManifestCache,
+  getManifestPath,
+  getSchemaPath,
+  getWorkspaceRoot,
+  loadManifest,
+  loadManifestSync,
+  manifest
+} from "./chunk-ARIV4AEN.js";
+
 // src/enhanced-errors.ts
 var EnhancedError = class extends Error {
   context;
@@ -866,6 +877,20 @@ var ODAVLHelp = {
   }
 };
 
+// src/feature-flags.ts
+var FEATURES = {
+  /** CVE Scanner - Not yet implemented (stub only) */
+  CVE_SCANNER: false,
+  /** Brain ML Coordination - All functions are stubs */
+  BRAIN_ML_ENABLED: false,
+  /** OMS Risk Scoring - Package missing */
+  OMS_RISK_SCORING: false,
+  /** Python Detection - Experimental (mypy/bandit/radon) */
+  PYTHON_DETECTION: false,
+  /** Next.js Detector - Not implemented */
+  NEXTJS_DETECTOR: false
+};
+
 // src/index.ts
 var ODAVL_VERSION = "1.0.0";
 var ODAVL_API_URL = process.env.ODAVL_API_URL || "https://api.odavl.studio";
@@ -879,6 +904,8 @@ export {
   CLIHelp,
   EnhancedError,
   ErrorMessages,
+  FEATURES,
+  ManifestValidationError,
   MultiProgress,
   ODAVLHelp,
   ODAVL_API_URL,
@@ -886,10 +913,17 @@ export {
   Progress,
   ProgressHelpers,
   Spinner,
+  clearManifestCache,
   displayError,
   displayInfo,
   displaySuccess,
   displayWarning,
   formatDate,
-  generateId
+  generateId,
+  getManifestPath,
+  getSchemaPath,
+  getWorkspaceRoot,
+  loadManifest,
+  loadManifestSync,
+  manifest
 };

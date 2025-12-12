@@ -18,6 +18,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 import {
     calculateAdaptiveConfidence,
     PatternStrength,
@@ -242,7 +243,11 @@ export class EnhancedDBDetector {
      * Phase 1: Analyze imports to determine if file uses database libraries
      */
     private async analyzeFileImports(filePath: string): Promise<void> {
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = safeReadFile(filePath);
+        if (!content) {
+            return; // Skip unreadable files
+        }
+        
         const imports = new Set<string>();
 
         // Extract all imports using regex
@@ -290,7 +295,11 @@ export class EnhancedDBDetector {
             return issues; // Should not happen due to filtering
         }
 
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = safeReadFile(filePath);
+        if (!content) {
+            return issues; // Skip unreadable files
+        }
+        
         const lines = content.split('\n');
 
         for (let i = 0; i < lines.length; i++) {

@@ -1,8 +1,8 @@
 {
   "name": "odavl-insight-vscode",
   "displayName": "ODAVL Insight",
-  "description": "ML-powered error detection for TypeScript, Python, and Java with 20+ specialized detectors",
-  "version": "2.0.4",
+  "description": "AI-powered code analysis with local + cloud modes. Real-time error detection, project history, and collaborative insights.",
+  "version": "1.0.0",
   "publisher": "odavl",
   "icon": "icon.png",
   "engines": {
@@ -11,11 +11,13 @@
   "categories": [
     "Linters",
     "Programming Languages",
-    "Testing"
+    "Testing",
+    "Other"
   ],
   "keywords": [
     "error-detection",
     "code-quality",
+    "ai",
     "ml",
     "typescript",
     "python",
@@ -23,7 +25,9 @@
     "multi-language",
     "diagnostics",
     "odavl",
-    "automation"
+    "automation",
+    "cloud",
+    "collaboration"
   ],
   "repository": {
     "type": "git",
@@ -39,47 +43,40 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onView:odavl-insight.issuesExplorer",
-    "onView:odavl-insight.detectors",
-    "onView:odavl-insight.statistics"
+    "onStartupFinished"
   ],
-  "main": "./dist/extension.js",
+  "main": "./dist/extension-v2.js",
   "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "odavl-insight",
-          "title": "ODAVL Insight",
-          "icon": "media/activitybar-icon.svg"
-        }
-      ]
-    },
-    "views": {
-      "odavl-insight": [
-        {
-          "id": "odavl-insight.issuesExplorer",
-          "name": "Issues Explorer"
-        },
-        {
-          "id": "odavl-insight.detectors",
-          "name": "Detectors"
-        },
-        {
-          "id": "odavl-insight.statistics",
-          "name": "Statistics"
-        }
-      ]
-    },
     "commands": [
       {
+        "command": "odavl-insight.signIn",
+        "title": "ODAVL Insight: Sign In",
+        "icon": "$(sign-in)"
+      },
+      {
+        "command": "odavl-insight.signOut",
+        "title": "ODAVL Insight: Sign Out",
+        "icon": "$(sign-out)"
+      },
+      {
+        "command": "odavl-insight.showAccountMenu",
+        "title": "ODAVL Insight: Account Menu",
+        "icon": "$(account)"
+      },
+      {
         "command": "odavl-insight.analyzeWorkspace",
-        "title": "ODAVL Insight: Analyze Workspace (All Languages)",
+        "title": "ODAVL Insight: Analyze Workspace",
         "icon": "$(search)"
       },
       {
-        "command": "odavl-insight.analyzeActiveFile",
-        "title": "ODAVL Insight: Analyze Active File",
-        "icon": "$(file)"
+        "command": "odavl-insight.analyzeWorkspaceLocal",
+        "title": "ODAVL Insight: Analyze Workspace (Local Only)",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "odavl-insight.analyzeWorkspaceCloud",
+        "title": "ODAVL Insight: Send to Cloud",
+        "icon": "$(cloud-upload)"
       },
       {
         "command": "odavl-insight.clearDiagnostics",
@@ -87,59 +84,41 @@
         "icon": "$(clear-all)"
       },
       {
-        "command": "odavl-insight.runDetector",
-        "title": "ODAVL Insight: Run Detector",
-        "icon": "$(play)"
-      },
-      {
-        "command": "odavl-insight.showLanguageInfo",
-        "title": "ODAVL Insight: Show Language Info",
-        "icon": "$(info)"
-      },
-      {
-        "command": "odavl-insight.showWorkspaceLanguages",
-        "title": "ODAVL Insight: Show Workspace Languages",
-        "icon": "$(symbol-namespace)"
-      },
-      {
         "command": "odavl-insight.showDashboard",
-        "title": "ODAVL Insight: Show Dashboard",
-        "icon": "$(graph)"
+        "title": "ODAVL Insight: Open Cloud Dashboard",
+        "icon": "$(globe)"
       },
       {
-        "command": "odavl-insight.refreshIssues",
-        "title": "Refresh",
-        "icon": "$(refresh)"
-      },
-      {
-        "command": "odavl-insight.toggleDetector",
-        "title": "Toggle Detector",
-        "icon": "$(debug-stop)"
+        "command": "odavl-insight.showUpgrade",
+        "title": "ODAVL Insight: View Plans",
+        "icon": "$(star)"
       }
     ],
     "menus": {
-      "view/title": [
+      "commandPalette": [
         {
-          "command": "odavl-insight.refreshIssues",
-          "when": "view == odavl-insight.issuesExplorer",
-          "group": "navigation"
+          "command": "odavl-insight.signIn",
+          "when": "true"
+        },
+        {
+          "command": "odavl-insight.signOut",
+          "when": "true"
         },
         {
           "command": "odavl-insight.analyzeWorkspace",
-          "when": "view == odavl-insight.issuesExplorer",
-          "group": "navigation"
+          "when": "true"
+        },
+        {
+          "command": "odavl-insight.analyzeWorkspaceLocal",
+          "when": "true"
+        },
+        {
+          "command": "odavl-insight.analyzeWorkspaceCloud",
+          "when": "true"
         },
         {
           "command": "odavl-insight.showDashboard",
-          "when": "view == odavl-insight.statistics",
-          "group": "navigation"
-        }
-      ],
-      "view/item/context": [
-        {
-          "command": "odavl-insight.toggleDetector",
-          "when": "view == odavl-insight.detectors",
-          "group": "inline"
+          "when": "true"
         }
       ]
     },
@@ -149,45 +128,72 @@
         "odavl-insight.autoAnalyzeOnSave": {
           "type": "boolean",
           "default": true,
-          "description": "Automatically analyze files on save"
+          "description": "Automatically analyze files on save (local mode)"
+        },
+        "odavl-insight.defaultAnalysisMode": {
+          "type": "string",
+          "default": "local",
+          "enum": [
+            "local",
+            "cloud",
+            "both"
+          ],
+          "enumDescriptions": [
+            "Local analysis only (fast, immediate feedback)",
+            "Cloud analysis only (history, trends, collaboration)",
+            "Both local and cloud (best of both worlds)"
+          ],
+          "description": "Default analysis mode for workspace scans"
         },
         "odavl-insight.enabledDetectors": {
           "type": "array",
           "default": [
             "typescript",
             "eslint",
-            "security"
+            "security",
+            "performance",
+            "complexity",
+            "import",
+            "circular"
           ],
-          "description": "List of enabled detectors"
+          "description": "List of enabled detectors for local analysis"
         },
-        "odavl-insight.supportedLanguages": {
-          "type": "array",
-          "default": [
-            "typescript",
-            "javascript",
-            "python",
-            "java"
+        "odavl.telemetry.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Send anonymous usage data to help improve ODAVL Insight. No code content is sent, only usage patterns and error rates. You can change this setting at any time."
+        },
+        "odavl-insight.severityMinimum": {
+          "type": "string",
+          "default": "info",
+          "enum": [
+            "info",
+            "low",
+            "medium",
+            "high",
+            "critical"
           ],
-          "description": "List of supported programming languages",
-          "items": {
-            "type": "string",
-            "enum": [
-              "typescript",
-              "javascript",
-              "python",
-              "java"
-            ]
-          }
+          "description": "Minimum severity level to show in diagnostics"
+        },
+        "odavl-insight.cloudBackendUrl": {
+          "type": "string",
+          "default": "https://cloud.odavl.studio",
+          "description": "ODAVL Insight Cloud backend URL"
+        },
+        "odavl-insight.telemetryEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable anonymous usage telemetry to help improve ODAVL Insight"
         }
       }
     }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
-    "compile": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify --sourcemap",
-    "watch": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch --sourcemap",
-    "package": "vsce package",
-    "analyze-bundle": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --metafile=dist/meta.json --analyze"
+    "compile": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/insight-core/detector --external:@odavl-studio/auth --format=cjs --platform=node --minify --sourcemap",
+    "watch": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/insight-core/detector --external:@odavl-studio/auth --format=cjs --platform=node --watch --sourcemap",
+    "package": "vsce package --no-dependencies",
+    "analyze-bundle": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/auth --format=cjs --platform=node --metafile=dist/meta.json --analyze"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -200,8 +206,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@odavl-studio/insight-core": "workspace:^",
-    "bcrypt": "^6.0.0",
-    "jsonwebtoken": "^9.0.2"
+    "@odavl-studio/insight-core": "workspace:*",
+    "@odavl-studio/auth": "workspace:*",
+    "@odavl-studio/sdk": "workspace:*"
   }
 }

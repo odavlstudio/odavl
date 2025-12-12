@@ -1,0 +1,22 @@
+{
+  "id": "typescript-strict-null-checks",
+  "name": "TypeScript Strict Null Checks Migration",
+  "description": "Add null/undefined checks for strict mode compliance",
+  "trust": 0.75,
+  "category": "typescript",
+  "targetFiles": [
+    "**/*.ts",
+    "**/*.tsx",
+    "!**/node_modules/**"
+  ],
+  "pattern": {
+    "detect": "\\.[a-zA-Z]+\\(",
+    "suggestion": "Add optional chaining (?.) for null safety"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/ts-null-checks.ts",
+  "impact": {
+    "filesAffected": 8,
+    "locChanged": 35,
+    "complexity": 4
+  }
+}

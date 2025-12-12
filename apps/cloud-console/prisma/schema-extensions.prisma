@@ -1,0 +1,36 @@
+/**
+ * Organization Invitation Model Extension
+ * Add to Prisma schema
+ */
+
+// model OrganizationInvite {
+//   id             String   @id @default(cuid())
+//   organizationId String
+//   email          String
+//   role           OrgRole  @default(VIEWER)
+//   token          String   @unique
+//   expiresAt      DateTime
+//   invitedBy      String
+//   createdAt      DateTime @default(now())
+//   
+//   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+//   
+//   @@unique([organizationId, email])
+//   @@index([token])
+//   @@index([email])
+//   @@map("organization_invites")
+// }
+
+// model AuditLog {
+//   id        String   @id @default(cuid())
+//   orgId     String
+//   userId    String?
+//   action    String
+//   resource  String
+//   metadata  Json?
+//   createdAt DateTime @default(now())
+//   
+//   @@index([orgId, createdAt])
+//   @@index([userId])
+//   @@map("audit_logs")
+// }

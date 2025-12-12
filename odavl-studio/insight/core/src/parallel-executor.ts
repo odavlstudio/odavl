@@ -1,5 +1,6 @@
 /**
  * Parallel Executor
+ * Phase P3: ACTIVE manifest enforcement (severity filtering, false positive suppression)
  * 
  * Runs multiple detectors in parallel to reduce overall analysis time.
  * Uses worker threads for CPU-intensive analysis.
@@ -11,6 +12,8 @@
 import { Worker } from 'node:worker_threads';
 import * as os from 'node:os';
 import type { Detector, Issue } from '../types';
+// Phase P3: Runtime enforcement functions
+import { shouldReportSeverity, isSuppressedByFalsePositiveRules } from './config/manifest-config.js';
 
 export interface ParallelExecutorOptions {
   maxWorkers?: number;
@@ -94,15 +97,24 @@ export class ParallelExecutor {
           const startTime = Date.now();
           
           try {
-            const issues = await this.runWithTimeout(
+            const rawIssues = await this.runWithTimeout(
               () => detector.analyze(workspacePath),
               this.workerTimeout,
               detector.name
             );
             
+            // Phase P3: Apply manifest enforcement filters
+            const filteredIssues = this.applyManifestFilters(rawIssues, detector.name);
+            
             const duration = Date.now() - startTime;
-            console.log(`      ✓ ${detector.name}: ${issues.length} issues (${duration}ms)`);
-            results.set(detector.name, issues);
+            const suppressed = rawIssues.length - filteredIssues.length;
+            if (suppressed > 0) {
+              console.log(`      ✓ ${detector.name}: ${filteredIssues.length} issues (${suppressed} filtered, ${duration}ms)`);
+              // TODO P3: Add audit entry for filtered issues count
+            } else {
+              console.log(`      ✓ ${detector.name}: ${filteredIssues.length} issues (${duration}ms)`);
+            }
+            results.set(detector.name, filteredIssues);
           } catch (error) {
             const duration = Date.now() - startTime;
             console.error(`      ✗ ${detector.name}: Failed (${duration}ms)`, error);
@@ -113,6 +125,50 @@ export class ParallelExecutor {
     );
 
     return results;
+  }
+
+  /**
+   * Phase P3: Apply manifest enforcement filters to issues
+   * - Severity filtering
+   * - False positive suppression
+   * 
+   * @param issues Raw issues from detector
+   * @param detectorName Name of detector for false positive matching
+   * @returns Filtered issues
+   */
+  private applyManifestFilters(issues: Issue[], detectorName: string): Issue[] {
+    let filtered = issues;
+    
+    // 1. Severity filtering
+    const initialCount = filtered.length;
+    filtered = filtered.filter((issue) => {
+      const severity = issue.severity || 'medium';
+      return shouldReportSeverity(severity as 'critical' | 'high' | 'medium' | 'low');
+    });
+    
+    const severityFiltered = initialCount - filtered.length;
+    if (severityFiltered > 0) {
+      console.debug(`      [Filter] Severity: ${severityFiltered} issues filtered`);
+    }
+    
+    // 2. False positive suppression
+    const beforeSuppression = filtered.length;
+    filtered = filtered.filter((issue) => {
+      const shouldSuppress = isSuppressedByFalsePositiveRules({
+        detector: detectorName,
+        message: issue.message || '',
+        path: issue.file,
+      });
+      return !shouldSuppress;
+    });
+    
+    const suppressionFiltered = beforeSuppression - filtered.length;
+    if (suppressionFiltered > 0) {
+      console.debug(`      [Filter] False Positives: ${suppressionFiltered} issues suppressed`);
+      // TODO P3: Add audit entry for suppressed issues
+    }
+    
+    return filtered;
   }
 
   /**

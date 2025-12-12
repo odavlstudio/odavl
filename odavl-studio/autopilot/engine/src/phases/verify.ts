@@ -1,5 +1,12 @@
 /**
  * VERIFY phase: Validates improvements against quality gates
+ * 
+ * ✅ Phase 3 Update:
+ * - Re-reads Insight analysis after fixes (via observe.ts)
+ * - NO local detection (observe.ts reads .odavl/insight/latest-analysis.json)
+ * - Compares before/after metrics from Insight
+ * - Enforces quality gates from .odavl/gates.yml
+ * 
  * @fileoverview Verification functionality for ODAVL cycle
  */
 
@@ -100,6 +107,25 @@ export async function checkGates(
 
     const violations: string[] = [];
     const g = gates as GatesConfig;
+
+    // Round 13: Primary gate - totalIssues must not increase
+    const totalIssuesDelta = (deltas as any).totalIssues;
+    if (totalIssuesDelta !== undefined) {
+        if (totalIssuesDelta > 0) {
+            violations.push(`Total issues increased: +${totalIssuesDelta}`);
+        } else if (totalIssuesDelta < 0) {
+            logPhase("VERIFY", `✅ Total issues reduced by ${Math.abs(totalIssuesDelta)}`, "success");
+        }
+    }
+
+    // Round 13: Detector-specific gates - no increases allowed
+    const detectorNames = ['typescript', 'security', 'performance', 'complexity', 'imports'];
+    for (const detectorName of detectorNames) {
+        const delta = (deltas as any)[detectorName];
+        if (delta !== undefined && delta > 0) {
+            violations.push(`${detectorName} issues increased: +${delta}`);
+        }
+    }
 
     // Existing gates: ESLint and TypeScript
     if (g.eslint?.deltaMax !== undefined && deltas.eslint > g.eslint.deltaMax) {
@@ -229,6 +255,8 @@ export async function verify(before: Metrics, recipeId = "unknown", targetDir?: 
     const ROOT = process.cwd();
     const reportsDir = path.join(ROOT, "reports");
 
+    // ✅ Phase 3: observe() now reads Insight JSON (no local detection)
+    // User must run 'odavl insight analyze' after fixes to update analysis
     const after = await observe(targetDir || before.targetDir || process.cwd());
     const deltas = {
         eslint: after.eslint - before.eslint,
@@ -273,6 +301,15 @@ export async function verify(before: Metrics, recipeId = "unknown", targetDir?: 
     }
 
     await fsp.writeFile(path.join(reportsDir, `verify-${Date.now()}.json`), JSON.stringify(verify, null, 2));
+
+    // Compute learning signals from Brain
+    try {
+        const { computeLearningSignals } = await import('@odavl-studio/brain/learning');
+        const signals = computeLearningSignals();
+        logPhase("VERIFY", `🧠 Learning Signals (placeholder): ${JSON.stringify(signals)} | Issues: ${after.totalIssues}, Actions: ${Math.abs(deltas.eslint) + Math.abs(deltas.types)}`, "info");
+    } catch (err) {
+        logPhase("VERIFY", `⚠️ Failed to compute learning signals: ${(err as Error).message}`, "warn");
+    }
 
     return verify;
 }

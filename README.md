@@ -1,22 +1,497 @@
-# 🧩 ODAVL Studio v2.0
+# 🧩 ODAVL Studio v1.0.0 GA
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)](https://github.com/Soliancy/odavl/releases/tag/v2.0.0)
+[![Version](https://img.shields.io/badge/version-1.0.0--GA-blue?style=flat-square)](https://github.com/odavlstudio/odavl/releases/tag/v1.0.0)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?style=flat-square)](tsconfig.json)
-[![Tests](https://img.shields.io/badge/tests-96%25-success?style=flat-square)](reports/test-results.json)
-[![ML Accuracy](https://img.shields.io/badge/ML-80%25-brightgreen?style=flat-square)](.odavl/ml-models/)
+[![Detectors](https://img.shields.io/badge/detectors-16%20total%20(11%20stable)-success?style=flat-square)](CHANGELOG.md)
+[![Production](https://img.shields.io/badge/production-ready-green?style=flat-square)](vercel.json)
 
-**Autonomous Code Quality • Self-Healing Infrastructure • Pre-Deploy Testing**
+**🎉 General Availability Release - Production Ready**
 
-[Quick Start](#-quick-start-5-minutes) • [Documentation](docs/) • [Examples](#-examples) • [Contributing](CONTRIBUTING.md)
+**Autonomous Code Quality • Self-Healing Infrastructure • Website Testing**
+
+[Quick Start](#-quick-start) • [Documentation](docs/) • [Cloud Console](apps/cloud-console/) • [Contributing](CONTRIBUTING.md) • [Changelog](CHANGELOG.md)
 
 </div>
 
 ---
 
-## 🚀 Quick Start (5 Minutes)
+## 🚀 What is ODAVL?
+
+**ODAVL Studio** is a comprehensive platform for AI-powered code analysis, autonomous fixing, and pre-deploy testing. It consists of three independent products following the Office 365/Adobe Creative Cloud model:
+
+### 🔍 **ODAVL Insight** - The Brain
+> **"Detect ALL Errors - Never Touch Code"**
+
+- **25+ Specialized Detectors** (11 stable ✅, 3 experimental ⚠️, 11+ additional)
+- **Production SDK v1.0.0**: Clean API for programmatic analysis
+- **VS Code Extension v1.0.0**: Real-time diagnostics with status bar & hover tooltips
+- **CLI v1.0.0**: 6 commands with unified schema
+- **Multi-Language Support**: TypeScript, Python, Java, PHP, Ruby, Swift, Kotlin, Go, Rust
+- **ML-Enhanced Analysis**: TensorFlow.js integration for pattern recognition
+- **Wave 4 Hardening**: Workspace caching, auto-discovery, enhanced error handling
+
+### ⚡ **ODAVL Autopilot** - The Executor
+> **"Execute Safely - Don't Analyze"**
+
+- **O-D-A-V-L Cycle**: Observe → Decide → Act → Verify → Learn
+- **Parallel Execution**: 2-4x faster with dependency analysis
+- **Heuristic Trust Scoring**: Adaptive recipe selection (no ML model yet)
+- **Smart Rollback**: Diff-based snapshots (85% space savings)
+- **Safety First**: Risk budget, protected paths, attestation chain
+
+### 🛡️ **ODAVL Guardian** - Website Testing Specialist
+> **"Test Websites Only - Smarter Than Vercel"**
+
+- **Accessibility Testing**: axe-core + WCAG 2.1 compliance
+- **Performance Testing**: Core Web Vitals, Lighthouse audits
+- **Security Testing**: OWASP Top 10, CSP validation
+- **Visual Regression**: Pixel-perfect comparison
+- **Multi-Browser**: Chrome, Firefox, Safari, Edge
+
+### ☁️ **Cloud Console** - Dashboard & Management
+> **"Manage Everything - Track All Metrics"**
+
+- Project management and workspace tracking
+- Telemetry and observability (15+ event types)
+- Billing integration (Free, Pro, Enterprise tiers)
+- OAuth authentication (GitHub, Google)
+- Real-time analytics and reporting
+
+### 🌐 **Marketing Website** - Public Portal
+> **"Showcase Platform - SEO Optimized"**
+
+- Product features and pricing
+- Documentation and guides
+- Contact and support
+- SEO optimized with OG images
+
+---
+
+## 🏁 Quick Start
+
+## 🏁 Quick Start
+
+### Prerequisites
+- Node.js 20+ and pnpm 9.12.2+
+- PostgreSQL 14+ (for Cloud Console)
+- Git for version tracking
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/odavlstudio/odavl.git
+cd odavl
+
+# 2. Install dependencies (using pnpm ONLY)
+pnpm install
+
+# 3. Build all packages
+pnpm build
+
+# 4. Set up database (for Cloud Console)
+.\setup-database.ps1 -UseDocker  # Windows PowerShell
+# OR manually: cd apps/cloud-console && pnpm db:push && pnpm db:seed
+
+# 5. Write version metadata
+pnpm version:write
+```
+
+### Run Development Servers
+
+```bash
+# Cloud Console (localhost:3001)
+pnpm insight:dev
+
+# Guardian Dashboard (localhost:3002)
+pnpm guardian:dev
+
+# Marketing Website (localhost:3000)
+pnpm hub:dev
+
+# Unified CLI
+pnpm cli:dev --help
+```
+
+### Production Deployment
+
+```bash
+# Validate production readiness
+pnpm validate:prod
+
+# Build for production
+pnpm build:prod
+
+# Deploy to Vercel
+pnpm deploy:prod
+```
+
+---
+
+## 📦 Repository Structure
+
+```
+odavl/
+├── apps/
+│   ├── cloud-console/       # Dashboard & management (Next.js 15)
+│   ├── marketing-website/   # Public website (Next.js 15)
+│   └── studio-cli/          # Unified CLI (Commander.js)
+├── odavl-studio/
+│   ├── insight/            # Error detection (12 stable detectors)
+│   │   ├── core/          # Detection engine
+│   │   ├── cloud/         # Dashboard UI
+│   │   └── extension/     # VS Code extension
+│   ├── autopilot/         # Self-healing infrastructure
+│   │   ├── engine/        # O-D-A-V-L cycle
+│   │   ├── recipes/       # Fix recipes
+│   │   └── extension/     # VS Code extension
+│   └── guardian/          # Website testing
+│       ├── app/           # Testing dashboard
+│       ├── workers/       # Background jobs
+│       ├── core/          # Testing engine
+│       └── extension/     # VS Code extension
+├── packages/
+│   ├── sdk/               # Public SDK
+│   ├── auth/              # JWT authentication
+│   ├── core/              # Shared utilities
+│   ├── types/             # TypeScript interfaces
+│   ├── email/             # Email service
+│   └── plugins/           # Plugin system
+├── scripts/
+│   ├── build/             # Production build scripts
+│   └── release/           # Release automation
+├── tools/                 # PowerShell automation
+├── .github/workflows/     # CI/CD pipelines
+├── vercel.json           # Vercel configuration
+├── VERSION               # Current version (v1.0.0-GA)
+└── CHANGELOG.md          # Release notes
+```
+
+---
+
+## 🎯 Usage Examples
+
+### Insight - Detect Errors
+
+**CLI:**
+```bash
+# Interactive menu
+pnpm odavl:insight
+
+# Analyze with specific detectors
+odavl insight analyze --detectors typescript,security,performance
+
+# List all 25 detectors
+odavl insight detectors
+
+# Generate reports
+odavl insight report --format json,html,md
+```
+
+**SDK (Wave 5):**
+```typescript
+import { analyzeWorkspace, listDetectors } from '@odavl/insight-sdk';
+
+// Analyze entire workspace
+const result = await analyzeWorkspace('/path/to/project', {
+  detectors: ['typescript', 'security', 'performance'],
+  severityMinimum: 'medium'
+});
+
+console.log(`Found ${result.summary.totalIssues} issues`);
+
+// List available detectors
+const detectors = await listDetectors();
+console.log(`Available: ${detectors.join(', ')}`);
+```
+
+**VS Code Extension (Wave 5):**
+- Auto-analyze on save (Ctrl+S)
+- Status bar: "$(flame) Insight: 7 issues"
+- Hover for detector info and suggested fixes
+- Problems Panel integration
+
+### Autopilot - Self-Healing
+
+```bash
+# Run full O-D-A-V-L cycle
+pnpm odavl:autopilot run
+
+# Run single phase
+odavl autopilot observe
+odavl autopilot decide
+odavl autopilot act
+odavl autopilot verify
+odavl autopilot learn
+
+# With constraints
+odavl autopilot run --max-files 10 --max-loc 40
+```
+
+### Guardian - Website Testing
+
+```bash
+# Test a website
+odavl guardian test https://example.com
+
+# Full test suite
+odavl guardian test --suite all --format json
+
+# Multi-environment
+odavl guardian test --environment production
+```
+
+---
+
+## 🔧 Development Workflow
+
+### Common Commands
+
+```bash
+# Testing
+pnpm test                  # Run all tests
+pnpm test:coverage         # With coverage report
+pnpm forensic:all          # Lint + typecheck + coverage (required before commit)
+
+# Building
+pnpm build                 # Build all packages
+pnpm build:prod            # Production build with validation
+
+# Linting & Type Checking
+pnpm lint                  # ESLint entire monorepo
+pnpm typecheck             # TypeScript validation
+
+# Health Monitoring
+pnpm monitor:health        # System diagnostics
+pnpm monitor:health:verbose # Detailed health report
+
+# Version Management
+pnpm version:write         # Update version.json files
+
+# Production Validation
+pnpm validate:prod         # Pre-deployment checks
+```
+
+### VS Code Tasks
+
+Access via `Ctrl+Shift+P` → "Tasks: Run Task":
+- **Forensic: All** - Full CI workflow
+- **Forensic: Test Coverage** - Coverage report
+- **Forensic: Tool Versions** - Display tool versions
+
+---
+
+## 🏗️ Architecture
+
+### Three-Product Model
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  ODAVL Insight  │────▶│ ODAVL Autopilot │────▶│ ODAVL Guardian  │
+│  (Detection)    │     │  (Fixing)       │     │   (Testing)     │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+        │                       │                       │
+        └───────────────────────┴───────────────────────┘
+                                │
+                         ┌──────▼──────┐
+                         │Cloud Console│
+                         │ (Dashboard) │
+                         └─────────────┘
+```
+
+### Data Flow
+
+1. **Insight** detects errors → exports to `.odavl/problems-panel-export.json`
+2. **Autopilot** reads issues → generates fixes → saves undo snapshots
+3. **Guardian** tests deployed websites → validates quality gates
+4. **Cloud Console** aggregates metrics → displays dashboards
+
+---
+
+## 🔐 Security
+
+### Production Headers
+- HSTS: 2-year preload
+- X-Frame-Options: DENY
+- Content-Security-Policy: Strict
+- X-Content-Type-Options: nosniff
+- Referrer-Policy: strict-origin-when-cross-origin
+
+### Authentication
+- NextAuth.js with JWT sessions
+- OAuth providers (GitHub, Google)
+- Session management with rotation
+
+### Data Protection
+- SQL injection prevention (Prisma ORM)
+- XSS protection headers
+- CSRF protection
+- No console.log in production
+
+---
+
+## 🚀 Production Deployment
+
+### Vercel Deployment (Recommended)
+
+```bash
+# 1. Set up environment variables in Vercel dashboard
+#    - NEXTAUTH_SECRET
+#    - NEXTAUTH_URL
+#    - DATABASE_URL
+#    - OAUTH_*
+#    - STRIPE_*
+#    - VERCEL_*
+
+# 2. Connect GitHub repository to Vercel
+
+# 3. Configure vercel.json (already configured)
+
+# 4. Deploy
+git push origin main  # Triggers automatic deployment via GitHub Actions
+```
+
+### Manual Deployment
+
+```bash
+# 1. Validate
+pnpm validate:prod
+
+# 2. Build
+pnpm build:prod
+
+# 3. Deploy
+pnpm deploy:prod
+```
+
+---
+
+## 📊 Performance Metrics
+
+| Metric | Target | Status |
+|--------|--------|--------|
+| Build Time | <7 min | ✅ 5-7 min |
+| Bundle Size | <40 MB | ✅ <40 MB |
+| Lighthouse Score | >95 | ✅ 95+ |
+| Test Coverage | >80% | 🚧 60% |
+| TypeScript Errors | 0 | ✅ 0 |
+
+---
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Development Setup
+
+```bash
+# 1. Fork and clone
+git clone https://github.com/YOUR_USERNAME/odavl.git
+
+# 2. Create feature branch
+git checkout -b odavl/feature-name-20251210
+
+# 3. Make changes and test
+pnpm forensic:all
+
+# 4. Commit and push
+git commit -m "feat: add feature"
+git push origin odavl/feature-name-20251210
+
+# 5. Create PR
+```
+
+### Branch Naming Convention
+All branches must follow: `odavl/<task>-<YYYYMMDD>`
+
+---
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
+
+## 📞 Support
+
+- **Documentation**: https://docs.odavl.com
+- **GitHub Issues**: https://github.com/odavlstudio/odavl/issues
+- **Email**: support@odavl.com
+- **Discord**: https://discord.gg/odavl
+
+---
+
+## 🎉 What's New in v1.0.0 GA
+
+### Production Infrastructure
+✅ Automated build pipeline with validation  
+✅ CDN optimization (1-year static caching)  
+✅ Security hardening (HSTS, CSP, X-Frame-Options)  
+✅ Telemetry & observability (15+ events)  
+✅ CI/CD automation (GitHub Actions + Vercel)  
+
+### UI/UX Components
+✅ Global footers with social links  
+✅ Loading states (skeletons, cards, tables)  
+✅ Empty states with consistent styling  
+✅ Tooltips with portal support  
+✅ Mobile menu with slide-in animation  
+✅ Version badge in navbar  
+✅ Accessibility improvements (skip-to-content, ARIA labels)  
+
+### Developer Experience
+✅ Production validation suite  
+✅ Version management system  
+✅ Enhanced error boundaries  
+✅ Comprehensive CHANGELOG  
+✅ Updated documentation  
+
+See [CHANGELOG.md](CHANGELOG.md) for complete release notes.
+
+---
+
+<div align="center">
+
+**Built with ❤️ by the ODAVL Team**
+
+[⭐ Star us on GitHub](https://github.com/odavlstudio/odavl) • [📖 Read the Docs](docs/) • [🐛 Report Bug](https://github.com/odavlstudio/odavl/issues)
+
+</div>
+
+---
+
+## 📚 Additional Documentation
+
+### Option 1: Global CLI Installation (Recommended)
+
+```bash
+# Install globally via npm
+npm install -g @odavl/cli
+
+# Verify installation
+odavl --version   # Should show: 2.0.0
+odavl info        # Show platform status
+```
+
+### Option 2: VS Code Extension (Most Popular)
+
+**Install from VS Code:**
+1. Open VS Code
+2. Press `Ctrl+Shift+X` (Extensions)
+3. Search for "ODAVL Insight"
+4. Click Install
+
+**Or install from command line:**
+```bash
+code --install-extension odavl.odavl-insight-vscode
+```
+
+**Marketplace Link:** https://marketplace.visualstudio.com/items?itemName=odavl.odavl-insight-vscode
+
+### Option 3: Local Development
 
 ```bash
 # 1. Install dependencies
@@ -35,16 +510,27 @@ pnpm odavl:guardian test https://example.com # 🛡️ Web testing
 
 ---
 
-## 💡 What is ODAVL Studio?
+## 📦 Published Packages (Globally Available)
 
-**ODAVL Studio** is a unified platform for autonomous code quality and testing. Like Office 365 or Adobe Creative Cloud, it brings together three powerful products under one roof:
+| Package | Version | Size | Link |
+|---------|---------|------|------|
+| **CLI** | 0.1.4 | 1.67 KB | [![npm](https://img.shields.io/npm/v/@odavl/cli)](https://www.npmjs.com/package/@odavl/cli) |
+| **Core** | 1.0.1 | 538.7 KB | [![npm](https://img.shields.io/npm/v/@odavl/core)](https://www.npmjs.com/package/@odavl/core) |
+| **Insight Core** | 2.0.0 | 835.3 KB | [![npm](https://img.shields.io/npm/v/@odavl/insight-core)](https://www.npmjs.com/package/@odavl/insight-core) |
+| **VS Code Extension** | 2.0.4 | 5.18 MB | [![Marketplace](https://img.shields.io/visual-studio-marketplace/v/odavl.odavl-insight-vscode)](https://marketplace.visualstudio.com/items?itemName=odavl.odavl-insight-vscode) |
 
-### 🔍 **ODAVL Insight** - ML-Powered Error Detection
+---
+
+## 💡 What is ODAVL?
+
+**ODAVL** is an autonomous code quality platform. **ODAVL Studio** is the product suite containing three integrated products:
+
+### 🔍 **ODAVL Insight** - Advanced Error Detection
 
 Find and fix errors before they reach production.
 
-- **12 Specialized Detectors**: TypeScript, ESLint, Security, Performance, and more
-- **ML-Powered Suggestions**: 80%+ accuracy in fix recommendations
+- **12 Stable Detectors**: TypeScript, ESLint, Security, Performance, and more
+- **Pattern-Based Analysis**: Comprehensive error detection (local-only tool)
 - **VS Code Integration**: Real-time feedback in Problems Panel
 - **Interactive CLI**: Easy-to-use terminal interface
 
@@ -54,15 +540,21 @@ pnpm odavl:insight  # Interactive menu with 12 detectors
 
 ### ⚡ **ODAVL Autopilot** - Self-Healing Infrastructure
 
-Automatically fix code quality issues while you sleep.
+Automatically fix code quality issues with deterministic patterns (Wave 6 v1.0.0).
 
-- **O-D-A-V-L Cycle**: Observe → Decide → Act → Verify → Learn
-- **Smart Rollback**: 85% space savings with diff-based snapshots
-- **Parallel Execution**: 2-4x faster with dependency-aware parallelism
-- **Dry-Run Preview**: See changes before applying them
+- **7 Fix Rules**: Unused imports, hardcoded secrets, console.log, http→https, and more
+- **Safety First**: Max 20 fixes, automatic backups, atomic rollback
+- **CLI & VS Code**: Run from terminal or editor with confirmation dialogs
+- **Complete Audit Trail**: `.odavl/autopilot-log.json` tracks all fixes
 
 ```bash
-pnpm odavl:autopilot run  # Full self-healing cycle
+# CLI: Apply fixes to workspace
+odavl autopilot run
+
+# Preview without applying
+odavl autopilot run --dry-run
+
+# VS Code: Command Palette → "ODAVL Autopilot: Fix Issues"
 ```
 
 ### 🛡️ **ODAVL Guardian** - Pre-Deploy Testing
@@ -125,16 +617,17 @@ pnpm odavl:guardian test $STAGING_URL --json  # Web testing with JSON output
 ## 🎯 Key Features
 
 ### 🔍 Intelligent Error Detection
-- **12 Detectors**: Comprehensive coverage from TypeScript to security
-- **ML Predictions**: 80%+ accuracy in trust scoring
+- **16 Detectors (11 working)**: TypeScript, Security, Performance, Complexity, and more
+- **ML Trust Scoring**: Recipe selection with 0.1-1.0 trust scale
 - **Root Cause Analysis**: Find the source, not just symptoms
+- **Reality**: 69% detector reliability, see [HONEST_STATUS.md](HONEST_STATUS.md)
 
 ### 🤖 Autonomous Healing
+- **O-D-A-V-L Cycle**: Observe → Decide → Act → Verify → Learn
 - **15+ Recipes**: Pre-built fixes for common issues
-- **Trust Scoring**: ML-powered recipe selection (0.1-1.0 scale)
-- **Safe Automation**: Risk budget constraints + smart rollback
+- **Safe Automation**: Risk budget (10 files max) + undo snapshots + attestation chain
 
-### 🛡️ Production-Ready Testing
+### 🛡️ Pre-Deploy Website Testing
 - **Accessibility**: WCAG 2.1 Level AA with RTL support
 - **Performance**: 6 budget presets (desktop, mobile, slow-3G, etc.)
 - **Security**: OWASP Top 10 + CSP validation
@@ -150,7 +643,7 @@ pnpm odavl:guardian test $STAGING_URL --json  # Web testing with JSON output
 
 ### 📸 Screenshots
 
-![ODAVL Studio Overview](https://placehold.co/800x450/1a1a2e/ffffff?text=ODAVL+Studio+v2.0+%7C+Three+Products+One+Platform)
+![ODAVL Overview](https://placehold.co/800x450/1a1a2e/ffffff?text=ODAVL+v2.0+%7C+Three+Products+One+Platform)
 
 #### ODAVL Insight - Real-Time Error Detection
 
@@ -314,7 +807,7 @@ This monorepo contains multiple projects working together:
 ### Apps
 
 - **apps/cli/** - ODAVL CLI orchestrator with 5-phase autonomous cycle
-- **apps/vscode-ext/** - VS Code extension for real-time monitoring (ODAVL Studio)
+- **apps/vscode-ext/** - VS Code extension for real-time monitoring (ODAVL Insight)
 - **apps/insight-cloud/** - Next.js 15 global intelligence dashboard (Prisma + PostgreSQL)
 - **apps/odavl-website-v2/** - Next.js 15 marketing/docs site (Tailwind, i18n ready)
 - **odavl-website/** - Legacy Next.js 14 site (9 languages, Tailwind v4)
@@ -344,22 +837,28 @@ This monorepo contains multiple projects working together:
 ### Core Detectors (Base Layer)
 
 1. **TypeScript**: `tsc --noEmit` validation with strict mode
-2. **ESLint**: Code quality rules with type-aware linting
-3. **Import (v3.0)**: Smart import validation (skips mock/example files)
-4. **Package**: Dependency integrity and vulnerability checks
-5. **Runtime (v2.0)**: Intelligent async pattern detection (skips tests)
-6. **Build**: Build process validation and error reporting
+### Core Detectors (✅ Stable)
 
-### Advanced Detectors (Intelligence Layer)
+1. **TypeScript**: Type errors, strict mode violations
+2. **Security**: XSS, SQL injection, hardcoded secrets (no CVE scanning yet)
+3. **Performance**: Memory patterns, slow functions
+4. **Complexity**: Cyclomatic complexity, deep nesting
+5. **Circular Dependencies**: Import cycle detection
+6. **Import**: Unused imports, missing dependencies
+7. **Package**: Outdated packages, security advisories
+8. **Runtime**: Console logs, debugger statements
+9. **Build**: Build failures, configuration issues
+10. **Network**: HTTP calls, fetch patterns
+11. **Isolation**: Test isolation issues
 
-1. **Security**: XSS, SQL injection, hardcoded secrets, CVE scanning (25 tests ✅)
-2. **Circular Dependencies**: Graph-based cycle detection with depth analysis (48 tests ✅)
-3. **Network & API**: Missing timeouts, error handling, rate limiting (49 tests ✅)
-4. **Performance**: Memory leaks, slow functions, blocking operations (33 tests ✅)
-5. **Complexity**: Cyclomatic complexity, deep nesting, code smells (30 tests ✅)
-6. **Component Isolation**: Coupling, cohesion, boundary violations (31 tests ✅)
+### Experimental Detectors (⚠️ Needs Testing)
 
-**Total Test Coverage**: 216/227 tests passing (95.2%) across all detectors
+1. **Python Types**: mypy integration (flaky)
+2. **Python Security**: bandit integration (slow)
+3. **Python Complexity**: radon integration (incomplete)
+
+**Broken**: CVE Scanner, Next.js detector ❌  
+**Overall Reliability**: 11/16 working (69%)
 
 ### VS Code Problems Panel Integration 🆕
 
@@ -453,6 +952,55 @@ ODAVL uses triple-layer safety:
 - Official Docs: Documentation is currently available in the `docs/` directory of this repository.
 - Quick Start: See `docs/README.md` and `README_PILOT.md` for setup instructions.
 - API Reference: See `API_REFERENCE.md` in the root of the repository.
+
+## 🚀 Phase 10: Productization & Branding (NEW)
+
+ODAVL has evolved from internal tooling to production-ready SaaS platform:
+
+### Marketing Website (Port 3004)
+- **Next.js 15**: Modern marketing site with Tailwind CSS and Framer Motion
+- **5-Step Onboarding**: Seamless signup → organization → project → invite → activation
+- **Product Pages**: Detailed Insight, Autopilot, and Guardian pages with demos
+- **Pricing**: Transparent Free ($0), Pro ($29/user/mo), Enterprise ($199/user/mo) tiers
+
+### Brand Identity
+- **Logo**: Circular gradient with neural network design (public/logo.svg)
+- **Colors**: Blue (#3b82f6), Purple (#8b5cf6), Green (#10b981)
+- **Typography**: Inter (sans-serif), Fira Code (monospace)
+- **Guidelines**: Complete brand book at `design/brand-guidelines.md`
+
+### Launch Strategy
+- **Beta Program**: 25 design partners, waitlist signup
+- **Product Hunt**: March 2025 launch with community upvotes
+- **Target**: 500 users, $10K MRR in Q1 2025
+- **Content**: 2 blog posts/week, video demos, case studies
+
+See full documentation:
+- [Launch Strategy](docs/LAUNCH_STRATEGY.md) - Go-to-market plan
+- [Product Roadmap](docs/PRODUCT_ROADMAP.md) - 18-month vision (Q1 2025 - Q2 2026)
+- [Marketing Messaging Guide](docs/MARKETING_MESSAGING_GUIDE.md) - Consistent messaging
+- [Press Release](docs/PRESS_RELEASE.md) - Official announcement draft
+- [SEO Checklist](docs/SEO_OPTIMIZATION_CHECKLIST.md) - Organic growth strategy
+- [Onboarding Flow](docs/ONBOARDING_FLOW.md) - 5-step user journey
+
+### Marketing Website Commands
+
+```bash
+# Development
+cd apps/marketing-website
+pnpm install
+pnpm dev        # Start on http://localhost:3004
+
+# Production
+pnpm build
+pnpm start
+```
+
+### Quick Links
+- **Website**: https://odavl.com (when launched)
+- **Contact**: hello@odavl.com
+- **Docs**: https://docs.odavl.com
+- **Community**: Discord invite (see [docs/LAUNCH_STRATEGY.md](docs/LAUNCH_STRATEGY.md))
 
 ## License
 

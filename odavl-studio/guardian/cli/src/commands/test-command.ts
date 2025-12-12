@@ -12,6 +12,7 @@ import { runRealTests } from '../../real-tests.js';
 export interface TestOptions {
   mode?: 'ai' | 'quick' | 'full';
   platform?: 'windows' | 'macos' | 'linux' | 'all';
+  type?: 'extension' | 'website' | 'cli';
   skipTests?: boolean;
   verbose?: boolean;
   json?: boolean;

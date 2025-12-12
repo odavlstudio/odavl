@@ -12,6 +12,7 @@
  */
 
 import { filterFalsePositives, type CodeContext } from './false-positive-filters';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export enum ComplexityErrorType {
     HIGH_COGNITIVE_COMPLEXITY = 'HIGH_COGNITIVE_COMPLEXITY',
@@ -89,9 +90,21 @@ export class ComplexityDetector {
                 if (entry.isDirectory()) {
                     scanDir(fullPath);
                 } else if (this.shouldAnalyze(entry.name)) {
-                    const content = fs.readFileSync(fullPath, 'utf-8');
-                    this.analyzeFile(fullPath, content);
-                    this.processedFiles++;
+                    // WAVE 8 PHASE 1: Skip large files (>50MB)
+                    try {
+                        const stats = fs.statSync(fullPath);
+                        if (stats.size > 50 * 1024 * 1024) {
+                            continue;
+                        }
+                    } catch {
+                        continue;
+                    }
+                    
+                    const content = safeReadFile(fullPath);
+                    if (content) {
+                        this.analyzeFile(fullPath, content);
+                        this.processedFiles++;
+                    }
                 }
             }
         };

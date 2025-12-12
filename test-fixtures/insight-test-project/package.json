@@ -1,0 +1,17 @@
+{
+  "name": "insight-test-project",
+  "version": "1.0.0",
+  "description": "Minimal TypeScript project for ODAVL Insight CLI testing",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"No tests\""
+  },
+  "keywords": ["test", "fixture"],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

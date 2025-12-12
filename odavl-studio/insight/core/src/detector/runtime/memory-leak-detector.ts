@@ -3,9 +3,9 @@
  * Detects memory leaks in JavaScript/TypeScript code
  */
 
-import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
-import { glob } from 'glob';
+import { globSync } from 'glob';
+import { safeReadFile } from '../../utils/safe-file-reader.js';
 
 export interface MemoryLeakIssue {
     file: string;
@@ -24,18 +24,19 @@ export class MemoryLeakDetector {
     /**
      * Detect memory leaks in the codebase
      */
-    async detect(targetDir?: string): Promise<MemoryLeakIssue[]> {
+    detect(targetDir?: string): MemoryLeakIssue[] {
         const dir = targetDir || this.workspaceRoot;
         const errors: MemoryLeakIssue[] = [];
 
-        const tsFiles = await glob('**/*.{ts,tsx,js,jsx}', {
+        const tsFiles = globSync('**/*.{ts,tsx,js,jsx}', {
             cwd: dir,
             ignore: ['node_modules/**', 'dist/**', '.next/**']
         });
 
         for (const file of tsFiles) {
             const filePath = path.join(dir, file);
-            const content = await fs.readFile(filePath, 'utf8');
+            const content = safeReadFile(filePath);
+            if (!content) continue;
             const lines = content.split('\n');
 
             // Check for event listener leaks

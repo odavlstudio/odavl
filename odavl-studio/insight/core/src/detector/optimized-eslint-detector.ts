@@ -13,7 +13,7 @@
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import type { Issue } from '../../types';
+import type { Issue } from '../types.js';
 
 export interface ESLintDetectorOptions {
   cache?: boolean; // Use ESLint cache (default: true)
@@ -139,10 +139,10 @@ export class OptimizedESLintDetector {
 
       for (const message of file.messages) {
         issues.push({
-          severity: message.severity === 2 ? 'error' : 'warning',
+          type: 'eslint',
+          severity: message.severity === 2 ? 'critical' : 'high',
           message: message.message,
-          source: 'eslint',
-          filePath: file.filePath,
+          file: file.filePath,
           line: message.line,
           column: message.column,
           code: message.ruleId || 'unknown',

@@ -16,7 +16,11 @@ import {
   ExternalLink,
   PlayCircle,
 } from 'lucide-react';
-import { GuardianAutopilotHandoff } from '../lib/handoff-schema';
+// ❌ REMOVED: handoff-schema.ts violated Guardian boundaries
+// import { GuardianAutopilotHandoff } from '../lib/handoff-schema';
+
+// Placeholder type until component is refactored or removed
+type GuardianAutopilotHandoff = any;
 
 // ============================================================================
 // Component Props

@@ -21,13 +21,8 @@ export interface PythonComplexityIssue {
 }
 
 export class PythonComplexityDetector {
-    private workspaceRoot: string;
-
-    constructor(workspaceRoot: string) {
-        this.workspaceRoot = workspaceRoot;
-    }
-
-    async detect(): Promise<PythonComplexityIssue[]> {
+    async detect(targetDir?: string): Promise<PythonComplexityIssue[]> {
+        const workspaceRoot = targetDir || process.cwd();
         const issues: PythonComplexityIssue[] = [];
 
         try {
@@ -47,11 +42,11 @@ export class PythonComplexityDetector {
                 }];
             }
 
-            const pythonFiles = await this.findPythonFiles(this.workspaceRoot);
+            const pythonFiles = await this.findPythonFiles(workspaceRoot);
             if (pythonFiles.length === 0) return [];
 
             for (const file of pythonFiles) {
-                const relPath = path.relative(this.workspaceRoot, file);
+                const relPath = path.relative(workspaceRoot, file);
                 
                 // Cyclomatic complexity
                 const ccIssues = await this.checkComplexity(file, relPath);

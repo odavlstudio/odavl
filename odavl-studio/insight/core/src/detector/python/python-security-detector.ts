@@ -31,13 +31,8 @@ interface BanditIssue {
 }
 
 export class PythonSecurityDetector {
-    private workspaceRoot: string;
-
-    constructor(workspaceRoot: string) {
-        this.workspaceRoot = workspaceRoot;
-    }
-
-    async detect(): Promise<PythonSecurityIssue[]> {
+    async detect(targetDir?: string): Promise<PythonSecurityIssue[]> {
+        const workspaceRoot = targetDir || process.cwd();
         const issues: PythonSecurityIssue[] = [];
 
         try {
@@ -57,15 +52,15 @@ export class PythonSecurityDetector {
                 }];
             }
 
-            const pythonFiles = await this.findPythonFiles(this.workspaceRoot);
+            const pythonFiles = await this.findPythonFiles(workspaceRoot);
             if (pythonFiles.length === 0) return [];
 
-            const banditResults = await this.runBandit(this.workspaceRoot);
+            const banditResults = await this.runBandit(workspaceRoot);
 
             for (const issue of banditResults) {
                 issues.push({
                     id: `python-security-${issues.length}`,
-                    file: path.relative(this.workspaceRoot, issue.filename),
+                    file: path.relative(workspaceRoot, issue.filename),
                     line: issue.line_number,
                     column: 0,
                     severity: issue.issue_severity === 'HIGH' ? 'error' : issue.issue_severity === 'MEDIUM' ? 'warning' : 'info',

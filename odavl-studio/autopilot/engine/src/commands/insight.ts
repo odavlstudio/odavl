@@ -6,21 +6,8 @@
 import * as path from 'node:path';
 import * as fsp from 'node:fs/promises';
 import * as readline from 'node:readline';
-// @ts-expect-error - Insight Core built with esbuild (runtime types unavailable)
-import {
-    TSDetector,
-    ESLintDetector,
-    ImportDetector,
-    PackageDetector,
-    RuntimeDetector,
-    BuildDetector,
-    SecurityDetector,
-    CircularDependencyDetector,
-    ComponentIsolationDetector,
-    PerformanceDetector,
-    NetworkDetector,
-    ComplexityDetector
-} from '@odavl-studio/insight-core/detector';
+import { AnalysisProtocol } from '@odavl/oplayer/protocols';
+import type { DetectorId } from '@odavl/oplayer/types';
 
 interface InsightOptions {
     targetDir?: string;
@@ -260,16 +247,13 @@ async function readFromProblemsPanel(): Promise<void> {
     }
 }
 
-// Detector configuration interface
+// Detector configuration interface (simplified - no DetectorClass needed)
 interface DetectorConfig {
     name: string;
     emoji: string;
     label: string;
     index: number;
     total: number;
-    DetectorClass: any;
-    showStats?: boolean;
-    formatResult?: (detector: any, errors: any[]) => void;
 }
 
 /**
@@ -278,8 +262,30 @@ interface DetectorConfig {
 async function executeDetector(config: DetectorConfig, targetDir: string, workspaceRoot: string, minConfidence?: number): Promise<{ count: number; errors: any[] }> {
     console.log(`${config.emoji} [${config.index}/${config.total}] ${config.label}...`);
 
-    const detector = new config.DetectorClass(config.name === 'circular' || config.name === 'isolation' || config.name === 'performance' || config.name === 'network' ? workspaceRoot : targetDir);
-    let errors = await detector.detect(targetDir);
+    // Check if adapter is registered
+    if (!AnalysisProtocol.isAdapterRegistered()) {
+        throw new Error('AnalysisProtocol adapter not registered. Call AnalysisProtocol.registerAdapter() at bootstrap.');
+    }
+
+    // Use AnalysisProtocol to run single detector
+    const analysisSummary = await AnalysisProtocol.requestAnalysis({
+        workspaceRoot: config.name === 'circular' || config.name === 'isolation' || config.name === 'performance' || config.name === 'network' ? workspaceRoot : targetDir,
+        kind: 'full',
+        detectors: [config.name as DetectorId],
+    });
+
+    // Extract errors for this detector
+    let errors = analysisSummary.issues
+        .filter(issue => issue.detector === config.name)
+        .map(issue => ({
+            file: issue.location.file,
+            line: issue.location.line,
+            column: issue.location.column,
+            message: issue.message,
+            severity: issue.severity,
+            code: issue.code,
+            confidence: issue.metadata?.confidence ? (issue.metadata.confidence as number) * 100 : undefined, // Convert 0-1 to 0-100
+        }));
 
     // Apply confidence filtering if specified
     if (minConfidence !== undefined && errors.length > 0) {
@@ -301,21 +307,16 @@ async function executeDetector(config: DetectorConfig, targetDir: string, worksp
     if (errors.length > 0) {
         console.log(`   ❌ Found ${errors.length} ${config.name} ${errors.length === 1 ? 'error' : 'errors'}\n`);
 
-        // Custom formatting if provided
-        if (config.formatResult) {
-            config.formatResult(detector, errors);
-        } else {
-            // Default: show all errors
-            for (const err of errors) {
-                console.log(detector.formatError(err));
+        // Default formatting (custom formatResult removed for simplicity)
+        for (const err of errors) {
+            console.log(`   📄 ${err.file}:${err.line}${err.column ? `:${err.column}` : ''}`);
+            console.log(`      ${err.message}`);
+            if (err.code) {
+                console.log(`      Code: ${err.code}`);
             }
-        }
-
-        // Show statistics if requested
-        if (config.showStats && detector.getStatistics) {
-            const stats = detector.getStatistics(errors);
-            console.log(`\n📊 ${config.label} Statistics:`);
-            console.log(JSON.stringify(stats, null, 2));
+            if (err.confidence) {
+                console.log(`      Confidence: ${err.confidence.toFixed(0)}%`);
+            }
             console.log('');
         }
     } else {
@@ -341,137 +342,38 @@ async function runDetectors(targetDir: string, detectorNames: string[], minConfi
     const results: Record<string, number> = {};
     const allErrors: any[] = [];
 
-    // Define all detectors with their configurations
+    // Define all detectors with their configurations (simplified - no DetectorClass needed)
     const detectorConfigs: DetectorConfig[] = [
-        { name: 'typescript', emoji: '🔷', label: 'Checking TypeScript', index: 1, total: 12, DetectorClass: TSDetector },
-        { name: 'eslint', emoji: '📏', label: 'Checking ESLint', index: 2, total: 12, DetectorClass: ESLintDetector },
-        { name: 'import', emoji: '🔗', label: 'Checking Imports/Exports', index: 3, total: 12, DetectorClass: ImportDetector },
-        { name: 'package', emoji: '📦', label: 'Checking Package.json', index: 4, total: 12, DetectorClass: PackageDetector },
-        { name: 'runtime', emoji: '💥', label: 'Checking Runtime Errors', index: 5, total: 12, DetectorClass: RuntimeDetector },
-        { name: 'build', emoji: '🏗️', label: 'Checking Build Process', index: 6, total: 12, DetectorClass: BuildDetector },
-        {
-            name: 'security',
-            emoji: '🔒',
-            label: 'Checking Security Vulnerabilities',
-            index: 7,
-            total: 12,
-            DetectorClass: SecurityDetector,
-            formatResult: (detector, errors) => {
-                const stats = detector.getStatistics(errors);
-                console.log(`      Critical: ${stats.bySeverity.critical || 0}, High: ${stats.bySeverity.high || 0}, Medium: ${stats.bySeverity.medium || 0}, Low: ${stats.bySeverity.low || 0}\n`);
-                for (const err of errors) {
-                    const severityEmoji = err.severity === 'critical' ? '🚨' : err.severity === 'high' ? '⚠️' : '⚡';
-                    console.log(`   ${severityEmoji} ${err.file}:${err.line || '?'}`);
-                    console.log(`      ${err.type}: ${err.message}`);
-                    if (err.suggestedFix) {
-                        console.log(`      💡 Fix: ${err.suggestedFix}`);
-                    }
-                    console.log('');
-                }
-            }
-        },
-        {
-            name: 'circular',
-            emoji: '🔄',
-            label: 'Checking Circular Dependencies',
-            index: 8,
-            total: 12,
-            DetectorClass: CircularDependencyDetector,
-            formatResult: (detector, errors) => {
-                for (const cycle of errors) {
-                    console.log(detector.formatError(cycle));
-                }
-                const stats = detector.getStatistics(errors);
-                console.log('\n📊 Circular Dependency Statistics:');
-                console.log(`   Total cycles: ${stats.totalCycles}`);
-                console.log(`   By severity: High=${stats.bySeverity.high}, Medium=${stats.bySeverity.medium}, Low=${stats.bySeverity.low}`);
-                console.log(`   Affected files: ${stats.affectedFiles.size}\n`);
-            }
-        },
-        {
-            name: 'isolation',
-            emoji: '🧩',
-            label: 'Checking Component Isolation',
-            index: 9,
-            total: 12,
-            DetectorClass: ComponentIsolationDetector,
-            formatResult: (detector, errors) => {
-                for (const issue of errors) {
-                    console.log(detector.formatError(issue));
-                }
-                const stats = detector.getStatistics(errors);
-                console.log('\n📊 Component Isolation Statistics:');
-                console.log(`   Total files analyzed: ${stats.totalFiles}`);
-                console.log(`   Total isolation issues: ${stats.totalIssues}`);
-                console.log(`   By severity: High=${stats.bySeverity.high}, Medium=${stats.bySeverity.medium}, Low=${stats.bySeverity.low}`);
-                console.log(`   By type:`);
-                console.log(`      Tight coupling: ${stats.byType['tight-coupling'] || 0}`);
-                console.log(`      Low cohesion: ${stats.byType['low-cohesion'] || 0}`);
-                console.log(`      High fan-in: ${stats.byType['high-fan-in'] || 0}`);
-                console.log(`      High fan-out: ${stats.byType['high-fan-out'] || 0}`);
-                console.log(`      Boundary violations: ${stats.byType['boundary-violation'] || 0}`);
-                console.log(`      God components: ${stats.byType['god-component'] || 0}`);
-                console.log(`   Average coupling: ${stats.averageCoupling.toFixed(2)}`);
-                console.log(`   Average cohesion: ${stats.averageCohesion.toFixed(2)}`);
-                console.log(`   Well-isolated components: ${stats.wellIsolatedComponents}\n`);
-            }
-        },
-        {
-            name: 'performance',
-            emoji: '⚡',
-            label: 'Checking Performance Issues',
-            index: 10,
-            total: 12,
-            DetectorClass: PerformanceDetector,
-            formatResult: (detector, errors) => {
-                for (const issue of errors) {
-                    console.log(detector.formatError(issue));
-                }
-                const stats = detector.getStatistics(errors);
-                console.log('\n📊 Performance Statistics:');
-                console.log(`   Total files analyzed: ${stats.totalFiles}`);
-                console.log(`   Total performance issues: ${errors.length}`);
-                console.log(`   By severity: Critical=${stats.bySeverity.critical}, High=${stats.bySeverity.high}, Medium=${stats.bySeverity.medium}, Low=${stats.bySeverity.low}`);
-                console.log(`   By category:`);
-                for (const [type, count] of Object.entries(stats.byType)) {
-                    console.log(`      ${type}: ${count}`);
-                }
-                console.log('');
-            }
-        },
-        {
-            name: 'network',
-            emoji: '🌐',
-            label: 'Checking Network & API Issues',
-            index: 11,
-            total: 12,
-            DetectorClass: NetworkDetector,
-            formatResult: (detector, errors) => {
-                for (const error of errors) {
-                    console.log(detector.formatError(error));
-                }
-                const stats = detector.getStatistics(errors);
-                console.log('\n📊 Network Statistics:');
-                console.log(`   Total issues: ${stats.totalIssues}`);
-                console.log(`   Affected files: ${stats.affectedFiles}`);
-                console.log(`   By severity: Critical=${stats.bySeverity.critical}, High=${stats.bySeverity.high}, Medium=${stats.bySeverity.medium}, Low=${stats.bySeverity.low}`);
-                console.log(`   API calls detected: ${stats.apiCallsDetected}`);
-                console.log(`   Timeout issues: ${stats.timeoutIssues}`);
-                console.log(`   Error handling issues: ${stats.errorHandlingIssues}`);
-                console.log(`   Concurrency issues: ${stats.concurrencyIssues}`);
-                console.log('');
-            }
-        },
-        { name: 'complexity', emoji: '🧠', label: 'Analyzing Code Complexity', index: 12, total: 12, DetectorClass: ComplexityDetector }
+        { name: 'typescript', emoji: '🔷', label: 'Checking TypeScript', index: 1, total: 12 },
+        { name: 'eslint', emoji: '📏', label: 'Checking ESLint', index: 2, total: 12 },
+        { name: 'import', emoji: '🔗', label: 'Checking Imports/Exports', index: 3, total: 12 },
+        { name: 'package', emoji: '📦', label: 'Checking Package.json', index: 4, total: 12 },
+        { name: 'runtime', emoji: '💥', label: 'Checking Runtime Errors', index: 5, total: 12 },
+        { name: 'build', emoji: '🏗️', label: 'Checking Build Process', index: 6, total: 12 },
+        { name: 'security', emoji: '🔒', label: 'Checking Security Vulnerabilities', index: 7, total: 12 },
+        { name: 'circular', emoji: '🔄', label: 'Checking Circular Dependencies', index: 8, total: 12 },
+        { name: 'isolation', emoji: '🧩', label: 'Checking Component Isolation', index: 9, total: 12 },
+        { name: 'performance', emoji: '⚡', label: 'Checking Performance Issues', index: 10, total: 12 },
+        { name: 'network', emoji: '🌐', label: 'Checking Network & API Issues', index: 11, total: 12 },
+        { name: 'complexity', emoji: '🎯', label: 'Checking Code Complexity', index: 12, total: 12 },
     ];
 
-    // Execute only requested detectors
-    for (const config of detectorConfigs) {
-        if (detectorNames.includes(config.name)) {
-            const result = await executeDetector(config, targetDir, workspaceRoot, minConfidence);
-            results[config.name] = result.count;
-            allErrors.push(...result.errors);
-        }
+    // Run analysis
+    for (const detectorInfo of detectors) {
+        const { name, emoji, label, index, total } = detectorInfo;
+        
+        console.log(`\n${emoji} [${index}/${total}] ${label}...`);
+        
+        // Get detector results
+        const result = await executeDetector(
+            { name, emoji, label, index, total, DetectorClass: null },
+            targetDir,
+            workspaceRoot,
+            minConfidence
+        );
+        
+        results[name] = result.count;
+        allErrors.push(...result.errors);
     }
 
     // Results summary

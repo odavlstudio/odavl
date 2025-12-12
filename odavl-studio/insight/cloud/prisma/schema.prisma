@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -141,13 +141,115 @@ model ErrorLog {
 // Collective Intelligence Models
 model Project {
   id        String          @id @default(cuid())
-  name      String?
-  userId    String?
+  name      String
+  userId    String
+  // Git metadata
+  gitRemote String?
+  gitBranch String?         @default("main")
+  gitCommit String?
+  // Settings
+  language  String?         // Primary language: typescript, python, java, etc.
+  framework String?         // Framework: next, react, spring, django, etc.
+  // Timestamps
   createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  // Relations
   insights  ErrorInstance[]
-  user      User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  analyses  Analysis[]
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([createdAt])
+}
+
+// Analysis Job Models
+model Analysis {
+  id          String          @id @default(cuid())
+  projectId   String
+  userId      String
+  // Job Configuration
+  detectors   String          // JSON array of detector names
+  language    String?         // Language to analyze: typescript, python, java, etc.
+  path        String?         // Optional path filter
+  // Job Status
+  status      AnalysisStatus  @default(QUEUED)
+  progress    Int             @default(0) // 0-100
+  // Execution Metadata
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  duration    Int?            // Duration in milliseconds
+  // Results Summary
+  totalIssues Int             @default(0)
+  critical    Int             @default(0)
+  high        Int             @default(0)
+  medium      Int             @default(0)
+  low         Int             @default(0)
+  info        Int             @default(0)
+  // Error Handling
+  error       String?         // Error message if failed
+  retryCount  Int             @default(0)
+  // Timestamps
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  // Relations
+  project     Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues      AnalysisIssue[]
+
+  @@index([projectId])
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AnalysisIssue {
+  id         String         @id @default(cuid())
+  analysisId String
+  // Issue Location
+  filePath   String
+  line       Int
+  column     Int?
+  endLine    Int?
+  endColumn  Int?
+  // Issue Details
+  severity   IssueSeverity
+  detector   String         // Detector that found this issue
+  message    String
+  ruleId     String?        // Rule ID (e.g., @typescript-eslint/no-unused-vars)
+  category   String?        // Category: security, performance, complexity, etc.
+  // Code Context
+  code       String?        // Code snippet
+  pattern    String?        // Pattern that triggered the issue
+  // Fix Suggestions
+  suggestion String?        // How to fix
+  autoFixable Boolean       @default(false)
+  confidence Float?         // Confidence score 0-1
+  // Metadata
+  metadata   String?        // JSON metadata (links, references, etc.)
+  // Timestamps
+  createdAt  DateTime       @default(now())
+  // Relations
+  analysis   Analysis       @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+
+  @@index([analysisId])
+  @@index([severity])
+  @@index([detector])
+  @@index([filePath])
+}
+
+enum AnalysisStatus {
+  QUEUED      // Waiting to start
+  RUNNING     // Currently executing
+  COMPLETED   // Finished successfully
+  FAILED      // Encountered error
+  CANCELLED   // User cancelled
+}
+
+enum IssueSeverity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  INFO
 }
 
 model ErrorSignature {

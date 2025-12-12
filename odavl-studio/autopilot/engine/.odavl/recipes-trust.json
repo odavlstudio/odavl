@@ -1,0 +1,10 @@
+[
+  {
+    "id": "noop",
+    "runs": 1,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 1,
+    "blacklisted": false
+  }
+]

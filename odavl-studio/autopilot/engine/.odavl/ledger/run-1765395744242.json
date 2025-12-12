@@ -1,0 +1,48 @@
+{
+  "runId": "1765395744242",
+  "signature": "sha256:564aaedc5b0441de1805ddd6721f727556c92479c8d92f0fb891aad448f12c1a",
+  "payload": {
+    "startedAt": "2025-12-10T19:42:24.242Z",
+    "planPath": null,
+    "notes": {
+      "observe": {
+        "phase": "observe",
+        "status": "complete",
+        "totalIssues": 0,
+        "timestamp": "2025-12-10T19:42:24.246Z"
+      },
+      "decide": {
+        "phase": "decide",
+        "status": "complete",
+        "decision": "noop",
+        "timestamp": "2025-12-10T19:42:24.281Z"
+      },
+      "act": {
+        "phase": "act",
+        "status": "complete",
+        "actionsExecuted": 0,
+        "timestamp": "2025-12-10T19:42:24.285Z"
+      },
+      "verify": {
+        "phase": "verify",
+        "status": "failed",
+        "gatesPassed": false,
+        "deltas": {
+          "eslint": 0,
+          "types": 0
+        },
+        "timestamp": "2025-12-10T19:42:33.579Z"
+      },
+      "learn": {
+        "phase": "learn",
+        "status": "complete",
+        "trustUpdated": true,
+        "oldTrust": 0.5,
+        "newTrust": 0.1,
+        "blacklisted": false,
+        "message": "✗ Trust ↓ 0.50 → 0.10 (1 consecutive failures)",
+        "timestamp": "2025-12-10T19:42:33.585Z"
+      }
+    }
+  }
+}

@@ -79,9 +79,8 @@ export class MLEnhancedDetector {
       // Adjust confidence based on learned patterns
       const ml_adjusted_confidence = this.learningSystem.adjustConfidence(issue);
 
-      // Get suggested fix from history
-      const suggested_fix = await this.learningSystem.getSuggestedFix(issue);
-      const similar_fixes_count = suggested_fix ? 1 : 0;
+      // ❌ REMOVED: getSuggestedFix() - violates Insight boundaries
+      // Fix suggestion is Autopilot's responsibility, not Insight's
 
       // Get file risk context
       const file = issue.original.file || issue.original.filePath || '';
@@ -92,8 +91,8 @@ export class MLEnhancedDetector {
         ...issue,
         ml_adjusted_confidence,
         predicted_recurrence: fileRisk ? fileRisk.risk_score > 60 : false,
-        similar_fixes_count,
-        suggested_fix: suggested_fix || undefined,
+        similar_fixes_count: 0, // ❌ REMOVED: Fix tracking violates boundaries
+        suggested_fix: undefined, // ❌ REMOVED: Fix suggestion is Autopilot's job
         risk_context: fileRisk ? {
           file_risk_score: fileRisk.risk_score,
           predicted_issues: fileRisk.predicted_issues.length,
@@ -146,27 +145,8 @@ export class MLEnhancedDetector {
     };
   }
 
-  /**
-   * Record fix for learning
-   */
-  async recordFix(
-    issue: MLEnhancedIssue,
-    fixResult: {
-      applied: boolean;
-      method: 'auto' | 'manual' | 'ignored';
-      success: boolean;
-      code_before: string;
-      code_after?: string;
-      user_feedback?: 'helpful' | 'not-helpful' | 'false-positive';
-    },
-    outcome: {
-      resolved: boolean;
-      time_to_fix: number;
-      subsequent_issues: number;
-    }
-  ): Promise<void> {
-    await this.learningSystem.recordFix(issue, fixResult, outcome);
-  }
+  // ❌ REMOVED: recordFix() method - violates Insight boundaries
+  // Fix recording is Autopilot's responsibility, not Insight's
 
   /**
    * Get learning system (for advanced operations)

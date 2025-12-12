@@ -1,8 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
-// Add shebang to the top of the CLI entrypoint (dist/index.cjs)
-const cliPath = path.join(__dirname, '../dist/index.cjs');
+// Add shebang to the top of the CLI entrypoint (dist/index.js for CJS)
+const cliPath = path.join(__dirname, '../dist/index.js');
 const shebang = '#!/usr/bin/env node\n';
 
 if (fs.existsSync(cliPath)) {

@@ -1,136 +1,80 @@
 {
   "name": "@odavl-studio/insight-core",
-  "version": "2.0.0",
+  "version": "1.0.0",
+  "description": "ODAVL Insight Core - ML-powered error detection engine with 24+ auto-discovered detectors (Wave 4 production-ready)",
+  "type": "commonjs",
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "error-detection",
+    "static-analysis",
+    "ml-powered",
+    "typescript",
+    "eslint",
+    "security",
+    "performance",
+    "code-quality",
+    "detectors"
+  ],
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.cjs"
     },
     "./server": {
-      "import": {
-        "types": "./dist/server.d.ts",
-        "default": "./dist/server.mjs"
-      },
-      "require": {
-        "types": "./dist/server.d.ts",
-        "default": "./dist/server.js"
-      }
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.cjs"
     },
     "./detector": {
-      "import": {
-        "types": "./dist/detector/index.d.ts",
-        "default": "./dist/detector/index.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/index.d.ts",
-        "default": "./dist/detector/index.js"
-      }
+      "types": "./dist/detector/index.d.ts",
+      "default": "./dist/detector/index.cjs"
     },
     "./detector/typescript": {
-      "import": {
-        "types": "./dist/detector/typescript.d.ts",
-        "default": "./dist/detector/typescript.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/typescript.d.ts",
-        "default": "./dist/detector/typescript.js"
-      }
+      "types": "./dist/detector/typescript.d.ts",
+      "default": "./dist/detector/typescript.cjs"
     },
     "./detector/eslint": {
-      "import": {
-        "types": "./dist/detector/eslint.d.ts",
-        "default": "./dist/detector/eslint.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/eslint.d.ts",
-        "default": "./dist/detector/eslint.js"
-      }
+      "types": "./dist/detector/eslint.d.ts",
+      "default": "./dist/detector/eslint.cjs"
     },
     "./detector/security": {
-      "import": {
-        "types": "./dist/detector/security.d.ts",
-        "default": "./dist/detector/security.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/security.d.ts",
-        "default": "./dist/detector/security.js"
-      }
+      "types": "./dist/detector/security.d.ts",
+      "default": "./dist/detector/security.cjs"
     },
     "./detector/performance": {
-      "import": {
-        "types": "./dist/detector/performance.d.ts",
-        "default": "./dist/detector/performance.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/performance.d.ts",
-        "default": "./dist/detector/performance.js"
-      }
+      "types": "./dist/detector/performance.d.ts",
+      "default": "./dist/detector/performance.cjs"
     },
     "./detector/complexity": {
-      "import": {
-        "types": "./dist/detector/complexity.d.ts",
-        "default": "./dist/detector/complexity.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/complexity.d.ts",
-        "default": "./dist/detector/complexity.js"
-      }
+      "types": "./dist/detector/complexity.d.ts",
+      "default": "./dist/detector/complexity.cjs"
     },
     "./detector/import": {
-      "import": {
-        "types": "./dist/detector/import.d.ts",
-        "default": "./dist/detector/import.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/import.d.ts",
-        "default": "./dist/detector/import.js"
-      }
+      "types": "./dist/detector/import.d.ts",
+      "default": "./dist/detector/import.cjs"
     },
     "./detector/python": {
-      "import": {
-        "types": "./dist/detector/python.d.ts",
-        "default": "./dist/detector/python.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/python.d.ts",
-        "default": "./dist/detector/python.js"
-      }
+      "types": "./dist/detector/python.d.ts",
+      "default": "./dist/detector/python.cjs"
     },
     "./detector/java": {
-      "import": {
-        "types": "./dist/detector/java.d.ts",
-        "default": "./dist/detector/java.mjs"
-      },
-      "require": {
-        "types": "./dist/detector/java.d.ts",
-        "default": "./dist/detector/java.js"
-      }
+      "types": "./dist/detector/java.d.ts",
+      "default": "./dist/detector/java.cjs"
     },
     "./learning": {
-      "import": {
-        "types": "./dist/learning/index.d.ts",
-        "default": "./dist/learning/index.mjs"
-      },
-      "require": {
-        "types": "./dist/learning/index.d.ts",
-        "default": "./dist/learning/index.js"
-      }
+      "types": "./dist/learning/index.d.ts",
+      "default": "./dist/learning/index.cjs"
     }
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "node build-esbuild.js",
+    "build": "tsup",
+    "build-old": "node build-esbuild.js",
     "insight:watch": "tsx scripts/watch-errors.ts",
     "insight:analyze": "tsx scripts/analyze-stack.ts",
     "insight:root": "tsx scripts/detect-root.ts",
@@ -139,22 +83,35 @@
     "insight:train": "tsx scripts/train-memory.ts",
     "insight:learn": "tsx scripts/run-learning.ts",
     "ml:train": "tsx scripts/train-tensorflow-v2.ts",
-    "ml:collect": "tsx scripts/train-tensorflow-v2.ts --collect-only"
+    "ml:collect": "tsx scripts/train-tensorflow-v2.ts --collect-only",
+    "perf:insight": "tsx tests/perf/bench-insight.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",
     "@next/mdx": "^16.0.1",
+    "@odavl-studio/telemetry": "workspace:*",
+    "@prisma/client": "^6.1.0",
+    "dependency-cruiser": "^16.7.0",
     "glob": "^11.0.0",
+    "graphlib": "^2.1.8",
     "jspdf": "^3.0.3",
-    "jspdf-autotable": "^5.0.2"
+    "jspdf-autotable": "^5.0.2",
+    "madge": "^8.0.0",
+    "minimatch": "^10.1.1",
+    "pg": "^8.13.1",
+    "sql-query-identifier": "^2.9.0"
   },
   "optionalDependencies": {
     "@tensorflow/tfjs-node": "^4.22.0"
   },
   "devDependencies": {
+    "@types/graphlib": "^2.1.12",
+    "@types/madge": "^5.0.3",
+    "@types/pg": "^8.11.10",
     "esbuild": "^0.27.0",
     "java-ast": "^0.4.1",
     "npm-dts": "^1.3.13",
+    "prisma": "^6.1.0",
     "tsx": "^4.7.0",
     "typescript": "^5.0.0"
   }

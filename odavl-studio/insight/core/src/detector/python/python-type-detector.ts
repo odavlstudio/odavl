@@ -30,13 +30,8 @@ interface MypyError {
 }
 
 export class PythonTypeDetector {
-    private workspaceRoot: string;
-
-    constructor(workspaceRoot: string) {
-        this.workspaceRoot = workspaceRoot;
-    }
-
-    async detect(): Promise<PythonTypeIssue[]> {
+    async detect(targetDir?: string): Promise<PythonTypeIssue[]> {
+        const workspaceRoot = targetDir || process.cwd();
         const issues: PythonTypeIssue[] = [];
 
         try {
@@ -57,17 +52,17 @@ export class PythonTypeDetector {
             }
 
             // Find Python files
-            const pythonFiles = await this.findPythonFiles(this.workspaceRoot);
+            const pythonFiles = await this.findPythonFiles(workspaceRoot);
             if (pythonFiles.length === 0) return [];
 
             // Run mypy
-            const mypyErrors = await this.runMypy(this.workspaceRoot);
+            const mypyErrors = await this.runMypy(workspaceRoot);
 
             // Convert to issues
             for (const error of mypyErrors) {
                 issues.push({
                     id: `python-type-${issues.length}`,
-                    file: path.relative(this.workspaceRoot, error.file),
+                    file: path.relative(workspaceRoot, error.file),
                     line: error.line,
                     column: error.column,
                     severity: error.severity === 'error' ? 'error' : error.severity === 'warning' ? 'warning' : 'info',

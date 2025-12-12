@@ -29,17 +29,17 @@ export class DetectorLoader {
       switch (language) {
         case 'typescript':
         case 'javascript':
-          const tsModule = await import('@odavl-studio/insight-core/detector/typescript-detector');
+          const tsModule = await import('@odavl/insight-core/detector/typescript-detector');
           DetectorClass = tsModule.TypeScriptDetector;
           break;
           
         case 'python':
-          const pyModule = await import('@odavl-studio/insight-core/detector/python-types-detector');
+          const pyModule = await import('@odavl/insight-core/detector/python-types-detector');
           DetectorClass = pyModule.PythonTypesDetector;
           break;
           
         case 'java':
-          const javaModule = await import('@odavl-studio/insight-core/detector/java-exception-detector');
+          const javaModule = await import('@odavl/insight-core/detector/java-exception-detector');
           DetectorClass = javaModule.JavaExceptionDetector;
           break;
           

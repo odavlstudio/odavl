@@ -1,0 +1,330 @@
+
+> odavl@2.0.0 build C:\Users\sabou\dev\odavl
+> pnpm -r build
+
+Scope: 36 of 37 workspace projects
+github-actions build$ ncc build src/index.ts -o dist --source-map --license licenses.txt
+odavl-studio/guardian/app build$ next build
+odavl-studio/guardian/extension build$ tsup
+odavl-studio/oms build$ tsup src/index.ts src/oms-context.ts src/risk/file-risk-index.ts --format esm --dts
+odavl-studio/guardian/app build:  ÔÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+github-actions build: ncc: Version 0.38.4
+github-actions build: ncc: Compiling file index.js into CJS
+odavl-studio/oms build: [34mCLI[39m Building entry: src/index.ts, src/oms-context.ts, src/risk/file-risk-index.ts
+odavl-studio/oms build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/oms build: [34mCLI[39m tsup v8.5.1
+odavl-studio/oms build: [34mCLI[39m Target: es2022
+odavl-studio/oms build: [34mESM[39m Build start
+odavl-studio/guardian/extension build: [34mCLI[39m Building entry: src/extension.ts
+odavl-studio/guardian/extension build: [34mCLI[39m Using tsconfig: tsconfig.json
+odavl-studio/guardian/extension build: [34mCLI[39m tsup v8.5.1
+odavl-studio/guardian/extension build: [34mCLI[39m Using tsup config: C:\Users\sabou\dev\odavl\odavl-studio\guardian\extension\tsup.config.ts
+odavl-studio/guardian/extension build: [34mCLI[39m Target: node18
+odavl-studio/guardian/extension build: [34mCLI[39m Cleaning output folder
+odavl-studio/guardian/extension build: [34mCJS[39m Build start
+odavl-studio/oms build: [32mESM[39m [1mdist\risk\file-risk-index.js [22m[32m176.00 B[39m
+odavl-studio/oms build: [32mESM[39m [1mdist\chunk-VSZXLNE3.js       [22m[32m47.68 KB[39m
+odavl-studio/oms build: [32mESM[39m [1mdist\chunk-YGHC33KX.js       [22m[32m1.77 KB[39m
+odavl-studio/oms build: [32mESM[39m [1mdist\index.js                [22m[32m559.00 B[39m
+odavl-studio/oms build: [32mESM[39m [1mdist\oms-context.js          [22m[32m481.00 B[39m
+odavl-studio/oms build: [32mESM[39m ÔÜí´©Å Build success in 470ms
+odavl-studio/guardian/extension build: [32mCJS[39m [1mdist\extension.js [22m[32m450.02 KB[39m
+odavl-studio/guardian/extension build: [32mCJS[39m ÔÜí´©Å Build success in 788ms
+odavl-studio/guardian/extension build: Done
+packages/billing build$ tsup src/index.ts --format esm --dts
+odavl-studio/oms build: [34mDTS[39m Build start
+github-actions build: ncc: Using typescript@5.9.3 (local user-provided)
+odavl-studio/guardian/app build:    Ôû▓ Next.js 16.0.7 (Turbopack)
+odavl-studio/guardian/app build:    - Environments: .env
+odavl-studio/guardian/app build:    - Experiments (use with caution):
+odavl-studio/guardian/app build:      ┬À optimizePackageImports
+odavl-studio/guardian/app build:      ┬À serverActions
+odavl-studio/guardian/app build:  ÔÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+odavl-studio/guardian/app build:    Creating an optimized production build ...
+packages/billing build: [34mCLI[39m Building entry: src/index.ts
+packages/billing build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/billing build: [34mCLI[39m tsup v8.5.1
+packages/billing build: [34mCLI[39m Target: es2022
+packages/billing build: [34mESM[39m Build start
+packages/billing build: [32mESM[39m [1mdist\index.js [22m[32m990.00 B[39m
+packages/billing build: [32mESM[39m ÔÜí´©Å Build success in 276ms
+packages/billing build: [34mDTS[39m Build start
+github-actions build:    0kB  dist\index.d.ts
+github-actions build:    0kB  dist\index.d.ts.map
+github-actions build:   32kB  dist\licenses.txt
+github-actions build:   40kB  dist\sourcemap-register.js
+github-actions build: 1116kB  dist\index.js
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 1300kB  dist\index.js.map
+github-actions build: 2488kB  [14494ms] - ncc 0.38.4
+github-actions build: Done
+packages/cloud-client build$ tsup src/index.ts --format cjs,esm --dts --clean
+packages/cloud-client build: [34mCLI[39m Building entry: src/index.ts
+packages/cloud-client build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/cloud-client build: [34mCLI[39m tsup v8.5.1
+packages/cloud-client build: [34mCLI[39m Target: es2022
+packages/cloud-client build: [34mCLI[39m Cleaning output folder
+packages/cloud-client build: [34mCJS[39m Build start
+packages/cloud-client build: [34mESM[39m Build start
+odavl-studio/oms build: [32mDTS[39m ÔÜí´©Å Build success in 15743ms
+odavl-studio/oms build: [32mDTS[39m [1mdist\oms-context.d.ts              [22m[32m3.56 KB[39m
+odavl-studio/oms build: [32mDTS[39m [1mdist\risk\file-risk-index.d.ts     [22m[32m141.00 B[39m
+odavl-studio/oms build: [32mDTS[39m [1mdist\index.d.ts                    [22m[32m431.00 B[39m
+odavl-studio/oms build: [32mDTS[39m [1mdist\file-risk-index-B9rTtAjs.d.ts [22m[32m1.88 KB[39m
+packages/cloud-client build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/cloud-client build:     package.json:12:6:
+packages/cloud-client build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~[0m
+packages/cloud-client build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/cloud-client build:     package.json:10:6:
+packages/cloud-client build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.mjs",
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/cloud-client build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/cloud-client build:     package.json:11:6:
+packages/cloud-client build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.js",
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/cloud-client build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/cloud-client build:     package.json:12:6:
+packages/cloud-client build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~[0m
+packages/cloud-client build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/cloud-client build:     package.json:10:6:
+packages/cloud-client build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.mjs",
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/cloud-client build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/cloud-client build:     package.json:11:6:
+packages/cloud-client build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.js",
+packages/cloud-client build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/cloud-client build: [32mESM[39m [1mdist\index.mjs [22m[32m22.52 KB[39m
+packages/cloud-client build: [32mESM[39m ÔÜí´©Å Build success in 1562ms
+packages/cloud-client build: [32mCJS[39m [1mdist\index.js [22m[32m25.33 KB[39m
+packages/cloud-client build: [32mCJS[39m ÔÜí´©Å Build success in 1594ms
+odavl-studio/oms build: Done
+packages/core build$ tsup src/index.ts src/manifest/index.ts src/services/audit-logs.ts src/onboarding-state.ts src/onboarding-api.ts --format esm,cjs --dts --external yaml --external ajv --external ajv-formats && tsup src/services/cli-auth.ts src/services/cli-cloud-upload.ts src/cache/redis-layer.ts src/utils/file-filter.ts --format esm,cjs --dts=false --external yaml --external ajv --external ajv-formats
+packages/core build: Done
+packages/email build$ tsup src/index.ts --format esm,cjs --dts
+odavl-studio/guardian/app build: Turbopack build encountered 1 warnings:
+odavl-studio/guardian/app build: ./odavl-studio/guardian/app/tailwind.config.js
+odavl-studio/guardian/app build: Specified module format (EcmaScript Modules) is not matching the module format of the source code (CommonJs)
+odavl-studio/guardian/app build: The EcmaScript module format was specified in the package.json that is affecting this source file or by using an special extension, but it looks like that CommonJs syntax is used in the source code.
+odavl-studio/guardian/app build: Exports made by CommonJs syntax will lead to a runtime error, since the module is in EcmaScript mode. Either change the "type" field in the package.json or replace CommonJs syntax with EcmaScript import/export syntax in the source file.
+odavl-studio/guardian/app build:  Ô£ô Compiled successfully in 12.6s
+odavl-studio/guardian/app build:    Running TypeScript ...
+packages/cloud-client build: [34mDTS[39m Build start
+packages/billing build: [32mDTS[39m ÔÜí´©Å Build success in 10112ms
+packages/billing build: [32mDTS[39m [1mdist\index.d.ts [22m[32m591.00 B[39m
+packages/billing build: Done
+packages/github-integration build$ tsup src/index.ts src/app.ts src/webhooks.ts --format esm,cjs --dts
+packages/email build: [34mCLI[39m Building entry: src/index.ts
+packages/email build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/email build: [34mCLI[39m tsup v8.5.1
+packages/email build: [34mCLI[39m Target: es2022
+packages/email build: [34mESM[39m Build start
+packages/email build: [34mCJS[39m Build start
+packages/email build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/email build:     package.json:10:6:
+packages/email build: [37m      10 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/email build:          ÔòÁ       [32m~~~~~~~[0m
+packages/email build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/email build:     package.json:8:6:
+packages/email build: [37m      8 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/email build:         ÔòÁ       [32m~~~~~~~~[0m
+packages/email build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/email build:     package.json:9:6:
+packages/email build: [37m      9 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/email build:         ÔòÁ       [32m~~~~~~~~~[0m
+packages/email build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/email build:     package.json:10:6:
+packages/email build: [37m      10 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/email build:          ÔòÁ       [32m~~~~~~~[0m
+packages/email build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/email build:     package.json:8:6:
+packages/email build: [37m      8 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/email build:         ÔòÁ       [32m~~~~~~~~[0m
+packages/email build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/email build:     package.json:9:6:
+packages/email build: [37m      9 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/email build:         ÔòÁ       [32m~~~~~~~~~[0m
+packages/email build: [32mESM[39m [1mdist\index.js [22m[32m16.69 KB[39m
+packages/email build: [32mESM[39m ÔÜí´©Å Build success in 441ms
+packages/email build: [32mCJS[39m [1mdist\index.cjs [22m[32m18.30 KB[39m
+packages/email build: [32mCJS[39m ÔÜí´©Å Build success in 470ms
+packages/github-integration build: [34mCLI[39m Building entry: src/app.ts, src/index.ts, src/webhooks.ts
+packages/github-integration build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/github-integration build: [34mCLI[39m tsup v8.5.1
+packages/github-integration build: [34mCLI[39m Target: es2022
+packages/github-integration build: [34mESM[39m Build start
+packages/github-integration build: [34mCJS[39m Build start
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:12:6:
+packages/github-integration build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:10:6:
+packages/github-integration build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:11:6:
+packages/github-integration build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:17:6:
+packages/github-integration build: [37m      17 Ôöé       [32m"types"[37m: "./dist/app.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:15:6:
+packages/github-integration build: [37m      15 Ôöé       [32m"import"[37m: "./dist/app.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:16:6:
+packages/github-integration build: [37m      16 Ôöé       [32m"require"[37m: "./dist/app.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:22:6:
+packages/github-integration build: [37m      22 Ôöé       [32m"types"[37m: "./dist/webhooks.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:20:6:
+packages/github-integration build: [37m      20 Ôöé       [32m"import"[37m: "./dist/webhooks.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:21:6:
+packages/github-integration build: [37m      21 Ôöé       [32m"require"[37m: "./dist/webhooks.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:12:6:
+packages/github-integration build: [37m      12 Ôöé       [32m"types"[37m: "./dist/index.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:10:6:
+packages/github-integration build: [37m      10 Ôöé       [32m"import"[37m: "./dist/index.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:11:6:
+packages/github-integration build: [37m      11 Ôöé       [32m"require"[37m: "./dist/index.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:17:6:
+packages/github-integration build: [37m      17 Ôöé       [32m"types"[37m: "./dist/app.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:15:6:
+packages/github-integration build: [37m      15 Ôöé       [32m"import"[37m: "./dist/app.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:16:6:
+packages/github-integration build: [37m      16 Ôöé       [32m"require"[37m: "./dist/app.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [43m[30m WARN [39m[49m [33mÔû▓ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
+packages/github-integration build:     package.json:22:6:
+packages/github-integration build: [37m      22 Ôöé       [32m"types"[37m: "./dist/webhooks.d.ts"
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~[0m
+packages/github-integration build:   The "import" condition comes earlier and will be used for all "import" statements:
+packages/github-integration build:     package.json:20:6:
+packages/github-integration build: [37m      20 Ôöé       [32m"import"[37m: "./dist/webhooks.js",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~[0m
+packages/github-integration build:   The "require" condition comes earlier and will be used for all "require" calls:
+packages/github-integration build:     package.json:21:6:
+packages/github-integration build: [37m      21 Ôöé       [32m"require"[37m: "./dist/webhooks.cjs",
+packages/github-integration build:          ÔòÁ       [32m~~~~~~~~~[0m
+packages/github-integration build: [32mESM[39m [1mdist\index.js          [22m[32m177.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\app.js            [22m[32m89.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\chunk-Q22UZN2W.js [22m[32m8.50 KB[39m
+packages/github-integration build: [32mESM[39m [1mdist\webhooks.js       [22m[32m99.00 B[39m
+packages/github-integration build: [32mESM[39m [1mdist\chunk-CQGBG3F6.js [22m[32m9.83 KB[39m
+packages/github-integration build: [32mESM[39m ÔÜí´©Å Build success in 396ms
+packages/github-integration build: [32mCJS[39m [1mdist\webhooks.cjs [22m[32m11.44 KB[39m
+packages/github-integration build: [32mCJS[39m [1mdist\index.cjs    [22m[32m20.01 KB[39m
+packages/github-integration build: [32mCJS[39m [1mdist\app.cjs      [22m[32m10.10 KB[39m
+packages/github-integration build: [32mCJS[39m ÔÜí´©Å Build success in 416ms
+packages/email build: [34mDTS[39m Build start
+packages/github-integration build: [34mDTS[39m Build start
+packages/cloud-client build: [32mDTS[39m ÔÜí´©Å Build success in 6788ms
+packages/cloud-client build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m15.23 KB[39m
+packages/cloud-client build: [32mDTS[39m [1mdist\index.d.mts [22m[32m15.23 KB[39m
+packages/cloud-client build: Done
+packages/i18n build$ tsup src/index.ts --format cjs,esm --dts
+packages/i18n build: [34mCLI[39m Building entry: src/index.ts
+packages/i18n build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/i18n build: [34mCLI[39m tsup v8.5.1
+packages/i18n build: [34mCLI[39m Target: es2022
+packages/i18n build: [34mCJS[39m Build start
+packages/i18n build: [34mESM[39m Build start
+packages/email build: [32mDTS[39m ÔÜí´©Å Build success in 7627ms
+packages/email build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m2.82 KB[39m
+packages/email build: [32mDTS[39m [1mdist\index.d.cts [22m[32m2.82 KB[39m
+packages/email build: Done
+packages/logger build$ tsup src/index.ts --format esm --dts
+packages/i18n build: [34mDTS[39m Build start
+packages/i18n build: [32mESM[39m [1mdist\index.mjs [22m[32m5.06 KB[39m
+packages/i18n build: [32mESM[39m ÔÜí´©Å Build success in 2961ms
+packages/i18n build: [32mCJS[39m [1mdist\index.js [22m[32m6.66 KB[39m
+packages/i18n build: [32mCJS[39m ÔÜí´©Å Build success in 2970ms
+packages/logger build: [34mCLI[39m Building entry: src/index.ts
+packages/logger build: [34mCLI[39m Using tsconfig: ..\..\tsconfig.json
+packages/logger build: [34mCLI[39m tsup v8.5.1
+packages/logger build: [34mCLI[39m Target: es2022
+packages/logger build: [34mESM[39m Build start
+packages/logger build: [32mESM[39m [1mdist\index.js [22m[32m1.20 KB[39m
+packages/logger build: [32mESM[39m ÔÜí´©Å Build success in 247ms
+packages/logger build: [34mDTS[39m Build start
+packages/i18n build: [32mDTS[39m ÔÜí´©Å Build success in 5324ms
+packages/i18n build: [32mDTS[39m [1mdist\index.d.ts  [22m[32m63.00 B[39m
+packages/i18n build: [32mDTS[39m [1mdist\index.d.mts [22m[32m63.00 B[39m
+packages/i18n build: Done
+packages/marketplace-api build$ tsup src/index.ts --format cjs,esm --dts
+packages/marketplace-api build: [34mCLI[39m Building entry: src/index.ts
+packages/marketplace-api build: [34mCLI[39m Using tsconfig: tsconfig.json
+packages/marketplace-api build: [34mCLI[39m tsup v8.5.1
+packages/marketplace-api build: [34mCLI[39m Target: es2022
+packages/marketplace-api build: [34mCJS[39m Build start
+packages/marketplace-api build: [34mESM[39m Build start
+packages/marketplace-api build: [32mESM[39m [1mdist\index.mjs [22m[32m12.14 KB[39m
+packages/marketplace-api build: [32mESM[39m ÔÜí´©Å Build success in 413ms
+packages/marketplace-api build: [32mCJS[39m [1mdist\index.js [22m[32m13.49 KB[39m
+packages/marketplace-api build: [32mCJS[39m ÔÜí´©Å Build success in 419ms
+packages/marketplace-api build: [34mDTS[39m Build start
+packages/github-integration build: [32mDTS[39m ÔÜí´©Å Build success in 18302ms
+packages/github-integration build: [32mDTS[39m [1mdist\app.d.ts       [22m[32m67.49 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\webhooks.d.ts  [22m[32m2.18 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\index.d.ts     [22m[32m225.00 B[39m
+packages/github-integration build: [32mDTS[39m [1mdist\app.d.cts      [22m[32m67.49 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\webhooks.d.cts [22m[32m2.18 KB[39m
+packages/github-integration build: [32mDTS[39m [1mdist\index.d.cts    [22m[32m227.00 B[39m
+packages/marketplace-api build: error TS5074: Option '--incremental' can only be specified using tsconfig, emitting to single file or when option '--tsBuildInfoFile' is specified.
+packages/marketplace-api build: src/index.ts(7,37): error TS2307: Cannot find module '@odavl-studio/sdk/plugin' or its corresponding type declarations.
+packages/marketplace-api build: src/index.ts(64,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(92,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(116,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(140,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(164,5): error TS2353: Object literal may only specify known properties, and 'id' does not exist in type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(220,11): error TS2339: Property 'name' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(221,11): error TS2339: Property 'description' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(222,11): error TS2339: Property 'keywords' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(222,25): error TS7006: Parameter 'k' implicitly has an 'any' type.
+packages/marketplace-api build: src/index.ts(259,45): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(274,45): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(301,27): error TS2339: Property 'version' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(319,45): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(366,17): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(366,31): error TS2339: Property 'name' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(366,47): error TS2339: Property 'version' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(371,34): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(371,48): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(402,49): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(426,45): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: src/index.ts(449,45): error TS2339: Property 'id' does not exist on type 'MarketplacePlugin'.
+packages/marketplace-api build: [31mError: error occurred in dts build
+packages/marketplace-api build:     at Worker.<anonymous> (C:\Users\sabou\dev\odavl\node_modules\.pnpm\tsup@8.5.1_jiti@2.6.1_postcss@8.5.6_tsx@4.20.6_typescript@5.9.3_yaml@2.8.2\node_modules\tsup\dist\index.js:1545:26)
+packages/marketplace-api build:     at Worker.emit (node:events:524:28)
+packages/marketplace-api build:     at MessagePort.<anonymous> (node:internal/worker:268:53)
+packages/marketplace-api build:     at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+packages/marketplace-api build:     at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)[39m
+packages/marketplace-api build: [31mDTS[39m [31mBuild error[39m
+packages/github-integration build: Done
+packages/pricing build$ tsup src/index.ts src/calculator.ts src/usage.ts --format esm,cjs --dts
+packages/marketplace-api build: Failed
+C:\Users\sabou\dev\odavl\packages\marketplace-api:
+ÔÇëERR_PNPM_RECURSIVE_RUN_FIRST_FAILÔÇë @odavl-studio/marketplace-api@1.0.0 build: `tsup src/index.ts --format cjs,esm --dts`
+Exit status 1
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

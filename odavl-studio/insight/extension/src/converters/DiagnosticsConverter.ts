@@ -94,4 +94,16 @@ export class DiagnosticsConverter {
     
     return emojis[language] || emojis.unknown;
   }
+
+  /**
+   * OMEGA-P5 Phase 4 Commit 6: Get OMS file risk icon
+   * 
+   * @param riskScore Risk score (0-1)
+   * @returns Risk level emoji
+   */
+  private getFileRiskIcon(riskScore: number): string {
+    if (riskScore >= 0.7) return '🔴'; // Critical risk
+    if (riskScore >= 0.5) return '🟡'; // High risk
+    return '🟢'; // Low/medium risk
+  }
 }

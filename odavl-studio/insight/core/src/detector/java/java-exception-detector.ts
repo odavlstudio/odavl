@@ -18,27 +18,28 @@ interface ExceptionIssue {
 }
 
 export class JavaExceptionDetector extends BaseJavaDetector {
-    constructor(workspaceRoot: string) {
-        super(workspaceRoot, 'java-exception');
+    constructor() {
+        super('java-exception');
     }
 
-    async detect(): Promise<JavaIssue[]> {
+    async detect(targetDir?: string): Promise<JavaIssue[]> {
+        const workspaceRoot = targetDir || process.cwd();
         const issues: JavaIssue[] = [];
 
         try {
             // Check if this is a Java project
-            const isJava = await this.isJavaProject(this.workspaceRoot);
+            const isJava = await this.isJavaProject(workspaceRoot);
             if (!isJava) return [];
 
             // Find all Java files
-            const javaFiles = await this.findJavaFiles(this.workspaceRoot);
+            const javaFiles = await this.findJavaFiles(workspaceRoot);
             if (javaFiles.length === 0) return [];
 
             console.log(`[JavaExceptionDetector] Found ${javaFiles.length} Java files`);
 
             // Analyze each file
             for (const file of javaFiles) {
-                const fileIssues = await this.analyzeFile(file);
+                const fileIssues = await this.analyzeFile(file, workspaceRoot);
                 issues.push(...fileIssues);
             }
 
@@ -52,7 +53,7 @@ export class JavaExceptionDetector extends BaseJavaDetector {
     /**
      * Analyze a single Java file for exception handling issues
      */
-    private async analyzeFile(filePath: string): Promise<JavaIssue[]> {
+    private async analyzeFile(filePath: string, workspaceRoot: string): Promise<JavaIssue[]> {
         const issues: JavaIssue[] = [];
 
         try {
@@ -74,7 +75,7 @@ export class JavaExceptionDetector extends BaseJavaDetector {
 
                 issues.push({
                     id: `exception-${issue.code}-${issue.line}`,
-                    file: path.relative(this.workspaceRoot, filePath),
+                    file: path.relative(workspaceRoot, filePath),
                     line: issue.line,
                     column: 0,
                     severity: issue.severity,

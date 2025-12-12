@@ -1,0 +1,61 @@
+{
+  "name": "@odavl-studio/brain",
+  "version": "1.0.0",
+  "description": "ODAVL Brain v1 - Internal orchestrator for Insight → Autopilot → Guardian pipeline",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./learning": {
+      "types": "./dist/learning.d.ts",
+      "import": "./dist/learning.js",
+      "require": "./dist/learning.cjs"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js",
+      "require": "./dist/runtime.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@odavl/core": "workspace:*",
+    "@odavl-studio/insight-core": "workspace:*",
+    "@odavl-studio/autopilot-engine": "workspace:*",
+    "@odavl-studio/guardian-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "odavl",
+    "brain",
+    "orchestrator",
+    "insight",
+    "autopilot",
+    "guardian",
+    "pipeline"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavlstudio/odavl.git",
+    "directory": "packages/odavl-brain"
+  }
+}

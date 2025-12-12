@@ -1,0 +1,30 @@
+{
+  "name": "@odavl-studio/security",
+  "version": "1.0.0",
+  "description": "Security scanning, dependency trust, and file protection for ODAVL Studio",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --tsconfig tsconfig.json --no-splitting",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["odavl", "security", "osv", "vulnerability", "scanning"],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "dependencies": {
+    "micromatch": "^4.0.8"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.3"
+  }
+}

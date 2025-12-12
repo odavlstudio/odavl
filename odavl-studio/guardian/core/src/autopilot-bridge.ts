@@ -1,10 +1,21 @@
 /**
  * Autopilot Bridge
- * Integrates Guardian with ODAVL Autopilot for advanced fixing
+ * ⚠️ DEPRECATED - BOUNDARY VIOLATION
+ * 
+ * Guardian should not interface with Autopilot for code fixing.
+ * Guardian = Website Testing ONLY.
+ * 
+ * TODO: Remove this file or refactor to website testing handoff.
  */
 
-import type { InspectionIssue, InspectionReport } from '../../inspectors/base-inspector.js';
-import type { FixResult } from '../../fixers/extension-fixer.js';
+// ❌ REMOVED: Code analysis/fixing violates Guardian boundaries
+// import type { InspectionIssue, InspectionReport } from '../../inspectors/base-inspector.js';
+// import type { FixResult } from '../../fixers/extension-fixer.js';
+
+// Placeholder types until file is removed
+type InspectionIssue = any;
+type InspectionReport = any;
+type FixResult = any;
 
 export interface AutopilotIssue {
   id: string;
@@ -42,17 +53,22 @@ export class AutopilotBridge {
    * Convert Guardian issues to Autopilot format
    */
   convertToAutopilotIssues(report: InspectionReport): AutopilotIssue[] {
-    return report.issues
-      .filter(issue => issue.autoFixable)
-      .map(issue => ({
-        id: issue.id,
-        severity: issue.severity,
-        category: issue.category,
-        message: issue.message,
-        file: issue.file,
-        line: issue.line,
-        suggestedFix: issue.fix,
-      }));
+    // ❌ DEPRECATED: Method violates Guardian boundaries
+    console.warn('⚠️  convertToAutopilotIssues is deprecated');
+    return [];
+    
+    // Original implementation (disabled):
+    // return report.issues
+    //   .filter((issue: any) => issue.autoFixable)
+    //   .map((issue: any) => ({
+    //     id: issue.id,
+    //     severity: issue.severity,
+    //     category: issue.category,
+    //     message: issue.message,
+    //     file: issue.file,
+    //     line: issue.line,
+    //     suggestedFix: issue.fix,
+    //   }));
   }
 
   /**

@@ -2,9 +2,12 @@ packages:
   - "odavl-studio/insight/*"
   - "odavl-studio/autopilot/*"
   - "odavl-studio/guardian/*"
+  - "odavl-studio/oms"  # OMS - Operational Management System
   - "apps/*"
   - "packages/*"
+  - "packages/op-layer"  # OPLayer - Protocol Layer for product separation
   - "packages/plugins/*"
+  - "services/*"  # Standalone services (autopilot-service)
   - "tools/*"
   - "internal/*"
   - "github-actions"

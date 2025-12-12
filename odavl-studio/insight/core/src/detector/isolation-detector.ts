@@ -2,6 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
 import micromatch from 'micromatch';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 /**
  * Component Isolation Issue
@@ -131,10 +132,17 @@ export class ComponentIsolationDetector {
     /**
      * Main detection method
      */
-    async detect(targetDir: string): Promise<IsolationIssue[]> {
-        const absoluteDir = path.isAbsolute(targetDir)
-            ? targetDir
-            : path.join(this.workspaceRoot, targetDir);
+    async detect(targetDir?: string | string[]): Promise<IsolationIssue[]> {
+        // Normalize and validate targetDir parameter
+        const dirPath = Array.isArray(targetDir) 
+            ? targetDir[0] 
+            : typeof targetDir === 'string' 
+            ? targetDir 
+            : this.workspaceRoot;
+
+        const absoluteDir = path.isAbsolute(dirPath)
+            ? dirPath
+            : path.join(this.workspaceRoot, dirPath);
 
         // Find all TypeScript/JavaScript files
         const pattern = path.join(absoluteDir, '**/*.{ts,tsx,js,jsx}').replace(/\\/g, '/');
@@ -190,8 +198,12 @@ export class ComponentIsolationDetector {
      */
     private async buildComponentMetadata(files: string[]): Promise<void> {
         for (const filePath of files) {
+            const content = safeReadFile(filePath);
+            if (!content) {
+                continue; // Skip unreadable files or directories
+            }
+            
             try {
-                const content = fs.readFileSync(filePath, 'utf-8');
                 const metadata: ComponentMetadata = {
                     filePath,
                     imports: this.extractImports(filePath, content),

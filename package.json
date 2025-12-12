@@ -1,7 +1,7 @@
 {
   "name": "odavl",
   "version": "2.0.0",
-  "description": "ODAVL Studio - Unified platform for autonomous code quality with ML-powered error detection, self-healing infrastructure, and pre-deploy testing",
+  "description": "ODAVL - Autonomous code quality platform with ODAVL Studio products: ODAVL Insight (detection), ODAVL Autopilot (self-healing), ODAVL Guardian (testing)",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -45,7 +45,14 @@
   },
   "packageManager": "pnpm@9.12.2",
   "scripts": {
+    "odavl": "pnpm exec tsx odavl-studio/autopilot/engine/src/index.ts",
+    "prepare": "husky || true",
     "build": "pnpm -r build",
+    "build:prod": "tsx scripts/build/build-all.ts",
+    "deploy:prod": "vercel deploy --prod",
+    "version:write": "tsx scripts/build/write-version.ts",
+    "version:tag": "tsx scripts/release/tag-version.ts",
+    "validate:prod": "tsx scripts/build/validate-production.ts",
     "lint": "eslint \"apps/**/src/**/*.{ts,tsx}\" \"odavl-studio/**/src/**/*.{ts,tsx}\" \"packages/**/src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" || echo 'Lint completed with warnings in generated files (ignored)'",
     "lint:strict": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -71,6 +78,10 @@
     "guardian": "node odavl-studio/guardian/cli/dist/guardian.mjs",
     "odavl:insight": "tsx odavl-studio/insight/core/scripts/interactive-cli.ts",
     "odavl:autopilot": "tsx odavl-studio/autopilot/engine/scripts/interactive-cli.ts",
+    "odavl:brain": "node apps/studio-cli/dist/index.js brain run",
+    "brain:dev": "tsx apps/studio-cli/src/index.ts brain run",
+    "brain:status": "node apps/studio-cli/dist/index.js brain status",
+    "brain:smoke": "tsx scripts/brain-smoke-test.ts",
     "insight:analyze": "tsx odavl-studio/insight/core/scripts/analyze-stack.ts",
     "insight:root": "tsx odavl-studio/insight/core/scripts/detect-root.ts",
     "insight:fix": "tsx odavl-studio/insight/core/scripts/suggest-fixes.ts",
@@ -168,14 +179,9 @@
         "webpack"
       ],
       "allowedVersions": {
-        "react": "19",
-        "react-dom": "19"
+        "react": "18",
+        "react-dom": "18"
       }
-    },
-    "overrides": {
-      "next": "15.1.6",
-      "react": "19.0.0",
-      "react-dom": "19.0.0"
     }
   }
 }

@@ -1,16 +1,27 @@
 /**
  * Launch Validator
- * Main coordinator for product validation and fixing
+ * ⚠️ DEPRECATED - BOUNDARY VIOLATION
+ * 
+ * This file violated Guardian boundaries (code analysis + fixing).
+ * Guardian = Website Testing ONLY.
+ * 
+ * TODO: Refactor to website testing validation or remove entirely.
  */
 
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { VSCodeExtensionInspector } from '../../inspectors/vscode-extension.js';
-import { NextJSAppInspector } from '../../inspectors/nextjs-app.js';
-import { ExtensionFixer } from '../../fixers/extension-fixer.js';
-import { NextJSFixer } from '../../fixers/nextjs-fixer.js';
-import type { InspectionReport, BaseInspector } from '../../inspectors/base-inspector.js';
-import type { FixResult } from '../../fixers/extension-fixer.js';
+// ❌ REMOVED: Code analysis violates Guardian boundaries
+// import { VSCodeExtensionInspector } from '../../inspectors/vscode-extension.js';
+// import { NextJSAppInspector } from '../../inspectors/nextjs-app.js';
+// import { ExtensionFixer } from '../../fixers/extension-fixer.js';
+// import { NextJSFixer } from '../../fixers/nextjs-fixer.js';
+// import type { InspectionReport, BaseInspector } from '../../inspectors/base-inspector.js';
+// import type { FixResult } from '../../fixers/extension-fixer.js';
+
+// Placeholder types until file is refactored or removed
+type InspectionReport = any;
+type BaseInspector = any;
+type FixResult = any;
 
 export type ProductType = 
   | 'vscode-extension'
@@ -30,19 +41,18 @@ export interface ValidationResult {
 }
 
 export class LaunchValidator {
+  // ❌ DEPRECATED: This class violates Guardian boundaries
+  // TODO: Remove or refactor to website testing
+  
   private inspectors: Map<ProductType, BaseInspector>;
-  private fixers: Map<ProductType, ExtensionFixer | NextJSFixer>;
+  private fixers: Map<ProductType, any>; // Changed from ExtensionFixer | NextJSFixer
 
   constructor() {
-    this.inspectors = new Map([
-      ['vscode-extension', new VSCodeExtensionInspector()],
-      ['nextjs-app', new NextJSAppInspector()],
-    ]);
-
-    this.fixers = new Map<ProductType, ExtensionFixer | NextJSFixer>([
-      ['vscode-extension', new ExtensionFixer()],
-      ['nextjs-app', new NextJSFixer()],
-    ]);
+    // ❌ Disabled: inspectors/fixers removed
+    this.inspectors = new Map();
+    this.fixers = new Map();
+    
+    console.warn('⚠️  LaunchValidator is deprecated - violates Guardian boundaries');
   }
 
   /**
@@ -252,7 +262,7 @@ export class LaunchValidator {
         summary.blockedProducts++;
       }
 
-      summary.autoFixableIssues += report.issues.filter(i => i.autoFixable).length;
+      summary.autoFixableIssues += report.issues.filter((i: any) => i.autoFixable).length;
     }
 
     summary.averageReadiness = Math.round(totalReadiness / results.length);

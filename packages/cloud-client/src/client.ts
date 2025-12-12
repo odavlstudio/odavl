@@ -198,6 +198,9 @@ export class ODAVLCloudClient {
       throw new Error(response.data.error?.message || 'Failed to check usage');
     }
 
+    return response.data.data!;
+  }
+
   // ============================================
   // Workspace Storage
   // ============================================
@@ -270,9 +273,6 @@ export class ODAVLCloudClient {
   async getRemoteMetadata(name: string): Promise<any> {
     // TODO: Implement remote metadata fetching
     throw new Error('Not implemented');
-  }
-
-    return response.data.data!;
   }
 
   async incrementUsage(payload: UsageIncrementPayload): Promise<void> {

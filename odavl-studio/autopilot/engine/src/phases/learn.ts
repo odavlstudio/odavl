@@ -2,6 +2,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { logPhase } from "./logPhase.js";
+import { AttestationChain } from "../lib/attestation.js";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -229,6 +230,19 @@ export async function learn(
 
     // Append to trust history (for trend visualization)
     appendTrustHistory(entry);
+
+    // Create attestation if improved
+    if (success && improvement) {
+        const chain = new AttestationChain();
+        chain.attest(
+            new Date().toISOString(), // runId
+            recipeId,
+            [], // filesModified (stub)
+            JSON.stringify(improvement), // before metrics
+            JSON.stringify(improvement), // after metrics
+            true
+        );
+    }
 
     // Append to history
     const historyRecord: RunHistory = {

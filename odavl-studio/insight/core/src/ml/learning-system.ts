@@ -1,50 +1,24 @@
 /**
  * ODAVL Insight ML Learning System
- * Learns from fix history and improves detection accuracy over time
+ * Learns from detection patterns and improves accuracy over time
  * 
- * Features:
- * - Fix history tracking
- * - Pattern recognition from successful fixes
+ * ✅ ALLOWED Features (Detection-focused):
+ * - Pattern recognition from detections
  * - Confidence score improvement
  * - False positive reduction
- * - Auto-learning from user feedback
+ * - Auto-learning from detection patterns
+ * 
+ * ❌ REMOVED Features (Fixing is Autopilot's job):
+ * - Fix history tracking (deleted)
+ * - Fix suggestion (deleted)
+ * - Auto-fix recording (deleted)
  */
 
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { EnhancedIssue } from '../analyzer/enhanced-analyzer.js';
 
-export interface FixHistoryEntry {
-  id: string;
-  timestamp: string;
-  issue: {
-    type: string;
-    message: string;
-    file: string;
-    line: number;
-    severity: string;
-    detector: string;
-  };
-  fix: {
-    applied: boolean;
-    method: 'auto' | 'manual' | 'ignored';
-    success: boolean;
-    code_before: string;
-    code_after?: string;
-    user_feedback?: 'helpful' | 'not-helpful' | 'false-positive';
-  };
-  context: {
-    framework?: string;
-    pattern?: string;
-    file_type: string;
-    surrounding_code: string;
-  };
-  outcome: {
-    resolved: boolean;
-    time_to_fix: number; // seconds
-    subsequent_issues: number;
-  };
-}
+// ❌ REMOVED: FixHistoryEntry interface - violates Insight boundaries
 
 export interface LearningMetrics {
   total_fixes: number;
@@ -76,19 +50,20 @@ export class MLLearningSystem {
   private historyPath: string;
   private patternsPath: string;
   private metricsPath: string;
-  private history: FixHistoryEntry[] = [];
+  // ❌ REMOVED: private history: FixHistoryEntry[] - violates boundaries
   private patterns: Map<string, PatternSignature> = new Map();
   private metrics: LearningMetrics;
 
   constructor(private workspaceRoot: string) {
     const mlDir = path.join(workspaceRoot, '.odavl/ml');
-    this.historyPath = path.join(mlDir, 'fix-history.json');
+    // ❌ REMOVED: fix-history.json path - no longer tracking fixes
+    this.historyPath = path.join(mlDir, 'fix-history.json'); // Legacy - kept for migration
     this.patternsPath = path.join(mlDir, 'learned-patterns.json');
     this.metricsPath = path.join(mlDir, 'learning-metrics.json');
     
     this.metrics = {
-      total_fixes: 0,
-      successful_fixes: 0,
+      total_fixes: 0, // Legacy metric
+      successful_fixes: 0, // Legacy metric
       false_positives: 0,
       accuracy_improvement: 0,
       patterns_learned: 0,
@@ -97,129 +72,23 @@ export class MLLearningSystem {
   }
 
   /**
-   * Initialize ML system - load existing history and patterns
+   * Initialize ML system - load existing patterns
+   * ❌ REMOVED: Loading fix history (violation)
    */
   async initialize(): Promise<void> {
     await this.ensureDirectories();
-    await this.loadHistory();
+    // ❌ REMOVED: await this.loadHistory() - no longer tracking fixes
     await this.loadPatterns();
     await this.loadMetrics();
   }
 
-  /**
-   * Record a fix attempt
-   */
-  async recordFix(
-    issue: EnhancedIssue,
-    fixResult: {
-      applied: boolean;
-      method: 'auto' | 'manual' | 'ignored';
-      success: boolean;
-      code_before: string;
-      code_after?: string;
-      user_feedback?: 'helpful' | 'not-helpful' | 'false-positive';
-    },
-    outcome: {
-      resolved: boolean;
-      time_to_fix: number;
-      subsequent_issues: number;
-    }
-  ): Promise<void> {
-    const entry: FixHistoryEntry = {
-      id: `fix_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      timestamp: new Date().toISOString(),
-      issue: {
-        type: issue.original.type || 'unknown',
-        message: issue.original.message || '',
-        file: issue.original.file || issue.original.filePath || 'unknown',
-        line: issue.original.line || issue.original.startLine || 0,
-        severity: issue.priority,
-        detector: this.getDetectorFromIssue(issue),
-      },
-      fix: fixResult,
-      context: {
-        framework: issue.fileContext?.framework,
-        pattern: issue.fileContext?.pattern,
-        file_type: this.getFileType(issue.original.file || issue.original.filePath || ''),
-        surrounding_code: fixResult.code_before,
-      },
-      outcome,
-    };
-
-    this.history.push(entry);
-    await this.saveHistory();
-
-    // Update metrics
-    this.metrics.total_fixes++;
-    if (fixResult.success) {
-      this.metrics.successful_fixes++;
-    }
-    if (fixResult.user_feedback === 'false-positive') {
-      this.metrics.false_positives++;
-    }
-
-    await this.saveMetrics();
-
-    // Learn from this fix
-    await this.learnFromFix(entry);
-  }
-
-  /**
-   * Learn patterns from successful fixes
-   */
-  private async learnFromFix(entry: FixHistoryEntry): Promise<void> {
-    // Only learn from successful fixes and false positives
-    if (!entry.fix.success && entry.fix.user_feedback !== 'false-positive') {
-      return;
-    }
-
-    const patternId = this.generatePatternId(entry);
-    const existingPattern = this.patterns.get(patternId);
-
-    if (existingPattern) {
-      // Update existing pattern
-      existingPattern.learned_from++;
-      existingPattern.last_updated = new Date().toISOString();
-
-      // Adjust confidence based on outcomes
-      if (entry.fix.user_feedback === 'false-positive') {
-        // Reduce confidence for false positives
-        existingPattern.confidence_multiplier = Math.max(
-          0.5,
-          existingPattern.confidence_multiplier - 0.1
-        );
-        existingPattern.success_rate = this.calculateSuccessRate(patternId);
-      } else if (entry.fix.success) {
-        // Increase confidence for successful fixes
-        existingPattern.confidence_multiplier = Math.min(
-          1.5,
-          existingPattern.confidence_multiplier + 0.05
-        );
-        existingPattern.success_rate = this.calculateSuccessRate(patternId);
-      }
-    } else {
-      // Create new pattern
-      const newPattern: PatternSignature = {
-        pattern_id: patternId,
-        detector: entry.issue.detector,
-        issue_type: entry.issue.type,
-        code_pattern: this.extractCodePattern(entry.context.surrounding_code),
-        context_requirements: this.extractContextRequirements(entry),
-        success_rate: entry.fix.success ? 1.0 : 0.0,
-        confidence_multiplier: entry.fix.user_feedback === 'false-positive' ? 0.7 : 1.0,
-        learned_from: 1,
-        last_updated: new Date().toISOString(),
-      };
-
-      this.patterns.set(patternId, newPattern);
-      this.metrics.patterns_learned++;
-    }
-
-    await this.savePatterns();
-  }
+  // ❌ REMOVED: recordFix() - violates Insight boundaries (fixing is Autopilot's job)
+  // ❌ REMOVED: learnFromFix() - violates Insight boundaries
+  // ❌ REMOVED: getSuggestedFix() - violates Insight boundaries
 
   /**
    * Adjust issue confidence based on learned patterns
+   * ✅ ALLOWED: Detection-only ML learning (improves accuracy)
    */
   adjustConfidence(issue: EnhancedIssue): number {
     const patternId = this.generatePatternIdFromIssue(issue);
@@ -344,18 +213,8 @@ export class MLLearningSystem {
     await fs.mkdir(mlDir, { recursive: true });
   }
 
-  private async loadHistory(): Promise<void> {
-    try {
-      const data = await fs.readFile(this.historyPath, 'utf-8');
-      this.history = JSON.parse(data);
-    } catch {
-      this.history = [];
-    }
-  }
-
-  private async saveHistory(): Promise<void> {
-    await fs.writeFile(this.historyPath, JSON.stringify(this.history, null, 2));
-  }
+  // ❌ REMOVED: loadHistory() - no longer tracking fixes
+  // ❌ REMOVED: saveHistory() - no longer tracking fixes
 
   private async loadPatterns(): Promise<void> {
     try {
@@ -385,10 +244,14 @@ export class MLLearningSystem {
     await fs.writeFile(this.metricsPath, JSON.stringify(this.metrics, null, 2));
   }
 
-  private generatePatternId(entry: FixHistoryEntry): string {
-    return `${entry.issue.detector}_${entry.issue.type}_${entry.context.framework || 'any'}_${entry.context.pattern || 'generic'}`;
-  }
+  // ❌ REMOVED: generatePatternId() - only used by fix tracking
+  // ❌ REMOVED: extractCodePattern() - only used by fix tracking
+  // ❌ REMOVED: extractContextRequirements() - only used by fix tracking
+  // ❌ REMOVED: calculateSuccessRate() - only used by fix tracking
 
+  /**
+   * Generate pattern ID from issue (for confidence adjustment)
+   */
   private generatePatternIdFromIssue(issue: EnhancedIssue): string {
     const detector = this.getDetectorFromIssue(issue);
     const type = issue.original.type || 'unknown';
@@ -415,45 +278,5 @@ export class MLLearningSystem {
   private getFileType(filePath: string): string {
     const ext = path.extname(filePath);
     return ext || 'unknown';
-  }
-
-  private extractCodePattern(code: string): string {
-    // Extract pattern by removing specific values/names
-    return code
-      .replace(/['"`][^'"`]*['"`]/g, 'STRING') // Replace strings
-      .replace(/\b\d+\b/g, 'NUMBER') // Replace numbers
-      .replace(/\b[a-z][a-zA-Z0-9]*\b/g, 'VAR') // Replace variable names
-      .trim()
-      .substring(0, 200); // Limit length
-  }
-
-  private extractContextRequirements(entry: FixHistoryEntry): string[] {
-    const requirements: string[] = [];
-    
-    if (entry.context.framework) {
-      requirements.push(`framework:${entry.context.framework}`);
-    }
-    if (entry.context.pattern) {
-      requirements.push(`pattern:${entry.context.pattern}`);
-    }
-    if (entry.context.file_type) {
-      requirements.push(`filetype:${entry.context.file_type}`);
-    }
-    
-    return requirements;
-  }
-
-  private calculateSuccessRate(patternId: string): number {
-    const relatedFixes = this.history.filter(entry => 
-      this.generatePatternId(entry) === patternId
-    );
-    
-    if (relatedFixes.length === 0) return 0;
-    
-    const successful = relatedFixes.filter(entry => 
-      entry.fix.success && entry.fix.user_feedback !== 'false-positive'
-    ).length;
-    
-    return successful / relatedFixes.length;
   }
 }

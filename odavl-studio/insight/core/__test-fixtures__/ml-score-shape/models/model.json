@@ -1,0 +1,1 @@
+{"modelTopology":{"config":{"layers":[{"config":{"batch_input_shape":[1,224,224,3]}}]}},"weightsManifest":[{"paths":["weights.bin"]}]}

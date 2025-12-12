@@ -1,17 +1,42 @@
 /**
  * Azure Blob Storage Provider
+ * Optional dependency - install @azure/storage-blob to use this provider
  */
 
-import { BlobServiceClient, StorageSharedKeyCredential } from '@azure/storage-blob';
+// Azure SDK is optional - only required if user chooses Azure provider
+let BlobServiceClient: any;
+let StorageSharedKeyCredential: any;
+let azureAvailable = false;
+
+try {
+  // Dynamic import to make @azure/storage-blob optional
+  // webpack/tsup will not attempt to resolve this dependency at build time
+  const azureModule = require('@azure/storage-blob');
+  BlobServiceClient = azureModule.BlobServiceClient;
+  StorageSharedKeyCredential = azureModule.StorageSharedKeyCredential;
+  azureAvailable = true;
+} catch (error) {
+  // @azure/storage-blob not installed - this is OK unless Azure provider is actually used
+  // No warning logged here to avoid build-time noise
+}
+
 import type { StorageConfig } from '../types';
 
 export class AzureBlobProvider {
-  private client: BlobServiceClient;
+  private client: any; // BlobServiceClient (only available if @azure/storage-blob installed)
   private containerName: string;
 
   constructor(config: StorageConfig) {
+    // Check if Azure SDK is available before proceeding
+    if (!azureAvailable) {
+      throw new Error(
+        '[AzureBlobProvider] Azure Blob Storage SDK not installed. ' +
+        'Install with: pnpm add @azure/storage-blob'
+      );
+    }
+
     if (!config.container) {
-      throw new Error('Azure container is required');
+      throw new Error('[AzureBlobProvider] Azure container name is required');
     }
 
     this.containerName = config.container;
@@ -27,7 +52,9 @@ export class AzureBlobProvider {
         sharedKeyCredential
       );
     } else {
-      throw new Error('Azure credentials required');
+      throw new Error(
+        '[AzureBlobProvider] Azure credentials (accountName, accountKey) are required'
+      );
     }
   }
 

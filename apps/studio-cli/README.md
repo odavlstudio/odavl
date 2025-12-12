@@ -37,32 +37,93 @@ ODAVL Studio CLI provides unified access to three products:
 
 ## Commands
 
-### Insight - Error Detection
+### Insight - Error Detection (Wave 4 - Production Ready)
 
 ```bash
-# Interactive analysis menu
+# Full analysis with all detectors
 odavl insight analyze
 
-# Analyze with specific detectors
-odavl insight analyze --detectors typescript,eslint
+# Analyze specific directory
+odavl insight analyze --dir ./src
 
-# Export results to JSON
-odavl insight analyze --format json --output report.json
+# Use specific detectors only
+odavl insight analyze --detectors typescript,eslint,security
+
+# Set minimum severity level
+odavl insight analyze --severity high
+
+# Generate reports in multiple formats
+odavl insight analyze --json --html --md
+
+# CI/CD mode (exit 1 if issues found)
+odavl insight analyze --strict --silent
+
+# Full comprehensive scan
+odavl insight full-scan --json
+
+# Quick essential scan
+odavl insight quick
+
+# List all available detectors
+odavl insight detectors
+
+# Show latest analysis stats
+odavl insight stats
 ```
 
-**Available Detectors:**
+**CLI Options:**
+- `--detectors <list>` - Comma-separated detector names
+- `--severity <min>` - Minimum severity (info|low|medium|high|critical)
+- `--json` - Generate JSON report
+- `--html` - Generate HTML report with styling
+- `--md` - Generate Markdown report
+- `--output <path>` - Custom output file path
+- `--files <glob>` - File patterns to analyze
+- `--dir <folder>` - Directory to analyze (default: cwd)
+- `--strict` - Exit 1 if issues found (CI/CD mode)
+- `--debug` - Show debug information
+- `--silent` - Minimal output
+
+**Issue Schema (Wave 4):**
+```typescript
+interface InsightIssue {
+  file: string;
+  line: number;
+  column: number;
+  message: string;
+  severity: 'info' | 'low' | 'medium' | 'high' | 'critical';
+  detector: string;
+  ruleId?: string;
+  suggestedFix?: string;
+}
+```
+
+**Available Detectors (Auto-discovered):**
 - `typescript` - TypeScript compilation errors
 - `eslint` - ESLint violations
-- `import` - Import/dependency issues
-- `package` - Package.json problems
-- `runtime` - Runtime error detection
-- `build` - Build system issues
 - `security` - Security vulnerabilities
-- `circular` - Circular dependency detection
-- `network` - Network/API issues
 - `performance` - Performance bottlenecks
 - `complexity` - Code complexity metrics
-- `isolation` - Test isolation problems
+- `import` - Import/dependency issues
+- `python-type` - Python type hints (mypy)
+- `python-security` - Python security (bandit)
+- `python-complexity` - Python complexity
+- `java` - Java compilation & patterns
+- `go` - Go vet & staticcheck
+- `rust` - Rust clippy
+- `advanced-runtime` - Runtime error detection
+- `architecture` - Architecture patterns
+- `build` - Build system issues
+- `cicd` - CI/CD configuration
+- `circular` - Circular dependencies
+- `database` - Database usage
+- `infrastructure` - Infrastructure as Code
+- `isolation` - Test isolation
+- `ml-model` - ML model validation
+- `network` - Network/API issues
+- `nextjs` - Next.js specific
+- `package` - Package.json problems
+- `runtime` - Runtime detection
 
 ### Autopilot - Self-Healing
 

@@ -2,11 +2,10 @@
 
 import { Command } from 'commander';
 import chalk from 'chalk';
-import * as insightCommands from './commands/insight.js';
-import * as autopilotCommands from './commands/autopilot.js';
-import * as authCommands from './commands/auth.js';
-// Guardian disabled temporarily - CJS export issues
-// import * as guardianCommands from './commands/guardian.js';
+import boxen from 'boxen';
+import { createBrainCommand } from './commands/brain.js';
+import { createDeployCommand } from './commands/deploy.js';
+import { runSelfHeal, explainLastSession } from './commands/autopilot';
 
 const program = new Command();
 
@@ -15,230 +14,316 @@ program
     .description('ODAVL Studio - Complete code quality platform')
     .version('2.0.0');
 
-// Authentication commands
-program.addCommand(authCommands.loginCommand);
-program.addCommand(authCommands.logoutCommand);
-program.addCommand(authCommands.whoamiCommand);
-program.addCommand(authCommands.profilesCommand);
-program.addCommand(authCommands.switchCommand);
-        await authCommands.sync();
-    });
-
-// ODAVL Insight commands
-const insight = program
-    .command('insight')
-    .description('Error detection and analysis');
-
-insight
-    .command('analyze')
-    .description('Analyze workspace for errors')
-    .option('-d, --detectors <detectors>', 'Comma-separated list of detectors (default: all)')
-    .option('-l, --language <language>', 'Language to analyze: typescript, python, all (default: typescript)', 'typescript')
-    .action(async (options: any) => {
-        await insightCommands.analyzeWorkspace({
-            detectors: options.detectors,
-            language: options.language
-        });
-    });
-
-insight
-    .command('fix')
-    .description('Get AI-powered fix suggestions')
-    .action(async () => {
-        await insightCommands.getFixSuggestions();
-    });
-
-// ODAVL Autopilot commands
-const autopilot = program
-    .command('autopilot')
-    .description('Self-healing code infrastructure');
-
-autopilot
-    .command('run')
-    .description('Run full O-D-A-V-L cycle')
-    .option('--max-files <number>', 'Maximum files per cycle', '10')
-    .option('--max-loc <number>', 'Maximum LOC per file', '40')
-    .action(async (options: any) => {
-        await autopilotCommands.runFullCycle(options.maxFiles, options.maxLoc);
-    });
-
-autopilot
-    .command('observe')
-    .description('Run Observe phase (metrics collection)')
-    .action(async () => {
-        await autopilotCommands.runPhase('observe');
-    });
-
-autopilot
-    .command('decide')
-    .description('Run Decide phase (recipe selection)')
-    .action(async () => {
-        await autopilotCommands.runPhase('decide');
-    });
-
-autopilot
-    .command('act')
-    .description('Run Act phase (apply improvements)')
-    .action(async () => {
-        await autopilotCommands.runPhase('act');
-    });
-
-autopilot
-    .command('verify')
-    .description('Run Verify phase (quality gates)')
-    .action(async () => {
-        await autopilotCommands.runPhase('verify');
-    });
-
-autopilot
-    .command('learn')
-    .description('Run Learn phase (update trust scores)')
-    .action(async () => {
-        await autopilotCommands.runPhase('learn');
-    });
-
-autopilot
-    .command('undo')
-    .description('Undo last change')
-    .option('--snapshot <id>', 'Specific snapshot ID to restore')
-    .action(async (options: any) => {
-        await autopilotCommands.undoLastChange(options.snapshot);
-    });
-
-// ODAVL Guardian commands - TEMPORARILY DISABLED
-// Reason: @odavl-studio/guardian-core has no CJS exports, blocking CLI execution
-// Will be re-enabled after adding CJS support to guardian-core package.json
-
-/*
-const guardian = program
-    .command('guardian')
-    .description('Launch validation and pre-deploy testing')
-    .addHelpText('after', `
-Examples:
-  $ odavl guardian check ./my-extension
-  $ odavl guardian fix ./my-app --type nextjs-app
-  $ odavl guardian check-all
-
-Product Types:
-  - auto              Auto-detect (recommended)
-  - vscode-extension  VS Code extensions
-  - nextjs-app        Next.js applications
-  - nodejs-server     Node.js servers (Phase 2)
-  - cli-app           CLI applications (Phase 2)
-  - npm-package       npm packages (Phase 2)
-`);
-
-guardian
-    .command('check <product-path>')
-    .description('Check product readiness for launch')
-    .option('-t, --type <type>', 'Product type (auto|vscode-extension|nextjs-app)', 'auto')
-    .addHelpText('after', `
-Examples:
-  $ odavl guardian check ./odavl-studio/insight/extension
-  $ odavl guardian check ./apps/studio-hub --type nextjs-app
-  $ odavl guardian check . --type auto
-
-Output:
-  - Readiness score (0-100%)
-  - Status (ready/unstable/blocked)
-  - Issues grouped by severity
-  - Auto-fixable issues count
-`)
-    .action(async (productPath: string, options: any) => {
-        await guardianCommands.checkProduct(productPath, options.type);
-    });
-
-guardian
-    .command('fix <product-path>')
-    .description('Auto-fix product issues')
-    .option('-t, --type <type>', 'Product type (auto|vscode-extension|nextjs-app)', 'auto')
-    .addHelpText('after', `
-Examples:
-  $ odavl guardian fix ./my-extension
-  $ odavl guardian fix ./my-app --type nextjs-app
-
-Process:
-  1. Scan for issues
-  2. Apply auto-fixes
-  3. Re-validate
-  4. Show improvement
-
-Safety:
-  - Backup created before changes
-  - Only auto-fixable issues modified
-  - Manual issues reported
-`)
-    .action(async (productPath: string, options: any) => {
-        await guardianCommands.fixProduct(productPath, options.type);
-    });
-
-guardian
-    .command('check-all')
-    .description('Check all products in workspace')
-    .addHelpText('after', `
-Examples:
-  $ odavl guardian check-all
-
-Output:
-  - Lists all products found
-  - Readiness score for each
-  - Summary statistics
-  - Total auto-fixable issues
-
-Workspace Scanning:
-  - Searches for package.json files
-  - Auto-detects product types
-  - Skips node_modules/
-`)
-    .action(async () => {
-        await guardianCommands.checkAllProducts();
-    });
-
-// Legacy v2 commands (backward compatibility)
-guardian
-    .command('test')
-    .description('[Legacy v2] Run pre-deploy tests on URL')
-    .argument('<url>', 'URL to test')
-    .option('--tests <tests>', 'Comma-separated list of tests', 'all')
-    .action(async (url: string, options: any) => {
-        await guardianCommands.runPreDeployTests(url, options.tests);
-    });
-
-guardian
-    .command('accessibility')
-    .description('[Legacy v2] Run accessibility tests')
-    .argument('<url>', 'URL to test')
-    .action(async (url: string) => {
-        await guardianCommands.runSingleTest(url, 'accessibility');
-    });
-
-guardian
-    .command('performance')
-    .description('[Legacy v2] Run performance tests')
-    .argument('<url>', 'URL to test')
-    .action(async (url: string) => {
-        await guardianCommands.runSingleTest(url, 'performance');
-    });
-
-guardian
-    .command('security')
-    .description('[Legacy v2] Run security tests')
-    .argument('<url>', 'URL to test')
-    .action(async (url: string) => {
-        await guardianCommands.runSingleTest(url, 'security');
-    });
-*/
-
-// Info command
 program
     .command('info')
     .description('Show ODAVL Studio information')
     .action(() => {
-        console.log(chalk.bold('\n🚀 ODAVL Studio v2.0.0\n'));
-        console.log(chalk.blue('ODAVL Insight:') + '   ML-powered error detection');
-        console.log(chalk.magenta('ODAVL Autopilot:') + ' Self-healing code infrastructure');
-        console.log(chalk.green('ODAVL Guardian:') + '  Pre-deploy testing & monitoring');
-        console.log('\nRun ' + chalk.cyan('odavl <command> --help') + ' for more information\n');
+        const message = boxen(
+            chalk.bold.cyan('ODAVL Studio CLI v2.0.0') + '\n\n' +
+            chalk.white('Runtime Truth Status (Local-Only Tools)\n') +
+            chalk.gray('──────────────────────────────────────\n\n') +
+            chalk.green('Insight:\n') +
+            chalk.white('  • 11 stable detectors working\n') +
+            chalk.white('  • Local-only (not published to npm yet)\n\n') +
+            chalk.green('Autopilot:\n') +
+            chalk.white('  • O-D-A-L phases functional\n') +
+            chalk.white('  • Adaptive heuristic trust scoring (no real ML model yet)\n') +
+            chalk.white('  • VERIFY depends on manually re-running Insight\n\n') +
+            chalk.yellow('Guardian:\n') +
+            chalk.white('  • Core website testing engine + Playwright implemented\n') +
+            chalk.white('  • CLI not fully wired/built yet (not production-ready)\n\n') +
+            chalk.red('Brain / OMS:\n') +
+            chalk.white('  • Not implemented yet (placeholders/stubs only)\n\n') +
+            chalk.cyan('GitHub: ') + chalk.underline('github.com/Monawlo812/odavl'),
+            { padding: 1, margin: 1, borderStyle: 'round', borderColor: 'cyan' }
+        );
+        console.log(message);
     });
+
+// Add Brain command (Phase Ω-P1: ML-powered deployment confidence)
+program.addCommand(createBrainCommand());
+
+// Add Deploy command (Phase Ω-P1: Smart deployment with Brain)
+program.addCommand(createDeployCommand());
+
+// Wave 6: Autopilot deterministic fixing commands
+import { runAutopilot } from './commands/autopilot-wave6.js';
+
+const autopilotCmd = new Command('autopilot')
+    .description('Self-healing code automation with deterministic fixes');
+
+autopilotCmd
+    .command('run')
+    .description('Apply deterministic fixes to workspace (Insight → Autopilot)')
+    .option('--dry-run', 'Preview fixes without applying', false)
+    .option('--max-fixes <n>', 'Maximum fixes to apply', '20')
+    .option('--detectors <list>', 'Comma-separated detector list', '')
+    .action(async (options) => {
+        await runAutopilot({
+            dryRun: options.dryRun,
+            maxFixes: parseInt(options.maxFixes, 10),
+            detectors: options.detectors ? options.detectors.split(',') : undefined,
+        });
+    });
+
+autopilotCmd
+    .command('dry-run')
+    .description('Preview self-healing without making changes')
+    .option('--max-recipes <n>', 'Maximum recipes to preview', '5')
+    .option('--threshold <n>', 'Brain confidence threshold (%)', '75')
+    .action(async (options) => {
+        await runSelfHeal({
+            dryRun: true,
+            maxRecipes: parseInt(options.maxRecipes, 10),
+            threshold: parseInt(options.threshold, 10),
+        });
+    });
+
+autopilotCmd
+    .command('explain')
+    .description('Explain last self-heal session with full OMS report')
+    .action(async () => {
+        await explainLastSession();
+    });
+
+autopilotCmd
+    .command('last-report')
+    .description('Show OMS report from last self-heal session')
+    .action(async () => {
+        await explainLastSession();
+    });
+
+program.addCommand(autopilotCmd);
+
+// Phase Ω-P6 Phase 4: Guardian telemetry command
+const guardianCmd = new Command('guardian')
+    .description('Pre-deployment validation and quality gates');
+
+guardianCmd
+    .command('telemetry')
+    .description('View Guardian gate execution statistics')
+    .option('--limit <n>', 'Number of recent events to analyze', '50')
+    .action(async (options) => {
+        console.log(chalk.cyan('📊 Guardian Telemetry\n'));
+
+        try {
+            // Dynamic import to avoid TypeScript path resolution issues
+            const telemetryPath = '../../../odavl-studio/guardian/telemetry/guardian-telemetry.js';
+            const { readGuardianTelemetry } = await import(telemetryPath);
+
+            const limit = parseInt(options.limit, 10);
+            const events = await readGuardianTelemetry(process.cwd(), limit);
+
+            if (events.length === 0) {
+                console.log(chalk.yellow('No telemetry data found.'));
+                console.log(chalk.gray('Run Guardian gates to start collecting data.\n'));
+                return;
+            }
+
+            // Aggregate statistics
+            let totalGatesPassed = 0;
+            let totalGatesFailed = 0;
+            const failedGateCount: Record<string, number> = {};
+            let totalFileRisk = 0;
+            let totalCriticalFiles = 0;
+            let eventsWithRisk = 0;
+
+            for (const event of events) {
+                totalGatesPassed += event.gatesPassed;
+                totalGatesFailed += event.gatesFailed;
+
+                for (const gateName of event.failedGateNames) {
+                    failedGateCount[gateName] = (failedGateCount[gateName] || 0) + 1;
+                }
+
+                if (event.fileRiskSummary) {
+                    totalFileRisk += event.fileRiskSummary.avgRisk;
+                    totalCriticalFiles += event.fileRiskSummary.criticalCount;
+                    eventsWithRisk++;
+                }
+            }
+
+            const totalGates = totalGatesPassed + totalGatesFailed;
+            const failureRate = totalGates > 0 ? (totalGatesFailed / totalGates) * 100 : 0;
+            const mostFailedGate = Object.entries(failedGateCount).sort((a, b) => b[1] - a[1])[0];
+
+            console.log(chalk.white(`📊 Guardian Telemetry (last ${events.length} runs)\n`));
+            console.log(chalk.green(`  Gates Passed:    ${totalGatesPassed}`));
+            console.log(chalk.red(`  Gates Failed:    ${totalGatesFailed}`));
+            console.log(chalk.yellow(`  Failure Rate:    ${failureRate.toFixed(1)}%`));
+
+            if (mostFailedGate) {
+                console.log(chalk.red(`  Most Failed:     ${mostFailedGate[0]} (${mostFailedGate[1]}x)`));
+            }
+
+            if (eventsWithRisk > 0) {
+                const avgRisk = (totalFileRisk / eventsWithRisk) * 100;
+                const avgCritical = totalCriticalFiles / eventsWithRisk;
+                console.log(chalk.yellow(`  Avg File Risk:   ${avgRisk.toFixed(1)}%`));
+                console.log(chalk.red(`  Critical Files:  ${avgCritical.toFixed(1)} avg`));
+            }
+
+            console.log();
+        } catch (error) {
+            console.log(chalk.red(`❌ Failed to read telemetry: ${error}`));
+        }
+    });
+
+program.addCommand(guardianCmd);
+
+// Wave 3: Insight command suite (Phase 8: Enhanced with cloud integration)
+const insightCmd = new Command('insight')
+    .description('ML-powered error detection with Insight Core')
+    .addHelpText('after', `
+Examples:
+  $ odavl insight analyze                      # Local analysis (default)
+  $ odavl insight analyze --cloud              # Cloud analysis with history
+  $ odavl insight analyze --file-parallel      # Fast parallel analysis (4-16x speedup)
+  $ odavl insight analyze --detectors typescript,security
+  $ odavl insight status                       # Show last analysis status
+  $ odavl insight plan                         # Show current plan and limits
+  $ odavl insight plans                        # Compare all available plans
+  $ odavl auth login                           # Sign in for cloud access
+`);
+
+insightCmd
+    .command('analyze')
+    .description('Analyze workspace with Insight detectors')
+    .option('--cloud', 'Run analysis in ODAVL Cloud with history & dashboard', false)
+    .option('--detectors <list>', 'Comma-separated detector names')
+    .option('--severity <min>', 'Minimum severity (info|low|medium|high|critical)', 'low')
+    .option('--json', 'Output as JSON', false)
+    .option('--html', 'Generate HTML report', false)
+    .option('--md', 'Generate Markdown report', false)
+    .option('--output <path>', 'Output file path')
+    .option('--files <glob>', 'File patterns to analyze')
+    .option('--dir <folder>', 'Directory to analyze', process.cwd())
+    .option('--strict', 'Exit with error if issues found', false)
+    .option('--debug', 'Show debug information', false)
+    .option('--silent', 'Minimal output', false)
+    .option('--progress', 'Show progress updates (Wave 10 Enhanced)', false)
+    .option('--mode <type>', 'Execution mode: sequential|parallel|file-parallel (Wave 11)', 'sequential')
+    .option('--max-workers <n>', 'Number of parallel workers (Wave 10/11)', parseInt)
+    .option('--use-worker-pool', 'Use worker threads (Wave 10 Enhanced)', false)
+    .option('--file-parallel', 'Enable file-level parallelism (Wave 11 - 4-16x speedup)', false)
+    .action(async (options) => {
+        // Phase 8: Use enhanced CLI with cloud support
+        const { analyze } = await import('./commands/insight-phase8.js');
+        await analyze(options);
+    });
+
+insightCmd
+    .command('full-scan')
+    .description('Comprehensive analysis with all detectors')
+    .option('--json', 'Output as JSON', false)
+    .option('--html', 'Generate HTML report', false)
+    .option('--md', 'Generate Markdown report', false)
+    .action(async (options) => {
+        const { analyze } = await import('./commands/insight-v2.js');
+        await analyze({ ...options, detectors: 'all', severity: 'info' });
+    });
+
+insightCmd
+    .command('quick')
+    .description('Fast analysis with essential detectors only')
+    .option('--dir <folder>', 'Directory to analyze', process.cwd())
+    .option('--json', 'Output as JSON', false)
+    .action(async (options) => {
+        const { analyze } = await import('./commands/insight-v2.js');
+        await analyze({ ...options, detectors: 'typescript,eslint,security', severity: 'medium', silent: true });
+    });
+
+insightCmd
+    .command('detectors')
+    .description('List available detectors')
+    .action(async () => {
+        const { listDetectors } = await import('./commands/insight-v2.js');
+        await listDetectors();
+    });
+
+insightCmd
+    .command('stats')
+    .description('Show analysis statistics')
+    .action(async () => {
+        const { showStats } = await import('./commands/insight-v2.js');
+        await showStats();
+    });
+
+insightCmd
+    .command('report')
+    .description('Generate report from latest analysis')
+    .option('--format <type>', 'Report format (json|html|md)', 'json')
+    .action(async (options) => {
+        const { generateReport } = await import('./commands/insight-v2.js');
+        await generateReport(options.format);
+    });
+
+insightCmd
+    .command('plan')
+    .description('Show current Insight plan and limits')
+    .option('--json', 'Output as JSON', false)
+    .action(async (options) => {
+        const { showPlan } = await import('./commands/insight-plan.js');
+        await showPlan(options);
+    });
+
+insightCmd
+    .command('plans')
+    .description('Show all available Insight plans')
+    .action(async () => {
+        const { showAllPlans } = await import('./commands/insight-plan.js');
+        await showAllPlans();
+    });
+
+insightCmd
+    .command('status')
+    .description('Show last analysis status (local + cloud)')
+    .option('--json', 'Output as JSON', false)
+    .option('--last <n>', 'Show last N analyses', parseInt)
+    .action(async (options) => {
+        const { status } = await import('./commands/insight-phase8.js');
+        await status(options);
+    });
+
+program.addCommand(insightCmd);
+
+// Auth command group (unified ODAVL ID)
+const authCmd = new Command('auth')
+    .description('ODAVL authentication and account management');
+
+authCmd
+    .command('login')
+    .description('Sign in to your ODAVL account (device code flow)')
+    .option('--api-url <url>', 'Override API base URL')
+    .action(async (options) => {
+        const { loginCommand } = await import('./commands/auth.js');
+        await loginCommand.parseAsync(['login', ...Object.entries(options).flatMap(([k, v]) => v ? [`--${k}`, v as string] : [])], { from: 'user' });
+    });
+
+authCmd
+    .command('status')
+    .description('Show current authentication status')
+    .action(async () => {
+        const { statusCommand } = await import('./commands/auth.js');
+        await statusCommand.parseAsync(['status'], { from: 'user' });
+    });
+
+authCmd
+    .command('logout')
+    .description('Sign out of your ODAVL account')
+    .action(async () => {
+        const { logoutCommand } = await import('./commands/auth.js');
+        await logoutCommand.parseAsync(['logout'], { from: 'user' });
+    });
+
+authCmd
+    .command('whoami')
+    .description('Show current authentication status (alias)')
+    .action(async () => {
+        const { whoamiCommand } = await import('./commands/auth.js');
+        await whoamiCommand.parseAsync(['whoami'], { from: 'user' });
+    });
+
+program.addCommand(authCmd);
 
 program.parse();

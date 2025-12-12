@@ -1,0 +1,273 @@
+# ODAVL Manifest v1.0
+# This file governs Insight, Autopilot, Guardian, and Brain configuration
+# Conforms to: .odavl/schemas/manifest.schema.json (OMS v1.0)
+
+version: "1.0.0"
+schemaVersion: "v1.0"
+
+# ============================================================================
+# PROJECT METADATA
+# ============================================================================
+project:
+  id: "odavl"
+  name: "ODAVL Monorepo"
+  description: "ODAVL monorepo containing ODAVL Studio products (ODAVL Insight, ODAVL Autopilot, ODAVL Guardian), Brain, and marketing/cloud apps."
+  languages:
+    - typescript
+    - javascript
+  riskProfile: high        # Automation should be careful
+  criticality: high        # Business-critical repository
+  tags:
+    - monorepo
+    - next.js
+    - saas
+    - vscode-extension
+
+# ============================================================================
+# FILE TAXONOMY
+# Universal file discovery system for all ODAVL products
+# ============================================================================
+fileTaxonomy:
+  tests:
+    unit:
+      - "tests/unit/**/*.test.ts"
+      - "**/__tests__/**/*.test.ts"
+    integration:
+      - "tests/integration/**/*.test.ts"
+    e2e:
+      - "tests/e2e/**/*.spec.ts"
+      - "odavl-studio/guardian/app/e2e/**/*.spec.ts"
+    snapshots:
+      - "tests/__snapshots__/**/*.snap"
+
+  fixtures:
+    - "test-fixtures/**/*"
+    - "tests/fixtures/**/*"
+
+  logs:
+    - ".odavl/logs/**/*.log"
+    - "*.log"
+
+  reports:
+    - "reports/**/*.{json,md,html}"
+    - ".odavl/reports/**/*"
+
+  schemas:
+    - ".odavl/schemas/**/*.schema.json"
+
+  recipes:
+    - ".odavl/recipes/**/*.json"
+
+  mlModels:
+    - ".odavl/ml-models/**/*"
+    - "ml-data/models/**/*"
+
+  uiSnapshots:
+    - "tests/visual-regression/baseline/**/*.png"
+
+  migrations:
+    - "apps/**/prisma/migrations/**/*"
+    - "odavl-studio/**/prisma/migrations/**/*"
+
+  coverage:
+    - "coverage/**/*"
+
+  diagnostics:
+    - ".odavl/diagnostics/**/*"
+
+  trainingData:
+    - "ml-data/datasets/**/*"
+    - ".odavl/datasets/**/*"
+
+# ============================================================================
+# INSIGHT CONFIGURATION
+# ML-powered error detection
+# ============================================================================
+insight:
+  # Enabled detectors (11 stable detectors)
+  enabled:
+    - typescript
+    - security
+    - performance
+    - complexity
+    - circular
+    - import
+    - package
+    - runtime
+    - build
+    - network
+    - isolation
+
+  # Disabled detectors (not fully implemented or experimental)
+  disabled:
+    - cve-scanner
+    - nextjs
+
+  # Minimum severity level to report
+  minSeverity: medium
+
+  # Performance limit: max files per analysis run
+  maxFiles: 8000
+
+  # File patterns for language-specific analysis
+  fileGlobs:
+    typescript:
+      - "apps/**/*.ts"
+      - "apps/**/*.tsx"
+      - "odavl-studio/**/*.ts"
+      - "odavl-studio/**/*.tsx"
+      - "packages/**/*.ts"
+    python:
+      - "**/*.py"
+
+  # False positive suppression rules (empty for now)
+  falsePositiveRules: []
+
+  # Detector capability mapping (empty for now)
+  detectorCapabilityMap: {}
+
+# ============================================================================
+# AUTOPILOT CONFIGURATION
+# Self-healing code infrastructure
+# ============================================================================
+autopilot:
+  # Risk budget: Safety constraints per cycle
+  riskBudget:
+    maxLoc: 40           # Max lines of code changed per cycle
+    maxFiles: 10         # Max files modified per cycle
+    maxRecipes: 5        # Max recipes executed per cycle
+
+  # Protected paths: NEVER auto-modify these files
+  protectedPaths:
+    - "security/**"
+    - "**/*.spec.*"
+    - "public-api/**"
+    - "**/migrations/**"
+    - "**/prisma/schema.prisma"
+
+  # Avoid changes: Modify only if explicitly targeted
+  avoidChanges:
+    - "docs/**"
+    - "README.md"
+    - "reports/**"
+
+  # Trust scoring rules
+  trust:
+    min: 0.2             # Minimum trust to execute (blacklist threshold)
+    max: 1.0             # Maximum trust score (ceiling)
+    approveIf: []        # Auto-approval expressions (to be tuned later)
+
+  # Recipe selection algorithm
+  recipeSelection:
+    strategies:
+      - ml-predictor     # Use TensorFlow.js model first
+      - trust-score      # Fall back to trust score
+
+    modelVersion: "trust-predictor-v2"
+
+    dependencyRules:
+      allowParallel: true
+      maxParallelWorkers: 4
+      conflictResolution: sequential
+
+# ============================================================================
+# GUARDIAN CONFIGURATION
+# Pre-deploy testing and quality gates
+# ============================================================================
+guardian:
+  # Test suites
+  suites:
+    performance:
+      enabled: true
+      tools:
+        - lighthouse
+
+    accessibility:
+      enabled: true
+      tools:
+        - axe-core
+        - lighthouse
+      wcagLevel: AA
+
+    security:
+      enabled: true
+      checks:
+        - csp
+        - ssl
+        - headers
+        - owasp-top-10
+
+    visual:
+      enabled: true
+      tool: playwright
+      threshold: 0.01    # 1% pixel difference allowed
+
+    e2e:
+      enabled: true
+      framework: playwright
+
+  # Quality gate thresholds
+  thresholds:
+    lighthouse:
+      performance: 90
+      accessibility: 95
+      bestPractices: 90
+      seo: 90
+      pwa: 0
+
+    webVitals:
+      lcp: 2.5           # Largest Contentful Paint (seconds)
+      fid: 100           # First Input Delay (milliseconds)
+      cls: 0.1           # Cumulative Layout Shift
+
+  # Test environments
+  environments:
+    - name: staging
+      url: "https://staging.odavl.com"
+      skipSuites: []
+
+    - name: production
+      url: "https://odavl.com"
+      skipSuites:
+        - visual         # Skip visual regression in production
+
+  # Baseline comparison policy
+  baselinePolicy:
+    mode: adaptive       # Warn on regression, fail on major regression
+    updateOn: manual     # Require manual baseline updates
+
+# ============================================================================
+# BRAIN CONFIGURATION
+# Intelligence layer with memory and learning
+# ============================================================================
+brain:
+  # Learning behavior
+  learningMode: adaptive
+
+  # Memory system limits
+  memory:
+    shortTermLimit: 100     # Last 100 runs
+    longTermLimit: 10000    # Historical patterns
+
+  # Confidence thresholds per product
+  confidenceThresholds:
+    insight: 0.6       # Report detection if 60%+ confident
+    autopilot: 0.8     # Auto-fix if 80%+ confident
+    guardian: 0.9      # Block deployment if 90%+ confident
+
+  # Decision policy rules
+  decisionPolicy:
+    allowDeployIf:
+      - condition: "guardian.score >= 90 && insight.criticalIssues == 0"
+        reason: "All tests passed and no critical issues reported by Insight."
+
+    autoApproveRecipesIf: []
+
+# ============================================================================
+# OVERRIDES
+# Directory, file type, or product-specific configuration overrides
+# ============================================================================
+overrides:
+  byDirectory: {}
+  byFileType: {}
+  byProduct: {}

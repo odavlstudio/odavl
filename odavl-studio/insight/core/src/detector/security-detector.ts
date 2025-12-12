@@ -15,7 +15,15 @@ import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { glob } from 'glob';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 import { SmartSecurityScanner, SecurityIssue as SmartSecurityIssue } from './smart-security-scanner';
+import { 
+    GLOBAL_IGNORE_PATTERNS, 
+    SECURITY_IGNORE_PATTERNS,
+    filterIgnoredFiles,
+    isFalsePositiveByLocation,
+    loadCustomIgnorePatterns
+} from '../utils/ignore-patterns';
 
 export interface SecurityError {
     file: string;              // File path
@@ -75,38 +83,15 @@ export class SecurityDetector {
     constructor(workspaceRoot: string) {
         this.workspaceRoot = workspaceRoot;
         this.smartScanner = new SmartSecurityScanner(workspaceRoot);
+        
+        // Combine global ignore patterns with security-specific patterns
+        // TODO: Custom patterns loaded async - need refactor to support them
         this.ignorePatterns = [
-            'node_modules/**',
-            'dist/**',
-            '.next/**',
-            'out/**',
-            'build/**',
-            '**/*.test.*',
-            '**/*.spec.*',
-            '**/*.example.*',
-            '**/*.mock.*',
-            '**/__tests__/**',
-            '**/__mocks__/**',
-            // Lock files (generated, not source code)
-            '**/package-lock.json',
-            '**/pnpm-lock.yaml',
-            '**/yarn.lock',
-            // Config files (often have long strings that aren't secrets)
-            '**/tsconfig*.json',
-            '**/jest.config.*',
-            '**/vite.config.*',
-            // Report & verification files (JSON outputs from tools)
-            '**/reports/**',
-            '**/verification-report.json',
-            '**/playwright_results*.json',
-            '**/*-observations.json',
-            '**/attestation/**',
-            '**/.odavl/**',
-            // Middleware & config files (HTTP headers contain "Security" keywords)
-            '**/middleware.ts',
-            '**/vercel.json',
-            '**/next.config.*',
+            ...GLOBAL_IGNORE_PATTERNS,
+            ...SECURITY_IGNORE_PATTERNS,
         ];
+        
+        console.log(`[SecurityDetector] Loaded ${this.ignorePatterns.length} ignore patterns`);
     }
 
     /**
@@ -140,7 +125,22 @@ export class SecurityDetector {
         const unsafeErrors = await this.detectUnsafePatterns(dir);
         errors.push(...unsafeErrors);
 
-        return errors;
+        // PHASE 1 FIX: Filter false positives by location
+        const filteredErrors = errors.filter(err => {
+            // Quick check for common false positive locations
+            if (isFalsePositiveByLocation(err.file)) {
+                console.log(`[SecurityDetector] Filtered false positive: ${err.file} (${err.type})`);
+                return false;
+            }
+            return true;
+        });
+
+        const removedCount = errors.length - filteredErrors.length;
+        if (removedCount > 0) {
+            console.log(`[SecurityDetector] Removed ${removedCount} false positives (${((removedCount / errors.length) * 100).toFixed(1)}%)`);
+        }
+
+        return filteredErrors;
     }
 
     /**
@@ -304,6 +304,11 @@ export class SecurityDetector {
                 if (stats.isDirectory()) {
                     continue;
                 }
+                
+                // WAVE 8 PHASE 1: Skip large files (>50MB)
+                if (stats.size > 50 * 1024 * 1024) {
+                    continue;
+                }
             } catch {
                 continue; // File doesn't exist or not accessible
             }
@@ -313,50 +318,24 @@ export class SecurityDetector {
                 continue;
             }
 
-            // Read file with direct try-catch (tsup MUST keep this!)
-            let content: string;
-            try {
-                // Check if directory first
-                const fileStats = fs.statSync(file);
-                if (fileStats.isDirectory()) {
-                    continue; // Skip directories
-                }
-                // Read file content
-                content = fs.readFileSync(file, 'utf8');
-            } catch (readError: any) {
-                // Handle EISDIR, EACCES, ENOENT errors
-                if (readError.code === 'EISDIR' || readError.code === 'EACCES' || readError.code === 'ENOENT') {
-                    continue; // Skip files we can't read
-                }
-                throw readError; // Re-throw unexpected errors
+            // Read file with safeReadFile utility
+            const content = safeReadFile(file);
+            if (!content) {
+                continue; // Skip directories/unreadable files
             }
-            
-            const lines = content.split('\n');
 
+            // Check each secret pattern
             for (const pattern of secretPatterns) {
-                for (let index = 0; index < lines.length; index++) {
-                    const line = lines[index];
-
-                    // Skip comments
-                    if (line.trim().startsWith('//') || line.trim().startsWith('#') || line.trim().startsWith('*')) {
-                        continue;
-                    }
-
-                    const matches = line.matchAll(pattern.regex);
+                const matches = content.match(pattern.regex);
+                if (matches) {
                     for (const match of matches) {
-                        // Exclude common false positives
-                        if (this.isLikelyFalsePositive(match[0])) {
-                            continue;
-                        }
-
+                        const lineNum = this.getLineNumber(content, content.indexOf(match));
                         errors.push({
-                            file: path.relative(this.workspaceRoot, file),
-                            line: index + 1,
-                            column: match.index,
+                            file,
+                            line: lineNum,
                             type: pattern.type,
                             severity: pattern.severity,
-                            message: `${pattern.name} detected: ${match[0].substring(0, 30)}...`,
-                            suggestedFix: 'Move sensitive data to environment variables (.env) and use process.env',
+                            message: `${pattern.name} exposed in code`,
                         });
                     }
                 }
@@ -386,15 +365,10 @@ export class SecurityDetector {
                 if (stats.isDirectory()) continue;
             } catch { continue; }
             
-            // Read file with direct try-catch
-            let content: string;
-            try {
-                const fileStats = fs.statSync(file);
-                if (fileStats.isDirectory()) continue;
-                content = fs.readFileSync(file, 'utf8');
-            } catch (readError: any) {
-                if (readError.code === 'EISDIR' || readError.code === 'EACCES' || readError.code === 'ENOENT') continue;
-                throw readError;
+            // Read file with safeReadFile utility
+            const content = safeReadFile(file);
+            if (!content) {
+                continue; // Skip directories/unreadable files
             }
             
             const lines = content.split('\n');
@@ -479,15 +453,10 @@ export class SecurityDetector {
                 if (stats.isDirectory()) continue;
             } catch { continue; }
             
-            // Read file with direct try-catch
-            let content: string;
-            try {
-                const fileStats = fs.statSync(file);
-                if (fileStats.isDirectory()) continue;
-                content = fs.readFileSync(file, 'utf8');
-            } catch (readError: any) {
-                if (readError.code === 'EISDIR' || readError.code === 'EACCES' || readError.code === 'ENOENT') continue;
-                throw readError;
+            // Read file with safeReadFile utility
+            const content = safeReadFile(file);
+            if (!content) {
+                continue; // Skip directories/unreadable files
             }
             
             const lines = content.split('\n');
@@ -556,15 +525,10 @@ export class SecurityDetector {
                 if (stats.isDirectory()) continue;
             } catch { continue; }
             
-            // Read file with direct try-catch
-            let content: string;
-            try {
-                const fileStats = fs.statSync(file);
-                if (fileStats.isDirectory()) continue;
-                content = fs.readFileSync(file, 'utf8');
-            } catch (readError: any) {
-                if (readError.code === 'EISDIR' || readError.code === 'EACCES' || readError.code === 'ENOENT') continue;
-                throw readError;
+            // Read file with safeReadFile utility
+            const content = safeReadFile(file);
+            if (!content) {
+                continue; // Skip directories/unreadable files
             }
             
             const lines = content.split('\n');
@@ -752,5 +716,12 @@ export class SecurityDetector {
         }
 
         return stats;
+    }
+
+    /**
+     * Helper: Get line number from string index
+     */
+    private getLineNumber(content: string, index: number): number {
+        return content.slice(0, index).split('\n').length;
     }
 }

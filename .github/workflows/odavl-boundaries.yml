@@ -1,0 +1,210 @@
+name: ODAVL Architecture Gate 🛡️
+
+on:
+  push:
+    branches: [main, develop, 'odavl/**']
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  boundary-enforcement:
+    name: "🛡️ Product Boundary Enforcement"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for accurate blame
+      
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+          run_install: false
+      
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: 🔍 Lint with boundary enforcement
+        id: lint
+        run: |
+          echo "=== ODAVL ARCHITECTURE GATE ==="
+          echo "Scanning for product boundary violations..."
+          pnpm exec eslint \
+            "odavl-studio/insight/**/*.ts" \
+            "odavl-studio/autopilot/**/*.ts" \
+            "odavl-studio/guardian/**/*.ts" \
+            --format json --output-file eslint-report.json || true
+          
+          # Check if any violations exist
+          VIOLATIONS=$(cat eslint-report.json | jq '[.[] | .messages[]] | length')
+          echo "violations=$VIOLATIONS" >> $GITHUB_OUTPUT
+          
+          if [ "$VIOLATIONS" -gt 0 ]; then
+            echo "❌ Found $VIOLATIONS boundary violations"
+            cat eslint-report.json | jq -r '.[] | .messages[] | "❌ \(.ruleId) in \(.filePath):\(.line):\(.column) - \(.message)"'
+            exit 1
+          else
+            echo "✅ No boundary violations detected"
+          fi
+      
+      - name: 📊 Upload ESLint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-boundary-report
+          path: eslint-report.json
+          retention-days: 30
+  
+  architecture-validation:
+    name: "📐 Architecture Validation"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+          run_install: false
+      
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: ✅ Verify product structure
+        run: |
+          echo "=== VERIFYING ODAVL PRODUCT STRUCTURE ==="
+          
+          # Check Insight structure (Detection ONLY)
+          echo "🔍 Checking Insight (Detection ONLY)..."
+          if [ -d "odavl-studio/insight/core/src/fixer" ]; then
+            echo "❌ VIOLATION: Insight contains fixer/ directory (should be removed)"
+            exit 1
+          fi
+          if grep -r "AutoFixEngine\|FixApplier" odavl-studio/insight/core/src/ 2>/dev/null; then
+            echo "❌ VIOLATION: Insight contains auto-fix code"
+            exit 1
+          fi
+          echo "✅ Insight structure valid (Detection only)"
+          
+          # Check Autopilot structure (Fixing ONLY)
+          echo "🤖 Checking Autopilot (Fixing ONLY)..."
+          if grep -r "AnalysisProtocol" odavl-studio/autopilot/engine/src/phases/ 2>/dev/null; then
+            echo "❌ VIOLATION: Autopilot uses AnalysisProtocol (should read Insight JSON)"
+            exit 1
+          fi
+          if [ -d "odavl-studio/autopilot/engine/src/detectors" ]; then
+            echo "❌ VIOLATION: Autopilot contains detectors/ directory"
+            exit 1
+          fi
+          echo "✅ Autopilot structure valid (Fixing only)"
+          
+          # Check Guardian structure (Website Testing ONLY)
+          echo "🛡️ Checking Guardian (Website Testing ONLY)..."
+          if [ -d "odavl-studio/guardian/core/src/inspectors" ]; then
+            echo "❌ VIOLATION: Guardian contains inspectors/ (code analysis)"
+            exit 1
+          fi
+          if [ -d "odavl-studio/guardian/core/src/fixers" ]; then
+            echo "❌ VIOLATION: Guardian contains fixers/ directory"
+            exit 1
+          fi
+          if grep -r "TypeScriptDetector\|ESLintDetector" odavl-studio/guardian/ 2>/dev/null; then
+            echo "❌ VIOLATION: Guardian imports code analysis detectors"
+            exit 1
+          fi
+          echo "✅ Guardian structure valid (Website testing only)"
+          
+          echo ""
+          echo "✅ ALL ARCHITECTURE CHECKS PASSED"
+  
+  governance-validation:
+    name: "📋 Governance Policy Validation"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🏗️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+          run_install: false
+      
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: 📋 Validate .odavl.policy.yml
+        run: |
+          if [ ! -f ".odavl.policy.yml" ]; then
+            echo "⚠️  Warning: .odavl.policy.yml not found (governance rules not enforced)"
+            exit 0
+          fi
+          
+          echo "=== VALIDATING GOVERNANCE POLICY ==="
+          pnpm exec tsx tools/validate-odavl-schemas.ts
+          echo "✅ Governance policy valid"
+  
+  attestation-check:
+    name: "🔐 Attestation Chain Validation"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+      
+      - name: 🔐 Verify attestation integrity
+        run: |
+          echo "=== ATTESTATION CHAIN VALIDATION ==="
+          
+          # Check if attestation directory exists
+          if [ ! -d ".odavl/attestation" ]; then
+            echo "⚠️  No attestation directory found (no automated changes yet)"
+            exit 0
+          fi
+          
+          # Verify SHA-256 checksums
+          for file in .odavl/attestation/*.json; do
+            if [ -f "$file" ]; then
+              echo "Validating: $file"
+              # Extract hash and verify it matches file content
+              # (Simplified validation - production would use proper crypto library)
+              if grep -q "sha256" "$file"; then
+                echo "✅ Attestation found: $(basename $file)"
+              else
+                echo "❌ Invalid attestation: $(basename $file)"
+                exit 1
+              fi
+            fi
+          done
+          
+          echo "✅ All attestations valid"

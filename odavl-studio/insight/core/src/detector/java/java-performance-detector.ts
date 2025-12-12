@@ -1,4 +1,4 @@
-import { Detector } from '../base-detector.js';
+// import { Detector } from '../base-detector.js'; // TODO: Create base detector
 import { JavaParser } from '../../parsers/java-parser.js';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
@@ -28,7 +28,7 @@ export interface JavaIssue {
  * Target performance: < 100ms per file
  * Target accuracy: 95%+
  */
-export class JavaPerformanceDetector implements Detector {
+export class JavaPerformanceDetector {
   name = 'java-performance';
   language = 'java';
   private parser: JavaParser;
@@ -140,7 +140,7 @@ export class JavaPerformanceDetector implements Detector {
     const boxedForLoopRegex =
       /for\s*\(\s*(Integer|Double|Long|Float|Boolean|Character|Byte|Short)\s+(\w+)\s*=\s*[^;]+;\s*[^;]+;\s*[^)]+\)/g;
 
-    let match;
+    let match: RegExpExecArray | null;
     while ((match = boxedForLoopRegex.exec(code)) !== null) {
       const wrapperType = match[1];
       const varName = match[2];
@@ -243,7 +243,7 @@ export class JavaPerformanceDetector implements Detector {
         if (lastLoopIndex === -1) return false;
 
         // Check if there's a closing brace after the loop but before this line
-        const codeAfterLoop = code.substring(lastLoopIndex, match.index);
+        const codeAfterLoop = code.substring(lastLoopIndex, match!.index);
         const openBraces = (codeAfterLoop.match(/{/g) || []).length;
         const closeBraces = (codeAfterLoop.match(/}/g) || []).length;
         return openBraces > closeBraces; // Still inside loop

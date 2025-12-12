@@ -1,3 +1,5 @@
+export { AccessibilitySuite, ApprovalCondition, AutopilotConfiguration, BaselineMode, BaselinePolicy, BaselineUpdatePolicy, BrainConfiguration, ConfidenceThresholds, ConflictResolution, Criticality, DecisionPolicy, DependencyRules, DetectorCapability, E2ESuite, Environment, FalsePositiveRule, FileTaxonomy, FileTaxonomyOverrides, GuardianConfiguration, GuardianSuites, GuardianThresholds, InsightConfiguration, LearningMode, LighthouseThresholds, ManifestValidationError, MemoryConfiguration, ODAVLManifest, Overrides, PerformanceSuite, ProductOverrides, ProjectMetadata, RecipeSelection, RecipeSelectionStrategy, RiskBudget, RiskProfile, SecuritySuite, Severity, TestsConfiguration, TrustConfiguration, VisualSuite, WCAGLevel, WebVitalsThresholds, clearManifestCache, getManifestPath, getSchemaPath, getWorkspaceRoot, loadManifest, loadManifestSync, manifest } from './manifest/index.cjs';
+
 /**
  * Enhanced Error Messages Utility
  * Provides clear, actionable error messages with solutions
@@ -266,6 +268,24 @@ declare const ODAVLHelp: {
 };
 
 /**
+ * ODAVL Studio Feature Flags
+ * Controls availability of incomplete/experimental features
+ */
+declare const FEATURES: {
+    /** CVE Scanner - Not yet implemented (stub only) */
+    readonly CVE_SCANNER: false;
+    /** Brain ML Coordination - All functions are stubs */
+    readonly BRAIN_ML_ENABLED: false;
+    /** OMS Risk Scoring - Package missing */
+    readonly OMS_RISK_SCORING: false;
+    /** Python Detection - Experimental (mypy/bandit/radon) */
+    readonly PYTHON_DETECTION: false;
+    /** Next.js Detector - Not implemented */
+    readonly NEXTJS_DETECTOR: false;
+};
+type FeatureFlag = keyof typeof FEATURES;
+
+/**
  * ODAVL Studio Core Utilities
  */
 
@@ -280,4 +300,4 @@ declare const ODAVL_API_URL: string;
 declare function formatDate(date: Date): string;
 declare function generateId(): string;
 
-export { CLIHelp, type CommandInfo, EnhancedError, type ErrorContext, ErrorMessages, MultiProgress, ODAVLHelp, ODAVL_API_URL, ODAVL_VERSION, Progress, ProgressHelpers, type ProgressOptions, Spinner, displayError, displayInfo, displaySuccess, displayWarning, formatDate, generateId };
+export { CLIHelp, type CommandInfo, EnhancedError, type ErrorContext, ErrorMessages, FEATURES, type FeatureFlag, MultiProgress, ODAVLHelp, ODAVL_API_URL, ODAVL_VERSION, Progress, ProgressHelpers, type ProgressOptions, Spinner, displayError, displayInfo, displaySuccess, displayWarning, formatDate, generateId };

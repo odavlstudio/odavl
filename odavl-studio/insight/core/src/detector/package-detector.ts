@@ -6,6 +6,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { execSync } from 'node:child_process';
+import { safeReadFile } from '../utils/safe-file-reader.js';
 
 export interface PackageError {
     type: 'missing-dependency' | 'version-mismatch' | 'peer-conflict' | 'invalid-json' | 'unused-dependency';
@@ -82,8 +83,19 @@ export class PackageDetector {
 
         // 1. Check JSON syntax validity
         let pkgJson: Record<string, unknown>;
+        const content = safeReadFile(pkgPath);
+        if (!content) {
+            errors.push({
+                type: 'invalid-json',
+                file: pkgPath,
+                severity: 'error',
+                rootCause: 'Cannot read package.json file (directory or unreadable)',
+                suggestedFix: 'Check file permissions and verify it is not a directory'
+            });
+            return errors;
+        }
+        
         try {
-            const content = fs.readFileSync(pkgPath, 'utf8');
             pkgJson = JSON.parse(content);
         } catch (err) {
             errors.push({

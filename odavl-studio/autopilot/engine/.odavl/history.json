@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-12-10T19:42:33.584Z",
+    "recipeId": "noop",
+    "success": false,
+    "improvement": {
+      "eslint": 0,
+      "typescript": 0,
+      "total": 0
+    }
+  }
+]

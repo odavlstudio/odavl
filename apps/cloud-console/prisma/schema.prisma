@@ -1,0 +1,497 @@
+// This is your Prisma schema file for ODAVL Cloud Console
+// Batch 3: Database Integration - Production SaaS Backend
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// Authentication & User Management
+// ============================================================================
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
+  memberships    OrganizationMember[]
+  apiKeys        ApiKey[]
+  usageEvents    UsageEvent[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================================================
+// Organizations & Multi-Tenancy
+// ============================================================================
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  tier      Tier     @default(FREE)
+  status    OrgStatus @default(ACTIVE)
+  
+  // Stripe Integration
+  stripeCustomerId     String?  @unique
+  stripeSubscriptionId String?  @unique
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  members       OrganizationMember[]
+  projects      Project[]
+  subscriptions Subscription[]
+  usageEvents   UsageEvent[]
+
+  @@index([slug])
+  @@index([tier])
+  @@index([stripeCustomerId])
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String
+  role           OrgRole  @default(VIEWER)
+  createdAt      DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([userId])
+  @@map("organization_members")
+}
+
+enum Tier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum OrgStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum OrgRole {
+  OWNER      // Full control: billing, delete org, manage members
+  ADMIN      // Manage projects, invite members, view billing
+  DEVELOPER  // Create/edit projects, run analyses/fixes
+  VIEWER     // Read-only access to projects and results
+}
+
+// ============================================================================
+// Projects & Code Analysis
+// ============================================================================
+
+model Project {
+  id             String   @id @default(cuid())
+  name           String
+  slug           String
+  organizationId String
+  repository     String?
+  branch         String?  @default("main")
+  language       String   @default("typescript")
+  status         ProjectStatus @default(ACTIVE)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organization   Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  // Relations
+  errorSignatures ErrorSignature[]
+  fixAttestations FixAttestation[]
+  autopilotRuns   AutopilotRun[]
+  auditResults    AuditResult[]
+
+  @@unique([organizationId, slug])
+  @@index([organizationId])
+  @@index([status])
+  @@map("projects")
+}
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+// ============================================================================
+// Insight: Error Detection & Analysis
+// ============================================================================
+
+model ErrorSignature {
+  id        String   @id @default(cuid())
+  projectId String
+  detector  String   // typescript, eslint, security, etc.
+  severity  Severity
+  message   String   @db.Text
+  file      String
+  line      Int
+  column    Int?
+  code      String?  @db.Text
+  suggestion String? @db.Text
+  hash      String   @unique // SHA-256 hash of error signature for deduplication
+  count     Int      @default(1) // Number of occurrences
+  firstSeen DateTime @default(now())
+  lastSeen  DateTime @default(now())
+  resolved  Boolean  @default(false)
+  resolvedAt DateTime?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([hash])
+  @@index([detector])
+  @@index([severity])
+  @@index([resolved])
+  @@map("error_signatures")
+}
+
+enum Severity {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+  INFO
+}
+
+// ============================================================================
+// Autopilot: Self-Healing & Fix Attestations
+// ============================================================================
+
+model FixAttestation {
+  id           String   @id @default(cuid())
+  projectId    String
+  requestId    String   @unique
+  hash         String   // SHA-256 attestation hash
+  filesChanged Int
+  linesAdded   Int
+  linesRemoved Int
+  riskScore    Int
+  undoSnapshot String?  @db.Text // Path to undo snapshot JSON
+  recipes      String[] // Recipe IDs used
+  status       FixStatus
+  error        String?  @db.Text
+  createdAt    DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([requestId])
+  @@index([hash])
+  @@index([status])
+  @@map("fix_attestations")
+}
+
+enum FixStatus {
+  SUCCESS
+  PARTIAL
+  FAILED
+}
+
+model AutopilotRun {
+  id             String   @id @default(cuid())
+  projectId      String
+  requestId      String   @unique
+  status         FixStatus
+  issuesFixed    Int      @default(0)
+  filesModified  Int      @default(0)
+  locChanged     Int      @default(0)
+  recipes        String[] // Recipe IDs used
+  undoSnapshot   String?  @db.Text // Path to undo snapshot
+  attestation    String?  // SHA-256 hash
+  duration       Int?     // milliseconds
+  error          String?  @db.Text
+  createdAt      DateTime @default(now())
+  
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  @@index([projectId])
+  @@index([requestId])
+  @@index([status])
+  @@map("autopilot_runs")
+}
+
+// ============================================================================
+// Guardian: Website Testing & Quality Gates
+// ============================================================================
+
+model AuditResult {
+  id          String   @id @default(cuid())
+  projectId   String
+  requestId   String   @unique
+  url         String
+  environment String   // development, staging, production
+  device      String   // desktop, mobile, tablet
+  
+  // Scores
+  scoreAccessibility Int?
+  scorePerformance   Int?
+  scoreSecurity      Int?
+  scoreSeo           Int?
+  
+  // Lighthouse metrics
+  lighthousePerformance    Int?
+  lighthouseAccessibility  Int?
+  lighthouseBestPractices  Int?
+  lighthouseSeo            Int?
+  
+  // Summary
+  totalIssues    Int
+  criticalIssues Int
+  highIssues     Int
+  mediumIssues   Int
+  lowIssues      Int
+  
+  status      AuditStatus
+  duration    Int  // milliseconds
+  screenshot  String? @db.Text // Base64 or URL
+  createdAt   DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  issues  AuditIssue[]
+
+  @@index([projectId])
+  @@index([requestId])
+  @@index([status])
+  @@map("audit_results")
+}
+
+model AuditIssue {
+  id           String   @id @default(cuid())
+  auditResultId String
+  suite        String   // accessibility, performance, security, seo
+  severity     Severity
+  message      String   @db.Text
+  element      String?
+  recommendation String @db.Text
+  documentation  String?
+  createdAt    DateTime @default(now())
+
+  auditResult AuditResult @relation(fields: [auditResultId], references: [id], onDelete: Cascade)
+
+  @@index([auditResultId])
+  @@index([suite])
+  @@index([severity])
+  @@map("audit_issues")
+}
+
+enum AuditStatus {
+  SUCCESS
+  PARTIAL
+  FAILED
+}
+
+// ============================================================================
+// Billing & Subscriptions (Stripe Integration)
+// ============================================================================
+
+model Subscription {
+  id               String   @id @default(cuid())
+  organizationId   String   @unique
+  stripeCustomerId String?  @unique
+  stripePriceId    String?
+  stripeSubscriptionId String? @unique
+  status           SubscriptionStatus @default(ACTIVE)
+  
+  // Usage limits
+  maxProjects      Int      @default(3)
+  maxAnalysesMonth Int      @default(100)
+  maxFixesMonth    Int      @default(50)
+  maxAuditsMonth   Int      @default(20)
+  
+  // Current usage (reset monthly)
+  usedAnalyses     Int      @default(0)
+  usedFixes        Int      @default(0)
+  usedAudits       Int      @default(0)
+  
+  // Billing period
+  currentPeriodStart DateTime @default(now())
+  currentPeriodEnd   DateTime
+  
+  cancelAt       DateTime?
+  canceledAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([stripeCustomerId])
+  @@index([status])
+  @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  TRIALING
+}
+
+// ============================================================================
+// Usage Tracking & Analytics
+// ============================================================================
+
+model UsageEvent {
+  id             String   @id @default(cuid())
+  userId         String
+  organizationId String
+  eventType      String   // insight_analysis, guardian_test_run, autopilot_job, api_call
+  endpoint       String?  // /api/analyze, /api/fix, /api/audit
+  requestId      String?  @unique
+  duration       Int?     // milliseconds
+  
+  // Resource usage
+  filesAnalyzed  Int?
+  linesAnalyzed  Int?
+  filesModified  Int?
+  testsRun       Int?
+  
+  // Generic metadata for flexible tracking
+  metadata       Json?
+  
+  status         Int?     // HTTP status code
+  error          String?  @db.Text
+  timestamp      DateTime @default(now())
+  createdAt      DateTime @default(now())
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([eventType])
+  @@index([endpoint])
+  @@index([timestamp])
+  @@index([createdAt])
+  @@map("usage_events")
+}
+
+// ============================================================================
+// API Keys & Access Control
+// ============================================================================
+
+model ApiKey {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  keyHash     String   @unique // SHA-256 hash of API key
+  keyPrefix   String   // First 8 chars for identification
+  scopes      String[] // read:analyze, write:fix, read:audit
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  createdAt   DateTime @default(now())
+  revokedAt   DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([keyHash])
+  @@index([keyPrefix])
+  @@map("api_keys")
+}
+
+// ============================================================================
+// Telemetry & Analytics (Insight Product)
+// ============================================================================
+
+model TelemetryEvent {
+  id            String   @id @default(cuid())
+  type          String   // insight.analysis_started, insight.cli_login, etc.
+  userId        String   // Hashed email (anonymous)
+  sessionId     String?
+  planId        String   // INSIGHT_FREE, INSIGHT_PRO, etc.
+  isTrial       Boolean  @default(false)
+  source        String   // cli, cloud, vscode
+  properties    Json     // Event-specific properties (analysis counts, durations, etc.)
+  timestamp     DateTime @default(now())
+  createdAt     DateTime @default(now())
+  
+  @@index([type])
+  @@index([userId])
+  @@index([timestamp])
+  @@index([planId])
+  @@index([source])
+  @@index([createdAt])
+  @@map("telemetry_events")
+}
+
+// Aggregated metrics for fast dashboard queries
+model TelemetryMetric {
+  id        String   @id @default(cuid())
+  date      DateTime // Date bucket (day/week/month)
+  metric    String   // active_users, total_analyses, issues_found, etc.
+  value     Int      // Aggregated count
+  planId    String?  // Optional plan filter
+  source    String?  // Optional source filter (cli/cloud/vscode)
+  metadata  Json?    // Additional metadata (breakdowns, etc.)
+  createdAt DateTime @default(now())
+  
+  @@unique([date, metric, planId, source])
+  @@index([date])
+  @@index([metric])
+  @@index([planId])
+  @@map("telemetry_metrics")
+}

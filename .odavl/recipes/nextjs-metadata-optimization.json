@@ -1,0 +1,21 @@
+{
+  "id": "nextjs-metadata-optimization",
+  "name": "Next.js Metadata API Optimization",
+  "description": "Migrate to Next.js 15 Metadata API for better SEO",
+  "trust": 0.85,
+  "category": "nextjs",
+  "targetFiles": [
+    "**/layout.tsx",
+    "**/page.tsx"
+  ],
+  "pattern": {
+    "detect": "export const metadata",
+    "replace": "generateMetadata"
+  },
+  "command": "pnpm exec tsx scripts/autopilot/recipes/nextjs-metadata.ts",
+  "impact": {
+    "filesAffected": 3,
+    "locChanged": 15,
+    "complexity": 2
+  }
+}

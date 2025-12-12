@@ -1,0 +1,50 @@
+name: Deploy ODAVL Cloud Platform
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cloud/**'
+      - '.github/workflows/deploy-cloud.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build cloud packages
+        run: |
+          cd cloud/infra/api-gateway && pnpm build
+          cd ../../services/telemetry-proxy && pnpm build
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build Docker image
+        run: |
+          cd cloud/deploy/docker
+          docker build -f Dockerfile.gateway -t odavl-gateway:${{ github.sha }} ../../..
+
+      - name: Deploy to cloud
+        run: |
+          echo "Deployment stub - configure cloud provider (AWS/Azure/GCP)"
+          echo "Image: odavl-gateway:${{ github.sha }}"
+
+      - name: Smoke test
+        run: |
+          echo "Smoke tests stub - verify deployment health"

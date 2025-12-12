@@ -11,6 +11,12 @@ export * from './enhanced-errors.js';
 export * from './progress.js';
 export * from './cli-help.js';
 
+// Export feature flags
+export * from './feature-flags.js';
+
+// Export ODAVL Manifest (OMS v1.0) loader
+export * from './manifest/index.js';
+
 /**
  * Shared constants
  */
