@@ -52,15 +52,16 @@ export interface TelemetryConfig {
   /** Log events locally (for debugging) */
   logLocally?: boolean;
   
-  /** Workspace root (for local logging) */
-  workspaceRoot?: string;
+  // Phase 1.2: workspaceRoot REMOVED (privacy violation - exposes usernames/company names)
+  // Local logging now uses current working directory if needed
 }
 
 /**
  * Default configuration
+ * Phase 1.2: Telemetry OFF by default (opt-in)
  */
 const DEFAULT_CONFIG: Partial<TelemetryConfig> = {
-  enabled: true,
+  enabled: false, // Phase 1.2: Must be opt-in (GDPR compliance)
   batchSize: 10,
   flushIntervalMs: 60000, // 1 minute
   logLocally: true,
@@ -79,9 +80,11 @@ export class InsightTelemetryClient {
   constructor(config: Partial<TelemetryConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config } as TelemetryConfig;
     
-    // Initialize logger for local event storage
-    if (this.config.logLocally && this.config.workspaceRoot) {
-      this.logger = new Logger(this.config.workspaceRoot);
+    // Phase 1.2: Local logging removed (workspaceRoot was privacy violation)
+    // If local debugging needed, use console or VS Code output channel
+    if (this.config.logLocally) {
+      // Logger now uses process.cwd() internally (not workspace-specific)
+      this.logger = new Logger();
       this.eventEmitter = new EventEmitter();
     }
     
@@ -92,9 +95,12 @@ export class InsightTelemetryClient {
   }
   
   /**
-   * Hash email to anonymous user ID
+   * @deprecated Phase 1.2: REMOVED - Hashed emails still violate GDPR (linkable PII)
+   * Use random sessionId instead for anonymous tracking
+   * This method will be removed in v3.0.0
    */
   static hashUserId(email: string): string {
+    console.warn('[ODAVL Telemetry] hashUserId() is deprecated and violates GDPR. Use sessionId instead.');
     return createHash('sha256').update(email).digest('hex').substring(0, 16);
   }
   

@@ -46,7 +46,7 @@
   "packageManager": "pnpm@9.12.2",
   "scripts": {
     "odavl": "pnpm exec tsx odavl-studio/autopilot/engine/src/index.ts",
-    "prepare": "husky || true",
+    "prepare": "pnpm dlx husky install || node -e \"process.exit(0)\"",
     "build": "pnpm -r build",
     "build:prod": "tsx scripts/build/build-all.ts",
     "deploy:prod": "vercel deploy --prod",

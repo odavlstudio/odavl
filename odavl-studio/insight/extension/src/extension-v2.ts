@@ -20,18 +20,83 @@
  * - ui/ - UI components (status bar, panels)
  * 
  * Performance: <200ms activation (lazy loading)
+ * 
+ * **Phase 4.1.1 - VS Code UX P0 fixes (wave 1):**
+ * - Remove notification spam for normal analyses (use status bar + Problems Panel instead)
+ * - Remove blocking upsell modal for FREE users (allow analysis to proceed)
+ * - Remove blocking welcome/auth modal on first run (non-blocking local-first experience)
+ * This wave focuses ONLY on notifications and blocking modals.
  */
 
 import * as vscode from 'vscode';
-import { AuthManager } from './auth/auth-manager';
-import { createInsightClient, type InsightCloudClient } from '@odavl-studio/sdk/insight-cloud';
-import { AnalysisService } from './services/analysis-service';
+import { InsightError } from './core/errors';
+import { ExtensionContextContainer } from './extension-context';
 
-// Extension state
-let authManager: AuthManager;
-let cloudClient: InsightCloudClient;
-let analysisService: AnalysisService;
-let outputChannel: vscode.OutputChannel;
+// Extension state (DI container)
+let extensionContainer: ExtensionContextContainer;
+
+/**
+ * Get license manager instance
+ * Phase 1.1 Cleanup: Re-export for compatibility with detectors-provider
+ */
+export function getLicenseManager() {
+  if (!extensionContainer) {
+    throw new Error('Extension not initialized. Extension may not be activated.');
+  }
+  return extensionContainer.getLicenseManager();
+}
+
+/**
+ * Get extension container (for testing)
+ */
+export function getExtensionContainer(): ExtensionContextContainer | undefined {
+  return extensionContainer;
+}
+
+/**
+ * Phase 1.2: Check telemetry consent on first activation
+ * 
+ * Respects VS Code global telemetry setting and shows consent prompt.
+ * Only prompts once - stores decision in extension configuration.
+ */
+async function checkTelemetryConsent(context: vscode.ExtensionContext): Promise<void> {
+  // Check if VS Code telemetry is disabled globally
+  const vscTelemetryLevel = vscode.env.telemetryLevel;
+  if (vscTelemetryLevel === vscode.TelemetryLevel.Off) {
+    // Respect global preference - don't even ask
+    const config = vscode.workspace.getConfiguration('odavl.insight');
+    await config.update('telemetry.enabled', false, vscode.ConfigurationTarget.Global);
+    return;
+  }
+  
+  // Check if we've already asked
+  const hasAsked = context.globalState.get<boolean>('telemetry.consentAsked', false);
+  if (hasAsked) {
+    return; // User already made a choice
+  }
+  
+  // Show consent prompt
+  const answer = await vscode.window.showInformationMessage(
+    '📊 Help improve ODAVL Insight by sending anonymous usage data?\n\n' +
+    'We collect anonymous usage statistics to improve the extension. ' +
+    'No personal information, workspace paths, or code is ever sent.',
+    { modal: false },
+    'Enable',
+    'Disable'
+  );
+  
+  // Store decision
+  const enabled = answer === 'Enable';
+  const config = vscode.workspace.getConfiguration('odavl.insight');
+  await config.update('telemetry.enabled', enabled, vscode.ConfigurationTarget.Global);
+  await context.globalState.update('telemetry.consentAsked', true);
+  
+  if (enabled) {
+    vscode.window.showInformationMessage('✅ Thank you for helping improve ODAVL!');
+  } else {
+    vscode.window.showInformationMessage('Telemetry disabled. You can change this in settings.');
+  }
+}
 
 /**
  * Extension activation
@@ -49,71 +114,50 @@ export async function activate(context: vscode.ExtensionContext) {
 
   try {
     console.log('ODAVL Insight v2: Activating...');
-
-    // Create output channel
-    outputChannel = vscode.window.createOutputChannel('ODAVL Insight');
-    context.subscriptions.push(outputChannel);
     
-    // Step 1: Initialize auth manager
-    authManager = new AuthManager(context);
-    context.subscriptions.push(authManager);
+    // Phase 1.2: Telemetry consent prompt (first activation only)
+    await checkTelemetryConsent(context);
     
-    // Step 2: Initialize cloud client (unauthenticated initially)
-    cloudClient = createInsightClient();
+    // Initialize extension with DI container
+    extensionContainer = await ExtensionContextContainer.create({ context });
     
-    // Step 3: Restore auth state (async, non-blocking)
-    const authStatePromise = authManager.initialize();
-    
-    // Step 4: Register all commands immediately (lightweight)
+    // Register all commands
     registerCommands(context);
     
-    // Step 5: Wait for auth state and initialize analysis service
-    const authState = await authStatePromise;
-    
-    // Update cloud client with auth token
-    if (authState.isAuthenticated) {
-      const accessToken = await authManager.getAccessToken();
-      cloudClient.setAccessToken(accessToken);
-    }
-    
-    // Initialize analysis service
-    analysisService = new AnalysisService(context, cloudClient, authState);
-    context.subscriptions.push(analysisService);
-    
-    // Step 6: Listen for auth changes
-    authManager.onAuthChange(async (newAuthState) => {
-      // Update cloud client token
-      const accessToken = await authManager.getAccessToken();
-      cloudClient.setAccessToken(accessToken);
-      
-      // Update analysis service auth state
-      analysisService.updateAuthState(newAuthState);
-      
-      outputChannel.appendLine(
-        `Auth state changed: ${newAuthState.isAuthenticated ? 'Signed in' : 'Signed out'} (${newAuthState.planId})`
-      );
-    });
-    
-    // Step 7: Show welcome message for new users
+    // Phase 4.1.1 - Removed blocking welcome modal
+    // First-run experience is now non-blocking: local analysis works immediately
+    const authState = await extensionContainer.authManager.getAuthState();
     const hasSeenWelcome = context.globalState.get('odavl.hasSeenWelcome', false);
     if (!hasSeenWelcome && !authState.isAuthenticated) {
-      showWelcomeMessage(context);
+      // Show passive hint in output channel only (no modal)
+      extensionContainer.outputChannel.appendLine('Welcome to ODAVL Insight! Local analysis is ready.');
+      extensionContainer.outputChannel.appendLine('Tip: Sign in via Command Palette (ODAVL: Sign In) for cloud features (optional)');
+      context.globalState.update('odavl.hasSeenWelcome', true);
     }
 
     const activationTime = Date.now() - startTime;
     console.log(`ODAVL Insight v2: Activated in ${activationTime}ms`);
-    outputChannel.appendLine(`Extension activated in ${activationTime}ms`);
+    extensionContainer.outputChannel.appendLine(`Extension activated in ${activationTime}ms`);
   } catch (error) {
-    const errorMsg = error instanceof Error ? error.message : String(error);
     console.error('ODAVL Insight v2: Activation failed', error);
-    vscode.window.showErrorMessage(
-      `ODAVL Insight: Failed to activate extension. ${errorMsg}`,
-      'View Logs'
-    ).then(selection => {
-      if (selection === 'View Logs') {
-        outputChannel.show();
-      }
-    });
+    
+    // Phase 4.1.5: Attribute activation errors
+    const insightError = InsightError.isInsightError(error)
+      ? error
+      : new InsightError('INSIGHT', 'Extension activation failed', {
+          cause: error instanceof Error ? error : undefined
+        });
+    
+    if (extensionContainer?.errorPresenter) {
+      await extensionContainer.errorPresenter.present(insightError, 'Extension Activation');
+    } else {
+      // Fallback if error presenter not initialized
+      vscode.window.showErrorMessage(
+        `ODAVL Insight: ${insightError.message}`,
+        'View Logs'
+      );
+    }
+    
     throw error;
   }
 }
@@ -125,34 +169,40 @@ function registerCommands(context: vscode.ExtensionContext) {
   // Auth commands
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.signIn', async () => {
-      await authManager.signIn();
+      await extensionContainer.authManager.signIn();
     })
   );
   
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.signOut', async () => {
-      await authManager.signOut();
+      await extensionContainer.authManager.signOut();
     })
   );
   
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.showAccountMenu', async () => {
-      await authManager.showAccountMenu();
+      await extensionContainer.authManager.showAccountMenu();
     })
   );
 
   // Analysis commands
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.analyzeWorkspaceLocal', async () => {
-      outputChannel.appendLine('Starting local analysis...');
-      const issues = await analysisService.analyzeWorkspace({ mode: 'local' });
-      vscode.window.showInformationMessage(`Local analysis: ${issues.length} issues found`);
+      // Phase 4.1.6: Use unified entry point with state machine
+      const issues = await extensionContainer.analysisService.runFullAnalysis({ 
+        mode: 'local',
+        trigger: 'command'
+      });
+      if (issues.length > 0) {
+        extensionContainer.outputChannel.appendLine(`Local analysis complete: ${issues.length} issues found`);
+      }
+      // Phase 4.1.1: No toast notification - use status bar + Problems Panel for feedback
     })
   );
   
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.analyzeWorkspaceCloud', async () => {
-      const authState = await authManager.getAuthState();
+      const authState = await extensionContainer.authManager.getAuthState();
       
       if (!authState.isAuthenticated) {
         const action = await vscode.window.showWarningMessage(
@@ -162,27 +212,23 @@ function registerCommands(context: vscode.ExtensionContext) {
         );
         
         if (action === 'Sign In') {
-          await authManager.signIn();
+          await extensionContainer.authManager.signIn();
         }
         return;
       }
       
-      outputChannel.appendLine('Starting cloud analysis...');
-      const issues = await analysisService.analyzeWorkspace({ mode: 'cloud' });
+      // Phase 4.1.6: Use unified entry point with state machine
+      const issues = await extensionContainer.analysisService.runFullAnalysis({ 
+        mode: 'cloud',
+        trigger: 'command'
+      });
       
       if (issues.length > 0) {
-        const analysisId = analysisService.getCurrentAnalysisId();
+        const analysisId = extensionContainer.analysisService.getCurrentAnalysisId();
         if (analysisId) {
-          vscode.window.showInformationMessage(
-            `Cloud analysis: ${issues.length} issues found`,
-            'View in Cloud'
-          ).then(action => {
-            if (action === 'View in Cloud') {
-              vscode.env.openExternal(
-                vscode.Uri.parse(`https://cloud.odavl.studio/insight/analyses/${analysisId}`)
-              );
-            }
-          });
+          extensionContainer.outputChannel.appendLine(`Cloud analysis complete: ${issues.length} issues found (ID: ${analysisId})`);
+          // Phase 4.1.1: No toast notification for cloud success - use status bar + Problems Panel
+          // User can view in cloud via command palette or status bar if needed
         }
       }
     })
@@ -191,27 +237,34 @@ function registerCommands(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.analyzeWorkspace', async () => {
       // Smart analysis: local + cloud for authenticated users, local only otherwise
-      const authState = await authManager.getAuthState();
+      const authState = await extensionContainer.authManager.getAuthState();
       const mode = authState.isAuthenticated ? 'both' : 'local';
       
-      outputChannel.appendLine(`Starting ${mode} analysis...`);
-      const issues = await analysisService.analyzeWorkspace({ mode });
+      // Phase 4.1.6: Use unified entry point with state machine
+      const issues = await extensionContainer.analysisService.runFullAnalysis({ 
+        mode,
+        trigger: 'command'
+      });
       
-      vscode.window.showInformationMessage(`Analysis complete: ${issues.length} issues found`);
+      if (issues.length > 0) {
+        extensionContainer.outputChannel.appendLine(`Analysis complete: ${issues.length} issues found`);
+      }
+      // Phase 4.1.1: No toast notification - use status bar + Problems Panel for feedback
     })
   );
   
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.clearDiagnostics', () => {
-      analysisService.clearDiagnostics();
-      vscode.window.showInformationMessage('Diagnostics cleared');
+      extensionContainer.analysisService.clearDiagnostics();
+      extensionContainer.outputChannel.appendLine('Diagnostics cleared');
+      // Phase 4.1.1: No toast notification - user can see in Problems Panel that diagnostics are gone
     })
   );
 
   // Utility commands
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.showDashboard', async () => {
-      const authState = await authManager.getAuthState();
+      const authState = await extensionContainer.authManager.getAuthState();
       
       if (authState.isAuthenticated) {
         vscode.env.openExternal(
@@ -232,7 +285,7 @@ function registerCommands(context: vscode.ExtensionContext) {
   
   context.subscriptions.push(
     vscode.commands.registerCommand('odavl-insight.showUpgrade', async () => {
-      const authState = await authManager.getAuthState();
+      const authState = await extensionContainer.authManager.getAuthState();
       
       const planName = authState.planId.replace('INSIGHT_', '');
       const message = authState.isAuthenticated
@@ -255,26 +308,10 @@ function registerCommands(context: vscode.ExtensionContext) {
 }
 
 /**
- * Show welcome message for new users
+ * Phase 4.1.1: Removed showWelcomeMessage function
+ * Welcome modal was blocking first-run experience.
+ * Now using passive output channel message instead (see activate function).
  */
-function showWelcomeMessage(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage(
-    'Welcome to ODAVL Insight! 👋',
-    'Sign In',
-    'Try Local Analysis',
-    'Learn More'
-  ).then(action => {
-    if (action === 'Sign In') {
-      vscode.commands.executeCommand('odavl-insight.signIn');
-    } else if (action === 'Try Local Analysis') {
-      vscode.commands.executeCommand('odavl-insight.analyzeWorkspaceLocal');
-    } else if (action === 'Learn More') {
-      vscode.env.openExternal(vscode.Uri.parse('https://odavl.studio/docs/vscode-extension'));
-    }
-    
-    context.globalState.update('odavl.hasSeenWelcome', true);
-  });
-}
 
 /**
  * Extension deactivation
@@ -283,10 +320,8 @@ export function deactivate() {
   try {
     console.log('ODAVL Insight v2: Deactivating...');
     
-    // Dispose services
-    analysisService?.dispose();
-    authManager?.dispose();
-    outputChannel?.dispose();
+    // Dispose extension container (disposes all services)
+    extensionContainer?.dispose();
     
     console.log('ODAVL Insight v2: Deactivated successfully');
   } catch (error) {

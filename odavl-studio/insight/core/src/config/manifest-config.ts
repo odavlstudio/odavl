@@ -208,7 +208,7 @@ export function getFileGlobs(): {
 export function getFalsePositiveRules(): Array<{
   detector: string;
   pattern: string;
-  reason: string;
+  reason?: string;
   expires?: string;
 }> {
   try {

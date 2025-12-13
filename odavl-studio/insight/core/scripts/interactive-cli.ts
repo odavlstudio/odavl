@@ -17,7 +17,6 @@ import { RuntimeDetector } from '../src/detector/runtime-detector.js';
 import { BuildDetector } from '../src/detector/build-detector.js';
 import { NetworkDetector } from '../src/detector/network-detector.js';
 import { ComponentIsolationDetector } from '../src/detector/isolation-detector.js';
-import { CVEScannerDetector } from '../src/detector/cve-scanner-detector.js';
 import { PythonTypeDetector } from '../src/detector/python-type-detector.js';
 import { PythonSecurityDetector } from '../src/detector/python-security-detector.js';
 import { PythonComplexityDetector } from '../src/detector/python-complexity-detector.js';
@@ -411,9 +410,6 @@ function getDetectorConfiguration() {
   ];
 
   // Gate incomplete/experimental detectors behind feature flags
-  if (FEATURES.CVE_SCANNER) {
-    detectors.push({ name: 'CVE Scanner', icon: '🛡️', DetectorClass: CVEScannerDetector });
-  }
   if (FEATURES.PYTHON_DETECTION) {
     detectors.push({ name: 'Python Types', icon: '🐍', DetectorClass: PythonTypeDetector });
     detectors.push({ name: 'Python Security', icon: '🔒🐍', DetectorClass: PythonSecurityDetector });

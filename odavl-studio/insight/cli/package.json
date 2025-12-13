@@ -1,0 +1,69 @@
+{
+  "name": "@odavl/insight-cli",
+  "version": "1.0.0",
+  "description": "ODAVL Insight - Standalone CLI for ML-powered error detection",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "odavl-insight": "./bin/odavl-insight.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup && node scripts/create-bin.cjs",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "odavl",
+    "insight",
+    "cli",
+    "error-detection",
+    "static-analysis",
+    "ml-powered",
+    "code-quality",
+    "typescript",
+    "security",
+    "performance"
+  ],
+  "author": "ODAVL Studio Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odavlstudio/odavl.git",
+    "directory": "odavl-studio/insight/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/odavlstudio/odavl/issues"
+  },
+  "homepage": "https://github.com/odavlstudio/odavl#readme",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.2",
+    "@vitest/coverage-v8": "^2.1.9",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.9"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

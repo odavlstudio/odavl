@@ -2,7 +2,7 @@
   "name": "odavl-insight-vscode",
   "displayName": "ODAVL Insight",
   "description": "AI-powered code analysis with local + cloud modes. Real-time error detection, project history, and collaborative insights.",
-  "version": "1.0.0",
+  "version": "2.0.5",
   "publisher": "odavl",
   "icon": "icon.png",
   "engines": {
@@ -158,10 +158,10 @@
           ],
           "description": "List of enabled detectors for local analysis"
         },
-        "odavl.telemetry.enabled": {
+        "odavl.insight.telemetry.enabled": {
           "type": "boolean",
-          "default": true,
-          "description": "Send anonymous usage data to help improve ODAVL Insight. No code content is sent, only usage patterns and error rates. You can change this setting at any time."
+          "default": false,
+          "markdownDescription": "**Phase 1.2: Opt-in telemetry** - Send anonymous usage data to help improve ODAVL Insight. No personal information, workspace paths, or code content is ever sent. Respects VS Code's global telemetry setting. [Privacy Policy](https://odavl.studio/privacy)"
         },
         "odavl-insight.severityMinimum": {
           "type": "string",
@@ -193,17 +193,22 @@
     "compile": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/insight-core/detector --external:@odavl-studio/auth --format=cjs --platform=node --minify --sourcemap",
     "watch": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/insight-core/detector --external:@odavl-studio/auth --format=cjs --platform=node --watch --sourcemap",
     "package": "vsce package --no-dependencies",
-    "analyze-bundle": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/auth --format=cjs --platform=node --metafile=dist/meta.json --analyze"
+    "analyze-bundle": "esbuild src/extension-v2.ts --bundle --outfile=dist/extension-v2.js --external:vscode --external:@odavl-studio/insight-core --external:@odavl-studio/auth --format=cjs --platform=node --metafile=dist/meta.json --analyze",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.80.0",
+    "@vitest/ui": "^2.1.8",
     "@vscode/vsce": "^2.0.0",
     "esbuild": "^0.27.0",
     "sharp": "^0.34.5",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^2.1.8"
   },
   "dependencies": {
     "@odavl-studio/insight-core": "workspace:*",

@@ -6,13 +6,30 @@ import boxen from 'boxen';
 import { createBrainCommand } from './commands/brain.js';
 import { createDeployCommand } from './commands/deploy.js';
 import { runSelfHeal, explainLastSession } from './commands/autopilot';
+import { registerCiCommands } from './commands/insight-ci.js';
 
 const program = new Command();
 
 program
     .name('odavl')
     .description('ODAVL Studio - Complete code quality platform')
-    .version('2.0.0');
+    .version('2.0.0')
+    .option('--no-telemetry', 'Disable anonymous usage telemetry (Phase 1.2)')
+    .option('--telemetry', 'Enable anonymous usage telemetry (opt-in)', false)
+    .addHelpText('after', `
+${chalk.cyan.bold('Quick Start:')}
+  ${chalk.white('$ odavl insight analyze')}              ${chalk.gray('# Run code analysis')}
+  ${chalk.white('$ odavl autopilot run')}                ${chalk.gray('# Auto-fix detected issues')}
+  ${chalk.white('$ odavl guardian test')}                ${chalk.gray('# Pre-deployment checks')}
+  ${chalk.white('$ odavl auth login')}                   ${chalk.gray('# Sign in to ODAVL Cloud')}
+
+${chalk.cyan.bold('Global Installation:')}
+  ${chalk.white('$ npm install -g @odavl/cli')}         ${chalk.gray('# Install globally')}
+  ${chalk.white('$ odavl --help')}                      ${chalk.gray('# Show all commands')}
+
+${chalk.cyan.bold('Documentation:')}
+  ${chalk.gray('https://github.com/odavlstudio/odavl#readme')}
+`);
 
 program
     .command('info')
@@ -180,19 +197,33 @@ Examples:
   $ odavl insight analyze --cloud              # Cloud analysis with history
   $ odavl insight analyze --file-parallel      # Fast parallel analysis (4-16x speedup)
   $ odavl insight analyze --detectors typescript,security
+  $ odavl insight sync                         # Retry queued offline uploads
   $ odavl insight status                       # Show last analysis status
   $ odavl insight plan                         # Show current plan and limits
   $ odavl insight plans                        # Compare all available plans
-  $ odavl auth login                           # Sign in for cloud access
+  $ odavl insight ci verify                    # Verify CI config schema
+  $ odavl insight ci doctor                    # Diagnose CI environment
+  $ odavl insight auth login                   # Sign in to Insight Cloud (Beta)
+  $ odavl insight auth status                  # Check connection status
+  $ odavl insight auth logout                  # Sign out
 `);
+
+// Register CI commands (verify, doctor)
+registerCiCommands(insightCmd);
+
+// Register auth commands (login, status, logout) - TASK 8: Beta onboarding
+import { createInsightAuthCommand } from './commands/insight-auth.js';
+insightCmd.addCommand(createInsightAuthCommand());
 
 insightCmd
     .command('analyze')
     .description('Analyze workspace with Insight detectors')
     .option('--cloud', 'Run analysis in ODAVL Cloud with history & dashboard', false)
+    .option('--privacy-mode <mode>', 'Privacy sanitization mode: on|off (default: on)', 'on')
     .option('--detectors <list>', 'Comma-separated detector names')
     .option('--severity <min>', 'Minimum severity (info|low|medium|high|critical)', 'low')
     .option('--json', 'Output as JSON', false)
+    .option('--sarif', 'Output as SARIF v2.1.0 (GitHub Code Scanning compatible)', false)
     .option('--html', 'Generate HTML report', false)
     .option('--md', 'Generate Markdown report', false)
     .option('--output <path>', 'Output file path')
@@ -200,6 +231,7 @@ insightCmd
     .option('--dir <folder>', 'Directory to analyze', process.cwd())
     .option('--strict', 'Exit with error if issues found', false)
     .option('--debug', 'Show debug information', false)
+    .option('--debug-perf', 'Show detailed performance breakdown per detector (Phase 1.4.1)', false)
     .option('--silent', 'Minimal output', false)
     .option('--progress', 'Show progress updates (Wave 10 Enhanced)', false)
     .option('--mode <type>', 'Execution mode: sequential|parallel|file-parallel (Wave 11)', 'sequential')
@@ -207,9 +239,26 @@ insightCmd
     .option('--use-worker-pool', 'Use worker threads (Wave 10 Enhanced)', false)
     .option('--file-parallel', 'Enable file-level parallelism (Wave 11 - 4-16x speedup)', false)
     .action(async (options) => {
-        // Phase 8: Use enhanced CLI with cloud support
-        const { analyze } = await import('./commands/insight-phase8.js');
+        // Phase 1.1 Cleanup: Use insight-v2.ts only (cloud support removed temporarily)
+        const { analyze } = await import('./commands/insight-v2.js');
         await analyze(options);
+    });
+
+insightCmd
+    .command('sync')
+    .description('Sync offline queue - retry failed uploads')
+    .option('--dir <folder>', 'Workspace directory', process.cwd())
+    .option('--debug', 'Show debug information', false)
+    .option('--clear', 'Clear all queued entries', false)
+    .action(async (options) => {
+        // Phase 2.2 Task 7: Offline queue sync
+        const { syncOfflineQueue, clearOfflineQueue } = await import('./commands/insight-sync.js');
+        
+        if (options.clear) {
+            await clearOfflineQueue(options.dir);
+        } else {
+            await syncOfflineQueue(options.dir, { debug: options.debug });
+        }
     });
 
 insightCmd
@@ -236,10 +285,48 @@ insightCmd
 insightCmd
     .command('detectors')
     .description('List available detectors')
-    .action(async () => {
-        const { listDetectors } = await import('./commands/insight-v2.js');
-        await listDetectors();
+    .option('--md', 'Generate markdown documentation (Phase 1.5)', false)
+    .action(async (options) => {
+        const { listDetectors, generateDetectorDocs } = await import('./commands/insight-v2.js');
+        if (options.md) {
+            await generateDetectorDocs();
+        } else {
+            await listDetectors();
+        }
     });
+
+// Phase 1.5: Cache management commands
+insightCmd
+    .command('cache')
+    .description('Manage analysis cache')
+    .addCommand(
+        new Command('clear')
+            .description('Clear all cache files')
+            .option('--dir <folder>', 'Workspace directory', process.cwd())
+            .action(async (options) => {
+                const { clearCache } = await import('./commands/insight-cache.js');
+                await clearCache(options);
+            })
+    )
+    .addCommand(
+        new Command('stats')
+            .description('Show cache statistics')
+            .option('--dir <folder>', 'Workspace directory', process.cwd())
+            .action(async (options) => {
+                const { cacheStats } = await import('./commands/insight-cache.js');
+                await cacheStats(options);
+            })
+    )
+    .addCommand(
+        new Command('show')
+            .description('Show cached files and detectors')
+            .option('--dir <folder>', 'Workspace directory', process.cwd())
+            .option('--json', 'Output as JSON', false)
+            .action(async (options) => {
+                const { showCache } = await import('./commands/insight-cache.js');
+                await showCache(options);
+            })
+    );
 
 insightCmd
     .command('stats')
@@ -277,53 +364,19 @@ insightCmd
 
 insightCmd
     .command('status')
-    .description('Show last analysis status (local + cloud)')
+    .description('Show last analysis status')
     .option('--json', 'Output as JSON', false)
-    .option('--last <n>', 'Show last N analyses', parseInt)
     .action(async (options) => {
-        const { status } = await import('./commands/insight-phase8.js');
-        await status(options);
+        // Phase 1.1 Cleanup: Use insight-v2.ts (cloud status removed temporarily)
+        const { showStats } = await import('./commands/insight-v2.js');
+        await showStats();
     });
 
 program.addCommand(insightCmd);
 
-// Auth command group (unified ODAVL ID)
-const authCmd = new Command('auth')
-    .description('ODAVL authentication and account management');
-
-authCmd
-    .command('login')
-    .description('Sign in to your ODAVL account (device code flow)')
-    .option('--api-url <url>', 'Override API base URL')
-    .action(async (options) => {
-        const { loginCommand } = await import('./commands/auth.js');
-        await loginCommand.parseAsync(['login', ...Object.entries(options).flatMap(([k, v]) => v ? [`--${k}`, v as string] : [])], { from: 'user' });
-    });
-
-authCmd
-    .command('status')
-    .description('Show current authentication status')
-    .action(async () => {
-        const { statusCommand } = await import('./commands/auth.js');
-        await statusCommand.parseAsync(['status'], { from: 'user' });
-    });
-
-authCmd
-    .command('logout')
-    .description('Sign out of your ODAVL account')
-    .action(async () => {
-        const { logoutCommand } = await import('./commands/auth.js');
-        await logoutCommand.parseAsync(['logout'], { from: 'user' });
-    });
-
-authCmd
-    .command('whoami')
-    .description('Show current authentication status (alias)')
-    .action(async () => {
-        const { whoamiCommand } = await import('./commands/auth.js');
-        await whoamiCommand.parseAsync(['whoami'], { from: 'user' });
-    });
-
-program.addCommand(authCmd);
+// Phase 2.2: Production-Grade Authentication (replaces legacy auth.js)
+// Uses SecureStorage (OS keychain) + HttpClient (retry/refresh)
+import { createAuthCommand } from './commands/auth-v2.js';
+program.addCommand(createAuthCommand());
 
 program.parse();

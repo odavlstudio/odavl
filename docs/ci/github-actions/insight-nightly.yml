@@ -1,0 +1,282 @@
+# ODAVL Insight: Nightly Scheduled Analysis
+#
+# Purpose:
+#   - Track long-term quality trends (week-over-week, month-over-month)
+#   - Identify quality decay early (before it becomes critical)
+#   - Generate summary reports for team leads and management
+#   - Monitor technical debt staleness (issues unaddressed >90 days)
+#
+# Behavior:
+#   - Runs daily at 2 AM UTC (configurable)
+#   - Performs full workspace analysis across all projects
+#   - Compares against previous scheduled run (trend analysis)
+#   - Uploads results to cloud dashboard (optional)
+#   - Sends notification summary to Slack/email (optional)
+#   - NEVER fails on quality issues (observability only)
+#
+# Exit Codes:
+#   0 = Success (always, unless infrastructure failure)
+#   1 = Infrastructure failure (network timeout, disk full, API unavailable)
+#
+# This workflow is for observability, not enforcement.
+# No gating, no blocking, no deployment impact.
+
+name: ODAVL Insight (Nightly)
+
+on:
+  # Scheduled execution (daily at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * *'  # Adjust time zone as needed
+  
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  nightly:
+    name: Full Analysis & Trend Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 30  # Generous timeout for large projects
+    
+    permissions:
+      contents: read
+      actions: read  # For downloading previous run artifacts
+    
+    steps:
+      # ──────────────────────────────────────────────────────────────
+      # 1. Checkout main branch
+      # ──────────────────────────────────────────────────────────────
+      - name: Checkout Main Branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      
+      # ──────────────────────────────────────────────────────────────
+      # 2. Setup Node.js environment
+      # ──────────────────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      # ──────────────────────────────────────────────────────────────
+      # 3. Install dependencies
+      # ──────────────────────────────────────────────────────────────
+      - name: Install Dependencies
+        run: npm ci
+      
+      # ──────────────────────────────────────────────────────────────
+      # 4. Download previous nightly run results (for trend comparison)
+      #    - Fetches most recent artifact from previous scheduled run
+      #    - Continues gracefully if no previous run exists
+      # ──────────────────────────────────────────────────────────────
+      - name: Download Previous Run Results
+        uses: dawidd6/action-download-artifact@v3
+        continue-on-error: true  # First run has no previous results
+        with:
+          workflow: insight-nightly.yml
+          name: nightly-results-latest
+          path: .odavl/previous/
+      
+      # ──────────────────────────────────────────────────────────────
+      # 5. Run full Insight analysis
+      #    - All detectors enabled
+      #    - All projects analyzed
+      #    - Quality issues do not fail workflow
+      # ──────────────────────────────────────────────────────────────
+      - name: Run Full Analysis
+        id: insight
+        run: |
+          npx @odavl-studio/cli insight analyze \
+            --format json \
+            --output .odavl/current-results.json \
+            --include-all-projects
+        continue-on-error: true
+      
+      # ──────────────────────────────────────────────────────────────
+      # 6. Generate trend comparison report
+      #    - Compare current results against previous run
+      #    - Calculate metrics: issues added/resolved, hotspots, staleness
+      # ──────────────────────────────────────────────────────────────
+      - name: Generate Trend Report
+        id: trends
+        run: |
+          # Create trend analysis script (inline for simplicity)
+          cat > analyze-trends.js << 'EOF'
+          const fs = require('fs');
+          
+          // Load current and previous results
+          const current = JSON.parse(fs.readFileSync('.odavl/current-results.json', 'utf8'));
+          const previous = fs.existsSync('.odavl/previous/results.json')
+            ? JSON.parse(fs.readFileSync('.odavl/previous/results.json', 'utf8'))
+            : { runs: [{ results: [] }] };
+          
+          const currentIssues = current.runs[0].results || [];
+          const previousIssues = previous.runs[0].results || [];
+          
+          // Calculate trend metrics
+          const added = currentIssues.length - previousIssues.length;
+          const percentChange = previousIssues.length > 0
+            ? ((added / previousIssues.length) * 100).toFixed(1)
+            : 'N/A';
+          
+          // Identify hotspots (files with most new issues)
+          const hotspots = {};
+          currentIssues.forEach(issue => {
+            const file = issue.locations[0].physicalLocation.artifactLocation.uri;
+            hotspots[file] = (hotspots[file] || 0) + 1;
+          });
+          const topHotspots = Object.entries(hotspots)
+            .sort(([,a], [,b]) => b - a)
+            .slice(0, 5);
+          
+          // Generate markdown report
+          let report = '# ODAVL Insight Nightly Report\n\n';
+          report += `**Date**: ${new Date().toISOString().split('T')[0]}\n\n`;
+          report += '## Trend Analysis (Last 24 Hours)\n\n';
+          report += `- **Previous Run**: ${previousIssues.length} issues\n`;
+          report += `- **Current Run**: ${currentIssues.length} issues\n`;
+          report += `- **Net Change**: ${added > 0 ? '+' : ''}${added} issues (${percentChange}%)\n\n`;
+          
+          if (topHotspots.length > 0) {
+            report += '## Top Hotspots (Issue Density)\n\n';
+            topHotspots.forEach(([file, count], i) => {
+              report += `${i + 1}. \`${file}\`: ${count} issues\n`;
+            });
+            report += '\n';
+          }
+          
+          // Severity breakdown
+          const critical = currentIssues.filter(i => i.level === 'error').length;
+          const high = currentIssues.filter(i => i.level === 'warning').length;
+          const medium = currentIssues.filter(i => i.level === 'note').length;
+          
+          report += '## Severity Breakdown\n\n';
+          report += `- **Critical**: ${critical}\n`;
+          report += `- **High**: ${high}\n`;
+          report += `- **Medium**: ${medium}\n\n`;
+          
+          report += '---\n';
+          report += '_Generated by ODAVL Insight Nightly Analysis_\n';
+          
+          fs.writeFileSync('.odavl/trend-report.md', report);
+          console.log(report);
+          EOF
+          
+          node analyze-trends.js
+      
+      # ──────────────────────────────────────────────────────────────
+      # 7. Upload current results as artifact
+      #    - Becomes "previous run" for next scheduled execution
+      #    - Stored for 30 days (balances cost and historical retention)
+      # ──────────────────────────────────────────────────────────────
+      - name: Archive Current Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nightly-results-latest
+          path: |
+            .odavl/current-results.json
+            .odavl/trend-report.md
+          retention-days: 30
+      
+      # ──────────────────────────────────────────────────────────────
+      # 8. Upload to cloud dashboard (optional)
+      #    - Enables unlimited historical retention
+      #    - Provides web-based trend visualizations
+      #    - Skipped if ODAVL_API_TOKEN not configured
+      # ──────────────────────────────────────────────────────────────
+      - name: Upload to Cloud Dashboard
+        if: env.ODAVL_API_TOKEN != ''
+        env:
+          ODAVL_API_TOKEN: ${{ secrets.ODAVL_API_TOKEN }}
+        run: |
+          npx @odavl-studio/cli insight upload \
+            --project ${{ github.repository }} \
+            --branch main \
+            --commit ${{ github.sha }} \
+            --type nightly
+      
+      # ──────────────────────────────────────────────────────────────
+      # 9. Post trend report to workflow summary
+      #    - Visible in Actions tab summary page
+      # ──────────────────────────────────────────────────────────────
+      - name: Post Workflow Summary
+        if: always()
+        run: |
+          if [ -f .odavl/trend-report.md ]; then
+            cat .odavl/trend-report.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Trend report generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      # ──────────────────────────────────────────────────────────────
+      # 10. Send notification (optional)
+      #     - Slack webhook for team visibility
+      #     - Only send if significant trend changes detected
+      # ──────────────────────────────────────────────────────────────
+      - name: Send Slack Notification
+        if: env.SLACK_WEBHOOK_URL != '' && always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # Parse trend report for notification decision
+          if [ -f .odavl/current-results.json ]; then
+            CRITICAL=$(jq '[.runs[0].results[] | select(.level=="error")] | length' .odavl/current-results.json)
+            
+            # Only notify if Critical issues exist or trends are significant
+            if [ "$CRITICAL" -gt 0 ]; then
+              curl -X POST "$SLACK_WEBHOOK_URL" \
+                -H 'Content-Type: application/json' \
+                -d '{
+                  "text": "🔍 ODAVL Insight Nightly Report",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "*ODAVL Insight Nightly Analysis*\n\n⚠️ '"$CRITICAL"' Critical issues detected\n\n<'"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"'|View Full Report>"
+                      }
+                    }
+                  ]
+                }'
+            fi
+          fi
+      
+      # ──────────────────────────────────────────────────────────────
+      # 11. Final status (always succeeds unless infrastructure failure)
+      #     - Quality issues do not fail scheduled workflows
+      # ──────────────────────────────────────────────────────────────
+      - name: Verify Operational Success
+        run: |
+          if [ -f .odavl/current-results.json ]; then
+            echo "✅ Nightly analysis completed successfully"
+            exit 0
+          else
+            echo "❌ Infrastructure failure—analysis produced no output"
+            exit 1
+          fi
+
+# ────────────────────────────────────────────────────────────────────
+# CUSTOMIZATION OPTIONS
+# ────────────────────────────────────────────────────────────────────
+#
+# Adjust schedule:
+#   schedule:
+#     - cron: '0 8 * * *'  # 8 AM UTC (3 AM EST)
+#
+# Run weekly instead of daily:
+#   schedule:
+#     - cron: '0 2 * * 1'  # Mondays at 2 AM UTC
+#
+# Notify on all runs (not just Critical issues):
+#   Remove: if [ "$CRITICAL" -gt 0 ]; then ... fi
+#
+# Extend artifact retention for compliance:
+#   retention-days: 365  # 1 year retention
+#
+# Run on multiple branches:
+#   strategy:
+#     matrix:
+#       branch: [main, develop, release]
+# ────────────────────────────────────────────────────────────────────

@@ -52,6 +52,53 @@ export type DetectorName =
   | 'context-aware-performance';
 
 /**
+ * Phase 1.4.3: Detector metadata for smart skipping
+ */
+export interface DetectorMetadata {
+  name: DetectorName;
+  extensions?: string[]; // File extensions this detector applies to (e.g. ['.ts', '.tsx'])
+  scope?: 'file' | 'workspace' | 'global'; // Scope of analysis
+}
+
+/**
+ * Phase 1.4.3: Detector metadata registry
+ */
+const detectorMetadata: Record<string, DetectorMetadata> = {
+  'typescript': { name: 'typescript', extensions: ['.ts', '.tsx'], scope: 'file' },
+  'eslint': { name: 'eslint', extensions: ['.ts', '.tsx', '.js', '.jsx'], scope: 'file' },
+  'python-type': { name: 'python-type', extensions: ['.py'], scope: 'file' },
+  'python-security': { name: 'python-security', extensions: ['.py'], scope: 'file' },
+  'python-complexity': { name: 'python-complexity', extensions: ['.py'], scope: 'file' },
+  'python-imports': { name: 'python-imports', extensions: ['.py'], scope: 'file' },
+  'python-best-practices': { name: 'python-best-practices', extensions: ['.py'], scope: 'file' },
+  'java-complexity': { name: 'java-complexity', extensions: ['.java'], scope: 'file' },
+  'java-stream': { name: 'java-stream', extensions: ['.java'], scope: 'file' },
+  'java-exception': { name: 'java-exception', extensions: ['.java'], scope: 'file' },
+  'java-memory': { name: 'java-memory', extensions: ['.java'], scope: 'file' },
+  'java-spring': { name: 'java-spring', extensions: ['.java'], scope: 'file' },
+  'go': { name: 'go', extensions: ['.go'], scope: 'file' },
+  'rust': { name: 'rust', extensions: ['.rs'], scope: 'file' },
+  // Workspace/global detectors (never skipped)
+  'security': { name: 'security', scope: 'workspace' },
+  'complexity': { name: 'complexity', scope: 'workspace' },
+  'performance': { name: 'performance', scope: 'workspace' },
+  'import': { name: 'import', scope: 'workspace' },
+  'package': { name: 'package', scope: 'global' },
+  'circular': { name: 'circular', scope: 'workspace' },
+  'network': { name: 'network', scope: 'workspace' },
+  'runtime': { name: 'runtime', scope: 'global' },
+  'build': { name: 'build', scope: 'global' },
+  'isolation': { name: 'isolation', scope: 'workspace' },
+};
+
+/**
+ * Phase 1.4.3: Get metadata for a detector
+ */
+export function getDetectorMetadata(name: DetectorName): DetectorMetadata {
+  return detectorMetadata[name] || { name, scope: 'global' }; // Default to global if no metadata
+}
+
+/**
  * Detector cache to avoid re-importing
  * Key: detector name, Value: detector class constructor
  */

@@ -20,6 +20,7 @@ import type { DeviceCodeResponse } from '@odavl-studio/auth/device-code-flow';
 import { verifyOdavlToken } from '@odavl-studio/auth/odavl-id';
 import { formatDistance } from 'date-fns';
 import { trackInsightEvent, InsightTelemetryClient } from '@odavl-studio/telemetry';
+import { isTelemetryEnabled } from '../utils/telemetry-config.js'; // Phase 1.2
 
 const API_BASE_URL = process.env.ODAVL_API_URL || 'https://api.odavl.com';
 
@@ -108,16 +109,20 @@ export const loginCommand = new Command('login')
             
             pollSpinner.succeed('Authentication successful!\n');
             
-            // Track login event
-            const isFirstLogin = !await authService.hasSessionHistory();
-            await trackInsightEvent('insight.cli_login', {
-              authMethod: 'device_code',
-              isFirstLogin,
-            }, {
-              userId: InsightTelemetryClient.hashUserId(session.email),
-              planId: session.insightPlanId || 'INSIGHT_FREE',
-              source: 'cli',
-            });
+            // Track login event (only if telemetry enabled via opt-in)
+            // Phase 1.2: Respect --no-telemetry / ODAVL_TELEMETRY / ~/.odavlrc.json
+            const telemetryEnabled = isTelemetryEnabled(this.parent?.opts().telemetry);
+            if (telemetryEnabled) {
+              const isFirstLogin = !await authService.hasSessionHistory();
+              await trackInsightEvent('insight.cli_login', {
+                authMethod: 'device_code',
+                isFirstLogin,
+              }, {
+                // Phase 1.2: No userId field - use anonymous sessionId only
+                planId: session.insightPlanId || 'INSIGHT_FREE',
+                source: 'cli',
+              });
+            }
             
             // Display welcome message
             console.log(chalk.green.bold('✅ Welcome to ODAVL!\n'));

@@ -1,0 +1,88 @@
+# ODAVL Insight: GitLab CI - Main Branch Baseline
+#
+# Behavioral parity with GitHub Actions insight-main.yml
+#
+# Triggers: Push to main branch
+# Behavior: Full analysis, NEVER fails on quality issues
+# Purpose: Baseline generation for future MR comparisons
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
+variables:
+  NODE_VERSION: "18"
+  INSIGHT_VERSION: "1.2.3"
+
+stages:
+  - analyze
+  - upload
+
+insight:baseline:
+  stage: analyze
+  image: node:${NODE_VERSION}
+  timeout: 20 minutes
+  
+  before_script:
+    - npm ci
+  
+  script:
+    # Run full analysis (no delta mode)
+    - |
+      npx @odavl-studio/cli@${INSIGHT_VERSION} insight analyze \
+        --format sarif \
+        --format json \
+        --output insight-results.sarif \
+        --output-json .odavl/baseline.json
+  
+  # Quality issues do not fail main branch pipeline
+  allow_failure: true
+  
+  artifacts:
+    when: always
+    reports:
+      sast: insight-results.sarif
+    paths:
+      - insight-results.sarif
+      - .odavl/baseline.json
+    expire_in: 90 days
+  
+  cache:
+    key: main-baseline
+    paths:
+      - node_modules/
+
+# ────────────────────────────────────────────────────────────
+# Optional: Upload to cloud dashboard
+# ────────────────────────────────────────────────────────────
+insight:upload:
+  stage: upload
+  image: node:${NODE_VERSION}
+  
+  dependencies:
+    - insight:baseline
+  
+  script:
+    # Upload only if ODAVL_API_TOKEN is configured
+    - |
+      if [ -n "$ODAVL_API_TOKEN" ]; then
+        npx @odavl-studio/cli@${INSIGHT_VERSION} insight upload \
+          --project $CI_PROJECT_PATH \
+          --branch main \
+          --commit $CI_COMMIT_SHA
+      else
+        echo "Cloud upload skipped (ODAVL_API_TOKEN not configured)"
+      fi
+  
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  
+  allow_failure: true  # Upload failure does not block pipeline
+
+# ────────────────────────────────────────────────────────────
+# IMPORTANT: Why this pipeline never fails on quality issues
+#
+# Main branch represents merged, approved code. Failing main
+# branch CI creates deployment ambiguity. Quality metrics are
+# informational only—used for trends, not blocking.
+# ────────────────────────────────────────────────────────────

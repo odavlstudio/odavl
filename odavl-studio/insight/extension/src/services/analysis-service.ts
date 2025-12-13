@@ -16,6 +16,12 @@ import type {
   AnalysisStatus 
 } from '@odavl-studio/sdk/insight-cloud';
 import type { AuthState } from '../auth/auth-manager';
+import { InsightError } from '../core/errors';
+import { ErrorPresenter } from '../ui/error-presenter';
+import { BaselineManager } from '../core/baseline-manager';
+import { DetectorIssue } from '../types/DetectorIssue';
+import { InsightStatusBar } from '../ui/status-bar';
+import { ConfigService, InsightExtensionConfig } from '../core/config';
 
 /**
  * Local analysis issue (from @odavl-studio/insight-core)
@@ -60,6 +66,11 @@ export interface UnifiedIssue {
 export type AnalysisMode = 'local' | 'cloud' | 'both';
 
 /**
+ * Analysis trigger source (for logging and telemetry)
+ */
+export type AnalysisTrigger = 'save' | 'manual' | 'command' | 'startup' | 'auth-change';
+
+/**
  * Analysis options
  */
 export interface AnalysisOptions {
@@ -67,6 +78,7 @@ export interface AnalysisOptions {
   detectors?: string[];
   language?: string;
   filePath?: string; // For single-file analysis
+  trigger?: AnalysisTrigger; // Phase 4.1.6: Source of analysis request
 }
 
 /**
@@ -83,7 +95,26 @@ export class AnalysisService {
   
   // Analysis state
   private currentAnalysisId?: string;
-  private isAnalyzing = false;
+  
+  // Phase 4.1.6 - Debounce & Race Condition Fixes:
+  // State machine for single in-flight analysis guarantee
+  private analysisState: 'idle' | 'running' = 'idle';
+  private pendingRunRequested = false;
+  
+  // Phase 4.1.3 - Delta-first UX: Baseline tracking
+  // Issues are classified as NEW or LEGACY to avoid punishing users for pre-existing debt.
+  private baselineManager?: BaselineManager;
+  private allIssuesForBaseline: DetectorIssue[] = []; // Store for baseline update
+  
+  // Phase 4.1.4 - Offline/Cloud indicator: Status bar integration
+  private statusBar?: InsightStatusBar;
+  
+  // Phase 4.1.5 - Error attribution: Centralized error handling
+  private errorPresenter: ErrorPresenter;
+  
+  // Phase 4.1.7 - Config validation: Safe config loading
+  private configService: ConfigService;
+  private currentConfig?: InsightExtensionConfig;
   
   // Event emitter for analysis completion
   private onAnalysisCompleteEmitter = new vscode.EventEmitter<UnifiedIssue[]>();
@@ -92,24 +123,58 @@ export class AnalysisService {
   constructor(
     context: vscode.ExtensionContext,
     cloudClient: InsightCloudClient,
-    authState: AuthState
+    authState: AuthState,
+    statusBar?: InsightStatusBar,
+    configService?: ConfigService
   ) {
     this.context = context;
     this.cloudClient = cloudClient;
     this.authState = authState;
+    this.statusBar = statusBar;
     
     this.diagnosticCollection = vscode.languages.createDiagnosticCollection('odavl-insight');
     context.subscriptions.push(this.diagnosticCollection);
     
     this.outputChannel = vscode.window.createOutputChannel('ODAVL Insight');
     context.subscriptions.push(this.outputChannel);
+    
+    // Phase 4.1.5: Initialize error presenter with output channel
+    this.errorPresenter = new ErrorPresenter({ outputChannel: this.outputChannel });
+    
+    // Phase 4.1.7: Initialize config service
+    if (configService) {
+      this.configService = configService;
+    } else {
+      // Fallback: Create config service if not provided
+      const { createConfigService } = require('../core/config');
+      this.configService = createConfigService(this.errorPresenter, this.outputChannel);
+    }
+    
+    // Phase 4.1.3: Initialize baseline manager
+    const workspaceRoot = this.getWorkspaceRoot();
+    if (workspaceRoot) {
+      this.baselineManager = new BaselineManager(workspaceRoot);
+      // Load baseline asynchronously (non-blocking)
+      this.baselineManager.loadBaseline().catch(err => {
+        console.error('[AnalysisService] Failed to load baseline:', err);
+      });
+    }
   }
 
   /**
    * Update auth state (called when user signs in/out)
+   * Phase 4.1.6: Mark pending run if auth changes during analysis
    */
   updateAuthState(authState: AuthState): void {
+    const authChanged = authState.isAuthenticated !== this.authState.isAuthenticated;
     this.authState = authState;
+    
+    // Phase 4.1.6: If analysis is running and auth state changes,
+    // mark pending run so user gets fresh results with new auth context
+    if (this.analysisState === 'running' && authChanged) {
+      this.outputChannel.appendLine('[Auth Change] Analysis running - will re-run after completion');
+      this.pendingRunRequested = true;
+    }
   }
 
   /**
@@ -122,23 +187,81 @@ export class AnalysisService {
   }
 
   /**
-   * Analyze workspace
+   * Phase 4.1.6: Unified analysis entry point
+   * 
+   * Guarantees at most ONE analysis runs at a time using state machine:
+   * - If idle: starts analysis immediately
+   * - If running: marks pendingRunRequested = true for one follow-up run
+   * 
+   * This prevents rapid saves/commands from spawning multiple concurrent analyses.
+   * 
+   * @param options Analysis configuration
+   * @returns Promise<UnifiedIssue[]> - issues found (empty if skipped due to already running)
    */
-  async analyzeWorkspace(options: AnalysisOptions = { mode: 'local' }): Promise<UnifiedIssue[]> {
-    if (this.isAnalyzing) {
-      vscode.window.showWarningMessage('Analysis already in progress');
+  async runFullAnalysis(options: AnalysisOptions = { mode: 'local' }): Promise<UnifiedIssue[]> {
+    const trigger = options.trigger || 'manual';
+    
+    // Phase 4.1.6: State machine logic
+    if (this.analysisState === 'running') {
+      // Analysis already in progress - mark pending for one follow-up run
+      this.pendingRunRequested = true;
+      this.outputChannel.appendLine(`[${trigger}] Analysis running - marked pending for follow-up`);
       return [];
     }
+    
+    // State is 'idle' - start analysis
+    this.analysisState = 'running';
+    this.outputChannel.appendLine(`[${trigger}] Starting analysis (mode: ${options.mode})...`);
+    
+    try {
+      // Delegate to internal method that does the actual work
+      const issues = await this.analyzeWorkspace(options);
+      return issues;
+    } finally {
+      // Phase 4.1.6: State machine cleanup - ALWAYS runs, even on error
+      this.analysisState = 'idle';
+      
+      // Check if another run was requested while we were running
+      if (this.pendingRunRequested) {
+        this.pendingRunRequested = false;
+        this.outputChannel.appendLine('[Follow-up] Starting pending analysis...');
+        
+        // Start ONE follow-up run asynchronously (don't await - prevents recursion)
+        // Use setImmediate to avoid blocking the finally cleanup
+        setImmediate(() => {
+          this.runFullAnalysis(options).catch(err => {
+            this.outputChannel.appendLine(`[Follow-up] Analysis failed: ${err}`);
+          });
+        });
+      }
+    }
+  }
 
+  /**
+   * Internal: Analyze workspace (no state machine - called by runFullAnalysis)
+   * 
+   * This is the actual analysis implementation. External callers should use
+   * runFullAnalysis() instead to benefit from the state machine.
+   */
+  private async analyzeWorkspace(options: AnalysisOptions): Promise<UnifiedIssue[]> {
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     
     if (!workspaceRoot) {
-      vscode.window.showErrorMessage('No workspace folder open');
+      const error = InsightError.noWorkspace();
+      await this.errorPresenter.present(error, 'Workspace Analysis');
       return [];
     }
+    
+    // Phase 4.1.7: Load and validate config (safe - returns defaults on error)
+    this.currentConfig = await this.configService.loadConfig(workspaceRoot);
+    this.outputChannel.appendLine(`[Config] Using mode: ${this.currentConfig.analysis.defaultMode}`);
 
-    this.isAnalyzing = true;
     this.diagnosticCollection.clear();
+    
+    // Phase 4.1.4: Update status bar to show analyzing state
+    if (this.statusBar) {
+      this.statusBar.setAnalyzing(true);
+    }
     
     try {
       let allIssues: UnifiedIssue[] = [];
@@ -172,9 +295,22 @@ export class AnalysisService {
       }
 
       this.onAnalysisCompleteEmitter.fire(allIssues);
+      
+      // Phase 4.1.3: Update baseline after successful analysis
+      if (this.baselineManager && this.allIssuesForBaseline.length > 0) {
+        await this.baselineManager.updateBaseline(this.allIssuesForBaseline);
+        this.outputChannel.appendLine(`[Baseline] Updated with ${this.allIssuesForBaseline.length} issues`);
+      }
+      
       return allIssues;
     } finally {
-      this.isAnalyzing = false;
+      // Phase 4.1.3: Clear accumulated issues for next analysis
+      this.allIssuesForBaseline = [];
+      
+      // Phase 4.1.4: Reset status bar to previous mode (Local/Cloud/Offline)
+      if (this.statusBar) {
+        this.statusBar.setAnalyzing(false);
+      }
     }
   }
 
@@ -232,9 +368,13 @@ export class AnalysisService {
           
           return issues;
         } catch (error) {
-          const errorMsg = error instanceof Error ? error.message : String(error);
-          this.outputChannel.appendLine(`[Local] Analysis failed: ${errorMsg}`);
-          vscode.window.showErrorMessage(`Local analysis failed: ${errorMsg}`);
+          // Phase 4.1.5: Attribute local analysis errors
+          // Detector crashes are INSIGHT errors (our bug)
+          const insightError = InsightError.isInsightError(error)
+            ? error
+            : InsightError.detectorCrash('local-analysis', error instanceof Error ? error : undefined);
+          
+          await this.errorPresenter.present(insightError, 'Local Analysis');
           return [];
         }
       }
@@ -344,9 +484,18 @@ export class AnalysisService {
 
           return issues;
         } catch (error) {
+          // Phase 4.1.5: Attribute cloud errors properly
           const errorMsg = error instanceof Error ? error.message : String(error);
-          this.outputChannel.appendLine(`[Cloud] Analysis failed: ${errorMsg}`);
-          vscode.window.showErrorMessage(`Cloud analysis failed: ${errorMsg}`);
+          
+          // Network/cloud failures are EXTERNAL errors (not our fault, not user's fault)
+          const insightError = InsightError.isInsightError(error)
+            ? error
+            : InsightError.cloudUnavailable(error instanceof Error ? error : undefined);
+          
+          await this.errorPresenter.present(insightError, 'Cloud Analysis');
+          
+          // No toast spam for external errors - logged to output channel only
+          // Status bar already shows mode (Local/Cloud/Offline)
           return [];
         }
       }
@@ -355,6 +504,7 @@ export class AnalysisService {
 
   /**
    * Check FREE plan limits before cloud analysis
+   * Phase 4.1.1: Non-blocking quota check - no modal that blocks analysis
    */
   private async checkFreePlanLimits(): Promise<boolean> {
     // For FREE plan:
@@ -362,21 +512,21 @@ export class AnalysisService {
     // - Max 50 analyses/month
     // - Max 100 issues per analysis
     
-    const result = await vscode.window.showWarningMessage(
-      'FREE plan: Limited to 50 cloud analyses per month',
-      'Continue',
-      'Upgrade to PRO',
-      'Cancel'
-    );
-
-    if (result === 'Upgrade to PRO') {
-      vscode.env.openExternal(
-        vscode.Uri.parse('https://odavl.studio/pricing?from=vscode-limit')
-      );
-      return false;
+    // Phase 4.1.1: Removed blocking modal
+    // Cloud analysis proceeds unless quota is actually exceeded (checked server-side)
+    // If quota exceeded, server will reject and we show non-blocking notification
+    this.outputChannel.appendLine('[FREE Plan] Cloud analysis starting (quota will be checked server-side)');
+    
+    // Non-blocking hint about plan limits (dismissible, no buttons required)
+    // Only show this rarely to avoid notification fatigue
+    const lastHintTime = this.context.globalState.get<number>('odavl.lastQuotaHint', 0);
+    const now = Date.now();
+    if (now - lastHintTime > 86400000) { // Once per day max
+      this.outputChannel.appendLine('[FREE Plan] Reminder: 50 cloud analyses/month limit');
+      this.context.globalState.update('odavl.lastQuotaHint', now);
     }
-
-    return result === 'Continue';
+    
+    return true; // Always proceed - let server enforce quota
   }
 
   /**
@@ -401,9 +551,25 @@ export class AnalysisService {
 
   /**
    * Update VS Code diagnostics from issues
+   * 
+   * Phase 4.1.3: Marks NEW issues with [NEW] prefix to distinguish from LEGACY issues
    */
   private updateDiagnostics(issues: UnifiedIssue[]): void {
     const diagnosticsByFile = new Map<string, vscode.Diagnostic[]>();
+
+    // Phase 4.1.3: Convert UnifiedIssue to DetectorIssue for baseline tracking
+    const detectorIssues: DetectorIssue[] = issues.map(issue => ({
+      file: issue.filePath,
+      line: issue.line,
+      column: issue.column,
+      message: issue.message,
+      severity: this.mapSeverityToDetector(issue.severity),
+      detector: issue.detector,
+      language: 'unknown' as const, // Will be inferred if needed
+    }));
+
+    // Phase 4.1.3: Store for baseline update (after successful analysis)
+    this.allIssuesForBaseline.push(...detectorIssues);
 
     for (const issue of issues) {
       const uri = vscode.Uri.file(issue.filePath);
@@ -425,7 +591,19 @@ export class AnalysisService {
         INFO: vscode.DiagnosticSeverity.Hint,
       }[issue.severity];
 
-      const diagnostic = new vscode.Diagnostic(range, issue.message, severity);
+      // Phase 4.1.3: Check if issue is NEW (not in baseline)
+      const detectorIssue = detectorIssues.find(
+        di => di.file === issue.filePath && di.line === issue.line && di.detector === issue.detector
+      );
+      const isNew = detectorIssue && this.baselineManager 
+        ? this.baselineManager.isNewIssue(detectorIssue) 
+        : false;
+
+      // Phase 4.1.3: Mark NEW issues with [NEW] prefix
+      // LEGACY issues remain visible but unmarked
+      const message = isNew ? `[NEW] ${issue.message}` : issue.message;
+
+      const diagnostic = new vscode.Diagnostic(range, message, severity);
       diagnostic.source = `ODAVL/${issue.detector}`;
       diagnostic.code = issue.ruleId;
 
@@ -437,6 +615,20 @@ export class AnalysisService {
       const uri = vscode.Uri.file(filePath);
       this.diagnosticCollection.set(uri, diagnostics);
     }
+  }
+
+  /**
+   * Phase 4.1.3: Map UnifiedIssue severity to DetectorIssue severity
+   */
+  private mapSeverityToDetector(severity: string): DetectorIssue['severity'] {
+    const mapping: Record<string, DetectorIssue['severity']> = {
+      'CRITICAL': 'critical',
+      'HIGH': 'error',
+      'MEDIUM': 'warning',
+      'LOW': 'info',
+      'INFO': 'hint',
+    };
+    return mapping[severity] || 'warning';
   }
 
   /**
@@ -455,9 +647,21 @@ export class AnalysisService {
 
   /**
    * Check if analysis is running
+   * Phase 4.1.6: Uses state machine instead of flag
    */
   isRunning(): boolean {
-    return this.isAnalyzing;
+    return this.analysisState === 'running';
+  }
+  
+  /**
+   * Get current state machine state (for debugging/testing)
+   * Phase 4.1.6: Expose state for verification
+   */
+  getAnalysisState(): { state: 'idle' | 'running'; pendingRunRequested: boolean } {
+    return {
+      state: this.analysisState,
+      pendingRunRequested: this.pendingRunRequested
+    };
   }
 
   /**

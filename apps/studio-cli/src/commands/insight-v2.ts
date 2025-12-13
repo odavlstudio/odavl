@@ -7,15 +7,21 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { glob } from 'glob';
 import chalk from 'chalk';
+import ora from 'ora';
 import { AnalysisEngine } from '../../../../odavl-studio/insight/core/src/analysis-engine.js';
 import { 
   ParallelDetectorExecutor, 
   SequentialDetectorExecutor,
   FileParallelDetectorExecutor // Wave 11: File-level parallelism
 } from '../../../../odavl-studio/insight/core/src/detector-executor.js';
-import { loadDetector, type DetectorName } from '../../../../odavl-studio/insight/core/src/detector/detector-loader.js';
+import { loadDetector, type DetectorName, getDetectorMetadata } from '../../../../odavl-studio/insight/core/src/detector/detector-loader.js';
 import { PerformanceTimer } from '../../../../odavl-studio/insight/core/src/utils/performance-timer.js';
 import { ResultCache } from '../../../../odavl-studio/insight/core/src/utils/result-cache.js';
+import { IncrementalCache } from '../../../../odavl-studio/insight/core/src/utils/incremental-cache.js'; // Phase 1.4.2
+import * as fmt from '../utils/cli-formatter.js'; // Phase 1.5: Polished output formatting
+import { sanitizeIssues, generatePrivacyReport } from '../utils/privacy-sanitizer.js'; // Phase 2.1: Privacy filtering
+import { uploadSnapshot, formatSnapshotResult, type Issue } from '../utils/snapshot-uploader.js'; // TASK 7: Hardened cloud upload
+import { generateSarif } from '../utils/sarif-generator.js'; // Phase 2.2 Task 6: SARIF generation
 
 /**
  * Unified Insight issue schema (Wave 4)
@@ -36,6 +42,7 @@ export interface AnalyzeOptions {
   detectors?: string;
   severity?: string;
   json?: boolean;
+  sarif?: boolean; // Phase 1.5: SARIF v2.1.0 export
   html?: boolean;
   md?: boolean;
   output?: string;
@@ -43,12 +50,15 @@ export interface AnalyzeOptions {
   dir?: string;
   strict?: boolean;
   debug?: boolean;
+  debugPerf?: boolean; // Phase 1.4.1: Detailed performance breakdown
   silent?: boolean;
   progress?: boolean; // Wave 10 Enhanced: Show progress updates
   maxWorkers?: number; // Wave 10 Enhanced: Parallel execution concurrency
   mode?: 'sequential' | 'parallel' | 'file-parallel'; // Wave 11: Added file-parallel mode
   useWorkerPool?: boolean; // Wave 10 Enhanced: Use worker pool (vs Promise.all)
   fileParallel?: boolean; // Wave 11: Shorthand flag for file-level parallelism
+  privacyMode?: 'on' | 'off'; // Phase 2.1: Privacy sanitization (default: on)
+  upload?: boolean; // Phase 2.2: Upload to ODAVL Cloud
 }
 
 // Performance: Cache workspace root and file lists
@@ -61,11 +71,22 @@ export async function analyze(options: AnalyzeOptions = {}) {
   const startTime = Date.now();
   const workspaceRoot = options.dir || process.cwd();
   const perfTimer = new PerformanceTimer();
+  
+  // Phase 1.3: Reset exit code at start (clean slate)
+  process.exitCode = 0;
 
   if (!options.silent) {
-    console.log(chalk.cyan('🔍 ODAVL Insight Analysis\n'));
-    console.log(chalk.gray('Loading detectors...'));
+    console.log('');
+    console.log(chalk.cyan.bold('🔍 ODAVL Insight Analysis'));
+    console.log(chalk.gray('─'.repeat(50)));
+    console.log('');
   }
+  
+  // Start spinner for initial setup
+  const spinner = options.silent ? null : ora({
+    text: 'Initializing analysis...',
+    color: 'cyan'
+  }).start();
 
   try {
     // Collect files to analyze (with caching)
@@ -73,16 +94,50 @@ export async function analyze(options: AnalyzeOptions = {}) {
     const cacheKey = `${workspaceRoot}:${options.files || 'default'}`;
     let files = workspaceCache.get(cacheKey);
     
+    // Phase 1.4.1: Track cache hit/miss
+    perfTimer.startPhase('checkCache');
     if (!files) {
+      perfTimer.recordCacheMiss();
+      if (spinner) spinner.text = 'Scanning workspace files...';
       files = await collectFiles(workspaceRoot, options.files);
       workspaceCache.set(cacheKey, files);
+    } else {
+      perfTimer.recordCacheHit();
+      if (spinner) spinner.text = 'Using cached file list...';
     }
+    perfTimer.endPhase('checkCache');
     perfTimer.endPhase('collectFiles');
     
     if (files.length === 0) {
-      console.log(chalk.yellow('No files found to analyze'));
+      if (spinner) spinner.fail('No files found to analyze');
+      else console.log(chalk.yellow('No files found to analyze'));
       return;
     }
+    
+    if (spinner) spinner.succeed(`Found ${files.length} files to analyze`);
+    
+    // Phase 1.4.2: Incremental analysis - detect changed files
+    perfTimer.startPhase('incrementalCheck');
+    const analysisSpinner = options.silent ? null : ora('Checking for changed files...').start();
+    const incrementalCache = new IncrementalCache(workspaceRoot);
+    await incrementalCache.load();
+    
+    const { changed, unchanged, newHashes } = await incrementalCache.detectChanges(files);
+    const useIncremental = changed.length < files.length; // Only use if some files unchanged
+    
+    if (analysisSpinner) {
+      if (unchanged.length > 0) {
+        analysisSpinner.succeed(`${changed.length} files changed, ${unchanged.length} cached`);
+      } else {
+        analysisSpinner.succeed(`Analyzing ${files.length} files`);
+      }
+    }
+    
+    perfTimer.endPhase('incrementalCheck');
+    perfTimer.recordIncremental(unchanged.length, changed.length, 0); // Will update skipped count later
+
+    // Phase 1.5: Track skipped detectors for summary
+    let detectorsSkippedCount = 0;
 
     // Check result cache
     const resultCacheKey = ResultCache.generateKey([
@@ -99,6 +154,10 @@ export async function analyze(options: AnalyzeOptions = {}) {
 
     if (!options.silent) {
       console.log(chalk.gray(`Scanning ${files.length} files...`));
+      // Phase 1.4.2: Show incremental status
+      if (useIncremental && (options.debug || options.debugPerf)) {
+        console.log(chalk.gray(`  ${unchanged.length} unchanged (cached), ${changed.length} changed (analyzing)`));
+      }
     }
 
     if (options.debug) {
@@ -135,6 +194,7 @@ export async function analyze(options: AnalyzeOptions = {}) {
       }
       
       // Wave 10 Enhanced: Progress callback
+      // Phase 1.4.1: Enhanced to track per-detector timing
       const showProgress = options.progress || options.debug;
       let lastProgressTime = Date.now();
       const onProgress = showProgress ? (event: any) => {
@@ -146,10 +206,42 @@ export async function analyze(options: AnalyzeOptions = {}) {
         if (event.phase === 'runDetectors' && event.completed && event.total) {
           const percent = Math.round((event.completed / event.total) * 100);
           console.log(chalk.gray(`  Progress: ${event.completed}/${event.total} detectors (${percent}%)`));
+          
+          // Phase 1.4.1: Track detector execution time
+          if (event.detectorName && event.detectorDuration !== undefined) {
+            perfTimer.trackDetector(
+              event.detectorName, 
+              event.detectorDuration,
+              event.detectorStatus || 'success'
+            );
+          }
+          
+          // Phase 1.4.3: Track skipped detectors
+          if (event.detectorsSkipped && event.detectorsSkipped.length > 0) {
+            perfTimer.recordSkippedDetectors(event.detectorsSkipped);
+            detectorsSkippedCount = event.detectorsSkipped.length; // Phase 1.5: Track for summary
+          }
         } else if (event.message && event.phase !== 'runDetectors') {
           console.log(chalk.gray(`  ${event.message}`));
         }
-      } : undefined;
+      } : (event: any) => {
+        // Phase 1.4.1: Even without progress display, track detector metrics for --debug-perf
+        if (event.phase === 'runDetectors') {
+          if (event.detectorName && event.detectorDuration !== undefined) {
+            perfTimer.trackDetector(
+              event.detectorName,
+              event.detectorDuration,
+              event.detectorStatus || 'success'
+            );
+          }
+          
+          // Phase 1.4.3: Track skipped detectors
+          if (event.detectorsSkipped && event.detectorsSkipped.length > 0) {
+            perfTimer.recordSkippedDetectors(event.detectorsSkipped);
+            detectorsSkippedCount = event.detectorsSkipped.length; // Phase 1.5: Track for summary
+          }
+        }
+      };
       
       perfTimer.startPhase('runDetectors');
       let results: any[] = [];
@@ -176,15 +268,22 @@ export async function analyze(options: AnalyzeOptions = {}) {
         }
         
         engine = new AnalysisEngine(executor, { onProgress });
-        results = await engine.analyze(files);
+        // Phase 1.4.3: Pass changed files for smart detector skipping
+        results = await engine.analyze(files, { changedFiles: changed });
         
         // Cleanup
         await engine.shutdown();
+        if (detectorSpinner) detectorSpinner.succeed(`Completed ${detectorsRun} detectors`);
       } catch (error: any) {
+        // Phase 1.3: Improved error messages (no raw stack traces by default)
+        if (detectorSpinner) detectorSpinner.fail('Analysis failed');
+        
         if (options.debug) {
-          console.error(chalk.red('Detector execution failed:'), error);
+          console.error(chalk.red('\n❌ Detector execution failed:'));
+          console.error(chalk.gray(error.stack || error.message || error));
         } else {
-          console.error(chalk.red('Some detectors failed. Run with --debug for details.'));
+          console.error(chalk.red('\n❌ Analysis failed due to internal error'));
+          console.error(chalk.yellow('💡 Run with --debug for detailed error information'));
         }
         // Continue with empty results if analysis completely fails
         results = [];
@@ -193,11 +292,15 @@ export async function analyze(options: AnalyzeOptions = {}) {
         if (engine) {
           await engine.shutdown().catch(() => {});
         }
+        
+        // Phase 1.3: Exit with code 2 for internal failures
+        process.exitCode = 2;
       }
       perfTimer.endPhase('runDetectors');
 
-      if (!options.silent) {
-        console.log(chalk.gray('Aggregating results...'));
+      const resultsSpinner = options.silent ? null : ora('Processing results...').start();
+      if (resultsSpinner) {
+        setTimeout(() => resultsSpinner.succeed('Results processed'), 100);
       }
 
       perfTimer.startPhase('aggregateResults');
@@ -230,17 +333,74 @@ export async function analyze(options: AnalyzeOptions = {}) {
       // Cache the results
       resultCache.set(resultCacheKey, { issues: filteredIssues, fileCount: files.length });
       
+      // Phase 1.4.2: Update incremental cache with new hashes and results
+      incrementalCache.updateFileHashes(newHashes);
+      // Group issues by file for incremental cache
+      const issuesByFile = new Map<string, any[]>();
+      for (const issue of filteredIssues) {
+        if (!issuesByFile.has(issue.file)) {
+          issuesByFile.set(issue.file, []);
+        }
+        issuesByFile.get(issue.file)!.push(issue);
+      }
+      // Store per-file, per-detector results
+      for (const file of files) {
+        const fileIssues = issuesByFile.get(file) || [];
+        const detectorMap = new Map<string, any[]>();
+        for (const issue of fileIssues) {
+          if (!detectorMap.has(issue.detector)) {
+            detectorMap.set(issue.detector, []);
+          }
+          detectorMap.get(issue.detector)!.push(issue);
+        }
+        for (const [detector, issues] of detectorMap.entries()) {
+          incrementalCache.setCachedResult(file, detector, issues);
+        }
+      }
+      await incrementalCache.save();
+      
       perfTimer.endPhase('aggregateResults');
     }
 
+    // Phase 2.1: Privacy sanitization (before display/reports)
+    let issuesForOutput = filteredIssues;
+    const privacyEnabled = options.privacyMode !== 'off';
+    
+    if (privacyEnabled && filteredIssues.length > 0) {
+      perfTimer.startPhase('privacySanitization');
+      
+      if (!options.silent) {
+        console.log(chalk.cyan('\n🔒 Privacy Mode: Sanitizing sensitive data...'));
+      }
+      
+      // Sanitize all issues (remove absolute paths, variable names, code snippets)
+      issuesForOutput = sanitizeIssues(filteredIssues, workspaceRoot);
+      
+      // Generate privacy report
+      const privacyReport = generatePrivacyReport(filteredIssues, issuesForOutput);
+      
+      if (!options.silent) {
+        console.log(chalk.gray(`  Paths sanitized: ${privacyReport.pathsSanitized} absolute → relative`));
+        console.log(chalk.gray(`  Messages sanitized: ${privacyReport.messagesSanitized} (variables removed)`));
+        console.log(chalk.gray(`  Code snippets removed: ${privacyReport.fixesRemoved}`));
+        console.log(chalk.green(`✓ Privacy sanitization complete (${privacyReport.validationPassed}/${privacyReport.totalIssues} passed validation)\n`));
+      }
+      
+      perfTimer.endPhase('privacySanitization');
+    } else if (!privacyEnabled && !options.silent) {
+      console.log(chalk.yellow('\n⚠️  Privacy Mode: OFF'));
+      console.log(chalk.yellow('   Absolute paths and variable names will be included in output.'));
+      console.log(chalk.gray('   (Use --privacy-mode on to enable sanitization)\n'));
+    }
+    
     // Display summary
     if (!options.silent) {
-      displaySummary(filteredIssues, files.length, Date.now() - startTime);
+      displaySummary(issuesForOutput, files.length, Date.now() - startTime);
     }
 
     // Generate reports
     perfTimer.startPhase('generateReports');
-    if (!options.silent && (options.json || options.html || options.md)) {
+    if (!options.silent && (options.json || options.sarif || options.html || options.md)) {
       console.log(chalk.gray('\nGenerating reports...'));
     }
     
@@ -249,28 +409,62 @@ export async function analyze(options: AnalyzeOptions = {}) {
 
     if (options.json || options.output?.endsWith('.json')) {
       const jsonPath = options.output || path.join(reportsDir, 'insight-latest.json');
-      await generateJSONReport(filteredIssues, jsonPath, files.length, Date.now() - startTime);
-      if (!options.silent) console.log(chalk.green(`✓ JSON report: ${jsonPath}`));
+      await generateJSONReport(issuesForOutput, jsonPath, files.length, Date.now() - startTime);
+      if (!options.silent) console.log(fmt.success(`JSON report: ${jsonPath}`));
+    }
+    
+    // Phase 1.5: SARIF export for GitHub Code Scanning integration
+    if (options.sarif || options.output?.endsWith('.sarif')) {
+      const sarifPath = options.output || path.join(reportsDir, 'insight-latest.sarif');
+      await generateSARIFReport(issuesForOutput, sarifPath);
+      if (!options.silent) console.log(fmt.success(`SARIF report: ${sarifPath}`));
     }
 
     if (options.html) {
       const htmlPath = options.output || path.join(reportsDir, 'insight-latest.html');
-      await generateHTMLReport(filteredIssues, htmlPath, files.length, Date.now() - startTime);
+      await generateHTMLReport(issuesForOutput, htmlPath, files.length, Date.now() - startTime);
       if (!options.silent) console.log(chalk.green(`✓ HTML report: ${htmlPath}`));
     }
 
     if (options.md) {
       const mdPath = options.output || path.join(reportsDir, 'insight-latest.md');
-      await generateMarkdownReport(filteredIssues, mdPath, files.length, Date.now() - startTime);
+      await generateMarkdownReport(issuesForOutput, mdPath, files.length, Date.now() - startTime);
       if (!options.silent) console.log(chalk.green(`✓ Markdown report: ${mdPath}`));
     }
     perfTimer.endPhase('generateReports');
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(chalk.green(`✓ Analysis complete in ${elapsed}s`));
     
-    // Show phase breakdown in debug mode
-    if (options.debug) {
+    // Phase 1.5: Polished summary output
+    if (!options.silent) {
+      console.log(fmt.summaryBox({
+        filesAnalyzed: changed.length,
+        filesCached: unchanged.length,
+        detectorsSkipped: detectorsSkippedCount,
+        issuesFound: issuesForOutput.length,
+        timeElapsed: `${elapsed}s`,
+      }));
+      
+      if (issuesForOutput.length === 0) {
+        console.log(fmt.success('No issues found! Your code looks great.'));
+      } else {
+        const criticalCount = issuesForOutput.filter(i => i.severity === 'critical').length;
+        const highCount = issuesForOutput.filter(i => i.severity === 'high').length;
+        if (criticalCount > 0 || highCount > 0) {
+          console.log(fmt.warning(`Found ${criticalCount} critical and ${highCount} high severity issues`));
+        }
+      }
+    }
+    
+    // Phase 2.2 Task 5: Upload to ODAVL Cloud
+    if (options.upload) {
+      await handleCloudUpload(issuesForOutput, workspaceRoot, options);
+    }
+    
+    // Phase 1.4.1: Show performance breakdown based on flags
+    if (options.debugPerf) {
+      console.log('\n' + chalk.cyan(perfTimer.getDetailedBreakdown()));
+    } else if (options.debug) {
       console.log(chalk.gray('\nPhase Breakdown:'));
       console.log(chalk.gray(perfTimer.getSummary()));
     }
@@ -363,6 +557,18 @@ async function generateJSONReport(issues: InsightIssue[], outputPath: string, fi
     issues,
   };
   await fs.writeFile(outputPath, JSON.stringify(report, null, 2), 'utf-8');
+}
+
+/**
+ * Phase 1.5: Generate SARIF v2.1.0 format report
+ * SARIF = Static Analysis Results Interchange Format
+ * Compatible with GitHub Code Scanning, VS Code, and other tools
+ * 
+ * Phase 2.2 Task 6: Refactored to use reusable SARIF generator
+ */
+async function generateSARIFReport(issues: InsightIssue[], outputPath: string) {
+  const sarif = generateSarif(issues);
+  await fs.writeFile(outputPath, JSON.stringify(sarif, null, 2), 'utf-8');
 }
 
 async function generateHTMLReport(issues: InsightIssue[], outputPath: string, fileCount: number, elapsed: number) {
@@ -535,4 +741,259 @@ async function collectFiles(root: string, pattern?: string): Promise<string[]> {
   }
 
   return [...new Set(allFiles)]; // Deduplicate
+}
+
+/**
+ * Phase 1.5 Task 9: Generate detector registry documentation
+ */
+export async function generateDetectorDocs() {
+  const detectorNames: DetectorName[] = [
+    'typescript', 'eslint', 'python-type', 'python-security', 'python-complexity',
+    'python-imports', 'python-best-practices', 'java-complexity', 'java-stream',
+    'java-exception', 'java-memory', 'java-spring', 'go', 'rust',
+    'security', 'complexity', 'performance', 'import', 'circular', 
+    'network', 'isolation', 'package', 'runtime', 'build'
+  ];
+  
+  // Group by scope
+  const fileDetectors: any[] = [];
+  const workspaceDetectors: any[] = [];
+  const globalDetectors: any[] = [];
+  
+  for (const name of detectorNames) {
+    const metadata = getDetectorMetadata(name);
+    const detector = {
+      name,
+      extensions: metadata.extensions?.join(', ') || 'All files',
+      scope: metadata.scope || 'global',
+    };
+    
+    if (detector.scope === 'file') fileDetectors.push(detector);
+    else if (detector.scope === 'workspace') workspaceDetectors.push(detector);
+    else globalDetectors.push(detector);
+  }
+  
+  // Generate markdown
+  const lines = [
+    '# ODAVL Insight Detector Registry',
+    '',
+    '> Auto-generated documentation from detector metadata',
+    '> Last updated: ' + new Date().toISOString(),
+    '',
+    '## Overview',
+    '',
+    `ODAVL Insight includes **${detectorNames.length} detectors** organized by analysis scope:`,
+    '',
+    `- **File-Scoped** (${fileDetectors.length}): Language-specific detectors that analyze individual files`,
+    `- **Workspace-Scoped** (${workspaceDetectors.length}): Cross-file analysis detectors`,
+    `- **Global** (${globalDetectors.length}): Configuration and metadata detectors`,
+    '',
+    '## Detector Table',
+    '',
+    '| Name | Scope | Extensions | Smart Skipping |',
+    '|------|-------|------------|----------------|',
+  ];
+  
+  // Add all detectors to table
+  [...fileDetectors, ...workspaceDetectors, ...globalDetectors].forEach(d => {
+    const skipBehavior = d.scope === 'file' ? 'Yes' : 'No (always runs)';
+    lines.push(`| ${d.name} | ${d.scope} | ${d.extensions} | ${skipBehavior} |`);
+  });
+  
+  lines.push('');
+  lines.push('---');
+  lines.push('');
+  
+  // File-scoped section
+  lines.push('## File-Scoped Detectors');
+  lines.push('');
+  lines.push('These detectors analyze individual files and can be skipped when files haven\'t changed.');
+  lines.push('');
+  
+  const descriptions: Record<string, string> = {
+    'typescript': 'TypeScript compiler checks for type errors, strict mode violations, and TypeScript-specific issues.',
+    'eslint': 'ESLint rules for JavaScript/TypeScript code style, potential bugs, and best practices.',
+    'python-type': 'Python type checking via mypy for type hint violations.',
+    'python-security': 'Security vulnerability detection for Python code via bandit.',
+    'python-complexity': 'Cyclomatic and cognitive complexity analysis for Python functions.',
+    'python-imports': 'Python import cycle detection and organization checks.',
+    'python-best-practices': 'PEP 8 compliance and Python best practices validation.',
+    'java-complexity': 'Complexity metrics for Java methods and classes.',
+    'java-stream': 'Java Stream API misuse and optimization opportunities.',
+    'java-exception': 'Exception handling pattern validation for Java.',
+    'java-memory': 'Memory leak detection and resource management for Java.',
+    'java-spring': 'Spring Framework best practices and configuration validation.',
+    'go': 'Go vet checks for common Go programming errors.',
+    'rust': 'Clippy lints for Rust code quality and idioms.',
+  };
+  
+  fileDetectors.forEach(d => {
+    lines.push(`### ${d.name}`);
+    lines.push('');
+    lines.push(`**Extensions**: ${d.extensions}`);
+    lines.push('');
+    lines.push(descriptions[d.name] || 'Code quality analysis detector.');
+    lines.push('');
+  });
+  
+  // Workspace-scoped section
+  lines.push('---');
+  lines.push('');
+  lines.push('## Workspace-Scoped Detectors');
+  lines.push('');
+  lines.push('These detectors perform cross-file analysis and always run (never skipped).');
+  lines.push('');
+  
+  const workspaceDescriptions: Record<string, string> = {
+    'security': 'Workspace-wide security scans for secrets, API keys, hardcoded credentials.',
+    'complexity': 'Overall codebase complexity trends and hotspot identification.',
+    'performance': 'Performance bottleneck detection across the entire workspace.',
+    'import': 'Import statement organization and unused import detection.',
+    'circular': 'Circular dependency detection between modules.',
+    'network': 'Network call patterns and potential issues.',
+    'isolation': 'Module isolation and boundary violation detection.',
+  };
+  
+  workspaceDetectors.forEach(d => {
+    lines.push(`### ${d.name}`);
+    lines.push('');
+    lines.push(workspaceDescriptions[d.name] || 'Cross-file analysis detector.');
+    lines.push('');
+  });
+  
+  // Global section
+  lines.push('---');
+  lines.push('');
+  lines.push('## Global Detectors');
+  lines.push('');
+  lines.push('These detectors analyze project configuration and metadata.');
+  lines.push('');
+  
+  const globalDescriptions: Record<string, string> = {
+    'package': 'Package.json validation and dependency analysis.',
+    'runtime': 'Runtime environment configuration checks.',
+    'build': 'Build configuration validation (tsconfig, webpack, etc).',
+  };
+  
+  globalDetectors.forEach(d => {
+    lines.push(`### ${d.name}`);
+    lines.push('');
+    lines.push(globalDescriptions[d.name] || 'Configuration analysis detector.');
+    lines.push('');
+  });
+  
+  // Write file
+  const docsDir = path.join(process.cwd(), 'docs/insight');
+  await fs.mkdir(docsDir, { recursive: true });
+  const docPath = path.join(docsDir, 'DETECTOR_REGISTRY.md');
+  await fs.writeFile(docPath, lines.join('\n'), 'utf-8');
+  
+  console.log(fmt.success(`Generated detector registry documentation`));
+  console.log(fmt.stat('Location', docPath, 'blue'));
+  console.log(fmt.stat('Detectors', detectorNames.length, 'blue'));
+}
+
+/**
+ * TASK 7: Handle cloud upload with hardened snapshot pipeline
+ * 
+ * Features:
+ * - ZCC compliance (metadata only)
+ * - Retry logic with exponential backoff
+ * - Silent by default (no noise)
+ * - Clear errors only when needed
+ */
+async function handleCloudUpload(
+  issues: InsightIssue[],
+  workspaceRoot: string,
+  options: AnalyzeOptions
+): Promise<void> {
+  const startTime = Date.now();
+  
+  // Get project metadata (best effort)
+  let projectName = 'workspace';
+  let repoUrl: string | undefined;
+  
+  try {
+    const pkgPath = path.join(workspaceRoot, 'package.json');
+    const pkgJson = JSON.parse(await fs.readFile(pkgPath, 'utf-8'));
+    if (pkgJson.name) {
+      projectName = pkgJson.name;
+    }
+  } catch {
+    // Ignore - use default
+  }
+  
+  try {
+    const { execSync } = await import('child_process');
+    const remoteUrl = execSync('git config --get remote.origin.url', {
+      cwd: workspaceRoot,
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    if (remoteUrl) {
+      repoUrl = remoteUrl;
+    }
+  } catch {
+    // Ignore - git not available
+  }
+  
+  // Calculate analysis time
+  const analysisTimeMs = Date.now() - startTime;
+  
+  // TASK 8: Check consent and authentication before upload
+  const { ConsentManager } = await import('../utils/consent-manager.js');
+  const consentManager = new ConsentManager();
+  
+  // Check environment variable for opt-out
+  if (ConsentManager.isCloudDisabledByEnv()) {
+    console.log(chalk.yellow('\n⚠ Cloud uploads disabled (ODAVL_NO_CLOUD=true)\n'));
+    console.log(chalk.gray('Remove the environment variable to enable uploads.\n'));
+    return;
+  }
+  
+  // Check consent (interactive prompt on first upload)
+  const hasConsent = await consentManager.requestCloudUploadConsent(options.silent);
+  if (!hasConsent) {
+    // User declined or consent required
+    return;
+  }
+  
+  // Convert InsightIssue[] to Issue[] (snapshot format)
+  const snapshotIssues: Issue[] = issues.map(i => ({
+    file: i.file,
+    line: i.line,
+    column: i.column,
+    message: i.message,
+    severity: i.severity,
+    detector: i.detector,
+    ruleId: i.ruleId,
+  }));
+  
+  // Upload snapshot (silent by default, errors only when needed)
+  const result = await uploadSnapshot(snapshotIssues, {
+    workspaceRoot,
+    projectName,
+    repoUrl,
+    analysisTimeMs,
+    cliVersion: cliPkgJson.version || '2.0.0',
+    debug: options.debug,
+    silent: !options.debug, // Silent unless debug mode
+  });
+  
+  // Format and display result (only if error and not silent)
+  const message = formatSnapshotResult(result, !options.debug);
+  if (message) {
+    console.log('\n' + message + '\n');
+  }
+  
+  // Debug logging
+  if (options.debug) {
+    if (result.status === 'success') {
+      console.log(chalk.gray(`[Cloud] Snapshot uploaded (ID: ${result.snapshotId})`));
+    } else if (result.status === 'offline') {
+      console.log(chalk.gray(`[Cloud] Offline: ${result.reason}`));
+    } else if (result.status === 'error') {
+      console.log(chalk.gray(`[Cloud] Error: ${result.code} - ${result.message}`));
+    }
+  }
 }

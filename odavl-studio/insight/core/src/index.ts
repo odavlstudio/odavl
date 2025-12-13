@@ -13,7 +13,6 @@ export type {
 } from "./core/detector-worker-pool.js";
 export type {
   NormalizedDetectorError,
-  DetectorErrorCode,
   DetectorErrorSeverity,
 } from "./core/error-aggregator.js";
 

@@ -2,29 +2,80 @@
 
 Unified command-line interface for ODAVL Studio - autonomous code quality with three distinct products (Insight, Autopilot, Guardian).
 
-## Installation
+## 📦 Global Installation
+
+Install globally to use `odavl` from anywhere:
 
 ```bash
-npm install -g @odavl-studio/cli
+# Using npm
+npm install -g @odavl/cli
+
+# Using pnpm
+pnpm add -g @odavl/cli
+
+# Using yarn
+yarn global add @odavl/cli
+
+# Verify installation
+odavl --version
 ```
 
-## Quick Start
+### Local Development (from source)
+
+If you're developing ODAVL locally:
 
 ```bash
-# Check version
-odavl --version
+# From monorepo root
+cd apps/studio-cli
+pnpm install
+pnpm build
 
-# Show available commands
+# Link globally for testing
+npm link
+
+# Or run directly without building
+pnpm dev --help
+```
+
+## 🚀 Quick Start
+
+```bash
+# Show all available commands with examples
 odavl --help
 
-# Run Insight analysis
+# Run code analysis (detects 11+ issue types)
 odavl insight analyze
 
-# Start Autopilot self-healing
+# Auto-fix detected issues safely
 odavl autopilot run
 
-# Deploy with Guardian protection
+# Pre-deployment website testing
 odavl guardian test https://example.com
+
+# Sign in to ODAVL Cloud for history/collaboration
+odavl auth login
+```
+
+## 💡 Real-World Usage Examples
+
+```bash
+# Analyze specific directory with progress
+odavl insight analyze --dir ./src
+
+# Fast parallel analysis (4-16x speedup)
+odavl insight analyze --file-parallel
+
+# CI/CD mode: fail build if issues found
+odavl insight analyze --strict --silent
+
+# Generate reports for code review
+odavl insight analyze --json --html --sarif
+
+# Self-healing with preview (no changes)
+odavl autopilot run --dry-run
+
+# Fix up to 5 issues maximum
+odavl autopilot run --max-fixes 5
 ```
 
 ## Architecture

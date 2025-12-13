@@ -1,0 +1,184 @@
+# ODAVL Insight: Main Branch Baseline Analysis
+#
+# Purpose:
+#   - Establish quality baseline for future PR comparisons
+#   - Generate historical trend data
+#   - Archive analysis results for compliance and audit
+#
+# Behavior:
+#   - Runs on every push to main branch (typically after PR merge)
+#   - Performs full workspace analysis (no delta filtering)
+#   - NEVER fails the build on quality issues
+#   - Uploads results to cloud dashboard (optional)
+#   - Stores baseline artifact for 90 days
+#
+# Exit Codes:
+#   0 = Success (always, unless operational failure)
+#   1 = Operational failure (out of memory, disk full, detector crash)
+#
+# This workflow will NOT block deployments or fail on quality issues.
+# Quality metrics are informational and used for trend tracking only.
+
+name: ODAVL Insight (Main Branch)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  baseline:
+    name: Full Analysis & Baseline Generation
+    runs-on: ubuntu-latest
+    timeout-minutes: 20  # Longer timeout for full analysis
+    
+    permissions:
+      contents: read
+      security-events: write  # For SARIF upload (optional)
+    
+    steps:
+      # ──────────────────────────────────────────────────────────────
+      # 1. Checkout main branch
+      #    (No history required—analyzing current state only)
+      # ──────────────────────────────────────────────────────────────
+      - name: Checkout Main Branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      
+      # ──────────────────────────────────────────────────────────────
+      # 2. Setup Node.js environment
+      # ──────────────────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      # ──────────────────────────────────────────────────────────────
+      # 3. Install dependencies
+      # ──────────────────────────────────────────────────────────────
+      - name: Install Dependencies
+        run: npm ci
+      
+      # ──────────────────────────────────────────────────────────────
+      # 4. Run full Insight analysis (no delta mode)
+      #    - Analyzes entire workspace regardless of recent changes
+      #    - Does NOT fail on quality issues (continue-on-error: true)
+      #    - Generates SARIF and JSON outputs
+      # ──────────────────────────────────────────────────────────────
+      - name: Run Full Analysis
+        id: insight
+        run: |
+          npx @odavl-studio/cli insight analyze \
+            --format sarif \
+            --format json \
+            --output insight-results.sarif \
+            --output-json .odavl/baseline.json
+        continue-on-error: true  # Quality issues do not fail workflow
+      
+      # ──────────────────────────────────────────────────────────────
+      # 5. Upload SARIF to Code Scanning (optional)
+      #    - Provides historical view in Security tab
+      # ──────────────────────────────────────────────────────────────
+      - name: Upload SARIF to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: insight-results.sarif
+          category: odavl-insight-main
+      
+      # ──────────────────────────────────────────────────────────────
+      # 6. Archive baseline as GitHub Actions artifact
+      #    - Stored for 90 days (configurable)
+      #    - Used for compliance audits and historical comparison
+      # ──────────────────────────────────────────────────────────────
+      - name: Archive Baseline Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: insight-baseline-${{ github.sha }}
+          path: |
+            .odavl/baseline.json
+            insight-results.sarif
+          retention-days: 90
+      
+      # ──────────────────────────────────────────────────────────────
+      # 7. Upload to cloud dashboard (optional)
+      #    - Requires ODAVL_API_TOKEN secret configured
+      #    - Enables historical trend tracking and team dashboards
+      #    - Skipped if secret not present (air-gapped environments)
+      # ──────────────────────────────────────────────────────────────
+      - name: Upload to Cloud Dashboard
+        if: env.ODAVL_API_TOKEN != ''
+        env:
+          ODAVL_API_TOKEN: ${{ secrets.ODAVL_API_TOKEN }}
+        run: |
+          npx @odavl-studio/cli insight upload \
+            --project ${{ github.repository }} \
+            --branch main \
+            --commit ${{ github.sha }}
+      
+      # ──────────────────────────────────────────────────────────────
+      # 8. Generate summary report (markdown)
+      #    - Visible in workflow summary page
+      # ──────────────────────────────────────────────────────────────
+      - name: Generate Summary
+        if: always()
+        run: |
+          echo "## 📊 ODAVL Insight Baseline Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: main" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp**: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Parse JSON baseline for summary statistics
+          if [ -f .odavl/baseline.json ]; then
+            CRITICAL=$(jq '[.runs[0].results[] | select(.level=="error")] | length' .odavl/baseline.json)
+            HIGH=$(jq '[.runs[0].results[] | select(.level=="warning")] | length' .odavl/baseline.json)
+            MEDIUM=$(jq '[.runs[0].results[] | select(.level=="note")] | length' .odavl/baseline.json)
+            
+            echo "### Issue Summary" >> $GITHUB_STEP_SUMMARY
+            echo "- **Critical**: $CRITICAL" >> $GITHUB_STEP_SUMMARY
+            echo "- **High**: $HIGH" >> $GITHUB_STEP_SUMMARY
+            echo "- **Medium**: $MEDIUM" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "_Baseline stored for future PR comparisons_" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Analysis failed or produced no output" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      # ──────────────────────────────────────────────────────────────
+      # 9. Final status (always succeeds unless operational failure)
+      #    - Quality issues do not fail this workflow
+      #    - Only detector crashes or resource exhaustion fail
+      # ──────────────────────────────────────────────────────────────
+      - name: Verify Operational Success
+        run: |
+          # Check if analysis produced output (operational success indicator)
+          if [ -f .odavl/baseline.json ]; then
+            echo "✅ Baseline generation completed successfully"
+            exit 0
+          else
+            echo "❌ Operational failure—no baseline generated"
+            exit 1
+          fi
+
+# ────────────────────────────────────────────────────────────────────
+# IMPORTANT: Why this workflow never fails on quality issues
+# ────────────────────────────────────────────────────────────────────
+#
+# Main branch represents merged, approved code. Failing main branch CI
+# creates ambiguity: "Is the branch broken (build failure) or just low
+# quality (technical debt)?"
+#
+# Quality metrics are informational:
+#   - Inform refactoring priorities
+#   - Track trends over time
+#   - Provide baseline for PR comparisons
+#
+# Quality issues do NOT justify blocking production deployments.
+# Teams address technical debt through prioritized refactoring, not
+# emergency fixes under deployment pressure.
+# ────────────────────────────────────────────────────────────────────

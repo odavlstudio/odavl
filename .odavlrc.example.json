@@ -1,0 +1,31 @@
+{
+  "telemetry": false,
+  "$schema": "https://odavl.studio/schemas/odavlrc.json",
+  "$comment": "ODAVL CLI Configuration - Phase 1.2",
+  
+  "description": "User preferences for ODAVL CLI behavior",
+  
+  "telemetry_info": {
+    "enabled": false,
+    "note": "Set to true to enable anonymous usage telemetry",
+    "privacy": "No personal information, workspace paths, or code is ever sent",
+    "can_override": [
+      "--telemetry flag (enable)",
+      "--no-telemetry flag (disable)",
+      "ODAVL_TELEMETRY environment variable"
+    ],
+    "priority_order": [
+      "1. CLI flag (highest)",
+      "2. Environment variable",
+      "3. This config file",
+      "4. Default (false)"
+    ]
+  },
+  
+  "examples": {
+    "opt_in": "Set telemetry: true to help improve ODAVL",
+    "opt_out": "Set telemetry: false to disable (default)"
+  },
+  
+  "privacy_policy": "https://odavl.studio/privacy"
+}

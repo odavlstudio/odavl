@@ -1,0 +1,106 @@
+# ODAVL Insight: GitLab CI - Merge Request Analysis
+#
+# Behavioral parity with GitHub Actions insight-pr.yml
+#
+# Triggers: Merge requests to main/develop branches
+# Fails ONLY on: New Critical issues or detector errors
+# Warns on: New High issues (non-blocking)
+# Ignores: Legacy issues present in baseline
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+variables:
+  NODE_VERSION: "18"
+  INSIGHT_VERSION: "1.2.3"
+
+stages:
+  - analyze
+  - report
+
+# ────────────────────────────────────────────────────────────
+# Stage 1: Delta Analysis
+# ────────────────────────────────────────────────────────────
+insight:analyze:
+  stage: analyze
+  image: node:${NODE_VERSION}
+  timeout: 15 minutes
+  
+  before_script:
+    # Fetch target branch for baseline comparison
+    - git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    
+    # Install dependencies
+    - npm ci
+  
+  script:
+    # Run delta analysis
+    - |
+      npx @odavl-studio/cli@${INSIGHT_VERSION} insight analyze \
+        --format sarif \
+        --output insight-results.sarif \
+        --fail-on-critical \
+        --delta-mode \
+        --baseline-ref origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+  
+  # Continue to report stage even if analysis fails
+  allow_failure: true
+  
+  artifacts:
+    when: always
+    reports:
+      sast: insight-results.sarif  # Native GitLab integration
+    paths:
+      - insight-results.sarif
+      - .odavl/analysis-results.json
+    expire_in: 30 days
+  
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+
+# ────────────────────────────────────────────────────────────
+# Stage 2: Post MR Comment (Optional)
+# ────────────────────────────────────────────────────────────
+insight:report:
+  stage: report
+  image: node:${NODE_VERSION}
+  
+  dependencies:
+    - insight:analyze
+  
+  script:
+    # Parse SARIF and post comment to MR
+    - |
+      if [ -f insight-results.sarif ]; then
+        # Count issues by severity
+        CRITICAL=$(jq '[.runs[0].results[] | select(.level=="error")] | length' insight-results.sarif)
+        HIGH=$(jq '[.runs[0].results[] | select(.level=="warning")] | length' insight-results.sarif)
+        
+        # Build comment
+        COMMENT="## 🔍 ODAVL Insight Analysis\n\n"
+        if [ "$CRITICAL" -gt 0 ]; then
+          COMMENT="${COMMENT}### ❌ Critical Issues ($CRITICAL)\n"
+          COMMENT="${COMMENT}_See SAST report for details_\n\n"
+        fi
+        if [ "$HIGH" -gt 0 ]; then
+          COMMENT="${COMMENT}### ⚠️ Quality Concerns ($HIGH High)\n"
+          COMMENT="${COMMENT}_Review recommended but non-blocking_\n\n"
+        fi
+        if [ "$CRITICAL" -eq 0 ] && [ "$HIGH" -eq 0 ]; then
+          COMMENT="${COMMENT}### ✅ No Critical or High Issues\n\n"
+        fi
+        
+        # Post via GitLab API
+        curl --request POST \
+          --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" \
+          --data "body=${COMMENT}" \
+          "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests/${CI_MERGE_REQUEST_IID}/notes"
+      fi
+  
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  
+  allow_failure: true  # Comment posting failure does not fail pipeline

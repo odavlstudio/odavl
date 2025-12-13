@@ -122,8 +122,23 @@ export function registerEventListeners(
     vscode.workspace.onDidSaveTextDocument(async (document) => {
       const config = vscode.workspace.getConfiguration('odavl-insight');
       if (config.get('autoAnalyzeOnSave')) {
-        await ensureInitialized();
-        providers.multiLanguageDiagnostics.analyzeFile(document.uri, true);
+        try {
+          await ensureInitialized();
+          await providers.multiLanguageDiagnostics.analyzeFile(document.uri, true);
+        } catch (error: any) {
+          // Phase 1.3: Fix silent auto-analysis failures
+          const outputChannel = vscode.window.createOutputChannel('ODAVL Insight');
+          outputChannel.appendLine(`[ERROR] Auto-analysis failed for ${document.uri.fsPath}: ${error.message}`);\n          outputChannel.show(true);
+          
+          vscode.window.showWarningMessage(
+            `ODAVL Insight: Auto-analysis failed. Check output for details.`,
+            'Show Output'
+          ).then(action => {
+            if (action === 'Show Output') {
+              outputChannel.show();
+            }
+          });
+        }
       }
     })
   );

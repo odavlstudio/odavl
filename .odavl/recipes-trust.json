@@ -461,5 +461,13 @@
     "trust": 1,
     "consecutiveFailures": 0,
     "blacklisted": false
+  },
+  {
+    "id": "test-failing-recipe-1765566891567",
+    "runs": 3,
+    "success": 0,
+    "trust": 0.1,
+    "consecutiveFailures": 3,
+    "blacklisted": true
   }
 ]

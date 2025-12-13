@@ -20,54 +20,18 @@
     "detectors"
   ],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.cjs"
-    },
-    "./server": {
-      "types": "./dist/server.d.ts",
-      "default": "./dist/server.cjs"
-    },
-    "./detector": {
-      "types": "./dist/detector/index.d.ts",
-      "default": "./dist/detector/index.cjs"
-    },
-    "./detector/typescript": {
-      "types": "./dist/detector/typescript.d.ts",
-      "default": "./dist/detector/typescript.cjs"
-    },
-    "./detector/eslint": {
-      "types": "./dist/detector/eslint.d.ts",
-      "default": "./dist/detector/eslint.cjs"
-    },
-    "./detector/security": {
-      "types": "./dist/detector/security.d.ts",
-      "default": "./dist/detector/security.cjs"
-    },
-    "./detector/performance": {
-      "types": "./dist/detector/performance.d.ts",
-      "default": "./dist/detector/performance.cjs"
-    },
-    "./detector/complexity": {
-      "types": "./dist/detector/complexity.d.ts",
-      "default": "./dist/detector/complexity.cjs"
-    },
-    "./detector/import": {
-      "types": "./dist/detector/import.d.ts",
-      "default": "./dist/detector/import.cjs"
-    },
-    "./detector/python": {
-      "types": "./dist/detector/python.d.ts",
-      "default": "./dist/detector/python.cjs"
-    },
-    "./detector/java": {
-      "types": "./dist/detector/java.d.ts",
-      "default": "./dist/detector/java.cjs"
-    },
-    "./learning": {
-      "types": "./dist/learning/index.d.ts",
-      "default": "./dist/learning/index.cjs"
-    }
+    ".": "./dist/index.cjs",
+    "./server": "./dist/server.cjs",
+    "./detector": "./dist/detector/index.cjs",
+    "./detector/typescript": "./dist/detector/typescript.cjs",
+    "./detector/eslint": "./dist/detector/eslint.cjs",
+    "./detector/security": "./dist/detector/security.cjs",
+    "./detector/performance": "./dist/detector/performance.cjs",
+    "./detector/complexity": "./dist/detector/complexity.cjs",
+    "./detector/import": "./dist/detector/import.cjs",
+    "./detector/python": "./dist/detector/python.cjs",
+    "./detector/java": "./dist/detector/java.cjs",
+    "./learning": "./dist/learning/index.cjs"
   },
   "files": [
     "dist"
@@ -89,6 +53,8 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",
     "@next/mdx": "^16.0.1",
+    "@odavl/core": "workspace:*",
+    "@odavl-studio/oms": "workspace:*",
     "@odavl-studio/telemetry": "workspace:*",
     "@prisma/client": "^6.1.0",
     "dependency-cruiser": "^16.7.0",

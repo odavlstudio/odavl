@@ -14,7 +14,6 @@ import { RuntimeDetector } from '../../src/detector/runtime-detector.js';
 import { BuildDetector } from '../../src/detector/build-detector.js';
 import { NetworkDetector } from '../../src/detector/network-detector.js';
 import { ComponentIsolationDetector } from '../../src/detector/isolation-detector.js';
-import { CVEScannerDetector } from '../../src/detector/cve-scanner-detector.js';
 import { PythonTypeDetector } from '../../src/detector/python-type-detector.js';
 import { PythonSecurityDetector } from '../../src/detector/python-security-detector.js';
 import { PythonComplexityDetector } from '../../src/detector/python-complexity-detector.js';
@@ -40,7 +39,6 @@ const DETECTORS = [
   { name: 'Build', icon: '🏗️', DetectorClass: BuildDetector },
   { name: 'Network', icon: '🌐', DetectorClass: NetworkDetector },
   { name: 'Isolation', icon: '🔐', DetectorClass: ComponentIsolationDetector },
-  { name: 'CVE Scanner', icon: '🛡️', DetectorClass: CVEScannerDetector },
   { name: 'Python Types', icon: '🐍', DetectorClass: PythonTypeDetector },
   { name: 'Python Security', icon: '🔒🐍', DetectorClass: PythonSecurityDetector },
   { name: 'Python Complexity', icon: '🧮🐍', DetectorClass: PythonComplexityDetector },

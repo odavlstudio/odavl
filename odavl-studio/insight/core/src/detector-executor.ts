@@ -9,12 +9,46 @@
  */
 
 import { selectDetectors } from './detector-router.js';
-import { loadDetector, DetectorName } from './detector/detector-loader.js';
+import { loadDetector, DetectorName, getDetectorMetadata } from './detector/detector-loader.js';
 import { WorkerPool, Task } from './performance/worker-pool.js';
 import * as os from 'node:os';
+import * as path from 'node:path';
 
 // Wave 11: Re-export file-parallel executor
 export { FileParallelDetectorExecutor } from './execution/file-parallel-detector-executor.js';
+
+/**
+ * Phase 1.4.3: Determine if a detector should be skipped based on changed files
+ * @param detectorName Detector name
+ * @param changedFiles List of changed file paths
+ * @returns True if detector should be skipped
+ */
+export function shouldSkipDetector(detectorName: string, changedFiles: string[]): boolean {
+  const metadata = getDetectorMetadata(detectorName as DetectorName);
+  
+  // Never skip global or workspace detectors
+  if (!metadata.scope || metadata.scope === 'global' || metadata.scope === 'workspace') {
+    return false;
+  }
+  
+  // If no extensions defined, never skip
+  if (!metadata.extensions || metadata.extensions.length === 0) {
+    return false;
+  }
+  
+  // If no changed files, skip all file-scoped detectors
+  if (changedFiles.length === 0) {
+    return true;
+  }
+  
+  // Check if any changed file matches detector's extensions
+  const hasMatchingFile = changedFiles.some(file => {
+    const ext = path.extname(file).toLowerCase();
+    return metadata.extensions!.some(detectorExt => detectorExt.toLowerCase() === ext);
+  });
+  
+  return !hasMatchingFile;
+}
 
 /**
  * Context for detector execution
@@ -23,6 +57,8 @@ export interface DetectorExecutionContext {
   workspaceRoot: string;
   detectorNames?: string[];
   onProgress?: ProgressCallback;
+  filesFilter?: string[]; // Phase 1.4.2: Only analyze these files (for incremental)
+  changedFiles?: string[]; // Phase 1.4.3: Changed files for smart skipping
 }
 
 /**
@@ -36,6 +72,9 @@ export interface ProgressEvent {
   total?: number;
   message?: string;
   detectorName?: string;
+  detectorDuration?: number; // Phase 1.4.1: Per-detector execution time in milliseconds
+  detectorStatus?: 'success' | 'failed' | 'timeout' | 'skipped'; // Phase 1.4.1: Detector execution status (Phase 1.4.3: added 'skipped')
+  detectorsSkipped?: string[]; // Phase 1.4.3: List of skipped detector names
 }
 
 /**
@@ -72,21 +111,77 @@ export interface DetectorExecutor {
  */
 export class SequentialDetectorExecutor implements DetectorExecutor {
   async runDetectors(context: DetectorExecutionContext): Promise<any[]> {
-    const { workspaceRoot, detectorNames } = context;
+    const { workspaceRoot, detectorNames, onProgress, changedFiles } = context;
     
     // Use provided detectors or select defaults
     const detectors = detectorNames || selectDetectors(null);
     const allIssues: any[] = [];
     
+    // Phase 1.4.3: Determine which detectors to skip
+    const skippedDetectors: string[] = [];
+    const detectorsToRun: string[] = [];
+    
+    if (changedFiles) {
+      for (const detector of detectors) {
+        if (shouldSkipDetector(detector, changedFiles)) {
+          skippedDetectors.push(detector);
+        } else {
+          detectorsToRun.push(detector);
+        }
+      }
+    } else {
+      detectorsToRun.push(...detectors);
+    }
+    
+    // Report skipped detectors
+    if (skippedDetectors.length > 0) {
+      onProgress?.({
+        phase: 'runDetectors',
+        total: detectors.length,
+        completed: 0,
+        detectorsSkipped: skippedDetectors,
+        message: `Skipping ${skippedDetectors.length} detectors (no relevant changes)`
+      });
+    }
+    
     // Execute each detector sequentially (existing behavior)
-    for (const detectorName of detectors) {
+    let completed = 0;
+    for (const detectorName of detectorsToRun) {
+      // Phase 1.4.1: Track detector execution time
+      const detectorStart = performance.now();
       try {
         const Detector = await loadDetector(detectorName as DetectorName);
         const detector = new Detector();
         const issues = await detector.detect(workspaceRoot);
         allIssues.push(...issues.map((issue: any) => ({ ...issue, detector: detectorName })));
+        
+        // Phase 1.4.1: Report timing for successful execution
+        const detectorDuration = performance.now() - detectorStart;
+        completed++;
+        onProgress?.({
+          phase: 'runDetectors',
+          total: detectorsToRun.length, // Phase 1.4.3: Report against detectors actually run
+          completed,
+          detectorName,
+          detectorDuration,
+          detectorStatus: 'success',
+          message: `Completed ${detectorName} (${completed}/${detectorsToRun.length})`
+        });
       } catch (error: any) {
+        // Phase 1.4.1: Report timing for failed execution
+        const detectorDuration = performance.now() - detectorStart;
         console.error(`[AnalysisEngine] Detector ${detectorName} failed:`, error.message);
+        
+        completed++;
+        onProgress?.({
+          phase: 'runDetectors',
+          total: detectorsToRun.length, // Phase 1.4.3: Report against detectors actually run
+          completed,
+          detectorName,
+          detectorDuration,
+          detectorStatus: 'failed',
+          message: `Failed: ${detectorName}`
+        });
       }
     }
     
@@ -134,26 +229,66 @@ export class ParallelDetectorExecutor implements DetectorExecutor {
   }
 
   async runDetectors(context: DetectorExecutionContext): Promise<any[]> {
-    const { workspaceRoot, detectorNames, onProgress } = context;
+    const { workspaceRoot, detectorNames, onProgress, changedFiles } = context;
     
     // Use provided detectors or select defaults
     const detectors = detectorNames || selectDetectors(null);
     
+    // Phase 1.4.3: Smart detector skipping based on changed files
+    const detectorsToRun: string[] = [];
+    const skippedDetectors: string[] = [];
+    
+    if (changedFiles) {
+      for (const detector of detectors) {
+        if (shouldSkipDetector(detector, changedFiles)) {
+          skippedDetectors.push(detector);
+        } else {
+          detectorsToRun.push(detector);
+        }
+      }
+      
+      // Report skipped detectors
+      if (skippedDetectors.length > 0) {
+        onProgress?.({ 
+          phase: 'runDetectors', 
+          detectorsSkipped: skippedDetectors,
+          message: `Skipping ${skippedDetectors.length} detectors (no relevant changes)`
+        });
+      }
+    } else {
+      detectorsToRun.push(...detectors);
+    }
+    
     // Report start
-    onProgress?.({ phase: 'runDetectors', total: detectors.length, completed: 0, message: 'Starting detector execution...' });
+    onProgress?.({ phase: 'runDetectors', total: detectorsToRun.length, completed: 0, message: 'Starting detector execution...' });
     
     // Choose execution mode
     if (this.useWorkerPool) {
-      return this.runWithWorkerPool(workspaceRoot, detectors, onProgress);
+      return this.runWithWorkerPool(workspaceRoot, detectorsToRun, onProgress);
     }
     
     // Fallback: Promise-based execution
-    return this.runWithPromises(workspaceRoot, detectors, onProgress);
+    return this.runWithPromises(workspaceRoot, detectorsToRun, onProgress);
   }
   
   private async runWithPromises(workspaceRoot: string, detectors: string[], onProgress?: ProgressCallback): Promise<any[]> {
     const allIssues: any[] = [];
     let completed = 0;
+    const DETECTOR_TIMEOUT_MS = 60000; // Phase 1.3: 60 second timeout per detector
+    
+    // Phase 1.3: Timeout protection wrapper
+    const runDetectorWithTimeout = async (detectorName: string): Promise<any[]> => {
+      return Promise.race([
+        (async () => {
+          const Detector = await loadDetector(detectorName as DetectorName);
+          const detector = new Detector();
+          return await detector.detect(workspaceRoot);
+        })(),
+        new Promise<never>((_, reject) => 
+          setTimeout(() => reject(new Error(`Detector timeout after ${DETECTOR_TIMEOUT_MS}ms`)), DETECTOR_TIMEOUT_MS)
+        )
+      ]);
+    };
     
     // Process detectors in batches of maxConcurrency
     for (let i = 0; i < detectors.length; i += this.maxConcurrency) {
@@ -161,10 +296,11 @@ export class ParallelDetectorExecutor implements DetectorExecutor {
       
       const results = await Promise.allSettled(
         batch.map(async (detectorName) => {
+          // Phase 1.4.1: Track detector execution time
+          const detectorStart = performance.now();
           try {
-            const Detector = await loadDetector(detectorName as DetectorName);
-            const detector = new Detector();
-            const issues = await detector.detect(workspaceRoot);
+            const issues = await runDetectorWithTimeout(detectorName);
+            const detectorDuration = performance.now() - detectorStart;
             
             // Report progress
             completed++;
@@ -173,23 +309,42 @@ export class ParallelDetectorExecutor implements DetectorExecutor {
               total: detectors.length, 
               completed, 
               detectorName,
+              detectorDuration, // Phase 1.4.1: Include timing
+              detectorStatus: 'success', // Phase 1.4.1: Include status
               message: `Completed ${detectorName} (${completed}/${detectors.length})`
             });
             
             return issues.map((issue: any) => ({ ...issue, detector: detectorName }));
           } catch (error: any) {
-            console.error(`[AnalysisEngine] Detector ${detectorName} failed:`, error.message);
+            const detectorDuration = performance.now() - detectorStart;
+            
+            // Phase 1.3: Clear error logging with actionable message
+            const isTimeout = error.message?.includes('timeout');
+            const errorType = isTimeout ? 'TIMEOUT' : 'ERROR';
+            console.error(`[${errorType}] Detector ${detectorName} failed: ${error.message}`);
+            
             completed++;
-            onProgress?.({ phase: 'runDetectors', total: detectors.length, completed, detectorName, message: `Failed: ${detectorName}` });
+            onProgress?.({ 
+              phase: 'runDetectors', 
+              total: detectors.length, 
+              completed, 
+              detectorName,
+              detectorDuration, // Phase 1.4.1: Include timing even on failure
+              detectorStatus: isTimeout ? 'timeout' : 'failed', // Phase 1.4.1: Include status
+              message: `Failed: ${detectorName} (${errorType})`
+            });
             return [];
           }
         })
       );
       
-      // Collect successful results
+      // Phase 1.3: Collect successful results and log rejected ones (no silent failures)
       for (const result of results) {
         if (result.status === 'fulfilled') {
           allIssues.push(...result.value);
+        } else {
+          // Phase 1.3: Log rejected promises (previously silent)
+          console.error('[ParallelDetectorExecutor] Promise rejected:', result.reason?.message || result.reason);
         }
       }
     }

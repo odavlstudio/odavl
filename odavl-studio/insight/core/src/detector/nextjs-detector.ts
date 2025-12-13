@@ -1,18 +1,17 @@
 /**
  * ODAVL Insight - Next.js Detector v1.0
  * 
- * Detects Next.js and React-specific issues:
+ * Detects Next.js 13/14 App Router-specific issues:
  * - Hydration mismatches (Date.now, Math.random in components)
  * - Server Actions issues ('use server' validation)
  * - Suspense boundary problems (missing Suspense, nested boundaries)
  * - Client/Server boundary violations ('use client' misuse)
  * - Data fetching anti-patterns
  * 
- * Dependencies:
- * - @babel/parser (AST parsing)
- * - @babel/traverse (AST traversal)
+ * Implementation: Regex-based pattern matching (fast, zero dependencies)
+ * Status: Experimental - Enable with ODAVL_NEXTJS_DETECTOR=1
  * 
- * Target: Detect 95%+ Next.js issues
+ * Target: Detect 95%+ Next.js App Router issues
  */
 
 import * as fs from 'node:fs/promises';

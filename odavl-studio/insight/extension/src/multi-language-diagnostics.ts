@@ -25,6 +25,7 @@ import { getLanguageDetector, ProgrammingLanguage } from './language-detector';
 import { DetectorIssue } from './types/DetectorIssue';
 import { DetectorLoader } from './detectors/DetectorLoader';
 import { DiagnosticsConverter } from './converters/DiagnosticsConverter';
+import { BaselineManager } from './core/baseline-manager';
 
 /**
  * Multi-Language Diagnostics Provider
@@ -38,17 +39,34 @@ import { DiagnosticsConverter } from './converters/DiagnosticsConverter';
  * - Debounce file saves (500ms)
  * - Cache analysis results
  * - Parallel detector execution
+ * 
+ * **Phase 4.1.3 - Delta-First UX:**
+ * - Baseline tracking for NEW vs LEGACY issue classification
+ * - Never punish users for pre-existing technical debt
  */
 export class MultiLanguageDiagnosticsProvider {
   private diagnosticCollection: vscode.DiagnosticCollection;
   private languageDetector = getLanguageDetector();
   private detectorLoader = new DetectorLoader();
-  private diagnosticsConverter = new DiagnosticsConverter();
+  private baselineManager?: BaselineManager;
+  private diagnosticsConverter: DiagnosticsConverter;
   private saveDebounceTimers = new Map<string, NodeJS.Timeout>();
   private analysisCache = new Map<string, { timestamp: number; diagnostics: vscode.Diagnostic[] }>();
   
-  constructor(diagnosticCollection: vscode.DiagnosticCollection) {
+  constructor(diagnosticCollection: vscode.DiagnosticCollection, workspaceRoot?: string) {
     this.diagnosticCollection = diagnosticCollection;
+    
+    // Phase 4.1.3: Initialize baseline manager if workspace available
+    if (workspaceRoot) {
+      this.baselineManager = new BaselineManager(workspaceRoot);
+      // Load baseline asynchronously (non-blocking)
+      this.baselineManager.loadBaseline().catch(err => {
+        console.error('[MultiLanguageDiagnostics] Failed to load baseline:', err);
+      });
+    }
+    
+    // Phase 4.1.3: Pass baseline manager to converter
+    this.diagnosticsConverter = new DiagnosticsConverter(this.baselineManager);
   }
   
   /**
@@ -158,7 +176,8 @@ export class MultiLanguageDiagnosticsProvider {
       }
       
       const languageNames = languages.map(l => this.languageDetector.getLanguageDisplayName(l)).join(', ');
-      vscode.window.showInformationMessage(`ODAVL: Analyzing workspace (${languageNames})...`);
+      // Phase 4.1.1: Removed noisy notification - use output channel for progress
+      console.log(`ODAVL: Analyzing workspace (${languageNames})...`);
       
       // Run detectors for each language
       const allIssues: DetectorIssue[] = [];
@@ -171,7 +190,7 @@ export class MultiLanguageDiagnosticsProvider {
         }
       }
       
-      // Group issues by file
+      // Phase 4.1.2: Group issues by file
       const issuesByFile = new Map<string, DetectorIssue[]>();
       for (const issue of allIssues) {
         if (!issuesByFile.has(issue.file)) {
@@ -180,18 +199,57 @@ export class MultiLanguageDiagnosticsProvider {
         issuesByFile.get(issue.file)!.push(issue);
       }
       
-      // Update diagnostics for each file
-      this.diagnosticCollection.clear();
+      // Phase 4.1.2: Convert issues to diagnostics (per-file limit applied by converter)
+      const allDiagnostics: Array<{ uri: vscode.Uri; diagnostic: vscode.Diagnostic }> = [];
       
       for (const [filePath, issues] of issuesByFile.entries()) {
         const uri = vscode.Uri.file(filePath);
         const diagnostics = this.diagnosticsConverter.convert(issues, uri);
+        
+        // Collect all diagnostics for global limit enforcement
+        for (const diagnostic of diagnostics) {
+          allDiagnostics.push({ uri, diagnostic });
+        }
+      }
+      
+      // Phase 4.1.2: Enforce global limit (max 50 diagnostics total)
+      // Sort by severity, take top 50
+      const MAX_TOTAL_DIAGNOSTICS = 50;
+      const sortedDiagnostics = this.sortDiagnosticsBySeverity(allDiagnostics);
+      const limitedDiagnostics = sortedDiagnostics.slice(0, MAX_TOTAL_DIAGNOSTICS);
+      
+      // Phase 4.1.2: Update diagnostics (only top 50 shown)
+      this.diagnosticCollection.clear();
+      
+      // Group limited diagnostics back by file
+      const diagnosticsByFile = new Map<string, vscode.Diagnostic[]>();
+      for (const { uri, diagnostic } of limitedDiagnostics) {
+        const key = uri.toString();
+        if (!diagnosticsByFile.has(key)) {
+          diagnosticsByFile.set(key, []);
+        }
+        diagnosticsByFile.get(key)!.push(diagnostic);
+      }
+      
+      // Set diagnostics per file
+      for (const [uriString, diagnostics] of diagnosticsByFile.entries()) {
+        const uri = vscode.Uri.parse(uriString);
         this.diagnosticCollection.set(uri, diagnostics);
       }
       
-      vscode.window.showInformationMessage(`ODAVL: Analysis complete (${allIssues.length} issues found)`);
+      // Phase 4.1.1: Removed success notification - use status bar + Problems Panel for feedback
+      console.log(`ODAVL: Analysis complete (${allIssues.length} issues found)`);
+      
+      // Phase 4.1.3: Update baseline after successful analysis
+      // This establishes the new baseline for future NEW/LEGACY classification
+      if (this.baselineManager && allIssues.length > 0) {
+        await this.baselineManager.updateBaseline(allIssues);
+        console.log('[MultiLanguageDiagnostics] Baseline updated with current issues');
+      }
     } catch (error) {
       console.error('Workspace analysis error:', error);
+      // Phase 4.1.1: Show error notification for hard failures only (not routine background analysis)
+      // Only show if this was an explicit user action, not auto-triggered
       vscode.window.showErrorMessage(`ODAVL: Workspace analysis failed - ${error}`);
     }
   }
@@ -225,6 +283,31 @@ export class MultiLanguageDiagnosticsProvider {
     return cached ? cached.diagnostics : null;
   }
   
+  /**
+   * Phase 4.1.2: Sort diagnostics globally by severity
+   * 
+   * Order: Error > Warning > Information > Hint
+   * Uses stable sort to preserve original order for same severity.
+   * 
+   * @param diagnostics Diagnostics with URIs
+   * @returns Sorted diagnostics (highest severity first)
+   */
+  private sortDiagnosticsBySeverity(
+    diagnostics: Array<{ uri: vscode.Uri; diagnostic: vscode.Diagnostic }>
+  ): Array<{ uri: vscode.Uri; diagnostic: vscode.Diagnostic }> {
+    const severityOrder: Record<vscode.DiagnosticSeverity, number> = {
+      [vscode.DiagnosticSeverity.Error]: 0,
+      [vscode.DiagnosticSeverity.Warning]: 1,
+      [vscode.DiagnosticSeverity.Information]: 2,
+      [vscode.DiagnosticSeverity.Hint]: 3,
+    };
+    
+    // Stable sort: preserves original order for same severity
+    return [...diagnostics].sort((a, b) => {
+      return severityOrder[a.diagnostic.severity] - severityOrder[b.diagnostic.severity];
+    });
+  }
+
   /**
    * Dispose resources
    */

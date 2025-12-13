@@ -1,0 +1,35 @@
+{
+  "name": "@odavl-studio/insight-ci-config",
+  "version": "1.0.0",
+  "description": "ODAVL Insight CI configuration schema and loader",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "odavl",
+    "insight",
+    "ci",
+    "config"
+  ],
+  "author": "ODAVL Studio",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}

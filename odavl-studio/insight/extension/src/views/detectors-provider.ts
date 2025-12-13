@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getLicenseManager } from '../extension.js';
+import { getLicenseManager } from '../extension-v2.js';
 import { DetectorRegistry, type DetectorInfo as RegistryDetectorInfo } from '../detector-registry.js';
 import { SubscriptionTier } from '../license/license-manager.js';
 

@@ -43,7 +43,7 @@ export class AnalysisEngine {
     this.options = options;
   }
 
-  async analyze(files: string[]): Promise<AnalysisResult[]> {
+  async analyze(files: string[], options?: { changedFiles?: string[] }): Promise<AnalysisResult[]> {
     if (files.length === 0) return [];
     
     // Wave 10: Report progress
@@ -55,7 +55,8 @@ export class AnalysisEngine {
     const workspaceRoot = this.findWorkspaceRoot(files);
     
     // Run detectors once on workspace, not per-file (with progress callback)
-    const allIssues = await this.runDetectors(workspaceRoot);
+    // Phase 1.4.3: Pass changedFiles for smart detector skipping
+    const allIssues = await this.runDetectors(workspaceRoot, options?.changedFiles);
     
     // Wave 10: Report aggregation phase
     this.options.onProgress?.({ phase: 'aggregateResults', total: files.length, completed: 0, message: 'Aggregating results...' });
@@ -104,11 +105,13 @@ export class AnalysisEngine {
     return process.cwd();
   }
   
-  private async runDetectors(workspaceRoot: string): Promise<any[]> {
+  private async runDetectors(workspaceRoot: string, changedFiles?: string[]): Promise<any[]> {
     // Wave 10 Enhanced: Delegate to pluggable executor with progress callback
+    // Phase 1.4.3: Pass changedFiles for smart detector skipping
     return this.executor.runDetectors({ 
       workspaceRoot,
-      onProgress: this.options.onProgress 
+      onProgress: this.options.onProgress,
+      changedFiles 
     });
   }
   

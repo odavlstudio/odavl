@@ -28,7 +28,7 @@ export default defineConfig({
   },
   
   format: ['cjs'],  // CJS ONLY - no ESM
-  dts: false,       // Phase 5: Kotlin detector has invalid characters, skip .d.ts
+  dts: false,       // Skip .d.ts generation - incompatible with some dependencies
   
   platform: 'node',
   bundle: true,     // MUST bundle internal files, externalize dependencies
@@ -70,6 +70,7 @@ export default defineConfig({
     // Workspace packages
     '@odavl-studio/telemetry',
     '@odavl-studio/oms',  // Phase 5: External OMS package
+    '@odavl/core',        // Phase P1: Manifest integration
   ],
   
   minify: false,

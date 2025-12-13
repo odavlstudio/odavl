@@ -61,6 +61,8 @@
     "@odavl-studio/oms": "workspace:*",
     "@odavl-studio/sdk": "workspace:*",
     "@odavl-studio/auth": "workspace:*",
+    "@odavl-studio/telemetry": "workspace:*",
+    "@odavl-studio/insight-ci-config": "workspace:*",
     "@odavl/core": "workspace:*",
     "@odavl/insight-sdk": "workspace:*",
     "@odavl/autopilot-core": "workspace:*",
@@ -70,7 +72,8 @@
     "boxen": "^8.0.1",
     "prompts": "^2.4.2",
     "open": "^10.1.0",
-    "date-fns": "^4.1.0"
+    "date-fns": "^4.1.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^24.6.2",

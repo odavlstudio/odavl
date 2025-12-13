@@ -1,0 +1,223 @@
+// ODAVL Insight: Jenkins Declarative Pipeline
+//
+// Behavioral parity with GitHub Actions workflows
+//
+// Supports:
+//   - PR-like analysis via parameters (TARGET_BRANCH, SOURCE_BRANCH)
+//   - Main branch baseline generation
+//   - Nightly scheduled analysis
+//
+// Exit behavior:
+//   - Fails ONLY on Critical issues or detector errors
+//   - Main branch analysis never fails on quality issues
+
+pipeline {
+    agent any
+    
+    parameters {
+        choice(
+            name: 'MODE',
+            choices: ['pr', 'main', 'nightly'],
+            description: 'Analysis mode: pr (delta), main (baseline), nightly (trend)'
+        )
+        string(
+            name: 'TARGET_BRANCH',
+            defaultValue: 'main',
+            description: 'Target branch for delta analysis (PR mode only)'
+        )
+        string(
+            name: 'SOURCE_BRANCH',
+            defaultValue: '',
+            description: 'Source branch for delta analysis (PR mode only)'
+        )
+    }
+    
+    options {
+        timeout(time: 20, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+    
+    environment {
+        NODE_VERSION = '18'
+        INSIGHT_VERSION = '1.2.3'
+    }
+    
+    stages {
+        // ────────────────────────────────────────────────────────
+        // Stage 1: Setup
+        // ────────────────────────────────────────────────────────
+        stage('Setup') {
+            steps {
+                script {
+                    echo "ODAVL Insight Analysis"
+                    echo "Mode: ${params.MODE}"
+                    echo "Target Branch: ${params.TARGET_BRANCH}"
+                    
+                    // Ensure Node.js is available
+                    sh 'node --version'
+                    sh 'npm --version'
+                }
+            }
+        }
+        
+        // ────────────────────────────────────────────────────────
+        // Stage 2: Install Dependencies
+        // ────────────────────────────────────────────────────────
+        stage('Install') {
+            steps {
+                script {
+                    sh 'npm ci'
+                    sh "npm install @odavl-studio/cli@${env.INSIGHT_VERSION}"
+                }
+            }
+        }
+        
+        // ────────────────────────────────────────────────────────
+        // Stage 3: Analyze (mode-dependent)
+        // ────────────────────────────────────────────────────────
+        stage('Analyze') {
+            steps {
+                script {
+                    if (params.MODE == 'pr') {
+                        // PR Mode: Delta analysis
+                        echo "Running delta analysis against ${params.TARGET_BRANCH}"
+                        
+                        // Fetch target branch for baseline
+                        sh "git fetch origin ${params.TARGET_BRANCH}"
+                        
+                        // Run analysis with failure on Critical issues
+                        try {
+                            sh """
+                                npx @odavl-studio/cli insight analyze \
+                                    --format sarif \
+                                    --output insight-results.sarif \
+                                    --fail-on-critical \
+                                    --delta-mode \
+                                    --baseline-ref origin/${params.TARGET_BRANCH}
+                            """
+                        } catch (Exception e) {
+                            echo "Analysis failed: ${e.message}"
+                            currentBuild.result = 'FAILURE'
+                            throw e
+                        }
+                        
+                    } else if (params.MODE == 'main') {
+                        // Main Mode: Full analysis (never fails)
+                        echo "Running full analysis for baseline generation"
+                        
+                        sh """
+                            npx @odavl-studio/cli insight analyze \
+                                --format sarif \
+                                --format json \
+                                --output insight-results.sarif \
+                                --output-json .odavl/baseline.json
+                        """ // Note: No failure on quality issues
+                        
+                    } else if (params.MODE == 'nightly') {
+                        // Nightly Mode: Trend analysis
+                        echo "Running nightly trend analysis"
+                        
+                        sh """
+                            npx @odavl-studio/cli insight analyze \
+                                --format json \
+                                --output .odavl/nightly-results.json \
+                                --include-all-projects
+                        """
+                    }
+                }
+            }
+        }
+        
+        // ────────────────────────────────────────────────────────
+        // Stage 4: Report
+        // ────────────────────────────────────────────────────────
+        stage('Report') {
+            steps {
+                script {
+                    // Parse SARIF and generate summary
+                    if (fileExists('insight-results.sarif')) {
+                        sh '''
+                            echo "=== ODAVL Insight Summary ==="
+                            
+                            CRITICAL=$(jq '[.runs[0].results[] | select(.level=="error")] | length' insight-results.sarif)
+                            HIGH=$(jq '[.runs[0].results[] | select(.level=="warning")] | length' insight-results.sarif)
+                            MEDIUM=$(jq '[.runs[0].results[] | select(.level=="note")] | length' insight-results.sarif)
+                            
+                            echo "Critical: $CRITICAL"
+                            echo "High: $HIGH"
+                            echo "Medium: $MEDIUM"
+                            
+                            if [ "$CRITICAL" -gt 0 ] && [ "''' + params.MODE + '''" = "pr" ]; then
+                                echo "❌ Critical issues detected - build should fail"
+                            fi
+                        '''
+                    }
+                }
+            }
+        }
+        
+        // ────────────────────────────────────────────────────────
+        // Stage 5: Upload (Optional)
+        // ────────────────────────────────────────────────────────
+        stage('Upload') {
+            when {
+                expression { env.ODAVL_API_TOKEN != null }
+            }
+            steps {
+                script {
+                    echo "Uploading results to cloud dashboard"
+                    
+                    sh """
+                        npx @odavl-studio/cli insight upload \
+                            --project ${env.JOB_NAME} \
+                            --branch ${params.TARGET_BRANCH} \
+                            --commit ${env.GIT_COMMIT}
+                    """
+                }
+            }
+        }
+    }
+    
+    // ────────────────────────────────────────────────────────────
+    // Post-build actions
+    // ────────────────────────────────────────────────────────────
+    post {
+        always {
+            // Archive artifacts
+            archiveArtifacts artifacts: '**/.odavl/*.json, **/insight-results.sarif', 
+                             allowEmptyArchive: true,
+                             fingerprint: true
+            
+            // Publish SARIF (if Jenkins SARIF plugin installed)
+            // recordIssues(tools: [sarif(pattern: '**/insight-results.sarif')])
+        }
+        
+        failure {
+            script {
+                if (params.MODE == 'pr') {
+                    echo "PR analysis failed - Critical issues detected or detector error"
+                } else {
+                    echo "Analysis failed due to operational issue (not quality)"
+                }
+            }
+        }
+        
+        success {
+            echo "Analysis completed successfully"
+        }
+    }
+}
+
+// ────────────────────────────────────────────────────────────
+// Usage Examples:
+//
+// PR Analysis:
+//   MODE=pr, TARGET_BRANCH=main, SOURCE_BRANCH=feature-123
+//
+// Main Branch Baseline:
+//   MODE=main, TARGET_BRANCH=main
+//
+// Nightly Analysis:
+//   MODE=nightly (scheduled via Jenkins cron)
+// ────────────────────────────────────────────────────────────

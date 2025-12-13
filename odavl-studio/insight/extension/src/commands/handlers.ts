@@ -30,7 +30,8 @@ export function createAnalyzeWorkspaceHandler(
       try {
         progress.report({ message: 'Analyzing workspace...' });
         await diagnosticsProvider.analyzeWorkspace(workspaceRoot);
-        vscode.window.showInformationMessage('✅ ODAVL Insight: Workspace analysis complete');
+        // Phase 4.1.1: Removed success notification - use status bar + Problems Panel for feedback
+        console.log('ODAVL Insight: Workspace analysis complete');
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : String(error);
         const action = await vscode.window.showErrorMessage(
@@ -56,7 +57,8 @@ export function createClearDiagnosticsHandler(
   return () => {
     diagnosticCollection.clear();
     issuesExplorer.refresh();
-    vscode.window.showInformationMessage('🧹 ODAVL Insight: Diagnostics cleared');
+    // Phase 4.1.1: Removed notification - user can see in Problems Panel that diagnostics are cleared
+    console.log('ODAVL Insight: Diagnostics cleared');
   };
 }
 
@@ -96,9 +98,11 @@ export function createRunDetectorHandler(
     }, async () => {
       try {
         await diagnosticsProvider.runSingleDetector(detectorId, workspaceRoot);
-        vscode.window.showInformationMessage(`✅ ${detectorId} detector complete`);
+        // Phase 4.1.1: Removed success notification - use status bar + Problems Panel
+        console.log(`${detectorId} detector complete`);
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : String(error);
+        // Error notification is appropriate for explicit user command that failed
         vscode.window.showErrorMessage(`Failed to run ${detectorId}: ${errorMsg}`);
       }
     });

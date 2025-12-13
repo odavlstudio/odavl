@@ -62,10 +62,38 @@ export class FileParallelDetectorExecutor implements DetectorExecutor {
   }
 
   async runDetectors(context: DetectorExecutionContext): Promise<any[]> {
-    const { workspaceRoot, detectorNames, onProgress } = context;
+    const { workspaceRoot, detectorNames, onProgress, changedFiles } = context;
 
     // Select detectors
     const detectors = detectorNames || selectDetectors(null);
+
+    // Phase 1.4.3: Smart detector skipping based on changed files
+    const detectorsToRun: string[] = [];
+    const skippedDetectors: string[] = [];
+    
+    if (changedFiles) {
+      // Import shouldSkipDetector from parent
+      const { shouldSkipDetector } = await import('../detector-executor.js');
+      
+      for (const detector of detectors) {
+        if (shouldSkipDetector(detector, changedFiles)) {
+          skippedDetectors.push(detector);
+        } else {
+          detectorsToRun.push(detector);
+        }
+      }
+      
+      // Report skipped detectors
+      if (skippedDetectors.length > 0) {
+        onProgress?.({ 
+          phase: 'runDetectors', 
+          detectorsSkipped: skippedDetectors,
+          message: `Skipping ${skippedDetectors.length} detectors (no relevant changes)`
+        });
+      }
+    } else {
+      detectorsToRun.push(...detectors);
+    }
 
     // Collect files from workspace
     onProgress?.({ phase: 'collectFiles', message: 'Collecting workspace files...' });
@@ -78,18 +106,18 @@ export class FileParallelDetectorExecutor implements DetectorExecutor {
 
     onProgress?.({
       phase: 'runDetectors',
-      total: files.length * detectors.length,
+      total: files.length * detectorsToRun.length,
       completed: 0,
-      message: `Starting file-parallel execution: ${files.length} files × ${detectors.length} detectors`
+      message: `Starting file-parallel execution: ${files.length} files × ${detectorsToRun.length} detectors`
     });
 
     // Choose execution mode
     if (this.useWorkerPool) {
-      return this.runWithWorkerPool(workspaceRoot, files, detectors, onProgress);
+      return this.runWithWorkerPool(workspaceRoot, files, detectorsToRun, onProgress);
     }
 
     // Fallback: Promise-based file-level execution
-    return this.runWithPromises(workspaceRoot, files, detectors, onProgress);
+    return this.runWithPromises(workspaceRoot, files, detectorsToRun, onProgress);
   }
 
   private async collectFiles(workspaceRoot: string): Promise<string[]> {

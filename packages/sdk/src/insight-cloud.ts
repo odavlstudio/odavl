@@ -234,11 +234,24 @@ export class InsightCloudClient {
 
   /**
    * Make authenticated API request
+   * Phase 1.2: Strict authentication check - NO unauthenticated requests
    */
   private async request<T>(
     path: string,
     options: RequestOptions = {}
   ): Promise<InsightResponse<T>> {
+    // Phase 1.2: Enforce authentication for ALL cloud API requests
+    if (!this.accessToken || this.accessToken.trim() === '') {
+      return {
+        success: false,
+        error: {
+          error: 'UNAUTHENTICATED',
+          message: 'Cloud API requires authentication. Sign in with "odavl auth login" or use local analysis mode.',
+          statusCode: 401,
+        } as InsightApiError,
+      };
+    }
+    
     try {
       const url = `${this.baseUrl}${path}`;
       const headers: Record<string, string> = {
@@ -246,9 +259,8 @@ export class InsightCloudClient {
         ...options.headers,
       };
 
-      if (this.accessToken) {
-        headers['Authorization'] = `Bearer ${this.accessToken}`;
-      }
+      // Always add Authorization header (validated above)
+      headers['Authorization'] = `Bearer ${this.accessToken}`;
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), this.timeout);

@@ -47,6 +47,10 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "_archive/**",
+    "prisma/seed.ts",
+    "scripts/**",
+    "sentry.*.config.ts"
   ]
 }

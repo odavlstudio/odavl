@@ -1,0 +1,56 @@
+{
+  "$schema": "https://odavl.studio/schemas/insight-ci-config-v1.json",
+  "version": "1",
+  "modes": {
+    "pr": {
+      "enabled": true,
+      "failOn": {
+        "critical": true,
+        "high": false,
+        "medium": false,
+        "low": false
+      },
+      "maxNewIssues": null,
+      "detectors": {
+        "include": ["typescript", "security", "import", "circular"],
+        "exclude": []
+      },
+      "allowOverrides": true
+    },
+    "main": {
+      "enabled": true,
+      "blockOnQuality": false,
+      "detectors": {
+        "include": ["typescript", "security", "import", "circular", "performance", "complexity"],
+        "exclude": []
+      }
+    },
+    "nightly": {
+      "enabled": true,
+      "trackTrends": true,
+      "alertsOn": {
+        "critical": true,
+        "high": false
+      }
+    }
+  },
+  "severityPolicy": {
+    "critical": {
+      "description": "Security vulnerabilities, hardcoded secrets, circular dependencies that break builds"
+    },
+    "high": {
+      "description": "Code quality issues that degrade maintainability but do not block development"
+    },
+    "medium": {
+      "description": "Minor code smells and style violations worth addressing eventually"
+    },
+    "low": {
+      "description": "Informational findings with minimal impact"
+    }
+  },
+  "antiPatterns": {
+    "failOnLegacy": false,
+    "failOnMediumOrLow": false,
+    "autoUploadWithoutConsent": false
+  }
+}
